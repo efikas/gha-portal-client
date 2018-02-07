@@ -1,7 +1,4 @@
-import axios from "axios/index";
-
-module.exports = {
-  axiosInit: function () {
+module.exports = function (axios) {
     axios.defaults.baseURL = "http://api.sbemis.net/"
     axios.interceptors.request.use(function (config) {
       if (typeof window === "undefined") {
@@ -16,5 +13,4 @@ module.exports = {
 
       return config
     })
-  }
 }
