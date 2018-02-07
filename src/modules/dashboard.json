@@ -1,0 +1,76 @@
+{
+    "staffs": {
+        "total": 19629,
+        "teaching": {
+            "male": 3555,
+            "female": 9420
+        },
+        "non_teaching": {
+            "male": 1175,
+            "female": 849
+        },
+        "private": {
+            "primary": {
+                "male": 22,
+                "female": 54
+               },
+            "secondary": {
+                "male": 22,
+                "female": 54
+               },
+            "male": 1001,
+            "female": 2674
+        },
+        "public": {
+            "primary": {
+                "male": 22,
+                "female": 54
+               },
+            "secondary": {
+                "male": 22,
+                "female": 54
+               },
+            "male": 5351,
+            "female": 10603
+        }
+    },
+    "students": {
+        "total": 181722,
+        "private": {
+            "primary": 25484,
+            "secondary": 4435
+        },
+        "public": {
+            "primary": 92847,
+            "secondary": 58820
+        }
+    },
+    "guardians": 0,
+    "schools": {
+        "total": 1407,
+        "privates": {
+            "primary": 294,
+            "secondary": 42,
+            "rural": {
+                "primary": 118,
+                "secondary": 23
+            },
+            "urban": {
+                "primary": 172,
+                "secondary": 18
+            }
+        },
+        "publics": {
+            "primary": 895,
+            "secondary": 175,
+            "rural": {
+                "primary": 567,
+                "secondary": 86
+            },
+            "urban": {
+                "primary": 322,
+                "secondary": 86
+            }
+        }
+    }
+}
