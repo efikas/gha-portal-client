@@ -5,14 +5,14 @@ require("./config.service")(axios)
 
 const appService = {
   statistics() {
-    return new Promise((resolve, reject) => {
-      axios.get('/statistics')
+    // return new Promise((resolve, reject) => {
+      return axios.get('/statistics')
         .then(response => {
-          resolve(response.data)
+          return response.data
         }).catch((error) => {
-        reject(error.response);
+        return error.response
       })
-    })
+    // })
   }
 }
 

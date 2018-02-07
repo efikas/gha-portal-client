@@ -174,11 +174,16 @@
 </template>
 <script>
 
+  Number.prototype.format = function(n, x) {
+    var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\.' : '$') + ')';
+    return this.toFixed(Math.max(0, ~~n)).replace(new RegExp(re, 'g'), '$&,');
+  };
+
+
   import api from '../services/app.service'
 
   import SbemisHeader from '../components/header'
   import SbemisFooter from '../components/footer'
-  import JSONData from '../modules/dashboard.json'
 
   let SbemisRep = require('../modules/draw-graphs.js')
   export default {
@@ -201,37 +206,38 @@
         ]
       }
     },
-    methods: {},
-    created() {
+    beforeCreate() {
       api.statistics()
         .then((data) => {
-          console.log(data)
-          this.schools = data.schools.total
-          this.staffs = data.staffs.total
-          this.students = data.students.total
+          this.schools = data.schools.total.format()
+          this.staffs = data.staffs.total.format()
+          this.students = data.students.total.format()
+          this.plotter(data)
         })
         .catch((error) => window.alert("failed"))
     },
-    mounted() {
-      let myData = SbemisRep.dataMapping(JSONData)
-      console.log(myData.PRIV_ST)
-      SbemisRep.renderPieChart('data-priv-state', SbemisRep.getLabelHeadlines().PRIV_ST, myData.PRIV_ST)
-      SbemisRep.renderPieChart('data-pub-state', SbemisRep.getLabelHeadlines().PUB_ST, myData.PUB_ST)
-      SbemisRep.renderBasicColumnchart('data-sch-rural', SbemisRep.getLabelHeadlines().SCH_RURAL, ['Rural Area'], myData.SCH_RURAL)
-      SbemisRep.renderBasicColumnchart('data-sch-urban', SbemisRep.getLabelHeadlines().SCH_URBAN, ['Urban Area'], myData.SCH_URBAN)
-      SbemisRep.renderDoughnutChart('data-stu-sec', SbemisRep.getLabelHeadlines().STU_SEC_SCH, myData.STU_SEC_SCH)
-      SbemisRep.renderDoughnutChart('data-stu-pri', SbemisRep.getLabelHeadlines().STU_PRI_SCH, myData.STU_PRI_SCH)
+    methods: {
+      plotter(data) {
+        let myData = SbemisRep.dataMapping(data)
+        console.log(myData.PRIV_ST)
+        SbemisRep.renderPieChart('data-priv-state', SbemisRep.getLabelHeadlines().PRIV_ST, myData.PRIV_ST)
+        SbemisRep.renderPieChart('data-pub-state', SbemisRep.getLabelHeadlines().PUB_ST, myData.PUB_ST)
+        SbemisRep.renderBasicColumnchart('data-sch-rural', SbemisRep.getLabelHeadlines().SCH_RURAL, ['Rural Area'], myData.SCH_RURAL)
+        SbemisRep.renderBasicColumnchart('data-sch-urban', SbemisRep.getLabelHeadlines().SCH_URBAN, ['Urban Area'], myData.SCH_URBAN)
+        SbemisRep.renderDoughnutChart('data-stu-sec', SbemisRep.getLabelHeadlines().STU_SEC_SCH, myData.STU_SEC_SCH)
+        SbemisRep.renderDoughnutChart('data-stu-pri', SbemisRep.getLabelHeadlines().STU_PRI_SCH, myData.STU_PRI_SCH)
 
-      // SbemisRep.renderBasicColumnchart('data-stu-attend', SbemisRep.getLabelHeadlines().STU_ATTEND, myData.DAYS, myData.STU_ATTEND)
+        // SbemisRep.renderBasicColumnchart('data-stu-attend', SbemisRep.getLabelHeadlines().STU_ATTEND, myData.DAYS, myData.STU_ATTEND)
 
-      SbemisRep.renderPieChart('data-staff-sex-state', SbemisRep.getLabelHeadlines().STAFF_GEN_ST, myData.STAFF_GEN_ST)
-      SbemisRep.renderPieChart('data-staff-state', SbemisRep.getLabelHeadlines().STAFF_ST, myData.STAFF_ST)
-      SbemisRep.renderHalfPieChart('data-acc-staff-sex-state', SbemisRep.getLabelHeadlines().GEN_ACAD_STAFF_ST, myData.GEN_ACAD_STAFF_ST)
-      SbemisRep.renderHalfPieChart('data-non-acc-staff-sex-state', SbemisRep.getLabelHeadlines().GEN_NON_STAFF_ST, myData.GEN_NON_STAFF_ST)
+        SbemisRep.renderPieChart('data-staff-sex-state', SbemisRep.getLabelHeadlines().STAFF_GEN_ST, myData.STAFF_GEN_ST)
+        SbemisRep.renderPieChart('data-staff-state', SbemisRep.getLabelHeadlines().STAFF_ST, myData.STAFF_ST)
+        SbemisRep.renderHalfPieChart('data-acc-staff-sex-state', SbemisRep.getLabelHeadlines().GEN_ACAD_STAFF_ST, myData.GEN_ACAD_STAFF_ST)
+        SbemisRep.renderHalfPieChart('data-non-acc-staff-sex-state', SbemisRep.getLabelHeadlines().GEN_NON_STAFF_ST, myData.GEN_NON_STAFF_ST)
 
-      SbemisRep.renderBasicColumnchart('data-staff-all', SbemisRep.getLabelHeadlines().STAFF_SCH_ST, ['Staff'], myData.STAFF_SCH_ST)
-      SbemisRep.renderBasicColumnchart('data-male-staff', SbemisRep.getLabelHeadlines().MALE_STAFF, ['Male Staff'], myData.MALE_STAFF)
-      SbemisRep.renderBasicColumnchart('data-female-staff', SbemisRep.getLabelHeadlines().FEMALE_STAFF, ['Female Staff'], myData.FEMALE_STAFF)
+        SbemisRep.renderBasicColumnchart('data-staff-all', SbemisRep.getLabelHeadlines().STAFF_SCH_ST, ['Staff'], myData.STAFF_SCH_ST)
+        SbemisRep.renderBasicColumnchart('data-male-staff', SbemisRep.getLabelHeadlines().MALE_STAFF, ['Male Staff'], myData.MALE_STAFF)
+        SbemisRep.renderBasicColumnchart('data-female-staff', SbemisRep.getLabelHeadlines().FEMALE_STAFF, ['Female Staff'], myData.FEMALE_STAFF)
+      }
     }
   }
 </script>
