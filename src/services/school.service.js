@@ -3,9 +3,9 @@ import axios from 'axios'
 require("./config.service")(axios)
 
 const appService = {
-  statistics() {
+  lga_schools_stat(query) {
     return new Promise((resolve, reject) => {
-      axios.get('/lga/schools')
+      axios.get(query)
         .then(response => {
           resolve(response.data)
         }).catch((error) => {

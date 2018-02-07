@@ -2,17 +2,16 @@ import axios from 'axios'
 
 require("./config.service")(axios)
 
-
 const appService = {
   statistics() {
-    // return new Promise((resolve, reject) => {
-      return axios.get('/statistics')
+    return new Promise((resolve, reject) => {
+      axios.get('/statistics')
         .then(response => {
-          return response.data
+          resolve(response.data)
         }).catch((error) => {
-        return error.response
+        reject(error.response);
       })
-    // })
+    })
   }
 }
 
