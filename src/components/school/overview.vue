@@ -12,36 +12,36 @@
         <div class="col s12 m6 l4" v-for="lga in lgas" :key="lga.id">
           <ul class="collection with-header">
             <li class="collection-header relative">
-              <a :href="'/schools_manage#' + lga.id">
+              <a :href="'/schools/manage#' + lga.id">
                 <h3 class="el">{{lga.name}}</h3>
               </a>
               <span class="absolute white-text green"> {{lga.total.schools}}</span>
             </li>
-            <li class="collection-item">
+            <li class="collection-item" @click="onClick('/schools/manage/?lga=' + lga.id + '&category=private_schools')">
               Private Schools
               <span class="right">{{lga.private.total}}</span>
             </li>
-            <li class="collection-item">
+            <li class="collection-item" @click="onClick('/schools/manage/' + lga.id + '/public_schools')">
               Public Schools
               <span class="right">{{lga.public.total}}</span>
             </li>
-            <li class="collection-item">
+            <li class="collection-item" @click="onClick('/schools/manage/' + lga.id + '/primary_schools')">
               Primary Schools
               <span class="right">{{lga.total.primary}}</span>
             </li>
-            <li class="collection-item">
+            <li class="collection-item" @click="onClick('/schools/manage/' + lga.id + '/secondary_schools')">
               Secondary Schools
               <span class="right">{{lga.total.secondary}}</span>
             </li>
-            <li class="collection-item">
+            <li class="collection-item" @click="onClick('/schools/manage/' + lga.id + '/private_primary_schools')">
               Private Primary Schools
               <span class="right">{{lga.private.primary}}</span>
             </li>
-            <li class="collection-item">
+            <li class="collection-item" @click="onClick('/schools/manage/' + lga.id + '/public_primary_schools')">
               Public Primary schools
               <span class="right">{{lga.public.primary}}</span>
             </li>
-            <li class="collection-item">
+            <li class="collection-item" @click="onClick('/schools/manage/' + lga.id + '/private_secondary_schools')">
               Private Secondary Schools
               <span class="right">{{lga.private.secondary}}</span>
             </li>
@@ -148,7 +148,7 @@
                                     <i class="material-icons grey-text">more_vert</i>
                                 </a>
                             </span>
-          <div class="card" id="school_distribution"></div>
+          <div class="card" id="school_distribution_card"></div>
         </div>
       </div>
     </div>
@@ -230,7 +230,10 @@
           stack: 'female'
         }]
 
-        SbemisRep.renderStackedGroupedColumnChart('school_distribution', t, 'Total Number of Schools', x, series)
+        SbemisRep.renderStackedGroupedColumnChart('school_distribution_card', t, 'Total Number of Schools', x, series)
+      },
+      onClick (link) {
+          window.location.href = window.location.origin + link
       }
     }
   }
@@ -238,4 +241,9 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.collection-item:hover {
+    background-color: lightgray;
+    cursor: pointer;
+    font-weight: bold;
+}
 </style>

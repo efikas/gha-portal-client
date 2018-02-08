@@ -8,7 +8,19 @@
             :rows="Rows"
             :columns="Columns"
             :perPage="[50, 100, 150, 200]"
-          ></datatable>
+            :paginate="false"
+            v-on:row-click="viewSchool"
+          >
+          </datatable>
+          <ul class="pagination">
+            <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+            <li class="active"><a @click="paginate('1')">1</a></li>
+            <li class="waves-effect"><a @click="paginate('2')">2</a></li>
+            <li class="waves-effect"><a @click="paginate('3')">3</a></li>
+            <li class="waves-effect"><a href="#!">4</a></li>
+            <li class="waves-effect"><a href="#!">5</a></li>
+            <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+          </ul>
         </div>
         <div class="col m3">
           <aside class="listings">
@@ -45,26 +57,7 @@
           }
         ],
         title: 'School List',
-        Rows: [
-          {
-            name: 'A U D Nur/pry School',
-            id: '210',
-            coordinate: '<span class="dp24 coordinate" data-geolocation=""><i class="material-icons">my_location</i></span>',
-            opt: '<span class="tool"><i class="material-icons" >visibility</i></span>'
-          },
-          {
-            name: 'A U D Nur/pry School, Ajegunle, Ise- Ekiti',
-            id: '706',
-            coordinate: '<span class="dp24 coordinate" data-geolocation=""><i class="material-icons">my_location</i></span>',
-            opt: '<span class="tool"><i class="material-icons">visibility</i></span>'
-          },
-          {
-            name: 'A U D Nur/pry School, Ajegunle, Ise- Ekiti',
-            id: '657',
-            coordinate: '<span class="dp24 coordinate" data-geolocation=""><i class="material-icons">my_location</i></span>',
-            opt: '<span class="tool"><i class="material-icons">visibility</i></span>'
-          }
-        ],
+        Rows: [],
         Columns: [
           {
             label: 'SCHOOL NAME',
@@ -83,13 +76,13 @@
             field: 'coordinate',
             numeric: false,
             html: true
-          },
-          {
-            label: 'View',
-            field: 'opt',
-            numeric: false,
-            html: true
           }
+          // {
+          //   label: 'View',
+          //   field: 'opt',
+          //   numeric: false,
+          //   html: true
+          // }
         ]
       }
     },
@@ -101,8 +94,38 @@
         api.lga_schools_stat(path)
           .then((data) => {
             console.log(data)
+            this.Rows = []
+            if (parseInt(query.page) > 1){
+              this.Rows = [
+                    {
+                      name: 'A U D Nur/pry School',
+                      id: '210',
+                      coordinate: '<span class="dp24 coordinate" data-geolocation=""><i class="material-icons">my_location</i></span>'
+                    },
+                    {
+                      name: 'A U D Nur/pry School, Ajegunle, Ise- Ekiti',
+                      id: '706',
+                      coordinate: '<span class="dp24 coordinate" data-geolocation=""><i class="material-icons">my_location</i></span>'
+                    },
+                    {
+                      name: 'A U D Nur/pry School, Ajegunle, Ise- Ekiti',
+                      id: '657',
+                      coordinate: '<span class="dp24 coordinate" data-geolocation=""><i class="material-icons">my_location</i></span>'
+                    }
+                  ] 
+            } else {
+            data.data.forEach(item => {
+              this.Rows.push(
+                {
+                name: item.data.school_name,
+                id: item.id,
+                coordinate: '<span class="dp24 coordinate" data-geolocation=""><i class="material-icons">my_location</i></span>'
+                }
+              )
+            })
+            }
           })
-          .catch((error) => window.alert("failed"))
+          .catch((error) => window.alert(error))
       }
     },
     mounted() {
@@ -113,6 +136,12 @@
     methods: {
       viewSchool(schoolId) {
         window.location.href = window.location.origin + '/dashboard'
+      },
+      paginate(page) {
+        let query = this.$route.query
+          window.location.href = window.location.origin + '/schools/manage?lga=' + parseInt(query.lga) +
+           '&category=' + parseInt(query.category) + '&level=' + query.level + '&page=' + page
+          
       }
     }
   }

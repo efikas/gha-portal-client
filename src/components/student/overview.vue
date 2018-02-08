@@ -145,7 +145,7 @@
                                     <i class="material-icons grey-text">more_vert</i>
                                 </a>
                             </span>
-                            <div class="card" data-container="school_distribution"></div>
+                            <div class="card" data-container="school_distribution_card"></div>
                         </div>
                     </div>
                 </div>

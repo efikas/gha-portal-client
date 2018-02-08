@@ -10,12 +10,27 @@
                             <i class="material-icons pointer hide" title="Export" id="export" data-school="">publish</i>
                         </div>
                         </div>
-                        <!-- <datatable
-                        :title="title"
-                        :rows="Rows"
-                        :columns="Columns"
-                        :perPage="[50, 100, 150, 200]"
-                        ></datatable> -->
+                        <div class="row">
+               <datatable
+            :title="title"
+            :rows="Rows"
+            :columns="Columns"
+            :perPage="[50, 100, 150, 200]"
+            :paginate="false"
+            v-on:row-click="viewSchool"
+          >
+
+          <ul class="pagination">
+            <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+            <li class="active"><a @click="paginate('1')">1</a></li>
+            <li class="waves-effect"><a @click="paginate('2')">2</a></li>
+            <li class="waves-effect"><a @click="paginate('3')">3</a></li>
+            <li class="waves-effect"><a href="#!">4</a></li>
+            <li class="waves-effect"><a href="#!">5</a></li>
+            <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+          </ul>
+            
+          </datatable>
                     </div>
                 </div>
                 <div class="col m3">
@@ -25,20 +40,17 @@
                 </div>
             </div>
         </div>
+        </div>
     </main>
 </template>
 
 <script>
 import { mapMutations } from 'vuex'
-// import DataTable from 'vue-materialize-datatable'
-// import Vue from 'vue'
-// import axios from 'axios'
-// import VueAxios from 'vue-axios'
-// Vue.use(VueAxios, axios)
+import DataTable from 'vue-materialize-datatable'
 export default {
   name: 'SchoolManage',
   components: {
-    // 'datatable': DataTable
+    'datatable': DataTable
   },
   data () {
     return {
@@ -46,14 +58,7 @@ export default {
       api: 'api',
       page: this.$route.params.page,
       title: 'School List',
-      Rows: [
-        {
-          name: 'SCHOOL NAME',
-          id: '',
-          coordinate: '',
-          opt: ''
-        }
-      ],
+      Rows: [],
       Columns: [
         {
           label: 'SCHOOL NAME',
@@ -106,6 +111,47 @@ export default {
         }
       ]
     )
+
+    if(typeof this.$route.query.lga != "undefined")
+      {
+        let query = this.$route.query
+        let path = `/lga/${parseInt(query.lga)}/schools?category=${parseInt(query.category)}&level=${query.level}`
+        api.lga_schools_stat(path)
+          .then((data) => {
+            console.log(data)
+            this.Rows = []
+            if (parseInt(query.page) > 1){
+              this.Rows = [
+                    {
+                      name: 'A U D Nur/pry School',
+                      id: '210',
+                      coordinate: '<span class="dp24 coordinate" data-geolocation=""><i class="material-icons">my_location</i></span>'
+                    },
+                    {
+                      name: 'A U D Nur/pry School, Ajegunle, Ise- Ekiti',
+                      id: '706',
+                      coordinate: '<span class="dp24 coordinate" data-geolocation=""><i class="material-icons">my_location</i></span>'
+                    },
+                    {
+                      name: 'A U D Nur/pry School, Ajegunle, Ise- Ekiti',
+                      id: '657',
+                      coordinate: '<span class="dp24 coordinate" data-geolocation=""><i class="material-icons">my_location</i></span>'
+                    }
+                  ] 
+            } else {
+            data.data.forEach(item => {
+              this.Rows.push(
+                {
+                name: item.data.school_name,
+                id: item.id,
+                coordinate: '<span class="dp24 coordinate" data-geolocation=""><i class="material-icons">my_location</i></span>'
+                }
+              )
+            })
+            }
+          })
+          .catch((error) => window.alert(error))
+      }
   },
   mounted () {
     // this.axios.get(this.api).then((response) => {
