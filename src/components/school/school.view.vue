@@ -90,6 +90,7 @@
 </template>
 <script>
 import DataTable from 'vue-materialize-datatable'
+import VueGoodTable from 'vue-good-table'
 export default {
   name: 'SchoolView',
   components: {
