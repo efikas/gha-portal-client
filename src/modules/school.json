@@ -1,1 +1,306 @@
-[{"public":"118","private":"89","primary":"183","secondary":"24","public_primary":"104","private_primary":"79","public_secondary":"14","private_secondary":"10","lga_code":"1","lga_name":"ADO EKITI"},{"public":"41","private":"8","primary":"41","secondary":"8","public_primary":"34","private_primary":"7","public_secondary":"7","private_secondary":"1","lga_code":"2","lga_name":"EFON"},{"public":"72","private":"20","primary":"80","secondary":"12","public_primary":"61","private_primary":"19","public_secondary":"11","private_secondary":"1","lga_code":"3","lga_name":"EKITI EAST"},{"public":"73","private":"5","primary":"69","secondary":"9","public_primary":"64","private_primary":"5","public_secondary":"9","private_secondary":"0","lga_code":"4","lga_name":"EKITI SOUTH-WEST"},{"public":"82","private":"9","primary":"76","secondary":"15","public_primary":"69","private_primary":"7","public_secondary":"13","private_secondary":"2","lga_code":"5","lga_name":"EKITI WEST"},{"public":"42","private":"10","primary":"52","secondary":"0","public_primary":"42","private_primary":"10","public_secondary":"0","private_secondary":"0","lga_code":"6","lga_name":"EMURE"},{"public":"65","private":"3","primary":"55","secondary":"13","public_primary":"52","private_primary":"3","public_secondary":"13","private_secondary":"0","lga_code":"7","lga_name":"GBONYIN"},{"public":"70","private":"8","primary":"62","secondary":"16","public_primary":"55","private_primary":"7","public_secondary":"15","private_secondary":"1","lga_code":"8","lga_name":"IDO OSI"},{"public":"95","private":"24","primary":"100","secondary":"19","public_primary":"78","private_primary":"22","public_secondary":"17","private_secondary":"2","lga_code":"9","lga_name":"IJERO"},{"public":"56","private":"59","primary":"99","secondary":"16","public_primary":"46","private_primary":"53","public_secondary":"10","private_secondary":"6","lga_code":"10","lga_name":"IKERE"},{"public":"118","private":"28","primary":"124","secondary":"22","public_primary":"102","private_primary":"22","public_secondary":"16","private_secondary":"6","lga_code":"11","lga_name":"IKOLE"},{"public":"31","private":"9","primary":"40","secondary":"0","public_primary":"31","private_primary":"9","public_secondary":"0","private_secondary":"0","lga_code":"12","lga_name":"ILEJEMEJE"},{"public":"49","private":"24","primary":"55","secondary":"18","public_primary":"34","private_primary":"21","public_secondary":"15","private_secondary":"3","lga_code":"13","lga_name":"IREPODUN/IFELODUN"},{"public":"58","private":"29","primary":"68","secondary":"19","public_primary":"48","private_primary":"20","public_secondary":"10","private_secondary":"9","lga_code":"14","lga_name":"ISE/ORUN"},{"public":"48","private":"3","primary":"38","secondary":"13","public_primary":"36","private_primary":"2","public_secondary":"12","private_secondary":"1","lga_code":"15","lga_name":"MOBA"},{"public":"81","private":"17","primary":"84","secondary":"14","public_primary":"68","private_primary":"16","public_secondary":"13","private_secondary":"1","lga_code":"16","lga_name":"OYE"}]
+[
+  {
+    "id": 1,
+    "name": "ADO EKITI",
+    "total": {
+      "primary": 179,
+      "secondary": 23,
+      "schools": 202
+    },
+    "private": {
+      "total": 85,
+      "primary": 76,
+      "secondary": 9
+    },
+    "public": {
+      "total": 117,
+      "primary": 103,
+      "secondary": 14
+    }
+  },
+  {
+    "id": 2,
+    "name": "EFON",
+    "total": {
+      "primary": 41,
+      "secondary": 8,
+      "schools": 49
+    },
+    "private": {
+      "total": 8,
+      "primary": 7,
+      "secondary": 1
+    },
+    "public": {
+      "total": 41,
+      "primary": 34,
+      "secondary": 7
+    }
+  },
+  {
+    "id": 3,
+    "name": "EKITI EAST",
+    "total": {
+      "primary": 80,
+      "secondary": 12,
+      "schools": 92
+    },
+    "private": {
+      "total": 20,
+      "primary": 19,
+      "secondary": 1
+    },
+    "public": {
+      "total": 72,
+      "primary": 61,
+      "secondary": 11
+    }
+  },
+  {
+    "id": 4,
+    "name": "EKITI SOUTH-WEST",
+    "total": {
+      "primary": 75,
+      "secondary": 9,
+      "schools": 84
+    },
+    "private": {
+      "total": 5,
+      "primary": 5,
+      "secondary": 0
+    },
+    "public": {
+      "total": 79,
+      "primary": 70,
+      "secondary": 9
+    }
+  },
+  {
+    "id": 5,
+    "name": "EKITI WEST",
+    "total": {
+      "primary": 75,
+      "secondary": 15,
+      "schools": 90
+    },
+    "private": {
+      "total": 9,
+      "primary": 7,
+      "secondary": 2
+    },
+    "public": {
+      "total": 82,
+      "primary": 68,
+      "secondary": 13
+    }
+  },
+  {
+    "id": 6,
+    "name": "EMURE",
+    "total": {
+      "primary": 48,
+      "secondary": 0,
+      "schools": 48
+    },
+    "private": {
+      "total": 9,
+      "primary": 9,
+      "secondary": 0
+    },
+    "public": {
+      "total": 39,
+      "primary": 39,
+      "secondary": 0
+    }
+  },
+  {
+    "id": 7,
+    "name": "GBONYIN",
+    "total": {
+      "primary": 55,
+      "secondary": 13,
+      "schools": 68
+    },
+    "private": {
+      "total": 3,
+      "primary": 3,
+      "secondary": 0
+    },
+    "public": {
+      "total": 65,
+      "primary": 52,
+      "secondary": 13
+    }
+  },
+  {
+    "id": 8,
+    "name": "IDO OSI",
+    "total": {
+      "primary": 56,
+      "secondary": 16,
+      "schools": 72
+    },
+    "private": {
+      "total": 7,
+      "primary": 6,
+      "secondary": 1
+    },
+    "public": {
+      "total": 65,
+      "primary": 50,
+      "secondary": 15
+    }
+  },
+  {
+    "id": 9,
+    "name": "IJERO",
+    "total": {
+      "primary": 96,
+      "secondary": 19,
+      "schools": 115
+    },
+    "private": {
+      "total": 23,
+      "primary": 21,
+      "secondary": 2
+    },
+    "public": {
+      "total": 92,
+      "primary": 75,
+      "secondary": 17
+    }
+  },
+  {
+    "id": 10,
+    "name": "IKERE",
+    "total": {
+      "primary": 96,
+      "secondary": 16,
+      "schools": 112
+    },
+    "private": {
+      "total": 59,
+      "primary": 53,
+      "secondary": 6
+    },
+    "public": {
+      "total": 53,
+      "primary": 43,
+      "secondary": 10
+    }
+  },
+  {
+    "id": 11,
+    "name": "IKOLE",
+    "total": {
+      "primary": 124,
+      "secondary": 22,
+      "schools": 146
+    },
+    "private": {
+      "total": 28,
+      "primary": 22,
+      "secondary": 6
+    },
+    "public": {
+      "total": 118,
+      "primary": 102,
+      "secondary": 16
+    }
+  },
+  {
+    "id": 12,
+    "name": "ILEJEMEJE",
+    "total": {
+      "primary": 37,
+      "secondary": 0,
+      "schools": 37
+    },
+    "private": {
+      "total": 8,
+      "primary": 8,
+      "secondary": 0
+    },
+    "public": {
+      "total": 29,
+      "primary": 29,
+      "secondary": 0
+    }
+  },
+  {
+    "id": 13,
+    "name": "IREPODUN/IFELODUN",
+    "total": {
+      "primary": 53,
+      "secondary": 18,
+      "schools": 71
+    },
+    "private": {
+      "total": 24,
+      "primary": 21,
+      "secondary": 3
+    },
+    "public": {
+      "total": 47,
+      "primary": 32,
+      "secondary": 15
+    }
+  },
+  {
+    "id": 14,
+    "name": "ISE/ORUN",
+    "total": {
+      "primary": 65,
+      "secondary": 19,
+      "schools": 84
+    },
+    "private": {
+      "total": 29,
+      "primary": 20,
+      "secondary": 9
+    },
+    "public": {
+      "total": 55,
+      "primary": 45,
+      "secondary": 10
+    }
+  },
+  {
+    "id": 15,
+    "name": "MOBA",
+    "total": {
+      "primary": 35,
+      "secondary": 13,
+      "schools": 48
+    },
+    "private": {
+      "total": 3,
+      "primary": 2,
+      "secondary": 1
+    },
+    "public": {
+      "total": 45,
+      "primary": 33,
+      "secondary": 12
+    }
+  },
+  {
+    "id": 16,
+    "name": "OYE",
+    "total": {
+      "primary": 82,
+      "secondary": 14,
+      "schools": 96
+    },
+    "private": {
+      "total": 16,
+      "primary": 15,
+      "secondary": 1
+    },
+    "public": {
+      "total": 80,
+      "primary": 67,
+      "secondary": 13
+    }
+  }
+]

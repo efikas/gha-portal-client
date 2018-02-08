@@ -1,20 +1,6 @@
-import axios from "axios/index";
+import axios from 'axios'
 
-axios.defaults.baseURL = "http://api.sbemis.net/"
-axios.interceptors.request.use(function(config) {
-  if(typeof window === "undefined") {
-    return config
-  }
-
-  const token = window.localStorage.getItem('token');
-
-  if(token) {
-    config.headers.Authorizations = `Bearer ${token}`
-  }
-
-  return config
-})
-
+require("./config.service")(axios)
 
 const appService = {
   statistics() {
@@ -26,8 +12,7 @@ const appService = {
         reject(error.response);
       })
     })
-  },
-
+  }
 }
 
 export default appService
