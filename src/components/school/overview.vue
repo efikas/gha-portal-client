@@ -11,44 +11,52 @@
         <h3 class="medium upper flow-text">Distribution of Schools / LGA</h3>
         <div class="col s12 m6 l4" v-for="lga in lgas" :key="lga.id">
           <ul class="collection with-header">
-            <li class="collection-header relative">
-              <a :href="'/schools/manage#' + lga.id">
+            <router-link :to="{ path: '/schools/manage', query: { 'lga': lga.id  }}" class="collection-header relative">
+              <a>
                 <h3 class="el">{{lga.name}}</h3>
               </a>
               <span class="absolute white-text green"> {{lga.total.schools}}</span>
-            </li>
-            <li class="collection-item" @click="onClick('/schools/manage/?lga=' + lga.id + '&category=private_schools')">
-              Private Schools
-              <span class="right">{{lga.private.total}}</span>
-            </li>
-            <li class="collection-item" @click="onClick('/schools/manage/' + lga.id + '/public_schools')">
-              Public Schools
-              <span class="right">{{lga.public.total}}</span>
-            </li>
-            <li class="collection-item" @click="onClick('/schools/manage/' + lga.id + '/primary_schools')">
-              Primary Schools
-              <span class="right">{{lga.total.primary}}</span>
-            </li>
-            <li class="collection-item" @click="onClick('/schools/manage/' + lga.id + '/secondary_schools')">
-              Secondary Schools
-              <span class="right">{{lga.total.secondary}}</span>
-            </li>
-            <li class="collection-item" @click="onClick('/schools/manage/' + lga.id + '/private_primary_schools')">
+            </router-link>
+
+              <router-link class="collection-item" tag="li" :to="{ path: '/schools/manage', query: { category: 2, 'lga': lga.id  }  }">
+                Private Schools
+                <span class="right">{{lga.private.total}}</span>
+              </router-link>
+
+              <router-link class="collection-item" tag="li" :to="{ path: '/schools/manage', query: { category: 2, 'lga': lga.id  }  }">
+                Public Schools
+                <span class="right">{{lga.public.total}}</span>
+              </router-link>
+
+              <router-link class="collection-item" tag="li" :to="{ path: '/schools/manage', query: { level: 'pry', 'lga': lga.id  }  }">
+                Primary Schools
+                <span class="right">{{lga.total.primary}}</span>
+              </router-link>
+
+              <router-link class="collection-item" tag="li" :to="{ path: '/schools/manage', query: { level: 'sec', 'lga': lga.id  }  }">
+                Secondary Schools
+                <span class="right">{{lga.total.secondary}}</span>
+              </router-link>
+
+            <router-link class="collection-item" tag="li" :to="{ path: '/schools/manage', query: { 'lga': lga.id, category: 2, level: 'pry' }  }">
               Private Primary Schools
               <span class="right">{{lga.private.primary}}</span>
-            </li>
-            <li class="collection-item" @click="onClick('/schools/manage/' + lga.id + '/public_primary_schools')">
-              Public Primary schools
-              <span class="right">{{lga.public.primary}}</span>
-            </li>
-            <li class="collection-item" @click="onClick('/schools/manage/' + lga.id + '/private_secondary_schools')">
-              Private Secondary Schools
-              <span class="right">{{lga.private.secondary}}</span>
-            </li>
-            <li class="collection-item">
-              Public Secondary Schools
-              <span class="right">{{lga.public.secondary}}</span>
-            </li>
+            </router-link>
+
+              <router-link class="collection-item" tag="li" :to="{ path: '/schools/manage', query: { 'lga': lga.id, category: 1, level: 'pry' }  }">
+                Public Primary schools
+                <span class="right">{{lga.public.primary}}</span>
+              </router-link>
+
+              <router-link class="collection-item" tag="li" :to="{ path: '/schools/manage', query: { 'lga': lga.id, category: 2, level: 'sec' }  }">
+                Private Secondary Schools
+                <span class="right">{{lga.private.secondary}}</span>
+              </router-link>
+
+              <router-link class="collection-item" tag="li" :to="{ path: '/schools/manage', query: { 'lga': lga.id, category: 1, level: 'sec' }  }">
+                Public Secondary Schools
+                <span class="right">{{lga.public.secondary}}</span>
+              </router-link>
             <!-- <li class="collection-lga">
                 Rural
                 <span class="right">{{rural}}</span>
@@ -57,9 +65,7 @@
                 Urban
                 <span class="right">{{urban}}</span>
             </li> -->
-            <li class="collection-item right-align">
-              <a :href="'/schools_manage#' + lga.id" class="small">details</a>
-            </li>
+            <router-link :to="{ path: '/schools/manage', query: { 'lga': lga.id }  }" tag="li" class="collection-item right-align">details</router-link>
           </ul>
         </div>
       </div>
