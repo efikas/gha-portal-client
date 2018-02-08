@@ -14,10 +14,11 @@ import SbemisFooter from '../components/footer'
 import StudentOverview from '../components/student/overview'
 import StudentManage from '../components/student/students.manage'
 import StudentAdd from '../components/student/students.add'
+import StudentView from '../components/student/student.view'
 export default {
   name: 'Students',
   props: [],
-  components: {StudentOverview, StudentManage, StudentAdd, SbemisHeader, SbemisFooter},
+  components: {StudentOverview, StudentManage, StudentAdd, SbemisHeader, SbemisFooter, StudentView},
   data () {
     return {
       schools: {},
@@ -28,6 +29,8 @@ export default {
             return StudentAdd
           case 'manage':
             return StudentManage
+          case 'view':
+            return StudentView
           case undefined:
             return StudentOverview
           default:

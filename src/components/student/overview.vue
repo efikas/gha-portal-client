@@ -5,7 +5,7 @@
             <div class="section m75-top">
                 <div class="row">
                     <div id="school_distribution" class="col s12 m6 l8 relative">
-                        <h3 class="medium upper flow-text">Distribution of Schools / LGA</h3>
+                        <h3 class="medium upper flow-text">Distribution of Schools / LGA ddd</h3>
                             <div class="col s12 m6 l4" v-for="item in schools" :key="item.id">
                                 <ul class="collection with-header">
                                     <li class="collection-header relative">

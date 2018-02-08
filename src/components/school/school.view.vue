@@ -62,6 +62,12 @@
                                     <span id="red">Not captured</span>
                                 </div>
                             </div>
+                            <datatable
+                            :title="title"
+                            :rows="Rows"
+                            :columns="Columns"
+                            :perPage="[50, 100, 150, 200]"
+                            ></datatable>
                             <table id="data-table" class="bordered highlight responsive-table">
                                 <thead>
                                 <tr>
@@ -93,7 +99,62 @@ export default {
     return {
       schools: {},
       api: 'api',
-      page: this.$route.params.page
+      page: this.$route.params.page,
+      Rows: [
+        {
+          name: 'Muyiwa Adaramola',
+          regNo: '210',
+          gender: 'Male',
+          age: '12yrs',
+          class: 'Pry 6',
+          status: '<span class="status-green">hhhh</span>',
+          view: '<span class="tool"><i class="material-icons" >visibility</i></span>'
+        }
+      ],
+      Columns: [
+        {
+          label: 'REG NO',
+          field: 'regNo',
+          numeric: false,
+          html: true
+        },
+        {
+          label: 'NAME',
+          field: 'name',
+          numeric: false,
+          html: false
+        },
+        {
+          label: 'GENDER',
+          field: 'gender',
+          numeric: false,
+          html: true
+        },
+        {
+          label: 'AGE',
+          field: 'age',
+          numeric: false,
+          html: true
+        },
+        {
+          label: 'CLASS',
+          field: 'class',
+          numeric: false,
+          html: true
+        },
+        {
+          label: 'Status',
+          field: 'status',
+          numeric: false,
+          html: true
+        },
+        {
+          label: 'View',
+          field: 'view',
+          numeric: false,
+          html: true
+        }
+      ]
     }
   },
   mounted () {
@@ -104,4 +165,9 @@ export default {
 }
 </script>
 <style scoped>
+span.status-red{width:79px;height:26px;background:url("/static/images/indicator_sprite.png") -79px 0 no-repeat;display:inline-block;}
+span.status-green{width:79px !important;height:26px !important;display:inline-block !important; color: green !important;}
+span.status-yellow{width:79px;height:26px;background:url("/static/images/indicator_sprite.png") -79px -26px no-repeat;display:inline-block;}
+span.status-blue{width:79px;height:26px;background:url("/static/images/indicator_sprite.png") 0 -26px no-repeat;display:inline-block;}
+
 </style>

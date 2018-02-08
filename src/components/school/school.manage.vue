@@ -8,6 +8,7 @@
                   :rows="Rows"
                   :columns="Columns"
                   :perPage="[50, 100, 150, 200]"
+                  v-on:row-click="onRowClick"
                   ></datatable>
                 </div>
                 <div class="col m3">
@@ -44,7 +45,7 @@ export default {
       title: 'School List',
       Rows: [
         {
-          name: 'A U D Nur/pry School',
+          name: '<div class="disc left"><span>A U D Nur/pry School, Ajegunle, Ise- Ekiti</span></div>A U D Nur/pry School',
           id: '210',
           coordinate: '<span class="dp24 coordinate" data-geolocation=""><i class="material-icons">my_location</i></span>',
           opt: '<span class="tool"><i class="material-icons" >visibility</i></span>'
@@ -67,7 +68,7 @@ export default {
           label: 'SCHOOL NAME',
           field: 'name',
           numeric: false,
-          html: false
+          html: true
         },
         {
           label: 'SCHOOL ID',
@@ -98,6 +99,11 @@ export default {
   methods: {
     viewSchool (schoolId) {
       window.location.href = window.location.origin + '/dashboard'
+    },
+    onRowClick: function (row) {
+      //row contains the clicked object from `rows`
+      console.log(row.id)
+      window.location.href = window.location.origin + '/schools/view/210'
     }
   }
 }

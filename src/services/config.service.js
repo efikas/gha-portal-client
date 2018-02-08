@@ -1,9 +1,8 @@
 import axios from "axios/index";
 
-axios.defaults.baseURL = "http://api.sbemis.net/"
-
-module.export = {
-   axiosInit: () => {
+module.exports = {
+  axiosInit: () => {
+    axios.defaults.baseURL = "http://api.sbemis.net/"
     axios.interceptors.request.use(function(config) {
         if(typeof window === "undefined") {
           return config
@@ -14,6 +13,7 @@ module.export = {
         if(token) {
           config.headers.Authorization = `Bearer ${token}`
         }
+        console.log(config)
       
         return config
       })      

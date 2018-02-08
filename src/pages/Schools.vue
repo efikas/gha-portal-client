@@ -13,6 +13,7 @@ import SbemisFooter from '../components/footer'
 import SchoolOverview from '../components/school/overview'
 import SchoolManage from '../components/school/school.manage'
 import SchoolAdd from '../components/school/school.add'
+import SchoolView from '../components/school/school.view'
 export default {
   name: 'Schools',
   props: [],
@@ -27,6 +28,8 @@ export default {
             return SchoolAdd
           case 'manage':
             return SchoolManage
+          case 'view':
+            return SchoolView
           case undefined:
             return SchoolOverview
           default:

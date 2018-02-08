@@ -2,48 +2,52 @@
         <main class="container">
             <!--<div class="section m75-top">
             </div>-->
-            <!-- <div class="section m75-top"> -->
+            <div class="section m75-top">
                 <div class="row">
                     <div id="school_distribution" class="col s12 m6 l8 relative">
                         <h3 class="medium upper flow-text">Distribution of Schools / LGA</h3>
-                            <div class="col s12 m6 l4" v-for="item in schools" :key="item.id">
+                            <div class="col s12 m6" v-for="item in schools" :key="item.id">
                                 <ul class="collection with-header">
-                                    <li class="collection-header relative">
-                                        <a :href="'/schools_manage#' + item.lga_code">
+                                    <li class="collection-header relative"> 
+                                        <a :href="'/schools/manage#' + item.lga_code">
                                             <h3 class="el">{{item.lga_name}}</h3>
                                         </a>
                                         <span class="absolute white-text green"> {{item.total}}</span>
                                     </li>
                                     <li class="collection-item">
-                                        Private Schools
+                                        <a :href="'/schools/manage/' + item.lga_code + '/private'">Private Schools</a>
                                         <span class="right">{{item.private}}</span>
                                     </li>
                                     <li class="collection-item">
-                                        Public Schools
+                                        <a :href="'/schools/manage/' + item.lga_code + '/public'">Public Schools</a>
                                         <span class="right">{{item.public}}</span>
                                     </li>
                                     <li class="collection-item">
-                                        Primary Schools
+                                        <a :href="'/schools/manage/' + item.lga_code + '/primary'">Primary Schools</a>
                                         <span class="right">{{item.primary}}</span>
                                     </li>
                                     <li class="collection-item">
-                                        Secondary Schools
+                                        <a :href="'/schools/manage/' + item.lga_code + '/secondary'">Secondary Schools</a>
                                         <span class="right">{{item.secondary}}</span>
                                     </li>
                                     <li class="collection-item">
-                                        Private Primary Schools
+                                        <a :href="'/schools/manage/' + item.lga_code + '/private_primary'">
+                                        Private Primary Schools</a>
                                         <span class="right">{{item.private_primary}}</span>
                                     </li>
                                     <li class="collection-item">
-                                       Public Primary schools
+                                       <a :href="'/schools/manage/' + item.lga_code + '/public_primary'">
+                                       Public Primary schools</a>
                                         <span class="right">{{item.public_primary}}</span>
                                     </li>
                                     <li class="collection-item">
-                                        Private Secondary Schools
+                                        <a :href="'/schools/manage/' + item.lga_code + '/private_secondary'">
+                                        Private Secondary Schools</a>
                                         <span class="right">{{item.private_secondary}}</span>
                                     </li>
                                     <li class="collection-item">
-                                        Public Secondary Schools
+                                        <a :href="'/schools/manage/' + item.lga_code + '/public_secondary'">
+                                        Public Secondary Schools</a>
                                         <span class="right">{{item.public_secondary}}</span>
                                     </li>
                                     <!-- <li class="collection-item">
@@ -134,8 +138,8 @@
                         </div>
                     </div>
                 </div>
-            <!-- </div> -->
-            <!-- <div class="section m32-top"> -->
+            </div>
+            <div class="section m32-top">
                 <div class="row">
                     <div class="col s12 m12">
                         <h3 class="medium upper flow-text">School Distribution by LGA</h3>
@@ -145,11 +149,11 @@
                                     <i class="material-icons grey-text">more_vert</i>
                                 </a>
                             </span>
-                            <div class="card" id="school_distribution"></div>
+                            <div class="card" id="school_distribution_card"></div>
                         </div>
                     </div>
                 </div>
-            <!-- </div> -->
+            </div>
         </main>
 </template>
 <script>
@@ -218,7 +222,7 @@ export default {
       stack: 'female'
     }]
 
-    SbemisRep.renderStackedGroupedColumnChart('school_distribution', t, 'Total Number of Schools', x, series)
+    SbemisRep.renderStackedGroupedColumnChart('school_distribution_card', t, 'Total Number of Schools', x, series)
     // this.axios.get(this.api).then((response) => {
     //   this.schools = response.data
     // })

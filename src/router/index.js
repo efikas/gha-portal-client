@@ -36,8 +36,20 @@ export default [
       component: Schools
     },
     {
+      path: '/schools/:page/:id',
+      component: Schools
+    },
+    {
+      path: '/schools/:page/:id/:query',
+      component: Schools
+    },
+    {
       path: '/schools',
       component: Schools
+    },
+    {
+      path: '/students/:page/:id',
+      component: Students
     },
     {
       path: '/students/:page',

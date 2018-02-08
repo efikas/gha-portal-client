@@ -2,11 +2,11 @@
     <main class="container">
             <div class="section m75-top">
                 <div id="student_profile" class="row p16-r p16-l">
-                    <div class="col s12 m12 l4 no-padding">
+                    <div class="col s12 m12 l4 no-padding" :for="personal in student">
                         <div class="bordered-box">
-                            <div class="picture-container relative {{personal.photo_active}}" data-target="passport">
+                            <div class="picture-container relative" :class="personal.photo_active" data-target="passport">
                                 <div class="picture">
-                                    <img data-entity='student' data-state='{{personal.photo.state}}' data-unique='{{personal.unique_id}}' data-src='{{{personal.photo.src}}}' src="" class='picture-src' id='wizardPicture' title='{{personal.first_name}} {{personal.last_name}}'>
+                                    <img data-entity='student' src="" class='picture-src' id='wizardPicture' :title="personal.first_name + ' ' + personal.last_name">
                                     <i class="material-icons white-text">photo_camera</i>
                                 </div>
                             </div>
@@ -21,7 +21,7 @@
                             <span class="p16-l">{{academic.school_name}}</span>
                         </div>
                     </div>
-                    <div class="col s12 m12 l7 offset-l1 bordered-box" id="profile_details" data-entity="student" data-unique-id="{{personal.unique_id}}">
+                    <div class="col s12 m12 l7 offset-l1 bordered-box" id="profile_details" data-entity="student">
                         <div class="col s12 no-padding relative">
                             <ul class="tabs tabs-fixed-width">
                                 <li class="tab col s3"><a class="active" href="#personal">Personal</a></li>
@@ -40,104 +40,104 @@
                                         <div class="col s12 m4 l4 edu-profile-label">First Name</div>
                                         <div class="editable col s12 m8 l8 edu-profile-text relative">
                                             {{personal.first_name}}
-                                            <span class="tiny" data-edit-field="first_name" data-input-type="text" data-edit-value="{{personal.first_name}}" data-target="profile_modal">Edit</span>
+                                            <span class="tiny" data-edit-field="first_name" data-input-type="text"  data-target="profile_modal">Edit</span>
                                         </div>
                                     </div>
                                     <div class="col s12 m12 l12 no-padding edu-bg-row">
                                         <div class="col s12 m4 l4 edu-profile-label">Middle Name</div>
                                         <div class="editable col s12 m8 l8 edu-profile-text relative">
                                             {{personal.middle_name}}
-                                            <span class="tiny" data-edit-field="middle_name" data-input-type="text" data-edit-value="{{personal.middle_name}}" data-target="profile_modal">Edit</span>
+                                            <span class="tiny" data-edit-field="middle_name" data-input-type="text"  data-target="profile_modal">Edit</span>
                                         </div>
                                     </div>
                                     <div class="col s12 m12 l12 no-padding">
                                         <div class="col s12 m4 l4 edu-profile-label">Last Name</div>
                                         <div class="editable col s12 m8 l8 edu-profile-text relative">
                                             {{personal.last_name}}
-                                            <span class="tiny" data-edit-field="last_name" data-input-type="text" data-edit-value="{{personal.last_name}}" data-target="profile_modal">Edit</span>
+                                            <span class="tiny" data-edit-field="last_name" data-input-type="text"  data-target="profile_modal">Edit</span>
                                         </div>
                                     </div>
                                     <div class="col s12 m12 l12 no-padding">
                                         <div class="col s12 m4 l4 edu-profile-label">Gender</div>
                                         <div class="editable col s12 m8 l8 edu-profile-text relative">
                                             {{personal.sex}}
-                                            <span class="tiny" data-edit-field="sex" data-input-type="radio" data-edit-value="{{personal.sex}}" data-target="profile_modal">Edit</span>
+                                            <span class="tiny" data-edit-field="sex" data-input-type="radio"  data-target="profile_modal">Edit</span>
                                         </div>
                                     </div>
                                     <div class="col s12 m12 l12 no-padding">
                                         <div class="col s12 m4 l4 edu-profile-label">Email Address</div>
                                         <div class="editable col s12 m8 l8 edu-profile-text relative">
-                                            <a href="mailto:{{personal.email_address}}">
+                                            <a :href="'mailto:' + personal.email_address">
                                                 <span class="dp24 left"><i class="material-icons">email</i></span>
                                                 {{personal.email_address}}
                                             </a>
-                                            <span class="tiny" data-edit-field="email_address" data-input-type="email" data-edit-value="{{personal.email_address}}" data-target="profile_modal">Edit</span>
+                                            <span class="tiny" data-edit-field="email_address" data-input-type="email"  data-target="profile_modal">Edit</span>
                                         </div>
                                     </div>
                                     <div class="col s12 m12 l12 no-padding">
                                         <div class="col s12 m4 l4 edu-profile-label">Phone Number</div>
                                         <div class="editable col s12 m8 l8 edu-profile-text relative">
-                                            <a href="tel:{{personal.phone_number}}">
+                                            <a :href="'tel:' + personal.phone_number">
                                                 <span class="dp24 left"><i class="material-icons">phone</i></span>
                                                 {{personal.phone_number}}
                                             </a>
-                                            <span class="tiny" data-edit-field="phone_number" data-input-type="tel" data-edit-value="{{personal.phone_number}}" data-target="profile_modal">Edit</span>
+                                            <span class="tiny" data-edit-field="phone_number" data-input-type="tel"  data-target="profile_modal">Edit</span>
                                         </div>
                                     </div>
                                     <div class="col s12 m12 l12 no-padding">
                                         <div class="col s12 m4 l4 edu-profile-label">Height</div>
                                         <div class="editable col s12 m8 l8 edu-profile-text relative">
                                             {{personal.height}}m
-                                            <span class="tiny" data-edit-field="height" data-input-type="text" data-edit-value="{{personal.email_height}}" data-target="profile_modal">Edit</span>
+                                            <span class="tiny" data-edit-field="height" data-input-type="text"  data-target="profile_modal">Edit</span>
                                         </div>
                                     </div>
                                     <div class="col s12 m12 l12 no-padding">
                                         <div class="col s12 m4 l4 edu-profile-label">Weight</div>
                                         <div class="editable col s12 m8 l8 edu-profile-text relative">
                                             {{personal.weight}}kg
-                                            <span class="tiny" data-edit-field="weight" data-input-type="text" data-edit-value="{{personal.weight}}" data-target="profile_modal">Edit</span>
+                                            <span class="tiny" data-edit-field="weight" data-input-type="text"  data-target="profile_modal">Edit</span>
                                         </div>
                                     </div>
                                     <div class="col s12 m12 l12 no-padding">
                                         <div class="col s12 m4 l4 edu-profile-label">Date of Birth</div>
                                         <div class="editable col s12 m8 l8 edu-profile-text relative">
                                             {{personal.date_of_birth}}
-                                            <span class="tiny" data-edit-field="date_of_birth" data-input-type="date" data-edit-value="{{personal.date_of_birth}}" data-target="profile_modal">Edit</span>
+                                            <span class="tiny" data-edit-field="date_of_birth" data-input-type="date"  data-target="profile_modal">Edit</span>
                                         </div>
                                     </div>
                                     <div class="col s12 m12 l12 no-padding">
                                         <div class="col s12 m4 l4 edu-profile-label">Special Condition</div>
                                         <div class="editable col s12 m8 l8 edu-profile-text relative">
                                             {{personal.special_condition}}
-                                            <span class="tiny" data-edit-field="special_condition" data-input-type="select" data-edit-value="{{personal.special_condition}}" data-target="profile_modal">Edit</span>
+                                            <span class="tiny" data-edit-field="special_condition" data-input-type="select" data-target="profile_modal">Edit</span>
                                         </div>
                                     </div>
                                     <div class="col s12 m12 l12 no-padding">
                                         <div class="col s12 m4 l4 edu-profile-label">Bloodgroup</div>
                                         <div class="editable col s12 m8 l8 edu-profile-text relative">
                                             {{personal.blood_group}}
-                                            <span class="tiny" data-edit-field="blood_group" data-input-type="select" data-edit-value="{{personal.blood_group}}" data-target="profile_modal">Edit</span>
+                                            <span class="tiny" data-edit-field="blood_group" data-input-type="select"  data-target="profile_modal">Edit</span>
                                         </div>
                                     </div>
                                     <div class="col s12 m12 l12 no-padding">
                                         <div class="col s12 m4 l4 edu-profile-label">Birthplace</div>
                                         <div class="editable col s12 m8 l8 edu-profile-text relative">
                                             {{personal.place_of_birth}}
-                                            <span class="tiny" data-edit-field="place_of_birth" data-input-type="text" data-edit-value="{{personal.place_of_birth}}" data-target="profile_modal">Edit</span>
+                                            <span class="tiny" data-edit-field="place_of_birth" data-input-type="text"  data-target="profile_modal">Edit</span>
                                         </div>
                                     </div>
                                     <div class="col s12 m12 l12 no-padding">
                                         <div class="col s12 m4 l4 edu-profile-label">Birth Certificate Availability</div>
                                         <div class="editable col s12 m8 l8 edu-profile-text relative">
                                             {{personal.birth_cert_status}}
-                                            <span class="tiny" data-edit-field="birth_cert_status" data-input-type="radio" data-edit-value="{{personal.birth_cert_status}}" data-target="profile_modal">Edit</span>
+                                            <span class="tiny" data-edit-field="birth_cert_status" data-input-type="radio"  data-target="profile_modal">Edit</span>
                                         </div>
                                     </div>
                                     <div class="col s12 m12 l12 no-padding">
                                         <div class="col s12 m4 l4 edu-profile-label">Birth Certificate Type</div>
                                         <div class="editable col s12 m8 l8 edu-profile-text relative">
                                             {{personal.birth_cert_type}}
-                                            <span class="tiny" data-edit-field="birth_cert_type" data-input-type="select" data-edit-value="{{personal.birth_cert_type}}" data-target="profile_modal">Edit</span>
+                                            <span class="tiny" data-edit-field="birth_cert_type" data-input-type="select"  data-target="profile_modal">Edit</span>
                                         </div>
                                     </div>
                                 </div>
@@ -208,7 +208,7 @@
                                 <div class="col s12 m12 l12 no-padding">
                                     <div class="col s12 m4 l4 edu-profile-label">Mobile number</div>
                                     <div class="col s12 m8 l8 edu-profile-text relative">
-                                        <a href="tel:{{guardian.mobile}}">
+                                        <a :href="'tel:' + guardian.mobile">
                                             <span class="dp24 left"><i class="material-icons">phone</i></span>
                                             {{guardian.mobile}}
                                         </a>
@@ -217,7 +217,7 @@
                                 <div class="col s12 m12 l12 no-padding">
                                     <div class="col s12 m4 l4 edu-profile-label">Phone number</div>
                                     <div class="col s12 m8 l8 edu-profile-text relative">
-                                        <a href="tel:{{guardian.phone}}">
+                                        <a :href="'tel:' + guardian.phone">
                                             <span class="dp24 left"><i class="material-icons">phone</i></span>
                                             {{guardian.phone}}
                                         </a>
@@ -226,7 +226,7 @@
                                 <div class="col s12 m12 l12 no-padding">
                                     <div class="col s12 m4 l4 edu-profile-label">Email Address</div>
                                     <div class="col s12 m8 l8 edu-profile-text relative">
-                                        <a href="mailto:{{guardian.email}}">
+                                        <a :href="'mailto:' + guardian.email">
                                             <span class="dp24 left"><i class="material-icons">email</i></span>
                                             {{guardian.email}}
                                         </a>
@@ -250,7 +250,7 @@
                             <h2 class="medium flow-text">Biometrics</h2>
                             <div class="col s12 m12 l12 no-padding">
                                 <div class="col s6 m7 l9 offset-l2">
-                                    <span id="biometry" data-target="right_1_file" class="f-scanner p12-r btn-rose white-text" data-unique-id="{{personal.unique_id}}">
+                                    <span id="biometry" data-target="right_1_file" class="f-scanner p12-r btn-rose white-text">
                                         <i class="material-icons">fingerprint</i> Scan Right Thumb
                                     </span>
                                     <!--<img class="map" id="image-map" src="assets/images/hand.png" width="441" height="600" usemap="#hand" alt="" />
@@ -273,20 +273,16 @@
 <script>
 import { mapMutations } from 'vuex'
 import DataTable from 'vue-materialize-datatable'
-// import Vue from 'vue'
-// import axios from 'axios'
-// import VueAxios from 'vue-axios'
-// Vue.use(VueAxios, axios)
 export default {
-  name: 'SchoolManage',
+  name: 'StudentView',
   components: {
     'datatable': DataTable
   },
   data () {
     return {
-      schools: {},
+      student: {},
       api: 'api',
-      page: this.$route.params.page,
+      id: this.$route.params.id,
       title: 'School List',
       Rows: [
         {
@@ -343,7 +339,7 @@ export default {
           link: '/sstudents'
         },
         {
-          name: 'Manage',
+          name: 'Manageeeee',
           link: '/students/manage'
         }
       ]
