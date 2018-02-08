@@ -4,7 +4,7 @@ import Vuex from 'vuex'
 
 import VueRouter from 'vue-router'
 import Routes from './router/index'
-import Store from "./store/store";
+import Store from "./store/store"
 
 Vue.use(VueRouter);
 

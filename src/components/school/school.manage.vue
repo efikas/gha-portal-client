@@ -8,19 +8,10 @@
             :rows="Rows"
             :columns="Columns"
             :perPage="[50, 100, 150, 200]"
-            :paginate="false"
+            :paginate="true"
             v-on:row-click="viewSchool"
           >
           </datatable>
-          <ul class="pagination">
-            <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-            <li class="active"><a @click="paginate('1')">1</a></li>
-            <li class="waves-effect"><a @click="paginate('2')">2</a></li>
-            <li class="waves-effect"><a @click="paginate('3')">3</a></li>
-            <li class="waves-effect"><a href="#!">4</a></li>
-            <li class="waves-effect"><a href="#!">5</a></li>
-            <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-          </ul>
         </div>
         <div class="col m3">
           <aside class="listings">
@@ -66,8 +57,8 @@
             html: false
           },
           {
-            label: 'SCHOOL ID',
-            field: 'id',
+            label: 'SCHOOL ADDRESS',
+            field: 'address',
             numeric: false,
             html: false
           },
@@ -99,17 +90,17 @@
               this.Rows = [
                     {
                       name: 'A U D Nur/pry School',
-                      id: '210',
+                      address: '210',
                       coordinate: '<span class="dp24 coordinate" data-geolocation=""><i class="material-icons">my_location</i></span>'
                     },
                     {
                       name: 'A U D Nur/pry School, Ajegunle, Ise- Ekiti',
-                      id: '706',
+                      address: '706',
                       coordinate: '<span class="dp24 coordinate" data-geolocation=""><i class="material-icons">my_location</i></span>'
                     },
                     {
                       name: 'A U D Nur/pry School, Ajegunle, Ise- Ekiti',
-                      id: '657',
+                      address: '657',
                       coordinate: '<span class="dp24 coordinate" data-geolocation=""><i class="material-icons">my_location</i></span>'
                     }
                   ] 
@@ -118,7 +109,7 @@
               this.Rows.push(
                 {
                 name: item.data.school_name,
-                id: item.id,
+                address: item.data.school_address,
                 coordinate: '<span class="dp24 coordinate" data-geolocation=""><i class="material-icons">my_location</i></span>'
                 }
               )
