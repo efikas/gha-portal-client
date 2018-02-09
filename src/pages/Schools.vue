@@ -14,7 +14,6 @@ import SchoolOverview from '../components/school/overview'
 import SchoolManage from '../components/school/school.manage'
 import SchoolAdd from '../components/school/school.add'
 import SchoolView from '../components/school/school.view'
-import SchoolDetails from '../components/school/school.details'
 export default {
   name: 'Schools',
   props: [],
@@ -31,8 +30,6 @@ export default {
             return SchoolManage
           case 'view':
             return SchoolView
-          case 'info':
-            return SchoolDetails
           case undefined:
             return SchoolOverview
           default:
