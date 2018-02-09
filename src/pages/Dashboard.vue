@@ -15,7 +15,7 @@
                 <div class="card-header-icon" data-background-color="orange">
                   <i class="material-icons">school</i>
                 </div>
-                <a class="tiny upper" href="schools.html">
+                <a class="tiny upper" href="schools">
                   <span>More info <i class="material-icons right">keyboard_arrow_right</i></span>
                 </a>
               </div>
@@ -45,7 +45,7 @@
                 <div class="card-header-icon" data-background-color="blue">
                   <i class="material-icons">person</i>
                 </div>
-                <a class="tiny upper" href="students.html">
+                <a class="tiny upper" href="students">
                   <span>More info <i class="material-icons right">keyboard_arrow_right</i></span>
                 </a>
               </div>
@@ -60,7 +60,7 @@
                 <div class="card-header-icon" data-background-color="green">
                   <i class="material-icons">people</i>
                 </div>
-                <a class="tiny upper" href="guardians.html">
+                <a class="tiny upper" href="guardians">
                   <span>More info <i class="material-icons right">keyboard_arrow_right</i></span>
                 </a>
               </div>
