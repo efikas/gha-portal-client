@@ -12,25 +12,22 @@
         </div>
         <div class="col s12 m12 l5 no-padding banner-stats">
           <div class="col s4">
-            <div class="inner" data-tstaffs>
-              <h3 class="no-margin flow-text"><img src="/static/images/gears.svg" height="39" width="39">{{
-                school.staffs.teaching }}</h3>
+            <router-link :tag="div" :to="{path:'/staff/manage', query: {school_id: school.id, category: 1}}" class="inner" data-tstaffs>
+              <h3 class="no-margin flow-text"><img src="/static/images/gears.svg" height="39" width="39">{{ school.staffs.teaching }}</h3>
               <p class="no-margin">Teaching Staff</p>
-            </div>
+            </router-link>
           </div>
           <div class="col s4">
-            <div class="inner" data-nstaffs>
-              <h3 class="no-margin flow-text"><img src="/static/images/gears.svg" height="39" width="39">{{
-                school.staffs.none_teaching }}</h3>
+            <router-link :tag="div" :to="{path:'/staff/manage', query: {school_id: school.id, category: 0}}" class="inner" data-nstaffs>
+              <h3 class="no-margin flow-text"><img src="/static/images/gears.svg" height="39" width="39">{{school.staffs.none_teaching }}</h3>
               <p class="no-margin">Non-Teaching Staff</p>
-            </div>
+            </router-link>
           </div>
           <div class="col s4">
-            <div class="inner" data-students>
-              <h3 class="no-margin flow-text"><img src="/static/images/gears.svg" height="39" width="39">{{
-                school.students }}</h3>
+            <router-link :tag="div" :to="{path:'/staff/manage', query: {school_id: school.id}}" class="inner" data-students>
+              <h3 class="no-margin flow-text"><img src="/static/images/gears.svg" height="39" width="39">{{school.students }}</h3>
               <p class="no-margin">Students</p>
-            </div>
+            </router-link>
           </div>
         </div>
       </div>

@@ -32,6 +32,10 @@ export default [
       component: Staff
     },
     {
+      path: '/staff/:page/:id',
+      component: Staff
+    },
+    {
       path: '/schools/:page',
       component: Schools
     },
