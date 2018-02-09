@@ -12,7 +12,19 @@ const appService = {
         reject(error.response);
       })
     })
+  },
+
+  school(id) {
+    return new Promise((resolve, reject) => {
+      axios.get(`/school/${id}`)
+        .then(response => {
+          resolve(response.data)
+        }).catch((error) => {
+        reject(error.response);
+      })
+    })
   }
+
 }
 
 export default appService

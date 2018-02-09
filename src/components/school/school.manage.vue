@@ -51,6 +51,12 @@
         Rows: [],
         Columns: [
           {
+            label: 'ID',
+            field: 'id',
+            numeric: false,
+            html: false
+          },
+          {
             label: 'SCHOOL NAME',
             field: 'name',
             numeric: false,
@@ -78,61 +84,28 @@
       }
     },
     created() {
-      if(typeof this.$route.query.lga != "undefined")
-      {
+      if (typeof this.$route.query.lga != "undefined") {
         let query = this.$route.query
         let path = `/lga/${parseInt(query.lga)}/schools?category=${parseInt(query.category)}&level=${query.level}`
         api.lga_schools_stat(path)
           .then((data) => {
-            console.log(data)
-            this.Rows = []
-            if (parseInt(query.page) > 1){
-              this.Rows = [
-                    {
-                      name: 'A U D Nur/pry School',
-                      address: '210',
-                      coordinate: '<span class="dp24 coordinate" data-geolocation=""><i class="material-icons">my_location</i></span>'
-                    },
-                    {
-                      name: 'A U D Nur/pry School, Ajegunle, Ise- Ekiti',
-                      address: '706',
-                      coordinate: '<span class="dp24 coordinate" data-geolocation=""><i class="material-icons">my_location</i></span>'
-                    },
-                    {
-                      name: 'A U D Nur/pry School, Ajegunle, Ise- Ekiti',
-                      address: '657',
-                      coordinate: '<span class="dp24 coordinate" data-geolocation=""><i class="material-icons">my_location</i></span>'
-                    }
-                  ] 
-            } else {
             data.data.forEach(item => {
               this.Rows.push(
                 {
-                name: item.data.school_name,
-                address: item.data.school_address,
-                coordinate: '<span class="dp24 coordinate" data-geolocation=""><i class="material-icons">my_location</i></span>'
+                  id: item.id,
+                  name: item.school_name,
+                  address: item.school_address,
+                  coordinate: '<span class="dp24 coordinate" data-geolocation=""><i class="material-icons">my_location</i></span>'
                 }
               )
             })
-            }
           })
           .catch((error) => window.alert(error))
       }
     },
-    mounted() {
-      // this.axios.get(this.api).then((response) => {
-      //   this.schools = response.data
-      // })
-    },
     methods: {
-      viewSchool(schoolId) {
-        window.location.href = window.location.origin + '/dashboard'
-      },
-      paginate(page) {
-        let query = this.$route.query
-          window.location.href = window.location.origin + '/schools/manage?lga=' + parseInt(query.lga) +
-           '&category=' + parseInt(query.category) + '&level=' + query.level + '&page=' + page
-          
+      viewSchool(row) {
+        this.$router.push({ path: '/schools/view/' + row.id })
       }
     }
   }
