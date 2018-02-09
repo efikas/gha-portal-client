@@ -30,39 +30,48 @@
                         </div>
                     </div>
                 </div>
+
+    <form enctype="multipart/form-data" novalidate v-if="isInitial || isSaving" @click="trigger()">
+        <h1>Upload images</h1>
+        <div class="dropbox">
+          <input type="file" multiple :name="uploadFieldName" :disabled="isSaving" @change="filesChange($event.target.name, $event.target.files); fileCount = $event.target.files.length" accept="image/*" class="input-file" ref="fileInput">
+            <p v-if="isInitial">
+              Drag your file(s) here to begin<br> or click to browse
+            </p>
+            <p v-if="isSaving">
+              Uploading {{ fileCount }} files...
+            </p>
+        </div>
+      </form>
+        <!--SUCCESS-->
+      <div v-if="isSuccess">
+        <h2>Uploaded {{ uploadedFiles.length }} file(s) successfully.</h2>
+        <p>
+          <a href="javascript:void(0)" @click="reset()">Upload again</a>
+        </p>
+        <ul class="list-unstyled">
+          <li v-for="item in uploadedFiles" :key="item.id">
+            <img :src="item.url" class="img-responsive img-thumbnail" :alt="item.originalName">
+          </li>
+        </ul>
+      </div>
+      <!--FAILED-->
+      <div v-if="isFailed">
+        <h2>Uploaded failed.</h2>
+        <p>
+          <a href="javascript:void(0)" @click="reset()">Try again</a>
+        </p>
+        <pre>{{ uploadError }}</pre>
+      </div>
+
+
+
+
+
+
+
             </div>
-           <div class="section m75-top hide" id="upload-section">
-                <div class="row">
-                    <div class="col s12 m12">
-                        <div class="card-panel with-header blue-bl left">
-                            <div class="card-content">
-                                <span class="card-title" id="card-title"></span>
-                            </div>
-                            <div class="card-action">
-                                <form name="file-import" enctype="multipart/form-data" data-import="">
-                                    <div class="file-field input-field">
-                                        <div class="btn">
-                                            <span>File</span>
-                                            <input type="file" id="uploadBox">
-                                        </div>
-                                        <div class="file-path-wrapper">
-                                            <input id="file" class="file-path validate" type="text">
-                                        </div>
-                                    </div>
-                                </form>
-                                <div class="divider-dotted"></div>
-                                <button type="submit" class="btn btn-primary waves-effect waves-ripple animated">
-                                    <span>
-                                        Import
-                                        <i class="material-icons left">lock</i>
-                                    </span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                 </div>
-            </div>
-        </main>
+          </main>
         </div>
         <SbemisFooter></SbemisFooter>
     </div>
@@ -71,6 +80,12 @@
 import { mapMutations, mapGetters } from 'vuex'
 import SbemisHeader from '../components/header'
 import SbemisFooter from '../components/footer'
+import { upload } from '../modules/file-upload.fake.service'; // fake service
+  // import { upload } from '@/modules/file-upload.service';   // real service
+  import { wait } from '../modules/utils';
+
+const STATUS_INITIAL = 0, STATUS_SAVING = 1, STATUS_SUCCESS = 2, STATUS_FAILED = 3;
+
 export default {
   name: 'Import',
   props: [],
@@ -78,14 +93,12 @@ export default {
   data () {
     return {
       schools: {},
-      api: 'api'
+      api: 'api',
+      uploadedFiles: [],
+      uploadError: null,
+      currentStatus: null,
+      uploadFieldName: 'photos'
     }
-  },
-  methods: {
-    ...mapMutations([
-      // Mounts the "incrementStoredNumber" mutation to `this.incrementStoredNumber()`.
-      'updateBreadCrumbItem'
-    ])
   },
   created () {
     this.$store.commit(
@@ -106,17 +119,105 @@ export default {
     ...mapGetters([
       //    Mounts the "breadCrumbItem" getter to the scope of your component.
       'breadCrumbItem'
-    ])
-  },
-  mounted () {
-    // console.log('aaa' + this.$route.params.page)s
-    // this.axios.get(this.api).then((response) => {
-    //   this.schools = response.data
-    // })
-  }
+    ]),
+    isInitial() {
+        return this.currentStatus === STATUS_INITIAL;
+      },
+      isSaving() {
+        return this.currentStatus === STATUS_SAVING;
+      },
+      isSuccess() {
+        return this.currentStatus === STATUS_SUCCESS;
+      },
+      isFailed() {
+        return this.currentStatus === STATUS_FAILED;
+      }
+    },
+    methods: {
+      ...mapMutations([
+        // Mounts the "incrementStoredNumber" mutation to `this.incrementStoredNumber()`.
+        'updateBreadCrumbItem'
+      ]),
+      reset() {
+        // reset form to initial state
+        this.currentStatus = STATUS_INITIAL;
+        this.uploadedFiles = [];
+        this.uploadError = null;
+      },
+      save(formData) {
+        // upload data to the server
+        this.currentStatus = STATUS_SAVING;
+
+        // upload(formData)
+        //   .then(x => {
+        //     this.uploadedFiles = [].concat(x);
+        //     this.currentStatus = STATUS_SUCCESS;
+        //   })
+        upload(formData)
+          .then(wait(1500)) // DEV ONLY: wait for 1.5s 
+          .then(x => {
+            this.uploadedFiles = [].concat(x);
+            this.currentStatus = STATUS_SUCCESS;
+          })
+          .catch(err => {
+            this.uploadError = err.response;
+            this.currentStatus = STATUS_FAILED;
+          });
+      },
+      filesChange(fieldName, fileList) {
+        // handle file changes
+        const formData = new FormData();
+
+        if (!fileList.length) return;
+
+        // append the files to FormData
+        Array
+          .from(Array(fileList.length).keys())
+          .map(x => {
+            formData.append(fieldName, fileList[x], fileList[x].name);
+          });
+
+        // save it
+        this.save(formData);
+      },
+      trigger () {
+    	this.$refs.fileInput.click()
+    }
+    },
+    mounted() {
+      this.reset();
+    },
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scoped lang="css">
+.dropbox {
+    outline: 2px dashed grey; /* the dash box */
+    outline-offset: -10px;
+    background: lightcyan;
+    color: dimgray;
+    padding: 10px 10px;
+    min-height: 200px; /* minimum height */
+    position: relative;
+    cursor: pointer;
+  }
+
+  .input-file {
+    opacity: 0; /* invisible but it's there! */
+    width: 100%;
+    height: 200px;
+    position: absolute;
+    cursor: pointer;
+  }
+
+  .dropbox:hover {
+    background: lightblue; /* when mouse over to the drop zone, change color */
+  }
+
+  .dropbox p {
+    font-size: 1.2em;
+    text-align: center;
+    padding: 50px 0;
+  }
 </style>

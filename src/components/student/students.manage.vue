@@ -2,7 +2,7 @@
     <main class="container">
         <div class="section m75-top">
             <div class="row">
-                <div class="col s12 m9">
+                <div class="col s12 m10 offset-m1">
                     <div class="card-panel with-header blue-bl left">
                         <div class="card-panel-header">
                             <h4 class="no-margin no-pad medium brand-red-text">School List</h4>

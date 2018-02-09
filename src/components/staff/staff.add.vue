@@ -3,6 +3,16 @@
         <div class="section m75-top">
             <div class="row">
                 <div class="form-box animated">
+                        <form-wizard 
+                            @on-complete="onComplete"
+                            title=""
+                            subtitle=""
+                            back-button-text="Go back!"
+                            next-button-text="Go next!">
+
+                        <tab-content title="Staff Profile Info"
+                                    icon="info">
+                             <div class="form-box animated">
                     <form id="staff_profile_info" class="col s12">
                         <div class="header">
                             <h2>Staff Profile Info</h2>
@@ -10,31 +20,31 @@
                         </div>
                         <div class="row">
                             <div class="input-field col s12 m6">
-                                <input data-to-validate="schools" type="text" id="schools_autocomplete" name="school_name" class="validate" data-min-length="1" list="school_list">
+                                <input data-to-validate="schools" type="text" v-model="data.schools_name" id="schools_autocomplete" name="school_name" class="validate" data-min-length="1" list="school_list">
                                 <label class="active" for="schools_autocomplete">School Name <span>*</span></label>
                                 <datalist id="school_list"></datalist>
                             </div>
                         </div>
                         <div class="row even-row">
                             <div class="input-field col s12 m6 l3">
-                                <input name="first_name" id="fname" type="text" class="validate">
+                                <input name="first_name" v-model="data.first_name" id="fname" type="text" class="validate">
                                 <label for="fname">Firstname <span>*</span></label>
                             </div>
                             <div class="input-field col s12 m6 l3">
-                                <input name="middle_name" id="mname" type="text" class="">
+                                <input name="middle_name" v-model="data.middle_name" id="mname" type="text" class="">
                                 <label for="mname">Middle Name</label>
                             </div>
                             <div class="input-field col s12 m6 l3">
-                                <input name="last_name" id="lname" type="text" class="validate">
+                                <input name="last_name" v-model="data.last_name" id="lname" type="text" class="validate">
                                 <label for="lname">Lastname/Surname <span>*</span></label>
                             </div>
                             <div class="input-field col s12 m6 l2 offset-l1 flex">
                                 <p class="no-block">
-                                    <input class="with-gap" value="M" name="sex" type="radio" id="sex-m" checked/>
+                                    <input class="with-gap" value="M" v-model="data.sex" name="sex" type="radio" id="sex-m" checked/>
                                     <label for="sex-m">M</label>
                                 </p>
                                 <p class="no-block">
-                                    <input class="with-gap" value="F" name="sex" type="radio" id="sex-f"/>
+                                    <input class="with-gap" value="F" v-model="data.sex" name="sex" type="radio" id="sex-f"/>
                                     <label for="sex-f">F</label>
                                 </p>
                                 <label class="active">Sex</label>
@@ -42,32 +52,32 @@
                         </div>
                         <div class="row">
                             <div class="input-field col s12 m6 l2">
-                                <input name="dob" id="dob" type="date" class="datepicker validate">
+                                <input name="dob" id="dob" v-model="dob" type="date" class="datepicker validate">
                                 <label for="dob" class="active">Date of Birth <span>*</span></label>
                             </div>
                             <div class="input-field col s12 m6 l2 offset-l1">
-                                <input name="place_of_birth" id="pbirth" type="text" class="validate">
+                                <input name="place_of_birth" v-model="data.place_of_birth" id="pbirth" type="text" class="validate">
                                 <label for="pbirth">Place of Birth <span>*</span></label>
                             </div>
                             <div class="input-field col s12 m6 l2 offset-l1">
-                                <input name="phone_number" id="phone_number" type="tel" class="validate numbersonly"
+                                <input name="phone_number" id="phone_number" v-model="data.phone_number" type="tel" class="validate numbersonly"
                                         data-length="11">
                                 <label for="phone_number">Phone Number <span>*</span></label>
                             </div>
                             <div class="input-field col s12 m6 l2 offset-l1">
-                                <input name="email_address" id="email_address" type="email" class="">
+                                <input name="email_address" v-model="data.email_address" id="email_address" type="email" class="">
                                 <label for="email_address">Email Address</label>
                             </div>
                         </div>
                         <div class="row even-row">
                             <div class="input-field col s12 m6 l3">
-                                <select data-name="state_of_origin" name="state_of_origin" id="state_of_origin">
+                                <select data-name="state_of_origin" v-model="data.state_of_origin" name="state_of_origin" id="state_of_origin">
                                     <option value="" disabled selected>Select State</option>
                                 </select>
                                 <label class="active" for="state_of_origin">State of Origin <span>*</span></label>
                             </div>
                             <div class="input-field col s12 m6 l3">
-                                <select data-name="lga_origin" name="lga_origin" id="lga-origin" disabled>
+                                <select data-name="lga_origin"  name="lga_origin" id="lga-origin" disabled>
                                     <option value="" disabled selected>Select Local Govt.</option>
                                 </select>
                                 <label for="lga-origin" class="active">LGA of Origin <span>*</span></label>
@@ -104,7 +114,10 @@
                         </div>
                     </form>
                 </div>
-                <div class="form-box animated hide">
+                        </tab-content>
+                        <tab-content title="Professional Info"
+                                    icon="ti-settings">
+                            <div class="form-box animated">
                     <form id="staff_professional_info" class="col s12">
                         <div class="header">
                             <h2>Professional Info</h2>
@@ -295,28 +308,25 @@
                         </div>-->
                     </form>
                 </div>
-            </div>
-            <div class="row m40-top">
-                <div class="col s12 m10 mauto">
-                    <input type="hidden" name="school_id" id="school_id"/>
-                    <button data-steps-to-go="" data-form-action="staff_info" id="button"
-                            class="btn waves-effect waves-ripple animated active center-align" type="submit"
-                            name="action">Save and Continue
-                        <i class="material-icons right">keyboard_arrow_right</i>
-                    </button>
-                </div>
+                        </tab-content>
+                    </form-wizard>
+                    </div>                
             </div>
         </div>
     </main>
 </template>
 <script>
+import {FormWizard, TabContent} from 'vue-form-wizard'
+import 'vue-form-wizard/dist/vue-form-wizard.min.css'
+
 export default {
   name: 'StaffAdd',
-  components: {},
+  components: { FormWizard, TabContent },
   data () {
     return {
       schools: {},
       api: 'api',
+      data: {},
       items: [
         {
           name: 'Dashboard',
@@ -328,7 +338,12 @@ export default {
         }
       ]
     }
-  }
+  },
+  methods: {
+    onComplete: function(){
+          alert('Yay. Done!');
+       }
+  },
 }
 </script>
 <style scoped>
