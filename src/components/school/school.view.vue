@@ -35,6 +35,34 @@
         </div>
       </div>
     </div>
+    <div class="section m75-top">
+       <div class="row">
+        <div class="col s12 m10 offset-m1">
+        <table>
+        <thead>
+          <tr>
+              <!-- <th style="width: 2px">SN</th> -->
+              <th>Information</th>
+              <th>Details</th>
+              <th>Option</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(info, index) in school_info" :key="info.id">
+            <!-- <td style="width: 2px">{{index + 1}}</td> -->
+            <td>{{info.name}}</td>
+            <td>Eclair</td>
+            <td>
+                 <span class='dp24 tool'>
+                <i class="material-icons pointer">edit</i>
+                </span>
+                </td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+        </div>
+      </div>
   </main>
 </template>
 <script>
@@ -48,7 +76,38 @@
       return {
         school: {},
         page: this.$route.params.page,
-        id: this.$route.params.id
+        id: this.$route.params.id,
+         school_info: [
+        {'id': "pta_pf", 'name':"PTA"},
+        {'id': "shifts", 'name':"Shifts"},
+        {'id': "multigrade", 'name':"Multigrade"},
+        {'id': "established", 'name':"Date Established"},
+        {'id': "geolocation", 'name':"Geographical location"},
+        {'id': "school_name", 'name':"School Name"},
+        {'id': "school_phone", 'name':"Phone Number"},
+        {'id': "village_town", 'name':"School Town"},
+        {'id': "school_grants", 'name':"School Grant"},
+        {'id': "school_address", 'name':"School Address"},
+        {'id': "school_type_id", 'name':"School Type"},
+        {'id': "school_location", 'name':"School Location"},
+        {'id': "average_distance", 'name':"Average distance"},
+        {'id': "development_plan", 'name':"Development Plan"},
+        {'id': "education_levels", 'name':"Education Level"},
+        {'id': "school_ownership", 'name':"School Ownership"},
+        {'id': "name_of_proprietor", 'name':"Name Of Proprietor"},
+        {'id': "school_category_id", 'name':"School Category"},
+        {'id': "management_committee", 'name':"Management Commitee"},
+        {'id': "school_email_address", 'name':"School Email"},
+        {'id': "private_membership_name", 'name':"Private membership Name"},
+        {'id': "school_recognition_status", 'name': "School Recognition Status"},
+        {'id': "classes", 'name': "Classes"},
+        {'id': "created_at", 'name': 'Crated At'},
+        {'id': "updated_at", 'name': 'Updated At'},
+        {'id': "classrooms", 'name': 'Classroom'},
+        {'id': "grants", 'name':"Grants"},
+        {'id': "inspections", 'name': 'Inspections'},
+        {'id': "library", 'name': "Library"}
+        ]
       }
     },
     created() {

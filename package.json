@@ -14,10 +14,12 @@
     "highcharts": "^6.0.6",
     "vue": "^2.5.11",
     "vue-axios": "^2.0.2",
+    "vue-context-menu": "^2.0.6",
     "vue-form-wizard": "^0.8.2",
     "vue-good-wizard": "^1.1.2",
     "vue-materialize-datatable": "^0.7.1",
     "vue-router": "^3.0.1",
+    "vue-simple-table": "0.0.6",
     "vue2-simplert": "^0.8.0",
     "vuejs-paginator": "^2.0.2",
     "vuex": "^3.0.1"

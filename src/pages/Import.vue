@@ -64,12 +64,6 @@
         <pre>{{ uploadError }}</pre>
       </div>
 
-
-
-
-
-
-
             </div>
           </main>
         </div>
