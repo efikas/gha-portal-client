@@ -14,6 +14,7 @@ import SbemisFooter from '../components/footer'
 import StaffOverview from '../components/staff/overview'
 import StaffManage from '../components/staff/staff.manage'
 import StaffAdd from '../components/staff/staff.add'
+import StaffView from '../components/staff/staff.view'
 export default {
   name: 'Schools',
   props: [],
@@ -34,6 +35,8 @@ export default {
             return StaffAdd
           case 'manage':
             return StaffManage
+          case 'view':
+            return StaffView
           case undefined:
             return StaffOverview
           default:

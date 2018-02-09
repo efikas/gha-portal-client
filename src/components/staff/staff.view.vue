@@ -2,27 +2,27 @@
     <div>
         <main class="container">
             <div class="section m75-top">
-                <div id="staff_profile" class="row p16-r p16-l">
+                <div id="staff_profile" class="row p16-r p16-l" v-for="staff_info in staff" :key="staff_info.id">
                     <div class="col s12 m12 l4 no-padding">
                         <div class="bordered-box">
-                            <div class="picture-container relative {{personal.photo_active}}" data-target="passport">
+                            <div class="picture-container relative active" data-target="passport">
                                 <div class="picture">
-                                    <img data-entity='staff' data-state='{{personal.photo.state}}' data-unique='{{personal.unique_id}}' data-src='{{{personal.photo.src}}}' src="" class='picture-src' id='wizardPicture' title='{{personal.first_name}} {{personal.last_name}}'>
+                                    <img data-entity='staff'  src="" class='picture-src' id='wizardPicture' :title='staff_info.personal.first_name + " " + personal.last_name'>
                                     <i class="material-icons white-text">photo_camera</i>
                                 </div>
                             </div>
                             <div class="col s12 m12 l12 no-padding">
                                 <div class="col s12 m12 l12 no-padding center-align edu-bg-row">
-                                    <span data-id="entity_name" class="col s12 xlarge thin">{{personal.first_name}} {{personal.last_name}}</span>
-                                    <span data-id="entity_uid" id="uid" class="col s12 medium thin">{{personal.short_unique_id}}</span>
+                                    <span data-id="entity_name" class="col s12 xlarge thin">{{staff_info.personal.first_name}} {{staff_info.personal.last_name}}</span>
+                                    <span data-id="entity_uid" id="uid" class="col s12 medium thin">{{staff_info.personal.short_unique_id}}</span>
                                 </div>
                             </div>
                         </div>
                         <div class="bordered-box m32-top m40-b xsmall center-align">
-                            <span class="p16-l">{{professional.school_name}}</span>
+                            <span class="p16-l">{{staff_info.professional.school_name}}</span>
                         </div>
                     </div>
-                    <div class="col s12 m12 offset-l1 l7 bordered-box" id="profile_details" data-entity="staff" data-unique-id="{{personal.unique_id}}">
+                    <div class="col s12 m12 offset-l1 l7 bordered-box" id="profile_details" data-entity="staff">
                     <!--div id="profile_details" data-entity="staff" data-unique-id="{{personal.school_unique_id}}-{{personal.unique_id}}" class="col s12 m12 l7 bordered-box"-->
                         <div class="col s12 no-padding relative">
                             <ul class="tabs tabs-fixed-width">
@@ -41,105 +41,105 @@
                                     <div class="col s12 m12 l12 no-padding edu-bg-row">
                                         <div class="col s12 m4 l3 edu-profile-label">First Name</div>
                                         <div class="editable col s12 m8 l9 edu-profile-text relative">
-                                            {{personal.first_name}}
-                                            <span class="tiny" data-edit-field="first_name" data-input-type="text" data-edit-value="{{personal.first_name}}" data-target="profile_modal">Edit</span> </div>
+                                            {{staff_info.personal.first_name}}
+                                            <span class="tiny" data-edit-field="first_name" data-input-type="text" >Edit</span> </div>
                                     </div>
                                     <div class="col s12 m12 l12 no-padding edu-bg-row">
                                         <div class="col s12 m4 l3 edu-profile-label">Last Name</div>
                                         <div class="editable col s12 m8 l9 edu-profile-text relative">
-                                            {{personal.last_name}}
-                                            <span class="tiny" data-edit-field="last_name" data-input-type="text" data-edit-value="{{personal.last_name}}" data-target="profile_modal">Edit</span>
+                                            {{staff_info.personal.last_name}}
+                                            <span class="tiny" data-edit-field="last_name" data-input-type="text" >Edit</span>
                                         </div>
                                     </div>
                                     <div class="col s12 m12 l12 no-padding edu-bg-row">
                                         <div class="col s12 m4 l3 edu-profile-label">Middle Name</div>
                                         <div class="editable col s12 m8 l9 edu-profile-text relative">
-                                            {{personal.middle_name}}
-                                            <span class="tiny" data-edit-field="middle_name" data-input-type="text" data-edit-value="{{personal.middle_name}}" data-target="profile_modal">Edit</span>
+                                            {{staff_info.personal.middle_name}}
+                                            <span class="tiny" data-edit-field="middle_name" data-input-type="text">Edit</span>
                                         </div>
                                     </div>
                                     <div class="col s12 m12 l12 no-padding edu-bg-row">
                                         <div class="col s12 m4 l3 edu-profile-label">Gender</div>
                                         <div class="editable col s12 m8 l9 edu-profile-text relative">
-                                            {{personal.sex}}
-                                            <span class="tiny" data-edit-field="sex" data-input-type="text" data-edit-value="{{personal.sex}}" data-target="profile_modal">Edit</span>
+                                            {{staff_info.personal.sex}}
+                                            <span class="tiny" data-edit-field="sex">Edit</span>
                                         </div>
                                     </div>
                                     
                                     <div class="col s12 m12 l12 no-padding edu-bg-row">
                                         <div class="col s12 m4 l3 edu-profile-label">Email Address</div>
                                         <div class="editable col s12 m8 l9 edu-profile-text relative">
-                                            {{personal.email_address}}
-                                            <span class="tiny" data-edit-field="email_address" data-input-type="text" data-edit-value="{{personal.email_address}}" data-target="profile_modal">Edit</span>
+                                            {{staff_info.personal.email_address}}
+                                            <span class="tiny" data-edit-field="email_address" data-input-type="text">Edit</span>
                                         </div>
                                     </div>
 
                                     <div class="col s12 m12 l12 no-padding edu-bg-row">
                                         <div class="col s12 m4 l3 edu-profile-label">Phone Number</div>
                                         <div class="editable col s12 m8 l9 edu-profile-text relative">
-                                            {{personal.phone_number}}
-                                            <span class="tiny" data-edit-field="phone_number" data-input-type="text" data-edit-value="{{personal.phone_number}}" data-target="profile_modal">Edit</span>
+                                            {{staff_info.personal.phone_number}}
+                                            <span class="tiny" data-edit-field="phone_number" data-input-type="text" >Edit</span>
                                         </div>
                                     </div>
 
                                     <div class="col s12 m12 l12 no-padding edu-bg-row">
                                         <div class="col s12 m4 l3 edu-profile-label">Date of Birth</div>
                                         <div class="editable col s12 m8 l9 edu-profile-text relative">
-                                            {{personal.date_of_birth}}
-                                            <span class="tiny" data-edit-field="date_of_birth" data-input-type="text" data-edit-value="{{personal.date_of_birth}}" data-target="profile_modal">Edit</span>
+                                            {{staff_info.personal.date_of_birth}}
+                                            <span class="tiny" data-edit-field="date_of_birth" data-input-type="text">Edit</span>
                                         </div>
                                     </div>
                                     <div class="col s12 m12 l12 no-padding edu-bg-row">
                                         <div class="col s12 m4 l3 edu-profile-label">Birthplace</div>
                                         <div class="editable col s12 m8 l9 edu-profile-text relative">
-                                            {{personal.place_of_birth}}
-                                            <span class="tiny" data-edit-field="place_of_birth" data-input-type="text" data-edit-value="{{personal.place_of_birth}}" data-target="profile_modal">Edit</span>
+                                            {{staff_info.personal.place_of_birth}}
+                                            <span class="tiny" data-edit-field="place_of_birth" data-input-type="text">Edit</span>
                                         </div>
                                     </div>
                                     <div class="col s12 m12 l12 no-padding edu-bg-row">
                                         <div class="col s12 m4 l3 edu-profile-label">State of Origin</div>
                                         <div class="editable col s12 m8 l9 edu-profile-text relative">
-                                            {{personal.state_of_origin}}
-                                            <span class="tiny" data-edit-field="state_of_origin" data-input-type="text" data-edit-value="{{personal.state_of_origin}}" data-target="profile_modal">Edit</span>
+                                            {{staff_info.personal.state_of_origin}}
+                                            <span class="tiny" data-edit-field="state_of_origin" data-input-type="text">Edit</span>
                                         </div>
                                     </div>
                                     <div class="col s12 m12 l12 no-padding edu-bg-row">
                                         <div class="col s12 m4 l3 edu-profile-label">Local Government</div>
                                         <div class="editable col s12 m8 l9 edu-profile-text relative">
-                                            {{personal.lga}}
-                                            <span class="tiny" data-edit-field="lga" data-input-type="text" data-edit-value="{{personal.lga}}" data-target="profile_modal">Edit</span>
+                                            {{staff_info.personal.lga}}
+                                            <span class="tiny" data-edit-field="lga" data-input-type="text">Edit</span>
                                         </div>
                                     </div>
 
                                     <div class="col s12 m12 l12 no-padding edu-bg-row">
                                         <div class="col s12 m4 l3 edu-profile-label">Home Town</div>
                                         <div class="editable col s12 m8 l9 edu-profile-text relative">
-                                            {{personal.home_town}}
-                                            <span class="tiny" data-edit-field="home_town" data-input-type="text" data-edit-value="{{personal.home_town}}" data-target="profile_modal">Edit</span>
+                                            {{staff_info.personal.home_town}}
+                                            <span class="tiny" data-edit-field="home_town" data-input-type="text">Edit</span>
                                         </div>
                                     </div>
 
                                     <div class="col s12 m12 l12 no-padding edu-bg-row">
                                         <div class="col s12 m4 l3 edu-profile-label">Marital Status</div>
                                         <div class="editable col s12 m8 l9 edu-profile-text relative">
-                                            {{personal.marital_status}}
-                                            <span class="tiny" data-edit-field="marital_status" data-input-type="text" data-edit-value="{{personal.marital_status}}" data-target="profile_modal">Edit</span>
+                                            {{staff_info.personal.marital_status}}
+                                            <span class="tiny" data-edit-field="marital_status" data-input-type="text">Edit</span>
                                         </div>
                                     </div>
 
                                     <div class="col s12 m12 l12 no-padding edu-bg-row">
                                         <div class="col s12 m4 l3 edu-profile-label">Religious Status</div>
                                         <div class="editable col s12 m8 l9 edu-profile-text relative">
-                                            {{personal.religious_status}}
-                                            <span class="tiny" data-edit-field="religious_status" data-input-type="text" data-edit-value="{{personal.religious_status}}" data-target="profile_modal">Edit</span>
+                                            {{staff_info.personal.religious_status}}
+                                            <span class="tiny" data-edit-field="religious_status" data-input-type="text"  data-target="profile_modal">Edit</span>
                                         </div>
                                     </div>
 
                                     <div class="col s12 m12 l12 no-padding edu-bg-row">
                                         <div class="col s12 m4 l3 edu-profile-label">House Address</div>
                                         <div class="editable col s12 m8 l9 edu-profile-text relative">
-                                            {{personal.residential_address}}
-                                            <span class="tiny" data-edit-field="residential_address" data-input-type="text" data-edit-value="{{personal.residential_address}}" data-target="profile_modal">Edit</span>
+                                            {{staff_info.personal.residential_address}}
+                                            <span class="tiny" data-edit-field="residential_address" data-input-type="text"  data-target="profile_modal">Edit</span>
                                         </div>
                                     </div>
                                 </div>
@@ -153,23 +153,23 @@
                                 <div class="col s12 m12 l12 no-padding">
                                     <div class="col s12 m12 l12 no-padding edu-bg-row">
                                         <div class="col s12 m4 l3 edu-profile-label eduArLangCss">School Name</div>
-                                        <div class="col s12 m8 l9 edu-profile-text">{{professional.school_name}}</div>
+                                        <div class="col s12 m8 l9 edu-profile-text">{{staff_info.professional.school_name}}</div>
                                     </div>
                                     <div class="col s12 m12 l12 no-padding">
                                         <div class="col s12 m4 l3 edu-profile-label eduArLangCss">Grade / Level</div>
-                                        <div class="col s12 m8 l9 edu-profile-text">{{professional.gl_step}}</div>
+                                        <div class="col s12 m8 l9 edu-profile-text">{{staff_info.professional.gl_step}}</div>
                                     </div>
                                     <div class="col s12 m12 l12 no-padding">
                                         <div class="col s12 m4 l3 edu-profile-label eduArLangCss">Salary Source</div>
-                                        <div class="col s12 m8 l9 edu-profile-text">{{professional.salary_source}}</div>
+                                        <div class="col s12 m8 l9 edu-profile-text">{{staff_info.professional.salary_source}}</div>
                                     </div>
                                     <div class="col s12 m12 l12 no-padding">
                                         <div class="col s12 m4 l3 edu-profile-label eduArLangCss">Year of Employment</div>
-                                        <div class="col s12 m8 l9 edu-profile-text">{{professional.employment_date}}</div>
+                                        <div class="col s12 m8 l9 edu-profile-text">{{staff_info.professional.employment_date}}</div>
                                     </div>
                                     <div class="col s12 m12 l12 no-padding">
                                         <div class="col s12 m4 l3 edu-profile-label eduArLangCss">Staff Category</div>
-                                        <div class="col s12 m8 l9 edu-profile-text">{{professional.category}}</div>
+                                        <div class="col s12 m8 l9 edu-profile-text">{{staff_info.professional.category}}</div>
                                     </div>
                                 </div>
                             </div>
@@ -178,7 +178,7 @@
                             <h2 class="medium flow-text">Biometrics</h2>
                             <div class="col s12 m12 l12 no-padding">
                                 <div class="col s6 m7 l9 offset-l2">
-                                    <span id="biometry" data-target="right_1_file" class="f-scanner p12-r btn-rose white-text" data-unique-id="{{personal.unique_id}}">
+                                    <span id="biometry" data-target="right_1_file" class="f-scanner p12-r btn-rose white-text">
                                         <i class="material-icons">fingerprint</i> Scan Right Thumb
                                     </span>
                                     <!--<img class="map" id="image-map" src="assets/images/hand.png" width="441" height="600" usemap="#hand" alt="" />
@@ -205,7 +205,7 @@ export default {
   components: {},
   data () {
     return {
-      schools: {},
+      staff: {},
       api: 'api'
     }
   },

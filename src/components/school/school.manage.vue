@@ -51,22 +51,16 @@
         Rows: [],
         Columns: [
           {
-            label: 'ID',
-            field: 'id',
-            numeric: false,
-            html: false
-          },
-          {
             label: 'SCHOOL NAME',
             field: 'name',
             numeric: false,
-            html: false
+            html: true
           },
           {
             label: 'SCHOOL ADDRESS',
             field: 'address',
             numeric: false,
-            html: false
+            html: true
           },
           {
             label: 'COORDINATE',
@@ -84,24 +78,27 @@
       }
     },
     created() {
+      let path = ''
       if (typeof this.$route.query.lga != "undefined") {
         let query = this.$route.query
-        let path = `/lga/${parseInt(query.lga)}/schools?category=${parseInt(query.category)}&level=${query.level}`
+        path = `/lga/${parseInt(query.lga)}/schools?category=${parseInt(query.category)}&level=${query.level}`
+      } else {
+        path = `/lga/1/schools?category=1&level=pry`
+      }
         api.lga_schools_stat(path)
           .then((data) => {
             data.data.forEach(item => {
               this.Rows.push(
                 {
-                  id: item.id,
-                  name: item.school_name,
-                  address: item.school_address,
-                  coordinate: '<span class="dp24 coordinate" data-geolocation=""><i class="material-icons">my_location</i></span>'
+                  name: `<div class="disc left"><span>${item.school_name.charAt(0)}</span></div><span style="font-weight:bold; color: blue"> ${item.school_name}</span>`,
+                  // name: `<span style="font-weight:bold; color: blue"> ${item.school_name}</span>`,
+                  address: `<span style="margin-left: 15px"> ${item.school_address}</span>`,
+                  coordinate: '<span class="dp24 right-align coordinate" data-geolocation=""><i class="material-icons">my_location</i></span>'
                 }
               )
             })
           })
           .catch((error) => window.alert(error))
-      }
     },
     methods: {
       viewSchool(row) {
