@@ -37,6 +37,7 @@ mix.webpackConfig({
     },
     // https://github.com/JeffreyWay/laravel-mix/issues/936#issuecomment-331418769
     output: {
+        // publicPath: 'http://127.0.0.1:8001/',
         chunkFilename: mix.inProduction() ? 'js/[name].[chunkhash].js' : 'js/[name].js'
     }
 });
@@ -68,7 +69,6 @@ mix.js('src/main.js', '/')
     // Add any additional vendor modules that need to be cached
     // remove any unused libraries in the array as they will be included in the vendor bundle
     .extract(['vue', 'bootstrap-vue', 'animejs', 'axios', 'vue-echarts-v3/src/full.js','vue2-dropzone'])
-
 
 // set path for production link
 // mix.setResourceRoot('/vuejs-admin/dist/')
