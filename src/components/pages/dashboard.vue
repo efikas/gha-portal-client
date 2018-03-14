@@ -7,7 +7,7 @@
                         <i class="fa fa-user-o fb_text"></i>
                     </div>
                     <div class="text-ash">
-                        <h4 class="mt-2 text_size">7465+</h4>
+                        <h4 class="mt-2 text_size">{{ schools }}</h4>
                         <p class="m-0 mt-2">Schools</p>
                     </div>
                 </div>
@@ -18,7 +18,7 @@
                         <i class="fa fa-link fb_text"></i>
                     </div>
                     <div class="text-ash">
-                        <h4 class="mb-0 mt-2 text_size">1245+</h4>
+                        <h4 class="mb-0 mt-2 text_size">{{ staff }}</h4>
                         <p class="m-0 mt-2">Staff</p>
                     </div>
                 </div>
@@ -29,7 +29,7 @@
                         <i class="fa fa-comments-o fb_text"></i>
                     </div>
                     <div class="text-ash">
-                        <h4 class="mb-0 mt-2 text_size">742+</h4>
+                        <h4 class="mb-0 mt-2 text_size">{{ students }}</h4>
                         <p class="m-0 mt-2">Students</p>
                     </div>
                 </div>
@@ -40,7 +40,7 @@
                         <i class="fa fa-clone fb_text"></i>
                     </div>
                     <div class="text-ash">
-                        <h4 class="mb-0 mt-2 text_size">465+</h4>
+                        <h4 class="mb-0 mt-2 text_size">{{ guardians }}</h4>
                         <p class="m-0 mt-2">Parent/Guardian</p>
                     </div>
                 </div>
@@ -136,6 +136,9 @@
     import portfolio from "components/widgets/portfolio/portfolio.vue"
     import VueChartist from 'v-chartist'
 
+    import api from '../../services/app.service'
+    // let SbemisRep = require('../../modules/draw-graphs.js')
+
     Vue.use(VueAwesomeSwiper);
     var unsub;
     export default {
@@ -154,6 +157,10 @@
                 instances: [],
                 loading: false,
                 ajaxloading: true,
+                schools: 'loading...',
+                staff: 'loading...',
+                students: 'loading...',
+                guardians: 'loading...',
                 
                 // ======donut chart start=======
                 donut: {
@@ -249,6 +256,16 @@
                     ]
                 }
             }
+        },
+        created() {
+            api.statistics()
+                .then((data) => {
+                console.log(data)
+                this.schools = data.schools.total
+                this.staffs = data.staffs.total
+                this.students = data.students.total
+                })
+                .catch((error) => window.alert("failed"))
         },
         mounted: function () {
             unsub = this.$store.subscribe((mutation, state) => {

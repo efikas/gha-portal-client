@@ -48,6 +48,7 @@
         "vue-echarts-v3": "^1.0.18",
         "vue-flatpickr-component": "5.0.4",
         "vue-form": "^4.7.0",
+        "vue-form-wizard": "^0.8.4",
         "vue-fullcalendar": "^1.0.9",
         "vue-images-loaded": "^1.1.2",
         "vue-js-toggle-button": "^1.2.2",

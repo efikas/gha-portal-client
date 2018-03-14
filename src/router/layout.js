@@ -6,69 +6,111 @@ const layout = [{
     }
 },{
     path: '/schools',
-    component: resolve => require(['pages/schools'], resolve),
+    component: resolve => require(['pages/school/schools'], resolve),
     meta: {
         title: "Schools",
     }
 },{
     path: '/manage_schools',
-    component: resolve => require(['pages/schools_manage'], resolve),
+    component: resolve => require(['pages/school/schools_manage'], resolve),
     meta: {
         title: "Manage Schools",
     }
 },{
+    path: '/school_profile',
+    component: resolve => require(['pages/school/school_profile'], resolve),
+    meta: {
+        title: "School Profile",
+    }
+},{
     path: '/add_schools',
-    component: resolve => require(['pages/schools_add'], resolve),
+    component: resolve => require(['pages/school/schools_add'], resolve),
     meta: {
         title: "Add School",
     }
 },{
     path: '/import_schools',
-    component: resolve => require(['pages/schools_import'], resolve),
+    component: resolve => require(['pages/school/schools_import'], resolve),
     meta: {
         title: "Import School Record",
     }
 },{
     path: '/staff',
-    component: resolve => require(['pages/staff'], resolve),
+    component: resolve => require(['pages/staff/staff'], resolve),
     meta: {
         title: "Staff",
     }
 },{
     path: '/add_staff',
-    component: resolve => require(['pages/staff_add'], resolve),
+    component: resolve => require(['pages/staff/staff_add'], resolve),
     meta: {
         title: "Add New Staff",
     }
 },{
     path: '/manage_staff',
-    component: resolve => require(['pages/staff_manage'], resolve),
+    component: resolve => require(['pages/staff/staff_manage'], resolve),
     meta: {
         title: "Manage Staff Record",
     }
 },{
+    path: '/staff_profile',
+    component: resolve => require(['pages/staff/staff_profile'], resolve),
+    meta: {
+        title: "Staff Profile",
+    }
+},{
     path: '/import_staff',
-    component: resolve => require(['pages/staff_import'], resolve),
+    component: resolve => require(['pages/staff/staff_import'], resolve),
     meta: {
         title: "Import Staff Record",
     }
 },{
     path: '/students',
-    component: resolve => require(['pages/students'], resolve),
+    component: resolve => require(['pages/student/students'], resolve),
     meta: {
         title: "Students",
     }
 },{
     path: '/add_students',
-    component: resolve => require(['pages/students_add'], resolve),
+    component: resolve => require(['pages/student/students_add'], resolve),
     meta: {
         title: "Add New Student",
     }
 },{
     path: '/manage_students',
-    component: resolve => require(['pages/students_manage'], resolve),
+    component: resolve => require(['pages/student/students_manage'], resolve),
     meta: {
         title: "Manage Students Record",
+    }
+},{
+    path: '/student_profile',
+    component: resolve => require(['pages/student/student_profile'], resolve),
+    meta: {
+        title: "Student Profile",
+    }
+},{
+    path: '/attendance',
+    component: resolve => require(['pages/attendance'], resolve),
+    meta: {
+        title: "Attendance",
+    }
+},{
+    path: '/import',
+    component: resolve => require(['pages/import'], resolve),
+    meta: {
+        title: "Import",
+    }
+},{
+    path: '/sbmc',
+    component: resolve => require(['pages/sbmc'], resolve),
+    meta: {
+        title: "SBMC",
+    }
+},{
+    path: '/report',
+    component: resolve => require(['pages/report'], resolve),
+    meta: {
+        title: "Report",
     }
 }
 ]
