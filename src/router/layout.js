@@ -62,7 +62,7 @@ const layout = [{
     path: '/import_staff',
     component: resolve => require(['pages/staff/staff_import'], resolve),
     meta: {
-        title: "Import Staff Record",
+        title: "Import Staff Rxecord",
     }
 },{
     path: '/students',
