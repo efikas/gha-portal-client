@@ -1,9 +1,9 @@
 <template>
     <div>
         <b-card>
-            <h5 class="ml-3 head_color">Annual Stats</h5>
+            <h5 class="ml-3 head_color">{{ this.iData['header'] || '' }}</h5>
             <div style="height: 305px;">
-                <IEcharts :option="ajaxbar_chart" :loading="ajaxloading" @ready="onReady" ref="ajaxbar_chart"></IEcharts>
+                <IEcharts :option="stacked" :loading="loading" @ready="onReady"></IEcharts>
             </div>
         </b-card>
     </div>
@@ -38,8 +38,8 @@
     Vue.use(VueAwesomeSwiper);
     var unsub;
     export default {
-        name: "barchart",
-        props: ['data', 'colors'],
+        name: "stackbarchart",
+        props: ['iData', 'colors'],
         components: {
             IEcharts,
             countTo,
@@ -51,62 +51,43 @@
                 serverdata: [],
                 instances: [],
                 loading: false,
-                ajaxloading: true,                
-                
-                //===========AJAX chart data start=========
-                ajaxbar_chart: {
+                ajaxloading: true,
+                legend: [],
+                graphData: [],
+                stacked: {
+                    title: {
+
+                        subtext: ''
+                    },
                     tooltip: {
-                        trigger: 'axis'
-                    },
-                    grid: {
-                        bottom: '10%',
-                        right: '1%',
-                    },
-                    toolbox: {
-                        show: true,
-                        feature: {
-                            //
+                        trigger: 'axis',
+                        axisPointer: { //  Axis indicator, coordinate trigger effective
+                            type: 'shadow' // The default is a straight line：'line' | 'shadow'
                         }
                     },
-                    calculable: true,
                     legend: {
-                        data: ['PROJECTS', 'SALES']
+                        data: []
                     },
-                    color: this.colors || ['#a0bce5', '#baf2e1'],
+
+                    calculable: true,
                     xAxis: [{
                         type: 'category',
-                        name: 'YEAR',
-                        data: this.data || ['2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015',
-                            '2016', '2017'
-                        ]
+                        data: ['Mon', 'Tue', 'Wed', 'Thu']
                     }],
                     yAxis: [{
-                            type: 'value',
-                            name: '%',
-                            axisLabel: {
-                                formatter: '{value} '
-                            }
-                        },
-                        {
-                            type: 'value',
-
-                            axisLabel: {
-                                formatter: '{value} '
-                            }
-                        }
-                    ],
+                        type: 'value'
+                    }],
                     series: [{
-                            name: 'PROJECTS',
-                            type: 'bar',
-                            data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3]
-                        },
-                        {
-                            name: 'SALES',
-                            type: 'bar',
-                            data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3]
-                        },
-
-                    ]
+                        name: 'B',
+                        type: 'bar',
+                        stack: 'advertising',
+                        data: []
+                    }, {
+                        name: 'C',
+                        type: 'bar',
+                        stack: 'advertising',
+                        data: []
+                    }]
                 },
                
             }
@@ -127,6 +108,7 @@
                     });
                 }
             });
+            
         },
         beforeRouteLeave(to, from, next) {
             unsub();
@@ -136,6 +118,22 @@
         methods: {
             onReady(instance) {
                 this.instances.push(instance)
+            },
+            
+        },
+        watch: {
+            iData(value){
+                this.stacked.legend.data = value['legend'];
+                this.stacked.xAxis[0].data = value['value']['distributions']
+                value['value']['data'].forEach((item, index) => {
+                    this.graphData.push({
+                        name: value['legend'][index],
+                        type: 'bar',
+                        stack: 'advertising',
+                        data: value['value']['data'][index]
+                    });
+                });
+                this.stacked.series = this.graphData;
             }
         }
     }

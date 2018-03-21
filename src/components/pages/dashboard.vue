@@ -48,7 +48,7 @@
         </div>
          <div class="row">
              <div class="col-lg-6 mb-3">
-                <piechart :iData="this.priv_sch"></piechart>
+                 <piechart :iData="this.priv_sch"></piechart>
             </div>
             <div class="col-lg-6 mb-3">
                 <piechart :iData="this.pub_sch"></piechart>
@@ -60,7 +60,7 @@
                 <piechart :iData="this.sec_sch"></piechart>
             </div>
             <div class="col-lg-6">
-                <donut :iData="this.stu_pri_sch"></donut>
+                <donut :iData="this.stu_sec_sch"></donut>
             </div>
              <div class="col-lg-6">
                 <donut :iData="this.stu_sec_sch"></donut>
@@ -70,14 +70,32 @@
             </div>
             <div class="col-lg-6 mb-3">
                 <barchart2 :iData="this.sch_urban"></barchart2>
-            </div>
-            
+            </div>           
             <!-- <div class="col-lg-6 mb-3">
-                <piechart :header="this.PRIV_SCH['header']" :data="this.data"></piechart>
+                <piechart :header="'Distribution of School In Rural/Urban'" :data="{}"></piechart>
             </div>
             <div class="col-lg-6 mb-3">
-                <piechart :header="this.PRIV_SCH['header']" :data="this.data"></piechart> -->
-            <!-- </div> -->
+                <piechart :header="'Total Number of Attendance Weekly'" :data="{}"></piechart> -->
+            <!-- </div>   -->
+            
+            <div class="col-lg-6 mb-3">
+                <piechart :iData="this.staff_gen_dist"></piechart>
+            </div>
+            <div class="col-lg-6 mb-3">
+                <stackbar :iData="this.male_female_staff"></stackbar>
+            </div>
+            <div class="col-lg-6 mb-3">
+                <piechart :iData="this.staff_gen_dist"></piechart>
+            </div>
+            <div class="col-lg-6 mb-3">
+                <stackbar :iData="this.male_female_staff"></stackbar>
+            </div>
+            <div class="col-lg-6 mb-3">
+                <piechart :iData="this.staff_dist"></piechart>
+            </div> 
+            <div class="col-lg-6 mb-3">
+                <doughnut :iData="this.gen_acad_staff_dist"></doughnut>
+            </div> 
         </div>
     </div>
 </template>
@@ -94,6 +112,9 @@
     import piechart from '../charts/piechart.vue'
     import barchart2 from '../charts/barchart2.vue'
     import donut from '../charts/donut.vue'
+    import stackbar from '../charts/stackbar.vue'
+    import doughnut from '../charts/doughnut.vue'
+
     let sbemisData = require('../../modules/draw-graphs.js')
     import JSONData from '../../modules/dashboard.json'
 
@@ -104,6 +125,8 @@
         components: {
             piechart,
             barchart2,
+            stackbar,
+            doughnut,
             donut
         },
         data() {
@@ -124,6 +147,11 @@
                 sch_urban: {},
                 stu_sec_sch: {},
                 stu_pri_sch: {},
+                staff_dist: {},
+                staff_gen_dist: {},
+                male_female_staff: {},
+                gen_acad_staff_dist: {},
+
                 // STU_ATTEND: {},
                 // STAFF_GEN_ST: {},
                 // STAFF_ST: {},
@@ -156,7 +184,7 @@
                     this.students = data.students.total;
                     
                     let myData = sbemisData.dataMapping(data);
-                    // console.log(data);
+                    // console.log(myData.priv_sch);
 
                     this.priv_sch = {
                         header: 'Private School Distribution',
@@ -182,7 +210,7 @@
                         header: 'Student Population In Primary School',
                         value: myData.stu_pri_sch
                     };
-                    console.log(myData.sch_rural)
+                    // console.log(myData.sch_rural)
                     this.sch_rural = {
                         header: 'School Distribution in Rural Area',
                         value: myData.sch_rural
@@ -190,6 +218,32 @@
                     this.sch_urban = {
                         header: 'School Distribution in Urban Area',
                         value: myData.sch_urban
+                    };
+                    // this.sch_urban = {
+                    //     header: 'School Distribution i Rural/Urban Area',
+                    //     value: myData.sch_urban
+                    // };
+                    // this.sch_urban = {
+                    //     header: 'Weekly Attendance',
+                    //     value: myData.sch_urban
+                    // };
+                    this.staff_gen_dist = {
+                        header: 'Staff Gender Comparism',
+                        value: myData.staff_gen_dist
+                    };
+                    this.staff_dist = {
+                        header: 'Teaching Staff/Non Teaching Staff Comparision',
+                        value: myData.staff_dist
+                    };
+                    this.male_female_staff = {
+                        header: 'Male/Female Staff Distribution',
+                        legend: ['Male', 'Female'],
+                        value: myData.male_female_staff
+                    };
+                    this.gen_acad_staff_dist = {
+                        header: 'Teaching/Non Teaching Staff Distribution',
+                        legend: ['Male', 'Female'],
+                        value: myData.gen_acad_staff_dist
                     };
                 // });
             

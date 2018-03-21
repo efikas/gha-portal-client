@@ -63,26 +63,26 @@ module.exports = {
       STU_ATTEND: [
         'Total Number of attendance this weekly'
       ],
-      STAFF_GEN_ST: [
+      staff_gen_dist: [
         'Number of Teaching Staff in Private/Public Education Institution'
       ],
-      STAFF_ST: [
+      staff_dist: [
         'Number of Academic / Non Academic Staffs'
       ],
-      GEN_ACAD_STAFF_ST: [
+      gen_acad_staff: [
         'Number of Accademic Staffs',
         'Ekiti State'
       ],
-      GEN_NON_STAFF_ST: [
+      gen_non_acad_staff: [
         'Number of Non Accademic Staffs'
       ],
       STAFF_SCH_ST: [
         'Number of Staffs'
       ],
-      MALE_STAFF: [
+      male_staff: [
         'Number of Male Staffs'
       ],
-      FEMALE_STAFF: [
+      female_staff: [
         'Number of Female Staffs'
       ]
     }
@@ -115,13 +115,13 @@ module.exports = {
       STU_SEC_SCH: [],
       STU_PRI_SCH: [],
       STU_ATTEND: [],
-      STAFF_GEN_ST: [],
-      STAFF_ST: [],
-      GEN_ACAD_STAFF_ST: [],
-      GEN_NON_STAFF_ST: [],
+      staff_gen_dist: [],
+      staff_dist: [],
+      gen_acad_staff: [],
+      gen_non_acad_staff: [],
       STAFF_SCH_ST: [],
-      MALE_STAFF: [],
-      FEMALE_STAFF: []
+      male_staff: [],
+      female_staff: []
     }
     // populate
     // loop over the classes to get
@@ -200,16 +200,21 @@ module.exports = {
       stu_pri_sch: [],
       sch_rural: [],
       sch_urban: [],
-
+      sch_dist: [],
+      staff_gen_dist: [],
+      staff_dist: [],
+      male_staff: [],
+      female_staff: [],
+      male_female_staff: [],
+      gen_acad_staff_dist: [],
 
       STU_ATTEND: [],
-      STAFF_GEN_ST: [],
-      STAFF_ST: [],
-      GEN_ACAD_STAFF_ST: [],
-      GEN_NON_STAFF_ST: [],
+     
+      
+      gen_acad_staff: [],
+      gen_non_acad_staff: [],
       STAFF_SCH_ST: [],
-      MALE_STAFF: [],
-      FEMALE_STAFF: []
+      
     }
 
     
@@ -260,6 +265,7 @@ module.exports = {
         value: values.schools.privates.secondary
       }
     ];
+    
 
     // primary school student distribution
     _dist.stu_pri_sch.push({
@@ -295,83 +301,68 @@ module.exports = {
     _dist.sch_urban.push({name: 'Public Secondary', data: parseInt(values.schools.publics.urban.secondary)})
     _dist.sch_urban.push({name: 'Private Primary', data: parseInt(values.schools.privates.urban.primary)})
     _dist.sch_urban.push({name: 'Public Primary', data: parseInt(values.schools.publics.urban.primary)})
+    
+    _dist.sch_dist = [
+      {
+        name: 'Public Primary (Rural)',
+        value: values.schools.publics.primary
+      },
+      {
+        name: 'Private Primary (Rural)',
+        value: values.schools.privates.primary
+      },
+      {
+        name: 'Public Secondary (Rural)',
+        value: values.schools.publics.primary
+      },
+      {
+        name: 'Private',
+        value: values.schools.privates.secondary
+      },
+      {
+        name: 'Public Primary (Rural)',
+        value: values.schools.publics.primary
+      },
+      {
+        name: 'Private',
+        value: values.schools.privates.secondary
+      },
+      {
+        name: 'Public Primary (Rural)',
+        value: values.schools.publics.primary
+      },
+      {
+        name: 'Private',
+        value: values.schools.privates.secondary
+      }
+    ];
 
-    // let present = []
-    // let absent = []
-
-    // _dist.DAYS.forEach((item) => {
-    //   present.push(values.students.stu_att_pre[item.toLowerCase()])
-    //   absent.push(values.students.stu_att_abs[item.toLowerCase()])
-    // })
-
-    // _dist.STU_ATTEND.push({
-    //   name: 'Present',
-    //   data: present
-    // })
-    // _dist.STU_ATTEND.push({
-    //   name: 'Absent',
-    //   data: absent
-    // })
-
-    // STAFF
-
-    // STAFF_GEN_ST: [],
-    //     STAFF_ST: [],
-    //     GEN_ACAD_STAFF_ST: [],
-    //     GEN_NON_STAFF_ST: [],
-    //     STAFF_SCH_ST: [],
-    //     MALE_STAFF: [],
-    //     FEMALE_STAFF: []
 
     let totalFemaleStaff = parseInt(values.staffs.teaching.female) + parseInt(values.staffs.non_teaching.female)
     let totalMaleStaff = parseInt(values.staffs.teaching.male) + parseInt(values.staffs.non_teaching.male)
     let totalAccademicStaff = parseInt(values.staffs.teaching.female) + parseInt(values.staffs.teaching.male)
     let totalNonAccademicStaff = parseInt(values.staffs.non_teaching.female) + parseInt(values.staffs.non_teaching.male)
 
-    _dist.STAFF_GEN_ST.push([{
+    
+    _dist.staff_gen_dist = [{
       name: 'Female',
-      y: (totalFemaleStaff / parseInt(values.staffs.total)) * 100,
+     // y: (totalFemaleStaff / parseInt(values.staffs.total)) * 100,
       value: totalFemaleStaff
     }, {
       name: 'Male',
-      y: (totalMaleStaff / parseInt(values.staffs.total)) * 100,
+      //y: (totalMaleStaff / parseInt(values.staffs.total)) * 100,
       value: totalMaleStaff
-    }])
+    }];
 
-    _dist.STAFF_ST.push([{
+    _dist.staff_dist = [{
       name: 'Academic',
-      y: (totalAccademicStaff / parseInt(values.staffs.total)) * 100,
+     // y: (totalAccademicStaff / parseInt(values.staffs.total)) * 100,
       value: totalAccademicStaff
     }, {
       name: 'Non Acadenic',
-      y: (totalNonAccademicStaff / parseInt(values.staffs.total)) * 100,
+      //y: (totalNonAccademicStaff / parseInt(values.staffs.total)) * 100,
       value: totalNonAccademicStaff
-    }])
-
-    _dist.GEN_ACAD_STAFF_ST.push(
-      [
-        ['Female Academic Staff: <b>' + values.staffs.teaching.female + '</b>', parseInt(values.staffs.teaching.female)],
-        ['Male Academic Staff: <b>' + values.staffs.teaching.male + '</b>', parseInt(values.staffs.teaching.male)],
-        {
-          // name: 'Proprietary or Undetectable',
-          y: 0.2,
-          dataLabels: {
-            enabled: false
-          }
-        }]
-    )
-
-    _dist.GEN_NON_STAFF_ST.push(
-      [['Female Non Academic Staff: <b>' + parseInt(values.staffs.non_teaching.female) + '</b>', parseInt(values.staffs.non_teaching.female)],
-        ['Male Non Academic Staff: <b>' + parseInt(values.staffs.non_teaching.male) + '</b>', parseInt(values.staffs.non_teaching.male)],
-        {
-          // name: 'Proprietary or Undetectable',
-          y: 0.2,
-          dataLabels: {
-            enabled: false
-          }
-        }]
-    )
+    }];
 
     let staffPrivPry = parseInt(values.staffs.private.primary.male) + parseInt(values.staffs.private.primary.female)
     let staffPrivSec = parseInt(values.staffs.private.secondary.male) + parseInt(values.staffs.private.secondary.female)
@@ -383,16 +374,27 @@ module.exports = {
     _dist.STAFF_SCH_ST.push({name: 'Private Primary', data: [staffPrivPry]})
     _dist.STAFF_SCH_ST.push({name: 'Public Primary', data: [staffPubPry]})
 
-    _dist.MALE_STAFF.push({name: 'Private Secondary', data: [parseInt(values.staffs.public.primary.male)]})
-    _dist.MALE_STAFF.push({name: 'Public Secondary', data: [parseInt(values.staffs.public.secondary.male)]})
-    _dist.MALE_STAFF.push({name: 'Private Primary', data: [parseInt(values.staffs.private.primary.male)]})
-    _dist.MALE_STAFF.push({name: 'Public Primary', data: [parseInt(values.staffs.public.primary.male)]})
+    _dist.male_staff.push(parseInt(values.staffs.public.primary.male))
+    _dist.male_staff.push(parseInt(values.staffs.public.secondary.male))
+    _dist.male_staff.push(parseInt(values.staffs.private.primary.male))
+    _dist.male_staff.push(parseInt(values.staffs.public.primary.male))
 
-    _dist.FEMALE_STAFF.push({name: 'Private Secondary', data: [parseInt(values.staffs.public.primary.female)]})
-    _dist.FEMALE_STAFF.push({name: 'Public Secondary', data: [parseInt(values.staffs.public.secondary.female)]})
-    _dist.FEMALE_STAFF.push({name: 'Private Primary', data: [parseInt(values.staffs.private.primary.female)]})
-    _dist.FEMALE_STAFF.push({name: 'Public Primary', data: [parseInt(values.staffs.public.primary.female)]})
+    _dist.female_staff.push(parseInt(values.staffs.public.primary.female))
+    _dist.female_staff.push(parseInt(values.staffs.public.secondary.female))
+    _dist.female_staff.push(parseInt(values.staffs.private.primary.female))
+    _dist.female_staff.push(parseInt(values.staffs.public.primary.female))
 
+    _dist.male_female_staff = {distributions: ['Pri Sec', 'Pub Sec', 'Pri Pry', 'Pub Pry'],
+                             data: [_dist.male_staff, _dist.female_staff]};
+
+    _dist.gen_acad_staff_dist = [
+        {name: 'Female Academic Staff', data: parseInt(values.staffs.teaching.female)},
+        {name: 'Male Academic Staff', data: parseInt(values.staffs.teaching.male)},
+        {name: 'Female Non Academic Staff', data: parseInt(values.staffs.non_teaching.female)},
+        {name: 'Male Non Academic Staff', data: parseInt(values.staffs.non_teaching.male)}
+      ];
+
+   
     return _dist
   }
 
