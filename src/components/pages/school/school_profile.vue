@@ -19,22 +19,80 @@
                             <i class="fa fa-user-o fb_text"></i>
                             School Basic Info
                         </b-btn>
-                        <button class="btn btn-outline-danger pull-right">edit</button>
+                        <button class="btn btn-outline-primary pull-right"><i class="fa fa-pencil fb_text"></i></button>
                     </b-card-header>
                     <b-collapse id="accordion1" visible accordion="my-accordion" role="tabpanel">
                         <b-card-body>
-                        <p class="card-text">
-                            I start opened because <code>visible</code> is <code>true</code>
-                        </p>
-                        <p class="card-text">
-                            {{ text }}
-                        </p>
+                        <table class="table account-detailsg">
+                            <tbody>
+                                <tr class="m-0">
+                                    <td class="views">First Name</td>
+                                    <td colspan="3"> 4yyyyyyyyyyyyyyyyyyyyyy</td>
+                                </tr>
+                                <tr>
+                                    <td class="views">Last Name</td>
+                                   <td colspan="3"> 4</td>
+                                </tr>
+                                <tr>
+                                    <td class="views">Middle Name</td>
+                                    <td colspan="3"> 4</td>
+                                </tr>
+                                <tr>
+                                    <td class="views">Gender</td>
+                                    <td colspan="3"> 4</td>
+                                </tr>
+                                <tr>
+                                    <td class="views">Email Address</td>
+                                   <td colspan="3"> 4</td>
+                                </tr>
+                                <tr>
+                                    <td class="views">Phone Number</td>
+                                    <td colspan="3"> 4</td>
+                                </tr>
+                                <tr>
+                                    <td class="views">Date of Birth</td>
+                                    <td colspan="3"> 4</td>
+                                </tr>
+                                <tr>
+                                    <td class="views">Birth Place</td>
+                                   <td colspan="3"> 4</td>
+                                </tr>
+                                <tr>
+                                    <td class="views">State of Birth</td>
+                                    <td colspan="3"> 4</td>
+                                </tr>
+                                <tr>
+                                    <td class="views">Local Government</td>
+                                    <td colspan="3"> 4</td>
+                                </tr>
+                                <tr>
+                                    <td class="views">Home Town</td>
+                                    <td colspan="3"> 4</td>
+                                </tr>
+                                <tr>
+                                    <td class="views">Marital Status</td>
+                                    <td colspan="3"> 4</td>
+                                </tr>
+                                <tr>
+                                    <td class="views">Religious Status</td>
+                                   <td colspan="3"> 4</td>
+                                </tr>
+                                <tr>
+                                    <td class="views">House Address</td>
+                                    <td colspan="3"> 4</td>
+                                </tr>
+                            </tbody>
+                        </table>
                         </b-card-body>
                     </b-collapse>
                 </b-card>
                 <b-card no-body class="mb-1">
                     <b-card-header header-tag="header" class="p-1" role="tab">
-                        <b-btn block href="#" v-b-toggle.accordion2 variant="info">Accordion 2</b-btn>
+                        <b-btn style="width: 90%" href="#" v-b-toggle.accordion2 variant="info" class="text-left">
+                            <i class="fa fa-user-o fb_text"></i>
+                            School Facilities
+                        </b-btn>
+                        <button class="btn btn-outline-primary pull-right"><i class="fa fa-pencil fb_text"></i></button>
                     </b-card-header>
                     <b-collapse id="accordion2" accordion="my-accordion" role="tabpanel">
                         <b-card-body>
@@ -46,7 +104,11 @@
                 </b-card>
                 <b-card no-body class="mb-1">
                     <b-card-header header-tag="header" class="p-1" role="tab">
-                        <b-btn block href="#" v-b-toggle.accordion3 variant="info">Accordion 3</b-btn>
+                        <b-btn style="width: 90%" href="#" v-b-toggle.accordion3 variant="info" class="text-left">
+                            <i class="fa fa-user-o fb_text"></i>
+                            Library
+                        </b-btn>
+                        <button class="btn btn-outline-primary pull-right"><i class="fa fa-pencil fb_text"></i></button>
                     </b-card-header>
                     <b-collapse id="accordion3" accordion="my-accordion" role="tabpanel">
                         <b-card-body>
@@ -139,5 +201,11 @@
         width: 100%;
         height: 300px;
         margin: 5px auto;
+    }
+    td.views {
+        background-color: #e5e5e5 !important;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        color: #555;
     }
 </style>

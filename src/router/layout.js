@@ -17,7 +17,7 @@ const layout = [{
         title: "Manage Schools",
     }
 },{
-    path: '/school_profile',
+    path: '/school_profile/:id',
     component: resolve => require(['pages/school/school_profile'], resolve),
     meta: {
         title: "School Profile",
