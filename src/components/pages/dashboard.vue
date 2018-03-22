@@ -127,7 +127,7 @@
             barchart2,
             stackbar,
             doughnut,
-            donut
+            donut 
         },
         data() {
             return {
