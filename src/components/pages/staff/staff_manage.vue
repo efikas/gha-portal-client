@@ -2,7 +2,10 @@
     <div class="row">
         <div class="col-lg-12 mb-3">
             <b-card header="AJAX Client Table" header-tag="h4" class="bg-info-card">
-                <v-client-table :data="tableData2" :columns="columns" :options="options"></v-client-table>
+                <v-client-table :data="tableData2" :columns="columns">
+                     <span slot="id" slot-scope="props">{{ props.index }}</span>
+                     <a slot="view" slot-scope="props" class="fa fa-eye icon-big" :href="'/#/school_profile/'+ props.row.unique_id"></a>
+                </v-client-table>
             </b-card>
         </div>
     </div>
@@ -14,6 +17,8 @@ import {
     Event
 } from 'vue-tables-2';
 import datatable from "components/plugins/DataTable/DataTable.vue";
+import JSONData from '../../../modules/school_manage.json'
+
 Vue.use(ClientTable, {}, false);
 export default {
     name: "advanced_tables",
@@ -22,7 +27,7 @@ export default {
     },
     data() {
         return {
-            columns: ['id', 'name', 'age'],
+            columns: ['id', 'school_name', 'view'],
             tableData2: [],
             options: {
                 sortIcon: {
@@ -44,12 +49,8 @@ export default {
         }
     },
     mounted() {
-        axios.get("http://www.filltext.com/?rows=50&id={index}&name={firstName}~{lastName}&age={numberRange|20,60}").then(response => {
-                this.tableData2 = response.data;
-            })
-            .catch(function(error) {
-
-            });
+       let data = JSONData.data;
+        this.tableData2 = data;
     }
 }
 </script>

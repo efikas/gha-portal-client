@@ -55,8 +55,8 @@ export default {
         //     .catch(function(error) {
 
         //     });
-        let data = JSONData;
-        this.tableData2 = data
+        let data = JSONData.data;
+        this.tableData2 = data;
         console.log(data[0]);
     }
 }
