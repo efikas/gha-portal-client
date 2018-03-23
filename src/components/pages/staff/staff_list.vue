@@ -4,30 +4,31 @@
             <b-card header="AJAX Client Table" header-tag="h4" class="bg-info-card">
                 <v-client-table :data="tableData2" :columns="columns">
                      <span slot="id" slot-scope="props">{{ props.index }}</span>
-                     <a slot="view" slot-scope="props" class="fa fa-eye icon-big" :href="'/#/staff_list/'+ props.row.id"></a>
+                     <!-- <span slot="Name" slot-scope="props">{{ props.row.first_name + ' ' + props.row.last_name + ' ' + props.row.middle_name }}</span> -->
+                     <!-- <a slot="view" slot-scope="props" class="fa fa-eye icon-big" :href="'/#/staff_profile/'+ props.row.unique_id"></a> -->
                 </v-client-table>
             </b-card>
         </div>
     </div>
 </template>
 <script>
-import Vue from 'vue';
+// import Vue from 'vue';
 import {
     ClientTable,
     Event
 } from 'vue-tables-2';
 import datatable from "components/plugins/DataTable/DataTable.vue";
-import JSONData from '../../../modules/school_manage.json'
+import JSONData from '../../../modules/staff_list.json'
 
-Vue.use(ClientTable, {}, false);
+// Vue.use(ClientTable, {}, false);
 export default {
-    name: "advanced_tables",
+    name: "staff_list",
     components: {
         datatable
     },
     data() {
         return {
-            columns: ['id', 'school_name', 'view'],
+            columns: ['id'],
             tableData2: [],
             options: {
                 sortIcon: {
@@ -50,7 +51,9 @@ export default {
     },
     mounted() {
        let data = JSONData.data;
-        this.tableData2 = data;
+        this.tableData2 = data.filter(item => {
+            return (item.school_id == this.$route.params.id);
+        });
     }
 }
 </script>

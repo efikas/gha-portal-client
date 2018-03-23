@@ -41,6 +41,12 @@ const layout = [{
         title: "Staff",
     }
 },{
+    path: '/staff_list/:id',
+    component: resolve => require(['pages/staff/staff_list'], resolve),
+    meta: {
+        title: "Staff List",
+    }
+},{
     path: '/add_staff',
     component: resolve => require(['pages/staff/staff_add'], resolve),
     meta: {
