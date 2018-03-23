@@ -26,60 +26,114 @@
                         <table class="table account-detailsg">
                             <tbody>
                                 <tr class="m-0">
-                                    <td class="views">First Name</td>
-                                    <td colspan="3"> 4yyyyyyyyyyyyyyyyyyyyyy</td>
+                                    <td class=""><strong>Information</strong></td>
+                                    <td colspan="3"><strong>Details</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                </tr>
+                                <tr class="m-0">
+                                    <td class="views">Schhol Name</td>
+                                    <td colspan="3"> {{ schoolInfo[0].school_details.school_name }}</td>
                                 </tr>
                                 <tr>
-                                    <td class="views">Last Name</td>
-                                   <td colspan="3"> 4</td>
+                                    <td class="views">School Address</td>
+                                   <td colspan="3">{{ schoolInfo[0].school_details.school_address }}</td>
                                 </tr>
                                 <tr>
-                                    <td class="views">Middle Name</td>
-                                    <td colspan="3"> 4</td>
+                                    <td class="views">Education Level</td>
+                                    <td colspan="3">{{ schoolInfo[0].school_details.education_level }}</td>
                                 </tr>
                                 <tr>
-                                    <td class="views">Gender</td>
-                                    <td colspan="3"> 4</td>
+                                    <td class="views">School Category</td>
+                                    <td colspan="3"> {{ schoolInfo[0].school_details.school_category_id }}</td>
                                 </tr>
                                 <tr>
-                                    <td class="views">Email Address</td>
-                                   <td colspan="3"> 4</td>
+                                    <td class="views">School Type</td>
+                                   <td colspan="3"> {{ schoolInfo[0].school_details.school_type_id }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="views">School Location</td>
+                                    <td colspan="3"> {{ schoolInfo[0].school_details.school_location }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="views">School Town</td>
+                                    <td colspan="3"> {{ schoolInfo[0].school_details.village_town }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Phone Number</td>
-                                    <td colspan="3"> 4</td>
+                                   <td colspan="3"> {{ schoolInfo[0].school_details.school_phone }}</td>
                                 </tr>
                                 <tr>
-                                    <td class="views">Date of Birth</td>
-                                    <td colspan="3"> 4</td>
+                                    <td class="views">School Email</td>
+                                    <td colspan="3"> {{ schoolInfo[0].school_details.school_email_address }}</td>
                                 </tr>
                                 <tr>
-                                    <td class="views">Birth Place</td>
-                                   <td colspan="3"> 4</td>
+                                    <td class="views">School Website</td>
+                                    <td colspan="3"> {{ schoolInfo[0].school_details.school_website }}</td>
                                 </tr>
                                 <tr>
-                                    <td class="views">State of Birth</td>
-                                    <td colspan="3"> 4</td>
+                                    <td class="views">Date Established</td>
+                                    <td colspan="3"> {{ schoolInfo[0].school_details.established }}</td>
                                 </tr>
                                 <tr>
-                                    <td class="views">Local Government</td>
-                                    <td colspan="3"> 4</td>
+                                    <td class="views">Geographical Location</td>
+                                    <td colspan="3"> {{ schoolInfo[0].school_details.geolocation }}</td>
                                 </tr>
                                 <tr>
-                                    <td class="views">Home Town</td>
-                                    <td colspan="3"> 4</td>
+                                    <td class="views">Average Distance</td>
+                                   <td colspan="3"> {{ schoolInfo[0].school_details.average_distance }}</td>
                                 </tr>
                                 <tr>
-                                    <td class="views">Marital Status</td>
-                                    <td colspan="3"> 4</td>
+                                    <td class="views">School Ownership</td>
+                                    <td colspan="3"> {{ schoolInfo[0].school_details.school_ownership }}</td>
                                 </tr>
                                 <tr>
-                                    <td class="views">Religious Status</td>
-                                   <td colspan="3"> 4</td>
+                                    <td class="views">Name of Proprietor</td>
+                                   <td colspan="3"> {{ schoolInfo[0].school_details.name_of_proprietor }}</td>
                                 </tr>
                                 <tr>
-                                    <td class="views">House Address</td>
-                                    <td colspan="3"> 4</td>
+                                    <td class="views">Shifts</td>
+                                    <td colspan="3"> {{ schoolInfo[0].school_details.shifts }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="views">School Grants</td>
+                                    <td colspan="3"> {{ schoolInfo[0].school_details.school_grants }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="views">Management Committee</td>
+                                    <td colspan="3"> {{ schoolInfo[0].school_details.management_committee }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="views">Development Plan</td>
+                                    <td colspan="3"> {{ schoolInfo[0].school_details.development_plan }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="views">Miltigrade</td>
+                                   <td colspan="3"> {{ schoolInfo[0].school_details.multigrade }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="views">LGA Ward</td>
+                                    <td colspan="3"> {{ schoolInfo[0].school_details.ward_name }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="views">School Id</td>
+                                    <td colspan="3"> {{ schoolInfo[0].school_details.school_unique_id }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="views">School Recognision Status</td>
+                                   <td colspan="3"> {{ schoolInfo[0].school_details.school_recognition_status }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="views">Number of student</td>
+                                    <td colspan="3"> {{ schoolInfo[0].school_details.school_grants }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="views">Number of Teaching Staff</td>
+                                    <td colspan="3"> {{ schoolInfo[0].school_details.school_grants }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="views">Number of Non Teaching staff</td>
+                                    <td colspan="3"> {{ schoolInfo[0].school_details.school_grants }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -129,6 +183,8 @@
     import * as VueGoogleMaps from 'vue2-google-maps'
     import store from 'src/store/store.js'
 
+    import JSONData from '../../../modules/school_manage.json'
+
     Vue.use(VueGoogleMaps, {
         load: {
             key: store.state.gmap_key
@@ -175,7 +231,8 @@
                     wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher
                     vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic
                     synth nesciunt you probably haven't heard of them accusamus labore VHS.
-                    `
+                    `,
+                schoolInfo: "aaa",
             }
         },
         mounted() {
@@ -189,6 +246,11 @@
                     })
                 }
             });
+            this.schoolInfo = JSONData.data.filter((item) => {
+                return (item.unique_id ===  this.$route.params.id);
+            })
+            console.log(this.schoolInfo);
+
         },
         beforeRouteLeave(to, from, next) {
             unsub();
