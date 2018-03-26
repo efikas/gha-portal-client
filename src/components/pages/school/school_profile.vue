@@ -242,18 +242,10 @@
                     })
                 }
             });
-<<<<<<< HEAD
             api.schoolProfile(this.$route.params.id).then(data => {
                 this.schoolInfo = data;
             })
             // console.log(this.schoolInfo);
-=======
-            this.schoolInfo = JSONData.data.filter((item) => {
-                return (item.unique_id ===  this.$route.params.id);
-            })
-            console.log(this.schoolInfo);
-
->>>>>>> 18740cba4cf237e8fa64755c6e021c41b74df52a
         },
         beforeRouteLeave(to, from, next) {
             unsub();
