@@ -1,7 +1,7 @@
-import axios from 'config.service'
+import axios from './config.service'
 
 export default {
-  getAllSchools(credentials) {
+  getAllSchools() {
     return new Promise((resolve, reject) => {
       axios.post('/api/schools', credentials)
         .then(response => {

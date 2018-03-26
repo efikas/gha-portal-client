@@ -9,7 +9,7 @@
                     <div class="text-ash">
                         <h4 class="mt-2 text_size">7465+</h4>
                         <p class="m-0 mt-2">Schools</p>
-                    </div>
+                    </div> 
                 </div>
             </div>
             <div class="col-lg-3  col-sm-6 mb-3">
@@ -46,74 +46,518 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                <div class="card user-profile">
+                    <div class="card-block">
+                        <div class="text-center">
+                            <h4 class="text-primary">Jerry Roy</h4>
+                            <p class="ml-3">Project Architect</p>
+                        </div>
+                    </div>
+                    <table class="table account-details table-bordred table-striped">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-list"></i>
+                                </td>
+                                <td>New Tasks</td>
+                                <td> 4</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-pencil"></i>
+                                </td>
+                                <td>Pending Task</td>
+                                <td> 6</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-envelope-o"></i>
+                                </td>
+                                <td>Inbox</td>
+                                <td> 28</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-bell-o"></i>
+                                </td>
+                                <td>Notification</td>
+                                <td> 5</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                <div class="card user-profile">
+                    <div class="card-block">
+                        <div class="text-center">
+                            <h4 class="text-primary">Jerry Roy</h4>
+                            <p class="ml-3">Project Architect</p>
+                        </div>
+                    </div>
+                    <table class="table account-details table-bordred table-striped">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-list"></i>
+                                </td>
+                                <td>New Tasks</td>
+                                <td> 4</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-pencil"></i>
+                                </td>
+                                <td>Pending Task</td>
+                                <td> 6</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-envelope-o"></i>
+                                </td>
+                                <td>Inbox</td>
+                                <td> 28</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-bell-o"></i>
+                                </td>
+                                <td>Notification</td>
+                                <td> 5</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                <div class="card user-profile">
+                    <div class="card-block">
+                        <div class="text-center">
+                            <h4 class="text-primary">Jerry Roy</h4>
+                            <p class="ml-3">Project Architect</p>
+                        </div>
+                    </div>
+                    <table class="table account-details table-bordred table-striped">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-list"></i>
+                                </td>
+                                <td>New Tasks</td>
+                                <td> 4</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-pencil"></i>
+                                </td>
+                                <td>Pending Task</td>
+                                <td> 6</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-envelope-o"></i>
+                                </td>
+                                <td>Inbox</td>
+                                <td> 28</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-bell-o"></i>
+                                </td>
+                                <td>Notification</td>
+                                <td> 5</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                <div class="card user-profile">
+                    <div class="card-block">
+                        <div class="text-center">
+                            <h4 class="text-primary">Jerry Roy</h4>
+                            <p class="ml-3">Project Architect</p>
+                        </div>
+                    </div>
+                    <table class="table account-details table-bordred table-striped">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-list"></i>
+                                </td>
+                                <td>New Tasks</td>
+                                <td> 4</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-pencil"></i>
+                                </td>
+                                <td>Pending Task</td>
+                                <td> 6</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-envelope-o"></i>
+                                </td>
+                                <td>Inbox</td>
+                                <td> 28</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-bell-o"></i>
+                                </td>
+                                <td>Notification</td>
+                                <td> 5</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                <div class="card user-profile">
+                    <div class="card-block">
+                        <div class="text-center">
+                            <h4 class="text-primary">Jerry Roy</h4>
+                            <p class="ml-3">Project Architect</p>
+                        </div>
+                    </div>
+                    <table class="table account-details table-bordred table-striped">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-list"></i>
+                                </td>
+                                <td>New Tasks</td>
+                                <td> 4</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-pencil"></i>
+                                </td>
+                                <td>Pending Task</td>
+                                <td> 6</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-envelope-o"></i>
+                                </td>
+                                <td>Inbox</td>
+                                <td> 28</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-bell-o"></i>
+                                </td>
+                                <td>Notification</td>
+                                <td> 5</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                <div class="card user-profile">
+                    <div class="card-block">
+                        <div class="text-center">
+                            <h4 class="text-primary">Jerry Roy</h4>
+                            <p class="ml-3">Project Architect</p>
+                        </div>
+                    </div>
+                    <table class="table account-details table-bordred table-striped">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-list"></i>
+                                </td>
+                                <td>New Tasks</td>
+                                <td> 4</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-pencil"></i>
+                                </td>
+                                <td>Pending Task</td>
+                                <td> 6</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-envelope-o"></i>
+                                </td>
+                                <td>Inbox</td>
+                                <td> 28</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-bell-o"></i>
+                                </td>
+                                <td>Notification</td>
+                                <td> 5</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                <div class="card user-profile">
+                    <div class="card-block">
+                        <div class="text-center">
+                            <h4 class="text-primary">Jerry Roy</h4>
+                            <p class="ml-3">Project Architect</p>
+                        </div>
+                    </div>
+                    <table class="table account-details table-bordred table-striped">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-list"></i>
+                                </td>
+                                <td>New Tasks</td>
+                                <td> 4</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-pencil"></i>
+                                </td>
+                                <td>Pending Task</td>
+                                <td> 6</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-envelope-o"></i>
+                                </td>
+                                <td>Inbox</td>
+                                <td> 28</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-bell-o"></i>
+                                </td>
+                                <td>Notification</td>
+                                <td> 5</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                <div class="card user-profile">
+                    <div class="card-block">
+                        <div class="text-center">
+                            <h4 class="text-primary">Jerry Roy</h4>
+                            <p class="ml-3">Project Architect</p>
+                        </div>
+                    </div>
+                    <table class="table account-details table-bordred table-striped">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-list"></i>
+                                </td>
+                                <td>New Tasks</td>
+                                <td> 4</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-pencil"></i>
+                                </td>
+                                <td>Pending Task</td>
+                                <td> 6</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-envelope-o"></i>
+                                </td>
+                                <td>Inbox</td>
+                                <td> 28</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-bell-o"></i>
+                                </td>
+                                <td>Notification</td>
+                                <td> 5</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                <div class="card user-profile">
+                    <div class="card-block">
+                        <div class="text-center">
+                            <h4 class="text-primary">Jerry Roy</h4>
+                            <p class="ml-3">Project Architect</p>
+                        </div>
+                    </div>
+                    <table class="table account-details table-bordred table-striped">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-list"></i>
+                                </td>
+                                <td>New Tasks</td>
+                                <td> 4</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-pencil"></i>
+                                </td>
+                                <td>Pending Task</td>
+                                <td> 6</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-envelope-o"></i>
+                                </td>
+                                <td>Inbox</td>
+                                <td> 28</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-bell-o"></i>
+                                </td>
+                                <td>Notification</td>
+                                <td> 5</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                <div class="card user-profile">
+                    <div class="card-block">
+                        <div class="text-center">
+                            <h4 class="text-primary">Jerry Roy</h4>
+                            <p class="ml-3">Project Architect</p>
+                        </div>
+                    </div>
+                    <table class="table account-details table-bordred table-striped">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-list"></i>
+                                </td>
+                                <td>New Tasks</td>
+                                <td> 4</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-pencil"></i>
+                                </td>
+                                <td>Pending Task</td>
+                                <td> 6</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-envelope-o"></i>
+                                </td>
+                                <td>Inbox</td>
+                                <td> 28</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-bell-o"></i>
+                                </td>
+                                <td>Notification</td>
+                                <td> 5</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                <div class="card user-profile">
+                    <div class="card-block">
+                        <div class="text-center">
+                            <h4 class="text-primary">Jerry Roy</h4>
+                            <p class="ml-3">Project Architect</p>
+                        </div>
+                    </div>
+                    <table class="table account-details table-bordred table-striped">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-list"></i>
+                                </td>
+                                <td>New Tasks</td>
+                                <td> 4</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-pencil"></i>
+                                </td>
+                                <td>Pending Task</td>
+                                <td> 6</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-envelope-o"></i>
+                                </td>
+                                <td>Inbox</td>
+                                <td> 28</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-bell-o"></i>
+                                </td>
+                                <td>Notification</td>
+                                <td> 5</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                <div class="card user-profile">
+                    <div class="card-block">
+                        <div class="text-center">
+                            <h4 class="text-primary">Jerry Roy</h4>
+                            <p class="ml-3">Project Architect</p>
+                        </div>
+                    </div>
+                    <table class="table account-details table-bordred table-striped">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-list"></i>
+                                </td>
+                                <td>New Tasks</td>
+                                <td> 4</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-pencil"></i>
+                                </td>
+                                <td>Pending Task</td>
+                                <td> 6</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-envelope-o"></i>
+                                </td>
+                                <td>Inbox</td>
+                                <td> 28</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-bell-o"></i>
+                                </td>
+                                <td>Notification</td>
+                                <td> 5</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
          <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-12">
                 <b-card>
                     <h5 class="ml-3 head_color">Annual Stats</h5>
                     <div style="height: 305px;">
                         <IEcharts :option="ajaxbar_chart" :loading="ajaxloading" @ready="onReady" ref="ajaxbar_chart"></IEcharts>
-                    </div>
-                </b-card>
-            </div>
-            <div class="col-lg-6">
-                <b-card>
-                    <h5 class="ml-3 head_color">Annual Stats</h5>
-                    <div style="height: 305px;">
-                        <IEcharts :option="ajaxbar_chart" :loading="ajaxloading" @ready="onReady" ref="ajaxbar_chart"></IEcharts>
-                    </div>
-                </b-card>
-            </div>
-            <div class="col-lg-6">
-                <b-card>
-                    <h5 class="ml-3 head_color">Site Visitors Chart</h5>
-                    <vue-chartist :data="donut.data" :options="donut.options" type="Pie" :responsiveOptions="donut.responsiveoptions" ref="chartist6"></vue-chartist>
-                    <div class="row">
-                        <div class="col-lg-3 col-sm-12 text_color">
-                            IE
-                        </div>
-                        <div class="col-lg-9 col-sm-12 progress_color1">
-                            <b-progress v-model="progress2counter1" show-progress class="mb-4"></b-progress>
-                        </div>
-                        <div class="col-lg-3 col-sm-12 text_color">
-                            Chrome
-                        </div>
-                        <div class="col-lg-9 col-sm-12 progress_color2">
-                            <b-progress v-model="progress2counter4" show-progress class="mb-4"></b-progress>
-                        </div>
-                        <div class="col-lg-3 col-sm-12 text_color">
-                            Firefox
-                        </div>
-                        <div class="col-lg-9 col-sm-12 progress_color3">
-                            <b-progress v-model="progress2counter5" variant="success" show-progress class="mb-4"></b-progress>
-
-                        </div>
-                    </div>
-                </b-card>
-            </div>
-            <div class="col-lg-6">
-                <b-card>
-                    <h5 class="ml-3 head_color">Site Visitors Chart</h5>
-                    <vue-chartist :data="donut.data" :options="donut.options" type="Pie" :responsiveOptions="donut.responsiveoptions" ref="chartist6"></vue-chartist>
-                    <div class="row">
-                        <div class="col-lg-3 col-sm-12 text_color">
-                            IE
-                        </div>
-                        <div class="col-lg-9 col-sm-12 progress_color1">
-                            <b-progress v-model="progress2counter1" show-progress class="mb-4"></b-progress>
-                        </div>
-                        <div class="col-lg-3 col-sm-12 text_color">
-                            Chrome
-                        </div>
-                        <div class="col-lg-9 col-sm-12 progress_color2">
-                            <b-progress v-model="progress2counter4" show-progress class="mb-4"></b-progress>
-                        </div>
-                        <div class="col-lg-3 col-sm-12 text_color">
-                            Firefox
-                        </div>
-                        <div class="col-lg-9 col-sm-12 progress_color3">
-                            <b-progress v-model="progress2counter5" variant="success" show-progress class="mb-4"></b-progress>
-
-                        </div>
                     </div>
                 </b-card>
             </div>
@@ -154,44 +598,6 @@
                 instances: [],
                 loading: false,
                 ajaxloading: true,
-                
-                // ======donut chart start=======
-                donut: {
-                    data: {
-                        labels: ['C', 'IE', 'F'],
-                        series: [50, 20, 30],
-
-                    },
-                    options: {
-
-                        donut: true,
-                        donutWidth: 42,
-                        labelInterpolationFnc: function (value) {
-                            return value[0]
-                        }
-                    },
-                    responsiveoptions: [
-                        ['screen and (min-width: 640px)', {
-                            chartPadding: 30,
-                            labelOffset: 40,
-                            labelDirection: 'explode',
-                            labelInterpolationFnc: function (value) {
-                                return value;
-                            }
-                        }],
-                        ['screen and (min-width: 1024px)', {
-                            labelOffset: 50,
-                            chartPadding: 40
-                        }]
-                    ]
-                },
-                // ======donut chart end================
-
-                //=============progress bar============
-                progress2counter1: 20,
-                progress2counter4: 50,
-                progress2counter5: 30,
-
 
                 //===========AJAX chart data start=========
                 ajaxbar_chart: {
@@ -247,7 +653,8 @@
                         },
 
                     ]
-                }
+                },
+                //===========AJAX chart data end=========\
             }
         },
         mounted: function () {
@@ -263,6 +670,7 @@
                     });
                 }
             });
+
             axios.get("http://www.filltext.com/?rows=1&chartdata={numberArray|12,100}").then(response => {
                     this.ajaxbar_chart.series[0].data = response.data[0].chartdata;
                     this.ajaxloading = false;

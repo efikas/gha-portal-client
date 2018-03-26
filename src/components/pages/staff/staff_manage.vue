@@ -4,7 +4,7 @@
             <b-card header="AJAX Client Table" header-tag="h4" class="bg-info-card">
                 <v-client-table :data="tableData2" :columns="columns">
                      <span slot="id" slot-scope="props">{{ props.index }}</span>
-                     <a slot="view" slot-scope="props" class="fa fa-eye icon-big" :href="'/#/staff_list/'+ props.row.id"></a>
+                     <a slot="view" slot-scope="props" class="fa fa-eye icon-big" :href="'/#/school/'+ props.row.id+'/staff'"></a>
                 </v-client-table>
             </b-card>
         </div>
@@ -55,5 +55,7 @@ export default {
 }
 </script>
 <style scoped>
-
+    .icon-big {
+     font-size: 20px;
+    }
 </style>

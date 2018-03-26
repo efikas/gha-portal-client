@@ -4,7 +4,7 @@
             <b-card header="AJAX Client Table" header-tag="h4" class="bg-info-card">
                 <v-client-table :data="tableData2" :columns="columns">
                      <span slot="id" slot-scope="props">{{ props.index }}</span>
-                     <a slot="view" slot-scope="props" class="fa fa-eye icon-big" :href="'/#/student_list/'+ props.row.unique_id"></a>
+                     <a slot="view" slot-scope="props" class="fa fa-eye icon-big" :href="'/#/school/'+ props.row.id+'/students'"></a>
                 </v-client-table>
             </b-card>
         </div>
@@ -16,6 +16,8 @@ import {
     ClientTable,
     Event
 } from 'vue-tables-2';
+
+// import api from '../../../services/school.service'
 import datatable from "components/plugins/DataTable/DataTable.vue";
 import JSONData from '../../../modules/school_manage.json'
 
@@ -37,11 +39,11 @@ export default {
                 },
                 // see the options API
                 skin: "table-hover table-striped table-bordered",
-                perPage: 7,
+                perPage: 30,
                 // footerHeadings: true,
                 highlightMatches: true,
                 pagination: {
-                    chunk: 3,
+                    chunk: 7,
                     //set dropdown to true to get dropdown instead of pagenation
                     dropdown: false
                 }
@@ -49,11 +51,12 @@ export default {
         }
     },
     mounted() {
-       let data = JSONData.data;
-        this.tableData2 = data;
+        // this.tableData2 = api.getAllSchools();
     }
 }
 </script>
 <style scoped>
-
+    .icon-big {
+     font-size: 20px;
+    }
 </style>

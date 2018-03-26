@@ -108,7 +108,7 @@
     require('swiper/dist/css/swiper.css')
     import VueAwesomeSwiper from 'vue-awesome-swiper';
 
-    // import api from '../../services/app.service'
+    import api from '../../services/app.service'
     import piechart from '../charts/piechart.vue'
     import barchart2 from '../charts/barchart2.vue'
     import donut from '../charts/donut.vue'
@@ -191,7 +191,7 @@
                         value: myData.priv_sch
                     };
                     this.pub_sch = {
-                        header: 'Public School Distribution',
+                        header: 'Public School Distributiong',
                         value: myData.pub_sch
                     };
                     this.pri_sch = {

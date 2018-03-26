@@ -17,7 +17,7 @@ const layout = [{
         title: "Manage Schools",
     }
 },{
-    path: '/school_profile/:id',
+    path: '/school/:id/profile',
     component: resolve => require(['pages/school/school_profile'], resolve),
     meta: {
         title: "School Profile",
@@ -41,7 +41,7 @@ const layout = [{
         title: "Staff",
     }
 },{
-    path: '/staff_list/:id',
+    path: '/school/:id/staff',
     component: resolve => require(['pages/staff/staff_list'], resolve),
     meta: {
         title: "Staff List",
@@ -59,7 +59,7 @@ const layout = [{
         title: "Manage Staff Record",
     }
 },{
-    path: '/staff_profile',
+    path: '/staff/:id/profile',
     component: resolve => require(['pages/staff/staff_profile'], resolve),
     meta: {
         title: "Staff Profile",
@@ -77,6 +77,12 @@ const layout = [{
         title: "Students",
     }
 },{
+    path: '/school/:id/student',
+    component: resolve => require(['pages/student/student_list'], resolve),
+    meta: {
+        title: "Student List",
+    }
+},{
     path: '/add_students',
     component: resolve => require(['pages/student/students_add'], resolve),
     meta: {
@@ -89,7 +95,7 @@ const layout = [{
         title: "Manage Students Record",
     }
 },{
-    path: '/student_profile',
+    path: '/student/:id/profile',
     component: resolve => require(['pages/student/student_profile'], resolve),
     meta: {
         title: "Student Profile",

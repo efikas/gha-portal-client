@@ -23,7 +23,7 @@
                     </b-card-header>
                     <b-collapse id="accordion1" visible accordion="my-accordion" role="tabpanel">
                         <b-card-body>
-                        <table class="table account-detailsg">
+                        <table class="table account-detailsg" v-if="schoolInfo">
                             <tbody>
                                 <tr class="m-0">
                                     <td class=""><strong>Information</strong></td>
@@ -33,107 +33,103 @@
                                 </tr>
                                 <tr class="m-0">
                                     <td class="views">Schhol Name</td>
-                                    <td colspan="3"> {{ schoolInfo[0].school_details.school_name }}</td>
+                                    <td colspan="3"> {{ schoolInfo.data.school_name }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">School Address</td>
-                                   <td colspan="3">{{ schoolInfo[0].school_details.school_address }}</td>
+                                   <td colspan="3">{{ schoolInfo.data.school_address }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Education Level</td>
-                                    <td colspan="3">{{ schoolInfo[0].school_details.education_level }}</td>
+                                    <td colspan="3">{{ schoolInfo.data.education_levels }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">School Category</td>
-                                    <td colspan="3"> {{ schoolInfo[0].school_details.school_category_id }}</td>
+                                    <td colspan="3"> {{ schoolInfo.data.school_category_id }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">School Type</td>
-                                   <td colspan="3"> {{ schoolInfo[0].school_details.school_type_id }}</td>
+                                   <td colspan="3"> {{ schoolInfo.data.school_type_id }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">School Location</td>
-                                    <td colspan="3"> {{ schoolInfo[0].school_details.school_location }}</td>
+                                    <td colspan="3"> {{ schoolInfo.data.school_location }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">School Town</td>
-                                    <td colspan="3"> {{ schoolInfo[0].school_details.village_town }}</td>
+                                    <td colspan="3"> {{ schoolInfo.data.village_town }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Phone Number</td>
-                                   <td colspan="3"> {{ schoolInfo[0].school_details.school_phone }}</td>
+                                   <td colspan="3"> {{ schoolInfo.data.school_phone }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">School Email</td>
-                                    <td colspan="3"> {{ schoolInfo[0].school_details.school_email_address }}</td>
+                                    <td colspan="3"> {{ schoolInfo.data.school_email_address }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">School Website</td>
-                                    <td colspan="3"> {{ schoolInfo[0].school_details.school_website }}</td>
+                                    <td colspan="3"> {{ schoolInfo.data.school_website }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Date Established</td>
-                                    <td colspan="3"> {{ schoolInfo[0].school_details.established }}</td>
+                                    <td colspan="3"> {{ schoolInfo.data.established }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Geographical Location</td>
-                                    <td colspan="3"> {{ schoolInfo[0].school_details.geolocation }}</td>
+                                    <td colspan="3"> {{ schoolInfo.data.geolocation }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Average Distance</td>
-                                   <td colspan="3"> {{ schoolInfo[0].school_details.average_distance }}</td>
+                                   <td colspan="3"> {{ schoolInfo.data.average_distance }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">School Ownership</td>
-                                    <td colspan="3"> {{ schoolInfo[0].school_details.school_ownership }}</td>
+                                    <td colspan="3"> {{ schoolInfo.data.school_ownership }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Name of Proprietor</td>
-                                   <td colspan="3"> {{ schoolInfo[0].school_details.name_of_proprietor }}</td>
+                                   <td colspan="3"> {{ schoolInfo.data.name_of_proprietor }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Shifts</td>
-                                    <td colspan="3"> {{ schoolInfo[0].school_details.shifts }}</td>
+                                    <td colspan="3"> {{ schoolInfo.data.shifts }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">School Grants</td>
-                                    <td colspan="3"> {{ schoolInfo[0].school_details.school_grants }}</td>
+                                    <td colspan="3"> {{ schoolInfo.grants }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Management Committee</td>
-                                    <td colspan="3"> {{ schoolInfo[0].school_details.management_committee }}</td>
+                                    <td colspan="3"> {{ schoolInfo.data.management_committee }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Development Plan</td>
-                                    <td colspan="3"> {{ schoolInfo[0].school_details.development_plan }}</td>
+                                    <td colspan="3"> {{ schoolInfo.data.development_plan }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Miltigrade</td>
-                                   <td colspan="3"> {{ schoolInfo[0].school_details.multigrade }}</td>
+                                   <td colspan="3"> {{ schoolInfo.data.multigrade }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">LGA Ward</td>
-                                    <td colspan="3"> {{ schoolInfo[0].school_details.ward_name }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="views">School Id</td>
-                                    <td colspan="3"> {{ schoolInfo[0].school_details.school_unique_id }}</td>
+                                    <td colspan="3"> {{ schoolInfo.ward.name }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">School Recognision Status</td>
-                                   <td colspan="3"> {{ schoolInfo[0].school_details.school_recognition_status }}</td>
+                                   <td colspan="3"> {{ schoolInfo.data.school_recognition_status }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Number of student</td>
-                                    <td colspan="3"> {{ schoolInfo[0].school_details.school_grants }}</td>
+                                    <td colspan="3"> {{ schoolInfo.students }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Number of Teaching Staff</td>
-                                    <td colspan="3"> {{ schoolInfo[0].school_details.school_grants }}</td>
+                                    <td colspan="3"> {{ schoolInfo.staffs.teaching }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Number of Non Teaching staff</td>
-                                    <td colspan="3"> {{ schoolInfo[0].school_details.school_grants }}</td>
+                                    <td colspan="3"> {{ schoolInfo.staffs.none_teaching }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -183,7 +179,7 @@
     import * as VueGoogleMaps from 'vue2-google-maps'
     import store from 'src/store/store.js'
 
-    import JSONData from '../../../modules/school_manage.json'
+    import api from '../../../services/app.service'
 
     Vue.use(VueGoogleMaps, {
         load: {
@@ -232,7 +228,7 @@
                     vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic
                     synth nesciunt you probably haven't heard of them accusamus labore VHS.
                     `,
-                schoolInfo: "aaa",
+                schoolInfo: null,
             }
         },
         mounted() {
@@ -246,11 +242,10 @@
                     })
                 }
             });
-            this.schoolInfo = JSONData.data.filter((item) => {
-                return (item.unique_id ===  this.$route.params.id);
+            api.schoolProfile(this.$route.params.id).then(data => {
+                this.schoolInfo = data;
             })
-            console.log(this.schoolInfo);
-
+            // console.log(this.schoolInfo);
         },
         beforeRouteLeave(to, from, next) {
             unsub();

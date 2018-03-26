@@ -11,16 +11,16 @@
 <script>
     import Vue from 'vue';
 
-    import IEcharts from 'vue-echarts-v3/src/full.js';
+    // import IEcharts from 'vue-echarts-v3/src/full.js';
 
-    import 'zrender/lib/vml/vml';
-    require('swiper/dist/css/swiper.css')
+    // import 'zrender/lib/vml/vml';
+    // require('swiper/dist/css/swiper.css')
 
-    import VueAwesomeSwiper from 'vue-awesome-swiper';
-    import countTo from 'vue-count-to';
+    // import VueAwesomeSwiper from 'vue-awesome-swiper';
+    // import countTo from 'vue-count-to';
 
     import vScroll from "components/plugins/scroll/vScroll.vue";
-    import VueChartist from 'v-chartist'
+    // import VueChartist from 'v-chartist'
 
     import 'echarts/lib/chart/pie';
 
@@ -35,16 +35,16 @@
     import 'echarts/lib/component/timeline';
     import 'echarts/lib/component/toolbox';
 
-    Vue.use(VueAwesomeSwiper);
+    // Vue.use(VueAwesomeSwiper);
     var unsub;
     export default {
         name: "barchart",
         props: ['data', 'colors'],
         components: {
-            IEcharts,
-            countTo,
-            vScroll,
-            VueChartist,
+            // IEcharts,
+            // countTo,
+            // vScroll,
+            // VueChartist,
         },
         data() {
             return {
@@ -115,28 +115,28 @@
            
         },
         mounted: function () {
-            unsub = this.$store.subscribe((mutation, state) => {
-                if (mutation.type == "left_menu") {
-                    this.instances.forEach(function (item, index) {
-                        setTimeout(function () {
-                            item.resize();
-                        });
-                    });
-                    setTimeout(() => {
-                        this.$refs.swiper.swiper.update();
-                    });
-                }
-            });
+            // unsub = this.$store.subscribe((mutation, state) => {
+            //     if (mutation.type == "left_menu") {
+            //         this.instances.forEach(function (item, index) {
+            //             setTimeout(function () {
+            //                 item.resize();
+            //             });
+            //         });
+            //         setTimeout(() => {
+            //             this.$refs.swiper.swiper.update();
+            //         });
+            //     }
+            // });
         },
         beforeRouteLeave(to, from, next) {
-            unsub();
-            next();
+            // unsub();
+            // next();
         },
 
         methods: {
-            onReady(instance) {
-                this.instances.push(instance)
-            }
+            // onReady(instance) {
+            //     this.instances.push(instance)
+            // }
         }
     }
 </script>

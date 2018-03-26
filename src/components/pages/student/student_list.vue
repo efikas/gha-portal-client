@@ -4,7 +4,8 @@
             <b-card header="AJAX Client Table" header-tag="h4" class="bg-info-card">
                 <v-client-table :data="tableData2" :columns="columns">
                      <span slot="id" slot-scope="props">{{ props.index }}</span>
-                     <a slot="view" slot-scope="props" class="fa fa-eye icon-big" :href="'/#/student_list/'+ props.row.unique_id"></a>
+                     <span slot="Name" slot-scope="props">{{ props.row.first_name + ' ' + props.row.last_name + ' ' + props.row.middle_name }}</span>
+                     <a slot="view" slot-scope="props" class="fa fa-eye icon-big" :href="'/#/staff_profile/'+ props.row.id"></a>
                 </v-client-table>
             </b-card>
         </div>
@@ -16,18 +17,20 @@ import {
     ClientTable,
     Event
 } from 'vue-tables-2';
+
+// import api from '../../../services/school.service'
 import datatable from "components/plugins/DataTable/DataTable.vue";
-import JSONData from '../../../modules/school_manage.json'
+import JSONData from '../../../modules/student_list.json'
 
 Vue.use(ClientTable, {}, false);
 export default {
-    name: "advanced_tables",
+    name: "staff_list",
     components: {
         datatable
     },
     data() {
         return {
-            columns: ['id', 'school_name', 'view'],
+            columns: ['id', 'Name', 'view'],
             tableData2: [],
             options: {
                 sortIcon: {
@@ -37,11 +40,11 @@ export default {
                 },
                 // see the options API
                 skin: "table-hover table-striped table-bordered",
-                perPage: 7,
+                perPage: 30,
                 // footerHeadings: true,
                 highlightMatches: true,
                 pagination: {
-                    chunk: 3,
+                    chunk: 7,
                     //set dropdown to true to get dropdown instead of pagenation
                     dropdown: false
                 }
@@ -49,11 +52,17 @@ export default {
         }
     },
     mounted() {
+        
        let data = JSONData.data;
-        this.tableData2 = data;
+        //  let data = api.getAllSchools('school/${this.$route.params.id}/students')
+        this.tableData2 = data.filter(item => {
+            return (item.school_id == this.$route.params.id);
+        });
     }
 }
 </script>
 <style scoped>
-
+    .icon-big {
+     font-size: 20px;
+    }
 </style>
