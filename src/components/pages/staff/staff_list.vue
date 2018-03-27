@@ -18,7 +18,6 @@ import {
     Event
 } from 'vue-tables-2';
 import datatable from "components/plugins/DataTable/DataTable.vue";
-import api from '../../../services/app.service'
 
 
 Vue.use(ClientTable, {}, false);
@@ -51,7 +50,7 @@ export default {
         }
     },
     mounted() {
-       api.schoolStaff(this.$route.params.id).then(data => {
+       this.$staff.schoolStaff(this.$route.params.id).then(data => {
             this.staffs = data.data;
         })
     }

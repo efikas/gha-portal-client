@@ -55,10 +55,10 @@
             </div>
             <div class="col-lg-6 mb-3">
                 <piechart :iData="this.staff_dist"></piechart>
-            </div> 
+            </div>
             <div class="col-lg-6 mb-3">
                 <doughnut :iData="this.gen_acad_staff_dist"></doughnut>
-            </div> 
+            </div>
         </div>
     </div>
 </template>

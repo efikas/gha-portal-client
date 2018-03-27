@@ -4,7 +4,7 @@
             <b-card header="AJAX Client Table" header-tag="h4" class="bg-info-card">
                 <v-client-table :data="schools" :columns="columns">
                      <span slot="id" slot-scope="props">{{ props.index }}</span>
-                     <a slot="school_name" slot-scope="props" :href="'/#/school/'+ props.row.id + '/staff'">{{ props.row.school_name + ' ' + props.row.last_name + ' ' + props.row.middle_name }}</a>
+                     <a slot="school_name" slot-scope="props" :href="'/#/school/'+ props.row.id + '/staff'">{{ props.row.school_name }}</a>
                      <a slot="view" slot-scope="props" class="fa fa-eye icon-big" :href="'/#/school/'+ props.row.id+'/staff'"></a>
                 </v-client-table>
             </b-card>
@@ -18,7 +18,6 @@ import {
     Event
 } from 'vue-tables-2';
 import datatable from "components/plugins/DataTable/DataTable.vue";
-import api from '../../../services/app.service'
 
 Vue.use(ClientTable, {}, false);
 export default {
@@ -50,7 +49,7 @@ export default {
         }
     },
     mounted() {
-       api.allSchools().then(data => {
+       this.$school.allSchools().then(data => {
             this.schools = data.data;
         })
     }

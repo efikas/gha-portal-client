@@ -75,35 +75,21 @@
            
         },
         mounted: function () {
-            console.log(this.header);
-            unsub = this.$store.subscribe((mutation, state) => {
-                if (mutation.type == "left_menu") {
-                    this.instances.forEach(function (item, index) {
-                        setTimeout(function () {
-                            item.resize();
-                        });
-                    });
-                    setTimeout(() => {
-                        this.$refs.swiper.swiper.update();
-                    });
-                }
-            });
-            
-            //  axios.get("http://www.filltext.com/?rows=5&value={number|50}&name={usState|abbr}").then(response => {
-            //     this.ajaxpie.series[0].data = response.data;
-            //     console.log(response.data);
-            //     response.data.forEach((item, index) => {
-            //         this.ajaxpie.legend.data.push(item.name);
-            //     });
-            //     this.ajaxloading = false;
-            // })
-            // .catch(function(error) {
-
+            // unsub = this.$store.subscribe((mutation, state) => {
+            //     if (mutation.type == "left_menu") {
+            //         this.instances.forEach(function (item) {
+            //             setTimeout(function () {
+            //                 // item.resize();
+            //             });
+            //         });
+            //         setTimeout(() => {
+            //             // this.$refs.swiper.swiper.update();
+            //         });
+            //     }
             // });
-
         },
         beforeRouteLeave(to, from, next) {
-            unsub();
+            // unsub();
             next();
         },
 
