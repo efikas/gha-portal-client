@@ -1,4 +1,4 @@
-import axios from './config.service'
+import axios from 'axios'
 
 export default {
     //School

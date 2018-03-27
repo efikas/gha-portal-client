@@ -1,5 +1,5 @@
 import axios from "axios/index";
-import {authURL} from '../services/resources'
+import {authURL} from '../resources'
 
 export default function (Vue) {
     Vue.auth = {

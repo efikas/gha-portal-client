@@ -1,5 +1,3 @@
-import axios from "axios/index";
-import {authURL} from './resources'
 import Student from './student.service'
 import Staff from './staff.service'
 import School from './school.service'
