@@ -9,7 +9,7 @@ const router = new VueRouter({
     routes,
     linkActiveClass: "active",
     // hashbang: false,
-    // mode: 'history',
+    mode: 'history',
 })
 
 router.beforeEach(

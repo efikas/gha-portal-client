@@ -1,6 +1,6 @@
 import Vue from "vue";
 import axios from "axios/index";
-import { apiURL } from './resources'
+import {apiURL} from './resources'
 
 
 axios.defaults.baseURL = apiURL
@@ -20,5 +20,21 @@ axios.interceptors.request.use(function (config) {
 
     return config
 })
+
+// Add a response interceptor
+axios.interceptors.response.use(function (response) {
+        // Do something with response data
+        return response;
+    }, function (error) {
+        // Do something with response error
+
+        if (error.response.status === 401){
+            // console.log(error.response.status)
+            window.location.href = "/login"
+        }
+
+        return Promise.reject(error);
+    }
+);
 
 export default axios;

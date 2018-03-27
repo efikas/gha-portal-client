@@ -2,7 +2,7 @@
     <header class="header fixed-top">
         <nav>
             <router-link to="/" class="logo">
-                <img src="~img/logo_black.png" alt="logo" />
+                <img src="~img/logo_black.png" alt="logo"/>
             </router-link>
             <!-- Sidebar toggle button-->
             <div class="float-left">
@@ -38,7 +38,7 @@
                                             <div class="col-9 mt-2">
                                                 <p> &nbsp;Lorem ipsum dolor sit amet, elit.
                                                     <br>
-                                                    <small class="ml-1 text-info">Today </small>
+                                                    <small class="ml-1 text-info">Today</small>
                                                 </p>
                                             </div>
                                         </div>
@@ -173,9 +173,14 @@
 </template>
 <script>
     import screenfull from "screenfull"
+
     export default {
         name: "vueadmin_header",
 
+        created() {
+
+            this.setAuthenticatedUser()
+        },
         methods: {
             toggle_menu() {
                 this.$store.commit('left_menu', "toggle");
@@ -187,13 +192,22 @@
             },
             logout() {
                 this.$auth.logout()
-                this.$router.push('login')
+                // this.$router.push('login')
+                window.location.href = "/login"
+            },
+            setAuthenticatedUser() {
+                this.$auth.getUser()
+                    .then(response => {
+                        this.$auth.setAuthenticatedUser(response.data)
+                        console.log(response.data)
+                    })
             }
         }
     }
 </script>
 <style lang="scss" scoped>
     @import "../css/customvariables";
+
     .header {
         z-index: 1030;
         nav {
@@ -227,10 +241,10 @@
                 outline: none;
             }
             div.dropdown {
-                >a {
+                > a {
                     color: $zoom_color;
                 }
-                .dropdown-menu>button {
+                .dropdown-menu > button {
                     padding: 10px 15px;
                 }
                 &.notifications-menu {
@@ -239,18 +253,18 @@
                         font-size: 18px;
                     }
                 }
-                >a>i {
+                > a > i {
                     font-size: 23px;
                 }
-                >a {
+                > a {
                     display: block;
                     padding: 12px;
                 }
-                &:hover>a {
+                &:hover > a {
                     background-color: #ededed;
                     color: #000;
                 }
-                >a.padding-user {
+                > a.padding-user {
                     padding-top: 8px;
                     padding-bottom: 6px;
                 }
@@ -281,20 +295,22 @@
         margin-top: 10px;
     }
 
-    .user.user-menu>button img {
+    .user.user-menu > button img {
         width: 35px;
         height: 35px;
     }
+
     /**** END HEADER RIGHT SIDE DROPDOWNS ****/
 
     @media screen and (max-width: 767px) {
         .dropdown.open .dropdown-menu {
             position: absolute;
         }
-        .navbar-right>li>a {
+        .navbar-right > li > a {
             padding: 10px 12px;
         }
     }
+
     /* Fix menu positions on xs screens to appear correctly and fully */
 
     @media (max-width: 560px) {
@@ -332,6 +348,7 @@
 </style>
 <style type="text/css" lang="scss">
     @import "../css/customvariables";
+
     .wrapper {
         margin-top: 50px;
         @media screen and (max-width: 560px) {
@@ -355,12 +372,13 @@
             &:active {
                 color: $toggle_color !important;
             }
-        } //.btn-secondary:active
+        }
+        //.btn-secondary:active
         &.show button {
             background-color: $bell-active !important
         }
-        &.user_btn  .dropdown-toggle{
-            padding:7px 9px;
+        &.user_btn .dropdown-toggle {
+            padding: 7px 9px;
         }
     }
 

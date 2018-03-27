@@ -2,6 +2,8 @@ import axios from "axios/index";
 import {authURL} from '../resources'
 
 export default function (Vue) {
+    let authenticatedUser = {}
+
     Vue.auth = {
         setToken (token, expiration) {
             localStorage.setItem('token', token)
@@ -31,6 +33,14 @@ export default function (Vue) {
             return false
         },
 
+        setAuthenticatedUser(data) {
+            authenticatedUser = data
+        },
+
+        getAuthenticatedUser() {
+            return authenticatedUser
+        },
+
         login(credentials) {
             return new Promise((resolve, reject) => {
                 axios.post(authURL, credentials)
@@ -38,7 +48,6 @@ export default function (Vue) {
                         this.setToken(response.data.access_token, response.data.expires_in + Date.now())
                         resolve(response.data)
                     }).catch((error) => {
-                        console.log(error)
                     reject(error.response);
                 })
             })
@@ -54,6 +63,17 @@ export default function (Vue) {
                 axios.post('/signup', credentials)
                     .then(response => {
                         resolve(response.data)
+                    }).catch(response => {
+                    reject(response.data)
+                })
+            })
+        },
+
+        getUser() {
+            return new Promise((resolve, reject) => {
+                axios.get('/user')
+                    .then(response => {
+                        resolve(response)
                     }).catch(response => {
                     reject(response.data)
                 })
