@@ -49,7 +49,7 @@ export default {
         }
     },
     mounted() {
-         $this.$school.allSchools().then(data => {
+         this.$school.allSchools().then(data => {
                 this.schools = data.data;
             })
     }

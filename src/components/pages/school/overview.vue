@@ -177,7 +177,7 @@
                     xAxis: [{
                         type: 'category',
                         name: 'YEAR', 
-                        nameRotate: 60,
+                        nameRotate: 90,
                         data: ['ADO', 'EFON', 'ADO', 'ADO', 'ADO', 'EMURE', 'ADO', 'ADO', 'IJERO', 'IKERE',
                                 'IKOLE', 'ADO', 'IREPO', 'ISE', 'MOBA', 'OYE']
                     }],

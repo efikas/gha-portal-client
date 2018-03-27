@@ -97,7 +97,7 @@
             }
         },
          mounted: function () {
-            this.$dashbaord.statistics()
+            this.$dashboard.statistics()
                 .then((data) => {
                     this.teachingStaff = data.staffs.teaching.male + data.staffs.teaching.female;;
                     this.nonTeachingStaff = data.staffs.non_teaching.male + data.staffs.non_teaching.female;;
