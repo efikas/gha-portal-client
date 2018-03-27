@@ -57,7 +57,7 @@
                     </div>
                     <table class="table table-bordred table-striped">
                         <tbody>
-                            <tr>
+                            <tr @click="gotoLink()">
                                 <td>Public Schools</td>
                                 <td> {{ schoolsPerLga.public.total }}</td>
                             </tr>
@@ -145,6 +145,11 @@
                 loading: false,
                 ajaxloading: true,
                 schoolsPerLgas: [],
+                lgas: [],
+                lgasPrimary: [],
+                lgasSecondary: [],
+                lgasPrivate: [],
+                lgasPublic: [],
 
                 //===========AJAX chart data start=========
                 ajaxbar_chart: {
@@ -163,15 +168,19 @@
                     },
                     calculable: true,
                     legend: {
-                        data: ['PROJECTS', 'SALES']
+                        data: ['Public', 'Private', 'Primary', 'Secondary']
                     },
-                    color: ['#a0bce5', '#baf2e1'],
+                    color: [
+                                '#c16989', '#a3ab60', '#d2bf6f', '#e6995b', '#4ca1ab',
+                                '#FE8463', '#9BCA63', '#FAD860', '#F3A43B', '#60C0DD',
+                                '#D7504B', '#dcba42', '#F4E001', '#F0809A', '#26C0C0'
+                            ],
                     xAxis: [{
                         type: 'category',
-                        name: 'YEAR',
-                        data: ['2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015',
-                            '2016', '2017'
-                        ]
+                        name: 'YEAR', 
+                        nameRotate: 60,
+                        data: ['ADO', 'EFON', 'ADO', 'ADO', 'ADO', 'EMURE', 'ADO', 'ADO', 'IJERO', 'IKERE',
+                                'IKOLE', 'ADO', 'IREPO', 'ISE', 'MOBA', 'OYE']
                     }],
                     yAxis: [{
                             type: 'value',
@@ -189,17 +198,26 @@
                         }
                     ],
                     series: [{
-                            name: 'PROJECTS',
-                            type: 'bar',
-                            data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3]
-                        },
-                        {
-                            name: 'SALES',
-                            type: 'bar',
-                            data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3]
-                        },
-
-                    ]
+                    name: 'Public',
+                    type: 'bar',
+                    stack: 'search engine',
+                    data: []
+                }, {
+                    name: 'Private',
+                    type: 'bar',
+                    stack: 'search engine',
+                    data: []
+                }, {
+                    name: 'Primary',
+                    type: 'bar',
+                    stack: 'advertising',
+                    data: []
+                }, {
+                    name: 'Secondary',
+                    type: 'bar',
+                    stack: 'advertising',
+                    data: []
+                }]
                 },
                 //===========AJAX chart data end=========\
             }
@@ -208,6 +226,20 @@
             api.getSchoolsPerLga()
                 .then((data) => {
                     this.schoolsPerLgas = data;
+                    data.forEach(item => {
+                        // this.lgas.push(item.name);
+                        this.lgasPrimary.push(item.total.primary);
+                        this.lgasSecondary.push(item.total.secondary);
+                        this.lgasPrivate.push(item.private.total);
+                        this.lgasPublic.push(item.public.total);
+                        
+                        // this.ajaxbar_chart.xAxis[0].data = this.lgas;
+                        this.ajaxbar_chart.series[0].data = this.lgasPublic;
+                        this.ajaxbar_chart.series[1].data = this.lgasPrivate;
+                        this.ajaxbar_chart.series[2].data = this.lgasPrimary;
+                        this.ajaxbar_chart.series[3].data = this.lgasSecondary;
+                        this.ajaxloading = false;
+                    })
                 })
                 .catch((error) => console.log(error)
             ),
@@ -224,13 +256,13 @@
                 }
             });
 
-            axios.get("http://www.filltext.com/?rows=1&chartdata={numberArray|12,100}").then(response => {
-                    this.ajaxbar_chart.series[0].data = response.data[0].chartdata;
-                    this.ajaxloading = false;
-                })
-                .catch(function (error) {
+            // axios.get("http://www.filltext.com/?rows=1&chartdata={numberArray|12,100}").then(response => {
+            //         this.ajaxbar_chart.series[0].data = response.data[0].chartdata;
+            //         this.ajaxloading = false;
+            //     })
+            //     .catch(function (error) {
 
-                });
+            //     });
 
         },
         beforeRouteLeave(to, from, next) {
@@ -239,6 +271,9 @@
         },
 
         methods: {
+            gotoLink(){
+                console.log('clicked');
+            },
             onReady(instance) {
                 this.instances.push(instance)
             },
