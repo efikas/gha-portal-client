@@ -3,23 +3,32 @@ import {authURL} from '../services/resources'
 
 export default function (Vue) {
     Vue.auth = {
-        setToken: (token, expiration) => {
+        setToken (token, expiration) {
             localStorage.setItem('token', token)
             localStorage.setItem('expiration', expiration)
         },
 
-        getToken: () => {
+        getToken() {
+            var token = localStorage.getItem('token')
+            var expiration = localStorage.getItem('expiration')
 
+            if( !token || !expiration )
+                return null
+            else if( Date.now() > parseInt(expiration))
+                return null
+
+            return token
         },
-        //destroy token
-        isAuthenticated: () => {
+
+        destroyToken() {
+            localStorage.removeItem('token')
+            localStorage.removeItem('expiration')
+        },
+
+        isAuthenticated() {
             if (this.getToken())
                 return true;
             return false
-        },
-
-        test: function() {
-            return "tegsdjdjgajhdg"
         },
 
         login(credentials) {

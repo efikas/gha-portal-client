@@ -12,6 +12,28 @@ const router = new VueRouter({
     // mode: 'history',
 })
 
+router.beforeEach(
+    (to, from, next) => {
+        if (to.matched.some(record => record.meta.guests)) {
+            if (Vue.auth.isAuthenticated()) {
+                return next({
+                    path: '/'
+                })
+            } else next()
+        }
+        else if (to.matched.some(record => record.meta.guard)) {
+            if ( !Vue.auth.isAuthenticated()) {
+                // return window.location.href = '/#/login'
+                return next({
+                    path: '/login'
+                })
+            } else next()
+        }
+
+        next()
+    }
+)
+
 router.beforeEach((to, from, next) => {
     store.commit("routeChange", "start")
     // scroll to top when changing pages
