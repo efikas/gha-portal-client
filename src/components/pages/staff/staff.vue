@@ -71,7 +71,6 @@
     import doughnut from '../../charts/doughnut.vue'
 
     let sbemisData = require('../../../modules/draw-graphs.js')
-    import JSONData from '../../../modules/dashboard.json'
 
     var unsub;
     export default {
@@ -99,11 +98,8 @@
             }
         },
          mounted: function () {
-            // axios.get("http://192.168.15.22:5000/api/statistics")
-            //     .then(response => {
-
-                    let data = JSONData;
-                    // let data = response.data;
+            api.statistics()
+                .then((data) => {
                     this.teachingStaff = data.staffs.teaching.male + data.staffs.teaching.female;;
                     this.nonTeachingStaff = data.staffs.non_teaching.male + data.staffs.non_teaching.female;;
                     this.maleStaff = data.staffs.teaching.male + data.staffs.non_teaching.male;;
@@ -128,7 +124,7 @@
                         legend: ['Male', 'Female'],
                         value: myData.gen_acad_staff_dist
                     };
-                // });
+                });
             
                 
             unsub = this.$store.subscribe((mutation, state) => {

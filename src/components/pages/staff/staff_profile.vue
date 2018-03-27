@@ -1,10 +1,10 @@
 <template>
     <div class="row">
         <div class="col-xl-4 col-lg-5">
-            <b-card class="bg-info-card">
+            <b-card class="bg-info-card" v-if="staffInfo">
                 <div class="profile text-center ">
                     <img :src="this.$store.state.user.picture" alt="User Image" class="rounded-circle img-fluid profile-thumb mb-3">
-                    <h4 class="text-gray">{{this.$store.state.user.name}}</h4>
+                    <h4 class="text-gray">{{ staffInfo.first_name + ' ' + staffInfo.middle_name + ' ' + staffInfo.last_name }}</h4>
                     <p>{{this.$store.state.user.job}}</p>
                     <div class="row">
                         <div class="col-sm-7 text-warning user-rating">
@@ -75,63 +75,63 @@
                             </button>
                             <h1>Personal Details</h1>
                         </p>
-                        <table class="table account-detailsg">
+                        <table class="table account-detailsg" v-if="staffInfo">
                             <tbody>
                                 <tr class="m-0">
                                     <td class="views">First Name</td>
-                                    <td colspan="3"> 4yyyyyyyyyyyyyyyyyyyyyy</td>
+                                    <td colspan="3"> {{ staffInfo.first_name }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Last Name</td>
-                                   <td colspan="3"> 4</td>
+                                   <td colspan="3"> {{ staffInfo.last_name }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Middle Name</td>
-                                    <td colspan="3"> 4</td>
+                                    <td colspan="3"> {{ staffInfo.middle_name }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Gender</td>
-                                    <td colspan="3"> 4</td>
+                                    <td colspan="3"> {{ staffInfo.sex }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Email Address</td>
-                                   <td colspan="3"> 4</td>
+                                   <td colspan="3"> {{ staffInfo.email_address }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Phone Number</td>
-                                    <td colspan="3"> 4</td>
+                                    <td colspan="3"> {{ staffInfo.phone_number }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Date of Birth</td>
-                                    <td colspan="3"> 4</td>
+                                    <td colspan="3"> {{ staffInfo.date_of_birth }}</td>
                                 </tr>
                                 <tr>
-                                    <td class="views">Birth Place</td>
-                                   <td colspan="3"> 4</td>
+                                    <td class="views">Place of Birth</td>
+                                   <td colspan="3">{{ staffInfo.place_of_birth }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">State of Birth</td>
-                                    <td colspan="3"> 4</td>
+                                    <td colspan="3"> {{ staffInfo.state_of_birth }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Local Government</td>
-                                    <td colspan="3"> 4</td>
+                                    <td colspan="3"> {{ staffInfo.lga_of_origin }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Home Town</td>
-                                    <td colspan="3"> 4</td>
+                                    <td colspan="3"> {{ staffInfo.home_town }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Marital Status</td>
-                                    <td colspan="3"> 4</td>
+                                    <td colspan="3"> {{ staffInfo.marital_status }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Religious Status</td>
-                                   <td colspan="3"> 4</td>
+                                   <td colspan="3"> {{ staffInfo.religious_status }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">House Address</td>
-                                    <td colspan="3"> 4</td>
+                                    <td colspan="3"> {{ staffInfo.residential_address }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -142,27 +142,27 @@
                             </button>
                             <h1>Professional Record</h1>
                         </p>
-                        <table class="table account-detailsg">
+                        <table class="table account-detailsg" v-if="staffInfo">
                             <tbody>
                                 <tr class="m-0">
                                     <td class="views">School Name</td>
-                                    <td colspan="3"> 4yyyyyyyyyyyyyyyyyyyyyy</td>
+                                    <td colspan="3"> {{ schoolName }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Grade/Level</td>
-                                   <td colspan="3"> 4</td>
+                                   <td colspan="3"> {{ staffInfo.gl_step }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Salary Source</td>
-                                    <td colspan="3"> 4</td>
+                                    <td colspan="3"> {{ staffInfo.salary_source }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Employment Year</td>
-                                    <td colspan="3"> 4</td>
+                                    <td colspan="3"> {{ staffInfo.year_of_posting }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Staff Category</td>
-                                   <td colspan="3"> 4</td>
+                                   <td colspan="3"> {{ staffInfo.staff_category }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -183,12 +183,26 @@
 </template>
 <script>
 import vScroll from "components/plugins/scroll/vScroll.vue"
+import api from '../../../services/app.service'
+
 export default {
     name: "user_profile",
     components: {
         vScroll
     },
-    mounted: function() {},
+    data(){
+        return {
+            staffInfo: null,
+            schoolName: '',
+        }
+    },
+    mounted: function() {
+        api.staffProfile(this.$route.params.id).then(data => {
+            this.staffInfo = data.data;
+            this.schoolName = data.school.data.school_name
+            // console.log()
+        })
+    },
     destroyed: function() {}
 }
 </script>

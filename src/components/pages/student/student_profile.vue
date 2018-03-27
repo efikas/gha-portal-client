@@ -75,63 +75,63 @@
                             </button>
                             <h1>Personal Details</h1>
                         </p>
-                        <table class="table account-detailsg">
+                        <table class="table account-detailsg" v-if="studentInfo">
                             <tbody>
                                 <tr class="m-0">
                                     <td class="views">First Name</td>
-                                    <td colspan="3"> 4yyyyyyyyyyyyyyyyyyyyyy</td>
+                                    <td colspan="3"> {{ studentInfo.first_name }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Last Name</td>
-                                   <td colspan="3"> 4</td>
+                                   <td colspan="3"> {{ studentInfo.last_name }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Middle Name</td>
-                                    <td colspan="3"> 4</td>
+                                    <td colspan="3"> {{ studentInfo.middle_name }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Gender</td>
-                                    <td colspan="3"> 4</td>
+                                    <td colspan="3"> {{ studentInfo.sex }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Email Address</td>
-                                   <td colspan="3"> 4</td>
+                                   <td colspan="3"> {{ studentInfo.email_address }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Phone Number</td>
-                                    <td colspan="3"> 4</td>
+                                    <td colspan="3"> {{ studentInfo.phone_number }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Height</td>
-                                    <td colspan="3"> 4</td>
+                                    <td colspan="3"> {{ studentInfo.height }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Weight</td>
-                                    <td colspan="3"> 4</td>
+                                    <td colspan="3"> {{ studentInfo.weight }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Date of Birth</td>
-                                    <td colspan="3"> 4</td>
+                                    <td colspan="3"> {{ studentInfo.date_of_birth}}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Special Condition</td>
-                                    <td colspan="3"> 4</td>
+                                    <td colspan="3"> {{ studentInfo.special_condition }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Bloodgroup</td>
-                                    <td colspan="3"> 4</td>
+                                    <td colspan="3"> {{ studentInfo.blood_group }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Birth Place</td>
-                                   <td colspan="3"> 4</td>
+                                   <td colspan="3"> {{ studentInfo.place_of_birth }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Birth certificate available</td>
-                                    <td colspan="3"> 4</td>
+                                    <td colspan="3"> {{ studentInfo.birth_cert_status }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Birth certificate Type</td>
-                                    <td colspan="3"> 4</td>
+                                    <td colspan="3"> {{ studentInfo.birth_cert_type }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -142,43 +142,43 @@
                             </button>
                             <h1>Academic Record</h1>
                         </p>
-                        <table class="table account-detailsg">
+                        <table class="table account-detailsg" v-if="studentInfo">
                             <tbody>
                                 <tr class="m-0">
                                     <td class="views">School Name</td>
-                                    <td colspan="3"> 4yyyyyyyyyyyyyyyyyyyyyy</td>
+                                    <td colspan="3"> School Name</td>
                                 </tr>
                                 <tr>
-                                    <td class="views">Admission Category</td>
-                                   <td colspan="3"> 4</td>
+                                    <td class="views">Admission promotion_status</td>
+                                   <td colspan="3"> {{ studentInfo.admission_status }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Admission Year</td>
-                                    <td colspan="3"> 4</td>
+                                    <td colspan="3"> {{ studentInfo.admission_year }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Class of Admission</td>
-                                    <td colspan="3"> 4</td>
+                                    <td colspan="3"> {{ studentInfo.admission_education_level }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Current Class</td>
-                                   <td colspan="3"> 4</td>
+                                   <td colspan="3"> {{ studentInfo.current_class_level }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Distance from School</td>
-                                    <td colspan="3"> 4</td>
+                                    <td colspan="3"> {{ studentInfo.distance_from_school }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Boarding</td>
-                                   <td colspan="3"> 4</td>
+                                   <td colspan="3"> {{ studentInfo.boarding }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Dormitory</td>
-                                    <td colspan="3"> 4</td>
+                                    <td colspan="3"> {{ studentInfo.dormitory_id }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Promotion Status</td>
-                                   <td colspan="3"> 4</td>
+                                   <td colspan="3"> {{ studentInfo.promotion_status }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -189,43 +189,43 @@
                             </button>
                             <h1>Parent/Guardian Details</h1>
                         </p>
-                        <table class="table account-detailsg">
+                        <table class="table account-detailsg" v-if="studentInfo">
                             <tbody>
                                 <tr class="m-0">
                                     <td class="views">Full Name</td>
-                                    <td colspan="3"> 4yyyyyyyyyyyyyyyyyyyyyy</td>
+                                    <td colspan="3"> {{ studentInfo.first_name }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Relationship</td>
-                                   <td colspan="3"> 4</td>
+                                   <td colspan="3"> {{ studentInfo.first_name }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Occupation</td>
-                                    <td colspan="3"> 4</td>
+                                    <td colspan="3"> {{ studentInfo.first_name }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Mobile Number</td>
-                                    <td colspan="3"> 4</td>
+                                    <td colspan="3"> {{ studentInfo.first_name }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Phone Number</td>
-                                   <td colspan="3"> 4</td>
+                                   <td colspan="3"> {{ studentInfo.first_name }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Email Address</td>
-                                    <td colspan="3"> 4</td>
+                                    <td colspan="3"> {{ studentInfo.first_name }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Date of Birth</td>
-                                   <td colspan="3"> 4</td>
+                                   <td colspan="3"> {{ studentInfo.first_name }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Religion</td>
-                                    <td colspan="3"> 4</td>
+                                    <td colspan="3"> {{ studentInfo.first_name }}</td>
                                 </tr>
                                 <tr>
                                     <td class="views">Home <Address></Address></td>
-                                   <td colspan="3"> 4</td>
+                                   <td colspan="3"> {{ studentInfo.first_name }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -246,12 +246,23 @@
 </template>
 <script>
 import vScroll from "components/plugins/scroll/vScroll.vue"
+import api from '../../../services/app.service'
+
 export default {
     name: "user_profile",
     components: {
         vScroll
     },
-    mounted: function() {},
+    data(){
+        return {
+            studentInfo: null,
+        }
+    },
+    mounted: function() {
+        api.studentProfile(this.$route.params.id).then(data => {
+            this.studentInfo = data.data;
+        })
+    },
     destroyed: function() {}
 }
 </script>

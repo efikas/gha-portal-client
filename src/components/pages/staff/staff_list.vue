@@ -2,10 +2,10 @@
     <div class="row">
         <div class="col-lg-12 mb-3">
             <b-card header="AJAX Client Table" header-tag="h4" class="bg-info-card">
-                <v-client-table :data="tableData2" :columns="columns">
+                <v-client-table :data="staffs" :columns="columns">
                      <span slot="id" slot-scope="props">{{ props.index }}</span>
-                     <span slot="Name" slot-scope="props">{{ props.row.first_name + ' ' + props.row.last_name + ' ' + props.row.middle_name }}</span>
-                     <a slot="view" slot-scope="props" class="fa fa-eye icon-big" :href="'/#/staff_profile/'+ props.row.id"></a>
+                     <a slot="Name" slot-scope="props" :href="'/#/staff/'+ props.row.id + '/profile'">{{ props.row.first_name + ' ' + props.row.last_name + ' ' + props.row.middle_name }}</a>
+                     <a slot="view" slot-scope="props" class="fa fa-eye icon-big" :href="'/#/staff/'+ props.row.id + '/profile'"></a>
                 </v-client-table>
             </b-card>
         </div>
@@ -18,7 +18,8 @@ import {
     Event
 } from 'vue-tables-2';
 import datatable from "components/plugins/DataTable/DataTable.vue";
-import JSONData from '../../../modules/staff_list.json'
+import api from '../../../services/app.service'
+
 
 Vue.use(ClientTable, {}, false);
 export default {
@@ -29,7 +30,7 @@ export default {
     data() {
         return {
             columns: ['id', 'Name', 'view'],
-            tableData2: [],
+            staffs: [],
             options: {
                 sortIcon: {
                     base: 'fa',
@@ -50,10 +51,9 @@ export default {
         }
     },
     mounted() {
-       let data = JSONData.data;
-        this.tableData2 = data.filter(item => {
-            return (item.school_id == this.$route.params.id);
-        });
+       api.schoolStaff(this.$route.params.id).then(data => {
+            this.staffs = data.data;
+        })
     }
 }
 </script>

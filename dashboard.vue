@@ -47,7 +47,7 @@
             </div>
         </div>
          <div class="row">
-            <div class="col-lg-6 mb-3">
+             <div class="col-lg-6 mb-3">
                  <piechart :iData="this.priv_sch"></piechart>
             </div>
             <div class="col-lg-6 mb-3">

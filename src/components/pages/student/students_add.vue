@@ -9,10 +9,10 @@
                         <div class="row odd-row">
                             <div class="col-md-8">
                                 <div class="form-group p-10">
-                                    <label class="control-label col-md-8" for="text">Student Name
+                                    <label class="control-label col-md-8" for="text">School Name
                                     </label>
                                     <div class="col-md-12">
-                                        <input type="text" class="form-control" id="text" placeholder="School Name">
+                                        <input type="text" class="form-control" v-model="school_name" placeholder="School Name">
                                     </div>
                                 </div>
                             </div>
@@ -23,7 +23,7 @@
                                     <label class="control-label col-md-8" for="text">Firstname
                                     </label>
                                     <div class="col-md-12">
-                                        <input type="text" class="form-control" id="text" placeholder="First Name">
+                                        <input type="text" class="form-control" v-model="first_name" placeholder="First Name">
                                     </div>
                                 </div>
                             </div>
@@ -32,7 +32,7 @@
                                     <label class="control-label col-md-12" for="text">Middle Name
                                     </label>
                                     <div class="col-md-12">
-                                        <input type="text" class="form-control" id="text" placeholder="Middle Name">
+                                        <input type="text" class="form-control" v-model="middle_name" placeholder="Middle Name">
                                     </div>
                                 </div>
                             </div>
@@ -41,7 +41,7 @@
                                     <label class="control-label" for="text">Last Name
                                     </label>
                                     <div class="col-md-12">
-                                        <input type="text" class="form-control" id="text" placeholder="">
+                                        <input type="text" class="form-control" v-model="last_name" placeholder="">
                                     </div>
                                 </div>
                             </div>
@@ -51,12 +51,12 @@
                                     </label>
                                     <div class="col-md-12">
                                         <div class="radio">
-                                            <b-form-radio checked="false">
+                                            <b-form-radio name="sex" v-model="sex">
                                                 Female
                                             </b-form-radio>
                                         </div>
-                                        <div class="radio" checked="false">
-                                            <b-form-radio>
+                                        <div class="radio">
+                                            <b-form-radio name="sex" v-model="sex">
                                                 Male
                                             </b-form-radio>
                                         </div>
@@ -70,7 +70,7 @@
                                     <label class="control-label col-md-8" for="text">Date of Birth
                                     </label>
                                     <div class="col-md-12">
-                                        <input type="date" class="form-control">
+                                        <input type="date" class="form-control" v-model="date_of_birth">
                                     </div>
                                 </div>
                             </div>
@@ -79,7 +79,7 @@
                                     <label class="control-label col-md-12" for="text">Place of Birth
                                     </label>
                                     <div class="col-md-12">
-                                        <input type="text" class="form-control" id="pob" placeholder="Place of birth">
+                                        <input type="text" class="form-control" v-model="place_of_birth" id="pob" placeholder="Place of birth">
                                     </div>
                                 </div>
                             </div>
@@ -88,16 +88,16 @@
                                     <label class="control-label" for="text">Phone Number (optional)
                                     </label>
                                     <div class="col-md-12">
-                                        <input type="phone" class="form-control" name="url" value="08064720000" id="url">
+                                        <input type="phone" class="form-control" name="phone_number" v-model="phone_number" placeholder="08064720000" id="phone_number">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-3">
                                 <div class="form-group p-10">
-                                    <label class="control-label" for="text">Email (optional)
+                                    <label class="control-label" for="email">Email (optional)
                                     </label>
                                     <div class="col-md-12">
-                                        <input type="email" class="form-control" id="text" placeholder="aaa@abcd.com">
+                                        <input type="email" class="form-control" v-model="email" id="email" placeholder="aaa@abcd.com">
                                     </div>
                                 </div>
                             </div>
@@ -108,7 +108,7 @@
                                     <label class="control-label col-md-8" for="text">Any special Challenge?
                                     </label>
                                     <div class="col-md-12">
-                                        <select id="example-select" name="example-select" class="form-control" size="1">
+                                        <select id="example-select" v-model="speial_challenge" class="form-control" size="1">
                                             <option value="0">
                                                 Select Year
                                             </option>
@@ -126,7 +126,7 @@
                                             <label class="control-label" for="text">Height (in m)
                                             </label>
                                             <div class="col-md-12">
-                                                <input type="number" class="form-control" id="text" placeholder="">
+                                                <input type="number" class="form-control" v-model="height" placeholder="">
                                             </div>
                                         </div>
                                     </div>
@@ -135,7 +135,7 @@
                                             <label class="control-label" for="text">Width (in m)
                                             </label>
                                             <div class="col-md-12">
-                                                <input type="number" class="form-control" id="text" placeholder="">
+                                                <input type="number" class="form-control" v-model="width" placeholder="">
                                             </div>
                                         </div>
                                     </div>
@@ -146,7 +146,7 @@
                                     <label class="control-label" for="text">Blood Group Type
                                     </label>
                                     <div class="col-md-12">
-                                        <input type="text" class="form-control" id="text" placeholder="A, B, AB, O">
+                                        <input type="text" class="form-control" v-model="blood_group" placeholder="A, B, AB, O">
                                     </div>
                                 </div>
                             </div>
@@ -158,12 +158,12 @@
                                     </label>
                                      <div class="col-md-12">
                                         <div class="radio">
-                                            <b-form-radio checked="false">
+                                            <b-form-radio  v-model="birth_cert_avail" name="birth_cert_avail">
                                                 Yes
                                             </b-form-radio>
                                         </div>
-                                        <div class="radio" checked="false">
-                                            <b-form-radio>
+                                        <div class="radio">
+                                            <b-form-radio  v-model="birth_cert_avail" name="birth_cert_avail">
                                                 No
                                             </b-form-radio>
                                         </div>
@@ -175,7 +175,7 @@
                                     <label class="control-label col-md-12" for="text">Birth Cert Type
                                     </label>
                                     <div class="col-md-12">
-                                        <select id="example-select" name="example-select" class="form-control" size="1">
+                                        <select id="example-select" name="birth_cert_type" v-model="birth_cert_type" class="form-control" size="1">
                                             <option value="0">
                                                 Select Religion
                                             </option>
@@ -484,7 +484,7 @@
                                     <label class="control-label col-md-8" for="admission_date">Year of Admission
                                     </label>
                                     <div class="col-md-12">
-                                        <input type="text" class="form-control" name="admission_date" id="admission_date" placeholder="School Name">
+                                        <input type="text" class="form-control"  v-model="admission_date" name="admission_date" id="admission_date" placeholder="School Name">
                                     </div>
                                 </div>
                             </div>
@@ -494,12 +494,12 @@
                                     </label>
                                     <div class="col-md-12">
                                         <div class="radio">
-                                            <b-form-radio checked="false">
+                                            <b-form-radio name="admission_status" v-model="admission_status">
                                                 Fresh Enrollment/Placement
                                             </b-form-radio>
                                         </div>
-                                        <div class="radio" checked="false">
-                                            <b-form-radio>
+                                        <div class="radio">
+                                            <b-form-radio name="admission_status" v-model="admission_status">
                                                 Transfer In
                                             </b-form-radio>
                                         </div>
@@ -510,10 +510,10 @@
                         <div class="row even-row">
                             <div class="col-xs-12 col-sm-6 col-md-3">
                                 <div class="form-group p-10">
-                                    <label class="control-label col-md-8" for="text">SAdmission Education Level <span>*</span>
+                                    <label class="control-label col-md-8" for="text">Admission Education Level <span>*</span>
                                     </label>
                                     <div class="col-md-12">
-                                        <select id="example-select" name="example-select" class="form-control" size="1">
+                                        <select id="edu_level" v-model="edu_level" name="edu_level" class="form-control" size="1">
                                             <option value="0">
                                                 Select Education Level
                                             </option>
@@ -529,7 +529,7 @@
                                     <label class="control-label" for="text">Admission Class Level <span>*</span>
                                     </label>
                                     <div class="col-md-12">
-                                        <input type="number" class="form-control" id="text" placeholder="">
+                                        <input type="number" v-model="admission_class_level" class="form-control" id="admission_class_level" placeholder="">
                                     </div>
                                 </div>
                             </div>
@@ -538,7 +538,7 @@
                                     <label class="control-label col-md-12" for="text">Current Education Level<span>*</span>
                                     </label>
                                     <div class="col-md-12">
-                                        <select id="example-select" name="example-select" class="form-control" size="1">
+                                        <select id="current_class_level" v-model="current_class_level" name="current_class_level" class="form-control" size="1">
                                             <option value="0">
                                                 Select Year
                                             </option>
@@ -554,7 +554,7 @@
                                     <label class="control-label col-md-12" for="text">Current Class Level <span>*</span>
                                     </label>
                                     <div class="col-md-12">
-                                        <input type="number" class="form-control" id="text" placeholder="">
+                                        <input type="number" class="form-control" name="current_class_level" v-model="current_class_level" id="current_class_level" placeholder="">
                                     </div>
                                 </div>
                             </div>
@@ -566,12 +566,12 @@
                                     </label>
                                     <div class="col-md-12">
                                         <div class="radio">
-                                            <b-form-radio checked="false">
+                                            <b-form-radio name="exam_registration" v-model="exam_registration">
                                                 Yes
                                             </b-form-radio>
                                         </div>
-                                        <div class="radio" checked="false">
-                                            <b-form-radio>
+                                        <div class="radio">
+                                            <b-form-radio name="exam_registration" v-model="exam_registration">
                                                 No
                                             </b-form-radio>
                                         </div>
@@ -584,12 +584,12 @@
                                     </label>
                                     <div class="col-md-12">
                                         <div class="radio">
-                                            <b-form-radio checked="false">
+                                            <b-form-radio name="boarding" v-model="boarding">
                                                 Yes
                                             </b-form-radio>
                                         </div>
-                                        <div class="radio" checked="false">
-                                            <b-form-radio>
+                                        <div class="radio">
+                                            <b-form-radio name="boarding" v-model="boarding">
                                                 No
                                             </b-form-radio>
                                         </div>
@@ -598,10 +598,9 @@
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-3">
                                 <div class="form-group p-10">
-                                    <label class="control-label col-md-12" for="text">Doom No 
-                                    </label>
+                                    <label class="control-label col-md-12" for="text">Doom No </label>
                                     <div class="col-md-12">
-                                        <input type="text" class="form-control" name="dorm_no" id="dorm_no" placeholder="School Name">
+                                        <input type="text" class="form-control" name="dorm_no" v-model="dorm_no" placeholder="School Name">
                                     </div>
                                 </div>
                             </div>
@@ -610,7 +609,7 @@
                                     <label class="control-label col-md-12" for="text">Home Dist to School 
                                     </label>
                                     <div class="col-md-12">
-                                        <input type="number" class="form-control"  value="0">
+                                        <input type="number" class="form-control" v-model="distance_from_school" value="0">
                                     </div>
                                 </div>
                             </div>

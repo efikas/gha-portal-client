@@ -2,8 +2,9 @@
     <div class="row">
         <div class="col-lg-12 mb-3">
             <b-card header="AJAX Client Table" header-tag="h4" class="bg-info-card">
-                <v-client-table :data="tableData2" :columns="columns">
+                <v-client-table :data="schools" :columns="columns" :options="options">
                      <span slot="id" slot-scope="props">{{ props.index }}</span>
+                     <a slot="school_name" slot-scope="props" :href="'/#/school/'+ props.row.id+'/students'">{{ props.row.school_name }}</a>
                      <a slot="view" slot-scope="props" class="fa fa-eye icon-big" :href="'/#/school/'+ props.row.id+'/students'"></a>
                 </v-client-table>
             </b-card>
@@ -19,7 +20,7 @@ import {
 
 // import api from '../../../services/school.service'
 import datatable from "components/plugins/DataTable/DataTable.vue";
-import JSONData from '../../../modules/school_manage.json'
+import api from '../../../services/app.service'
 
 Vue.use(ClientTable, {}, false);
 export default {
@@ -30,7 +31,7 @@ export default {
     data() {
         return {
             columns: ['id', 'school_name', 'view'],
-            tableData2: [],
+            schools: [],
             options: {
                 sortIcon: {
                     base: 'fa',
@@ -38,8 +39,8 @@ export default {
                     down: 'fa fa-angle-down'
                 },
                 // see the options API
-                skin: "table-hover table-striped table-bordered",
-                perPage: 30,
+                // skin: "table-hover table-striped table-bordered",
+                perPage: 50,
                 // footerHeadings: true,
                 highlightMatches: true,
                 pagination: {
@@ -51,7 +52,9 @@ export default {
         }
     },
     mounted() {
-        // this.tableData2 = api.getAllSchools();
+        api.allSchools().then(data => {
+            this.schools = data.data;
+        })
     }
 }
 </script>

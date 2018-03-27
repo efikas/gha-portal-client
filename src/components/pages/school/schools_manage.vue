@@ -3,7 +3,8 @@
         <div class="col-lg-12 mb-3">
             <b-card header="AJAX Client Table" header-tag="h4" class="bg-info-card">
                 <v-client-table :data="schools" :columns="columns" :options="options">
-                     <span slot="id" slot-scope="props">{{ props.index }}</span>
+                    <a slot="id" slot-scope="props">{{ props.index }}</a>
+                     <a slot="school_name" slot-scope="props" :href="'/#/school/'+ props.row.id+'/profile'">{{ props.row.school_name }}</a>
                      <a slot="view" slot-scope="props" class="fa fa-eye icon-big" :href="'/#/school/'+ props.row.id+'/profile'"></a>
                 </v-client-table>
             </b-card>

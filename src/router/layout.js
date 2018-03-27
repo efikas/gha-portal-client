@@ -68,7 +68,7 @@ const layout = [{
     path: '/import_staff',
     component: resolve => require(['pages/staff/staff_import'], resolve),
     meta: {
-        title: "Import Staff Rxecord",
+        title: "Import Staff Record",
     }
 },{
     path: '/students',
@@ -77,7 +77,7 @@ const layout = [{
         title: "Students",
     }
 },{
-    path: '/school/:id/student',
+    path: '/school/:id/students',
     component: resolve => require(['pages/student/student_list'], resolve),
     meta: {
         title: "Student List",
