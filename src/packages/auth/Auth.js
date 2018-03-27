@@ -38,6 +38,7 @@ export default function (Vue) {
                         this.setToken(response.data.access_token, response.data.expires_in + Date.now())
                         resolve(response.data)
                     }).catch((error) => {
+                        console.log(error)
                     reject(error.response);
                 })
             })
