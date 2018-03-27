@@ -369,7 +369,7 @@ export default {
         getSchool(){
             //Since array index is starting from 0, we need to increment by 1 to start 
             // the index from 1
-            api.getLgasSchool(this.lgas.indexOf(this.lga) + 1).then(data => {
+            this.$lga.getLgasSchool(this.lgas.indexOf(this.lga) + 1).then(data => {
                 this.schools = [];
                 this.school = '';
                 data.data.forEach(item => {
@@ -379,7 +379,7 @@ export default {
         } 
     },
     mounted() {
-        api.getLgas().then(data => {
+        this.$lga.getLgas().then(data => {
             data.forEach(item => {
                 this.lgas.push(item.name);
             });
