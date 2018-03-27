@@ -1,5 +1,8 @@
+var URL = "https://v2.api.sbemis.online:5001/"
+// var URL = "http://127.0.0.1:5000/"
+
 module.exports = {
-    baseURL: "https://v2.api.sbemis.online:5001/",
-    apiURL: "https://v2.api.sbemis.online:5001/api/",
-    authURL: "https://v2.api.sbemis.online:5001/oauth/token"
+    baseURL: URL,
+    apiURL: URL + "api/",
+    authURL: URL + "oauth/token"
 }
