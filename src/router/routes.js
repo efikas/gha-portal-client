@@ -6,25 +6,25 @@ const routes = [{
     children: layout_routes
     }, {
         path: '/login',
-        component: resolve => require(['pages/login'], resolve),
+        component: resolve => require(['pages/auth/login'], resolve),
         meta: {
             title: "Login",
         }
     }, {
         path: '/register',
-        component: resolve => require(['pages/register'], resolve),
+        component: resolve => require(['pages/auth/register'], resolve),
         meta: {
             title: "register",
         }
     }, {
         path: '/forgotpassword',
-        component: resolve => require(['pages/forgotpassword'], resolve),
+        component: resolve => require(['pages/auth/forgotpassword'], resolve),
         meta: {
             title: "Forgot Password",
         }
     }, {
         path: '/reset_password',
-        component: resolve => require(['pages/reset_password'], resolve),
+        component: resolve => require(['pages/auth/reset_password'], resolve),
         meta: {
             title: "Reset Password",
         }

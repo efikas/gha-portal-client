@@ -7,6 +7,12 @@
 import Vue from "vue";
 import BootstrapVue from 'bootstrap-vue';
 import ToggleButton from 'vue-js-toggle-button'
+require('./services/config.service')
+
+import Auth from './packages/auth/Auth'
+
+// Vue.use(Config)
+Vue.use(Auth)
 Vue.use(ToggleButton)
 Vue.use(BootstrapVue);
 export default {
