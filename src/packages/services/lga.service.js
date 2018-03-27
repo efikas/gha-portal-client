@@ -1,10 +1,9 @@
-import axios from "axios/index";
-import {authURL} from './resources'
+import axios from 'axios'
 
 export default {
-    login(credentials) {
+    getLgas() {
         return new Promise((resolve, reject) => {
-            axios.post(authURL, credentials)
+            axios.get('/lga')
                 .then(response => {
                     resolve(response.data)
                 }).catch((error) => {
@@ -13,13 +12,13 @@ export default {
         })
     },
 
-    register(credentials) {
+    getLgasSchool(lgaId) {
         return new Promise((resolve, reject) => {
-            axios.post('/signup', credentials)
+            axios.get('/lga/' + lgaId + '/schools')
                 .then(response => {
                     resolve(response.data)
-                }).catch(response => {
-                reject(response.data)
+                }).catch((error) => {
+                reject(error.response);
             })
         })
     },

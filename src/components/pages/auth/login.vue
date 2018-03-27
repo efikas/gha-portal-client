@@ -89,7 +89,6 @@
     import Vue from 'vue'
     import VueForm from "vue-form";
     import options from "src/validations/validations.js";
-    import auth from '../../../services/auth.service'
 
     Vue.use(VueForm, options);
     export default {
@@ -117,13 +116,12 @@
                         username: this.model.email,
                         password: this.model.password
                     }
-                    auth.login(credentials)
+                    this.$auth.login(credentials)
                         .then((data) => {
-                            this.$auth.setToken(data.access_token, data.expires_in + Date.now())
                             this.$router.push("/");
                         })
                         .catch(response => {
-                            // console.log(response.data)
+                            console.log(response)
                             this.error = "The user credentials were incorrect."
                         });
                 }

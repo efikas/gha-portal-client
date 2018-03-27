@@ -96,18 +96,18 @@
            
         },
         mounted: function () {
-            unsub = this.$store.subscribe((mutation, state) => {
-                if (mutation.type == "left_menu") {
-                    this.instances.forEach(function (item, index) {
-                        setTimeout(function () {
-                            item.resize();
-                        });
-                    });
-                    setTimeout(() => {
-                        this.$refs.swiper.swiper.update();
-                    });
-                }
-            });
+            // unsub = this.$store.subscribe((mutation, state) => {
+            //     if (mutation.type == "left_menu") {
+            //         this.instances.forEach(function (item, index) {
+            //             setTimeout(function () {
+            //                 item.resize();
+            //             });
+            //         });
+            //         setTimeout(() => {
+            //             this.$refs.swiper.swiper.update();
+            //         });
+            //     }
+            // });
             
         },
         beforeRouteLeave(to, from, next) {
