@@ -161,9 +161,9 @@
                             </router-link>
                         </b-dropdown-item>
                         <b-dropdown-item exact class="dropdown_content">
-                            <router-link to="/login" exact class="drpodowtext">
+                            <a href="javascript:void(0)" @click="logout()" class="drpodowtext">
                                 <i class="fa fa-sign-out"></i> Logout
-                            </router-link>
+                            </a>
                         </b-dropdown-item>
                     </b-dropdown>
                 </div>
@@ -184,8 +184,11 @@
                 if (screenfull.enabled) {
                     screenfull.toggle();
                 }
+            },
+            logout() {
+                this.$auth.logout()
+                this.$router.push('login')
             }
-
         }
     }
 </script>

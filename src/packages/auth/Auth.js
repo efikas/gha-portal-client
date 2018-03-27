@@ -43,6 +43,11 @@ export default function (Vue) {
             })
         },
 
+        logout() {
+            this.destroyToken()
+            return true
+        },
+
         register(credentials) {
             return new Promise((resolve, reject) => {
                 axios.post('/signup', credentials)

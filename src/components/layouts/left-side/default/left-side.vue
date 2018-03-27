@@ -1,4 +1,4 @@
- <template>
+<template>
     <!-- Left side column. contains the logo and sidebar -->
     <aside class="left-aside sidebar-offcanvas">
         <!-- sidebar: style can be found in sidebar-->
@@ -13,7 +13,9 @@
                             <span>{{item.name}}</span>
                         </li>
                         <vsub-menu v-if="item.child" :title="item.name" :icon="item.icon">
-                            <vmenu-item v-for="child in item.child" :link="child.link" :icon="child.icon" :key="child.name">{{child.name}}</vmenu-item>
+                            <vmenu-item v-for="child in item.child" :link="child.link" :icon="child.icon"
+                                        :key="child.name">{{child.name}}
+                            </vmenu-item>
                         </vsub-menu>
                         <vmenu-item v-if="item.link" :link="item.link" :icon="item.icon">{{ item.name}}
                         </vmenu-item>
@@ -27,76 +29,79 @@
     </aside>
 </template>
 <script>
-import {
-    vmenu,
-    vmenuItem,
-    vsubMenu
-} from './menu';
-import profile from "../left-profile/user_profile2.vue"
-import menu_items from "../../../../menu.js";
-export default {
-    name: "left-side",
-    components: {
+    import {
         vmenu,
-        vsubMenu,
         vmenuItem,
-        profile
-    },
-    data() {
-        return {
-            menuitems: menu_items
+        vsubMenu
+    } from './menu';
+    import profile from "../left-profile/user_profile2.vue"
+    import menu_items from "../../../../menu.js";
+
+    export default {
+        name: "left-side",
+        components: {
+            vmenu,
+            vsubMenu,
+            vmenuItem,
+            profile
+        },
+        data() {
+            return {
+                menuitems: menu_items
+            }
         }
     }
-}
 </script>
 <style scoped lang="scss">
-@import "../../css/customvariables";
-.left-aside {
-    width: $left_menu_width;
-    background: $leftmenu_color;
-    background-repeat: repeat-y;
-}
+    @import "../../css/customvariables";
 
-.navigation {
-    padding: 0;
-}
+    .left-aside {
+        width: $left_menu_width;
+        background: $leftmenu_color;
+        background-repeat: repeat-y;
+    }
 
-.divider {
-    margin-top: 10px;
-    list-style-type: none;
-    border-bottom:1px solid #ececec;
-    padding-bottom: 6px;
-}
+    .navigation {
+        padding: 0;
+    }
 
-.divider span {
-    font-size: 15px;
-    font-weight: 700;
-    color: $divider-leftheader;
-    margin: 20px 20px -15px 20px;
-}
+    .divider {
+        margin-top: 10px;
+        list-style-type: none;
+        border-bottom: 1px solid #ececec;
+        padding-bottom: 6px;
+    }
 
-.sidebar {
-    display: block;
-    font-size: 14px;
-    letter-spacing: 1px;
-}
+    .divider span {
+        font-size: 15px;
+        font-weight: 700;
+        color: $divider-leftheader;
+        margin: 20px 20px -15px 20px;
+    }
 
-.content {
-    display: block;
-    width: auto;
-    overflow-x: hidden;
-    padding: 0 15px;
-}
+    .sidebar {
+        display: block;
+        font-size: 14px;
+        letter-spacing: 1px;
+    }
 
-.badge-success {
-    background-color: #22d69d;
-}
+    .content {
+        display: block;
+        width: auto;
+        overflow-x: hidden;
+        padding: 0 15px;
+    }
 
-.badge {
-    padding: 0.60em 0.7em;
-    border-radius: 0.75rem;
-}
-.nav_profile{
-    border-bottom:1px solid #eee;
-}
+    .badge-success {
+        background-color: #22d69d;
+    }
+
+    .badge {
+        padding: 0.60em 0.7em;
+        border-radius: 0.75rem;
+    }
+
+    .nav_profile {
+        border-bottom: 1px solid #eee;
+    }
 </style>
