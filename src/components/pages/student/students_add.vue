@@ -201,22 +201,22 @@
                                         </label>
                                         <div class="col-md-12">
                                             <div class="radio">
-                                                <b-form-radio checked="false">
+                                                <b-form-radio name="parent_status" v-model="parent_status">
                                                 Both Alive
                                                 </b-form-radio>
                                             </div>
-                                            <div class="radio" checked="false">
-                                                <b-form-radio>
+                                            <div class="radio">
+                                                <b-form-radio name="parent_status"  v-model="parent_status">
                                                     Father Only
                                                 </b-form-radio>
                                             </div>
                                             <div class="radio">
-                                                <b-form-radio checked="false">
+                                                <b-form-radio name="parent_status"  v-model="parent_status">
                                                     Mother Only
                                                 </b-form-radio>
                                             </div>
-                                            <div class="radio" checked="false">
-                                                <b-form-radio>
+                                            <div class="radio">
+                                                <b-form-radio name="parent_status"  v-model="parent_status">
                                                 None
                                                 </b-form-radio>
                                             </div>
@@ -227,28 +227,28 @@
                             <div class="row even-row">
                                 <div class="col-xs-12 col-sm-6 col-md-2">
                                     <div class="form-group p-10">
-                                        <label class="control-label col-md-8" for="text">Title
+                                        <label class="control-label col-md-8" for="g1title">Title
                                         </label>
                                         <div class="col-md-12">
-                                            <input type="text" class="form-control" id="text" placeholder="Title">
+                                            <input type="text" class="form-control" v-model="g1title" id="g1title" placeholder="Title">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-md-7">
                                     <div class="form-group p-10">
-                                        <label class="control-label col-md-12" for="text">Fullname
+                                        <label class="control-label col-md-12" for="g1fullname">Fullname
                                         </label>
                                         <div class="col-md-12">
-                                            <input type="text" class="form-control" id="text" placeholder="Fullname">
+                                            <input type="text" class="form-control" v-model="g1fullname" id="g1fullname" placeholder="Fullname">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-md-3">
                                     <div class="form-group p-10">
-                                        <label class="control-label" for="text">Relationship
+                                        <label class="control-label" for="g1relationship">Relationship
                                         </label>
                                         <div class="col-md-12">
-                                            <select id="example-select" name="example-select" class="form-control" size="1">
+                                            <select id="eg1relationship" name="g1relationship" v-model="g1relationship" class="form-control" size="1">
                                                 <option value="0">
                                                     Select Education Level
                                                 </option>
@@ -263,28 +263,28 @@
                             <div class="row odd-row">
                                 <div class="col-xs-12 col-sm-6 col-md-4">
                                     <div class="form-group p-10">
-                                        <label class="control-label col-md-8" for="text">Occupation
+                                        <label class="control-label col-md-8" for="g1_occupation">Occupation
                                         </label>
                                         <div class="col-md-12">
-                                            <input type="text" class="form-control" id="text" placeholder="Occupation">
+                                            <input type="text" class="form-control" v-model="g1_occupation" id="g1_occupation" placeholder="Occupation">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-md-4">
                                     <div class="form-group p-10">
-                                        <label class="control-label col-md-12" for="text">Mobile Number
+                                        <label class="control-label col-md-12" for="g1mobile">Mobile Number
                                         </label>
                                         <div class="col-md-12">
-                                            <input type="tel" class="form-control" id="text" placeholder="">
+                                            <input type="tel" class="form-control" v-model="g1mobile" id="g1mobile" placeholder="">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-md-4">
                                     <div class="form-group p-10">
-                                        <label class="control-label" for="text">Phone Number
+                                        <label class="control-label" for="g1_phone">Phone Number
                                         </label>
                                         <div class="col-md-12">
-                                            <input type="tel" class="form-control" id="text" placeholder="08063888888">
+                                            <input type="tel" class="form-control" iv-model="g1_phone" id="g1_phone" placeholder="08063888888">
                                         </div>
                                     </div>
                                 </div>
@@ -292,19 +292,19 @@
                             <div class="row even-row">
                                 <div class="col-xs-12 col-sm-6 col-md-4">
                                     <div class="form-group p-10">
-                                        <label class="control-label col-md-8" for="text">Email
+                                        <label class="control-label col-md-8" for="g1_email">Email
                                         </label>
                                         <div class="col-md-12">
-                                            <input type="email" class="form-control" id="text" placeholder="">
+                                            <input type="email" class="form-control" v-model="g1_email" id="g1_email" placeholder="">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-md-4">
                                     <div class="form-group p-10">
-                                        <label class="control-label" for="text">Religion
+                                        <label class="control-label" for="g1_religious_status">Religion
                                         </label>
                                         <div class="col-md-12">
-                                            <select id="example-select" name="example-select" class="form-control" size="1">
+                                            <select id="example-select" v-model="g1_religious_status" name="g1_religious_status" class="form-control" size="1">
                                                 <option value="0">
                                                     Select Religion
                                                 </option>
@@ -317,16 +317,16 @@
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-md-4">
                                     <div class="form-group p-10">
-                                        <label class="control-label col-md-8" for="admission_date">Is Primary Contact?
+                                        <label class="control-label col-md-8" for="g1_primary_contact">Is Primary Contact?
                                         </label>
                                         <div class="col-md-12">
                                             <div class="radio">
-                                                <b-form-radio checked="false">
+                                                <b-form-radio name="g1_primary_contact" v-model="g1_primary_contact">
                                                 Yes
                                                 </b-form-radio>
                                             </div>
-                                            <div class="radio" checked="false">
-                                                <b-form-radio>
+                                            <div class="radio">
+                                                <b-form-radio name="g1_primary_contact" v-model="g1_primary_contact">
                                                 No
                                                 </b-form-radio>
                                             </div>
@@ -337,10 +337,10 @@
                             <div class="row odd-row">
                                 <div class="col-xs-12 col-sm-12 col-md-9">
                                     <div class="form-group p-10">
-                                        <label class="control-label col-md-8" for="text">Contact Address
+                                        <label class="control-label col-md-8" for="g1_contact_address">Contact Address
                                         </label>
                                         <div class="col-md-12">
-                                            <textarea cols="6" class="form-control">
+                                            <textarea cols="6" class="form-control" id="g1_contact_address" v-model="g1_contact_address">
                                             </textarea>
                                         </div>
                                     </div>
@@ -352,28 +352,28 @@
                             <div class="row odd-row">
                                 <div class="col-xs-12 col-sm-6 col-md-2">
                                     <div class="form-group p-10">
-                                        <label class="control-label col-md-8" for="text">Title
+                                        <label class="control-label col-md-8" for="g2title">Title
                                         </label>
                                         <div class="col-md-12">
-                                            <input type="text" class="form-control" id="text" placeholder="Title">
+                                            <input type="text" class="form-control" v-model="g2title" id="g2title" placeholder="Title">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-md-7">
                                     <div class="form-group p-10">
-                                        <label class="control-label col-md-12" for="text">Fullname
+                                        <label class="control-label col-md-12" for="g2_full_name">Fullname
                                         </label>
                                         <div class="col-md-12">
-                                            <input type="text" class="form-control" id="text" placeholder="Fullname">
+                                            <input type="text" class="form-control" id="g2_full_name" placeholder="Fullname">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-md-3">
                                     <div class="form-group p-10">
-                                        <label class="control-label" for="text">Relationship
+                                        <label class="control-label" for="g2_relationship">Relationship
                                         </label>
                                         <div class="col-md-12">
-                                            <select id="example-select" name="example-select" class="form-control" size="1">
+                                            <select id="g2_relationship" v-model="g2_relationship" name="g2_relationship" class="form-control" size="1">
                                                 <option value="0">
                                                     Select Education Level
                                                 </option>
@@ -388,28 +388,28 @@
                             <div class="row even-row">
                                 <div class="col-xs-12 col-sm-6 col-md-4">
                                     <div class="form-group p-10">
-                                        <label class="control-label col-md-8" for="text">Occupation
+                                        <label class="control-label col-md-8" for="g2_occupation">Occupation
                                         </label>
                                         <div class="col-md-12">
-                                            <input type="text" class="form-control" id="text" placeholder="Occupation">
+                                            <input type="text" class="form-control" v-model="g2_occupation" id="g2_occupation" placeholder="Occupation">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-md-4">
                                     <div class="form-group p-10">
-                                        <label class="control-label col-md-12" for="text">Mobile Number
+                                        <label class="control-label col-md-12" for="g2_mobile">Mobile Number
                                         </label>
                                         <div class="col-md-12">
-                                            <input type="tel" class="form-control" id="text" placeholder="">
+                                            <input type="tel" class="form-control" v-model="g2_mobile" id="g2_mobile" placeholder="">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-md-4">
                                     <div class="form-group p-10">
-                                        <label class="control-label" for="text">Phone Number
+                                        <label class="control-label" for="g2_phone">Phone Number
                                         </label>
                                         <div class="col-md-12">
-                                            <input type="tel" class="form-control" id="text" placeholder="08063888888">
+                                            <input type="tel" class="form-control" v-model="g2_phone" id="g2_phone" placeholder="08063888888">
                                         </div>
                                     </div>
                                 </div>
@@ -417,10 +417,10 @@
                             <div class="row odd-row">
                                 <div class="col-xs-12 col-sm-6 col-md-4">
                                     <div class="form-group p-10">
-                                        <label class="control-label col-md-8" for="text">Email
+                                        <label class="control-label col-md-8" for="g2_email">Email
                                         </label>
                                         <div class="col-md-12">
-                                            <input type="email" class="form-control" id="text" placeholder="">
+                                            <input type="email" class="form-control" v-model="g2_email" id="g2_email" placeholder="">
                                         </div>
                                     </div>
                                 </div>
@@ -429,7 +429,7 @@
                                         <label class="control-label" for="text">Religion
                                         </label>
                                         <div class="col-md-12">
-                                            <select id="example-select" name="example-select" class="form-control" size="1">
+                                            <select id="g2_religious_status" v-model="g2_religious_status" name="g2_religious_status" class="form-control" size="1">
                                                 <option value="0">
                                                     Select Religion
                                                 </option>
@@ -442,17 +442,17 @@
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-md-4">
                                     <div class="form-group p-10">
-                                        <label class="control-label col-md-8" for="admission_date">Is Primary Contact?
+                                        <label class="control-label col-md-8" for="g2_primary_contact">Is Primary Contact?
                                         </label>
                                         <div class="col-md-12">
                                             <div class="radio">
-                                                <b-form-radio checked="false">
-                                                Yes
+                                                <b-form-radio name="g2_primary_contact" v-model="g2_primary_contact">
+                                                    Yes
                                                 </b-form-radio>
                                             </div>
-                                            <div class="radio" checked="false">
-                                                <b-form-radio>
-                                                No
+                                            <div class="radio">
+                                                <b-form-radio name="g2_primary_contact" v-model="g2_primary_contact">
+                                                    No
                                                 </b-form-radio>
                                             </div>
                                         </div>
@@ -462,10 +462,10 @@
                             <div class="row even-row">
                                 <div class="col-xs-12 col-sm-12 col-md-9">
                                     <div class="form-group p-10">
-                                        <label class="control-label col-md-8" for="text">Contact Address
+                                        <label class="control-label col-md-8" for="g2_contact_address">Contact Address
                                         </label>
                                         <div class="col-md-12">
-                                            <textarea cols="6" class="form-control">
+                                            <textarea cols="6" class="form-control" id="g2_contact_address" v-model="g2_contact_address">
                                             </textarea>
                                         </div>
                                     </div>

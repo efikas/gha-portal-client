@@ -7,8 +7,8 @@
                         <i class="fa fa-user-o fb_text"></i>
                     </div>
                     <div class="text-ash">
-                        <h4 class="mt-2 text_size">7465+</h4>
-                        <p class="m-0 mt-2">Schools</p>
+                        <h4 class="mt-2 text_size">{{ totalFemale }}</h4>
+                        <p class="m-0 mt-2">Female Students</p>
                     </div>
                 </div>
             </div>
@@ -18,8 +18,8 @@
                         <i class="fa fa-link fb_text"></i>
                     </div>
                     <div class="text-ash">
-                        <h4 class="mb-0 mt-2 text_size">1245+</h4>
-                        <p class="m-0 mt-2">Staff</p>
+                        <h4 class="mb-0 mt-2 text_size">{{ totalMale }}</h4>
+                        <p class="m-0 mt-2">Male Students</p>
                     </div>
                 </div>
             </div>
@@ -48,76 +48,29 @@
         </div>
          <div class="row">
             <div class="col-lg-12">
-                <b-card header="Responsive Table" header-tag="h4" class="bg-primary-card">
+                <b-card header="DISTRIBUTION OF STUDENTS/LGA" header-tag="h4" class="bg-primary-card">
                     <div class="table-responsive">
                         <table class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th>Company</th>
-                                    <th>email</th>
-                                    <th>Phone</th>
-                                    <th>Department</th>
-                                    <th>Salary</th>
+                                    <th>Local Govt</th>
+                                    <th>Total Female</th>
+                                    <th>Total Male</th>
+                                    <th>Sub Total</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Durgan - Sauer</td>
-                                    <td>Durgan-Sauer23@yahoo.com</td>
-                                    <td>032-563-1943</td>
-                                    <td>Music</td>
-                                    <td>44631</td>
-                                </tr>
-                                <tr>
-                                    <td>Hickle LLC</td>
-                                    <td>HickleLLC.Cremin62@hotmail.com</td>
-                                    <td>158-351-5915</td>
-                                    <td>Garden</td>
-                                    <td>4669</td>
-                                </tr>
-                                <tr>
-                                    <td>Padberg - Cronin</td>
-                                    <td>Padberg-Cronin.Kunde10@hotmail.com</td>
-                                    <td>265-460-4774</td>
-                                    <td>Automotive</td>
-                                    <td>10214</td>
-                                </tr>
-                                <tr>
-                                    <td>Lakin - Cronin</td>
-                                    <td>Lakin-Cronin_Batz61@hotmail.com</td>
-                                    <td>443-924-7214</td>
-                                    <td>Shoes</td>
-                                    <td>2949</td>
-                                </tr>
-                                <tr>
-                                    <td>Bednar - Padberg</td>
-                                    <td>Bednar-Padberg22@yahoo.com</td>
-                                    <td>700-808-9992</td>
-                                    <td>Grocery</td>
-                                    <td>48239</td>
-                                </tr>
-                                <tr>
-                                    <td>Gibson - DuBuque</td>
-                                    <td>Gibson-DuBuque_Buckridge@yahoo.com</td>
-                                    <td>372-126-7393</td>
-                                    <td>Sports</td>
-                                    <td>11656</td>
-                                </tr>
-                                <tr>
-                                    <td>Schroeder Inc</td>
-                                    <td>SchroederInc_Grimes98@gmail.com</td>
-                                    <td>379-212-1752</td>
-                                    <td>Baby</td>
-                                    <td>20828</td>
+                                <tr v-for="(studentPerLga, index) in studentPerLgas" :key="index">
+                                    <td>{{ studentPerLga.name }}</td>
+                                    <td>{{ getFemale(studentPerLga.students.female) }}</td>
+                                    <td>{{ getMale(studentPerLga.students.male) }}</td>
+                                    <td>{{ getTotal(parseInt(studentPerLga.students.female) + parseInt(studentPerLga.students.male)) }}</td>
                                 </tr>
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th>Company</th>
-                                    <th>email</th>
-                                    <th>Phone</th>
-                                    <th>Department</th>
-                                    <th>Salary</th>
+                                    <th colspan="3" class="text-right">Grand Total</th>
+                                    <th>{{ totalStudents }}</th>
                                 </tr>
                             </tfoot>
                         </table>
@@ -150,8 +103,8 @@
 
     import datatable from "components/plugins/DataTable/DataTable.vue";
     import vScroll from "components/plugins/scroll/vScroll.vue";
-    import portfolio from "components/widgets/portfolio/portfolio.vue"
     import VueChartist from 'v-chartist'
+    import api from '../../../services/app.service'
 
     Vue.use(VueAwesomeSwiper);
     var unsub;
@@ -162,7 +115,6 @@
             datatable,
             countTo,
             vScroll,
-            portfolio,
             VueChartist
         },
         data() {
@@ -171,6 +123,10 @@
                 instances: [],
                 loading: false,
                 ajaxloading: true,
+                studentPerLgas: [],
+                totalStudents: 0,
+                totalMale: 0,
+                totalFemale: 0,
 
                 //===========AJAX chart data start=========
                 ajaxbar_chart: {
@@ -231,6 +187,13 @@
             }
         },
         mounted: function () {
+            api.getStudentsPerLga()
+                .then((data) => {
+                    this.studentPerLgas = data;
+                })
+                .catch((error) => console.log(error)
+            ),
+
             unsub = this.$store.subscribe((mutation, state) => {
                 if (mutation.type == "left_menu") {
                     this.instances.forEach(function (item, index) {
@@ -242,7 +205,7 @@
                         this.$refs.swiper.swiper.update();
                     });
                 }
-            });
+            }),
 
             axios.get("http://www.filltext.com/?rows=1&chartdata={numberArray|12,100}").then(response => {
                     this.ajaxbar_chart.series[0].data = response.data[0].chartdata;
@@ -250,7 +213,7 @@
                 })
                 .catch(function (error) {
 
-                });
+                })
 
         },
         beforeRouteLeave(to, from, next) {
@@ -259,6 +222,18 @@
         },
 
         methods: {
+            getMale(maleStudentsPerLga){
+                this.totalMale = this.totalMale + 2;
+                return maleStudentsPerLga;
+            },
+            getFemale(femaleStudentsPerLga){
+                this.totalFemale += parseInt(femaleStudentsPerLga);
+                return femaleStudentsPerLga;
+            },
+            getTotal(studentsTotalPerLga){
+                this.totalStudents += studentsTotalPerLga;
+                return studentsTotalPerLga;
+            },
             onReady(instance) {
                 this.instances.push(instance)
             },

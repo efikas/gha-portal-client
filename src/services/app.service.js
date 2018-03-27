@@ -34,6 +34,8 @@ const appService = {
     })
   },
 
+
+  
   //School
   allSchools() {
     return new Promise((resolve, reject) => {
@@ -55,6 +57,18 @@ const appService = {
       })
     })
   },
+  getSchoolsPerLga() {
+    return new Promise((resolve, reject) => {
+      axios.get('lga/schools')
+        .then(response => {
+          resolve(response.data)
+        }).catch((error) => {
+        reject(error.response);
+      })
+    })
+  },
+
+
 
   //Staff
   schoolStaff(schoolId) {
@@ -78,6 +92,8 @@ const appService = {
     })
   },
 
+
+
   //Student
   schoolStudents(schoolId) {
     return new Promise((resolve, reject) => {
@@ -92,6 +108,16 @@ const appService = {
   studentProfile(studentId) {
     return new Promise((resolve, reject) => {
       axios.get('/student/' + studentId)
+        .then(response => {
+          resolve(response.data)
+        }).catch((error) => {
+        reject(error.response);
+      })
+    })
+  },
+  getStudentsPerLga() {
+    return new Promise((resolve, reject) => {
+      axios.get('lga/students')
         .then(response => {
           resolve(response.data)
         }).catch((error) => {
