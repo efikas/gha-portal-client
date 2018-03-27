@@ -115,6 +115,16 @@ const appService = {
       })
     })
   },
+  getStudentsPerLga() {
+    return new Promise((resolve, reject) => {
+      axios.get('lga/students')
+        .then(response => {
+          resolve(response.data)
+        }).catch((error) => {
+        reject(error.response);
+      })
+    })
+  },
 }
 
 export default appService
