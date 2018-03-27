@@ -1,9 +1,9 @@
-// var URL = "https://v2.api.sbemis.online:5001/"
 
 module.exports = (function () {
     'use strict';
 
-    let URL = "http://127.0.0.1:5000/"
+    var URL = "https://v2.api.sbemis.online:5001/"
+    // let URL = "http://127.0.0.1:5000/"
 
     return {
         baseURL: URL,
