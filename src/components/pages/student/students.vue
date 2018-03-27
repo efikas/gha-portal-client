@@ -104,7 +104,6 @@
     import datatable from "components/plugins/DataTable/DataTable.vue";
     import vScroll from "components/plugins/scroll/vScroll.vue";
     import VueChartist from 'v-chartist'
-    import api from '../../../services/app.service'
 
     Vue.use(VueAwesomeSwiper);
     var unsub;
@@ -187,25 +186,25 @@
             }
         },
         mounted: function () {
-            api.getStudentsPerLga()
+            this.$student.getStudentsPerLga()
                 .then((data) => {
                     this.studentPerLgas = data;
                 })
                 .catch((error) => console.log(error)
             ),
 
-            unsub = this.$store.subscribe((mutation, state) => {
-                if (mutation.type == "left_menu") {
-                    this.instances.forEach(function (item, index) {
-                        setTimeout(function () {
-                            item.resize();
-                        });
-                    });
-                    setTimeout(() => {
-                        this.$refs.swiper.swiper.update();
-                    });
-                }
-            }),
+            // unsub = this.$store.subscribe((mutation, state) => {
+            //     if (mutation.type == "left_menu") {
+            //         this.instances.forEach(function (item, index) {
+            //             setTimeout(function () {
+            //                 item.resize();
+            //             });
+            //         });
+            //         setTimeout(() => {
+            //             this.$refs.swiper.swiper.update();
+            //         });
+            //     }
+            // }),
 
             axios.get("http://www.filltext.com/?rows=1&chartdata={numberArray|12,100}").then(response => {
                     this.ajaxbar_chart.series[0].data = response.data[0].chartdata;
@@ -217,7 +216,7 @@
 
         },
         beforeRouteLeave(to, from, next) {
-            unsub();
+            // unsub();
             next();
         },
 

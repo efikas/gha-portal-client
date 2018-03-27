@@ -19,7 +19,6 @@ import {
 } from 'vue-tables-2';
 import datatable from "components/plugins/DataTable/DataTable.vue";
 
-
 Vue.use(ClientTable, {}, false);
 export default {
     name: "staff_list",

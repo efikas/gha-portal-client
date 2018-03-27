@@ -124,7 +124,6 @@
     import vScroll from "components/plugins/scroll/vScroll.vue";
     import portfolio from "components/widgets/portfolio/portfolio.vue"
     import VueChartist from 'v-chartist'
-    import api from '../../../services/app.service'
 
     Vue.use(VueAwesomeSwiper);
     var unsub;
@@ -223,7 +222,7 @@
             }
         },
         mounted: function () {
-            api.getSchoolsPerLga()
+            this.$school.getSchoolsPerLga()
                 .then((data) => {
                     this.schoolsPerLgas = data;
                     data.forEach(item => {
@@ -242,31 +241,22 @@
                     })
                 })
                 .catch((error) => console.log(error)
-            ),
-            unsub = this.$store.subscribe((mutation, state) => {
-                if (mutation.type == "left_menu") {
-                    this.instances.forEach(function (item, index) {
-                        setTimeout(function () {
-                            item.resize();
-                        });
-                    });
-                    setTimeout(() => {
-                        this.$refs.swiper.swiper.update();
-                    });
-                }
-            });
-
-            // axios.get("http://www.filltext.com/?rows=1&chartdata={numberArray|12,100}").then(response => {
-            //         this.ajaxbar_chart.series[0].data = response.data[0].chartdata;
-            //         this.ajaxloading = false;
-            //     })
-            //     .catch(function (error) {
-
-            //     });
-
+            )
+            // unsub = this.$store.subscribe((mutation, state) => {
+            //     if (mutation.type == "left_menu") {
+            //         this.instances.forEach(function (item, index) {
+            //             setTimeout(function () {
+            //                 item.resize();
+            //             });
+            //         });
+            //         setTimeout(() => {
+            //             this.$refs.swiper.swiper.update();
+            //         });
+            //     }
+            // });
         },
         beforeRouteLeave(to, from, next) {
-            unsub();
+            // unsub();
             next();
         },
 

@@ -246,7 +246,6 @@
 </template>
 <script>
 import vScroll from "components/plugins/scroll/vScroll.vue"
-import api from '../../../services/app.service'
 
 export default {
     name: "user_profile",
@@ -259,7 +258,7 @@ export default {
         }
     },
     mounted: function() {
-        api.studentProfile(this.$route.params.id).then(data => {
+        this.$student.studentProfile(this.$route.params.id).then(data => {
             this.studentInfo = data.data;
         })
     },

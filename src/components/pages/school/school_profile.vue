@@ -179,8 +179,6 @@
     import * as VueGoogleMaps from 'vue2-google-maps'
     import store from 'src/store/store.js'
 
-    import api from '../../../services/app.service'
-
     Vue.use(VueGoogleMaps, {
         load: {
             key: store.state.gmap_key
@@ -232,23 +230,23 @@
             }
         },
         mounted() {
-            unsub = this.$store.subscribe((mutation, state) => {
-                if (mutation.type == "left_menu") {
-                    setTimeout(() => {
-                        this.$refs.gmap1.resize();
-                        this.$refs.gmap2.resize();
-                        this.$refs.gmap3.resize();
-                        this.$refs.gmap4.resize();
-                    })
-                }
-            });
-            api.schoolProfile(this.$route.params.id).then(data => {
+            // unsub = this.$store.subscribe((mutation, state) => {
+            //     if (mutation.type == "left_menu") {
+            //         setTimeout(() => {
+            //             this.$refs.gmap1.resize();
+            //             this.$refs.gmap2.resize();
+            //             this.$refs.gmap3.resize();
+            //             this.$refs.gmap4.resize();
+            //         })
+            //     }
+            // });
+            this.$school.schoolProfile(this.$route.params.id).then(data => {
                 this.schoolInfo = data;
             })
             // console.log(this.schoolInfo);
         },
         beforeRouteLeave(to, from, next) {
-            unsub();
+            // unsub();
             next();
         },
     }

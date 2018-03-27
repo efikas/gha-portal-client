@@ -93,7 +93,6 @@
 <script>
 import vue2Dropzone from 'vue2-dropzone'
 import 'vue2-dropzone/dist/vue2Dropzone.css'
-import api from '../../services/app.service'
 let sbemisData = require('../../modules/draw-graphs.js')
 
 import piechart from '../charts/piechart.vue'
@@ -132,7 +131,7 @@ export default {
          
     },
     mounted() {
-        api.statistics()
+        this.$dashboard.statistics()
                 .then((data) => {
                     this.schools = data.schools.total;
                     this.staff = data.staffs.total;

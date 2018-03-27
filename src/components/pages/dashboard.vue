@@ -108,7 +108,6 @@
     require('swiper/dist/css/swiper.css')
     import VueAwesomeSwiper from 'vue-awesome-swiper';
 
-    import api from '../../services/app.service'
     import piechart from '../charts/piechart.vue'
     import barchart2 from '../charts/barchart2.vue'
     import donut from '../charts/donut.vue'
@@ -163,7 +162,7 @@
             }
         },
         created() {
-            api.statistics()
+            this.$dashboard.statistics()
                 .then((data) => {
                     this.schools = data.schools.total;
                     this.staff = data.staffs.total;
@@ -236,21 +235,21 @@
         },
         mounted: function () {
             
-            unsub = this.$store.subscribe((mutation, state) => {
-                if (mutation.type == "left_menu") {
-                    this.instances.forEach(function (item, index) {
-                        setTimeout(function () {
-                            item.resize();
-                        });
-                    });
-                    setTimeout(() => {
-                        this.$refs.swiper.swiper.update();
-                    });
-                }
-            });
+            // unsub = this.$store.subscribe((mutation, state) => {
+            //     if (mutation.type == "left_menu") {
+            //         this.instances.forEach(function (item, index) {
+            //             setTimeout(function () {
+            //                 item.resize();
+            //             });
+            //         });
+            //         setTimeout(() => {
+            //             this.$refs.swiper.swiper.update();
+            //         });
+            //     }
+            // });
         },
         beforeRouteLeave(to, from, next) {
-            unsub();
+            // unsub();
             next();
         },
 

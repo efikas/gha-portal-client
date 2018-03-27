@@ -65,7 +65,6 @@
 <script>
     import Vue from 'vue';
     import datatable from "components/plugins/DataTable/DataTable.vue";
-    import api from '../../../services/app.service'
     import piechart from '../../charts/piechart.vue'
     import stackbar from '../../charts/stackbar.vue'
     import doughnut from '../../charts/doughnut.vue'
@@ -98,7 +97,7 @@
             }
         },
          mounted: function () {
-            api.statistics()
+            this.$dashbaord.statistics()
                 .then((data) => {
                     this.teachingStaff = data.staffs.teaching.male + data.staffs.teaching.female;;
                     this.nonTeachingStaff = data.staffs.non_teaching.male + data.staffs.non_teaching.female;;
@@ -127,21 +126,21 @@
                 });
             
                 
-            unsub = this.$store.subscribe((mutation, state) => {
-                if (mutation.type == "left_menu") {
-                    this.instances.forEach(function (item, index) {
-                        setTimeout(function () {
-                            item.resize();
-                        });
-                    });
-                    setTimeout(() => {
-                        this.$refs.swiper.swiper.update();
-                    });
-                }
-            });
+            // unsub = this.$store.subscribe((mutation, state) => {
+            //     if (mutation.type == "left_menu") {
+            //         this.instances.forEach(function (item, index) {
+            //             setTimeout(function () {
+            //                 item.resize();
+            //             });
+            //         });
+            //         setTimeout(() => {
+            //             this.$refs.swiper.swiper.update();
+            //         });
+            //     }
+            // });
         },
         beforeRouteLeave(to, from, next) {
-            unsub();
+            // unsub();
             next();
         },
 

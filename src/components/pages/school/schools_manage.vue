@@ -18,7 +18,6 @@ import {
     Event
 } from 'vue-tables-2';
 import datatable from "components/plugins/DataTable/DataTable.vue";
-import api from '../../../services/app.service'
 
 Vue.use(ClientTable, {}, false);
 export default {
@@ -50,7 +49,7 @@ export default {
         }
     },
     mounted() {
-         api.allSchools().then(data => {
+         $this.$school.allSchools().then(data => {
                 this.schools = data.data;
             })
     }
