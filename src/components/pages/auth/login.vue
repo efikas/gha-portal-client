@@ -18,7 +18,9 @@
                 </div>
                 <vue-form :state="formstate" @submit.prevent="onSubmit">
 
-                    <div class="row" v-if="error">{{ error }}</div>
+                    <div class="row" v-if="error" id="login-error">
+                        <div class="alert alert-danger col-sm-12">{{ error }}</div>
+                    </div>
 
                     <div class="row">
                         <div class="col-sm-12 mt-3 ">
@@ -109,6 +111,7 @@
                 if (this.formstate.$invalid) {
                     return;
                 } else {
+                    this.error = ""
                     let credentials = {
                         client_id: 2,
                         client_secret: "BsPZmqDtu7w5iFQuWOiPIOzdU17Uw64jbg9FWzZI",
@@ -159,5 +162,9 @@
 
     ::-webkit-input-placeholder {
         font-size: 14px;
+    }
+
+    #login-error {
+        margin: 10px 0;
     }
 </style>
