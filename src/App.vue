@@ -7,7 +7,7 @@
 import Vue from "vue";
 import BootstrapVue from 'bootstrap-vue';
 import ToggleButton from 'vue-js-toggle-button'
-require('./packages/services/config.service')
+require('./packages/config')
 
 import Auth from './packages/auth/Auth'
 import Services from './packages/services/Services'

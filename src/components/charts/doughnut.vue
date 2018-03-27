@@ -124,7 +124,6 @@
         watch: {
             iData(value){
                 let colors = ['#6eb09c', '#6eb09c', '#f5918d', '#1badb5'];
-                console.log(value['value']);
                 value['value'].forEach((item, index)=>{
                     this.doughnut.legend.data.push(item.name)
                     this.graphData.push(

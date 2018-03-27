@@ -1,5 +1,5 @@
 import axios from "axios/index";
-import {authURL} from '../services/resources'
+import {authURL} from '../resources'
 
 export default function (Vue) {
     Vue.auth = {
@@ -38,9 +38,15 @@ export default function (Vue) {
                         this.setToken(response.data.access_token, response.data.expires_in + Date.now())
                         resolve(response.data)
                     }).catch((error) => {
+                        console.log(error)
                     reject(error.response);
                 })
             })
+        },
+
+        logout() {
+            this.destroyToken()
+            return true
         },
 
         register(credentials) {
