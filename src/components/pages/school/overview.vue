@@ -9,7 +9,7 @@
                     <div class="text-ash">
                         <h4 class="mt-2 text_size">7465+</h4>
                         <p class="m-0 mt-2">Schools</p>
-                    </div> 
+                    </div>
                 </div>
             </div>
             <div class="col-lg-3  col-sm-6 mb-3">

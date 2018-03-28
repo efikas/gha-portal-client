@@ -31,7 +31,7 @@
             logout() {
                 this.$auth.logout()
                 // this.$router.push('login')
-                window.location.href = "/login"
+                window.location.href = "/login?redirect=" + to.fullPath
             }
         }
     }

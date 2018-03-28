@@ -8,19 +8,19 @@ const menu_items = [{
         icon: "fa fa-files-o",
         child: [{
             name: 'Overview',
-            link: '/schools',
+            link: '/school',
             icon: 'fa fa-angle-double-right'
         }, {
-            name: 'Manage Schools',
-            link: '/manage_schools',
+            name: 'Manage',
+            link: '/school/manage',
             icon: 'fa fa-angle-double-right'
         }, {
-            name: 'Add Schools',
-            link: '/add_schools',
+            name: 'Create',
+            link: '/school/add',
             icon: 'fa fa-angle-double-right'
         }, {
             name: 'Import',
-            link: '/import_schools',
+            link: '/school/import',
             icon: 'fa fa-angle-double-right'
         }]
     },
@@ -32,16 +32,16 @@ const menu_items = [{
             link: '/staff',
             icon: 'fa fa-angle-double-right'
         }, {
-            name: 'Manage Staff',
-            link: '/manage_staff',
+            name: 'Manage',
+            link: '/staff/manage',
             icon: 'fa fa-angle-double-right'
         }, {
-            name: 'Add Staff',
-            link: '/add_staff',
+            name: 'Create',
+            link: '/staff/add',
             icon: 'fa fa-angle-double-right'
         }, {
             name: 'Import',
-            link: '/import_staff',
+            link: '/staff/import',
             icon: 'fa fa-angle-double-right'
         }]
     },
@@ -50,19 +50,19 @@ const menu_items = [{
         icon: "fa fa-files-o",
         child: [{
             name: 'Overview',
-            link: '/students',
+            link: '/student',
             icon: 'fa fa-angle-double-right'
         }, {
-            name: 'Manage Students',
-            link: '/manage_students',
+            name: 'Manage',
+            link: '/student/manage',
             icon: 'fa fa-angle-double-right'
         }, {
-            name: 'Add Students',
-            link: '/add_students',
+            name: 'Create',
+            link: '/student/add',
             icon: 'fa fa-angle-double-right'
         }, {
             name: 'Import',
-            link: '/import_students',
+            link: '/student/import',
             icon: 'fa fa-angle-double-right'
         }]
     },

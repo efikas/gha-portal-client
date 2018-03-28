@@ -4,8 +4,9 @@
             <b-card header="AJAX Client Table" header-tag="h4" class="bg-info-card">
                 <v-client-table :data="schools" :columns="columns" :options="options">
                     <a slot="id" slot-scope="props">{{ props.index }}</a>
-                     <a slot="school_name" slot-scope="props" :href="'/#/school/'+ props.row.id+'/profile'">{{ props.row.school_name }}</a>
-                     <a slot="view" slot-scope="props" class="fa fa-eye icon-big" :href="'/#/school/'+ props.row.id+'/profile'"></a>
+                    <router-link tag="a" slot="school_name" slot-scope="props" :to="{ name: 'school-profile', params: { id: props.row.id }}">{{ props.row.school_name }}</router-link>
+                     <!--<a slot="school_name" slot-scope="props" :href="'/#/school/'+ props.row.id+'/profile'">{{ props.row.school_name }}</a>-->
+                     <router-link tag="a" slot="view" slot-scope="props" class="fa fa-eye icon-big" :to="{ name: 'school-profile', params: { id: props.row.id }}"></router-link>
                 </v-client-table>
             </b-card>
         </div>
