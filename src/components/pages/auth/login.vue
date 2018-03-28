@@ -124,7 +124,6 @@
                             this.$router.push("/");
                         })
                         .catch(response => {
-                            console.log(response)
                             this.error = "The user credentials were incorrect."
                         });
                 }

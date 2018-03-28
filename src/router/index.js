@@ -9,7 +9,7 @@ const router = new VueRouter({
     routes,
     linkActiveClass: "active",
     // hashbang: false,
-    // mode: 'history',
+    mode: 'history',
 })
 
 router.beforeEach(
@@ -24,9 +24,10 @@ router.beforeEach(
         else if (to.matched.some(record => record.meta.guard)) {
             if ( !Vue.auth.isAuthenticated()) {
                 // return window.location.href = '/#/login'
-                return next({
-                    path: '/login'
-                })
+                // return next({
+                //     path: '/login'
+                // })
+                return window.location.href = "/login"
             } else next()
         }
 
