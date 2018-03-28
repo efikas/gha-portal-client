@@ -1,1 +1,0 @@
-cookie.set('environment', 'production')
