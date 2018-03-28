@@ -14,6 +14,16 @@ const router = new VueRouter({
 
 router.beforeEach(
     (to, from, next) => {
+        // if(to.matched.some(record => {
+        //     if (record.meta.roles)
+        //         // console.log(record.meta.roles)
+        //         record.meta.roles.forEach((role) => {
+        //             console.log(role)
+        //             if (role === 'admin')
+        //                 console.log('is admin')
+        //             // return false
+        //         })
+        //     }))
         if (to.matched.some(record => record.meta.guests)) {
             if (Vue.auth.isAuthenticated()) {
                 return next({
@@ -22,12 +32,12 @@ router.beforeEach(
             } else next()
         }
         else if (to.matched.some(record => record.meta.guard)) {
-            if ( !Vue.auth.isAuthenticated()) {
+            if (!Vue.auth.isAuthenticated()) {
                 // return window.location.href = '/#/login'
                 // return next({
                 //     path: '/login'
                 // })
-                return window.location.href = "/login"
+                return window.location.href = "/login?redirect=" + to.fullPath
             } else next()
         }
 

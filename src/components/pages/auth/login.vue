@@ -121,7 +121,10 @@
                     }
                     this.$auth.login(credentials)
                         .then((data) => {
-                            this.$router.push("/");
+                            console.log(this.$route.query)
+                            var redirect = this.$route.query.redirect || "/"
+                            console.log(redirect)
+                            this.$router.push(redirect);
                         })
                         .catch(response => {
                             this.error = "The user credentials were incorrect."

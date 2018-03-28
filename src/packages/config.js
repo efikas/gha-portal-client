@@ -29,8 +29,9 @@ axios.interceptors.response.use(function (response) {
         // Do something with response error
 
         if (error.response.status === 401){
-            // console.log(error.response.status)
-            window.location.href = "/login"
+            //Todo: add sweetAlert here
+            Vue.auth.destroyToken();
+            window.location.href = "/login?redirect=" + to.fullPath
         }
 
         return Promise.reject(error);
