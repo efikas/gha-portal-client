@@ -640,7 +640,7 @@ export default {
                     place_of_birth: '',
                     phone_number: '',
                     email: '',
-                    speial_challenge: '',
+                    special_challenge: '',
                     height: '',
                     width: '',
                     blood_group: '',
