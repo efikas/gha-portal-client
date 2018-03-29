@@ -11,7 +11,7 @@
                                     <label class="control-label col-md-8" for="text">School Name
                                     </label>
                                     <div class="col-md-12">
-                                        <input type="text" class="form-control" v-model="data.basic_info.school_name"
+                                        <input type="text" class="form-control" v-model="data.data.school_name"
                                                id="text" placeholder="School Name">
                                     </div>
                                 </div>
@@ -21,8 +21,8 @@
                                     <label class="control-label col-md-12" for="year_established">Year Established
                                     </label>
                                     <div class="col-md-12">
-                                        <select id="year_established" v-model="data.basic_info.year_established"
-                                                name="year_established" class="form-control" size="1">
+                                        <select id="established" v-model="data.data.established"
+                                                name="established" class="form-control" size="1">
                                             <option value="0">
                                                 Select Year
                                             </option>
@@ -38,7 +38,7 @@
                                     <label class="control-label" for="school_dist">Distance to Catchment Area
                                     </label>
                                     <div class="col-md-12">
-                                        <input type="number" v-model="data.basic_info.school_distance"
+                                        <input type="number" v-model="data.data.average_distance"
                                                class="form-control" id="text" placeholder="">
                                     </div>
                                 </div>
@@ -50,7 +50,7 @@
                                     <label class="control-label col-md-8" for="lga">LGA
                                     </label>
                                     <div class="col-md-12">
-                                        <select id="lga" v-model="data.basic_info.lga" name="lga" class="form-control"
+                                        <select id="lga" v-model="data.data.lga" name="lga" class="form-control"
                                                 size="1">
                                             <option value="">
                                                 Select LGA
@@ -67,7 +67,7 @@
                                     <label class="control-label col-md-12" for="ward">Ward
                                     </label>
                                     <div class="col-md-12">
-                                        <select id="ward" v-model="data.basic_info.ward" name="ward"
+                                        <select id="ward" v-model="data.data.ward" name="ward"
                                                 class="form-control" size="1">
                                             <option value="0">
                                                 Select Year
@@ -84,7 +84,7 @@
                                     <label class="control-label" for="village_town">Village/Town
                                     </label>
                                     <div class="col-md-12">
-                                        <input type="text" v-model="data.basic_info.village_town" class="form-control"
+                                        <input type="text" v-model="data.data.village_town" class="form-control"
                                                id="village_town" placeholder="">
                                     </div>
                                 </div>
@@ -96,13 +96,13 @@
                                     <div class="col-md-12">
                                         <div class="radio">
                                             <b-form-radio checked="false" name="school_location"
-                                                          v-model="data.basic_info.school_location">
+                                                          v-model="data.data.school_location">
                                                 Rural
                                             </b-form-radio>
                                         </div>
                                         <div class="radio">
                                             <b-form-radio checked="false" name="school_location"
-                                                          v-model="data.basic_info.school_location">
+                                                          v-model="data.data.school_location">
                                                 Urban
                                             </b-form-radio>
                                         </div>
@@ -116,7 +116,7 @@
                                     <label class="control-label col-md-8" for="school_email_address">Email
                                     </label>
                                     <div class="col-md-12">
-                                        <input type="email" v-model="data.basic_info.school_email_address"
+                                        <input type="email" v-model="data.data.school_email_address"
                                                class="form-control" id="school_email_address" placeholder="Email">
                                     </div>
                                 </div>
@@ -126,7 +126,7 @@
                                     <label class="control-label col-md-12" for="school_phone">Phone Munber
                                     </label>
                                     <div class="col-md-12">
-                                        <input type="number" v-model="data.basic_info.school_phone" class="form-control"
+                                        <input type="number" v-model="data.data.school_phone" class="form-control"
                                                id="school_phone" placeholder="Enter value">
                                     </div>
                                 </div>
@@ -138,7 +138,7 @@
                                     <label class="control-label" for="school_website">Website
                                     </label>
                                     <div class="col-md-12">
-                                        <input type="url" v-model="data.basic_info.school_website" class="form-control"
+                                        <input type="url" v-model="data.data.school_website" class="form-control"
                                                name="school_website" value="http://www.example.com/" id="url">
                                     </div>
                                 </div>
@@ -149,11 +149,11 @@
                                     </label>
                                     <div class="row">
                                         <div class="col-md-5">
-                                            <input type="text" v-model="data.basic_info.school_long"
+                                            <input type="text" v-model="data.data.school_long"
                                                    class="form-control" id="school_long" placeholder="e.g. 7.6408">
                                         </div>
                                         <div class="col-md-5">
-                                            <input type="text" v-model="data.basic_info.school_lat" class="form-control"
+                                            <input type="text" v-model="data.data.school_lat" class="form-control"
                                                    id="school_lat" placeholder="e.g. 5.2031">
                                         </div>
                                     </div>
@@ -167,13 +167,13 @@
                                     <div class="col-md-12">
                                         <div class="radio">
                                             <b-form-radio checked="false" name="school_category_id"
-                                                          v-model="data.basic_info.school_category_id">
+                                                          v-model="data.data.school_category_id">
                                                 Public
                                             </b-form-radio>
                                         </div>
                                         <div class="radio">
                                             <b-form-radio checked="false" name="school_category_id"
-                                                          v-model="data.basic_info.school_category_id">
+                                                          v-model="data.data.school_category_id">
                                                 Private
                                             </b-form-radio>
                                         </div>
@@ -187,7 +187,7 @@
                                     <label class="control-label col-md-12" for="name_of_proprietor">Propritor Name
                                     </label>
                                     <div class="col-md-12">
-                                        <input type="text" v-model="data.basic_info.name_of_proprietor"
+                                        <input type="text" v-model="data.data.name_of_proprietor"
                                                class="form-control" id="name_of_proprietor"
                                                placeholder="Propritor Name">
                                     </div>
@@ -200,14 +200,14 @@
                                     <div class="col-md-12">
                                         <div class="radio">
                                             <b-form-radio name="private_membership_status"
-                                                          v-model="data.basic_info.private_membership_status"
+                                                          v-model="data.data.private_membership_status"
                                                           checked="false">
                                                 Yes
                                             </b-form-radio>
                                         </div>
                                         <div class="radio" checked="false">
                                             <b-form-radio name="private_membership_status"
-                                                          v-model="data.basic_info.private_membership_status">
+                                                          v-model="data.data.private_membership_status">
                                                 No
                                             </b-form-radio>
                                         </div>
@@ -220,7 +220,7 @@
                                         Name
                                     </label>
                                     <div class="col-md-12">
-                                        <input type="text" v-model="data.basic_info.private_membership_name"
+                                        <input type="text" v-model="data.data.private_membership_name"
                                                class="form-control" id="private_membership_name"
                                                placeholder="PPrivate Memebership's Name">
                                     </div>
@@ -236,25 +236,25 @@
                                         <div class="col-md-6">
                                             <div class="radio">
                                                 <b-form-radio checked="false" name="school_type_id"
-                                                              v-model="data.basic_info.school_type_id">
+                                                              v-model="data.data.school_type_id">
                                                     Regular
                                                 </b-form-radio>
                                             </div>
                                             <div class="radio">
                                                 <b-form-radio checked="false" name="school_type_id"
-                                                              v-model="data.basic_info.school_type_id">
+                                                              v-model="data.data.school_type_id">
                                                     Islamiyya Integrated
                                                 </b-form-radio>
                                             </div>
                                             <div class="radio">
                                                 <b-form-radio checked="false" name="school_type_id"
-                                                              v-model="data.basic_info.school_type_id">
+                                                              v-model="data.data.school_type_id">
                                                     Montessori
                                                 </b-form-radio>
                                             </div>
                                             <div class="radio">
                                                 <b-form-radio checked="false" name="school_type_id"
-                                                              v-model="data.basic_info.school_type_id">
+                                                              v-model="data.data.school_type_id">
                                                     Special Needs
                                                 </b-form-radio>
                                             </div>
@@ -262,19 +262,19 @@
                                         <div class="col-md-6">
                                             <div class="radio">
                                                 <b-form-radio checked="false" name="school_type_id"
-                                                              v-model="data.basic_info.school_type_id">
+                                                              v-model="data.data.school_type_id">
                                                     Vocational Training Center
                                                 </b-form-radio>
                                             </div>
                                             <div class="radio">
                                                 <b-form-radio checked="false" name="school_type_id"
-                                                              v-model="data.basic_info.school_type_id">
+                                                              v-model="data.data.school_type_id">
                                                     Science and Technology College
                                                 </b-form-radio>
                                             </div>
                                             <div class="radio">
                                                 <b-form-radio checked="false" name="school_type_id"
-                                                              v-model="data.basic_info.school_type_id">
+                                                              v-model="data.data.school_type_id">
                                                     Nomadic (Migrant)
                                                 </b-form-radio>
                                             </div>
@@ -290,31 +290,31 @@
                                         <div class="col-md-6">
                                             <div class="radio">
                                                 <b-form-radio checked="false" name="school_ownership"
-                                                              v-model="data.basic_info.school_ownership">
+                                                              v-model="data.data.school_ownership">
                                                     Community
                                                 </b-form-radio>
                                             </div>
                                             <div class="radio">
                                                 <b-form-radio checked="false" name="school_ownership"
-                                                              v-model="data.basic_info.school_ownership">
+                                                              v-model="data.data.school_ownership">
                                                     Cooperation
                                                 </b-form-radio>
                                             </div>
                                             <div class="radio">
                                                 <b-form-radio checked="false" name="school_ownership"
-                                                              v-model="data.basic_info.school_ownership">
+                                                              v-model="data.data.school_ownership">
                                                     Federal Government
                                                 </b-form-radio>
                                             </div>
                                             <div class="radio">
                                                 <b-form-radio checked="false" name="school_ownership"
-                                                              v-model="data.basic_info.school_ownership">
+                                                              v-model="data.data.school_ownership">
                                                     State Government
                                                 </b-form-radio>
                                             </div>
                                             <div class="radio">
                                                 <b-form-radio checked="false" name="school_ownership"
-                                                              v-model="data.basic_info.school_ownership">
+                                                              v-model="data.data.school_ownership">
                                                     Local Government
                                                 </b-form-radio>
                                             </div>
@@ -322,25 +322,25 @@
                                         <div class="col-md-6">
                                             <div class="radio">
                                                 <b-form-radio checked="false" name="school_ownership"
-                                                              v-model="data.basic_info.school_ownership">
+                                                              v-model="data.data.school_ownership">
                                                     Faith Based
                                                 </b-form-radio>
                                             </div>
                                             <div class="radio">
                                                 <b-form-radio checked="false" name="school_ownership"
-                                                              v-model="data.basic_info.school_ownership">
+                                                              v-model="data.data.school_ownership">
                                                     Individual
                                                 </b-form-radio>
                                             </div>
                                             <div class="radio">
                                                 <b-form-radio checked="false" name="school_ownership"
-                                                              v-model="data.basic_info.school_ownership">
+                                                              v-model="data.data.school_ownership">
                                                     NGO
                                                 </b-form-radio>
                                             </div>
                                             <div class="radio">
                                                 <b-form-radio checked="false" name="school_ownership"
-                                                              v-model="data.basic_info.school_ownership">
+                                                              v-model="data.data.school_ownership">
                                                     Others
                                                 </b-form-radio>
                                             </div>
@@ -357,13 +357,13 @@
                                     <div class="col-md-12">
                                         <div class="radio">
                                             <b-form-radio checked="false" name="education_levels"
-                                                          v-model="data.basic_info.education_levels">
+                                                          v-model="data.data.education_levels">
                                                 Primary
                                             </b-form-radio>
                                         </div>
                                         <div class="radio">
                                             <b-form-radio checked="false" name="education_levels"
-                                                          v-model="data.basic_info.education_levels">
+                                                          v-model="data.data.education_levels">
                                                 Secondary
                                             </b-form-radio>
                                         </div>
@@ -377,13 +377,13 @@
                                     <div class="col-md-12">
                                         <div class="radio">
                                             <b-form-radio checked="false" name="multigrade"
-                                                          v-model="data.basic_info.multigrade">
+                                                          v-model="data.data.multigrade">
                                                 Yes
                                             </b-form-radio>
                                         </div>
                                         <div class="radio">
                                             <b-form-radio checked="false" name="multigrade"
-                                                          v-model="data.basic_info.multigrade">
+                                                          v-model="data.data.multigrade">
                                                 No
                                             </b-form-radio>
                                         </div>
@@ -392,16 +392,16 @@
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-4">
                                 <div class="form-group p-10">
-                                    <label class="control-label" for="text">Shift
+                                    <label class="control-label" for="text">shifts
                                     </label>
                                     <div class="col-md-12">
                                         <div class="radio">
-                                            <b-form-radio checked="false" name="shift" v-model="data.basic_info.shift">
+                                            <b-form-radio checked="false" name="shifts" v-model="data.data.shifts">
                                                 Yes
                                             </b-form-radio>
                                         </div>
                                         <div class="radio">
-                                            <b-form-radio checked="false" name="shift" v-model="data.basic_info.shift">
+                                            <b-form-radio checked="false" name="shifts" v-model="data.data.shifts">
                                                 No
                                             </b-form-radio>
                                         </div>
@@ -418,13 +418,13 @@
                                     <div class="col-md-12">
                                         <div class="radio">
                                             <b-form-radio checked="false" name="management_committee"
-                                                          v-model="data.basic_info.management_committee">
+                                                          v-model="data.data.management_committee">
                                                 Yes
                                             </b-form-radio>
                                         </div>
                                         <div class="radio">
                                             <b-form-radio checked="false" name="management_committee"
-                                                          v-model="data.basic_info.management_committee">
+                                                          v-model="data.data.management_committee">
                                                 No
                                             </b-form-radio>
                                         </div>
@@ -437,12 +437,14 @@
                                     </label>
                                     <div class="col-md-12">
                                         <div class="radio">
-                                            <b-form-radio checked="false" name="pta" v-model="data.basic_info.pta">
+                                            <b-form-radio checked="false" name="pta_pf"
+                                                          v-model="data.data.pta_pf">
                                                 Yes
                                             </b-form-radio>
                                         </div>
                                         <div class="radio">
-                                            <b-form-radio checked="false" name="pta" v-model="data.basic_info.pta">
+                                            <b-form-radio checked="false" name="pta_pf"
+                                                          v-model="data.data.pta_pf">
                                                 No
                                             </b-form-radio>
                                         </div>
@@ -456,13 +458,13 @@
                                     <div class="col-md-12">
                                         <div class="radio">
                                             <b-form-radio checked="false" name="development_plan"
-                                                          v-model="data.basic_info.development_plan">
+                                                          v-model="data.data.development_plan">
                                                 Yes
                                             </b-form-radio>
                                         </div>
                                         <div class="radio">
                                             <b-form-radio checked="false" name="development_plan"
-                                                          v-model="data.basic_info.development_plan">
+                                                          v-model="data.data.development_plan">
                                                 No
                                             </b-form-radio>
                                         </div>
@@ -471,18 +473,18 @@
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-3">
                                 <div class="form-group p-10">
-                                    <label class="control-label" for="text">School Grants
+                                    <label class="control-label" for="text">School school_grants
                                     </label>
                                     <div class="col-md-12">
                                         <div class="radio">
-                                            <b-form-radio checked="false" name="grants"
-                                                          v-model="data.basic_info.grants">
+                                            <b-form-radio checked="false" name="school_grants"
+                                                          v-model="data.data.school_grants">
                                                 Yes
                                             </b-form-radio>
                                         </div>
                                         <div class="radio">
-                                            <b-form-radio checked="false" name="grants"
-                                                          v-model="data.basic_info.grants">
+                                            <b-form-radio checked="false" name="school_grants"
+                                                          v-model="data.data.school_grants">
                                                 No
                                             </b-form-radio>
                                         </div>
@@ -496,7 +498,7 @@
                                     <label class="control-label col-md-12" for="text">Date of Last Inspection Visit
                                     </label>
                                     <div class="col-md-12">
-                                        <input type="date" v-model="data.basic_info.date_last_inspection"
+                                        <input type="date" v-model="data.data.date_last_inspection"
                                                class="form-control" id="date" value="yyyy-mm-dd" aria-selected="true">
                                     </div>
                                 </div>
@@ -506,7 +508,7 @@
                                     <label class="control-label col-md-12" for="um_of_inspection">Number of Inspections
                                     </label>
                                     <div class="col-md-12">
-                                        <input type="number" v-model="data.basic_info.num_of_inspection"
+                                        <input type="number" v-model="data.data.num_of_inspection"
                                                class="form-control" id="num_of_inspection"
                                                placeholder="Number of Inspections">
                                     </div>
@@ -519,19 +521,19 @@
                                     <div class="col-md-12">
                                         <div class="radio">
                                             <b-form-radio checked="false" name="insp_auth"
-                                                          v-model="data.basic_info.inspection_auth">
+                                                          v-model="data.data.inspection_auth">
                                                 Federal Govt
                                             </b-form-radio>
                                         </div>
                                         <div class="radio">
                                             <b-form-radio checked="false" name="insp_auth"
-                                                          v-model="data.basic_info.inspection_auth">
+                                                          v-model="data.data.inspection_auth">
                                                 State Govt
                                             </b-form-radio>
                                         </div>
                                         <div class="radio">
                                             <b-form-radio checked="false" name="insp_auth"
-                                                          v-model="data.basic_info.inspection_auth">
+                                                          v-model="data.data.inspection_auth">
                                                 Local Govt
                                             </b-form-radio>
                                         </div>
@@ -544,7 +546,7 @@
                                 <div class="form-group p-10">
                                     <label class="control-label col-md-4" for="school_address">School Address</label>
                                     <div class="col-md-12">
-                                        <textarea rows="4" v-model="data.basic_info.school_address"
+                                        <textarea rows="4" v-model="data.data.school_address"
                                                   class="form-control resize_vertical" id="school_address"
                                                   placeholder="School Address"></textarea>
                                     </div>
@@ -575,13 +577,13 @@
                                     <div class="col-md-12">
                                         <div class="radio">
                                             <b-form-radio checked="false" name="boarding"
-                                                          v-model="data.facilities_info.boarding">
+                                                          v-model="data.facilities.boarding">
                                                 Yes
                                             </b-form-radio>
                                         </div>
                                         <div class="radio">
                                             <b-form-radio checked="false" name="boarding"
-                                                          v-model="data.facilities_info.boarding">
+                                                          v-model="data.facilities.boarding">
                                                 No
                                             </b-form-radio>
                                         </div>
@@ -595,13 +597,13 @@
                                     <div class="col-md-12">
                                         <div class="radio">
                                             <b-form-radio checked="false" name="sch_library"
-                                                          v-model="data.facilities_info.school_library">
+                                                          v-model="data.facilities.school_library">
                                                 Yes
                                             </b-form-radio>
                                         </div>
                                         <div class="radio">
                                             <b-form-radio checked="false" name="sch_library"
-                                                          v-model="data.facilities_info.school_library">
+                                                          v-model="data.facilities.school_library">
                                                 No
                                             </b-form-radio>
                                         </div>
@@ -613,7 +615,7 @@
                                     <label class="control-label" for="text">Security Guard?
                                     </label>
                                     <div class="col-md-16">
-                                        <input type="number" v-model="data.facilities_info.security_guard"
+                                        <input type="number" v-model="data.facilities.security_guard"
                                                class="form-control" id="text" placeholder="0">
                                     </div>
                                 </div>
@@ -627,14 +629,14 @@
                                     <div class="col-md-12">
                                         <div class="radio">
                                             <b-form-radio checked="false" name="school_building_type"
-                                                          v-model="data.facilities_info.school_building_type">
+                                                          v-model="data.facilities.school_building_type">
                                                 <div>Proposely built</div>
                                                 <div>Proposely built for educational use</div>
                                             </b-form-radio>
                                         </div>
                                         <div class="radio">
                                             <b-form-radio checked="false" name="school_building_type"
-                                                          v-model="data.facilities_info.school_building_type">
+                                                          v-model="data.facilities.school_building_type">
                                                 <div>Multiple Class in Rooms</div>
                                                 <div>Converted building, rooms holding multiple classes (no walls
                                                     between).
@@ -643,7 +645,7 @@
                                         </div>
                                         <div class="radio">
                                             <b-form-radio checked="false" name="school_building_type"
-                                                          v-model="data.facilities_info.school_building_type">
+                                                          v-model="data.facilities.school_building_type">
                                                 <div>One Class per Room</div>
                                                 <div>Converted building, one class per room (with walls separating).
                                                 </div>
@@ -651,14 +653,14 @@
                                         </div>
                                         <div class="radio">
                                             <b-form-radio checked="false" name="school_building_type"
-                                                          v-model="data.facilities_info.school_building_type">
+                                                          v-model="data.facilities.school_building_type">
                                                 <div>Residential Space</div>
                                                 <div>Converted space in a house/apartment (residential).</div>
                                             </b-form-radio>
                                         </div>
                                         <div class="radio">
                                             <b-form-radio checked="false" name="school_building_type"
-                                                          v-model="data.facilities_info.school_building_type">
+                                                          v-model="data.facilities.school_building_type">
                                                 <div>Mixed-Use Building</div>
                                                 <div>Mixed-use building (School plus other commercial use)</div>
                                             </b-form-radio>
@@ -673,25 +675,25 @@
                                     <div class="col-md-12">
                                         <div class="radio">
                                             <b-form-radio checked="false" name="school_building_ownership"
-                                                          v-model="data.facilities_info.school_building_ownership">
+                                                          v-model="data.facilities.school_building_ownership">
                                                 Owned
                                             </b-form-radio>
                                         </div>
                                         <div class="radio">
                                             <b-form-radio name="school_building_ownership"
-                                                          v-model="data.facilities_info.school_building_ownership">
+                                                          v-model="data.facilities.school_building_ownership">
                                                 Rented
                                             </b-form-radio>
                                         </div>
                                         <div class="radio">
                                             <b-form-radio checked="false" name="school_building_ownership"
-                                                          v-model="data.facilities_info.school_building_ownership">
+                                                          v-model="data.facilities.school_building_ownership">
                                                 Leased
                                             </b-form-radio>
                                         </div>
                                         <div class="radio">
                                             <b-form-radio name="school_building_ownership"
-                                                          v-model="data.facilities_info.school_building_ownership">
+                                                          v-model="data.facilities.school_building_ownership">
                                                 Granted for free
                                             </b-form-radio>
                                         </div>
@@ -705,25 +707,25 @@
                                     <div class="col-md-12">
                                         <div class="radio">
                                             <b-form-radio name="school_fence_condition"
-                                                          v-model="data.facilities_info.school_fence_condition">
+                                                          v-model="data.facilities.school_fence_condition">
                                                 No Fence/Wall
                                             </b-form-radio>
                                         </div>
                                         <div class="radio">
                                             <b-form-radio name="school_fence_condition"
-                                                          v-model="data.facilities_info.school_fence_condition">
+                                                          v-model="data.facilities.school_fence_condition">
                                                 Fence is in good Condition
                                             </b-form-radio>
                                         </div>
                                         <div class="radio">
                                             <b-form-radio name="school_fence_condition"
-                                                          v-model="data.facilities_info.school_fence_condition">
+                                                          v-model="data.facilities.school_fence_condition">
                                                 Fence needs minor repairs
                                             </b-form-radio>
                                         </div>
                                         <div class="radio">
                                             <b-form-radio name="school_fence_condition"
-                                                          v-model="data.facilities_info.school_fence_condition">
+                                                          v-model="data.facilities.school_fence_condition">
                                                 Fence needs major repairs
                                             </b-form-radio>
                                         </div>
@@ -737,22 +739,22 @@
                                     <label class="control-label col-md-12" for="text">Play Rooms</label>
                                     <div class="col-md-12">
                                         <div class="radio">
-                                            <b-form-radio name="false" v-model="data.facilities_info.play_rooms">
+                                            <b-form-radio name="false" v-model="data.facilities.play_rooms">
                                                 None
                                             </b-form-radio>
                                         </div>
                                         <div class="radio">
-                                            <b-form-radio name="false" v-model="data.facilities_info.play_rooms">
+                                            <b-form-radio name="false" v-model="data.facilities.play_rooms">
                                                 Yes with Play Rugs
                                             </b-form-radio>
                                         </div>
                                         <div class="radio">
-                                            <b-form-radio name="false" v-model="data.facilities_info.play_rooms">
+                                            <b-form-radio name="false" v-model="data.facilities.play_rooms">
                                                 Yes with Sand Floor
                                             </b-form-radio>
                                         </div>
                                         <div class="radio">
-                                            <b-form-radio name="false" v-model="data.facilities_info.play_rooms">
+                                            <b-form-radio name="false" v-model="data.facilities.play_rooms">
                                                 Yes, no Sand/Rug Floor
                                             </b-form-radio>
                                         </div>
@@ -766,37 +768,37 @@
                                     <div class="col-md-12">
                                         <div class="checkbox">
                                             <b-form-checkbox name="play_facilities"
-                                                             v-model="data.facilities_info.play_facilities">
+                                                             v-model="data.facilities.play_facilities">
                                                 PlayRoom
                                             </b-form-checkbox>
                                         </div>
                                         <div class="checkbox">
                                             <b-form-checkbox name="play_facilities"
-                                                             v-model="data.facilities_info.play_facilities">
+                                                             v-model="data.facilities.play_facilities">
                                                 Merry Go Round
                                             </b-form-checkbox>
                                         </div>
                                         <div class="checkbox">
                                             <b-form-checkbox name="play_facilities"
-                                                             v-model="data.facilities_info.play_facilities">
+                                                             v-model="data.facilities.play_facilities">
                                                 Swing
                                             </b-form-checkbox>
                                         </div>
                                         <div class="checkbox">
                                             <b-form-checkbox name="play_facilities"
-                                                             v-model="data.facilities_info.play_facilities">
+                                                             v-model="data.facilities.play_facilities">
                                                 Ladder Slide
                                             </b-form-checkbox>
                                         </div>
                                         <div class="checkbox">
                                             <b-form-checkbox name="play_facilities"
-                                                             v-model="data.facilities_info.play_facilities">
+                                                             v-model="data.facilities.play_facilities">
                                                 See Saw
                                             </b-form-checkbox>
                                         </div>
                                         <div class="checkbox">
                                             <b-form-checkbox name="play_facilities"
-                                                             v-model="data.facilities_info.play_facilities">
+                                                             v-model="data.facilities.play_facilities">
                                                 Indoor Activity Material
                                             </b-form-checkbox>
                                         </div>
@@ -810,37 +812,37 @@
                                     <div class="col-md-12">
                                         <div class="checkbox">
                                             <b-form-checkbox name="learning_materials"
-                                                             v-model="data.facilities_info.learning_materials">
+                                                             v-model="data.facilities.learning_materials">
                                                 Charts
                                             </b-form-checkbox>
                                         </div>
                                         <div class="checkbox">
                                             <b-form-checkbox name="learning_materials"
-                                                             v-model="data.facilities_info.learning_materials">
+                                                             v-model="data.facilities.learning_materials">
                                                 Posters
                                             </b-form-checkbox>
                                         </div>
                                         <div class="checkbox">
                                             <b-form-checkbox name="learning_materials"
-                                                             v-model="data.facilities_info.learning_materials">
+                                                             v-model="data.facilities.learning_materials">
                                                 Toys
                                             </b-form-checkbox>
                                         </div>
                                         <div class="checkbox">
                                             <b-form-checkbox name="learning_materials"
-                                                             v-model="data.facilities_info.learning_materials">
+                                                             v-model="data.facilities.learning_materials">
                                                 Audio/Visua(Radio, TV, DVD)
                                             </b-form-checkbox>
                                         </div>
                                         <div class="checkbox">
                                             <b-form-checkbox name="learning_materials"
-                                                             v-model="data.facilities_info.learning_materials">
+                                                             v-model="data.facilities.learning_materials">
                                                 Word Puzzle Box
                                             </b-form-checkbox>
                                         </div>
                                         <div class="checkbox">
                                             <b-form-checkbox name="learning_materials"
-                                                             v-model="data.facilities_info.learning_materials">
+                                                             v-model="data.facilities.learning_materials">
                                                 Caregiver Guide
                                             </b-form-checkbox>
                                         </div>
@@ -856,31 +858,31 @@
                                     <div class="col-md-12">
                                         <div class="checkbox">
                                             <b-form-checkbox name="power_source"
-                                                             v-model="data.facilities_info.power_source">
+                                                             v-model="data.facilities.power_source">
                                                 PHCN/NEPA
                                             </b-form-checkbox>
                                         </div>
                                         <div class="checkbox">
                                             <b-form-checkbox name="power_source"
-                                                             v-model="data.facilities_info.power_source">
+                                                             v-model="data.facilities.power_source">
                                                 Generator
                                             </b-form-checkbox>
                                         </div>
                                         <div class="checkbox">
                                             <b-form-checkbox name="power_source"
-                                                             v-model="data.facilities_info.power_source">
+                                                             v-model="data.facilities.power_source">
                                                 Solar
                                             </b-form-checkbox>
                                         </div>
                                         <div class="checkbox">
                                             <b-form-checkbox name="power_source"
-                                                             v-model="data.facilities_info.power_source">
+                                                             v-model="data.facilities.power_source">
                                                 Inverter
                                             </b-form-checkbox>
                                         </div>
                                         <div class="checkbox">
                                             <b-form-checkbox name="power_source"
-                                                             v-model="data.facilities_info.power_source">
+                                                             v-model="data.facilities.power_source">
                                                 None
                                             </b-form-checkbox>
                                         </div>
@@ -894,19 +896,19 @@
                                     <div class="col-md-12">
                                         <div class="checkbox">
                                             <b-form-checkbox name="health_facilities"
-                                                             v-model="data.facilities_info.health_facilities">
+                                                             v-model="data.facilities.health_facilities">
                                                 Health Clinic
                                             </b-form-checkbox>
                                         </div>
                                         <div class="checkbox">
                                             <b-form-checkbox name="health_facilities"
-                                                             v-model="data.facilities_info.health_facilities">
+                                                             v-model="data.facilities.health_facilities">
                                                 First Aid Kit
                                             </b-form-checkbox>
                                         </div>
                                         <div class="checkbox">
                                             <b-form-checkbox name="health_facilities"
-                                                             v-model="data.facilities_info.health_facilities">
+                                                             v-model="data.facilities.health_facilities">
                                                 None
                                             </b-form-checkbox>
                                         </div>
@@ -920,31 +922,31 @@
                                     <div class="col-md-12">
                                         <div class="checkbox">
                                             <b-form-checkbox name="water_supply"
-                                                             v-model="data.facilities_info.water_supply">
+                                                             v-model="data.facilities.water_supply">
                                                 Pipe-borne
                                             </b-form-checkbox>
                                         </div>
                                         <div class="checkbox">
                                             <b-form-checkbox name="water_supply"
-                                                             v-model="data.facilities_info.water_supply">
+                                                             v-model="data.facilities.water_supply">
                                                 Borehole
                                             </b-form-checkbox>
                                         </div>
                                         <div class="checkbox">
                                             <b-form-checkbox name="water_supply"
-                                                             v-model="data.facilities_info.water_supply">
+                                                             v-model="data.facilities.water_supply">
                                                 Well
                                             </b-form-checkbox>
                                         </div>
                                         <div class="checkbox">
                                             <b-form-checkbox name="water_supply"
-                                                             v-model="data.facilities_info.water_supply">
+                                                             v-model="data.facilities.water_supply">
                                                 Others
                                             </b-form-checkbox>
                                         </div>
                                         <div class="checkbox">
                                             <b-form-checkbox name="water_supply"
-                                                             v-model="data.facilities_info.water_supply">
+                                                             v-model="data.facilities.water_supply">
                                                 None
                                             </b-form-checkbox>
                                         </div>
@@ -958,25 +960,25 @@
                                     <div class="col-md-12">
                                         <div class="checkbox">
                                             <b-form-checkbox name="toilet_facilities"
-                                                             v-model="data.facilities_info.toilet_facilities">
+                                                             v-model="data.facilities.toilet_facilities">
                                                 Pit Latrine
                                             </b-form-checkbox>
                                         </div>
                                         <div class="checkbox">
                                             <b-form-checkbox name="toilet_facilities"
-                                                             v-model="data.facilities_info.toilet_facilities">
+                                                             v-model="data.facilities.toilet_facilities">
                                                 Bucket System
                                             </b-form-checkbox>
                                         </div>
                                         <div class="checkbox">
                                             <b-form-checkbox name="toilet_facilities"
-                                                             v-model="data.facilities_info.toilet_facilities">
+                                                             v-model="data.facilities.toilet_facilities">
                                                 Water Cistern
                                             </b-form-checkbox>
                                         </div>
                                         <div class="checkbox">
                                             <b-form-checkbox name="toilet_facilities"
-                                                             v-model="data.facilities_info.toilet_facilities">
+                                                             v-model="data.facilities.toilet_facilities">
                                                 Others
                                             </b-form-checkbox>
                                         </div>
@@ -990,7 +992,7 @@
                                     <label class="control-label" for="text">Facilities Sharing</label>
                                     <div class="col-md-12">
                                         <input type="text" class="form-control" id="text" name="facilities_sharing"
-                                               v-model="data.facilities_info.facilities_sharing">
+                                               v-model="data.facilities.facilities_sharing">
                                     </div>
                                 </div>
                             </div>
@@ -1002,49 +1004,49 @@
                                         <div class="col-md-6">
                                             <div class="checkbox">
                                                 <b-form-checkbox name="facilities_shared"
-                                                                 v-model="data.facilities_info.facilities_shared">
+                                                                 v-model="data.facilities.facilities_shared">
                                                     Toilet
                                                 </b-form-checkbox>
                                             </div>
                                             <div class="checkbox">
                                                 <b-form-checkbox name="facilities_shared"
-                                                                 v-model="data.facilities_info.facilities_shared">
+                                                                 v-model="data.facilities.facilities_shared">
                                                     Water Source
                                                 </b-form-checkbox>
                                             </div>
                                             <div class="checkbox">
                                                 <b-form-checkbox name="facilities_shared"
-                                                                 v-model="data.facilities_info.facilities_shared">
-                                                    Classrooms
+                                                                 v-model="data.facilities.facilities_shared">
+                                                    classroomss
                                                 </b-form-checkbox>
                                             </div>
                                             <div class="checkbox">
                                                 <b-form-checkbox name="facilities_shared"
-                                                                 v-model="data.facilities_info.facilities_shared">
+                                                                 v-model="data.facilities.facilities_shared">
                                                     Play Ground
                                                 </b-form-checkbox>
                                             </div>
                                             <div class="checkbox">
                                                 <b-form-checkbox name="facilities_shared"
-                                                                 v-model="data.facilities_info.facilities_shared">
+                                                                 v-model="data.facilities.facilities_shared">
                                                     WhiteBoards
                                                 </b-form-checkbox>
                                             </div>
                                             <div class="checkbox">
                                                 <b-form-checkbox name="facilities_shared"
-                                                                 v-model="data.facilities_info.facilities_shared">
+                                                                 v-model="data.facilities.facilities_shared">
                                                     Boarding Hostels
                                                 </b-form-checkbox>
                                             </div>
                                             <div class="checkbox">
                                                 <b-form-checkbox name="facilities_shared"
-                                                                 v-model="data.facilities_info.facilities_shared">
+                                                                 v-model="data.facilities.facilities_shared">
                                                     Kitchen
                                                 </b-form-checkbox>
                                             </div>
                                             <div class="checkbox">
                                                 <b-form-checkbox cname="facilities_shared"
-                                                                 v-model="data.facilities_info.facilities_shared">
+                                                                 v-model="data.facilities.facilities_shared">
                                                     Bathroooms
                                                 </b-form-checkbox>
                                             </div>
@@ -1052,49 +1054,49 @@
                                         <div class="col-md-6">
                                             <div class="checkbox">
                                                 <b-form-checkbox name="facilities_shared"
-                                                                 v-model="data.facilities_info.facilities_shared">
+                                                                 v-model="data.facilities.facilities_shared">
                                                     Computer
                                                 </b-form-checkbox>
                                             </div>
                                             <div class="checkbox">
                                                 <b-form-checkbox name="facilities_shared"
-                                                                 v-model="data.facilities_info.facilities_shared">
+                                                                 v-model="data.facilities.facilities_shared">
                                                     Laboratory
                                                 </b-form-checkbox>
                                             </div>
                                             <div class="checkbox">
                                                 <b-form-checkbox name="facilities_shared"
-                                                                 v-model="data.facilities_info.facilities_shared">
+                                                                 v-model="data.facilities.facilities_shared">
                                                     Library
                                                 </b-form-checkbox>
                                             </div>
                                             <div class="checkbox">
                                                 <b-form-checkbox name="facilities_shared"
-                                                                 v-model="data.facilities_info.facilities_shared">
+                                                                 v-model="data.facilities.facilities_shared">
                                                     Wash Hand Basin
                                                 </b-form-checkbox>
                                             </div>
                                             <div class="checkbox">
                                                 <b-form-checkbox name="facilities_shared"
-                                                                 v-model="data.facilities_info.facilities_shared">
+                                                                 v-model="data.facilities.facilities_shared">
                                                     Staff Room
                                                 </b-form-checkbox>
                                             </div>
                                             <div class="checkbox">
                                                 <b-form-checkbox name="facilities_shared"
-                                                                 v-model="data.facilities_info.facilities_shared">
+                                                                 v-model="data.facilities.facilities_shared">
                                                     Offices
                                                 </b-form-checkbox>
                                             </div>
                                             <div class="checkbox">
                                                 <b-form-checkbox name="facilities_shared"
-                                                                 v-model="data.facilities_info.facilities_shared">
+                                                                 v-model="data.facilities.facilities_shared">
                                                     Dinning Room
                                                 </b-form-checkbox>
                                             </div>
                                             <div class="checkbox">
                                                 <b-form-checkbox name="facilities_shared"
-                                                                 v-model="data.facilities_info.facilities_shared">
+                                                                 v-model="data.facilities.facilities_shared">
                                                     Play Rooms
                                                 </b-form-checkbox>
                                             </div>
@@ -1105,14 +1107,14 @@
                         </div>
                     </form>
                 </tab-content>
-                <tab-content title="School Classroom Details" icon="fafa-check">
+                <tab-content title="School classrooms Details" icon="fafa-check">
                     <form method="" class="form-horizontal">
                         <div>
                             <div>
-                                INFORMATION ON CLASSROOMS/PLAYROOMS
+                                INFORMATION ON classroomsS/PLAYROOMS
                             </div>
                             <div>
-                                Record information for individual classroom, regardless of whether or not they are in
+                                Record information for individual classrooms, regardless of whether or not they are in
                                 use.
                             </div>
                         </div>
@@ -1121,8 +1123,8 @@
                                 <div class="form-group p-10">
                                     <label class="control-label col-md-12" for="text">Year Constructed</label>
                                     <div class="col-md-12">
-                                        <select id="example-select" name="classroom_year_constructed"
-                                                v-model="data.classroom_details.classroom_year_constructed"
+                                        <select id="example-select" name="classrooms_year_constructed"
+                                                v-model="data.classrooms.classrooms_year_constructed"
                                                 class="form-control" size="1">
                                             <option value="">
                                                 Select Year
@@ -1139,8 +1141,8 @@
                                     <label class="control-label" for="text">Length in (m)
                                     </label>
                                     <div class="col-md-12">
-                                        <input type="number" class="form-control" id="text" name="classroom_length"
-                                               v-model="data.classroom_details.classroom_length"
+                                        <input type="number" class="form-control" id="text" name="classrooms_length"
+                                               v-model="data.classrooms.classrooms_length"
                                                placeholder="School Name">
                                     </div>
                                 </div>
@@ -1150,8 +1152,8 @@
                                     <label class="control-label" for="text">Width in (m)
                                     </label>
                                     <div class="col-md-12">
-                                        <input type="number" class="form-control" id="text" name="classroom_width"
-                                               v-model="data.classroom_details.classroom_width"
+                                        <input type="number" class="form-control" id="text" name="classrooms_width"
+                                               v-model="data.classrooms.classrooms_width"
                                                placeholder="School Name">
                                     </div>
                                 </div>
@@ -1162,7 +1164,7 @@
                                     </label>
                                     <div class="col-md-12">
                                         <input type="number" class="form-control" name="number_of_rooms"
-                                               v-model="data.classroom_details.number_of_rooms" id="text"
+                                               v-model="data.classrooms.number_of_rooms" id="text"
                                                placeholder="School Name">
                                     </div>
                                 </div>
@@ -1172,8 +1174,8 @@
                                     <label class="control-label col-md-12" for="text">Select Condition
                                     </label>
                                     <div class="col-md-12">
-                                        <select id="example-select" name="classroom_condition"
-                                                v-model="data.classroom_details.classroom_condition"
+                                        <select id="example-select" name="classrooms_condition"
+                                                v-model="data.classrooms.classrooms_condition"
                                                 class="form-control" size="1">
                                             <option value="">
                                                 Select Condition
@@ -1193,7 +1195,7 @@
                                     </label>
                                     <div class="col-md-12">
                                         <select id="example-select" name="floor_material"
-                                                v-model="data.classroom_details.floor_material" class="form-control"
+                                                v-model="data.classrooms.floor_material" class="form-control"
                                                 size="1">
                                             <option value="">
                                                 Select Year
@@ -1211,7 +1213,7 @@
                                     </label>
                                     <div class="col-md-12">
                                         <select id="example-select" name="wall_material"
-                                                v-model="data.classroom_details.wall_material" class="form-control"
+                                                v-model="data.classrooms.wall_material" class="form-control"
                                                 size="1">
                                             <option value="">
                                                 Select Year
@@ -1229,7 +1231,7 @@
                                     </label>
                                     <div class="col-md-12">
                                         <select id="example-select" name="roof_material"
-                                                v-model="data.classroom_details.roof_material" class="form-control"
+                                                v-model="data.classrooms.roof_material" class="form-control"
                                                 size="1">
                                             <option value="">
                                                 Select Year
@@ -1247,12 +1249,12 @@
                                     </label>
                                     <div class="col-md-12">
                                         <div class="radio">
-                                            <b-form-radio name="seatings" v-model="data.classroom_details.seatings">
+                                            <b-form-radio name="seatings" v-model="data.classrooms.seatings">
                                                 Yes
                                             </b-form-radio>
                                         </div>
                                         <div class="radio">
-                                            <b-form-radio name="seatings" v-model="data.classroom_details.seatings">
+                                            <b-form-radio name="seatings" v-model="data.classrooms.seatings">
                                                 No
                                             </b-form-radio>
                                         </div>
@@ -1265,12 +1267,12 @@
                                     </label>
                                     <div class="col-md-12">
                                         <div class="radio">
-                                            <b-form-radio name="blackboard" v-model="data.classroom_details.blackboard">
+                                            <b-form-radio name="blackboard" v-model="data.classrooms.blackboard">
                                                 Yes
                                             </b-form-radio>
                                         </div>
                                         <div class="radio">
-                                            <b-form-radio name="blackboard" v-model="data.classroom_details.blackboard">
+                                            <b-form-radio name="blackboard" v-model="data.classrooms.blackboard">
                                                 No
                                             </b-form-radio>
                                         </div>
@@ -1279,99 +1281,51 @@
                             </div>
                         </div>
                         <div>
+                            <a class="btn btn-outline-primary" @click="addMore('seater')">+ ADD MORE</a>
                             <div>
                                 ADDITIONAL CLASS INFORMATION
                             </div>
-                            <div>
+                            <small>
                                 Indicate seating capacity by grade and type of seating, counting only seats having a
                                 writing desk. e.g. if one 3 seater was available, the capacity is 3 Pupils not 1.
-                            </div>
+                            </small>
                         </div>
                         <div class="row odd-row">
-                            <div class="col-sx-12 col-md-6">
+                            <div v-for="(seater, index) in data.classrooms.seater" class="col-sx-12 col-md-6">
                                 <div class="row">
-                                    <div class="col-xs-12 col-sm-6 col-md-3">
+                                    <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group p-10">
                                             <label class="control-label col-md-12" for="text">Class Level
                                             </label>
-                                            <div class="col-md-12">
-                                                <input type="text" class="form-control" name="classroom_level[]"
-                                                       v-model="data.classroom_details.classroom_level[0]">
-                                            </div>
+                                                <select class="form-control" v-model="data.classrooms.seater[index].class">
+                                                    <option value="">Select Class</option>
+                                                    <option value="1">Pry 1</option>
+                                                    <option value="2">Pry 2</option>
+                                                    <option value="3">Pry 3</option>
+                                                    <option value="4">Pry 4</option>
+                                                    <option value="5">Pry 5</option>
+                                                    <option value="6">Pry 6</option>
+                                                </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                        <div class="form-group p-10">
+                                             <label class="control-label" for="text">Seater</label>
+                                             <select v-model="data.classrooms.seater[index].type" class="form-control">
+                                                <option value="">Select Seater</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-3">
                                         <div class="form-group p-10">
-                                            <label class="control-label" for="text">1 Seater
+                                            <label class="control-label" for="text">Quatity
                                             </label>
-                                            <div class="col-md-12">
-                                                <input type="number" class="form-control" name="seater1[]"
-                                                       v-model="data.classroom_details.seater1[0]">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-6 col-md-3">
-                                        <div class="form-group p-10">
-                                            <label class="control-label" for="text">2 Seater
-                                            </label>
-                                            <div class="col-md-12">
-                                                <input type="number" class="form-control" name="seater2[]"
-                                                       v-model="data.classroom_details.seater2[0]">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-6 col-md-3">
-                                        <div class="form-group p-10">
-                                            <label class="control-label" for="text">3 Seater
-                                            </label>
-                                            <div class="col-md-12">
-                                                <input type="number" class="form-control" name="seater3[]"
-                                                       v-model="data.classroom_details.seater3[0]">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sx-12 col-md-6">
-                                <div class="row">
-                                    <div class="col-xs-12 col-sm-6 col-md-3">
-                                        <div class="form-group p-10">
-                                            <label class="control-label col-md-12" for="text">Class Level
-                                            </label>
-                                            <div class="col-md-12">
-                                                <input type="text" class="form-control" name="classroom_level[]"
-                                                       v-model="data.classroom_details.classroom_level[1]">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-6 col-md-3">
-                                        <div class="form-group p-10">
-                                            <label class="control-label" for="text">1 Seater
-                                            </label>
-                                            <div class="col-md-12">
-                                                <input type="number" class="form-control" name="seater1[]"
-                                                       v-model="data.classroom_details.seater1[1]">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-6 col-md-3">
-                                        <div class="form-group p-10">
-                                            <label class="control-label" for="text">2 Seater
-                                            </label>
-                                            <div class="col-md-12">
-                                                <input type="number" class="form-control" name="seater2[]"
-                                                       v-model="data.classroom_details.seater2[1]">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-6 col-md-3">
-                                        <div class="form-group p-10">
-                                            <label class="control-label" for="text">3 Seater
-                                            </label>
-                                            <div class="col-md-12">
-                                                <input type="number" class="form-control" name="seater3[]"
-                                                       v-model="data.classroom_details.seater3[1]">
-                                            </div>
+                                                <input type="number" min="0" class="form-control" name="quantity"
+                                                       v-model="data.classrooms.seater[index].quantity">
+
                                         </div>
                                     </div>
                                 </div>
@@ -1399,7 +1353,7 @@
                                             </label>
                                             <div class="col-md-12">
                                                 <input type="text" class="form-control" name="pupil_subject_area[]"
-                                                       v-model="data.school_textbooks.pupil_subject_area[0]">
+                                                       v-model="data.textbooks.pupil_subject_area[0]">
                                             </div>
                                         </div>
                                     </div>
@@ -1409,7 +1363,7 @@
                                             </label>
                                             <div class="col-md-12">
                                                 <input type="text" class="form-control" name="pupil_class_level[]"
-                                                       v-model="data.school_textbooks.pupil_class_level[0]">
+                                                       v-model="data.textbooks.pupil_class_level[0]">
                                             </div>
                                         </div>
                                     </div>
@@ -1420,7 +1374,7 @@
                                             <div class="col-md-12">
                                                 <input type="number" class="form-control"
                                                        name="pupil_quantity_supplied[]"
-                                                       v-model="data.school_textbooks.pupil_quantity_supplied[0]">
+                                                       v-model="data.textbooks.pupil_quantity_supplied[0]">
                                             </div>
                                         </div>
                                     </div>
@@ -1435,7 +1389,7 @@
                                             <div class="col-md-12">
                                                 <input type="text" class="form-control" id="text"
                                                        name="pupil_subject_area[]"
-                                                       v-model="data.school_textbooks.pupil_subject_area[1]">
+                                                       v-model="data.textbooks.pupil_subject_area[1]">
                                             </div>
                                         </div>
                                     </div>
@@ -1445,7 +1399,7 @@
                                             </label>
                                             <div class="col-md-12">
                                                 <input type="text" class="form-control" name="pupil_class_level[]"
-                                                       v-model="data.school_textbooks.pupil_class_level[1]">
+                                                       v-model="data.textbooks.pupil_class_level[1]">
                                             </div>
                                         </div>
                                     </div>
@@ -1456,7 +1410,7 @@
                                             <div class="col-md-12">
                                                 <input type="number" class="form-control"
                                                        name="pupil_quantity_supplied[]"
-                                                       v-model="data.school_textbooks.pupil_quantity_supplied[1]">
+                                                       v-model="data.textbooks.pupil_quantity_supplied[1]">
                                             </div>
                                         </div>
                                     </div>
@@ -1482,7 +1436,7 @@
                                             <div class="col-md-12">
                                                 <input type="text" class="form-control" id="text"
                                                        name="teacher_subject_area[]"
-                                                       v-model="data.school_textbooks.teacher_subject_area[0]">
+                                                       v-model="data.textbooks.teacher_subject_area[0]">
                                             </div>
                                         </div>
                                     </div>
@@ -1492,7 +1446,7 @@
                                             </label>
                                             <div class="col-md-12">
                                                 <input type="text" class="form-control" name="teacher_class_level[]"
-                                                       v-model="data.school_textbooks.teacher_class_level[0]">
+                                                       v-model="data.textbooks.teacher_class_level[0]">
                                             </div>
                                         </div>
                                     </div>
@@ -1503,7 +1457,7 @@
                                             <div class="col-md-12">
                                                 <input type="number" class="form-control"
                                                        name="teacher_quantity_supplied[]"
-                                                       v-model="data.school_textbooks.teacher_quantity_supplied[0]">
+                                                       v-model="data.textbooks.teacher_quantity_supplied[0]">
                                             </div>
                                         </div>
                                     </div>
@@ -1518,7 +1472,7 @@
                                             <div class="col-md-12">
                                                 <input type="text" class="form-control" id="text"
                                                        name="teacher_subject_area[]"
-                                                       v-model="data.school_textbooks.teacher_subject_area[1]">
+                                                       v-model="data.textbooks.teacher_subject_area[1]">
                                             </div>
                                         </div>
                                     </div>
@@ -1528,7 +1482,7 @@
                                             </label>
                                             <div class="col-md-12">
                                                 <input type="text" class="form-control" name="teacher_class_level[]"
-                                                       v-model="data.school_textbooks.teacher_class_level[1]">
+                                                       v-model="data.textbooks.teacher_class_level[1]">
                                             </div>
                                         </div>
                                     </div>
@@ -1539,7 +1493,7 @@
                                             <div class="col-md-12">
                                                 <input type="number" class="form-control"
                                                        name="teacher_quantity_supplied[]"
-                                                       v-model="data.school_textbooks.teacher_quantity_supplied[1]">
+                                                       v-model="data.textbooks.teacher_quantity_supplied[1]">
                                             </div>
                                         </div>
                                     </div>
@@ -1699,101 +1653,97 @@
                 <tab-content title="School Based Mangement Committe" icon="fafa-check">
                     <div class="row">
                         <div class="col-lg-12">
-                            <b-card header="Responsive Table" header-tag="h4" class="bg-primary-card">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-striped">
-                                        <thead>
-                                        <tr>
-                                            <th>FACILITY TYPE</th>
-                                            <th>USABLE</th>
-                                            <th>NON USABLE</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td>Toilets</td>
-                                            <td>Durgan-Sauer23@yahoo.com</td>
-                                            <td>032-563-1943</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Computer</td>
-                                            <td>HickleLLC.Cremin62@hotmail.com</td>
-                                            <td>158-351-5915</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Water Source</td>
-                                            <td>Padberg-Cronin.Kunde10@hotmail.com</td>
-                                            <td>265-460-4774</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Labouratory</td>
-                                            <td>Lakin-Cronin_Batz61@hotmail.com</td>
-                                            <td>443-924-7214</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Classrooms</td>
-                                            <td>Bednar-Padberg22@yahoo.com</td>
-                                            <td>700-808-9992</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Library</td>
-                                            <td>Gibson-DuBuque_Buckridge@yahoo.com</td>
-                                            <td>372-126-7393</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Play Ground</td>
-                                            <td>SchroederInc_Grimes98@gmail.com</td>
-                                            <td>379-212-1752</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Wash Hand Basin</td>
-                                            <td>Durgan-Sauer23@yahoo.com</td>
-                                            <td>032-563-1943</td>
-                                        </tr>
-                                        <tr>
-                                            <td>White Board</td>
-                                            <td>HickleLLC.Cremin62@hotmail.com</td>
-                                            <td>158-351-5915</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Staff Room</td>
-                                            <td>Padberg-Cronin.Kunde10@hotmail.com</td>
-                                            <td>265-460-4774</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Bording Hostels</td>
-                                            <td>Lakin-Cronin_Batz61@hotmail.com</td>
-                                            <td>443-924-7214</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Offices</td>
-                                            <td>Bednar-Padberg22@yahoo.com</td>
-                                            <td>700-808-9992</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Kitchens</td>
-                                            <td>Gibson-DuBuque_Buckridge@yahoo.com</td>
-                                            <td>372-126-7393</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Dining Room</td>
-                                            <td>SchroederInc_Grimes98@gmail.com</td>
-                                            <td>379-212-1752</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Bathrooms</td>
-                                            <td>Durgan-Sauer23@yahoo.com</td>
-                                            <td>032-563-1943</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Play Rooms</td>
-                                            <td>HickleLLC.Cremin62@hotmail.com</td>
-                                            <td>158-351-5915</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </b-card>
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th>FACILITY TYPE</th>
+                                    <th><input type="number" class="form-control" placeholder=""></th>
+                                    <th><input type="number" class="form-control" placeholder=""></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Toilets</td>
+                                    <th><input type="number" class="form-control" placeholder=""></th>
+                                    <th><input type="number" class="form-control" placeholder=""></th>
+                                </tr>
+                                <tr>
+                                    <td>Computer</td>
+                                    <th><input type="number" class="form-control" placeholder=""></th>
+                                    <th><input type="number" class="form-control" placeholder=""></th>
+                                </tr>
+                                <tr>
+                                    <td>Water Source</td>
+                                    <th><input type="number" class="form-control" placeholder=""></th>
+                                    <th><input type="number" class="form-control" placeholder=""></th>
+                                </tr>
+                                <tr>
+                                    <td>Labouratory</td>
+                                    <th><input type="number" class="form-control" placeholder=""></th>
+                                    <th><input type="number" class="form-control" placeholder=""></th>
+                                </tr>
+                                <tr>
+                                    <td>classroomss</td>
+                                    <th><input type="number" class="form-control" placeholder=""></th>
+                                    <th><input type="number" class="form-control" placeholder=""></th>
+                                </tr>
+                                <tr>
+                                    <td>Library</td>
+                                    <th><input type="number" class="form-control" placeholder=""></th>
+                                    <th><input type="number" class="form-control" placeholder=""></th>
+                                </tr>
+                                <tr>
+                                    <td>Play Ground</td>
+                                    <th><input type="number" class="form-control" placeholder=""></th>
+                                    <th><input type="number" class="form-control" placeholder=""></th>
+                                </tr>
+                                <tr>
+                                    <td>Wash Hand Basin</td>
+                                    <th><input type="number" class="form-control" placeholder=""></th>
+                                    <th><input type="number" class="form-control" placeholder=""></th>
+                                </tr>
+                                <tr>
+                                    <td>White Board</td>
+                                    <th><input type="number" class="form-control" placeholder=""></th>
+                                    <th><input type="number" class="form-control" placeholder=""></th>
+                                </tr>
+                                <tr>
+                                    <td>Staff Room</td>
+                                    <th><input type="number" class="form-control" placeholder=""></th>
+                                    <th><input type="number" class="form-control" placeholder=""></th>
+                                </tr>
+                                <tr>
+                                    <td>Bording Hostels</td>
+                                    <th><input type="number" class="form-control" placeholder=""></th>
+                                    <th><input type="number" class="form-control" placeholder=""></th>
+                                </tr>
+                                <tr>
+                                    <td>Offices</td>
+                                    <th><input type="number" class="form-control" placeholder=""></th>
+                                    <th><input type="number" class="form-control" placeholder=""></th>
+                                </tr>
+                                <tr>
+                                    <td>Kitchens</td>
+                                    <th><input type="number" class="form-control" placeholder=""></th>
+                                    <th><input type="number" class="form-control" placeholder=""></th>
+                                </tr>
+                                <tr>
+                                    <td>Dining Room</td>
+                                    <th><input type="number" class="form-control" placeholder=""></th>
+                                    <th><input type="number" class="form-control" placeholder=""></th>
+                                </tr>
+                                <tr>
+                                    <td>Bathrooms</td>
+                                    <th><input type="number" class="form-control" placeholder=""></th>
+                                    <th><input type="number" class="form-control" placeholder=""></th>
+                                </tr>
+                                <tr>
+                                    <td>Play Rooms</td>
+                                    <th><input type="number" class="form-control" placeholder=""></th>
+                                    <th><input type="number" class="form-control" placeholder=""></th>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
 
@@ -1823,38 +1773,38 @@
                     headers: {"My-Awesome-Header": "header value"}
                 },
                 data: {
-                    basic_info: {
+                    lga_ward_id: 1,
+                    data: {
                         school_name: 'Saint Mathew Nur and pry school',
-                        year_estblished: '2008',
-                        school_distance: '1',
+                        estblished: '2008',
+                        average_distance: '1',
                         lga: 'Ado',
                         ward: '2',
                         village_town: 'Ado',
-                        school_location: '',
+                        school_location: 1,
                         school_email_address: '',
-                        school_phone: '',
-                        school_website: '',
-                        school_long: '0.0000',
-                        school_lat: '0.0000',
-                        school_category_id: '1',
-                        name_of_proprietor: '',
+                        school_phone: '080',
+                        school_website: 'www.sbemis.com',
+                        school_geolocation: '9.182 / -39.140625',
+                        school_category_id: 1,
+                        name_of_proprietor: 'SBMC',
                         private_membership_status: '1',
-                        private_membership_name: '',
-                        school_type_id: '1',
+                        private_membership_name: 'Ado',
+                        school_type_id: 2,
                         school_ownership: '1',
-                        education_levels: '1',
-                        multigrade: '1',
-                        shift: '1',
-                        management_committee: '1',
-                        pta: '1',
-                        development_plan: '1',
-                        grants: '1',
-                        date_last_inspection: '',
-                        num_of_inspection: '',
-                        inspection_auth: '',
-                        school_address: '',
+                        education_levels: "PRY",
+                        multigrade: 0,
+                        shifts: '1',
+                        management_committee: 1,
+                        pta_pf: 0,
+                        development_plan: 1,
+                        school_grants: '1',
+                        // date_last_inspection: '1',
+                        // num_of_inspection: '1',
+                        // inspection_auth: '1',
+                        school_address: 'ado',
                     },
-                    facilities_info: {
+                    facilities: {
                         boarding: '1',
                         school_library: '1',
                         security_guard: '1',
@@ -1871,39 +1821,26 @@
                         facilities_sharing: '1',
                         facilities_shared: '1',
                     },
-                    classroom_details: {
-                        classroom_year_constructed: '1',
-                        classroom_length: '1',
-                        classroom_width: '10',
+                    classrooms: {
+                        classrooms_year_constructed: '1',
+                        classrooms_length: '1',
+                        classrooms_width: '10',
                         number_of_room: '12',
-                        classroom_condition: '',
+                        classrooms_condition: '',
                         floor_material: '2',
                         wall_material: '',
                         roof_material: '',
                         seatings: '',
                         blackboard: '',
-                        classroom_level: ['', ''],
-                        seater1: ['', ''],
-                        seater2: ['', ''],
-                        seater3: ['', ''],
+                        seater: [{type:"", class:'', quantity:''}],
                     },
-                    school_textbooks: {
-                        pupil_subject_area: ['', ''],
-                        pupil_class_level: ['', ''],
-                        pupil_quantity_supplied: ['', ''],
-                        teacher_subject_area: ['', ''],
-                        teacher_class_level: ['', ''],
-                        teacher_quantity_supplied: ['', ''],
+                    textbooks: {
+                        pupil: [{subject: '', level: '', quantity: ''}],
+                        teacher: [{subject: '', level: '', quantity: ''}],
                     },
                     sbmc: {
-                        member_name: ['', ''],
-                        member_position: ['', ''],
-                        member_phone_number: ['', ''],
-                        member_email: ['', ''],
-                        project_brief: ['', ''],
-                        project_cost: ['', ''],
-                        source_of_funding: ['', ''],
-                        project_year: ['', ''],
+                        members: [{name: '', position: '', phone_number: '', email: ''}],
+                        project: [{brief: '', cost: '', funding: '', year: ''}]
                     },
                     facilities_details: {}
 
@@ -1931,6 +1868,12 @@
 
                 })
                 // alert('Yay. Done!');
+            },
+            addMore(elementGroup){
+                switch(elementGroup){
+                    case 'seater':
+                        this.data.classrooms.seater.push({type:"", class:'', quantity:''});
+                }
             }
         },
         mounted: function () {
