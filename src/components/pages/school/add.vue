@@ -1281,7 +1281,7 @@
                             </div>
                         </div>
                         <div>
-                            <a class="btn btn-outline-primary" @click="addMore('seater')">+ ADD MORE</a>
+                            <a class="btn btn-outline-primary pull-right" @click="addMore('seater')">+ ADD MORE</a>
                             <div>
                                 ADDITIONAL CLASS INFORMATION
                             </div>
@@ -1297,21 +1297,21 @@
                                         <div class="form-group p-10">
                                             <label class="control-label col-md-12" for="text">Class Level
                                             </label>
-                                                <select class="form-control" v-model="data.classrooms.seater[index].class">
-                                                    <option value="">Select Class</option>
-                                                    <option value="1">Pry 1</option>
-                                                    <option value="2">Pry 2</option>
-                                                    <option value="3">Pry 3</option>
-                                                    <option value="4">Pry 4</option>
-                                                    <option value="5">Pry 5</option>
-                                                    <option value="6">Pry 6</option>
-                                                </select>
+                                            <select class="form-control" v-model="data.classrooms.seater[index].class">
+                                                <option value="">Select Class</option>
+                                                <option value="1">Pry 1</option>
+                                                <option value="2">Pry 2</option>
+                                                <option value="3">Pry 3</option>
+                                                <option value="4">Pry 4</option>
+                                                <option value="5">Pry 5</option>
+                                                <option value="6">Pry 6</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group p-10">
-                                             <label class="control-label" for="text">Seater</label>
-                                             <select v-model="data.classrooms.seater[index].type" class="form-control">
+                                            <label class="control-label" for="text">Seater</label>
+                                            <select v-model="data.classrooms.seater[index].type" class="form-control">
                                                 <option value="">Select Seater</option>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
@@ -1323,8 +1323,8 @@
                                         <div class="form-group p-10">
                                             <label class="control-label" for="text">Quatity
                                             </label>
-                                                <input type="number" min="0" class="form-control" name="quantity"
-                                                       v-model="data.classrooms.seater[index].quantity">
+                                            <input type="number" min="0" class="form-control" name="quantity"
+                                                   v-model="data.classrooms.seater[index].quantity">
 
                                         </div>
                                     </div>
@@ -1336,6 +1336,7 @@
                 <tab-content title="School Textbooks" icon="fafa-check">
                     <form method="" class="form-horizontal">
                         <div>
+                             <a class="btn btn-outline-primary pull-right" @click="addMore('pupil')">+ ADD MORE</a>
                             <div>
                                 PUPILS TEXTBOOKS SUPPLIED
                             </div>
@@ -1345,15 +1346,15 @@
                             </div>
                         </div>
                         <div class="row odd-row">
-                            <div class="col-sx-12 col-md-6">
+                            <div class="col-sx-12 col-md-6" v-for="(pupil, index) in data.textbooks.pupil">
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-6 col-md-6">
                                         <div class="form-group p-10">
                                             <label class="control-label col-md-12" for="text">Subject Area
                                             </label>
                                             <div class="col-md-12">
-                                                <input type="text" class="form-control" name="pupil_subject_area[]"
-                                                       v-model="data.textbooks.pupil_subject_area[0]">
+                                                <input type="text" class="form-control" name="pupil_subject_area"
+                                                       v-model="data.textbooks.pupil[index].subject">
                                             </div>
                                         </div>
                                     </div>
@@ -1362,11 +1363,12 @@
                                             <label class="control-label" for="text">Class Level
                                             </label>
                                             <div class="col-md-12">
-                                                <input type="text" class="form-control" name="pupil_class_level[]"
-                                                       v-model="data.textbooks.pupil_class_level[0]">
+                                                <input type="text" class="form-control" name="pupil_class_level"
+                                                       v-model="data.textbooks.pupil[index].level">
                                             </div>
                                         </div>
                                     </div>
+                                    ~
                                     <div class="col-xs-12 col-sm-6 col-md-3">
                                         <div class="form-group p-10">
                                             <label class="control-label" for="text">Quantity Supplied
@@ -1374,43 +1376,7 @@
                                             <div class="col-md-12">
                                                 <input type="number" class="form-control"
                                                        name="pupil_quantity_supplied[]"
-                                                       v-model="data.textbooks.pupil_quantity_supplied[0]">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sx-12 col-md-6">
-                                <div class="row">
-                                    <div class="col-xs-12 col-sm-6 col-md-6">
-                                        <div class="form-group p-10">
-                                            <label class="control-label col-md-12" for="text">Subject Area
-                                            </label>
-                                            <div class="col-md-12">
-                                                <input type="text" class="form-control" id="text"
-                                                       name="pupil_subject_area[]"
-                                                       v-model="data.textbooks.pupil_subject_area[1]">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-6 col-md-3">
-                                        <div class="form-group p-10">
-                                            <label class="control-label">Class Level
-                                            </label>
-                                            <div class="col-md-12">
-                                                <input type="text" class="form-control" name="pupil_class_level[]"
-                                                       v-model="data.textbooks.pupil_class_level[1]">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-6 col-md-3">
-                                        <div class="form-group p-10">
-                                            <label class="control-label">Quantity Supplied
-                                            </label>
-                                            <div class="col-md-12">
-                                                <input type="number" class="form-control"
-                                                       name="pupil_quantity_supplied[]"
-                                                       v-model="data.textbooks.pupil_quantity_supplied[1]">
+                                                       v-model="data.textbooks.pupil[index].quantity">
                                             </div>
                                         </div>
                                     </div>
@@ -1418,6 +1384,7 @@
                             </div>
                         </div>
                         <div>
+                             <a class="btn btn-outline-primary pull-right" @click="addMore('teacher')">+ ADD MORE</a>
                             <div>
                                 TEACHERS' TEXTBOOKS SUPPLIED
                             </div>
@@ -1427,7 +1394,7 @@
                             </div>
                         </div>
                         <div class="row even-row">
-                            <div class="col-sx-12 col-md-6">
+                            <div class="col-sx-12 col-md-6" v-for="(teacher, index) in data.textbooks.teacher">
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-6 col-md-6">
                                         <div class="form-group p-10">
@@ -1435,8 +1402,8 @@
                                             </label>
                                             <div class="col-md-12">
                                                 <input type="text" class="form-control" id="text"
-                                                       name="teacher_subject_area[]"
-                                                       v-model="data.textbooks.teacher_subject_area[0]">
+                                                       name="teacher_subject_area"
+                                                       v-model="data.textbooks.teacher[index].subject">
                                             </div>
                                         </div>
                                     </div>
@@ -1445,8 +1412,8 @@
                                             <label class="control-label" for="text">Class Level
                                             </label>
                                             <div class="col-md-12">
-                                                <input type="text" class="form-control" name="teacher_class_level[]"
-                                                       v-model="data.textbooks.teacher_class_level[0]">
+                                                <input type="text" class="form-control" name="teacher_class_level"
+                                                       v-model="data.textbooks.teacher[index].level">
                                             </div>
                                         </div>
                                     </div>
@@ -1456,44 +1423,8 @@
                                             </label>
                                             <div class="col-md-12">
                                                 <input type="number" class="form-control"
-                                                       name="teacher_quantity_supplied[]"
-                                                       v-model="data.textbooks.teacher_quantity_supplied[0]">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sx-12 col-md-6">
-                                <div class="row">
-                                    <div class="col-xs-12 col-sm-6 col-md-6">
-                                        <div class="form-group p-10">
-                                            <label class="control-label col-md-12" for="text">Subject Area
-                                            </label>
-                                            <div class="col-md-12">
-                                                <input type="text" class="form-control" id="text"
-                                                       name="teacher_subject_area[]"
-                                                       v-model="data.textbooks.teacher_subject_area[1]">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-6 col-md-3">
-                                        <div class="form-group p-10">
-                                            <label class="control-label" for="text">Class Level
-                                            </label>
-                                            <div class="col-md-12">
-                                                <input type="text" class="form-control" name="teacher_class_level[]"
-                                                       v-model="data.textbooks.teacher_class_level[1]">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-6 col-md-3">
-                                        <div class="form-group p-10">
-                                            <label class="control-label" for="text">Quantity Supplied
-                                            </label>
-                                            <div class="col-md-12">
-                                                <input type="number" class="form-control"
-                                                       name="teacher_quantity_supplied[]"
-                                                       v-model="data.textbooks.teacher_quantity_supplied[1]">
+                                                       name="teacher_quantity_supplied"
+                                                       v-model="data.textbooks.teacher[index].quantity">
                                             </div>
                                         </div>
                                     </div>
@@ -1505,6 +1436,7 @@
                 <tab-content title="School Facilities Details" icon="fafa-check">
                     <form method="" class="form-horizontal">
                         <div>
+                             <a class="btn btn-outline-primary pull-right" @click="addMore('members')">+ ADD MORE</a>
                             <div>
                                 MEMBERSHIP DETAILS
                             </div>
@@ -1512,14 +1444,14 @@
                                 Provide the following details about the membership details of the SBMC of this school.
                             </div>
                         </div>
-                        <div class="row odd-row">
+                        <div class="row odd-row" v-for="(members, index) in data.sbmc.members">
                             <div class="col-xs-12 col-sm-6 col-md-4">
                                 <div class="form-group p-10">
                                     <label class="control-label col-md-12" for="text">Name
                                     </label>
                                     <div class="col-md-12">
-                                        <input type="text" class="form-control" name="member_name[]"
-                                               v-model="data.sbmc.member_name[0]" placeholder="membership Name">
+                                        <input type="text" class="form-control" name="member_name"
+                                               v-model="data.sbmc.members[index].name" placeholder="membership Name">
                                     </div>
                                 </div>
                             </div>
@@ -1529,7 +1461,7 @@
                                     </label>
                                     <div class="col-md-12">
                                         <input type="text" class="form-control" name="member_position[]"
-                                               v-model="data.sbmc.member_position[0]" placeholder="School Name">
+                                               v-model="data.sbmc.members[index].position" placeholder="School Name">
                                     </div>
                                 </div>
                             </div>
@@ -1539,7 +1471,8 @@
                                     </label>
                                     <div class="col-md-12">
                                         <input type="text" class="form-control" name="member_phone_number[]"
-                                               v-model="data.sbmc.member_phone_number[0]" placeholder="School Name">
+                                               v-model="data.sbmc.members[index].phone_number"
+                                               placeholder="School Name">
                                     </div>
                                 </div>
                             </div>
@@ -1548,55 +1481,14 @@
                                     <label class="control-label" for="text">Email
                                     </label>
                                     <div class="col-md-12">
-                                        <input type="email" class="form-control" name="member_email[]"
-                                               v-model="data.sbmc.member_email[0]" placeholder="School Name">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row even-row">
-                            <div class="col-xs-12 col-sm-6 col-md-4">
-                                <div class="form-group p-10">
-                                    <label class="control-label col-md-12" for="text">Name
-                                    </label>
-                                    <div class="col-md-12">
-                                        <input type="text" class="form-control" name="member_name[]"
-                                               v-model="data.sbmc.member_name[1]" placeholder="">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-2">
-                                <div class="form-group p-10">
-                                    <label class="control-label" for="text">Position
-                                    </label>
-                                    <div class="col-md-12">
-                                        <input type="text" class="form-control" name="member_name[]"
-                                               v-model="data.sbmc.member_name[1]" placeholder="">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-2">
-                                <div class="form-group p-10">
-                                    <label class="control-label" for="text">Phone Number
-                                    </label>
-                                    <div class="col-md-12">
-                                        <input type="text" class="form-control" name="member_phone_number[]"
-                                               v-model="data.sbmc.member_phone_number[1]" placeholder="">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-4">
-                                <div class="form-group p-10">
-                                    <label class="control-label" for="text">Email
-                                    </label>
-                                    <div class="col-md-12">
-                                        <input type="email" class="form-control" name="member_email[]"
-                                               v-model="data.sbmc.member_email[1]" placeholder="">
+                                        <input type="email" class="form-control" name="member_email"
+                                               v-model="data.sbmc.members[index].email" placeholder="School Name">
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div>
+                             <a class="btn btn-outline-primary pull-right" @click="addMore('seater')">+ ADD MORE</a>
                             <div>
                                 PROJECTS DETAILS
                             </div>
@@ -1604,14 +1496,14 @@
                                 Indicate projects overseen by the SBMC of this school, whether ongoing or completed.
                             </div>
                         </div>
-                        <div class="row odd-row">
+                        <div class="row odd-row" v-for="(project, index) in data.sbmc.project">
                             <div class="col-xs-12 col-sm-6 col-md-6">
                                 <div class="form-group p-10">
                                     <label class="control-label col-md-12" for="text">Project Brief
                                     </label>
                                     <div class="col-md-12">
-                                        <input type="text" class="form-control" name="project_brief[]"
-                                               v-model="data.sbmc.project_brief[0]" placeholder="">
+                                        <input type="text" class="form-control" name="project_brief"
+                                               v-model="data.sbmc.project[index].brief" placeholder="">
                                     </div>
                                 </div>
                             </div>
@@ -1621,7 +1513,7 @@
                                     </label>
                                     <div class="col-md-12">
                                         <input type="text" class="form-control" name="project_cost[]"
-                                               v-model="data.sbmc.project_cost[0]" placeholder="">
+                                               v-model="data.sbmc.project[index].cost" placeholder="">
                                     </div>
                                 </div>
                             </div>
@@ -1631,7 +1523,7 @@
                                     </label>
                                     <div class="col-md-12">
                                         <input type="text" class="form-control" name="source_of_funding[]"
-                                               v-model="data.sbmc.source_of_funding[0]" placeholder="">
+                                               v-model="data.sbmc.project[index].funding" placeholder="">
                                     </div>
                                 </div>
                             </div>
@@ -1641,7 +1533,7 @@
                                     </label>
                                     <div class="col-md-12">
                                         <input type="text" class="form-control" name="project_year[]"
-                                               v-model="data.sbmc.project_year[0]" placeholder="">
+                                               v-model="data.sbmc.project[index].year" placeholder="">
                                     </div>
                                 </div>
                             </div>
@@ -1832,7 +1724,7 @@
                         roof_material: '',
                         seatings: '',
                         blackboard: '',
-                        seater: [{type:"", class:'', quantity:''}],
+                        seater: [{type: "", class: '', quantity: ''}],
                     },
                     textbooks: {
                         pupil: [{subject: '', level: '', quantity: ''}],
@@ -1869,10 +1761,10 @@
                 })
                 // alert('Yay. Done!');
             },
-            addMore(elementGroup){
-                switch(elementGroup){
+            addMore(elementGroup) {
+                switch (elementGroup) {
                     case 'seater':
-                        this.data.classrooms.seater.push({type:"", class:'', quantity:''});
+                        this.data.classrooms.seater.push({type: "", class: '', quantity: ''});
                 }
             }
         },

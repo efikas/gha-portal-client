@@ -56,7 +56,7 @@ const layout = [{
                 name: 'update-school-info',
                 component: resolve => require(['pages/school/update'], resolve),
                 meta: {
-                    title: "Import School Record",
+                    title: "Update School Record",
                     guard: true
                 }
             },

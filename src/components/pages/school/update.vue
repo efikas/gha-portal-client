@@ -25,8 +25,9 @@
                 currentView: '',
             }
         },
-        watch: {
-            '$route': function () {
+        mounted() {
+            // ]'$route.params.component']: function () {
+            //     console.log(this.$route.params.component);
                 switch (this.$route.params.component) {
                     case 'basic':
                         this.currentView = 'basic';
@@ -49,7 +50,7 @@
                     default:
                         break;
                 }
-            }
+            // }
         }
     }
 </script>
