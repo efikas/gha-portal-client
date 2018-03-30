@@ -12,10 +12,11 @@ function addDays(noOfDays) {
 //=======vuex store start===========
 const store = new Vuex.Store({
     state: {
-        left_open: true,
+        left_open: false,
         preloader: true,
-        site_name: "Vuejs-Admin",
+        site_name: "SBEMIS",
         page_title: null,
+        isLoggedIn: !!localStorage.getItem('token'),
         user: {
             name: "Ayesha",
             picture: require("img/authors/prf4.jpg"),
