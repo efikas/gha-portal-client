@@ -2,6 +2,9 @@ import 'es6-promise/auto'
 import Vue from 'vue'
 import Vuex from 'vuex'
 import mutations from './mutations'
+import actions from  './actions'
+import getters from  './getters'
+
 
 Vue.use(Vuex)
 
@@ -12,16 +15,14 @@ function addDays(noOfDays) {
 //=======vuex store start===========
 const store = new Vuex.Store({
     state: {
+        count: 0,
         left_open: false,
         preloader: true,
         site_name: "SBEMIS",
         page_title: null,
-        isLoggedIn: !!localStorage.getItem('token'),
-        user: {
-            name: "Ayesha",
-            picture: require("img/authors/prf4.jpg"),
-            job: "Project Manager"
-        },
+        pending: false,
+        isLoggedIn: !!Vue.auth.getToken(),
+        user: JSON.parse(localStorage.getItem('user')),
         cal_events: [{
             id: 0,
             title: 'Office',
@@ -39,7 +40,9 @@ const store = new Vuex.Store({
         google_analytics_key: null
 
     },
-    mutations
+    mutations,
+    actions,
+    getters
 })
 //=======vuex store end===========
 export default store
