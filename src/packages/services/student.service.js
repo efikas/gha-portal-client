@@ -32,4 +32,16 @@ export default {
             })
         })
     },
+
+    //POSTS
+    addStudent(schoolId, StudentInfo){
+        return new Promise((resolve, reject) => {
+            axios.post('schools', JSON.stringify({schoolId, StudentInfo}))
+                .then(response => {
+                    resolve(response.data)
+                }).catch((error) => {
+                reject(error.response);
+            })
+        })
+    }
 }

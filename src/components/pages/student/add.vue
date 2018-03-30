@@ -629,6 +629,7 @@ Vue.use(VueFormWizard)
 export default {
     data() {
         return {
+            schoolId: '',
             data: {
                 basic_info: {
                     school_name: '',
@@ -640,7 +641,7 @@ export default {
                     place_of_birth: '',
                     phone_number: '',
                     email: '',
-                    speial_challenge: '',
+                    special_challenge: '',
                     height: '',
                     width: '',
                     blood_group: '',
@@ -687,7 +688,9 @@ export default {
     },
     methods: {
        onComplete: function(){
-            alert('Yay. Don');
+            this.$student.addStudent(1,this.data).then(response => {
+
+            })
         } 
     },
     mounted: function() {

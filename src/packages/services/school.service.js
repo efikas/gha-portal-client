@@ -37,7 +37,7 @@ export default {
     //POSTS
     addSchool(schoolInfo){
         return new Promise((resolve, reject) => {
-            axios.post('schools', JSON.stringify(schoolInfo))
+            axios.post('schools', schoolInfo)
                 .then(response => {
                     resolve(response.data)
                 }).catch((error) => {

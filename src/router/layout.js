@@ -51,6 +51,15 @@ const layout = [{
                     guard: true
                 }
             },
+            {
+                path: ':id/update/:component',
+                name: 'update-school-info',
+                component: resolve => require(['pages/school/update'], resolve),
+                meta: {
+                    title: "Update School Record",
+                    guard: true
+                }
+            },
             { //todo: fix routes that overrides
                 name: "school-profile",
                 path: ':id',
@@ -59,7 +68,9 @@ const layout = [{
                     title: "School Profile",
                     guard: true
                 }
-            }
+            },
+
+
         ]
     },
 
