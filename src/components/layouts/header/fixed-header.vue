@@ -161,7 +161,7 @@
                             </router-link>
                         </b-dropdown-item>
                         <b-dropdown-item exact class="dropdown_content">
-                            <a href="javascript:void(0)" @click="logout()" class="drpodowtext">
+                            <a href="javascript:void(0)" @click="$store.dispatch('logout')" class="drpodowtext">
                                 <i class="fa fa-sign-out"></i> Logout
                             </a>
                         </b-dropdown-item>
@@ -190,15 +190,13 @@
                     screenfull.toggle();
                 }
             },
-            logout() {
-                this.$auth.logout()
-                // this.$router.push('login')
-                window.location.href = "/login"
-            },
+
             setAuthenticatedUser() {
                 this.$auth.getUser()
                     .then(response => {
-                        this.$auth.setAuthenticatedUser(response.data)
+                        let data = response.data
+                        data.picture = require("img/authors/prf4.jpg")
+                        this.$store.dispatch('setUser', data)
                         console.log(response.data)
                     })
             }

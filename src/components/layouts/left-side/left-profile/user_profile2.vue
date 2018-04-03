@@ -16,7 +16,7 @@
                         </div>
                         <div class="col-md-3"><a href="#/" title="E-mail"><i class="fa fa-envelope-o"></i></a></div>
                         <div class="col-md-3 logout_padd">
-                            <a href="javascript:void(0)" @click="logout()">
+                            <a href="javascript:void(0)" @click="$store.dispatch('logout')">
                                 <i class="fa fa-sign-out"></i>
                             </a></div>
                     </div>
@@ -28,11 +28,6 @@
 <script>
     export default {
         methods: {
-            logout() {
-                this.$auth.logout()
-                // this.$router.push('login')
-                window.location.href = "/login?redirect=" + to.fullPath
-            }
         }
     }
 </script>

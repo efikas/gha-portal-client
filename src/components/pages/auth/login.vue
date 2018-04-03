@@ -119,9 +119,20 @@
                         username: this.model.email,
                         password: this.model.password
                     }
+
+                    // let user = {
+                    //     name: "Fashola Ayodeji",
+                    //     picture: require("img/authors/prf4.jpg"),
+                    //     job: "Project Manager"
+                    // }
+                    //
+                    // this.$store.dispatch('setUser', user).then(() => {
+                    //     window.alert('done')
+                    //     console.log(this.$store.getters.user)
+                    // })
+
                     this.$auth.login(credentials)
                         .then((data) => {
-                            console.log(this.$route.query)
                             var redirect = this.$route.query.redirect || "/"
                             console.log(redirect)
                             this.$router.push(redirect);
