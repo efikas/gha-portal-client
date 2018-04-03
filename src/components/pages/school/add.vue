@@ -998,105 +998,90 @@
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-6">
                                 <div class="form-group p-10">
-                                    <label class="control-label" for="text">Facilities Shared
+                                    <label class="control-label" for="text">Facilities Shared  {{ data.facilities.facilities_shared }}
                                     </label>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="checkbox">
-                                                <b-form-checkbox name="facilities_shared"
+                                                <b-form-checkbox  :id="toilet" :value="1"
                                                                  v-model="data.facilities.facilities_shared">
                                                     Toilet
                                                 </b-form-checkbox>
                                             </div>
                                             <div class="checkbox">
-                                                <b-form-checkbox name="facilities_shared"
-                                                                 v-model="data.facilities.facilities_shared">
+                                                <b-form-checkbox :id="water_source" :value="2" v-model="data.facilities.facilities_shared">
                                                     Water Source
                                                 </b-form-checkbox>
                                             </div>
                                             <div class="checkbox">
-                                                <b-form-checkbox name="facilities_shared"
-                                                                 v-model="data.facilities.facilities_shared">
+                                                <b-form-checkbox :id="classrooms" :value="3" v-model="data.facilities.facilities_shared">
                                                     classroomss
                                                 </b-form-checkbox>
                                             </div>
                                             <div class="checkbox">
-                                                <b-form-checkbox name="facilities_shared"
-                                                                 v-model="data.facilities.facilities_shared">
+                                                <b-form-checkbox :id="play_ground" :value="4" v-model="data.facilities.facilities_shared">
                                                     Play Ground
                                                 </b-form-checkbox>
                                             </div>
                                             <div class="checkbox">
-                                                <b-form-checkbox name="facilities_shared"
-                                                                 v-model="data.facilities.facilities_shared">
+                                                <b-form-checkbox :id="whiteboards" :value="5" v-model="data.facilities.facilities_shared">
                                                     WhiteBoards
                                                 </b-form-checkbox>
                                             </div>
                                             <div class="checkbox">
-                                                <b-form-checkbox name="facilities_shared"
-                                                                 v-model="data.facilities.facilities_shared">
+                                                <b-form-checkbox :id="boarding_hostels" :value="6"  v-model="data.facilities.facilities_shared">
                                                     Boarding Hostels
                                                 </b-form-checkbox>
                                             </div>
                                             <div class="checkbox">
-                                                <b-form-checkbox name="facilities_shared"
-                                                                 v-model="data.facilities.facilities_shared">
+                                                <b-form-checkbox :id="kitchen" :value="7" v-model="data.facilities.facilities_shared">
                                                     Kitchen
                                                 </b-form-checkbox>
                                             </div>
                                             <div class="checkbox">
-                                                <b-form-checkbox cname="facilities_shared"
-                                                                 v-model="data.facilities.facilities_shared">
+                                                <b-form-checkbox :id="bathrooms" :value="8"  v-model="data.facilities.facilities_shared">
                                                     Bathroooms
                                                 </b-form-checkbox>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="checkbox">
-                                                <b-form-checkbox name="facilities_shared"
-                                                                 v-model="data.facilities.facilities_shared">
+                                                <b-form-checkbox :id="computer" :value="9" v-model="data.facilities.facilities_shared">
                                                     Computer
                                                 </b-form-checkbox>
                                             </div>
                                             <div class="checkbox">
-                                                <b-form-checkbox name="facilities_shared"
-                                                                 v-model="data.facilities.facilities_shared">
+                                                <b-form-checkbox :id="labouratory" :value="10" v-model="data.facilities.facilities_shared">
                                                     Laboratory
                                                 </b-form-checkbox>
                                             </div>
                                             <div class="checkbox">
-                                                <b-form-checkbox name="facilities_shared"
-                                                                 v-model="data.facilities.facilities_shared">
+                                                <b-form-checkbox :id="library" :value="11" v-model="data.facilities.facilities_shared">
                                                     Library
                                                 </b-form-checkbox>
                                             </div>
                                             <div class="checkbox">
-                                                <b-form-checkbox name="facilities_shared"
-                                                                 v-model="data.facilities.facilities_shared">
+                                                <b-form-checkbox :id="wash_hand_basin" :value="12" v-model="data.facilities.facilities_shared">
                                                     Wash Hand Basin
                                                 </b-form-checkbox>
                                             </div>
                                             <div class="checkbox">
-                                                <b-form-checkbox name="facilities_shared"
-                                                                 v-model="data.facilities.facilities_shared">
+                                                <b-form-checkbox :id="staff_room" :value="13" v-model="data.facilities.facilities_shared">
                                                     Staff Room
                                                 </b-form-checkbox>
                                             </div>
                                             <div class="checkbox">
-                                                <b-form-checkbox name="facilities_shared"
-                                                                 v-model="data.facilities.facilities_shared">
+                                                <b-form-checkbox :id="offices" :value="14" v-model="data.facilities.facilities_shared">
                                                     Offices
                                                 </b-form-checkbox>
                                             </div>
                                             <div class="checkbox">
-                                                <b-form-checkbox name="facilities_shared"
-                                                                 v-model="data.facilities.facilities_shared">
+                                                <b-form-checkbox :id="dinning_room" :value="15" v-model="data.facilities.facilities_shared">
                                                     Dinning Room
                                                 </b-form-checkbox>
                                             </div>
                                             <div class="checkbox">
-                                                <b-form-checkbox name="facilities_shared"
-                                                                 v-model="data.facilities.facilities_shared">
+                                                <b-form-checkbox :id="play_rooms" :value="16" v-model="data.facilities.facilities_shared">
                                                     Play Rooms
                                                 </b-form-checkbox>
                                             </div>
@@ -1711,7 +1696,7 @@
                         water_supply: '1',
                         toilet_facilities: '1',
                         facilities_sharing: '1',
-                        facilities_shared: '1',
+                        facilities_shared: [],
                     },
                     classrooms: {
                         classrooms_year_constructed: '1',
@@ -1720,7 +1705,7 @@
                         number_of_room: '12',
                         classrooms_condition: '',
                         floor_material: '2',
-                        wall_material: '',
+                        wall_material: 'gh',
                         roof_material: '',
                         seatings: '',
                         blackboard: '',
@@ -1735,8 +1720,14 @@
                         project: [{brief: '', cost: '', funding: '', year: ''}]
                     },
                     facilities_details: {}
-
-                }
+                },
+                users: [
+                    { name: 'Patrick' },
+                    { name: 'Evan' },
+                    { name: 'Christian' },
+                    { name: 'Daniel' }
+                ],
+                selectedSharedFacilities: [],
             }
         },
         components: {
