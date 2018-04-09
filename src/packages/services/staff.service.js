@@ -24,9 +24,9 @@ export default {
     },
 
     //POSTS
-    addStaff(schoolId, StaffInfo){
+    addStaff(staffInfo){
         return new Promise((resolve, reject) => {
-            axios.post('staff', JSON.stringify({schoolId, StaffInfo}))
+            axios.post('staffs', staffInfo)
                 .then(response => {
                     resolve(response.data)
                 }).catch((error) => {

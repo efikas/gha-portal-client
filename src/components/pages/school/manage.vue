@@ -4,9 +4,9 @@
             <b-card header="AJAX Client Table" header-tag="h4" class="bg-info-card">
                 <v-client-table :data="schools" :columns="columns" :options="options">
                     <a slot="id" slot-scope="props">{{ props.index }}</a>
-                    <router-link tag="a" slot="school_name" slot-scope="props" :to="{ name: 'school-profile', params: { id: props.row.id }}">{{ props.row.school_name }}</router-link>
+                    <router-link tag="a" slot="school_name" slot-scope="props" :to="{ name: 'school-profile', params: { id: props.row.id }}" v-html="props.row.school_name"></router-link>
                      <!--<a slot="school_name" slot-scope="props" :href="'/#/school/'+ props.row.id+'/profile'">{{ props.row.school_name }}</a>-->
-                     <router-link tag="a" slot="view" slot-scope="props" class="fa fa-eye icon-big" :to="{ name: 'school-profile', params: { id: props.row.id }}"></router-link>
+                     <router-link tag="a" slot="view" slot-scope="props" class="fa fa-pencil icon-big btn btn-outline-primary" :to="{ name: 'school-profile', params: { id: props.row.id }}"></router-link>
                 </v-client-table>
             </b-card>
         </div>
@@ -38,11 +38,11 @@ export default {
                 },
                 // see the options API
                 // skin: "table-hover table-striped table-bordered",
-                perPage: 30,
+                perPage: 50,
                 // footerHeadings: true,
                 highlightMatches: true,
                 pagination: {
-                    chunk: 8,
+                    chunk: 7,
                     //set dropdown to true to get dropdown instead of pagenation
                     dropdown: false
                 }
@@ -53,6 +53,9 @@ export default {
          this.$school.allSchools().then(data => {
                 this.schools = data.data;
             })
+        this.$school.getSchoolsPerLga().then(data => {
+                console.log(data);
+            })   
     }
 }
 </script>

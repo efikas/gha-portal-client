@@ -4,8 +4,8 @@
             <b-card header="AJAX Client Table" header-tag="h4" class="bg-info-card">
                 <v-client-table :data="schools" :columns="columns">
                      <span slot="id" slot-scope="props">{{ props.index }}</span>
-                     <a slot="school_name" slot-scope="props" :href="'/#/school/'+ props.row.id + '/staff'">{{ props.row.school_name }}</a>
-                     <a slot="view" slot-scope="props" class="fa fa-eye icon-big" :href="'/#/school/'+ props.row.id+'/staff'"></a>
+                     <a slot="school_name" slot-scope="props" :href="'/school/'+ props.row.id + '/staff'" v-html="props.row.school_name"></a>
+                     <a slot="view" slot-scope="props" class="fa fa-pencil icon-big  btn btn-outline-primary" :href="'/school/'+ props.row.id+'/staff'"></a>
                 </v-client-table>
             </b-card>
         </div>
@@ -37,11 +37,11 @@ export default {
                 },
                 // see the options API
                 skin: "table-hover table-striped table-bordered",
-                perPage: 7,
+                perPage: 20,
                 // footerHeadings: true,
                 highlightMatches: true,
                 pagination: {
-                    chunk: 3,
+                    chunk: 7,
                     //set dropdown to true to get dropdown instead of pagenation
                     dropdown: false
                 }

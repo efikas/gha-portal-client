@@ -170,6 +170,14 @@ const layout = [{
                 }
             },
             {
+                path: '/school/:id/students',
+                component: resolve => require(['pages/student/list'], resolve),
+                meta: {
+                    title: "Students List",
+                    guard: true
+                }
+            },
+            {
                 path: 'add',
                 component: resolve => require(['pages/student/add'], resolve),
                 meta: {

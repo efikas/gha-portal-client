@@ -4,8 +4,8 @@
             <b-card header="AJAX Client Table" header-tag="h4" class="bg-info-card">
                 <v-client-table :data="students" :columns="columns" :options="options">
                      <span slot="id" slot-scope="props">{{ props.index }}</span>
-                     <a slot="Name" slot-scope="props" :href="'/#/student/'+ props.row.id + '/profile'">{{ props.row.first_name + ' ' + props.row.last_name + ' ' + props.row.middle_name }}</a>
-                     <a slot="view" slot-scope="props" class="fa fa-eye icon-big" :href="'/#/student/'+ props.row.id + '/profile'"></a>
+                     <a slot="Name" slot-scope="props" :href="'/student/'+ props.row.id" v-html="props.row.first_name + ' ' + props.row.last_name + ' ' + props.row.middle_name"></a>
+                     <a slot="view" slot-scope="props" class="fa fa-eye icon-big" :href="'/student/'+ props.row.id"></a>
                 </v-client-table>
             </b-card>
         </div>

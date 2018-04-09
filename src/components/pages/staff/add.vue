@@ -159,7 +159,7 @@
                                         <label class="control-label" for="text">House Distance from School (in KM)
                                         </label>
                                         <div class="col-md-12">
-                                            <input type="number" class="form-control" id="text" placeholder=""
+                                            <input type="number" min="0" class="form-control" id="text" placeholder=""
                                                    v-model="data.data.distance_from_school">
                                         </div>
                                     </div>
@@ -288,7 +288,7 @@
                                         <label class="control-label col-md-8" for="text">Fist Appointment Year
                                         </label>
                                         <div class="col-md-12">
-                                            <input type="number" class="form-control"
+                                            <input type="number" min="0" class="form-control"
                                                    v-model="data.professional_info.first_appointment">
                                         </div>
                                     </div>
@@ -541,8 +541,8 @@
                         middle_name: 'Oluwaseun',
                         last_name: 'Mathew',
                         sex: 'M',
-                        date_of_birth: '12/2/1987',
-                        pob: 'Ado',
+                        date_of_birth: '1987-2-12',
+                        place_of_birth: 'Ado',
                         phone_number: '08065423821',
                         email: 'mathew@gmail.com',
                         state_of_origin: 'Ekiti state',
@@ -550,7 +550,7 @@
                         home_town: 'Ado',
                         distance_from_school: 1,
                         marital_status: '1',
-                        religion: '1',
+                        religious_status: '1',
                         residential_address: 'Ado Ekiti',
                     },
                     professional_info: {
@@ -568,9 +568,9 @@
                         subject_taught: '',
                         class_taught: '',
                         training_workshop: '',
-                        computer_literate: '',
-                        TRC_registered: '',
-                        TRC_reg_no: '',
+                        computer_literate: '1',
+                        trc_registered: '',
+                        trc_reg_no: '',
                         school_posted_from: '',
                         position: '',
                     }
@@ -594,7 +594,7 @@
                 this.old_file = file;
             },
             onComplete: function () {
-                this.$staff.addStaff(1, this.data).then(response => {
+                this.$staff.addStaff(this.data).then(response => {
 
                 })
             }
