@@ -641,39 +641,13 @@ export default {
                     phone_number: '',
                     email: '',
                     special_challenge: '',
-                    height: '1',
-                    width: '1',
-                    blood_group: '',
+                    height: 1,
+                    width: 1,
+                    blood_group: 'AS',
                     birth_cert_avail: '0',
-                    birth_cert_type: '',
-                    admission_education_level: '1',
-                    current_education_level: '6',
-                    admission_year: '2012',
+                    birth_cert_type: ''
                 },
-                parent_info: {
-                    parent_status: '',
-                    g1title: '',
-                    g1fullname: '',
-                    g1relationship: '',
-                    g1_occupation: '',
-                    g1mobile: '',
-                    g1_phone: '',
-                    g1_email: '',
-                    g1_religious_status: '',
-                    g1_primary_contact: '',
-                    g1_contact_address: '',
-                    g2title: '',
-                    g2_full_name: '',
-                    g2_relationship: '',
-                    g2_occupation: '',
-                    g2_mobile: '',
-                    g2_phone: '',
-                    g2_email: '',
-                    g2_religious_status: '',
-                    g2_primary_contact: '',
-                    g2_contact_address: '',
-                },
-                professional_info: {
+                info: {
                     admission_year: '',
                     admission_status: '',
                     edu_level: '',
@@ -684,7 +658,25 @@ export default {
                     boarding: '',
                     dorm_no: '',
                     distance_from_school: '',
+                },
+                parent: {
+                    parent_status: '',
+                    profile: [{
+                        title: '',
+                        fullname: '',
+                        relationship: '',
+                        occupation: '',
+                        mobile: '',
+                        phone: '',
+                        email: '',
+                        religion: '',
+                        primary_contact: '',
+                        contact_address: ''
+                    }]
+                    
+                    
                 }
+                
             }
         }
     },

@@ -90,7 +90,7 @@
                                 <td> {{ schoolsPerLga.private.secondary }}</td>
                             </tr>
                             <tr>
-                                <td colspan="2"><a href="" class="pull-right">details</a></td>
+                                <td colspan="2"><a :href="'schools/lga/' + (index + 1)" class="pull-right">details</a></td>
                             </tr>
                         </tbody>
                     </table>

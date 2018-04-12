@@ -133,6 +133,7 @@
 
                     this.$auth.login(credentials)
                         .then((data) => {
+                            console.log(data);
                             var redirect = this.$route.query.redirect || "/"
                             console.log(redirect)
                             this.$router.push(redirect);

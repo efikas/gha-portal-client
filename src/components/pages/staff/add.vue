@@ -536,7 +536,6 @@
                 data: {
                     school_id: '1',
                     data: {
-                        // school_name: '',
                         first_name: 'Alabi',
                         middle_name: 'Oluwaseun',
                         last_name: 'Mathew',
@@ -553,7 +552,7 @@
                         religious_status: '1',
                         residential_address: 'Ado Ekiti',
                     },
-                    professional_info: {
+                    info: {
                         staff_type: '',
                         grade_level: '',
                         current_status: '',
@@ -574,6 +573,7 @@
                         school_posted_from: '',
                         position: '',
                     }
+
                 }
             }
         },
