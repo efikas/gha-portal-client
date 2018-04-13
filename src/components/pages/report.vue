@@ -1,93 +1,101 @@
 <template>
     <div>
         <div class="row">
-        <div class="col-lg-12">
-            <div role="tablist">
-                <b-card no-body class="mb-1">
-                    <b-card-header header-tag="header" class="p-1" role="tab">
-                        <b-btn block href="#" v-b-toggle.accordion1 variant="info" class="text-left">
-                            <i class="fa fa-user-o fb_text"></i>
-                            School
-                        </b-btn>
-                    </b-card-header>
-                    <b-collapse id="accordion1" visible accordion="my-accordion" role="tabpanel">
+            <div class="col-lg-12">
+                <div role="tablist">
+                    <b-card no-body class="mb-1">
+                        <b-card-header header-tag="header" class="p-1" role="tab">
+                            <b-btn block href="#" v-b-toggle.accordion1 variant="info" class="text-left">
+                                <i class="fa fa-user-o fb_text"></i>
+                                School
+                            </b-btn>
+                        </b-card-header>
+                        <b-collapse id="accordion1" visible accordion="my-accordion" role="tabpanel">
+                            <b-card-body>
+                                <div class="row">
+                                    <div class="col-lg-6 mb-3">
+                                        <piechart :iData="this.priv_sch"></piechart>
+                                    </div>
+                                    <div class="col-lg-6 mb-3">
+                                        <piechart :iData="this.pub_sch"></piechart>
+                                    </div>
+                                    <div class="col-lg-6 mb-3">
+                                        <piechart :iData="this.pri_sch"></piechart>
+                                    </div>
+                                    <div class="col-lg-6 mb-3">
+                                        <piechart :iData="this.sec_sch"></piechart>
+                                    </div>
+                                    <div class="col-lg-6 mb-3">
+                                        <barchart2 :iData="this.sch_rural"></barchart2>
+                                    </div>
+                                    <div class="col-lg-6 mb-3">
+                                        <barchart2 :iData="this.sch_urban"></barchart2>
+                                    </div>     
+                                </div>
+                            </b-card-body>
+                        </b-collapse>
+                    </b-card>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div role="tablist">
+                    <b-card no-body class="mb-1">
+                        <b-card-header header-tag="header" class="p-1" role="tab">
+                            <b-btn block href="#" v-b-toggle.accordion2 variant="info" class="text-left">
+                                Staff
+                            </b-btn>
+                        </b-card-header>
+                        <b-collapse id="accordion2" visible accordion="my-accordion2" role="tabpanel">
                         <b-card-body>
                             <div class="row">
                                 <div class="col-lg-6 mb-3">
-                                    <piechart :iData="this.priv_sch"></piechart>
+                                    <piechart :iData="this.staff_gen_dist"></piechart>
                                 </div>
                                 <div class="col-lg-6 mb-3">
-                                    <piechart :iData="this.pub_sch"></piechart>
+                                    <stackbar :iData="this.male_female_staff"></stackbar>
                                 </div>
                                 <div class="col-lg-6 mb-3">
-                                    <piechart :iData="this.pri_sch"></piechart>
+                                    <piechart :iData="this.staff_gen_dist"></piechart>
                                 </div>
                                 <div class="col-lg-6 mb-3">
-                                    <piechart :iData="this.sec_sch"></piechart>
+                                    <stackbar :iData="this.male_female_staff"></stackbar>
                                 </div>
                                 <div class="col-lg-6 mb-3">
-                                    <barchart2 :iData="this.sch_rural"></barchart2>
-                                </div>
+                                    <piechart :iData="this.staff_dist"></piechart>
+                                </div> 
                                 <div class="col-lg-6 mb-3">
-                                    <barchart2 :iData="this.sch_urban"></barchart2>
-                                </div>     
+                                    <doughnut :iData="this.gen_acad_staff_dist"></doughnut>
+                                </div> 
                             </div>
                         </b-card-body>
-                    </b-collapse>
-                </b-card>
-                <b-card no-body class="mb-1">
-                    <b-card-header header-tag="header" class="p-1" role="tab">
-                        <b-btn block href="#" v-b-toggle.accordion2 variant="info" class="text-left">
-                            Staff
-                        </b-btn>
-                    </b-card-header>
-                    <b-collapse id="accordion2" visible accordion="my-accordion" role="tabpanel">
-                    <b-card-body>
-                        <div class="row">
-                            <div class="col-lg-6 mb-3">
-                                <piechart :iData="this.staff_gen_dist"></piechart>
-                            </div>
-                            <div class="col-lg-6 mb-3">
-                                <stackbar :iData="this.male_female_staff"></stackbar>
-                            </div>
-                            <div class="col-lg-6 mb-3">
-                                <piechart :iData="this.staff_gen_dist"></piechart>
-                            </div>
-                            <div class="col-lg-6 mb-3">
-                                <stackbar :iData="this.male_female_staff"></stackbar>
-                            </div>
-                            <div class="col-lg-6 mb-3">
-                                <piechart :iData="this.staff_dist"></piechart>
-                            </div> 
-                            <div class="col-lg-6 mb-3">
-                                <doughnut :iData="this.gen_acad_staff_dist"></doughnut>
-                            </div> 
-                        </div>
-                    </b-card-body>
-                    </b-collapse>
-                </b-card>
-                <b-card no-body class="mb-1">
-                    <b-card-header header-tag="header" class="p-1" role="tab">
-                        <b-btn block href="#" v-b-toggle.accordion3 variant="info" class="text-left">
-                            Student
-                        </b-btn>
-                    </b-card-header>
-                    <b-collapse id="accordion3" visible accordion="my-accordion" role="tabpanel">
-                        <b-card-body>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <donut :iData="this.stu_sec_sch"></donut>
+                        </b-collapse>
+                    </b-card>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div role="tablist">
+                    <b-card no-body class="mb-1">
+                        <b-card-header header-tag="header" class="p-1" role="tab">
+                            <b-btn block href="#" v-b-toggle.accordion3 variant="info" class="text-left">
+                                Student
+                            </b-btn>
+                        </b-card-header>
+                        <b-collapse id="accordion3" visible accordion="my-accordion3" role="tabpanel">
+                            <b-card-body>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <donut :iData="this.stu_sec_sch"></donut>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <donut :iData="this.stu_sec_sch"></donut>
+                                    </div>
                                 </div>
-                                <div class="col-lg-6">
-                                    <donut :iData="this.stu_sec_sch"></donut>
-                                </div>
-                            </div>
-                        </b-card-body>
-                    </b-collapse>
-                </b-card>
+                            </b-card-body>
+                        </b-collapse>
+                    </b-card>
+                </div>
             </div>
         </div>
-    </div>
     </div>
 </template>
 <script>

@@ -1190,7 +1190,6 @@
                                                 <option data-value="5" value="5">Iron Sheets</option>
                                                 <option data-value="6" value="6">Asbestos</option>
                                                 <option data-value="7" value="7">No roof</option>
-
                                         </select>
                                     </div>
                                 </div>
@@ -1676,7 +1675,47 @@
                         members: [{name: '', position: '', phone_number: '', email: ''}],
                         projects: [{brief: '', cost: '', funding: '', year: ''}]
                     },
-                    facilities_details: {}
+                    facilities_details: {},
+                    class_room: {
+                        total_classrooms: 100,
+                        good: 50,
+                        minor_repair: 30,
+                        major_repair: 20,
+                        unuseable: 0
+                    },
+                    other_room: {
+                        staff_rooms: 2,
+                        offices: 10,
+                        libraries: 2,
+                        labouratories: 5,
+                        stores: 4,
+                        others: 5
+                    },
+                    source_drinking: {
+                        pipeborne: 1,
+                        borehole: 1,
+                        well: 1,
+                        other: 0,
+                        no_source: 0
+                    },
+                    source_power: {
+                        phcn: 1,
+                        generator: 1,
+                        solar: 0,
+                        no_source: 0
+                    },
+                    health_facilities: {
+                        clinic: 1,
+                        first_aid_kit: 1,
+                        no_facility: 0
+                    },
+                    fence_wall: {
+                        good: 2,
+                        minor_repair: 2,
+                        major_repair: 3,
+                        no_fence: 0
+
+                    }
                 },
                 users: [
                     { name: 'Patrick' },
