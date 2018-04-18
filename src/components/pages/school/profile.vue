@@ -3,7 +3,9 @@
         <b-card>
             <div class="row">
                 <div class="col-lg-6">
-                    <gmap-map :center="center" :zoom="5" class="gmap" ref="gmap1"></gmap-map>
+                    <gmap-map :center="center" :zoom="16" class="gmap" ref="gmap1">
+                        <gmap-marker v-for="m in markers" :key="m.position.lat" :position="m.position" :clickable="true" :draggable="true" @click="center=m.position"></gmap-marker>
+                    </gmap-map>
                 </div>
                 <div class="col-lg-6">
                     <h2>{{ this.schoolName }}</h2>
@@ -22,7 +24,7 @@
                             <h1>{{ this.totalNonTeachingStaff }}</h1>
                         </div>
                         <div class="col-4">
-                            <h5>Students</h5>
+                            <h5><a :href="`/school/${this.schoolId}/students`">Students</a></h5>
                             <h1>{{ this.totalStudent }}</h1>
                         </div>
                     </div>
@@ -169,8 +171,233 @@
                         <b-collapse id="accordion2" accordion="my-accordion" role="tabpanel">
                             <b-card-body>
                                 <p class="card-text">
-                                    {{ text }}
+                                    <h2>Classrooms</h2>
                                 </p>
+                                <div class="row">
+                                    <div class="col-lg-12 mb-3">
+                                        <div class="table-responsive">
+                                            <table id="mytable" class="table table-bordred table-striped">
+                                                <thead>
+                                                <tr>
+                                                    <th>CLASSROOM CONDITION</th>
+                                                    <th>NUMBER AVAILABLE</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>Good</td>
+                                                    <td>-</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Minor Repair</td>
+                                                    <td>-</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Major repair</td>
+                                                    <td>-</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Unusable</td>
+                                                    <td>-</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <p class="card-text">
+                                <h2>Others</h2>
+                                </p>
+                                <div class="row">
+                                    <div class="col-lg-12 mb-3">
+                                        <div class="table-responsive">
+                                            <table id="mytable" class="table table-bordred table-striped">
+                                                <thead>
+                                                <tr>
+                                                    <th>FACILITY</th>
+                                                    <th>NUMBER AVAILABLE</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>Staffroom</td>
+                                                    <td>0</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Offices</td>
+                                                    <td>0</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Laboratory</td>
+                                                    <td>0</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Library</td>
+                                                    <td>0</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Store</td>
+                                                    <td>0</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>SBMC</td>
+                                                    <td>0</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <p class="card-text">
+                                <h2>Source of Power</h2>
+                                </p>
+                                <div class="row">
+                                    <div class="col-lg-12 mb-3">
+                                        <div class="table-responsive">
+                                            <table id="mytable" class="table table-bordred table-striped">
+                                                <thead>
+                                                <tr>
+                                                    <th>FACILITY</th>
+                                                    <th>AVAILABILITY</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td> PHCN/NEPA</td>
+                                                    <td>No</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Solar</td>
+                                                    <td>No</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Generator</td>
+                                                    <td>No</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>None</td>
+                                                    <td>No</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <p class="card-text">
+                                <h2>Health Facilities</h2>
+                                </p>
+                                <div class="row">
+                                    <div class="col-lg-12 mb-3">
+                                        <div class="table-responsive">
+                                            <table id="mytable" class="table table-bordred table-striped">
+                                                <thead>
+                                                <tr>
+                                                    <th>FACILITY</th>
+                                                    <th>AVAILABILITY</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>Health Clinic</td>
+                                                    <td>No</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>First Aid Kit</td>
+                                                    <td>No</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>None</td>
+                                                    <td>No</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <p class="card-text">
+                                <h2>Source of Water Supply</h2>
+                                </p>
+                                <div class="row">
+                                    <div class="col-lg-12 mb-3">
+                                        <div class="table-responsive">
+                                            <table id="mytable" class="table table-bordred table-striped">
+                                                <thead>
+                                                <tr>
+                                                    <th>FACILITY</th>
+                                                    <th>AVAILABILITY</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>Pipe-borne</td>
+                                                    <td>No</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Well</td>
+                                                    <td>No</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Borehole</td>
+                                                    <td>No</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Others</td>
+                                                    <td>No</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>None</td>
+                                                    <td>No</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <p class="card-text">
+                                <h2>Fence</h2>
+                                </p>
+                                <div class="row">
+                                    <div class="col-lg-12 mb-3">
+                                        <div class="table-responsive">
+                                            <table id="mytable" class="table table-bordred table-striped">
+                                                <thead>
+                                                <tr>
+                                                    <th>FACILITY</th>
+                                                    <th>AVAILABILITY</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>Good</td>
+                                                    <td>No</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Minor Repair</td>
+                                                    <td>No</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Major repair</td>
+                                                    <td>No</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Unusable</td>
+                                                    <td>No</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
                             </b-card-body>
                         </b-collapse>
                     </b-card>
@@ -224,25 +451,16 @@
                 totalStudent: 0,
                 totalTeachingStaff: 0,
                 totalNonTeachingStaff: 0,
+                schoolId: '',
 
                 center: {
-                    lat: 17.387140,
-                    lng: 78.491684
+                    lat: 7.6401306,
+                    lng: 5.2033970
                 },
                 markers: [{
                     position: {
-                        lat: 17.387140,
-                        lng: 78.491684
-                    }
-                }, {
-                    position: {
-                        lat: 12.972442,
-                        lng: 77.580643
-                    }
-                }, {
-                    position: {
-                        lat: 18.910000,
-                        lng: 72.809998
+                        lat: 7.6401306,
+                        lng: 5.2033970
                     }
                 }],
                 text: `
@@ -277,7 +495,8 @@
                 this.totalStudent = data.students;
                 this.schoolName = data.data.school_name;
                 this.schoolAddress = data.data.school_address;
-                // console.log(this.schoolInfo);
+                this.schoolId = data.id;
+                console.log(this.schoolInfo);
             })
 
         },
