@@ -6,7 +6,26 @@
                     <gmap-map :center="center" :zoom="5" class="gmap" ref="gmap1"></gmap-map>
                 </div>
                 <div class="col-lg-6">
-                    ff
+                    <h2>{{ this.schoolName }}</h2>
+                    <h4>{{ this.schoolAddress }}</h4>
+                    <br/>
+                    <br/>
+                    <br/>
+
+                    <div class="row">
+                        <div class="col-4">
+                            <h5>Teaching Staff</h5>
+                            <h1>{{ this.totalTeachingStaff }}</h1>
+                        </div>
+                        <div class="col-4">
+                            <h5>Non-Teaching Staff</h5>
+                            <h1>{{ this.totalNonTeachingStaff }}</h1>
+                        </div>
+                        <div class="col-4">
+                            <h5>Students</h5>
+                            <h1>{{ this.totalStudent }}</h1>
+                        </div>
+                    </div>
                 </div>
             </div>
         </b-card>
@@ -200,6 +219,12 @@
         },
         data() {
             return {
+                schoolName: '',
+                schoolAddress: '',
+                totalStudent: 0,
+                totalTeachingStaff: 0,
+                totalNonTeachingStaff: 0,
+
                 center: {
                     lat: 17.387140,
                     lng: 78.491684
@@ -246,8 +271,15 @@
             // });
             this.$school.schoolProfile(this.$route.params.id).then(data => {
                 this.schoolInfo = data;
+
+                this.totalNonTeachingStaff = data.staffs.none_teaching;
+                this.totalTeachingStaff = data.staffs.teaching;
+                this.totalStudent = data.students;
+                this.schoolName = data.data.school_name;
+                this.schoolAddress = data.data.school_address;
+                // console.log(this.schoolInfo);
             })
-            // console.log(this.schoolInfo);
+
         },
         beforeRouteLeave(to, from, next) {
             // unsub();

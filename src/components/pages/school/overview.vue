@@ -57,35 +57,35 @@
                     </div>
                     <table class="table table-bordred table-striped">
                         <tbody>
-                            <tr @click="gotoLink()">
+                            <tr @click="gotoLink(`lga/${index + 1}/category/1`)">
                                 <td>Public Schools</td>
                                 <td> {{ schoolsPerLga.public.total }}</td>
                             </tr>
-                            <tr>
+                            <tr @click="gotoLink(`lga/${index + 1}/category/2`)">
                                 <td>Private Schools</td>
                                 <td> {{ schoolsPerLga.private.total }}</td>
                             </tr>
-                            <tr>
+                            <tr @click="gotoLink(`lga/${index + 1}/level/PRY`)">
                                 <td>Primary Schools</td>
                                 <td> {{ schoolsPerLga.total.primary }}</td>
                             </tr>
-                            <tr>
+                            <tr @click="gotoLink(`lga/${index + 1}/level/SEC`)">
                                 <td>Secondary Schools</td>
                                 <td> {{ schoolsPerLga.total.secondary }}</td>
                             </tr>
-                            <tr>
+                            <tr @click="gotoLink(`lga/${index + 1}/category/1/level/PRY`)">
                                 <td>Public Primary Schools</td>
                                 <td> {{ schoolsPerLga.public.primary }}</td>
                             </tr>
-                            <tr>
+                            <tr @click="gotoLink(`lga/${index + 1}/category/2/level/PRY`)">
                                 <td>Private Primary Schools</td>
                                 <td> {{ schoolsPerLga.private.primary }}</td>
                             </tr>
-                            <tr>
+                            <tr @click="gotoLink(`lga/${index + 1}/category/1/level/SEC`)">
                                 <td>Public Secondary Schools</td>
                                 <td> {{ schoolsPerLga.public.secondary }}</td>
                             </tr>
-                            <tr>
+                            <tr @click="gotoLink(`lga/${index + 1}/category/2/level/SEC`)">
                                 <td>Private Secondary Schools</td>
                                 <td> {{ schoolsPerLga.private.secondary }}</td>
                             </tr>
@@ -222,7 +222,7 @@
             }
         },
         mounted: function () {
-            this.$school.getSchoolsPerLga()
+            this.$school.getSchoolsDistributionsPerLga()
                 .then((data) => {
                     this.schoolsPerLgas = data;
                     data.forEach(item => {
@@ -261,8 +261,8 @@
         },
 
         methods: {
-            gotoLink(){
-                console.log('clicked');
+            gotoLink(url){
+                this.$router.push('school/' + url);
             },
             onReady(instance) {
                 this.instances.push(instance)
@@ -297,6 +297,11 @@
 
     .swiper-container {
         margin-top: 0px !important;
+    }
+
+    .table tr:hover {
+        background-color: #ccc !important;
+        color: #650611;
     }
 </style>
 <style type="text/css" lang="scss">
@@ -634,8 +639,6 @@
     .table tr {
         cursor: pointer;
     }
-    .table tr:hover {
-        background-color: #ccc !important;
-    }
+
 </style>
 <style src="chartist/dist/chartist.css"></style>

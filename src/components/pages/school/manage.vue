@@ -30,6 +30,9 @@ export default {
         return {
             columns: ['id', 'school_name', 'view'],
             schools: [],
+            lgaId: '',
+            level : '',
+            categoryId: '',
             options: {
                 sortIcon: {
                     base: 'fa',
@@ -50,12 +53,65 @@ export default {
         }
     },
     mounted() {
-         this.$school.allSchools().then(data => {
+        //check for lga id and category id in the url
+        if (this.$route.params.lgaId){
+            this.lgaId = this.$route.params.lgaId
+            this.categoryId = this.$route.params.catId
+            this.level = this.$route.params.level
+
+            //get category and level and filter school list accordingly
+            if(this.categoryId && this.level){
+
+                this.$school.getSchoolsPerLga(this.lgaId).then(data => {
+                    console.log(data.data)
+                    this.schools = data.data.filter( school =>{
+                        try {
+                            return (school.data.school_category_id == this.categoryId && school.data.education_levels == this.level.toUpperCase());
+                        }
+                        catch(err) {
+                           console.error(err);
+                        }
+                        return [];
+                    })
+                })
+            }
+
+            else if(this.categoryId){
+
+                this.$school.getSchoolsPerLga(this.lgaId).then(data => {
+                    this.schools = data.data.filter( school =>{
+                        try {
+                            return (school.data.school_category_id == this.categoryId);
+                        }
+                        catch(err) {
+                            console.error(err);
+                        }
+                        return [];
+                    })
+                })
+            }
+            else if(this.level){
+
+                this.$school.getSchoolsPerLga(this.lgaId).then(data => {
+                    this.schools = data.data.filter( school =>{
+                        try {
+                            return (school.data.education_levels == this.level.toUpperCase());
+                        }
+                        catch(err) {
+                            console.error(err);
+                        }
+                        return [];
+                    })
+                })
+            }
+            else {}
+        }
+        else {
+            this.$school.allSchools().then(data => {
                 this.schools = data.data;
             })
-        this.$school.getSchoolsPerLga().then(data => {
-                console.log(data);
-            })   
+        }
+        console.log(this.schools);
     }
 }
 </script>
