@@ -2,7 +2,7 @@
     <div>
         <div class="row">
         <div class="col-lg-12">
-            <b-card>
+            <b-card> 
                 <div class="row">
                     <div class="col-lg-6">
                         <label>LGA</label>

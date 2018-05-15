@@ -55,7 +55,7 @@
                                         </td>
                                     </tr>
                                     <tr class="m-0">
-                                        <td class="views">Schhol Name</td>
+                                        <td class="views">School Name</td>
                                         <td colspan="3"> {{ schoolInfo.data.school_name }}</td>
                                     </tr>
                                     <tr>
@@ -496,7 +496,7 @@
                 this.schoolName = data.data.school_name;
                 this.schoolAddress = data.data.school_address;
                 this.schoolId = data.id;
-                console.log(this.schoolInfo);
+                // console.log(this.schoolInfo);
             })
 
         },

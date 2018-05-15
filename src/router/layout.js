@@ -232,7 +232,7 @@ const layout = [{
             {
                 path: 'import',
                 component:
-                    resolve => require(['pages/import'], resolve),
+                    resolve => require(['pages/student/import'], resolve),
                 meta: {
                     title: "Import",
                     guard: true

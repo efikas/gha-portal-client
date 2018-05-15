@@ -7,15 +7,13 @@
                     <div>
                         <form method="" class="form-horizontal">
                             <div class="row odd-row">
-                                <div class="col-md-8">
-                                    <div class="form-group p-10">
-                                        <label class="control-label col-md-8" for="text">School Name
-                                        </label>
-                                        <div class="col-md-12">
-                                            <input type="text" class="form-control"
-                                                   v-model="data.data.school_name" placeholder="School Name">
-                                        </div>
-                                    </div>
+                                <div class="col-lg-6">
+                                    <label>LGA</label>
+                                    <multiselect v-model="lga" :show-labels="false" :options="lgas" @input="getSchool"></multiselect>
+                                </div>
+                                <div class="col-lg-6">
+                                    <label>School Name</label>
+                                    <multiselect v-model="data.data.school_name" :show-labels="false" :options="schools"></multiselect>
                                 </div>
                             </div>
                             <div class="row even-row">
@@ -225,7 +223,7 @@
                                         <label class="control-label col-md-8" for="text">Staff Type
                                         </label>
                                         <div class="col-md-12">
-                                            <select v-model="data.professional_info.staff_type" class="form-control"
+                                            <select v-model="data.info.staff_type" class="form-control"
                                                     size="1">
                                                 <option value="0">
                                                     Select Year
@@ -243,7 +241,7 @@
                                         </label>
                                         <div class="col-md-12">
                                             <input type="text" class="form-control"
-                                                   v-model="data.professional_info.grade_level" placeholder="">
+                                                   v-model="data.info.grade_level" placeholder="">
                                         </div>
                                     </div>
                                 </div>
@@ -252,7 +250,7 @@
                                         <label class="control-label col-md-12" for="text">Staff Current Status
                                         </label>
                                         <div class="col-md-12">
-                                            <select v-model="data.professional_info.current_status" class="form-control"
+                                            <select v-model="data.info.current_status" class="form-control"
                                                     size="1">
                                                 <option value="0">
                                                     Select Year
@@ -269,7 +267,7 @@
                                         <label class="control-label col-md-12" for="text">Salary Source
                                         </label>
                                         <div class="col-md-12">
-                                            <select v-model="data.professional_info.salary_source" class="form-control"
+                                            <select v-model="data.info.salary_source" class="form-control"
                                                     size="1">
                                                 <option value="0">
                                                     Select Year
@@ -289,7 +287,7 @@
                                         </label>
                                         <div class="col-md-12">
                                             <input type="number" min="0" class="form-control"
-                                                   v-model="data.professional_info.first_appointment">
+                                                   v-model="data.info.first_appointment">
                                         </div>
                                     </div>
                                 </div>
@@ -299,7 +297,7 @@
                                         </label>
                                         <div class="col-md-12">
                                             <input type="text" class="form-control"
-                                                   v-model="data.professional_info.last_promotion"
+                                                   v-model="data.info.last_promotion"
                                                    placeholder="Year of Last Promotion">
                                         </div>
                                     </div>
@@ -310,7 +308,7 @@
                                         </label>
                                         <div class="col-md-12">
                                             <input type="text" class="form-control"
-                                                   v-model="data.professional_info.posting_year" name="" value=""
+                                                   v-model="data.info.posting_year" name="" value=""
                                                    placeholder="Year of Posting">
                                         </div>
                                     </div>
@@ -320,7 +318,7 @@
                                         <label class="control-label" for="text">Employment Type
                                         </label>
                                         <div class="col-md-12">
-                                            <select v-model="data.professional_info.employment_type"
+                                            <select v-model="data.info.employment_type"
                                                     class="form-control" size="1">
                                                 <option value="0">
                                                     Select Employment
@@ -339,7 +337,7 @@
                                         <label class="control-label col-md-8" for="text">Academic Qualification
                                         </label>
                                         <div class="col-md-12">
-                                            <select v-model="data.professional_info.academic_qualification"
+                                            <select v-model="data.info.academic_qualification"
                                                     class="form-control" size="1">
                                                 <option value="0">
                                                     Select Year
@@ -356,7 +354,7 @@
                                         <label class="control-label col-md-12" for="text">Teaching Qualification
                                         </label>
                                         <div class="col-md-12">
-                                            <select v-model="data.professional_info.teaching_qualification"
+                                            <select v-model="data.info.teaching_qualification"
                                                     class="form-control" size="1">
                                                 <option value="0">
                                                     Select Year
@@ -373,7 +371,7 @@
                                         <label class="control-label col-md-12" for="text">Area of Specialty
                                         </label>
                                         <div class="col-md-12">
-                                            <select v-model="data.professional_info.speciality" class="form-control"
+                                            <select v-model="data.info.speciality" class="form-control"
                                                     size="1">
                                                 <option value="0">
                                                     Select Year
@@ -390,7 +388,7 @@
                                         <label class="control-label col-md-12" for="text">Main Subject Taught
                                         </label>
                                         <div class="col-md-12">
-                                            <select v-model="data.professional_info.subject_taught" class="form-control"
+                                            <select v-model="data.info.subject_taught" class="form-control"
                                                     size="1">
                                                 <option value="0">
                                                     Select Year
@@ -410,7 +408,7 @@
                                         </label>
                                         <div class="col-md-12">
                                             <input type="text" class="form-control"
-                                                   v-model="data.professional_info.class_taught"
+                                                   v-model="data.info.class_taught"
                                                    placeholder="School Name">
                                         </div>
                                     </div>
@@ -421,12 +419,12 @@
                                         </label>
                                         <div class="col-md-12">
                                             <div class="radio">
-                                                <b-form-radio value="0" v-model="data.professional_info.training_workshop">
+                                                <b-form-radio value="0" v-model="data.info.training_workshop">
                                                     Yes
                                                 </b-form-radio>
                                             </div>
                                             <div class="radio">
-                                                <b-form-radio value="1" v-model="data.professional_info.training_workshop">
+                                                <b-form-radio value="1" v-model="data.info.training_workshop">
                                                     No
                                                 </b-form-radio>
                                             </div>
@@ -439,12 +437,12 @@
                                         </label>
                                         <div class="col-md-12">
                                             <div class="radio">
-                                                <b-form-radio value="0" v-model="data.professional_info.computer_literate">
+                                                <b-form-radio value="0" v-model="data.info.computer_literate">
                                                     Yes
                                                 </b-form-radio>
                                             </div>
                                             <div class="radio">
-                                                <b-form-radio value="1" v-model="data.professional_info.computer_literate">
+                                                <b-form-radio value="1" v-model="data.info.computer_literate">
                                                     No
                                                 </b-form-radio>
                                             </div>
@@ -459,12 +457,12 @@
                                         </label>
                                         <div class="col-md-12">
                                             <div class="radio">
-                                                <b-form-radio value="0" v-model="data.professional_info.TRC_registered">
+                                                <b-form-radio value="0" v-model="data.info.TRC_registered">
                                                     Yes
                                                 </b-form-radio>
                                             </div>
                                             <div class="radio">
-                                                <b-form-radio value="1" v-model="data.professional_info.TRC_registered">
+                                                <b-form-radio value="1" v-model="data.info.TRC_registered">
                                                     No
                                                 </b-form-radio>
                                             </div>
@@ -477,7 +475,7 @@
                                         </label>
                                         <div class="col-md-12">
                                             <input type="text" class="form-control"
-                                                   v-model="data.professional_info.TRC_reg_no"
+                                                   v-model="data.info.TRC_reg_no"
                                                    placeholder="School Name">
                                         </div>
                                     </div>
@@ -490,7 +488,7 @@
                                         </label>
                                         <div class="col-md-12">
                                             <input type="text" class="form-control"
-                                                   v-model="data.professional_info.school_posted_from"
+                                                   v-model="data.info.school_posted_from"
                                                    placeholder="School Name">
                                         </div>
                                     </div>
@@ -501,7 +499,7 @@
                                         </label>
                                         <div class="col-md-12">
                                             <input type="text" class="form-control"
-                                                   v-model="data.professional_info.position" placeholder="School Name">
+                                                   v-model="data.info.position" placeholder="School Name">
                                         </div>
                                     </div>
                                 </div>
@@ -520,11 +518,18 @@
     import vue2Dropzone from 'vue2-dropzone'
     import 'vue2-dropzone/dist/vue2Dropzone.css'
     import options from "src/validations/validations.js";
+    import Multiselect from 'vue-multiselect';
 
     Vue.use(VueFormWizard, options);
     export default {
+        components: {
+            vueDropzone: vue2Dropzone,
+            Multiselect,
+        },
         data() {
             return {
+                lgas: [],
+                schools: [],
                 dropzoneOptions: {
                     url: 'https://httpbin.org/post',
                     thumbnailWidth: 150,
@@ -577,9 +582,6 @@
                 }
             }
         },
-        components: {
-            vueDropzone: vue2Dropzone,
-        },
         methods: {
             upload_pic() {
                 this.$refs.user_image.processQueue();
@@ -597,10 +599,25 @@
                 this.$staff.addStaff(this.data).then(response => {
 
                 })
-            }
+            },
+            getSchool(){
+                //Since array index is starting from 0, we need to increment by 1 to start 
+                // the index from 1
+                this.$lga.getLgasSchool(this.lgas.indexOf(this.lga) + 1).then(data => {
+                    this.schools = [];
+                    this.school = '';
+                    data.data.forEach(item => {
+                        this.schools.push(item.school_name);
+                    });
+                })
+            } 
         },
         mounted: function () {
-
+            this.$lga.getLgas().then(data => {
+                data.forEach(item => {
+                    this.lgas.push(item.name);
+                });
+            })
         },
         destroyed: function () {
 
@@ -669,3 +686,4 @@
     /* .form-group{position:relative;margin-top:.25rem;padding-top:1.5rem!important;padding-bottom:.25rem!important;} */
 
 </style>
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>

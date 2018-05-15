@@ -2,28 +2,31 @@
     <div>
         <b-card header="School Information" header-tag="h4" class="bg-info-card">
             <form-wizard @on-complete="onComplete" color="#e67e22">
-                <h2 slot="title">title</h2>
+                <h2 slot="title"></h2>
                 <tab-content title="Basic School Inionformation" icon="fa fa-user">
                     <form method="" class="form-horizontal">
                         <div class="row odd-row">
+                            <div class="col-xs-12 col-sm-6 col-md-3">
+                                <label  class="control-label">LGA</label>
+                                <multiselect v-model="data.data.lga" :show-labels="false" :options="lgas" @input="getWard"></multiselect>
+                            </div>
                             <div class="col-md-6">
                                 <div class="form-group p-10">
                                     <label class="control-label col-md-8" for="school_name">School Name
                                     </label>
                                     <div class="col-md-12">
                                         <input type="text" class="form-control" v-model="data.data.school_name"
-                                               id="school_name" list="school_list" placeholder="School Name">
-                                        <datalist id="school_list">
-                                            <option value="aaa">aaa</option>
-                                            <option value="add">add</option>
-                                            <option value="ass">ass</option>
-                                            <option value="aff">aff</option>
-                                            <option value="avv">avv</option>
-                                        </datalist>
+                                               id="school_name" placeholder="School Name">
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-xs-12 col-sm-6 col-md-3">
+                                <label>Ward</label>
+                                <multiselect v-model="data.data.ward" :show-labels="false" :options="wards"></multiselect>
+                            </div>
+                        </div>
+                        <div class="row even-row">
+                            <div class="col-xs-12 col-sm-6 col-md-3">
                                 <div class="form-group p-10">
                                     <label class="control-label col-md-12" for="year_established">Year Established
                                     </label>
@@ -40,49 +43,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-xs-12 col-sm-6 col-md-3">
                                 <div class="form-group p-10">
                                     <label class="control-label" for="school_dist">Distance to Catchment Area
                                     </label>
                                     <div class="col-md-12">
                                         <input type="number" min="0" v-model="data.data.average_distance"
                                                class="form-control" id="school_dist" placeholder="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row even-row">
-                            <div class="col-xs-12 col-sm-6 col-md-3">
-                                <div class="form-group p-10">
-                                    <label class="control-label col-md-8" for="lga">LGA
-                                    </label>
-                                    <div class="col-md-12">
-                                        <select id="lga" v-model="data.data.lga" name="lga" class="form-control"
-                                                size="1">
-                                            <option value="">
-                                                Select LGA
-                                            </option>
-                                            <option value="1">1930</option>
-                                            <option value="2">1931</option>
-                                            <option value="3">1932</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-3">
-                                <div class="form-group p-10">
-                                    <label class="control-label col-md-12" for="ward">Ward
-                                    </label>
-                                    <div class="col-md-12">
-                                        <select id="ward" v-model="data.data.ward" name="ward"
-                                                class="form-control" size="1">
-                                            <option value="0">
-                                                Select Year
-                                            </option>
-                                            <option value="1">1930</option>
-                                            <option value="2">1931</option>
-                                            <option value="3">1932</option>
-                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -1063,6 +1030,104 @@
                         </div>
                     </form>
                 </tab-content>
+                <tab-content title="School Facilities Details" icon="fafa-check">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th>FACILITY TYPE</th>
+                                    <th>Number Of Useable</th>
+                                    <th>Number of unuseable</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Toilets</td>
+                                    <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                                    <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Computer</td>
+                                    <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                                    <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Water Source</td>
+                                    <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                                    <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Labouratory</td>
+                                    <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                                    <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>classroomss</td>
+                                    <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                                    <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Library</td>
+                                    <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                                    <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Play Ground</td>
+                                    <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                                    <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Wash Hand Basin</td>
+                                    <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                                    <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>White Board</td>
+                                    <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                                    <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Staff Room</td>
+                                    <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                                    <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Bording Hostels</td>
+                                    <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                                    <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Offices</td>
+                                    <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                                    <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Kitchens</td>
+                                    <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                                    <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Dining Room</td>
+                                    <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                                    <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Bathrooms</td>
+                                    <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                                    <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Play Rooms</td>
+                                    <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                                    <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </tab-content>
                 <tab-content title="School classrooms Details" icon="fafa-check">
                     <form method="" class="form-horizontal">
                         <div class="even-row">
@@ -1385,7 +1450,7 @@
                         </div>
                     </form>
                 </tab-content>
-                <tab-content title="School Facilities Details" icon="fafa-check">
+                <tab-content title="School Based Mangement Committe" icon="fafa-check">
                     <form method="" class="form-horizontal">
                         <div>
                              <a class="btn btn-outline-primary pull-right" @click="addMore('members')">+ ADD MORE</a>
@@ -1483,104 +1548,6 @@
                         </div>
                     </form>
                 </tab-content>
-                <tab-content title="School Based Mangement Committe" icon="fafa-check">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <table class="table table-bordered table-striped">
-                                <thead>
-                                <tr>
-                                    <th>FACILITY TYPE</th>
-                                    <th><input type="number" min="0" class="form-control" placeholder=""></th>
-                                    <th><input type="number" min="0" class="form-control" placeholder=""></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>Toilets</td>
-                                    <th><input type="number" min="0" class="form-control" placeholder=""></th>
-                                    <th><input type="number" min="0" class="form-control" placeholder=""></th>
-                                </tr>
-                                <tr>
-                                    <td>Computer</td>
-                                    <th><input type="number" min="0" class="form-control" placeholder=""></th>
-                                    <th><input type="number" min="0" class="form-control" placeholder=""></th>
-                                </tr>
-                                <tr>
-                                    <td>Water Source</td>
-                                    <th><input type="number" min="0" class="form-control" placeholder=""></th>
-                                    <th><input type="number" min="0" class="form-control" placeholder=""></th>
-                                </tr>
-                                <tr>
-                                    <td>Labouratory</td>
-                                    <th><input type="number" min="0" class="form-control" placeholder=""></th>
-                                    <th><input type="number" min="0" class="form-control" placeholder=""></th>
-                                </tr>
-                                <tr>
-                                    <td>classroomss</td>
-                                    <th><input type="number" min="0" class="form-control" placeholder=""></th>
-                                    <th><input type="number" min="0" class="form-control" placeholder=""></th>
-                                </tr>
-                                <tr>
-                                    <td>Library</td>
-                                    <th><input type="number" min="0" class="form-control" placeholder=""></th>
-                                    <th><input type="number" min="0" class="form-control" placeholder=""></th>
-                                </tr>
-                                <tr>
-                                    <td>Play Ground</td>
-                                    <th><input type="number" min="0" class="form-control" placeholder=""></th>
-                                    <th><input type="number" min="0" class="form-control" placeholder=""></th>
-                                </tr>
-                                <tr>
-                                    <td>Wash Hand Basin</td>
-                                    <th><input type="number" min="0" class="form-control" placeholder=""></th>
-                                    <th><input type="number" min="0" class="form-control" placeholder=""></th>
-                                </tr>
-                                <tr>
-                                    <td>White Board</td>
-                                    <th><input type="number" min="0" class="form-control" placeholder=""></th>
-                                    <th><input type="number" min="0" class="form-control" placeholder=""></th>
-                                </tr>
-                                <tr>
-                                    <td>Staff Room</td>
-                                    <th><input type="number" min="0" class="form-control" placeholder=""></th>
-                                    <th><input type="number" min="0" class="form-control" placeholder=""></th>
-                                </tr>
-                                <tr>
-                                    <td>Bording Hostels</td>
-                                    <th><input type="number" min="0" class="form-control" placeholder=""></th>
-                                    <th><input type="number" min="0" class="form-control" placeholder=""></th>
-                                </tr>
-                                <tr>
-                                    <td>Offices</td>
-                                    <th><input type="number" min="0" class="form-control" placeholder=""></th>
-                                    <th><input type="number" min="0" class="form-control" placeholder=""></th>
-                                </tr>
-                                <tr>
-                                    <td>Kitchens</td>
-                                    <th><input type="number" min="0" class="form-control" placeholder=""></th>
-                                    <th><input type="number" min="0" class="form-control" placeholder=""></th>
-                                </tr>
-                                <tr>
-                                    <td>Dining Room</td>
-                                    <th><input type="number" min="0" class="form-control" placeholder=""></th>
-                                    <th><input type="number" min="0" class="form-control" placeholder=""></th>
-                                </tr>
-                                <tr>
-                                    <td>Bathrooms</td>
-                                    <th><input type="number" min="0" class="form-control" placeholder=""></th>
-                                    <th><input type="number" min="0" class="form-control" placeholder=""></th>
-                                </tr>
-                                <tr>
-                                    <td>Play Rooms</td>
-                                    <th><input type="number" min="0" class="form-control" placeholder=""></th>
-                                    <th><input type="number" min="0" class="form-control" placeholder=""></th>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                </tab-content>
             </form-wizard>
         </b-card>
     </div>
@@ -1592,11 +1559,21 @@
     import vue2Dropzone from 'vue2-dropzone'
     import 'vue2-dropzone/dist/vue2Dropzone.css'
     import options from "src/validations/validations.js";
+    import Multiselect from 'vue-multiselect';
 
     Vue.use(VueFormWizard, options);
     export default {
+        name: 'school-add',
+        components: {
+            vueDropzone: vue2Dropzone,
+            Multiselect,
+        },
         data() {
             return {
+                lgas: [],
+                wards: [],
+                lgasInfo:[],
+                wardKeys: {}, // capture the ward id and ward name of the selected LGA
                 dropzoneOptions: {
                     url: 'https://httpbin.org/post',
                     thumbnailWidth: 150,
@@ -1612,7 +1589,7 @@
                         estblished: '2008',
                         average_distance: '1',
                         lga: 'Ado',
-                        ward: '2',
+                        ward: '',
                         village_town: 'Ado',
                         school_location: 1,
                         school_email_address: '',
@@ -1726,9 +1703,6 @@
                 selectedSharedFacilities: [],
             }
         },
-        components: {
-            vueDropzone: vue2Dropzone,
-        },
         methods: {
             upload_pic() {
                 this.$refs.user_image.processQueue();
@@ -1769,10 +1743,30 @@
                         break;
 
                 }
-            }
+            },
+            getWard(){
+                this.wards = []; // clear previous ward elements
+                this.wardKeys = [];
+
+                let _lga = this.lgasInfo.filter(item => {
+                    return (item.id === this.lgas.indexOf(this.data.data.lga) + 1);
+                });
+                _lga[0].wards.forEach(item => {
+                    this.wards.push(item.name);
+                    this.wardKeys[item.id] = item.name;
+                })
+            } 
         },
         mounted: function () {
-
+            this.$lga.getLgas().then(data => {
+                data.forEach(item => {
+                    // console.log(item);
+                    this.lgasInfo.push(item);
+                    this.lgas.push(item.name);
+                });
+                console.log(this.lgasInfo);
+            })
+            
         },
         destroyed: function () {
 
@@ -1835,3 +1829,4 @@
         color: #684348 !important;
     }
 </style>
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>

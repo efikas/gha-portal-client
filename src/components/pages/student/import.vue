@@ -1,31 +1,92 @@
 <template>
     <div>
-        <vue-dropzone ref="product_attachment" id="dropzone" :options="dropzoneOptions" @vdropzone-success="uploaded"></vue-dropzone>
+        <div class="row">
+            <div class="col-lg-12">
+                <b-card> 
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <label>LGA</label>
+                            <multiselect v-model="lga" :show-labels="false" :options="lgas" @input="getSchool"></multiselect>
+                        </div>
+                        <div class="col-lg-6">
+                            <label>Schools</label>
+                            <multiselect v-model="school" :show-labels="false" :options="schools" @input="getSchoolId"></multiselect>
+                        </div>
+                    </div>
+                    <br><br>
+                    <input type="file" id="file" ref="file" v-on:change="handleFileUpload()"/>
+                    <div class="upload" v-on:click="uploadFile()"> Click to upload File</div>
+                    <br/><br/>
+                    <button v-on:click="submitFiles()">Submit</button>
+                </b-card>
+            </div>
+        </div>
     </div>
 </template>
 <script>
-import vue2Dropzone from 'vue2-dropzone'
-import 'vue2-dropzone/dist/vue2Dropzone.css'
+import Multiselect from 'vue-multiselect';
+import {apiURL} from '../../../packages/resources'
+
 export default {
-    name: 'vue2-dropzone',
+    name: 'student-import',
     components: {
-        vueDropzone: vue2Dropzone,
+        Multiselect,
     },
     data(){
         return{
-            dropzoneOptions:{
-                url: 'https://httpbin.org/post',
-                thumbnailWidth: 150,
-                // maxFilesize: 0.5,
-                maxFiles:3,
-                headers: { "My-Awesome-Header": "header value" }
-            }
+            lga: '',
+            school: '',
+            schoolId: '',
+            lgas: [],
+            schools: [],
+            schoolIds: [], // to hold the school id and the name of selected LGA
+            file: '',
         }
     },
     methods: {
-        uploaded() {
-            console.log('File successfully uploaded')
-        }
+        handleFileUpload(){
+            this.file = this.$refs.file.files[0];
+        },
+        submitFile(){
+            let formData = new FormData()
+            formData.append('file', this.file);
+            this.$school.importSchool(this.lgaId, formData).then(response => {
+                console.log('SUCCESS!!');
+            })
+            .catch(function(){
+                console.log('FAILURE!!');
+            });
+        },
+        uploadFile(){
+            this.$refs.file.click();
+        },
+        getSchool(){
+            //Since array index is starting from 0, we need to increment by 1 to start 
+            // the index from 1
+            this.$lga.getLgasSchool(this.lgas.indexOf(this.lga) + 1).then(data => {
+                this.schools = [];
+                this.schoolIds = [];
+                this.school = '';
+                data.data.forEach(item => {
+                    this.schools.push(item.school_name);
+                    this.schoolIds.push({
+                        id: item.id,
+                        name: item.school_name,
+                    });
+                });
+            })
+        },
+        getSchoolId(){
+            this.schoolId = this.schoolIds[this.schools.indexOf(this.school)].id;
+            console.log(this.schoolId);
+        } 
+    },
+    mounted() {
+        this.$lga.getLgas().then(data => {
+            data.forEach(item => {
+                this.lgas.push(item.name);
+            });
+        })
     }
 }
 </script>
@@ -33,4 +94,21 @@ export default {
  .dz-progress{
         background-color: #08aa80 !important;
     }
+input[type="file"]{
+    position: absolute;
+    top: -500px;
+  }
+
+  div.upload{
+    width: 400px;
+    cursor: pointer;
+    height: 100px;
+    background-color: indianred;
+    text-align: center;
+    font-weight: bold;
+    color: whitesmoke;
+    padding-top: 30px;
+    font-size: 1.2em;
+  }
 </style>
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
