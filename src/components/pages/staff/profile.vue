@@ -71,7 +71,7 @@
                 <b-tabs>
                     <b-tab title="PERSONAL">
                         <p>
-                            <button type="button" class="btn btn-outline-primary pull-right">Edit
+                            <button type="button" :click="show()" class="btn btn-outline-primary pull-right">Edit
                             </button>
                             <h1>Personal Details</h1>
                         </p>
@@ -179,10 +179,17 @@
                 </b-tabs>
             </b-card>
         </div>
+        <modal name="hello-world">
+            hello, world!
+        </modal>
     </div>
 </template>
 <script>
+import Vue from 'vue'
 import vScroll from "components/plugins/scroll/vScroll.vue"
+import VModal from 'vue-js-modal'
+
+Vue.use(VModal)
 
 export default {
     name: "user_profile",
@@ -193,6 +200,14 @@ export default {
         return {
             staffInfo: null,
             schoolName: '',
+        }
+    },
+    methods: {
+        show () {
+            this.$modal.show('hello-world');
+        },
+        hide () {
+            this.$modal.hide('hello-world');
         }
     },
     mounted: function() {

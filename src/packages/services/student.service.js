@@ -43,5 +43,16 @@ export default {
                 reject(error.response);
             })
         })
+    },
+
+    importStudent(schoolId, schoolExcelFile){
+        return new Promise((resolve, reject) => {
+            axios.post('upload/' + schoolId + '/student', schoolExcelFile)
+                .then(response => {
+                    resolve(response.data)
+                }).catch((error) => {
+                reject(error.response);
+            })
+        })
     }
 }

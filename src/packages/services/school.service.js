@@ -57,7 +57,7 @@ export default {
     },
     importSchool(lgaId, schoolExcelFile){
         return new Promise((resolve, reject) => {
-            axios.post('upload/' + lgaId + '/student', schoolExcelFile)
+            axios.post('upload/' + lgaId + '/school', schoolExcelFile)
                 .then(response => {
                     resolve(response.data)
                 }).catch((error) => {

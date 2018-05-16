@@ -10,7 +10,7 @@
                         </div>
                     </div>
                     <br><br>
-                    <input type="file" id="file" ref="file" v-on:change="handleFileUpload()"/>
+                    <input type="file" id="file" ref="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" v-on:change="handleFileUpload()"/>
                     <div class="upload" v-on:click="uploadFile()"> Click to upload File</div>
                     <br/><br/>
                     <button v-on:click="submitFiles()">Submit</button>
@@ -43,9 +43,9 @@ export default {
         handleFileUpload(){
             this.file = this.$refs.file.files[0];
         },
-        submitFile(){
+        submitFiles(){
             let formData = new FormData()
-            formData.append('file', this.file);
+            formData.append('upload', this.file);
             this.$school.importSchool(this.lgaId, formData).then(response => {
                 console.log('SUCCESS!!');
             })

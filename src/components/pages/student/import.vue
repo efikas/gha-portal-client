@@ -14,7 +14,7 @@
                         </div>
                     </div>
                     <br><br>
-                    <input type="file" id="file" ref="file" v-on:change="handleFileUpload()"/>
+                    <input type="file" id="file" ref="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" v-on:change="handleFileUpload()"/>
                     <div class="upload" v-on:click="uploadFile()"> Click to upload File</div>
                     <br/><br/>
                     <button v-on:click="submitFiles()">Submit</button>
@@ -49,8 +49,8 @@ export default {
         },
         submitFile(){
             let formData = new FormData()
-            formData.append('file', this.file);
-            this.$school.importSchool(this.lgaId, formData).then(response => {
+            formData.append('upload', this.file);
+            this.$student.importStudent(this.schoolId, formData).then(response => {
                 console.log('SUCCESS!!');
             })
             .catch(function(){
@@ -63,7 +63,8 @@ export default {
         getSchool(){
             //Since array index is starting from 0, we need to increment by 1 to start 
             // the index from 1
-            this.$lga.getLgasSchool(this.lgas.indexOf(this.lga) + 1).then(data => {
+            // this.$lga.getLgasSchool(this.lgas.indexOf(this.lga) + 1).then(data => {
+            this.$lga.getLgasSchool(114).then(data => {
                 this.schools = [];
                 this.schoolIds = [];
                 this.school = '';
@@ -78,7 +79,7 @@ export default {
         },
         getSchoolId(){
             this.schoolId = this.schoolIds[this.schools.indexOf(this.school)].id;
-            console.log(this.schoolId);
+            // console.log(this.schoolId);
         } 
     },
     mounted() {

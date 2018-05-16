@@ -2,7 +2,37 @@
     <div class="row">
         <div class="col-lg-12 mb-3">
             <b-card header="AJAX Client Table" header-tag="h4" class="bg-info-card">
-                <v-client-table :data="students" :columns="columns" :options="options">
+                <div style="margin: 2%" v-if="students.length < 1">
+                    <skeleton-loading>
+                        <row 
+                            :gutter="{
+                                bottom: '15px'
+                            }"
+                        >
+                            <square-skeleton 
+                                :count="2"
+                                :boxProperties="{
+                                    top: '10px',
+                                    width: '100%',
+                                    height: '55px'
+                                }"
+                            >
+                            </square-skeleton>
+                        </row>
+                        <row :gutter="{top: '20px'}">
+                            <square-skeleton 
+                                :count="4"
+                                :boxProperties="{
+                                    height: '55px',
+                                    width: '100%',
+                                    bottom: '10px'
+                                }" 
+                            >
+                            </square-skeleton>
+                        </row>
+                    </skeleton-loading>
+                </div>
+                <v-client-table :data="students" :columns="columns" :options="options" v-if="students.length > 0">
                      <span slot="id" slot-scope="props">{{ props.index }}</span>
                      <a slot="Name" slot-scope="props" :href="'/student/'+ props.row.id" v-html="props.row.first_name + ' ' + props.row.last_name + ' ' + props.row.middle_name"></a>
                      <a slot="view" slot-scope="props" class="fa fa-eye icon-big" :href="'/student/'+ props.row.id"></a>
@@ -17,9 +47,10 @@ import {
     ClientTable,
     Event
 } from 'vue-tables-2';
-
 import datatable from "components/plugins/DataTable/DataTable.vue";
+import VueSkeletonLoading from 'vue-skeleton-loading';
 
+Vue.use(VueSkeletonLoading);
 Vue.use(ClientTable, {}, false);
 export default {
     name: "staff_list",

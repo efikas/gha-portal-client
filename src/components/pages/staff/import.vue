@@ -10,11 +10,11 @@
                         </div>
                         <div class="col-lg-6">
                             <label>Schools</label>
-                            <multiselect v-model="school" :show-labels="false" :options="schools"></multiselect>
+                            <multiselect v-model="school" :show-labels="false" :options="schools" @input="getSchoolId"></multiselect>
                         </div>
                     </div>
                     <br><br>
-                    <input type="file" id="file" ref="file" v-on:change="handleFileUpload()"/>
+                    <input type="file" id="file" ref="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" v-on:change="handleFileUpload()"/>
                     <div class="upload" v-on:click="uploadFile()"> Click to upload File</div>
                     <br/><br/>
                     <button v-on:click="submitFiles()">Submit</button>
@@ -38,6 +38,8 @@ export default {
             lgas: [],
             schools: [],
             file: '',
+            schoolId: 0,
+            schoolIds: [], // to hold the school id and the name of selected LGA
         }
     },
     methods: {
@@ -46,8 +48,8 @@ export default {
         },
         submitFile(){
             let formData = new FormData()
-            formData.append('file', this.file);
-            this.$school.importSchool(this.lgaId, formData).then(response => {
+            formData.append('upload', this.file);
+            this.$staff.importStaff(this.schoolId, formData).then(response => {
                 console.log('SUCCESS!!');
             })
             .catch(function(){
@@ -65,8 +67,16 @@ export default {
                 this.school = '';
                 data.data.forEach(item => {
                     this.schools.push(item.school_name);
+                    this.schoolIds.push({
+                        id: item.id,
+                        name: item.school_name,
+                    });
                 });
             })
+        },
+        getSchoolId(){
+            this.schoolId = this.schoolIds[this.schools.indexOf(this.school)].id;
+            // console.log(this.schoolId);
         } 
     },
     mounted() {

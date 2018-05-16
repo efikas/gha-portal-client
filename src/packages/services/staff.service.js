@@ -33,6 +33,17 @@ export default {
                 reject(error.response);
             })
         })
+    },
+
+    importStaff(schoolId, schoolExcelFile){
+        return new Promise((resolve, reject) => {
+            axios.post('upload/' + schoolId + '/staff', schoolExcelFile)
+                .then(response => {
+                    resolve(response.data)
+                }).catch((error) => {
+                reject(error.response);
+            })
+        })
     }
 
 }

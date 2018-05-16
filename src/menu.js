@@ -72,11 +72,6 @@ const menu_items = [{
         icon: 'fa fa-angle-double-right'
     },
     {
-        name: 'Import',
-        link: '/import',
-        icon: 'fa fa-angle-double-right'
-    },
-    {
         name: 'SBMC',
         link: '/SBMC',
         icon: 'fa fa-angle-double-right'
