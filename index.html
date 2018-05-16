@@ -20,17 +20,20 @@
             left: 0;
             right: 0;
             z-index: 9999;
-            background: #6f9fe6;
+            background: linear-gradient(rgba(216, 49, 52, 0.56),rgba(107, 28, 43, 0.95));
         }
         .spinner {
             margin: auto;
-            width: 70px;
-            height: 70px;
+            width: 100px;
+            height: 100px;
             position: relative;
             top: 45%;
             text-align: center;
-            -webkit-animation: sk-rotate 2.0s infinite linear;
-            animation: sk-rotate 2.0s infinite linear;
+            /*-webkit-animation: sk-rotate 2.0s infinite linear;*/
+            /*animation: sk-rotate 2.0s infinite linear;*/
+            background:url("/images/sbemis.png");
+            background-repeat: no-repeat;
+            background-size: contain;
         }
 
         .dot1,
@@ -98,8 +101,8 @@
 <body>
     <div id="preloader">
         <div class="spinner">
-            <div class="dot1"></div>
-            <div class="dot2"></div>
+            <!--<div class="dot1"></div>-->
+            <!--<div class="dot2"></div>-->
         </div>
     </div>
     <div id="app"></div>
