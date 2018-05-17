@@ -106,7 +106,7 @@
             padding: 3px 10px;
             text-align: center;
             width: 250px;
-            background: $header_color;
+            background: $logo_bgcolor;
             img {
                 width: 125px;
             }

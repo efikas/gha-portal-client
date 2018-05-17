@@ -3,10 +3,8 @@
     <aside class="left-aside sidebar-offcanvas">
         <!-- sidebar: style can be found in sidebar-->
         <section class="sidebar">
+            <br>
             <div id="menu" role="navigation">
-                <div class="nav_profile">
-                    <profile></profile>
-                </div>
                 <vmenu>
                     <template v-for="item in menuitems">
                         <li class="divider mt-3 " v-if="item.title">

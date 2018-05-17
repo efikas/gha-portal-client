@@ -125,7 +125,7 @@
     }
 
     .right-aside {
-        background-color: #ebf2f6 !important;
+        background-color: rgba(#ebf2f6, .5) !important;
     }
 
     @media (max-width: 992px) {
