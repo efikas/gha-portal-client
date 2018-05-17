@@ -157,6 +157,10 @@
         font-size: 14px !important;
     }
 
+    .form-group label {
+        font-size: 12px !important;
+    }
+
     .login-content input {
         height: 30px;
         font-size: 13px;
