@@ -48,7 +48,7 @@
         </div>
          <div class="row">
             <div class="col-lg-12">
-                <b-card header="DISTRIBUTION OF STUDENTS/LGA" header-tag="h4" class="bg-primary-card">
+                <b-card header="DISTRIBUTION OF STUDENTS/LGA" header-tag="h4" class="bg-header-card">
                     <div class="table-responsive">
                         <table class="table table-bordered table-striped">
                             <thead>
@@ -269,6 +269,8 @@
     }
 </style>
 <style type="text/css" lang="scss">
+    @import "~components/layouts/css/customvariables";
+
     .index2_table .table-responsive .card {
         border: none;
         box-shadow: none;
@@ -345,11 +347,6 @@
 
     .widget_social_icons {
         background-color: #fff;
-    }
-
-    .fb_text {
-        color: #215fe2;
-        font-size: 28px;
     }
 
     .box_shadow {

@@ -81,7 +81,6 @@ a {
     vertical-align: middle;
 }
 
-
 /**Dropdown menus**/
 
 .dropdown-menu {
@@ -115,6 +114,15 @@ h4.card-header {
 
 
 /**************card bg colors*******************/
+
+
+.bg-header-card {
+    border: 1px solid $leftmenu_color;
+    >.card-header {
+        background-color: $leftmenu_color;
+        color: #fff;
+    }
+}
 
 .bg-primary-card {
     border: 1px solid $primary;
@@ -473,4 +481,10 @@ header .navbar-right {
 
 .car-header:first-child {
     border: none !important;
+}
+
+/**Widget Icon**/
+.fb_text {
+    color: $leftmenu_color;
+    font-size: 28px;
 }

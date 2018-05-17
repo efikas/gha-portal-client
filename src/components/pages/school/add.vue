@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-card header="School Basic Information" header-tag="h4" class="bg-info-card">
+        <b-card header="School Basic Information" header-tag="h4" class="bg-header-card">
              <form method="" class="form-horizontal">
                         <div class="row odd-row">
                             <div class="col-xs-12 col-sm-6 col-md-3">

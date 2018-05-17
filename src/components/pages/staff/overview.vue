@@ -248,11 +248,6 @@
         background-color: #fff;
     }
 
-    .fb_text {
-        color: #215fe2;
-        font-size: 28px;
-    }
-
     .box_shadow {
         box-shadow: 2px 2px 15px 0px #ccc;
     }

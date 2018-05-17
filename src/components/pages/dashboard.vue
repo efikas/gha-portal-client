@@ -268,6 +268,7 @@
     }
 </script>
 <style type="text/css" lang="scss">
+    @import "~components/layouts/css/customvariables";
 
     .social .bg-default-card .info {
         font-size: 12px;
@@ -309,11 +310,6 @@
 
     .widget_social_icons {
         background-color: #fff;
-    }
-
-    .fb_text {
-        color: #215fe2;
-        font-size: 28px;
     }
 
     .box_shadow {
