@@ -70,14 +70,14 @@
             </div>
             <div class="col-lg-6 mb-3">
                 <barchart2 :iData="this.sch_urban"></barchart2>
-            </div>           
+            </div>
             <!-- <div class="col-lg-6 mb-3">
                 <piechart :header="'Distribution of School In Rural/Urban'" :data="{}"></piechart>
             </div>
             <div class="col-lg-6 mb-3">
                 <piechart :header="'Total Number of Attendance Weekly'" :data="{}"></piechart> -->
             <!-- </div>   -->
-            
+
             <div class="col-lg-6 mb-3">
                 <piechart :iData="this.staff_gen_dist"></piechart>
             </div>
@@ -92,10 +92,10 @@
             </div>
             <div class="col-lg-6 mb-3">
                 <piechart :iData="this.staff_dist"></piechart>
-            </div> 
+            </div>
             <div class="col-lg-6 mb-3">
                 <doughnut :iData="this.gen_acad_staff_dist"></doughnut>
-            </div> 
+            </div>
         </div>
     </div>
 </template>

@@ -20,7 +20,10 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.right-aside {
+
+    @import "./css/customvariables";
+
+    .right-aside {
     padding: 0 20px 10px 20px;
     width: 100%;
     max-width: 100%;
@@ -30,6 +33,7 @@ export default {
         padding-top: 12px;
         font-size: 20px;
         line-height: 1.5;
+        color: $content_color;
     }
     .content-header {
         margin: -2px -20px 25px -20px;

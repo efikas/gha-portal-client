@@ -54,7 +54,7 @@
     /**
      * Style required for a fixed-menu layout
      */
-    import 'components/layouts/css/fixed-menu.scss'
+    // import 'components/layouts/css/fixed-menu.scss'
 
     /**
      * Style required for a compact-menu layout

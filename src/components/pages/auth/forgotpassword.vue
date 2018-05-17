@@ -1,11 +1,11 @@
 <template>
     <div class="container-fluid img_backgrond">
         <div class="row">
-            <div class="col-lg-4 offset-lg-4 col-sm-6 offset-sm-3 col-xs-10 offset-xs-1 login-content mt-5">
+            <div class="login-content mt-5">
                 <div class="row">
                     <div class="col-sm-12 mt-4">
-                        <h2 class="text-center">
-              <img src="~img/logo_black.png" alt="Logo">
+                        <h2 class="text-center logo">
+              <img width="240" height="auto" src="~img/ekiti-logo.png" alt="Logo">
             </h2>
                     </div>
                     <div class="col-sm-12 mt-4">
@@ -68,14 +68,15 @@ export default {
 }
 </script>
 <style scoped>
-.login-content {
-    margin-top: 7%;
-    margin-bottom: 7%;
-    padding-bottom: 20px;
-    box-shadow: 0 0 20px #ccc;
-    background-size: 100% 100%;
-    border-radius: 7px;
-}
+    .login-content {
+        margin: 7% auto;
+        box-shadow: 0 0 20px #ccc;
+        border-radius: 7px;
+        background-color: rgba(255, 255, 255, 1);
+        width: 288px !important;
+        padding: 20px;
+        font-size: 12px;
+    }
 
 .user-message {
     padding: 15px 0;
@@ -83,11 +84,12 @@ export default {
     color: #777;
 }
 .img_backgrond{
-    background-image: url("~img/pages/Login-03-01.png");
-    background-size: cover;
-    height: 100vh;
     width:100%;
 }
+.logo {
+    min-height:60px;
+}
+
 label{
     font-size: 14px !important;
 }
