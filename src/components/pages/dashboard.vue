@@ -2,48 +2,48 @@
     <div>
          <div class="row mb-4">
             <div class="col-lg-3  col-sm-6 mb-3">
-                <div class="text-center p-3 widget_social_icons box_shadow">
+                <div class="text-center p-3 widget_social_icons box_shadow orange">
                     <div class="widget_social_inner1">
                         <i class="fa fa-user-o fb_text"></i>
                     </div>
                     <div class="text-ash">
-                        <h4 class="mt-2 text_size">{{ schools }}</h4>
-                        <p class="m-0 mt-2">Schools</p>
+                        <h4 class="mb-0 mt-2 text_size">{{ schools }}</h4>
                     </div>
                 </div>
+                <p class="m-0 mt-2 teal text-center widget-social_link"><a href="#" style="display: block">Schools <i class="fa fa-angle-right"></i></a></p>
             </div>
             <div class="col-lg-3  col-sm-6 mb-3">
-                <div class="text-center p-3 widget_social_icons box_shadow ">
+                <div class="text-center p-3 widget_social_icons box_shadow pink">
                     <div class="widget_social_inner1">
                         <i class="fa fa-link fb_text"></i>
                     </div>
                     <div class="text-ash">
                         <h4 class="mb-0 mt-2 text_size">{{ staff }}</h4>
-                        <p class="m-0 mt-2">Staff</p>
                     </div>
                 </div>
+                <p class="m-0 mt-2 teal text-center widget-social_link"><a href="#" style="display: block">Staffs <i class="fa fa-angle-right"></i></a></p>
             </div>
             <div class="col-lg-3 col-md-6 mb-3">
-                <div class="text-center p-3 widget_social_icons box_shadow">
+                <div class="text-center p-3 widget_social_icons box_shadow blue">
                     <div class=" widget_social_inner1">
                         <i class="fa fa-comments-o fb_text"></i>
                     </div>
                     <div class="text-ash">
                         <h4 class="mb-0 mt-2 text_size">{{ students }}</h4>
-                        <p class="m-0 mt-2">Students</p>
                     </div>
                 </div>
+                <p class="m-0 mt-2 teal text-center widget-social_link"><a href="#" style="display: block">Students <i class="fa fa-angle-right"></i></a></p>
             </div>
             <div class="col-lg-3  col-md-6 mb-3">
-                <div class="text-center p-3 widget_social_icons box_shadow">
+                <div class="text-center p-3 widget_social_icons box_shadow teal">
                     <div class=" widget_social_inner1">
                         <i class="fa fa-clone fb_text"></i>
                     </div>
                     <div class="text-ash">
                         <h4 class="mb-0 mt-2 text_size">{{ guardians }}</h4>
-                        <p class="m-0 mt-2">Parent/Guardian</p>
                     </div>
                 </div>
+                <p class="m-0 mt-2 teal text-center widget-social_link"><a href="#" style="display: block">Parent/Guardian <i class="fa fa-angle-right"></i></a></p>
             </div>
         </div>
          <div class="row">
@@ -306,10 +306,6 @@
         background-color: transparent;
         border: 0;
         outline: none;
-    }
-
-    .widget_social_icons {
-        background-color: #fff;
     }
 
     .box_shadow {
