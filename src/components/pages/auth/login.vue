@@ -106,18 +106,7 @@
                         grant_type: "password",
                         username: this.model.email,
                         password: this.model.password
-                    }
-
-                    // let user = {
-                    //     name: "Fashola Ayodeji",
-                    //     picture: require("img/authors/prf4.jpg"),
-                    //     job: "Project Manager"
-                    // }
-                    //
-                    // this.$store.dispatch('setUser', user).then(() => {
-                    //     window.alert('done')
-                    //     console.log(this.$store.getters.user)
-                    // })
+                    };
 
                     this.$auth.login(credentials)
                         .then((data) => {
@@ -153,11 +142,11 @@
     }
 
     .img_backgrond {
-        background:linear-gradient(rgba(216, 49, 52, 0.56),rgba(107, 28, 43, 0.95)),url("~img/page_bck.jpg");
-        background-repeat: no-repeat;
+        /*background:linear-gradient(rgba(216, 49, 52, 0.56),rgba(107, 28, 43, 0.95)),url("~img/page_bck.jpg");*/
+        /*background-repeat: no-repeat;*/
         width: 100%;
-        background-size: cover;
-        padding-bottom: 35px;
+        /*background-size: cover;*/
+        /*padding-bottom: 35px;*/
     }
 
     .logo {
