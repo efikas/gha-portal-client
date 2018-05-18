@@ -5,7 +5,7 @@ $header_color:$skin_color;
 $dropdown_tab_active:lighten($header_color, 30);
 $leftmenu_color: #650606;
 $logo_bgcolor:lighten($skin_color, 100);
-$submenu_color:rgba(0, 0, 0, 0.3);
+$submenu_color:rgba(230, 126, 34, 0.3);
 $menu_active: lighten($skin_color, 100);
 $menu_color: #fff;
 $active_icon:#0a3c5f !important;
@@ -23,3 +23,4 @@ $right_side_user:red;
 $horizontal_hover:#0a3c5f;
 $bell-color:#ccc;
 $bell-active:#ededed;
+

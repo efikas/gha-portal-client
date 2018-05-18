@@ -2,7 +2,7 @@
     <div>
          <div class="row mb-4">
             <div class="col-lg-3  col-sm-6 mb-3">
-                <div class="text-center p-3 widget_social_icons box_shadow">
+                <div class="text-center p-3 widget_social_icons box_shadow pink">
                     <div class="widget_social_inner1">
                         <i class="fa fa-user-o fb_text"></i>
                     </div>
@@ -13,7 +13,7 @@
                 </div>
             </div>
             <div class="col-lg-3  col-sm-6 mb-3">
-                <div class="text-center p-3 widget_social_icons box_shadow ">
+                <div class="text-center p-3 widget_social_icons box_shadow blue">
                     <div class="widget_social_inner1">
                         <i class="fa fa-link fb_text"></i>
                     </div>
@@ -24,7 +24,7 @@
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 mb-3">
-                <div class="text-center p-3 widget_social_icons box_shadow">
+                <div class="text-center p-3 widget_social_icons box_shadow pink">
                     <div class=" widget_social_inner1">
                         <i class="fa fa-comments-o fb_text"></i>
                     </div>
@@ -35,7 +35,7 @@
                 </div>
             </div>
             <div class="col-lg-3  col-md-6 mb-3">
-                <div class="text-center p-3 widget_social_icons box_shadow">
+                <div class="text-center p-3 widget_social_icons box_shadow teal">
                     <div class=" widget_social_inner1">
                         <i class="fa fa-clone fb_text"></i>
                     </div>
@@ -242,15 +242,6 @@
         background-color: transparent;
         border: 0;
         outline: none;
-    }
-
-    .widget_social_icons {
-        background-color: #fff;
-    }
-
-    .fb_text {
-        color: #215fe2;
-        font-size: 28px;
     }
 
     .box_shadow {

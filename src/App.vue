@@ -17,6 +17,7 @@ Vue.use(Auth)
 Vue.use(Services)
 Vue.use(ToggleButton)
 Vue.use(BootstrapVue);
+
 export default {
     name: 'app'
 }

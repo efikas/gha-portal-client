@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <div class="col-lg-12 mb-3">
-            <b-card header="AJAX Client Table" header-tag="h4" class="bg-info-card">
+            <b-card header="AJAX Client Table" header-tag="h4" class="bg-header-card">
                 <div style="margin: 2%" v-if="schools.length < 1">
                     <skeleton-loading>
                     <row 

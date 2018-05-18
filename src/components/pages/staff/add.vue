@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-card header="Staff Information" header-tag="h4" class="bg-info-card">
+        <b-card header="Staff Information" header-tag="h4" class="bg-header-card">
             <form-wizard @on-complete="onComplete" color="#e67e22">
                 <h2 slot="title"></h2>
                 <tab-content title="Staff Profile Info" icon="fa fa-user">
