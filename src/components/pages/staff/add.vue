@@ -13,7 +13,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <label>School Name</label>
-                                    <multiselect v-model="data.data.school_name" :show-labels="false" :options="schools"></multiselect>
+                                    <multiselect v-model="data.school_name" :show-labels="false" :options="schools"></multiselect>
                                 </div>
                             </div>
                             <div class="row even-row">
@@ -23,7 +23,7 @@
                                         </label>
                                         <div class="col-md-12">
                                             <input type="text" class="form-control"
-                                                   v-model="data.data.first_name" placeholder="First Name">
+                                                   v-model="data.first_name" placeholder="First Name">
                                         </div>
                                     </div>
                                 </div>
@@ -33,7 +33,7 @@
                                         </label>
                                         <div class="col-md-12">
                                             <input type="text" class="form-control"
-                                                   v-model="data.data.middle_name" placeholder="Middle Name">
+                                                   v-model="data.middle_name" placeholder="Middle Name">
                                         </div>
                                     </div>
                                 </div>
@@ -43,7 +43,7 @@
                                         </label>
                                         <div class="col-md-12">
                                             <input type="text" class="form-control"
-                                                   v-model="data.data.last_name" placeholder="">
+                                                   v-model="data.last_name" placeholder="">
                                         </div>
                                     </div>
                                 </div>
@@ -53,12 +53,12 @@
                                         </label>
                                         <div class="col-md-12">
                                             <div class="radio">
-                                                <b-form-radio value="F" name="sex" v-model="data.data.sex">
+                                                <b-form-radio value="F" name="sex" v-model="data.sex">
                                                     Female
                                                 </b-form-radio>
                                             </div>
                                             <div class="radio">
-                                                <b-form-radio value="M" name="sex" v-model="data.data.sex">
+                                                <b-form-radio value="M" name="sex" v-model="data.sex">
                                                     Male
                                                 </b-form-radio>
                                             </div>
@@ -73,7 +73,7 @@
                                         </label>
                                         <div class="col-md-12">
                                             <input type="date" class="form-control"
-                                                   v-model="data.data.date_of_birth">
+                                                   v-model="data.date_of_birth">
                                         </div>
                                     </div>
                                 </div>
@@ -83,7 +83,7 @@
                                         </label>
                                         <div class="col-md-12">
                                             <input type="text" class="form-control" id="pob"
-                                                   placeholder="Place of birth" v-model="data.data.pob">
+                                                   placeholder="Place of birth" v-model="data.pob">
                                         </div>
                                     </div>
                                 </div>
@@ -93,7 +93,7 @@
                                         </label>
                                         <div class="col-md-12">
                                             <input type="phone" class="form-control" name="url" value="08064720000"
-                                                   id="url" v-model="data.data.phone_number">
+                                                   id="url" v-model="data.phone_number">
                                         </div>
                                     </div>
                                 </div>
@@ -103,7 +103,7 @@
                                         </label>
                                         <div class="col-md-12">
                                             <input type="email" class="form-control" placeholder="aaa@abcd.com"
-                                                   v-model="data.data.email">
+                                                   v-model="data.email">
                                         </div>
                                     </div>
                                 </div>
@@ -115,7 +115,7 @@
                                         </label>
                                         <div class="col-md-12">
                                             <select name="example-select" class="form-control" size="1"
-                                                    v-model="data.data.state_of_origin">
+                                                    v-model="data.state_of_origin">
                                                 <option value="0">
                                                     Select Year
                                                 </option>
@@ -131,7 +131,7 @@
                                         <label class="control-label col-md-12" for="text">Local Govt of Origin
                                         </label>
                                         <div class="col-md-12">
-                                            <select class="form-control" size="1" v-model="data.data.lga">
+                                            <select class="form-control" size="1" v-model="data.lga">
                                                 <option value="0">
                                                     Select Year
                                                 </option>
@@ -148,7 +148,7 @@
                                         </label>
                                         <div class="col-md-12">
                                             <input type="text" class="form-control" id="text" placeholder=""
-                                                   v-model="data.data.home_town">
+                                                   v-model="data.home_town">
                                         </div>
                                     </div>
                                 </div>
@@ -158,7 +158,7 @@
                                         </label>
                                         <div class="col-md-12">
                                             <input type="number" min="0" class="form-control" id="text" placeholder=""
-                                                   v-model="data.data.distance_from_school">
+                                                   v-model="data.distance_from_school">
                                         </div>
                                     </div>
                                 </div>
@@ -170,7 +170,7 @@
                                         </label>
                                         <div class="col-md-12">
                                             <select class="form-control" size="1"
-                                                    v-model="data.data.marital_status">
+                                                    v-model="data.marital_status">
                                                 <option value="">
                                                     Select Status
                                                 </option>
@@ -186,7 +186,7 @@
                                         <label class="control-label col-md-12" for="text">Religion
                                         </label>
                                         <div class="col-md-12">
-                                            <select class="form-control" size="1" v-model="data.data.religion">
+                                            <select class="form-control" size="1" v-model="data.religion">
                                                 <option value="0">
                                                     Select Religion
                                                 </option>
@@ -205,7 +205,7 @@
                                             Address</label>
                                         <div class="col-md-12">
                                             <textarea rows="4" class="form-control resize_vertical"
-                                                      v-model="data.data.residential_address"
+                                                      v-model="data.residential_address"
                                                       placeholder="Home/Residential Address"></textarea>
                                         </div>
                                     </div>
@@ -540,23 +540,21 @@
                 },
                 data: {
                     school_id: '1',
-                    data: {
-                        first_name: 'Alabi',
-                        middle_name: 'Oluwaseun',
-                        last_name: 'Mathew',
-                        sex: 'M',
-                        date_of_birth: '1987-2-12',
-                        place_of_birth: 'Ado',
-                        phone_number: '08065423821',
-                        email: 'mathew@gmail.com',
-                        state_of_origin: 'Ekiti state',
-                        lga: 'Ado',
-                        home_town: 'Ado',
-                        distance_from_school: 1,
-                        marital_status: '1',
-                        religious_status: '1',
-                        residential_address: 'Ado Ekiti',
-                    },
+                    first_name: 'Alabi',
+                    middle_name: 'Oluwaseun',
+                    last_name: 'Mathew',
+                    sex: 'M',
+                    date_of_birth: '1987-2-12',
+                    place_of_birth: 'Ado',
+                    phone_number: '08065423821',
+                    email: 'mathew@gmail.com',
+                    state_of_origin: 'Ekiti state',
+                    lga: 'Ado',
+                    home_town: 'Ado',
+                    distance_from_school: 1,
+                    marital_status: '1',
+                    religious_status: '1',
+                    residential_address: 'Ado Ekiti',
                     info: {
                         staff_type: '',
                         grade_level: '',
@@ -606,7 +604,7 @@
                 this.$lga.getLgasSchool(this.lgas.indexOf(this.lga) + 1).then(data => {
                     this.schools = [];
                     this.school = '';
-                    data.data.forEach(item => {
+                    data.forEach(item => {
                         this.schools.push(item.school_name);
                     });
                 })
