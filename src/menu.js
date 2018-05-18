@@ -1,11 +1,11 @@
 const menu_items = [{
         name: 'Dashboard',
         link: '/',
-        icon: 'fa fa-home'
+        icon: 'fa fa-dashboard'
     },
     {
         name: "School",
-        icon: "fa fa-files-o",
+        icon: "fa fa-home",
         child: [{
             name: 'Overview',
             link: '/school',
@@ -26,7 +26,7 @@ const menu_items = [{
     },
     {
         name: "Staff",
-        icon: "fa fa-files-o",
+        icon: "fa fa-male",
         child: [{
             name: 'Overview',
             link: '/staff',
@@ -47,39 +47,39 @@ const menu_items = [{
     },
     {
         name: "Student",
-        icon: "fa fa-files-o",
+        icon: "fa fa-users",
         child: [{
             name: 'Overview',
             link: '/student',
-            icon: 'fa fa-angle-double-right'
+            icon: 'fa fa-clipboard'
         }, {
             name: 'Manage',
             link: '/student/manage',
-            icon: 'fa fa-angle-double-right'
+            icon: 'fa fa-cubes'
         }, {
             name: 'Create',
             link: '/student/add',
-            icon: 'fa fa-angle-double-right'
+            icon: 'fa fa-plus-circle'
         }, {
             name: 'Import',
             link: '/student/import',
-            icon: 'fa fa-angle-double-right'
+            icon: 'fa fa-download'
         }]
     },
     {
         name: 'Attendance',
         link: '/attendance',
-        icon: 'fa fa-angle-double-right'
+        icon: 'fa fa-calendar-check-o'
     },
     {
         name: 'SBMC',
         link: '/SBMC',
-        icon: 'fa fa-angle-double-right'
+        icon: 'fa fa-qrcode'
     },
     {
         name: 'Report',
         link: '/report',
-        icon: 'fa fa-angle-double-right'
+        icon: 'fa fa-line-chart'
     },
 ];
 export default menu_items;

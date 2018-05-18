@@ -4,7 +4,7 @@
             <div class="col-lg-3  col-sm-6 mb-3">
                 <div class="text-center p-3 widget_social_icons box_shadow pink">
                     <div class="widget_social_inner1">
-                        <i class="fa fa-user-o fb_text"></i>
+                        <i class="fa fa-graduation-cap fb_text"></i>
                     </div>
                     <div class="text-ash">
                         <h4 class="mt-2 text_size">{{ this.teachingStaff }}</h4>
@@ -15,7 +15,7 @@
             <div class="col-lg-3  col-sm-6 mb-3">
                 <div class="text-center p-3 widget_social_icons box_shadow blue">
                     <div class="widget_social_inner1">
-                        <i class="fa fa-link fb_text"></i>
+                        <i class="fa fa-ils fb_text"></i>
                     </div>
                     <div class="text-ash">
                         <h4 class="mb-0 mt-2 text_size">{{ this.nonTeachingStaff }}</h4>
@@ -26,7 +26,7 @@
             <div class="col-lg-3 col-md-6 mb-3">
                 <div class="text-center p-3 widget_social_icons box_shadow pink">
                     <div class=" widget_social_inner1">
-                        <i class="fa fa-comments-o fb_text"></i>
+                        <i class="fa fa-female fb_text"></i>
                     </div>
                     <div class="text-ash">
                         <h4 class="mb-0 mt-2 text_size">{{ this.femaleStaff }}</h4>
@@ -37,7 +37,7 @@
             <div class="col-lg-3  col-md-6 mb-3">
                 <div class="text-center p-3 widget_social_icons box_shadow teal">
                     <div class=" widget_social_inner1">
-                        <i class="fa fa-clone fb_text"></i>
+                        <i class="fa fa-male fb_text"></i>
                     </div>
                     <div class="text-ash">
                         <h4 class="mb-0 mt-2 text_size">{{ this.maleStaff }}</h4>
