@@ -11,7 +11,7 @@
                             <h4 class="mb-0 mt-2 text_size">{{ schools }}</h4>
                         </div>
                     </div>
-                    <p class="m-0 orange text-center widget-social_link"><a href="#" style="display: block">Schools <i class="fa fa-angle-right"></i></a></p>
+                    <p class="m-0 orange text-center widget-social_link tiny upper"><a href="#" style="display: block">Schools <i class="fa fa-angle-right"></i></a></p>
                 </div>
             </div>
             <div class="col-lg-3  col-sm-6 mb-3">
@@ -24,7 +24,7 @@
                             <h4 class="mb-0 mt-2 text_size">{{ staff }}</h4>
                         </div>
                     </div>
-                    <p class="m-0 pink text-center widget-social_link"><a href="#" style="display: block">Staffs <i class="fa fa-angle-right"></i></a></p>
+                    <p class="m-0 pink text-center widget-social_link tiny upper"><a href="#" style="display: block">Staffs <i class="fa fa-angle-right"></i></a></p>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 mb-3">
@@ -37,7 +37,7 @@
                             <h4 class="mb-0 mt-2 text_size">{{ students }}</h4>
                         </div>
                     </div>
-                    <p class="m-0 blue text-center widget-social_link"><a href="#" style="display: block">Students <i class="fa fa-angle-right"></i></a></p>
+                    <p class="m-0 blue text-center widget-social_link tiny upper"><a href="#" style="display: block">Students <i class="fa fa-angle-right"></i></a></p>
                 </div>
             </div>
             <div class="col-lg-3  col-md-6 mb-3">
@@ -50,7 +50,7 @@
                             <h4 class="mb-0 mt-2 text_size">{{ guardians }}</h4>
                         </div>
                     </div>
-                    <p class="m-0 teal text-center widget-social_link"><a href="#" style="display: block">Parent/Guardian <i class="fa fa-angle-right"></i></a></p>
+                    <p class="m-0 teal text-center widget-social_link tiny upper"><a href="#" style="display: block">Parent/Guardian <i class="fa fa-angle-right"></i></a></p>
                 </div>
             </div>
         </div>
