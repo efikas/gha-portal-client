@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <div class="col-lg-12 mb-3">
-            <b-card header="AJAX Client Table" header-tag="h4" class="bg-header-card">
+            <b-card header="List of Schools" header-tag="h4" class="bg-header-card">
                 <div style="margin: 2%" v-if="schools.length < 1">
                     <skeleton-loading>
                     <row 
@@ -35,7 +35,7 @@
                 
                 <v-client-table :data="schools" :columns="columns" :options="options" v-if="schools.length > 0">
                     <a slot="id" slot-scope="props">{{ props.index }}</a>
-                    <router-link tag="a" slot="name" slot-scope="props" :to="{ name: 'school-profile', params: { id: props.row.id }}" v-html="props.row.name"></router-link>
+                    <router-link tag="a" class="list-font" slot="name" slot-scope="props" :to="{ name: 'school-profile', params: { id: props.row.id }}" v-html="props.row.name"></router-link>
                      <!--<a slot="school_name" slot-scope="props" :href="'/#/school/'+ props.row.id+'/profile'">{{ props.row.school_name }}</a>-->
                      <router-link tag="a" slot="view" slot-scope="props" class="fa fa-pencil icon-big btn btn-outline-primary" :to="{ name: 'school-profile', params: { id: props.row.id }}"></router-link>
                 </v-client-table>
@@ -152,5 +152,8 @@ export default {
  .icon-big {
      font-size: 20px;
  }
+ .list-font {
+    font-size:1.3em;
+}
 </style>
 
