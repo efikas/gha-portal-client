@@ -496,11 +496,25 @@ header .navbar-right {
     border-bottom-left-radius: 5px;
 }
 
+.widget-social_link:hover {
+  background: rgba(black, .2);
+  transition: background-color 500ms;
+}
+
 
 /**
     colors
  */
-.orange { background: rgba(orange, .1); }
-.pink { background: rgba(pink, .1); }
-.blue { background: rgba(blue, .1); }
-.teal { background: rgba(teal, .1); }
+.orange { background: rgba(orange, .2); }
+.pink { background: rgba(pink, .2); }
+.blue { background: rgba(blue, .2); }
+.teal { background: rgba(teal, .2); }
+
+
+.upper {
+  text-transform: uppercase;
+}
+.tiny {
+  font-size: 9px;
+  letter-spacing: 2px;
+}

@@ -2,49 +2,56 @@
     <div>
          <div class="row mb-4">
             <div class="col-lg-3  col-sm-6 mb-3">
-                <div class="text-center p-3 widget_social_icons box_shadow orange">
-                    <div class="widget_social_inner1">
-                        <i class="material-icons fb_text">home</i>
+                <div class="text-center widget_social_icons box_shadow orange">
+                    <div class="p-2">
+                        <div class="widget_social_inner1">
+                            <i class="material-icons fb_text">home</i>
+                        </div>
+                        <div class="text-ash">
+                            <h4 class="mb-0 mt-2 text_size">{{ schools }}</h4>
+                        </div>
                     </div>
-                    <div class="text-ash">
-                        <h4 class="mb-0 mt-2 text_size">{{ schools }}</h4>
-                    </div>
+                    <p class="m-0 orange text-center widget-social_link tiny upper"><a href="#" style="display: block">Schools <i class="fa fa-angle-right"></i></a></p>
                 </div>
-                <p class="m-0 mt-2 orange text-center widget-social_link"><a href="#" style="display: block">Schools <i class="fa fa-angle-right"></i></a></p>
             </div>
             <div class="col-lg-3  col-sm-6 mb-3">
-                <div class="text-center p-3 widget_social_icons box_shadow pink">
-                    <div class="widget_social_inner1">
-                        <i class="material-icons fb_text">group</i>
+                <div class="text-center widget_social_icons box_shadow pink">
+                    <div class="p-2">
+                        <div class="widget_social_inner1">
+                            <i class="material-icons fb_text">group</i>
+                        </div>
+                        <div class="text-ash">
+                            <h4 class="mb-0 mt-2 text_size">{{ staff }}</h4>
+                        </div>
                     </div>
-                    <div class="text-ash">
-                        <h4 class="mb-0 mt-2 text_size">{{ staff }}</h4>
-                    </div>
+                    <p class="m-0 pink text-center widget-social_link tiny upper"><a href="#" style="display: block">Staffs <i class="fa fa-angle-right"></i></a></p>
                 </div>
-                <p class="m-0 mt-2 pink text-center widget-social_link"><a href="#" style="display: block">Staffs <i class="fa fa-angle-right"></i></a></p>
             </div>
             <div class="col-lg-3 col-md-6 mb-3">
-                <div class="text-center p-3 widget_social_icons box_shadow blue">
-                    <div class=" widget_social_inner1">
-                        <i class="fa fa-male fb_text"></i>
-                        <i class="fa fa-female fb_text"></i>
+                <div class="text-center widget_social_icons box_shadow blue">
+                    <div class="p-2">
+                        <div class=" widget_social_inner1">
+                            <i class="material-icons fb_text">person</i>
+                        </div>
+                        <div class="text-ash">
+                            <h4 class="mb-0 mt-2 text_size">{{ students }}</h4>
+                        </div>
                     </div>
-                    <div class="text-ash">
-                        <h4 class="mb-0 mt-2 text_size">{{ students }}</h4>
-                    </div>
+                    <p class="m-0 blue text-center widget-social_link tiny upper"><a href="#" style="display: block">Students <i class="fa fa-angle-right"></i></a></p>
                 </div>
-                <p class="m-0 mt-2 blue text-center widget-social_link"><a href="#" style="display: block">Students <i class="fa fa-angle-right"></i></a></p>
             </div>
             <div class="col-lg-3  col-md-6 mb-3">
-                <div class="text-center p-3 widget_social_icons box_shadow teal">
-                    <div class=" widget_social_inner1">
-                        <i class="fa fa-users fb_text"></i>
+                <div class="text-center widget_social_icons box_shadow teal">
+                    <div class="p-2">
+                        <div class=" widget_social_inner1">
+                            <i class="material-icons fb_text">people</i>
+                        </div>
+                        <div class="text-ash">
+                            <h4 class="mb-0 mt-2 text_size">{{ guardians }}</h4>
+                        </div>
                     </div>
-                    <div class="text-ash">
-                        <h4 class="mb-0 mt-2 text_size">{{ guardians }}</h4>
-                    </div>
+                    <p class="m-0 teal text-center widget-social_link tiny upper"><a href="#" style="display: block">Parent/Guardian <i class="fa fa-angle-right"></i></a></p>
                 </div>
-                <p class="m-0 mt-2 teal text-center widget-social_link"><a href="#" style="display: block">Parent/Guardian <i class="fa fa-angle-right"></i></a></p>
             </div>
         </div>
          <div class="row">
@@ -311,7 +318,7 @@
     }
 
     .box_shadow {
-        box-shadow: 2px 2px 15px 0px #ccc;
+        box-shadow: 1px 1px 10px 0px #ccc;
     }
 
     .head_color {
