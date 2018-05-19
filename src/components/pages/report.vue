@@ -26,10 +26,10 @@
                                         <piechart :iData="this.sec_sch"></piechart>
                                     </div>
                                     <div class="col-lg-6 mb-3">
-                                        <barchart2 :iData="this.sch_rural"></barchart2>
+                                        <barchart :iData="this.sch_rural"></barchart>
                                     </div>
                                     <div class="col-lg-6 mb-3">
-                                        <barchart2 :iData="this.sch_urban"></barchart2>
+                                        <barchart :iData="this.sch_urban"></barchart>
                                     </div>     
                                 </div>
                             </b-card-body>
@@ -48,12 +48,12 @@
                         <b-collapse id="accordion2" visible accordion="my-accordion2" role="tabpanel">
                         <b-card-body>
                             <div class="row">
-                                <div class="col-lg-6 mb-3">
+                                <!-- <div class="col-lg-6 mb-3">
                                     <piechart :iData="this.staff_gen_dist"></piechart>
                                 </div>
                                 <div class="col-lg-6 mb-3">
                                     <stackbar :iData="this.male_female_staff"></stackbar>
-                                </div>
+                                </div> -->
                                 <div class="col-lg-6 mb-3">
                                     <piechart :iData="this.staff_gen_dist"></piechart>
                                 </div>
@@ -87,7 +87,7 @@
                                         <donut :iData="this.stu_sec_sch"></donut>
                                     </div>
                                     <div class="col-lg-6">
-                                        <donut :iData="this.stu_sec_sch"></donut>
+                                        <donut :iData="this.stu_pri_sch"></donut>
                                     </div>
                                 </div>
                             </b-card-body>
@@ -104,7 +104,7 @@ import 'vue2-dropzone/dist/vue2Dropzone.css'
 let sbemisData = require('../../modules/draw-graphs.js')
 
 import piechart from '../charts/piechart.vue'
-import barchart2 from '../charts/barchart2.vue'
+import barchart from '../charts/barchart.vue'
 import donut from '../charts/donut.vue'
 import stackbar from '../charts/stackbar.vue'
 import doughnut from '../charts/doughnut.vue'
@@ -114,7 +114,7 @@ export default {
     components: {
         vueDropzone: vue2Dropzone,
         piechart,
-        barchart2,
+        barchart,
         stackbar,
         doughnut,
         donut 

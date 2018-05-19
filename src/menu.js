@@ -9,19 +9,19 @@ const menu_items = [{
         child: [{
             name: 'Overview',
             link: '/school',
-            icon: 'fa fa-angle-double-right'
+            icon: 'fa fa-clipboard'
         }, {
             name: 'Manage',
             link: '/school/manage',
-            icon: 'fa fa-angle-double-right'
+            icon: 'fa fa-codepen'
         }, {
             name: 'Create',
             link: '/school/add',
-            icon: 'fa fa-angle-double-right'
+            icon: 'fa fa-plus-circle'
         }, {
             name: 'Import',
             link: '/school/import',
-            icon: 'fa fa-angle-double-right'
+            icon: 'fa fa-download'
         }]
     },
     {
@@ -30,7 +30,7 @@ const menu_items = [{
         child: [{
             name: 'Overview',
             link: '/staff',
-            icon: 'fa fa-angle-double-right'
+            icon: 'fa fa-clipboard'
         }, {
             name: 'Manage',
             link: '/staff/manage',
@@ -38,11 +38,11 @@ const menu_items = [{
         }, {
             name: 'Create',
             link: '/staff/add',
-            icon: 'fa fa-angle-double-right'
+            icon: 'fa fa-plus-circle'
         }, {
             name: 'Import',
             link: '/staff/import',
-            icon: 'fa fa-angle-double-right'
+            icon: 'fa fa-download'
         }]
     },
     {
