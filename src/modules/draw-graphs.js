@@ -283,15 +283,15 @@ module.exports = {
         });
 
         // PTS Public
-        _dist.sch_rural.push({name: 'Private Secondary', data: parseInt(values.schools.privates.rural.secondary)})
-        _dist.sch_rural.push({name: 'Public Secondary', data: parseInt(values.schools.publics.rural.secondary)})
-        _dist.sch_rural.push({name: 'Private Primary', data: parseInt(values.schools.privates.rural.primary)})
-        _dist.sch_rural.push({name: 'Public Primary', data: parseInt(values.schools.publics.rural.primary)})
+        _dist.sch_rural.push({name: 'Private Sec', data: parseInt(values.schools.privates.rural.secondary)})
+        _dist.sch_rural.push({name: 'Public Sec', data: parseInt(values.schools.publics.rural.secondary)})
+        _dist.sch_rural.push({name: 'Private Pry', data: parseInt(values.schools.privates.rural.primary)})
+        _dist.sch_rural.push({name: 'Public Pry', data: parseInt(values.schools.publics.rural.primary)})
 
-        _dist.sch_urban.push({name: 'Private Secondary', data: parseInt(values.schools.privates.urban.secondary)})
-        _dist.sch_urban.push({name: 'Public Secondary', data: parseInt(values.schools.publics.urban.secondary)})
-        _dist.sch_urban.push({name: 'Private Primary', data: parseInt(values.schools.privates.urban.primary)})
-        _dist.sch_urban.push({name: 'Public Primary', data: parseInt(values.schools.publics.urban.primary)})
+        _dist.sch_urban.push({name: 'Private Sec', data: parseInt(values.schools.privates.urban.secondary)})
+        _dist.sch_urban.push({name: 'Public Sec', data: parseInt(values.schools.publics.urban.secondary)})
+        _dist.sch_urban.push({name: 'Private Pry', data: parseInt(values.schools.privates.urban.primary)})
+        _dist.sch_urban.push({name: 'Public Pry', data: parseInt(values.schools.publics.urban.primary)})
 
         _dist.sch_dist = [
             {

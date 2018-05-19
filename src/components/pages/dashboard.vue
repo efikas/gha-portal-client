@@ -64,13 +64,13 @@
                 <donut :iData="this.stu_sec_sch"></donut>
             </div>
              <div class="col-lg-6">
-                <donut :iData="this.stu_sec_sch"></donut>
+                <donut :iData="this.stu_pri_sch"></donut>
             </div>
             <div class="col-lg-6 mb-3">
-                <barchart2 :iData="this.sch_rural"></barchart2>
+                <barchart :iData="this.sch_rural"></barchart>
             </div>
             <div class="col-lg-6 mb-3">
-                <barchart2 :iData="this.sch_urban"></barchart2>
+                <barchart :iData="this.sch_urban"></barchart>
             </div>
             <!-- <div class="col-lg-6 mb-3">
                 <piechart :header="'Distribution of School In Rural/Urban'" :data="{}"></piechart>
@@ -79,12 +79,12 @@
                 <piechart :header="'Total Number of Attendance Weekly'" :data="{}"></piechart> -->
             <!-- </div>   -->
 
-            <div class="col-lg-6 mb-3">
+            <!-- <div class="col-lg-6 mb-3">
                 <piechart :iData="this.staff_gen_dist"></piechart>
             </div>
             <div class="col-lg-6 mb-3">
                 <stackbar :iData="this.male_female_staff"></stackbar>
-            </div>
+            </div> -->
             <div class="col-lg-6 mb-3">
                 <piechart :iData="this.staff_gen_dist"></piechart>
             </div>
@@ -110,7 +110,7 @@
     import VueAwesomeSwiper from 'vue-awesome-swiper';
 
     import piechart from '../charts/piechart.vue'
-    import barchart2 from '../charts/barchart2.vue'
+    import barchart from '../charts/barchart.vue'
     import donut from '../charts/donut.vue'
     import stackbar from '../charts/stackbar.vue'
     import doughnut from '../charts/doughnut.vue'
@@ -123,7 +123,7 @@
         name: "echart",
         components: {
             piechart,
-            barchart2,
+            barchart,
             stackbar,
             doughnut,
             donut 
@@ -165,6 +165,7 @@
         created() {
             this.$dashboard.statistics()
                 .then((data) => {
+                    console.log(data);
                     this.schools = data.schools.total;
                     this.staff = data.staffs.total;
                     this.students = data.students.total;

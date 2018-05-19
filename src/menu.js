@@ -34,7 +34,7 @@ const menu_items = [{
         }, {
             name: 'Manage',
             link: '/staff/manage',
-            icon: 'fa fa-angle-double-right'
+            icon: 'fa fa-codepen'
         }, {
             name: 'Create',
             link: '/staff/add',
@@ -55,7 +55,7 @@ const menu_items = [{
         }, {
             name: 'Manage',
             link: '/student/manage',
-            icon: 'fa fa-cubes'
+            icon: 'fa fa-codepen'
         }, {
             name: 'Create',
             link: '/student/add',

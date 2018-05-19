@@ -93,7 +93,7 @@
                                         </label>
                                         <div class="col-md-12">
                                             <input type="phone" class="form-control" name="url" value="08064720000"
-                                                   id="url" v-model="data.phone_number">
+                                                   id="url" v-model="data.phone">
                                         </div>
                                     </div>
                                 </div>
@@ -131,7 +131,7 @@
                                         <label class="control-label col-md-12" for="text">Local Govt of Origin
                                         </label>
                                         <div class="col-md-12">
-                                            <select class="form-control" size="1" v-model="data.lga">
+                                            <select class="form-control" size="1" v-model="data.lga_of_origin">
                                                 <option value="0">
                                                     Select Year
                                                 </option>
@@ -149,16 +149,6 @@
                                         <div class="col-md-12">
                                             <input type="text" class="form-control" id="text" placeholder=""
                                                    v-model="data.home_town">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 col-md-3">
-                                    <div class="form-group p-10">
-                                        <label class="control-label" for="text">House Distance from School (in KM)
-                                        </label>
-                                        <div class="col-md-12">
-                                            <input type="number" min="0" class="form-control" id="text" placeholder=""
-                                                   v-model="data.distance_from_school">
                                         </div>
                                     </div>
                                 </div>
@@ -223,7 +213,7 @@
                                         <label class="control-label col-md-8" for="text">Staff Type
                                         </label>
                                         <div class="col-md-12">
-                                            <select v-model="data.info.staff_type" class="form-control"
+                                            <select v-model="data.category" class="form-control"
                                                     size="1">
                                                 <option value="0">
                                                     Select Year
@@ -235,22 +225,22 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xs-12 col-sm-6 col-md-3">
+                                <!-- <div class="col-xs-12 col-sm-6 col-md-3">
                                     <div class="form-group p-10">
                                         <label class="control-label" for="text">Current Grade Level/Step
                                         </label>
                                         <div class="col-md-12">
                                             <input type="text" class="form-control"
-                                                   v-model="data.info.grade_level" placeholder="">
+                                                   v-model="data.grade_level" placeholder="">
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="col-xs-12 col-sm-6 col-md-3">
                                     <div class="form-group p-10">
                                         <label class="control-label col-md-12" for="text">Staff Current Status
                                         </label>
                                         <div class="col-md-12">
-                                            <select v-model="data.info.current_status" class="form-control"
+                                            <select v-model="data.status" class="form-control"
                                                     size="1">
                                                 <option value="0">
                                                     Select Year
@@ -267,7 +257,7 @@
                                         <label class="control-label col-md-12" for="text">Salary Source
                                         </label>
                                         <div class="col-md-12">
-                                            <select v-model="data.info.salary_source" class="form-control"
+                                            <select v-model="data.salary_source" class="form-control"
                                                     size="1">
                                                 <option value="0">
                                                     Select Year
@@ -287,7 +277,7 @@
                                         </label>
                                         <div class="col-md-12">
                                             <input type="number" min="0" class="form-control"
-                                                   v-model="data.info.first_appointment">
+                                                   v-model="data.first_appointment">
                                         </div>
                                     </div>
                                 </div>
@@ -297,7 +287,7 @@
                                         </label>
                                         <div class="col-md-12">
                                             <input type="text" class="form-control"
-                                                   v-model="data.info.last_promotion"
+                                                   v-model="data.last_promotion_year"
                                                    placeholder="Year of Last Promotion">
                                         </div>
                                     </div>
@@ -308,7 +298,7 @@
                                         </label>
                                         <div class="col-md-12">
                                             <input type="text" class="form-control"
-                                                   v-model="data.info.posting_year" name="" value=""
+                                                   v-model="data.posting_year" name="" value=""
                                                    placeholder="Year of Posting">
                                         </div>
                                     </div>
@@ -318,7 +308,7 @@
                                         <label class="control-label" for="text">Employment Type
                                         </label>
                                         <div class="col-md-12">
-                                            <select v-model="data.info.employment_type"
+                                            <select v-model="data.employment_type"
                                                     class="form-control" size="1">
                                                 <option value="0">
                                                     Select Employment
@@ -337,7 +327,7 @@
                                         <label class="control-label col-md-8" for="text">Academic Qualification
                                         </label>
                                         <div class="col-md-12">
-                                            <select v-model="data.info.academic_qualification"
+                                            <select v-model="data.academic_qualification"
                                                     class="form-control" size="1">
                                                 <option value="0">
                                                     Select Year
@@ -354,7 +344,7 @@
                                         <label class="control-label col-md-12" for="text">Teaching Qualification
                                         </label>
                                         <div class="col-md-12">
-                                            <select v-model="data.info.teaching_qualification"
+                                            <select v-model="data.teaching_qualification"
                                                     class="form-control" size="1">
                                                 <option value="0">
                                                     Select Year
@@ -371,7 +361,7 @@
                                         <label class="control-label col-md-12" for="text">Area of Specialty
                                         </label>
                                         <div class="col-md-12">
-                                            <select v-model="data.info.speciality" class="form-control"
+                                            <select v-model="data.speciality" class="form-control"
                                                     size="1">
                                                 <option value="0">
                                                     Select Year
@@ -388,7 +378,7 @@
                                         <label class="control-label col-md-12" for="text">Main Subject Taught
                                         </label>
                                         <div class="col-md-12">
-                                            <select v-model="data.info.subject_taught" class="form-control"
+                                            <select v-model="data.subject_taught" class="form-control"
                                                     size="1">
                                                 <option value="0">
                                                     Select Year
@@ -408,7 +398,7 @@
                                         </label>
                                         <div class="col-md-12">
                                             <input type="text" class="form-control"
-                                                   v-model="data.info.class_taught"
+                                                   v-model="data.class_taught"
                                                    placeholder="School Name">
                                         </div>
                                     </div>
@@ -419,12 +409,12 @@
                                         </label>
                                         <div class="col-md-12">
                                             <div class="radio">
-                                                <b-form-radio value="0" v-model="data.info.training_workshop">
+                                                <b-form-radio value="0" v-model="data.training_workshop">
                                                     Yes
                                                 </b-form-radio>
                                             </div>
                                             <div class="radio">
-                                                <b-form-radio value="1" v-model="data.info.training_workshop">
+                                                <b-form-radio value="1" v-model="data.training_workshop">
                                                     No
                                                 </b-form-radio>
                                             </div>
@@ -437,12 +427,12 @@
                                         </label>
                                         <div class="col-md-12">
                                             <div class="radio">
-                                                <b-form-radio value="0" v-model="data.info.computer_literate">
+                                                <b-form-radio value="0" v-model="data.computer_literate">
                                                     Yes
                                                 </b-form-radio>
                                             </div>
                                             <div class="radio">
-                                                <b-form-radio value="1" v-model="data.info.computer_literate">
+                                                <b-form-radio value="1" v-model="data.computer_literate">
                                                     No
                                                 </b-form-radio>
                                             </div>
@@ -457,12 +447,12 @@
                                         </label>
                                         <div class="col-md-12">
                                             <div class="radio">
-                                                <b-form-radio value="0" v-model="data.info.TRC_registered">
+                                                <b-form-radio value="0" v-model="data.TRC_registered">
                                                     Yes
                                                 </b-form-radio>
                                             </div>
                                             <div class="radio">
-                                                <b-form-radio value="1" v-model="data.info.TRC_registered">
+                                                <b-form-radio value="1" v-model="data.TRC_registered">
                                                     No
                                                 </b-form-radio>
                                             </div>
@@ -475,7 +465,7 @@
                                         </label>
                                         <div class="col-md-12">
                                             <input type="text" class="form-control"
-                                                   v-model="data.info.TRC_reg_no"
+                                                   v-model="data.TRC_reg_no"
                                                    placeholder="School Name">
                                         </div>
                                     </div>
@@ -488,7 +478,7 @@
                                         </label>
                                         <div class="col-md-12">
                                             <input type="text" class="form-control"
-                                                   v-model="data.info.school_posted_from"
+                                                   v-model="data.school_posted_from"
                                                    placeholder="School Name">
                                         </div>
                                     </div>
@@ -499,7 +489,7 @@
                                         </label>
                                         <div class="col-md-12">
                                             <input type="text" class="form-control"
-                                                   v-model="data.info.position" placeholder="School Name">
+                                                   v-model="data.position" placeholder="School Name">
                                         </div>
                                     </div>
                                 </div>
@@ -530,53 +520,42 @@
             return {
                 lgas: [],
                 schools: [],
-                dropzoneOptions: {
-                    url: 'https://httpbin.org/post',
-                    thumbnailWidth: 150,
-                    autoProcessQueue: false,
-                    // maxFilesize: 0.5,
-                    maxFiles: 1,
-                    headers: {"My-Awesome-Header": "header value"},
-                },
+                lga: '',
                 data: {
                     school_id: '1',
                     first_name: 'Alabi',
                     middle_name: 'Oluwaseun',
                     last_name: 'Mathew',
                     sex: 'M',
-                    date_of_birth: '1987-2-12',
+                    date_of_birth: '1987-2-2',
                     place_of_birth: 'Ado',
-                    phone_number: '08065423821',
+                    phone: '08065423821',
                     email: 'mathew@gmail.com',
-                    state_of_origin: 'Ekiti state',
-                    lga: 'Ado',
+                    state_of_origin: '7',
+                    lga_of_origin: '25',
                     home_town: 'Ado',
-                    distance_from_school: 1,
                     marital_status: '1',
-                    religious_status: '1',
+                    religion: '1',
                     residential_address: 'Ado Ekiti',
-                    info: {
-                        staff_type: '',
-                        grade_level: '',
-                        current_status: '',
-                        salary_source: '',
-                        first_appointment: '',
-                        last_promotion: '',
-                        posting_year: '',
-                        employment_type: '',
-                        academic_qualification: '',
-                        teaching_qualification: '',
-                        speciality: '',
-                        subject_taught: '',
-                        class_taught: '',
-                        training_workshop: '',
-                        computer_literate: '1',
-                        trc_registered: '',
-                        trc_reg_no: '',
-                        school_posted_from: '',
-                        position: '',
-                    }
-
+                    category: 2,
+                    // grade_level: '',
+                    status: '2',
+                    salary_source: '2',
+                    // first_appointment: '',
+                    last_promotion_year: '2018',
+                    // posting_year: '',
+                    employment_type: '1',
+                    academic_qualification: '2',
+                    teaching_qualification: '4',
+                    speciality: 2,
+                    subject_taught: '12',
+                    // class_taught: '',
+                    // training_workshop: '',
+                    computer_literate: '1',
+                    // trc_registered: '',
+                    trc_reg_no: '345-356',
+                    // school_posted_from: '',
+                    // position: '',
                 }
             }
         },

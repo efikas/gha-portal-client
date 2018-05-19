@@ -1,7 +1,7 @@
 <template>
     <div>
         <b-card>
-            <h5 class="ml-3 head_color">Annual Stats</h5>
+            <h5 class="ml-3 head_color">{{ this.iData['header'] || '' }}</h5>
             <div style="height: 305px;">
                 <IEcharts :option="ajaxbar_chart" :loading="ajaxloading" @ready="onReady" ref="ajaxbar_chart"></IEcharts>
             </div>
@@ -11,13 +11,13 @@
 <script>
     import Vue from 'vue';
 
-    // import IEcharts from 'vue-echarts-v3/src/full.js';
+    import IEcharts from 'vue-echarts-v3/src/full.js';
 
-    // import 'zrender/lib/vml/vml';
-    // require('swiper/dist/css/swiper.css')
+    import 'zrender/lib/vml/vml';
+    require('swiper/dist/css/swiper.css')
 
-    // import VueAwesomeSwiper from 'vue-awesome-swiper';
-    // import countTo from 'vue-count-to';
+    import VueAwesomeSwiper from 'vue-awesome-swiper';
+    import countTo from 'vue-count-to';
 
     import vScroll from "components/plugins/scroll/vScroll.vue";
     // import VueChartist from 'v-chartist'
@@ -39,9 +39,9 @@
     var unsub;
     export default {
         name: "barchart",
-        props: ['data', 'colors'],
+        props: ['iData', 'colors'],
         components: {
-            // IEcharts,
+            IEcharts,
             // countTo,
             // vScroll,
             // VueChartist,
@@ -70,19 +70,17 @@
                     },
                     calculable: true,
                     legend: {
-                        data: ['PROJECTS', 'SALES']
+                        data: ['PROJECTS']
                     },
                     color: this.colors || ['#a0bce5', '#baf2e1'],
                     xAxis: [{
                         type: 'category',
                         name: 'YEAR',
-                        data: this.data || ['2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015',
-                            '2016', '2017'
-                        ]
+                        data: [],
                     }],
                     yAxis: [{
                             type: 'value',
-                            name: '%',
+                            name: '',
                             axisLabel: {
                                 formatter: '{value} '
                             }
@@ -96,16 +94,10 @@
                         }
                     ],
                     series: [{
-                            name: 'PROJECTS',
+                            name: 'Total',
                             type: 'bar',
-                            data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3]
-                        },
-                        {
-                            name: 'SALES',
-                            type: 'bar',
-                            data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3]
-                        },
-
+                            data: []
+                        }
                     ]
                 },
                
@@ -129,14 +121,23 @@
             // });
         },
         beforeRouteLeave(to, from, next) {
-            // unsub();
-            // next();
+            unsub();
+            next();
         },
 
         methods: {
-            // onReady(instance) {
-            //     this.instances.push(instance)
-            // }
+            onReady(instance) {
+                this.instances.push(instance)
+            }
+        },
+        watch: {
+            iData(value){
+                value['value'].forEach((item, index) => {
+                    this.ajaxbar_chart.xAxis[0].data.push(item.name);
+                    this.ajaxbar_chart.series[0].data.push(item.data);
+                })
+                this.ajaxloading = false;
+            }
         }
     }
 </script>
