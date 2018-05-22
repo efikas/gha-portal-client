@@ -289,7 +289,7 @@ import options from "src/validations/validations.js";
 
 Vue.use(VueFormWizard, options);
 export default {
-    name: 'professional.vue',
+    name: 'academic.vue',
     data() {
         return {
             dropzoneOptions:{

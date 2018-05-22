@@ -635,5 +635,6 @@
         cursor: pointer;
     }
 
+
 </style>
 <style src="chartist/dist/chartist.css"></style>

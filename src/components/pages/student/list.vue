@@ -1,7 +1,9 @@
 <template>
     <div class="row">
         <div class="col-lg-12 mb-3">
-            <b-card header="List of Students" header-tag="h4" class="bg-info-card">
+            <SchoolCard :iData="schoolInfo" />
+
+            <b-card header="List of Students" header-tag="h4" class="bg-header-card">
                 <div style="margin: 2%" v-if="students.length < 1">
                     <skeleton-loading>
                         <row 
@@ -48,6 +50,7 @@ import {
     Event
 } from 'vue-tables-2';
 import datatable from "components/plugins/DataTable/DataTable.vue";
+import SchoolCard from "../../widgets/sbemis/SchoolCard";
 import VueSkeletonLoading from 'vue-skeleton-loading';
 
 Vue.use(VueSkeletonLoading);
@@ -55,10 +58,12 @@ Vue.use(ClientTable, {}, false);
 export default {
     name: "staff_list",
     components: {
-        datatable
+        datatable,
+        SchoolCard,
     },
     data() {
         return {
+            schoolInfo: {},
             columns: ['id', 'Name', 'view'],
             students: [],
             options: {
@@ -81,13 +86,21 @@ export default {
         }
     },
     mounted() {
+        // get school informations
+        this.$school.schoolProfile(this.$route.params.id).then(data => {
+            this.schoolInfo = data;
+        })
+
+        //Get students in the school
        this.$student.schoolStudents(this.$route.params.id).then(data => {
             this.students = data.data;
         });
+
     }
 }
 </script>
 <style scoped>
+
     .icon-big {
      font-size: 20px;
     }

@@ -239,6 +239,14 @@ const layout = [{
                 }
             },
             {
+                path: ':id/update/:component',
+                component: resolve => require(['pages/student/update/'], resolve),
+                meta: {
+                    title: "Update Student Record",
+                    guard: true
+                }
+            },
+            {
                 path: ':id',
                 component:
                     resolve => require(['pages/student/profile'], resolve),
