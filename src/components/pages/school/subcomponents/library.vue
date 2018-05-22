@@ -1,177 +1,173 @@
 <template>
     <div>
-        <b-card header="School Information" header-tag="h4" class="bg-info-card">
-            <form-wizard @on-complete="onComplete" color="#e67e22">
-                <tab-content title="School Textbooks" icon="fafa-check">
-                    <form method="" class="form-horizontal">
-                        <div>
-                            <div>
-                                PUPILS TEXTBOOKS SUPPLIED
-                            </div>
-                            <div>
-                                State the number of Pupils' Textbooks supplied to the school in the current academic
-                                year.
-                            </div>
-                        </div>
-                        <div class="row odd-row">
-                            <div class="col-sx-12 col-md-6">
-                                <div class="row">
-                                    <div class="col-xs-12 col-sm-6 col-md-6">
-                                        <div class="form-group p-10">
-                                            <label class="control-label col-md-12" for="text">Subject Area
-                                            </label>
-                                            <div class="col-md-12">
-                                                <input type="text" class="form-control" name="pupil_subject_area[]"
-                                                       v-model="data.school_textbooks.pupil_subject_area[0]">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-6 col-md-3">
-                                        <div class="form-group p-10">
-                                            <label class="control-label" for="text">Class Level
-                                            </label>
-                                            <div class="col-md-12">
-                                                <input type="text" class="form-control" name="pupil_class_level[]"
-                                                       v-model="data.school_textbooks.pupil_class_level[0]">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-6 col-md-3">
-                                        <div class="form-group p-10">
-                                            <label class="control-label" for="text">Quantity Supplied
-                                            </label>
-                                            <div class="col-md-12">
-                                                <input type="number" class="form-control"
-                                                       name="pupil_quantity_supplied[]"
-                                                       v-model="data.school_textbooks.pupil_quantity_supplied[0]">
-                                            </div>
-                                        </div>
+        <b-card header="School Information" header-tag="h4" class="bg-header-card">
+            <form method="" class="form-horizontal">
+                <div>
+                    <div>
+                        PUPILS TEXTBOOKS SUPPLIED
+                    </div>
+                    <div>
+                        State the number of Pupils' Textbooks supplied to the school in the current academic
+                        year.
+                    </div>
+                </div>
+                <div class="row odd-row">
+                    <div class="col-sx-12 col-md-6">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="form-group p-10">
+                                    <label class="control-label col-md-12" for="text">Subject Area
+                                    </label>
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control" name="pupil_subject_area[]"
+                                                v-model="data.school_textbooks.pupil_subject_area[0]">
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sx-12 col-md-6">
-                                <div class="row">
-                                    <div class="col-xs-12 col-sm-6 col-md-6">
-                                        <div class="form-group p-10">
-                                            <label class="control-label col-md-12" for="text">Subject Area
-                                            </label>
-                                            <div class="col-md-12">
-                                                <input type="text" class="form-control" id="text"
-                                                       name="pupil_subject_area[]"
-                                                       v-model="data.school_textbooks.pupil_subject_area[1]">
-                                            </div>
-                                        </div>
+                            <div class="col-xs-12 col-sm-6 col-md-3">
+                                <div class="form-group p-10">
+                                    <label class="control-label" for="text">Class Level
+                                    </label>
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control" name="pupil_class_level[]"
+                                                v-model="data.school_textbooks.pupil_class_level[0]">
                                     </div>
-                                    <div class="col-xs-12 col-sm-6 col-md-3">
-                                        <div class="form-group p-10">
-                                            <label class="control-label">Class Level
-                                            </label>
-                                            <div class="col-md-12">
-                                                <input type="text" class="form-control" name="pupil_class_level[]"
-                                                       v-model="data.school_textbooks.pupil_class_level[1]">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-6 col-md-3">
-                                        <div class="form-group p-10">
-                                            <label class="control-label">Quantity Supplied
-                                            </label>
-                                            <div class="col-md-12">
-                                                <input type="number" class="form-control"
-                                                       name="pupil_quantity_supplied[]"
-                                                       v-model="data.school_textbooks.pupil_quantity_supplied[1]">
-                                            </div>
-                                        </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-3">
+                                <div class="form-group p-10">
+                                    <label class="control-label" for="text">Quantity Supplied
+                                    </label>
+                                    <div class="col-md-12">
+                                        <input type="number" class="form-control"
+                                                name="pupil_quantity_supplied[]"
+                                                v-model="data.school_textbooks.pupil_quantity_supplied[0]">
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div>
-                            <div>
-                                TEACHERS' TEXTBOOKS SUPPLIED
-                            </div>
-                            <div>
-                                State the number of Teachers' Textbooks supplied to the school in the current academic
-                                year.
-                            </div>
-                        </div>
-                        <div class="row even-row">
-                            <div class="col-sx-12 col-md-6">
-                                <div class="row">
-                                    <div class="col-xs-12 col-sm-6 col-md-6">
-                                        <div class="form-group p-10">
-                                            <label class="control-label col-md-12" for="text">Subject Area
-                                            </label>
-                                            <div class="col-md-12">
-                                                <input type="text" class="form-control" id="text"
-                                                       name="teacher_subject_area[]"
-                                                       v-model="data.school_textbooks.teacher_subject_area[0]">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-6 col-md-3">
-                                        <div class="form-group p-10">
-                                            <label class="control-label" for="text">Class Level
-                                            </label>
-                                            <div class="col-md-12">
-                                                <input type="text" class="form-control" name="teacher_class_level[]"
-                                                       v-model="data.school_textbooks.teacher_class_level[0]">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-6 col-md-3">
-                                        <div class="form-group p-10">
-                                            <label class="control-label" for="text">Quantity Supplied
-                                            </label>
-                                            <div class="col-md-12">
-                                                <input type="number" class="form-control"
-                                                       name="teacher_quantity_supplied[]"
-                                                       v-model="data.school_textbooks.teacher_quantity_supplied[0]">
-                                            </div>
-                                        </div>
+                    </div>
+                    <div class="col-sx-12 col-md-6">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="form-group p-10">
+                                    <label class="control-label col-md-12" for="text">Subject Area
+                                    </label>
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control" id="text"
+                                                name="pupil_subject_area[]"
+                                                v-model="data.school_textbooks.pupil_subject_area[1]">
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sx-12 col-md-6">
-                                <div class="row">
-                                    <div class="col-xs-12 col-sm-6 col-md-6">
-                                        <div class="form-group p-10">
-                                            <label class="control-label col-md-12" for="text">Subject Area
-                                            </label>
-                                            <div class="col-md-12">
-                                                <input type="text" class="form-control" id="text"
-                                                       name="teacher_subject_area[]"
-                                                       v-model="data.school_textbooks.teacher_subject_area[1]">
-                                            </div>
-                                        </div>
+                            <div class="col-xs-12 col-sm-6 col-md-3">
+                                <div class="form-group p-10">
+                                    <label class="control-label">Class Level
+                                    </label>
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control" name="pupil_class_level[]"
+                                                v-model="data.school_textbooks.pupil_class_level[1]">
                                     </div>
-                                    <div class="col-xs-12 col-sm-6 col-md-3">
-                                        <div class="form-group p-10">
-                                            <label class="control-label" for="text">Class Level
-                                            </label>
-                                            <div class="col-md-12">
-                                                <input type="text" class="form-control" name="teacher_class_level[]"
-                                                       v-model="data.school_textbooks.teacher_class_level[1]">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-6 col-md-3">
-                                        <div class="form-group p-10">
-                                            <label class="control-label" for="text">Quantity Supplied
-                                            </label>
-                                            <div class="col-md-12">
-                                                <input type="number" class="form-control"
-                                                       name="teacher_quantity_supplied[]"
-                                                       v-model="data.school_textbooks.teacher_quantity_supplied[1]">
-                                            </div>
-                                        </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-3">
+                                <div class="form-group p-10">
+                                    <label class="control-label">Quantity Supplied
+                                    </label>
+                                    <div class="col-md-12">
+                                        <input type="number" class="form-control"
+                                                name="pupil_quantity_supplied[]"
+                                                v-model="data.school_textbooks.pupil_quantity_supplied[1]">
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </form>
-                </tab-content>
-            </form-wizard>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        TEACHERS' TEXTBOOKS SUPPLIED
+                    </div>
+                    <div>
+                        State the number of Teachers' Textbooks supplied to the school in the current academic
+                        year.
+                    </div>
+                </div>
+                <div class="row even-row">
+                    <div class="col-sx-12 col-md-6">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="form-group p-10">
+                                    <label class="control-label col-md-12" for="text">Subject Area
+                                    </label>
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control" id="text"
+                                                name="teacher_subject_area[]"
+                                                v-model="data.school_textbooks.teacher_subject_area[0]">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-3">
+                                <div class="form-group p-10">
+                                    <label class="control-label" for="text">Class Level
+                                    </label>
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control" name="teacher_class_level[]"
+                                                v-model="data.school_textbooks.teacher_class_level[0]">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-3">
+                                <div class="form-group p-10">
+                                    <label class="control-label" for="text">Quantity Supplied
+                                    </label>
+                                    <div class="col-md-12">
+                                        <input type="number" class="form-control"
+                                                name="teacher_quantity_supplied[]"
+                                                v-model="data.school_textbooks.teacher_quantity_supplied[0]">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sx-12 col-md-6">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="form-group p-10">
+                                    <label class="control-label col-md-12" for="text">Subject Area
+                                    </label>
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control" id="text"
+                                                name="teacher_subject_area[]"
+                                                v-model="data.school_textbooks.teacher_subject_area[1]">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-3">
+                                <div class="form-group p-10">
+                                    <label class="control-label" for="text">Class Level
+                                    </label>
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control" name="teacher_class_level[]"
+                                                v-model="data.school_textbooks.teacher_class_level[1]">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-3">
+                                <div class="form-group p-10">
+                                    <label class="control-label" for="text">Quantity Supplied
+                                    </label>
+                                    <div class="col-md-12">
+                                        <input type="number" class="form-control"
+                                                name="teacher_quantity_supplied[]"
+                                                v-model="data.school_textbooks.teacher_quantity_supplied[1]">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </b-card>
     </div>
 </template>

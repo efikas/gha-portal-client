@@ -90,7 +90,7 @@ const layout = [{
             {
                 path: ':id/update/:component',
                 name: 'update-school-info',
-                component: resolve => require(['pages/school/update'], resolve),
+                component: resolve => require(['pages/school/update/'], resolve),
                 meta: {
                     title: "Update School Record",
                     guard: true

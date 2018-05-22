@@ -1,155 +1,136 @@
 <template>
     <div>
-        <b-card header="School Information" header-tag="h4" class="bg-info-card">
-            <form-wizard @on-complete="onComplete" color="#e67e22">
-                <h2 slot="title">title</h2>
-                <tab-content title="School Facilities Details" icon="fafa-check">
-                    <form method="" class="form-horizontal">
-                        <div>
-                            <div>
-                                MEMBERSHIP DETAILS
-                            </div>
-                            <div>
-                                Provide the following details about the membership details of the SBMC of this school.
-                            </div>
-                        </div>
-                        <div class="row odd-row">
-                            <div class="col-xs-12 col-sm-6 col-md-4">
-                                <div class="form-group p-10">
-                                    <label class="control-label col-md-12" for="text">Name
-                                    </label>
-                                    <div class="col-md-12">
-                                        <input type="text" class="form-control" name="member_name[]"
-                                               v-model="data.sbmc.member_name[0]" placeholder="membership Name">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-2">
-                                <div class="form-group p-10">
-                                    <label class="control-label" for="text">Position
-                                    </label>
-                                    <div class="col-md-12">
-                                        <input type="text" class="form-control" name="member_position[]"
-                                               v-model="data.sbmc.member_position[0]" placeholder="School Name">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-2">
-                                <div class="form-group p-10">
-                                    <label class="control-label" for="text">Phone Number
-                                    </label>
-                                    <div class="col-md-12">
-                                        <input type="text" class="form-control" name="member_phone_number[]"
-                                               v-model="data.sbmc.member_phone_number[0]" placeholder="School Name">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-4">
-                                <div class="form-group p-10">
-                                    <label class="control-label" for="text">Email
-                                    </label>
-                                    <div class="col-md-12">
-                                        <input type="email" class="form-control" name="member_email[]"
-                                               v-model="data.sbmc.member_email[0]" placeholder="School Name">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row even-row">
-                            <div class="col-xs-12 col-sm-6 col-md-4">
-                                <div class="form-group p-10">
-                                    <label class="control-label col-md-12" for="text">Name
-                                    </label>
-                                    <div class="col-md-12">
-                                        <input type="text" class="form-control" name="member_name[]"
-                                               v-model="data.sbmc.member_name[1]" placeholder="">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-2">
-                                <div class="form-group p-10">
-                                    <label class="control-label" for="text">Position
-                                    </label>
-                                    <div class="col-md-12">
-                                        <input type="text" class="form-control" name="member_name[]"
-                                               v-model="data.sbmc.member_name[1]" placeholder="">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-2">
-                                <div class="form-group p-10">
-                                    <label class="control-label" for="text">Phone Number
-                                    </label>
-                                    <div class="col-md-12">
-                                        <input type="text" class="form-control" name="member_phone_number[]"
-                                               v-model="data.sbmc.member_phone_number[1]" placeholder="">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-4">
-                                <div class="form-group p-10">
-                                    <label class="control-label" for="text">Email
-                                    </label>
-                                    <div class="col-md-12">
-                                        <input type="email" class="form-control" name="member_email[]"
-                                               v-model="data.sbmc.member_email[1]" placeholder="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                PROJECTS DETAILS
-                            </div>
-                            <div>
-                                Indicate projects overseen by the SBMC of this school, whether ongoing or completed.
-                            </div>
-                        </div>
-                        <div class="row odd-row">
-                            <div class="col-xs-12 col-sm-6 col-md-6">
-                                <div class="form-group p-10">
-                                    <label class="control-label col-md-12" for="text">Project Brief
-                                    </label>
-                                    <div class="col-md-12">
-                                        <input type="text" class="form-control" name="project_brief[]"
-                                               v-model="data.sbmc.project_brief[0]" placeholder="">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-2">
-                                <div class="form-group p-10">
-                                    <label class="control-label" for="text">Poject Cost
-                                    </label>
-                                    <div class="col-md-12">
-                                        <input type="text" class="form-control" name="project_cost[]"
-                                               v-model="data.sbmc.project_cost[0]" placeholder="">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-2">
-                                <div class="form-group p-10">
-                                    <label class="control-label" for="text">Source of Funding
-                                    </label>
-                                    <div class="col-md-12">
-                                        <input type="text" class="form-control" name="source_of_funding[]"
-                                               v-model="data.sbmc.source_of_funding[0]" placeholder="">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-2">
-                                <div class="form-group p-10">
-                                    <label class="control-label" for="text">Year
-                                    </label>
-                                    <div class="col-md-12">
-                                        <input type="text" class="form-control" name="project_year[]"
-                                               v-model="data.sbmc.project_year[0]" placeholder="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </tab-content>
-            </form-wizard>
+        <b-card header="School Information" header-tag="h4" class="bg-header-card">
+            <div class="row">
+                <div class="col-lg-12">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th>FACILITY TYPE</th>
+                            <th>Number Of Useable</th>
+                            <th>Minor Repair</th>
+                            <th>Major Repair</th>
+                            <th>Number of unuseable</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Toilets</td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                        </tr>
+                        <tr>
+                            <td>Computer</td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                        </tr>
+                        <tr>
+                            <td>Water Source</td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                        </tr>
+                        <tr>
+                            <td>Labouratory</td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                        </tr>
+                        <tr>
+                            <td>classrooms</td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                        </tr>
+                        <tr>
+                            <td>Library</td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                        </tr>
+                        <tr>
+                            <td>Play Ground</td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                        </tr>
+                        <tr>
+                            <td>Wash Hand Basin</td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                        </tr>
+                        <tr>
+                            <td>White Board</td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                        </tr>
+                        <tr>
+                            <td>Staff Room</td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                        </tr>
+                        <tr>
+                            <td>Bording Hostels</td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                        </tr>
+                        <tr>
+                            <td>Offices</td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                        </tr>
+                        <tr>
+                            <td>Kitchens</td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                        </tr>
+                        <tr>
+                            <td>Dining Room</td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                        </tr>
+                        <tr>
+                            <td>Bathrooms</td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                        </tr>
+                        <tr>
+                            <td>Play Rooms</td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <button class="btn btn-primary btn-lg btn-school" @click="onComplete()">Submit</button>
+                </div>
+            </div>
         </b-card>
     </div>
 </template>

@@ -1160,7 +1160,6 @@
                             </table>
                         </div>
                     </div>
-
                 </tab-content>
                 <tab-content title="School classrooms Details" icon="fafa-check">
                     <form method="" class="form-horizontal">
