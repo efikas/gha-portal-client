@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <div class="col-lg-12 mb-3">
-            <b-card header="List of Staffs" header-tag="h4" class="bg-info-card">
+            <b-card header="List of Staffs" header-tag="h4" class="bg-header-card">
                 <div style="margin: 2%" v-if="staffs.length < 1">
                     <skeleton-loading>
                         <row 
@@ -82,7 +82,7 @@ export default {
     },
     mounted() {
        this.$staff.schoolStaff(this.$route.params.id).then(data => {
-            this.staffs = data.data;
+            this.staffs = data;
         })
     }
 }

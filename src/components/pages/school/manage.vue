@@ -154,6 +154,15 @@ export default {
  }
  .list-font {
     font-size:1.3em;
+     color: #6B1C2B;
 }
+ .list-font:hover {
+     font-size:1.3em;
+     color: #6b3d34;
+ }
+</style>
+
+<style lang="scss" scoped>
+
 </style>
 

@@ -127,7 +127,7 @@ const layout = [{
                 }
             },
             {
-                path: '/school/:id/staff',
+                path: '/school/:id/staffs',
                 component: resolve => require(['pages/staff/list'], resolve),
                 meta: {
                     title: "Staff List",

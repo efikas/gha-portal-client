@@ -77,6 +77,12 @@
      */
     import anime from 'animejs'
 
+    /**
+     * Custom Style
+     */
+    // import 'components/layouts/css/ekiti.css'
+
+
     export default {
         name: 'layout',
         components: {

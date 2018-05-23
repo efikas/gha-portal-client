@@ -14,13 +14,13 @@
                             <div class="col-12 mt-3">
                                 <div class="row" v-if="studentInfo">
                                     <div class="col-6 text-right mt-1">Firstname :</div>
-                                    <div class="col-6 mt-1">{{ studentInfo.first_name }}</div>
+                                    <div class="col-6 mt-1 pl-0">{{ studentInfo.first_name }}</div>
                                     <div class="col-6 text-right mt-1">Middlename :</div>
-                                    <div class="col-6 mt-1">{{ studentInfo.middle_name }}</div>
+                                    <div class="col-6 mt-1 pl-0">{{ studentInfo.middle_name }}</div>
                                     <div class="col-6 text-right mt-1">Lastname :</div>
-                                    <div class="col-6 mt-1">{{ studentInfo.last_name }}</div>
+                                    <div class="col-6 mt-1 pl-0">{{ studentInfo.last_name }}</div>
                                     <div class="col-6 text-right mt-1">Gender :</div>
-                                    <div class="col-6 mt-1">{{ studentInfo.sex }}</div>
+                                    <div class="col-6 mt-1 pl-0">{{ studentInfo.sex }}</div>
                                 </div>
                             </div>
                         </div>
@@ -201,6 +201,9 @@ td.views {
 }
 #mytable tr td:nth-child(odd) {
     width: 30% !important;
+}
+.pl-0 {
+    padding-left: 0px
 }
 </style>
 
