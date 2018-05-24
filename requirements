@@ -1,3 +1,10 @@
+the new and stable URL -> update this in your resource file
+
+    var URL = "http://api.sbemis.net/"
+
+    apiURL: URL + "api1/",
+
+
 pls fix all this asap ----
 
 staff->overview == the four top cards
