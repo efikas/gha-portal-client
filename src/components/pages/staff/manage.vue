@@ -36,7 +36,7 @@
                 <v-client-table :data="schools" :columns="columns" v-if="schools.length > 0">
                      <span slot="id" slot-scope="props">{{ props.index }}</span>
                      <a class="list-font" slot="name" slot-scope="props" :href="'/school/'+ props.row.id + '/staffs'" v-html="props.row.name"></a>
-                     <a slot="view" slot-scope="props" class="fa fa-pencil icon-big  btn btn-outline-primary" :href="'/school/'+ props.row.id+'/staffs'"></a>
+                     <a slot="view" slot-scope="props" class="fa fa-pencil icon-big  btn btn-outline-primary ekiti-btn" :href="'/school/'+ props.row.id+'/staffs'"></a>
                 </v-client-table>
             </b-card>
         </div>
@@ -91,9 +91,5 @@ export default {
 <style scoped>
     .icon-big {
      font-size: 20px;
-    }
-    .list-font {
-        font-size:1.3em;
-        color: #6b3d34;
     }
 </style>

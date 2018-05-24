@@ -1,10 +1,35 @@
-.list-font {
-  font-size:1.3em;
-  color: #6B1C2B;
+@import "skins/ekiti";
+
+.default-color {
+  color: $leftmenu_color;
 }
-.list-font:hover {
-  font-size:1.3em;
-  color: #6b3d34;
+
+.bg-default-card {
+  border: 1px solid $leftmenu_color;
+  >.card-header {
+    background-color: $leftmenu_color;
+    color: #fff;
+  }
+}
+
+.list-font {
+  font-size: 10px;
+  color: $leftmenu_color;
+
+ &:hover {
+   color: $content_color;
+ }
+}
+
+.ekiti-btn {
+  font-size: 10px;
+  color: $leftmenu_color;
+  border-color: $leftmenu_color;
+
+  &:hover {
+    background-color: $content_color;
+    border-color: $content_color;
+  }
 }
 
 .btn-school {
@@ -12,12 +37,12 @@
   align-self: center;
   margin-left: calc(50% -  100px);
   margin-top: 30px;
-  background-color: #6B1C2B;
-  border-color: #6B1C2B;
+  background-color: $content_color;
+  border-color: $content_color;
 
   &:hover {
-    background-color: #6b3d34;
-    border-color: #6b3d34;
+    background-color: $content_color;
+    border-color: $content_color;
   }
 }
 input[type="text"], input[type="email"], input[type="number"], input[type="url"], select {

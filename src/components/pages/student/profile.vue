@@ -3,7 +3,7 @@
         <SchoolCard :iData="schoolInfo" />
         <div class="row">
             <div class="col-xl-4 col-lg-5">
-                <b-card class="bg-info-card">
+                <b-card class="bg-default-card">
                     <div class="profile text-center ">
                         <img :src="this.$store.state.user.picture" alt="User Image" class="rounded-circle img-fluid profile-thumb mb-3">
                         <h4 class="text-gray">{{this.$store.state.user.name}}</h4>
@@ -28,7 +28,7 @@
                 </b-card>
             </div>
             <div class="col-xl-8 col-lg-7">
-                <b-card class="bg-primary-card data" v-if="studentInfo">
+                <b-card class="bg-default-card data" v-if="studentInfo">
                     <!-- Nav tabs -->
                     <b-tabs>
                         <b-tab title="PERSONAL">

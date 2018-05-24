@@ -9,7 +9,7 @@
             <div class="col-6">
                 <div style="display: flex; flex: fit-content; flex-direction: column; justify-content: space-between">
                     <div class="row mb-4" style="justify-content: flex-start; flex: 1">
-                        <h3>{{ this.schoolName }}</h3>
+                        <h3 class="default-color">{{ this.schoolName }}</h3>
                         <h5>{{ this.schoolAddress }}</h5>
                     </div>
 

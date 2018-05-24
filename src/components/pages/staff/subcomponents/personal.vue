@@ -9,7 +9,7 @@
                                  <label class="control-label col-md-8" for="text">School Name
                                  </label>
                                  <div class="col-md-12">
-                                     <input type="text" class="form-control" v-model="data.profile_info.school_name" placeholder="School Name">
+                                     <input type="text" class="form-control" v-model="data.school_id" placeholder="School Name">
                                  </div>
                              </div>
                          </div>
@@ -20,7 +20,7 @@
                                  <label class="control-label col-md-8" for="text">Firstname
                                  </label>
                                  <div class="col-md-12">
-                                     <input type="text" class="form-control"  v-model="data.profile_info.first_name" placeholder="First Name">
+                                     <input type="text" class="form-control"  v-model="data.first_name" placeholder="First Name">
                                  </div>
                              </div>
                          </div>
@@ -29,7 +29,7 @@
                                  <label class="control-label col-md-12" for="text">Middle Name
                                  </label>
                                  <div class="col-md-12">
-                                     <input type="text" class="form-control" v-model="data.profile_info.middle_name" placeholder="Middle Name">
+                                     <input type="text" class="form-control" v-model="data.middle_name" placeholder="Middle Name">
                                  </div>
                              </div>
                          </div>
@@ -38,7 +38,7 @@
                                  <label class="control-label" for="text">Last Name
                                  </label>
                                  <div class="col-md-12">
-                                     <input type="text" class="form-control" v-model="data.profile_info.last_name" placeholder="">
+                                     <input type="text" class="form-control" v-model="data.last_name" placeholder="">
                                  </div>
                              </div>
                          </div>
@@ -48,12 +48,12 @@
                                  </label>
                                  <div class="col-md-12">
                                      <div class="radio">
-                                         <b-form-radio name="sex" v-model="data.profile_info.sex">
+                                         <b-form-radio name="sex" v-model="data.sex" checked="true">
                                              Female
                                          </b-form-radio>
                                      </div>
                                      <div class="radio">
-                                         <b-form-radio name="sex" v-model="data.profile_info.sex">
+                                         <b-form-radio name="sex" v-model="data.sex">
                                              Male
                                          </b-form-radio>
                                      </div>
@@ -67,7 +67,7 @@
                                  <label class="control-label col-md-8" for="text">Date of Birth
                                  </label>
                                  <div class="col-md-12">
-                                     <input type="date" class="form-control" v-model="data.profile_info.date_of_birth">
+                                     <input type="date" class="form-control" v-model="data.date_of_birth">
                                  </div>
                              </div>
                          </div>
@@ -76,7 +76,7 @@
                                  <label class="control-label col-md-12" for="text">Place of Birth
                                  </label>
                                  <div class="col-md-12">
-                                     <input type="text" class="form-control" id="pob" placeholder="Place of birth" v-model="data.profile_info.pob">
+                                     <input type="text" class="form-control" id="place_of_birth" placeholder="Place of birth" v-model="data.place_of_birth">
                                  </div>
                              </div>
                          </div>
@@ -85,7 +85,7 @@
                                  <label class="control-label" for="text">Phone Number
                                  </label>
                                  <div class="col-md-12">
-                                     <input type="phone" class="form-control" name="url" value="08064720000" id="url" v-model="data.profile_info.phone_number">
+                                     <input type="phone" class="form-control" name="url" value="08064720000" id="url" v-model="data.phone">
                                  </div>
                              </div>
                          </div>
@@ -94,7 +94,7 @@
                                  <label class="control-label" for="text">Email
                                  </label>
                                  <div class="col-md-12">
-                                     <input type="email" class="form-control" placeholder="aaa@abcd.com" v-model="data.profile_info.email">
+                                     <input type="email" class="form-control" placeholder="aaa@abcd.com" v-model="data.email">
                                  </div>
                              </div>
                          </div>
@@ -105,13 +105,9 @@
                                  <label class="control-label col-md-8" for="text">State of Origin
                                  </label>
                                  <div class="col-md-12">
-                                     <select  name="example-select" class="form-control" size="1" v-model="data.profile_info.state_of_origin">
-                                         <option value="0">
-                                             Select Year
-                                         </option>
-                                         <option value="1">1930</option>
-                                         <option value="2">1931</option>
-                                         <option value="3">1932</option>
+                                     <select  name="example-select" ref="state" class="form-control" size="1" v-model="data.state_of_origin">
+                                         <option value="">Select State</option>
+                                         <option v-for="state in states" :value="state.id">{{state.name}}</option>
                                      </select>
                                  </div>
                              </div>
@@ -121,13 +117,9 @@
                                  <label class="control-label col-md-12" for="text">Local Govt of Origin
                                  </label>
                                  <div class="col-md-12">
-                                     <select class="form-control" size="1" v-model="data.profile_info.lga">
-                                         <option value="0">
-                                             Select Year
-                                         </option>
-                                         <option value="1">1930</option>
-                                         <option value="2">1931</option>
-                                         <option value="3">1932</option>
+                                     <select class="form-control" size="1" v-model="data.lga_of_origin">
+                                         <option value="">Select lga_of_origin</option>
+                                         <option v-for="lga_of_origin in lga_of_origins" :value="lga_of_origin.id">{{lga_of_origin.name}}</option>
                                      </select>
                                  </div>
                              </div>
@@ -137,7 +129,7 @@
                                  <label class="control-label" for="text">Home Town
                                  </label>
                                  <div class="col-md-12">
-                                     <input type="text" class="form-control" id="text" placeholder="" v-model="data.profile_info.home_town">
+                                     <input type="text" class="form-control" id="text" placeholder="" v-model="data.home_town">
                                  </div>
                              </div>
                          </div>
@@ -146,7 +138,7 @@
                                  <label class="control-label" for="text">House Distance from School (in KM)
                                  </label>
                                  <div class="col-md-12">
-                                     <input type="number" class="form-control" id="text" placeholder="" v-model="data.profile_info.distance_from_school">
+                                     <input type="number" class="form-control" id="text" placeholder="" v-model="data.distance_from_school">
                                  </div>
                              </div>
                          </div>
@@ -157,7 +149,7 @@
                                  <label class="control-label col-md-8" for="text">Marital Status
                                  </label>
                                  <div class="col-md-12">
-                                     <select class="form-control" size="1" v-model="data.profile_info.marital_status">
+                                     <select class="form-control" size="1" v-model="data.marital_status">
                                          <option value="">
                                              Select Status
                                          </option>
@@ -173,13 +165,9 @@
                                  <label class="control-label col-md-12" for="text">Religion
                                  </label>
                                  <div class="col-md-12">
-                                     <select class="form-control" size="1" v-model="data.profile_info.religion">
-                                         <option value="0">
-                                             Select Religion
-                                         </option>
-                                         <option value="1">Christianity</option>
-                                         <option value="2">Islamic</option>
-                                         <option value="3">Budaism</option>
+                                     <select class="form-control" size="1" v-model="data.religion">
+                                         <option value="">Select Religion</option>
+                                         <option v-for="religion in religions" :value="religion.id">{{religion.religion}}</option>
                                      </select>
                                  </div>
                              </div>
@@ -190,7 +178,7 @@
                              <div class="form-group p-10">
                                  <label class="control-label col-md-4" for="text_area">Home/Residential Address</label>
                                  <div class="col-md-12">
-                                     <textarea rows="4" class="form-control resize_vertical" v-model="data.profile_info.residential_address" placeholder="Home/Residential Address"></textarea>
+                                     <textarea rows="4" class="form-control resize_vertical" v-model="data.residential_address" placeholder="Home/Residential Address"></textarea>
                                  </div>
                              </div>
                          </div>
@@ -202,64 +190,61 @@
     </div>
 </template>
 <script>
-import Vue from 'vue';
-import VueFormWizard from 'vue-form-wizard'
-import 'vue-form-wizard/dist/vue-form-wizard.min.css'
-import vue2Dropzone from 'vue2-dropzone'
-import 'vue2-dropzone/dist/vue2Dropzone.css'
-import options from "src/validations/validations.js";
 
-Vue.use(VueFormWizard, options);
+import 'vue2-dropzone/dist/vue2Dropzone.css'
+
 export default {
-    name: 'basic.vue',
+    name: 'staff-personal',
     data() {
         return {
+            staffId: null,
+            states: {},
+            lga_of_origins: {},
+            religions: {},
             data: {
-                personal_info: {
-                    school_name: '',
-                    first_name: '',
-                    middle_name: '',
-                    last_name: '',
-                    sex: '',
-                    date_of_birth: '',
-                    pob: '',
-                    phone_number: '',
-                    email: '',
-                    state_of_origin: '',
-                    lga: '',
-                    home_town: '',
-                    distance_from_school: '',
-                    marital_status: '',
-                    religion: '',
-                    residential_address: '',
-                }
+                school_id: '',
+                first_name: '',
+                middle_name: '',
+                last_name: '',
+                sex: '',
+                date_of_birth: '',
+                place_of_birth: '',
+                phone: '',
+                email: '',
+                state_of_origin: '',
+                lga_of_origin: '',
+                home_town: '',
+                distance_from_school: '',
+                marital_status: '',
+                religion: '',
+                residential_address: '',
             }
         }
     },
-    components: {
-        vueDropzone: vue2Dropzone,
-    },
+    components: {},
     methods: {
-        upload_pic() {
-            this.$refs.user_image.processQueue();
-        },
-        uploaded() {
-            console.log("uploaded");
-        },
-        clearqueue(file) {
-            if (this.$refs.user_image.dropzone.files.length > 1) {
-                this.$refs.user_image.dropzone.removeFile(this.old_file);
-            }
-            this.old_file = file;
-        },
        onComplete: function(){
            this.$staff.addStaff(1,this.data).then(response => {
 
             })
         }
     },
-    mounted: function() {
+    mounted() {
+        let settings = JSON.parse(localStorage.getItem('settings'));
 
+        if(settings) {
+            this.states = settings.states;
+            this.religions = settings.religions;
+
+        }
+
+
+        //get staff Data
+        this.staffId = this.$route.params.id,
+        this.$staff.staffProfile(this.staffId).then(data => {
+            this.data = data;
+            this.data.school_id = data.school_id;
+        })
     },
     destroyed: function() {
 
