@@ -1,0 +1,14 @@
+the new and stable URL -> update this in your resource file
+
+    var URL = "http://api.sbemis.net/"
+
+    apiURL: URL + "api1/",
+
+
+pls fix all this asap ----
+
+staff->overview == the four top cards
+staff->manage == change the font size to 10, colour to ekiti color and the icon colour too
+student->manage == change the font size to 10, colour to ekiti color and the icon colour too
+
+populate all forms with any selected items...
