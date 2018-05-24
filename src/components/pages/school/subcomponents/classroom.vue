@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-card header="School Information" header-tag="h4" class="bg-header-card">
+        <b-card header="School Classroom Information" header-tag="h4" class="bg-header-card">
             <form method="" class="form-horizontal">
                 <div>
                     <div>
@@ -299,22 +299,20 @@
                 },
                 data: {
                     ward_id: '',
-                    classroom_details: {
-                        classroom_year_constructed: '1',
-                        classroom_length: '1',
-                        classroom_width: '10',
-                        number_of_room: '12',
-                        classroom_condition: '',
-                        floor_material: '2',
-                        wall_material: '',
-                        roof_material: '',
-                        seatings: '',
-                        blackboard: '',
-                        classroom_level: ['', ''],
-                        seater1: ['', ''],
-                        seater2: ['', ''],
-                        seater3: ['', ''],
-                    }
+                    classroom_year_constructed: '1',
+                    classroom_length: '1',
+                    classroom_width: '10',
+                    number_of_room: '12',
+                    classroom_condition: '',
+                    floor_material: '2',
+                    wall_material: '',
+                    roof_material: '',
+                    seatings: '',
+                    blackboard: '',
+                    classroom_level: ['', ''],
+                    seater1: ['', ''],
+                    seater2: ['', ''],
+                    seater3: ['', ''],
                 }
             }
         },

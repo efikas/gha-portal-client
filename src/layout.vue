@@ -80,7 +80,7 @@
     /**
      * Custom Style
      */
-    // import 'components/layouts/css/ekiti.css'
+    import 'components/layouts/css/ekiti.scss'
 
 
     export default {
@@ -141,3 +141,4 @@
         }
     }
 </style>
+<!--<style src="components/layouts/css/ekiti.css"></style>-->

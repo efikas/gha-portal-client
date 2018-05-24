@@ -1,6 +1,8 @@
 <template>
     <div class="row">
         <div class="col-lg-12 mb-3">
+            <SchoolCard :iData="schoolInfo" />
+
             <b-card header="List of Staffs" header-tag="h4" class="bg-header-card">
                 <div style="margin: 2%" v-if="staffs.length < 1">
                     <skeleton-loading>
@@ -35,7 +37,7 @@
                 <v-client-table :data="staffs" :columns="columns" v-if="staffs.length > 0">
                      <span slot="id" slot-scope="props">{{ props.index }}</span>
                      <a class="list-font" slot="Name" slot-scope="props" :href="'/staff/'+ props.row.id" v-html="props.row.first_name + ' ' + props.row.last_name + ' ' + props.row.middle_name"></a>
-                     <a slot="view" slot-scope="props" class="fa fa-eye icon-big" :href="'/staff/'+ props.row.id"></a>
+                     <a slot="view" slot-scope="props" class="fa fa-eye icon-big list-font" :href="'/staff/'+ props.row.id"></a>
                 </v-client-table>
             </b-card>
         </div>
@@ -49,16 +51,19 @@ import {
 } from 'vue-tables-2';
 import datatable from "components/plugins/DataTable/DataTable.vue";
 import VueSkeletonLoading from 'vue-skeleton-loading';
+import SchoolCard from "../../widgets/sbemis/SchoolCard";
 
 Vue.use(VueSkeletonLoading);
 Vue.use(ClientTable, {}, false);
 export default {
     name: "staff_list",
     components: {
-        datatable
+        datatable,
+        SchoolCard,
     },
     data() {
         return {
+            schoolInfo: {},
             columns: ['id', 'Name', 'view'],
             staffs: [],
             options: {
@@ -81,8 +86,13 @@ export default {
         }
     },
     mounted() {
+        // get school informations
+        this.$school.schoolProfile(this.$route.params.id).then(data => {
+            this.schoolInfo = data;
+        })
+
        this.$staff.schoolStaff(this.$route.params.id).then(data => {
-            this.staffs = data;
+            this.staffs = data.data;
         })
     }
 }
@@ -93,5 +103,6 @@ export default {
     }
     .list-font {
         font-size:1.3em;
+        color: #6B1C2B;
     }
 </style>

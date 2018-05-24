@@ -94,5 +94,6 @@ export default {
 
     .list-font {
         font-size:1.3em;
+        color: #6b3d34;
     }
 </style>

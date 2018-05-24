@@ -9,7 +9,7 @@
                                  <label class="control-label col-md-8" for="text">School Name
                                  </label>
                                  <div class="col-md-12">
-                                     <input type="text" class="form-control" v-model="data.basic_info.school_name" placeholder="School Name">
+                                     <input type="text" class="form-control" v-model="data.profile_info.school_name" placeholder="School Name">
                                  </div>
                              </div>
                          </div>
@@ -20,7 +20,7 @@
                                  <label class="control-label col-md-8" for="text">Firstname
                                  </label>
                                  <div class="col-md-12">
-                                     <input type="text" class="form-control" v-model="data.basic_info.first_name" placeholder="First Name">
+                                     <input type="text" class="form-control"  v-model="data.profile_info.first_name" placeholder="First Name">
                                  </div>
                              </div>
                          </div>
@@ -29,7 +29,7 @@
                                  <label class="control-label col-md-12" for="text">Middle Name
                                  </label>
                                  <div class="col-md-12">
-                                     <input type="text" class="form-control" v-model="data.basic_info.middle_name" placeholder="Middle Name">
+                                     <input type="text" class="form-control" v-model="data.profile_info.middle_name" placeholder="Middle Name">
                                  </div>
                              </div>
                          </div>
@@ -38,7 +38,7 @@
                                  <label class="control-label" for="text">Last Name
                                  </label>
                                  <div class="col-md-12">
-                                     <input type="text" class="form-control" v-model="data.basic_info.last_name" placeholder="">
+                                     <input type="text" class="form-control" v-model="data.profile_info.last_name" placeholder="">
                                  </div>
                              </div>
                          </div>
@@ -48,12 +48,12 @@
                                  </label>
                                  <div class="col-md-12">
                                      <div class="radio">
-                                         <b-form-radio name="sex" v-model="data.basic_info.sex">
+                                         <b-form-radio name="sex" v-model="data.profile_info.sex">
                                              Female
                                          </b-form-radio>
                                      </div>
                                      <div class="radio">
-                                         <b-form-radio name="sex" v-model="data.basic_info.sex">
+                                         <b-form-radio name="sex" v-model="data.profile_info.sex">
                                              Male
                                          </b-form-radio>
                                      </div>
@@ -67,7 +67,7 @@
                                  <label class="control-label col-md-8" for="text">Date of Birth
                                  </label>
                                  <div class="col-md-12">
-                                     <input type="date" class="form-control" v-model="data.basic_info.date_of_birth">
+                                     <input type="date" class="form-control" v-model="data.profile_info.date_of_birth">
                                  </div>
                              </div>
                          </div>
@@ -76,25 +76,25 @@
                                  <label class="control-label col-md-12" for="text">Place of Birth
                                  </label>
                                  <div class="col-md-12">
-                                     <input type="text" class="form-control" v-model="data.basic_info.place_of_birth" id="pob" placeholder="Place of birth">
+                                     <input type="text" class="form-control" id="pob" placeholder="Place of birth" v-model="data.profile_info.pob">
                                  </div>
                              </div>
                          </div>
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
-                                 <label class="control-label" for="text">Phone Number (optional)
+                                 <label class="control-label" for="text">Phone Number
                                  </label>
                                  <div class="col-md-12">
-                                     <input type="phone" class="form-control" name="phone_number" v-model="data.basic_info.phone_number" placeholder="08064720000" id="phone_number">
+                                     <input type="phone" class="form-control" name="url" value="08064720000" id="url" v-model="data.profile_info.phone_number">
                                  </div>
                              </div>
                          </div>
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
-                                 <label class="control-label" for="email">Email (optional)
+                                 <label class="control-label" for="text">Email
                                  </label>
                                  <div class="col-md-12">
-                                     <input type="email" class="form-control" v-model="data.basic_info.email" id="email" placeholder="aaa@abcd.com">
+                                     <input type="email" class="form-control" placeholder="aaa@abcd.com" v-model="data.profile_info.email">
                                  </div>
                              </div>
                          </div>
@@ -102,10 +102,10 @@
                      <div class="row even-row">
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
-                                 <label class="control-label col-md-8" for="text">Any special Challenge?
+                                 <label class="control-label col-md-8" for="text">State of Origin
                                  </label>
                                  <div class="col-md-12">
-                                     <select id="example-select" v-model="data.basic_info.special_challenge" class="form-control" size="1">
+                                     <select  name="example-select" class="form-control" size="1" v-model="data.profile_info.state_of_origin">
                                          <option value="0">
                                              Select Year
                                          </option>
@@ -116,34 +116,37 @@
                                  </div>
                              </div>
                          </div>
-                         <div class="col-xs-12 col-sm-6 col-md-4">
-                             <div class="row">
-                                 <div class="col-xs-12 col-sm-6">
-                                     <div class="form-group p-10">
-                                         <label class="control-label" for="text">Height (in m)
-                                         </label>
-                                         <div class="col-md-12">
-                                             <input type="number" class="form-control" v-model="data.basic_info.height" placeholder="">
-                                         </div>
-                                     </div>
-                                 </div>
-                                 <div class="col-xs-12 col-sm-6">
-                                     <div class="form-group p-10">
-                                         <label class="control-label" for="text">Width (in m)
-                                         </label>
-                                         <div class="col-md-12">
-                                             <input type="number" class="form-control" v-model="data.basic_info.width" placeholder="">
-                                         </div>
-                                     </div>
+                         <div class="col-xs-12 col-sm-6 col-md-3">
+                             <div class="form-group p-10">
+                                 <label class="control-label col-md-12" for="text">Local Govt of Origin
+                                 </label>
+                                 <div class="col-md-12">
+                                     <select class="form-control" size="1" v-model="data.profile_info.lga">
+                                         <option value="0">
+                                             Select Year
+                                         </option>
+                                         <option value="1">1930</option>
+                                         <option value="2">1931</option>
+                                         <option value="3">1932</option>
+                                     </select>
                                  </div>
                              </div>
                          </div>
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
-                                 <label class="control-label">Blood Group Type
+                                 <label class="control-label" for="text">Home Town
                                  </label>
                                  <div class="col-md-12">
-                                     <input type="text" class="form-control" v-model="data.basic_info.blood_group" placeholder="A, B, AB, O">
+                                     <input type="text" class="form-control" id="text" placeholder="" v-model="data.profile_info.home_town">
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="col-xs-12 col-sm-6 col-md-3">
+                             <div class="form-group p-10">
+                                 <label class="control-label" for="text">House Distance from School (in KM)
+                                 </label>
+                                 <div class="col-md-12">
+                                     <input type="number" class="form-control" id="text" placeholder="" v-model="data.profile_info.distance_from_school">
                                  </div>
                              </div>
                          </div>
@@ -151,28 +154,26 @@
                      <div class="row odd-row">
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
-                                 <label class="control-label col-md-8" for="text">Birth Cert Available? *
+                                 <label class="control-label col-md-8" for="text">Marital Status
                                  </label>
                                  <div class="col-md-12">
-                                     <div class="radio">
-                                         <b-form-radio  v-model="data.basic_info.birth_cert_avail" name="birth_cert_avail">
-                                             Yes
-                                         </b-form-radio>
-                                     </div>
-                                     <div class="radio">
-                                         <b-form-radio  v-model="data.basic_info.birth_cert_avail" name="birth_cert_avail">
-                                             No
-                                         </b-form-radio>
-                                     </div>
+                                     <select class="form-control" size="1" v-model="data.profile_info.marital_status">
+                                         <option value="">
+                                             Select Status
+                                         </option>
+                                         <option value="0">Single</option>
+                                         <option value="1">Married</option>
+                                         <option value="2">Others</option>
+                                     </select>
                                  </div>
                              </div>
                          </div>
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
-                                 <label class="control-label col-md-12" for="text">Birth Cert Type
+                                 <label class="control-label col-md-12" for="text">Religion
                                  </label>
                                  <div class="col-md-12">
-                                     <select id="example-select" name="birth_cert_type" v-model="data.basic_info.birth_cert_type" class="form-control" size="1">
+                                     <select class="form-control" size="1" v-model="data.profile_info.religion">
                                          <option value="0">
                                              Select Religion
                                          </option>
@@ -184,81 +185,75 @@
                              </div>
                          </div>
                      </div>
+                     <div class="row even-row">
+                         <div class="col-md-8">
+                             <div class="form-group p-10">
+                                 <label class="control-label col-md-4" for="text_area">Home/Residential Address</label>
+                                 <div class="col-md-12">
+                                     <textarea rows="4" class="form-control resize_vertical" v-model="data.profile_info.residential_address" placeholder="Home/Residential Address"></textarea>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
                      <button class="btn btn-primary btn-lg btn-school" @click="onComplete()">Submit</button>
                  </form>
              </div>
-         </b-card>
+        </b-card>
     </div>
 </template>
 <script>
 import Vue from 'vue';
 import VueFormWizard from 'vue-form-wizard'
 import 'vue-form-wizard/dist/vue-form-wizard.min.css'
-Vue.use(VueFormWizard)
+import vue2Dropzone from 'vue2-dropzone'
+import 'vue2-dropzone/dist/vue2Dropzone.css'
+import options from "src/validations/validations.js";
+
+Vue.use(VueFormWizard, options);
 export default {
     name: 'basic.vue',
     data() {
         return {
-            schoolId: '',
             data: {
-                basic_info: {
+                personal_info: {
                     school_name: '',
                     first_name: '',
                     middle_name: '',
                     last_name: '',
                     sex: '',
                     date_of_birth: '',
-                    place_of_birth: '',
+                    pob: '',
                     phone_number: '',
                     email: '',
-                    special_challenge: '',
-                    height: '',
-                    width: '',
-                    blood_group: '',
-                    birth_cert_avail: '',
-                    birth_cert_type: '',
-                },
-                parent_info: {
-                    parent_status: '',
-                    g1title: '',
-                    g1fullname: '',
-                    g1relationship: '',
-                    g1_occupation: '',
-                    g1mobile: '',
-                    g1_phone: '',
-                    g1_email: '',
-                    g1_religious_status: '',
-                    g1_primary_contact: '',
-                    g1_contact_address: '',
-                    g2title: '',
-                    g2_full_name: '',
-                    g2_relationship: '',
-                    g2_occupation: '',
-                    g2_mobile: '',
-                    g2_phone: '',
-                    g2_email: '',
-                    g2_religious_status: '',
-                    g2_primary_contact: '',
-                    g2_contact_address: '',
-                },
-                professional_info: {
-                    admission_date: '',
-                    admission_status: '',
-                    edu_level: '',
-                    admission_class_level: '',
-                    current_edu_level: '',
-                    current_class_level: '',
-                    exam_registration: '',
-                    boarding: '',
-                    dorm_no: '',
+                    state_of_origin: '',
+                    lga: '',
+                    home_town: '',
                     distance_from_school: '',
+                    marital_status: '',
+                    religion: '',
+                    residential_address: '',
                 }
             }
         }
     },
+    components: {
+        vueDropzone: vue2Dropzone,
+    },
     methods: {
+        upload_pic() {
+            this.$refs.user_image.processQueue();
+        },
+        uploaded() {
+            console.log("uploaded");
+        },
+        clearqueue(file) {
+            if (this.$refs.user_image.dropzone.files.length > 1) {
+                this.$refs.user_image.dropzone.removeFile(this.old_file);
+            }
+            this.old_file = file;
+        },
        onComplete: function(){
-            this.$student.addStudent(1,this.data).then(response => {
+           this.$staff.addStaff(1,this.data).then(response => {
 
             })
         }
@@ -300,15 +295,15 @@ tab-content {
     border-bottom: 1px solid grey;
 }
 
-.even-row{background-color:
-#fafafa;border-top:1px dashed #959DCC;border-bottom:1px dashed #959DCC;min-height:62px;padding:8px 0;}
+.even-row{background-color:#fafafa;border-top:1px dashed #959DCC;border-bottom:1px dashed #959DCC;min-height:62px;padding:8px 0;}
 .odd-row{padding:8px 0;}
 form .odd-row:first-of-type{
     border-top:1px dashed #959DCC;
 }
 .form-group label{font-size:.8rem!important; letter-spacing:1px; color:#684348!important;}
-.bordered-box{/*margin:0 9px!important;*/border:1px dashed #a2b0b6;padding:16px!important;display:inline-block;position:relative;width:100%;border-radius:6px;/*box-shadow:0 1px 4px 0 rgba(0, 0, 0, 0.14);color:rgba(0,0,0, 0.87);*/background:#fff;}
-.col-md-m6.bordered-box{width:calc(50% - 18px)!important;}
-.divider-dotted{height:1px;border-bottom:1px dotted #e0e0e0;float:left;width:100%;margin:32px 0;}
+/* .form-group p:not(.no-block) label{min-width:200px;} */
+/* .form-group label span,.form-box .header p > strong{font-size:.85rem!important;font-weight:bold!important;color:#FF5722!important;} */
+/* .form-group label.active{color:#684348!important;font-size:.75rem!important;font-weight:400!important;-webkit-transform:translateY(-100%)!important;transform:translateY(-100%)!important;} */
+/* .form-group{position:relative;margin-top:.25rem;padding-top:1.5rem!important;padding-bottom:.25rem!important;} */
 
 </style>

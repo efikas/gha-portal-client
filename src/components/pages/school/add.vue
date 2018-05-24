@@ -538,6 +538,7 @@
                 wards: [],
                 lgasInfo:[],
                 wardKeys: {}, // capture the ward id and ward name of the selected LGA
+                settings: null,
                 data: {
                     lga_ward_id: 3,
                     name: 'Saint Mathew Nur and pry school',
@@ -633,9 +634,19 @@
                     this.lgasInfo.push(item);
                     this.lgas.push(item.name);
                 });
-                console.log(this.lgasInfo);
-            })
+                // console.log(this.lgasInfo);
+            });
+
+            //todo: get the settings information
+            let settings = localStorage.get('settings');
+
+
             
+        },
+        watch: {
+            settings(data) {
+                let a = 5;
+            }
         },
         destroyed: function () {
 

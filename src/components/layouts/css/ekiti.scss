@@ -6,3 +6,20 @@
   font-size:1.3em;
   color: #6b3d34;
 }
+
+.btn-school {
+  width: 200px;
+  align-self: center;
+  margin-left: calc(50% -  100px);
+  margin-top: 30px;
+  background-color: #6B1C2B;
+  border-color: #6B1C2B;
+
+  &:hover {
+    background-color: #6b3d34;
+    border-color: #6b3d34;
+  }
+}
+input[type="text"], input[type="email"], input[type="number"], input[type="url"], select {
+  height: 40px;
+}

@@ -168,6 +168,14 @@ const layout = [{
                     }
             },
             {
+                path: ':id/update/:component',
+                component: resolve => require(['pages/staff/update'], resolve),
+                meta: {
+                    title: "Update Staff Record",
+                    guard: true
+                }
+            },
+            {
                 path: ':id',
                 component:
                     resolve => require(['pages/staff/profile'], resolve),
