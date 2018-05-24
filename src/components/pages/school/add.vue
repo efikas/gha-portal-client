@@ -628,18 +628,24 @@
             } 
         },
         mounted: function () {
-            this.$lga.getLgas().then(data => {
-                data.forEach(item => {
-                    // console.log(item);
-                    this.lgasInfo.push(item);
-                    this.lgas.push(item.name);
-                });
-                // console.log(this.lgasInfo);
-            });
+            // this.$lga.getLgas().then(data => {
+            //     data.forEach(item => {
+            //         // console.log(item);
+            //         this.lgasInfo.push(item);
+            //         this.lgas.push(item.name);
+            //     });
+            //     // console.log(this.lgasInfo);
+            // });
 
             //todo: get the settings information
-            let settings = localStorage.get('settings');
+            let settings = localStorage.getItem('settings');
 
+            console.log(settings.lga_areas);
+            //populatre LGA
+            // settings.lga_areas.forEach(item => {
+            //     this.lgasInfo.push(item);
+            //     this.lgas.push(item.name);
+            // })
 
             
         },

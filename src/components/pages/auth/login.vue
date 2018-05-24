@@ -122,9 +122,9 @@
             }
         },
         mounted() {
-            this.$settings.getSettings().then(data => {
-                localStorage.setItem('settings', JSON.stringify(data));
-            });
+            // this.$settings.getSettings().then(data => {
+            //     localStorage.setItem('settings', JSON.stringify(data));
+            // });
         },
         destroyed: function () {
 
