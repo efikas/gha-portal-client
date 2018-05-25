@@ -9,21 +9,25 @@
             <div class="col-6">
                 <div style="display: flex; flex: fit-content; flex-direction: column; justify-content: space-between">
                     <div class="row mb-4" style="justify-content: flex-start; flex: 1">
-                        <h3 class="default-color">{{ this.schoolName }}</h3>
+                        <h4 class="default-color">{{ this.schoolName }}</h4>
                         <h5>{{ this.schoolAddress }}</h5>
                     </div>
 
                     <div class="row" style="flex: 1; flex-direction: row; display: flex; justify-content: space-around">
                         <div class="text-center">
-                            <h5>Teaching Staff</h5>
+                            <h6><a :href="`/school/${this.schoolId}/staff`">All Staff</a></h6>
+                            <h1>{{ this.totalTeachingStaff }}</h1>
+                        </div>
+                        <div class="text-center">
+                            <h6><a :href="`/school/${this.schoolId}/teaching`">Teaching Staff</a></h6>
                             <h1>{{ this.totalTeachingStaff }}</h1>
                         </div>
                         <div class="text-center" >
-                            <h5>Non-Teaching Staff</h5>
+                            <h6> <a :href="`/school/${this.schoolId}/non-teaching`">Non-Teaching Staff</a></h6>
                             <h1>{{ this.totalNonTeachingStaff }}</h1>
                         </div>
                         <div class="text-center">
-                            <h5><a :href="`/school/${this.schoolId}/students`">Students</a></h5>
+                            <h6><a :href="`/school/${this.schoolId}/students`">Students</a></h6>
                             <h1>{{ this.totalStudent }}</h1>
                         </div>
 
@@ -78,6 +82,7 @@
                 this.totalStudent = data.students;
                 this.schoolName = data.name;
                 this.schoolAddress = data.address;
+                this.schoolId = data.id;
             }
         }
     }

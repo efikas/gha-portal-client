@@ -191,8 +191,6 @@
 </template>
 <script>
 
-import 'vue2-dropzone/dist/vue2Dropzone.css'
-
 export default {
     name: 'staff-personal',
     data() {

@@ -141,8 +141,7 @@ const layout = [{
                 meta:
                     {
                         title: "Add New Staff",
-                        guard:
-                            true
+                        guard: true
                     }
             },
             {
@@ -152,8 +151,7 @@ const layout = [{
                 meta:
                     {
                         title: "Manage Staff Record",
-                        guard:
-                            true
+                        guard: true
                     }
             },
             {
@@ -182,8 +180,7 @@ const layout = [{
                 meta:
                     {
                         title: "Staff Profile",
-                        guard:
-                            true
+                        guard: true
                     }
             },
             {

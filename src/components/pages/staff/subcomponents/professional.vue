@@ -9,13 +9,9 @@
                                  <label class="control-label col-md-8" for="text">Staff Type
                                  </label>
                                  <div class="col-md-12">
-                                     <select v-model="data.professional_info.staff_type" class="form-control" size="1">
-                                         <option value="0">
-                                             Select Year
-                                         </option>
-                                         <option value="1">1930</option>
-                                         <option value="2">1931</option>
-                                         <option value="3">1932</option>
+                                     <select v-model="data.category" class="form-control" size="1">
+                                         <option value="">Select Category</option>
+                                         <option v-for="category in staffCategories" :value="category.id">{{category.category}}</option>
                                      </select>
                                  </div>
                              </div>
@@ -25,7 +21,7 @@
                                  <label class="control-label" for="text">Current Grade Level/Step
                                  </label>
                                  <div class="col-md-12">
-                                     <input type="text" class="form-control" v-model="data.professional_info.grade_level" placeholder="">
+                                     <input type="text" class="form-control" v-model="data.grade_level" placeholder="">
                                  </div>
                              </div>
                          </div>
@@ -34,13 +30,9 @@
                                  <label class="control-label col-md-12" for="text">Staff Current Status
                                  </label>
                                  <div class="col-md-12">
-                                     <select v-model="data.professional_info.current_status" class="form-control" size="1">
-                                         <option value="0">
-                                             Select Year
-                                         </option>
-                                         <option value="1">1930</option>
-                                         <option value="2">1931</option>
-                                         <option value="3">1932</option>
+                                     <select v-model="data.current_status" class="form-control" size="1">
+                                         <option value="">Select Status</option>
+                                         <option v-for="status in staffStatuses" :value="status.id">{{status.status}}</option>
                                      </select>
                                  </div>
                              </div>
@@ -50,13 +42,9 @@
                                  <label class="control-label col-md-12" for="text">Salary Source
                                  </label>
                                  <div class="col-md-12">
-                                     <select v-model="data.professional_info.salary_source" class="form-control" size="1">
-                                         <option value="0">
-                                             Select Year
-                                         </option>
-                                         <option value="1">1930</option>
-                                         <option value="2">1931</option>
-                                         <option value="3">1932</option>
+                                     <select v-model="data.salary_source" class="form-control" size="1">
+                                         <option value="">Select Salary Source</option>
+                                         <option v-for="salary in salaries" :value="salary.id">{{salary.source}}</option>
                                      </select>
                                  </div>
                              </div>
@@ -68,7 +56,7 @@
                                  <label class="control-label col-md-8" for="text">Fist Appointment Year
                                  </label>
                                  <div class="col-md-12">
-                                     <input type="number" class="form-control" v-model="data.professional_info.first_appointment">
+                                     <input type="number" class="form-control" v-model="data.first_appointment">
                                  </div>
                              </div>
                          </div>
@@ -77,7 +65,7 @@
                                  <label class="control-label col-md-12" for="text">Year of Last Promotion
                                  </label>
                                  <div class="col-md-12">
-                                     <input type="text" class="form-control" v-model="data.professional_info.last_promotion" placeholder="Year of Last Promotion">
+                                     <input type="text" class="form-control" v-model="data.last_promotion" placeholder="Year of Last Promotion">
                                  </div>
                              </div>
                          </div>
@@ -86,7 +74,7 @@
                                  <label class="control-label" for="text">Year of Posting
                                  </label>
                                  <div class="col-md-12">
-                                     <input type="text" class="form-control" v-model="data.professional_info.posting_year" name="" value=""  placeholder="Year of Posting">
+                                     <input type="text" class="form-control" v-model="data.posting_year" name="" value=""  placeholder="Year of Posting">
                                  </div>
                              </div>
                          </div>
@@ -95,7 +83,7 @@
                                  <label class="control-label" for="text">Employment Type
                                  </label>
                                  <div class="col-md-12">
-                                     <select v-model="data.professional_info.employment_type"  class="form-control" size="1">
+                                     <select v-model="data.employment_type"  class="form-control" size="1">
                                          <option value="0">
                                              Select Employment
                                          </option>
@@ -113,7 +101,7 @@
                                  <label class="control-label col-md-8" for="text">Academic Qualification
                                  </label>
                                  <div class="col-md-12">
-                                     <select v-model="data.professional_info.academic_qualification" class="form-control" size="1">
+                                     <select v-model="data.academic_qualification" class="form-control" size="1">
                                          <option value="0">
                                              Select Year
                                          </option>
@@ -129,7 +117,7 @@
                                  <label class="control-label col-md-12" for="text">Teaching Qualification
                                  </label>
                                  <div class="col-md-12">
-                                     <select v-model="data.professional_info.teaching_qualification" class="form-control" size="1">
+                                     <select v-model="data.teaching_qualification" class="form-control" size="1">
                                          <option value="0">
                                              Select Year
                                          </option>
@@ -145,7 +133,7 @@
                                  <label class="control-label col-md-12" for="text">Area of Specialty
                                  </label>
                                  <div class="col-md-12">
-                                     <select v-model="data.professional_info.speciality" class="form-control" size="1">
+                                     <select v-model="data.speciality" class="form-control" size="1">
                                          <option value="0">
                                              Select Year
                                          </option>
@@ -161,7 +149,7 @@
                                  <label class="control-label col-md-12" for="text">Main Subject Taught
                                  </label>
                                  <div class="col-md-12">
-                                     <select v-model="data.professional_info.subject_taught" class="form-control" size="1">
+                                     <select v-model="data.subject_taught" class="form-control" size="1">
                                          <option value="0">
                                              Select Year
                                          </option>
@@ -179,7 +167,7 @@
                                  <label class="control-label" for="text">Class Taught
                                  </label>
                                  <div class="col-md-12">
-                                     <input type="text" class="form-control" v-model="data.professional_info.class_taught" placeholder="School Name">
+                                     <input type="text" class="form-control" v-model="data.class_taught" placeholder="School Name">
                                  </div>
                              </div>
                          </div>
@@ -189,12 +177,12 @@
                                  </label>
                                  <div class="col-md-12">
                                      <div class="radio">
-                                         <b-form-radio v-model="data.professional_info.training_workshop">
+                                         <b-form-radio v-model="data.training_workshop">
                                              Yes
                                          </b-form-radio>
                                      </div>
                                      <div class="radio">
-                                         <b-form-radio v-model="data.professional_info.training_workshop">
+                                         <b-form-radio v-model="data.training_workshop">
                                              No
                                          </b-form-radio>
                                      </div>
@@ -207,12 +195,12 @@
                                  </label>
                                  <div class="col-md-12">
                                      <div class="radio">
-                                         <b-form-radio v-model="data.professional_info.computer_literate">
+                                         <b-form-radio v-model="data.computer_literate">
                                              Yes
                                          </b-form-radio>
                                      </div>
                                      <div class="radio">
-                                         <b-form-radio v-model="data.professional_info.computer_literate">
+                                         <b-form-radio v-model="data.computer_literate">
                                              No
                                          </b-form-radio>
                                      </div>
@@ -227,12 +215,12 @@
                                  </label>
                                  <div class="col-md-12">
                                      <div class="radio">
-                                         <b-form-radio v-model="data.professional_info.TRC_registered">
+                                         <b-form-radio v-model="data.TRC_registered">
                                              Yes
                                          </b-form-radio>
                                      </div>
                                      <div class="radio">
-                                         <b-form-radio v-model="data.professional_info.TRC_registered">
+                                         <b-form-radio v-model="data.TRC_registered">
                                              No
                                          </b-form-radio>
                                      </div>
@@ -244,7 +232,7 @@
                                  <label class="control-label" for="text">TRC Reg No
                                  </label>
                                  <div class="col-md-12">
-                                     <input type="text" class="form-control" v-model="data.professional_info.TRC_reg_no" placeholder="School Name">
+                                     <input type="text" class="form-control" v-model="data.TRC_reg_no" placeholder="School Name">
                                  </div>
                              </div>
                          </div>
@@ -255,7 +243,7 @@
                                  <label class="control-label" for="text">School Posted From
                                  </label>
                                  <div class="col-md-12">
-                                     <input type="text" class="form-control" v-model="data.professional_info.school_posted_from" placeholder="School Name">
+                                     <input type="text" class="form-control" v-model="data.school_posted_from" placeholder="School Name">
                                  </div>
                              </div>
                          </div>
@@ -264,7 +252,7 @@
                                  <label class="control-label" for="text">Position
                                  </label>
                                  <div class="col-md-12">
-                                     <input type="text" class="form-control" v-model="data.professional_info.position" placeholder="School Name">
+                                     <input type="text" class="form-control" v-model="data.position" placeholder="School Name">
                                  </div>
                              </div>
                          </div>
@@ -276,59 +264,39 @@
     </div>
 </template>
 <script>
-import Vue from 'vue';
-import VueFormWizard from 'vue-form-wizard'
-import 'vue-form-wizard/dist/vue-form-wizard.min.css'
-import vue2Dropzone from 'vue2-dropzone'
-import 'vue2-dropzone/dist/vue2Dropzone.css'
-import options from "src/validations/validations.js";
 
-Vue.use(VueFormWizard, options);
 export default {
     name: 'professional',
     data() {
         return {
+            staffCategories: {},
+            staffStatuses: {},
+            salaries: {},
             data: {
-                professional_info: {
-                    staff_type: '',
-                    grade_level: '',
-                    current_status: '',
-                    salary_source: '',
-                    first_appointment: '',
-                    last_promotion: '',
-                    posting_year: '',
-                    employment_type: '',
-                    academic_qualification: '',
-                    teaching_qualification: '',
-                    speciality: '',
-                    subject_taught: '',
-                    class_taught: '',
-                    training_workshop: '',
-                    computer_literate: '',
-                    TRC_registered: '',
-                    TRC_reg_no: '',
-                    school_posted_from: '',
-                    position: '',
-                }
+                category: '',
+                grade_level: '', // remove
+                current_status: '',
+                salary_source: '',
+                first_appointment: '', // remove
+                last_promotion: '',
+                posting_year: '', // remove
+                employment_type: '',
+                academic_qualification: '',
+                teaching_qualification: '',
+                speciality: '',
+                subject_taught: '',
+                class_taught: '', // remove
+                training_workshop: '', // remove
+                computer_literate: '',
+                TRC_registered: '', // remove
+                TRC_reg_no: '',
+                school_posted_from: '', // remove
+                position: '', // remove
             }
         }
     },
-    components: {
-        vueDropzone: vue2Dropzone,
-    },
+    components: {},
     methods: {
-        upload_pic() {
-            this.$refs.user_image.processQueue();
-        },
-        uploaded() {
-            console.log("uploaded");
-        },
-        clearqueue(file) {
-            if (this.$refs.user_image.dropzone.files.length > 1) {
-                this.$refs.user_image.dropzone.removeFile(this.old_file);
-            }
-            this.old_file = file;
-        },
        onComplete: function(){
            this.$staff.addStaff(1,this.data).then(response => {
 
@@ -336,7 +304,22 @@ export default {
         }
     },
     mounted: function() {
+        let settings = JSON.parse(localStorage.getItem('settings'));
 
+        if(settings) {
+            this.staffCategories = settings.staff_categories;
+            this.staffStatuses = settings.staff_statuses;
+            this.salaries = settings.salaries;
+            this.religions = settings.religions;
+
+        }
+
+
+        //get staff Data
+        this.staffId = this.$route.params.id,
+            this.$staff.staffProfile(this.staffId).then(data => {
+                this.data = data;
+            })
     },
     destroyed: function() {
 

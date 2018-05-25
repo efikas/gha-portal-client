@@ -37,7 +37,7 @@
                     <a slot="id" slot-scope="props">{{ props.index }}</a>
                     <router-link tag="a" class="list-font" slot="name" slot-scope="props" :to="{ name: 'school-profile', params: { id: props.row.id }}" v-html="props.row.name"></router-link>
                      <!--<a slot="school_name" slot-scope="props" :href="'/#/school/'+ props.row.id+'/profile'">{{ props.row.school_name }}</a>-->
-                     <router-link tag="a" slot="view" slot-scope="props" class="fa fa-pencil icon-big btn btn-outline-primary" :to="{ name: 'school-profile', params: { id: props.row.id }}"></router-link>
+                     <router-link tag="a" slot="view" slot-scope="props" class="fa fa-pencil icon-big btn btn-outline-primary ekiti-btn" :to="{ name: 'school-profile', params: { id: props.row.id }}"></router-link>
                 </v-client-table>
             </b-card>
         </div>
@@ -151,14 +151,6 @@ export default {
 <style scoped>
  .icon-big {
      font-size: 20px;
- }
- .list-font {
-    font-size:1.3em;
-     color: #6B1C2B;
-}
- .list-font:hover {
-     font-size:1.3em;
-     color: #6b3d34;
  }
 </style>
 

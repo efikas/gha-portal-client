@@ -34,18 +34,14 @@
                         <b-tab title="PERSONAL">
                             <div style="margin: 0px 30px 0 30px">
                                 <p>
-                                    <a :href="'/student/' + studentId + '/update/basic'" type="button" class="btn btn-outline-primary pull-right">Edit
+                                    <a :href="'/student/' + studentId + '/update/basic'" type="button" class="btn btn-outline-primary ekiti-btn pull-right">Edit
                                     </a>
                                 <h1>Personal Details</h1>
                                 </p>
                                 <div class="table-responsive">
                                     <table id="mytable" class="table table-bordred table-striped">
                                         <tr><td>First Name</td>
-                                            <td> {{ studentInfo.first_name }}</td></tr>
-                                        <tr><td>Last Name</td>
-                                            <td> {{ studentInfo.last_name }}</td></tr>
-                                        <tr><td>Middle Name</td>
-                                            <td> {{ studentInfo.middle_name }}</td></tr>
+                                            <td> {{ `${studentInfo.first_name} ${studentInfo.last_name} ${studentInfo.middle_name}` }}</td></tr>
                                         <tr><td>Gender</td>
                                             <td> {{ studentInfo.sex }}</td></tr>
                                         <tr><td>Email Address</td>
@@ -75,7 +71,7 @@
                         <b-tab title="ACADEMIC">
                             <div style="margin: 0px 30px 0 30px">
                                 <p>
-                                    <a :href="'/student/' + studentId + '/update/academic'" type="button" class="btn btn-outline-primary pull-right">Edit
+                                    <a :href="'/student/' + studentId + '/update/academic'" type="button" class="btn btn-outline-primary ekiti-btn pull-right">Edit
                                     </a>
                                 <h1>Academic Record</h1>
                                 </p>
@@ -107,7 +103,7 @@
                         <b-tab title="PARENT/GUARDIAN">
                             <div style="margin: 0px 30px 0 30px">
                                 <p>
-                                    <a :href="'/student/' + studentId + '/update/parent'" type="button" class="btn btn-outline-primary pull-right">Edit
+                                    <a :href="'/student/' + studentId + '/update/parent'" type="button" class="btn btn-outline-primary ekiti-btn pull-right">Edit
                                     </a>
                                 <h1>Parent/Guardian Details</h1>
                                 </p>
