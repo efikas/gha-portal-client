@@ -8,8 +8,14 @@
                         <multiselect v-model="data.lga" :show-labels="false" :options="lgas" @input="getWard"></multiselect>
                     </div>
                     <div class="col-md-6">
-                        <label  class="control-label">School Name</label>
-                        <multiselect v-model="data.name" :show-labels="false" :options="schoolName"></multiselect>
+                        <div class="form-group p-10">
+                            <label class="control-label col-md-8" for="name">School Name
+                            </label>
+                            <div class="col-md-12">
+                                <input type="text" class="form-control" v-model="data.name"
+                                       id="name" placeholder="School Name">
+                            </div>
+                        </div>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-3">
                         <label>Ward</label>

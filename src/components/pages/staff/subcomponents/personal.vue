@@ -6,11 +6,8 @@
                      <div class="row odd-row">
                          <div class="col-md-8">
                              <div class="form-group p-10">
-                                 <label class="control-label col-md-8" for="text">School Name
-                                 </label>
-                                 <div class="col-md-12">
-                                     <input type="text" class="form-control" v-model="data.school_id" placeholder="School Name">
-                                 </div>
+                                 <label  class="control-label">School Name</label>
+                                 <multiselect v-model="schoolName" :show-labels="false" :options="schools" @input="getSchoolId"></multiselect>
                              </div>
                          </div>
                      </div>
@@ -37,26 +34,22 @@
                              <div class="form-group p-10">
                                  <label class="control-label" for="text">Last Name
                                  </label>
-                                 <div class="col-md-12">
-                                     <input type="text" class="form-control" v-model="data.last_name" placeholder="">
-                                 </div>
+                                 <input type="text" class="form-control" v-model="data.last_name" placeholder="">
                              </div>
                          </div>
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
                                  <label class="control-label" for="text">Sex
                                  </label>
-                                 <div class="col-md-12">
-                                     <div class="radio">
-                                         <b-form-radio name="sex" v-model="data.sex" checked="true">
-                                             Female
-                                         </b-form-radio>
-                                     </div>
-                                     <div class="radio">
-                                         <b-form-radio name="sex" v-model="data.sex">
-                                             Male
-                                         </b-form-radio>
-                                     </div>
+                                 <div class="radio">
+                                     <b-form-radio name="sex" v-model="data.sex" checked="true">
+                                         Female
+                                     </b-form-radio>
+                                 </div>
+                                 <div class="radio">
+                                     <b-form-radio name="sex" v-model="data.sex">
+                                         Male
+                                     </b-form-radio>
                                  </div>
                              </div>
                          </div>
@@ -84,18 +77,14 @@
                              <div class="form-group p-10">
                                  <label class="control-label" for="text">Phone Number
                                  </label>
-                                 <div class="col-md-12">
-                                     <input type="phone" class="form-control" name="url" value="08064720000" id="url" v-model="data.phone">
-                                 </div>
-                             </div>
+                                 <input type="phone" class="form-control" name="url" value="08064720000" id="url" v-model="data.phone">
+                              </div>
                          </div>
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
                                  <label class="control-label" for="text">Email
                                  </label>
-                                 <div class="col-md-12">
-                                     <input type="email" class="form-control" placeholder="aaa@abcd.com" v-model="data.email">
-                                 </div>
+                                 <input type="email" class="form-control" placeholder="aaa@abcd.com" v-model="data.email">
                              </div>
                          </div>
                      </div>
@@ -128,18 +117,14 @@
                              <div class="form-group p-10">
                                  <label class="control-label" for="text">Home Town
                                  </label>
-                                 <div class="col-md-12">
-                                     <input type="text" class="form-control" id="text" placeholder="" v-model="data.home_town">
-                                 </div>
+                                 <input type="text" class="form-control" id="text" placeholder="" v-model="data.home_town">
                              </div>
                          </div>
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
                                  <label class="control-label" for="text">House Distance from School (in KM)
                                  </label>
-                                 <div class="col-md-12">
-                                     <input type="number" class="form-control" id="text" placeholder="" v-model="data.distance_from_school">
-                                 </div>
+                                 <input type="number" class="form-control" id="text" placeholder="" v-model="data.distance_from_school">
                              </div>
                          </div>
                      </div>
@@ -176,7 +161,7 @@
                      <div class="row even-row">
                          <div class="col-md-8">
                              <div class="form-group p-10">
-                                 <label class="control-label col-md-4" for="text_area">Home/Residential Address</label>
+                                 <label class="control-label col-md-4">Home/Residential Address</label>
                                  <div class="col-md-12">
                                      <textarea rows="4" class="form-control resize_vertical" v-model="data.residential_address" placeholder="Home/Residential Address"></textarea>
                                  </div>
@@ -190,15 +175,22 @@
     </div>
 </template>
 <script>
+    import Multiselect from 'vue-multiselect';
 
 export default {
     name: 'staff-personal',
+    components: {
+        Multiselect,
+    },
     data() {
         return {
+            schools: [],        // holds the array of school name
+            allSchools: [],     // holds the array of schools object
             staffId: null,
             states: {},
             lga_of_origins: {},
             religions: {},
+            schoolName: '',
             data: {
                 school_id: '',
                 first_name: '',
@@ -219,33 +211,59 @@ export default {
             }
         }
     },
-    components: {},
     methods: {
        onComplete: function(){
            this.$staff.addStaff(1,this.data).then(response => {
 
             })
+        },
+        getSchoolId(){
+           let _selectedSchool = this.allSchools.filter(school => {
+               return (school.name == this.schoolName);
+           })
+
+            this.data.school_id = _selectedSchool[0].id;
         }
     },
     mounted() {
+        //populate the select boxes using the settings data from local storage
         let settings = JSON.parse(localStorage.getItem('settings'));
 
         if(settings) {
             this.states = settings.states;
             this.religions = settings.religions;
-
         }
 
+        //get list of schools
+        this.$school.allSchools().then(data => {
+            this.allSchools = data.data;
+        })
 
         //get staff Data
         this.staffId = this.$route.params.id,
         this.$staff.staffProfile(this.staffId).then(data => {
             this.data = data;
-            this.data.school_id = data.school_id;
         })
     },
     destroyed: function() {
 
+    },
+    watch: {
+        allSchools(value){
+            //allSchools is
+            value.forEach(school => {
+                this.schools.push(school.name);
+            })
+
+            // Get the school name from the school list using the school id
+            // after all school information has been loaded from the database
+            let _school = value.filter(school => {
+                return (school.id == this.data.school_id);
+            })
+
+            this.schoolName = _school[0].name;
+            // this.data.school_id = data.school_id;
+        }
     }
 }
 </script>
@@ -290,3 +308,4 @@ form .odd-row:first-of-type{
 /* .form-group{position:relative;margin-top:.25rem;padding-top:1.5rem!important;padding-bottom:.25rem!important;} */
 
 </style>
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>

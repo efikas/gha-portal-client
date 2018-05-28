@@ -32,11 +32,14 @@
                     <!-- Nav tabs -->
                     <b-tabs>
                         <b-tab title="PERSONAL">
-                            <p>
-                                <a :href="'/staff/' + staffId + '/update/personal'" type="button" class="btn btn-outline-primary ekiti-btn pull-right">Edit
-                                </a>
-                            </p>
-                            <table class="table account-detailsg" v-if="staffInfo">
+                           <div>
+                               <p>
+                                   <br>
+                                   <a :href="'/staff/' + staffId + '/update/personal'" type="button" class="btn btn-outline-primary ekiti-btn pull-right">Edit
+                                   </a><br/><br/>
+                               </p>
+                           </div>
+                            <table class="table table-bordred table-striped mytable" v-if="staffInfo">
                                 <tbody>
                                 <tr class="m-0">
                                    <td><i class="fa fa-user"></i> Name</td>
@@ -80,11 +83,11 @@
                             </table>
                         </b-tab>
                         <b-tab title="PROFESSIONAL">
-                            <p>
+                            <p><br/>
                                 <a :href="'/staff/' + staffId + '/update/professional'" type="button" class="btn btn-outline-primary ekiti-btn pull-right">Edit
-                                </a>
+                                </a><br/><br/>
                             </p>
-                            <table class="table account-detailsg" v-if="staffInfo">
+                            <table class="table table-bordred table-striped mytable" v-if="staffInfo">
                                 <tbody>
                                 <tr class="m-0">
                                    <td>School Name</td>
@@ -112,9 +115,6 @@
                     </b-tabs>
                 </b-card>
             </div>
-            <modal name="hello-world">
-                hello, world!
-            </modal>
         </div>
     </div>
 </template>

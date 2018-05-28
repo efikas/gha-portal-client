@@ -6,7 +6,7 @@
                      <div class="row odd-row">
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
-                                 <label class="control-label col-md-8" for="text">Staff Type
+                                 <label class="control-label col-md-8">Staff Type
                                  </label>
                                  <div class="col-md-12">
                                      <select v-model="data.category" class="form-control" size="1">
@@ -18,7 +18,7 @@
                          </div>
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
-                                 <label class="control-label" for="text">Current Grade Level/Step
+                                 <label class="control-label">Current Grade Level/Step
                                  </label>
                                  <div class="col-md-12">
                                      <input type="text" class="form-control" v-model="data.grade_level" placeholder="">
@@ -27,7 +27,7 @@
                          </div>
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
-                                 <label class="control-label col-md-12" for="text">Staff Current Status
+                                 <label class="control-label col-md-12">Staff Current Status
                                  </label>
                                  <div class="col-md-12">
                                      <select v-model="data.current_status" class="form-control" size="1">
@@ -39,7 +39,7 @@
                          </div>
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
-                                 <label class="control-label col-md-12" for="text">Salary Source
+                                 <label class="control-label col-md-12">Salary Source
                                  </label>
                                  <div class="col-md-12">
                                      <select v-model="data.salary_source" class="form-control" size="1">
@@ -53,16 +53,14 @@
                      <div class="row even-row">
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
-                                 <label class="control-label col-md-8" for="text">Fist Appointment Year
+                                 <label class="control-label col-md-12">Fist Appointment Year
                                  </label>
-                                 <div class="col-md-12">
-                                     <input type="number" class="form-control" v-model="data.first_appointment">
-                                 </div>
+                                 <input type="number" class="form-control" v-model="data.first_appointment">
                              </div>
                          </div>
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
-                                 <label class="control-label col-md-12" for="text">Year of Last Promotion
+                                 <label class="control-label col-md-12">Year of Last Promotion
                                  </label>
                                  <div class="col-md-12">
                                      <input type="text" class="form-control" v-model="data.last_promotion" placeholder="Year of Last Promotion">
@@ -71,7 +69,7 @@
                          </div>
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
-                                 <label class="control-label" for="text">Year of Posting
+                                 <label class="control-label">Year of Posting
                                  </label>
                                  <div class="col-md-12">
                                      <input type="text" class="form-control" v-model="data.posting_year" name="" value=""  placeholder="Year of Posting">
@@ -80,16 +78,12 @@
                          </div>
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
-                                 <label class="control-label" for="text">Employment Type
+                                 <label class="control-label">Employment Type
                                  </label>
                                  <div class="col-md-12">
                                      <select v-model="data.employment_type"  class="form-control" size="1">
-                                         <option value="0">
-                                             Select Employment
-                                         </option>
-                                         <option value="1">1930</option>
-                                         <option value="2">1931</option>
-                                         <option value="3">1932</option>
+                                         <option value="">Select Employment</option>
+                                         <option v-for="type in employmentTypes" :value="type.id">{{type.type}}</option>
                                      </select>
                                  </div>
                              </div>
@@ -98,64 +92,48 @@
                      <div class="row odd-row">
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
-                                 <label class="control-label col-md-8" for="text">Academic Qualification
+                                 <label class="control-label">Academic Qualification
                                  </label>
                                  <div class="col-md-12">
                                      <select v-model="data.academic_qualification" class="form-control" size="1">
-                                         <option value="0">
-                                             Select Year
-                                         </option>
-                                         <option value="1">1930</option>
-                                         <option value="2">1931</option>
-                                         <option value="3">1932</option>
+                                         <option value="">Academic Qualification</option>
+                                         <option v-for="academic in academicQualif" :value="academic.id">{{academic.qualification}}</option>
                                      </select>
                                  </div>
                              </div>
                          </div>
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
-                                 <label class="control-label col-md-12" for="text">Teaching Qualification
+                                 <label class="control-label col-md-12">Teaching Qualification
                                  </label>
                                  <div class="col-md-12">
                                      <select v-model="data.teaching_qualification" class="form-control" size="1">
-                                         <option value="0">
-                                             Select Year
-                                         </option>
-                                         <option value="1">1930</option>
-                                         <option value="2">1931</option>
-                                         <option value="3">1932</option>
+                                         <option value="">Teaching Qualification</option>
+                                         <option v-for="teaching in teachingQualif" :value="teaching.id">{{teaching.qualification}}</option>
                                      </select>
                                  </div>
                              </div>
                          </div>
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
-                                 <label class="control-label col-md-12" for="text">Area of Specialty
+                                 <label class="control-label col-md-12">Area of Specialty
                                  </label>
                                  <div class="col-md-12">
                                      <select v-model="data.speciality" class="form-control" size="1">
-                                         <option value="0">
-                                             Select Year
-                                         </option>
-                                         <option value="1">1930</option>
-                                         <option value="2">1931</option>
-                                         <option value="3">1932</option>
+                                         <option value="">Area of Speciality</option>
+                                         <option v-for="specility in areaOfSpeciality" :value="specility.id">{{specility.name}}</option>
                                      </select>
                                  </div>
                              </div>
                          </div>
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
-                                 <label class="control-label col-md-12" for="text">Main Subject Taught
+                                 <label class="control-label col-md-12">Main Subject Taught
                                  </label>
                                  <div class="col-md-12">
                                      <select v-model="data.subject_taught" class="form-control" size="1">
-                                         <option value="0">
-                                             Select Year
-                                         </option>
-                                         <option value="1">1930</option>
-                                         <option value="2">1931</option>
-                                         <option value="3">1932</option>
+                                         <option value="">main Subject Taught</option>
+                                        <option v-for="subjects in subjectTaught" :value="subjects.id">{{subjects.subject}}</option>
                                      </select>
                                  </div>
                              </div>
@@ -164,16 +142,14 @@
                      <div class="row even-row">
                          <div class="col-xs-12 col-sm-6 col-md-4">
                              <div class="form-group p-10">
-                                 <label class="control-label" for="text">Class Taught
+                                 <label class="control-label">Class Taught
                                  </label>
-                                 <div class="col-md-12">
                                      <input type="text" class="form-control" v-model="data.class_taught" placeholder="School Name">
-                                 </div>
                              </div>
                          </div>
                          <div class="col-xs-12 col-sm-6 col-md-4">
                              <div class="form-group p-10">
-                                 <label class="control-label col-md-12" for="text">Training Workshop?
+                                 <label class="control-label col-md-12">Training Workshop?
                                  </label>
                                  <div class="col-md-12">
                                      <div class="radio">
@@ -191,7 +167,7 @@
                          </div>
                          <div class="col-xs-12 col-sm-6 col-md-4">
                              <div class="form-group p-10">
-                                 <label class="control-label col-md-12" for="text">Computer Literate?
+                                 <label class="control-label col-md-12">Computer Literate?
                                  </label>
                                  <div class="col-md-12">
                                      <div class="radio">
@@ -211,49 +187,23 @@
                      <div class="row odd-row">
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
-                                 <label class="control-label" for="text">TRC Registered?
+                                 <label class="control-label">TRC Reg No
                                  </label>
-                                 <div class="col-md-12">
-                                     <div class="radio">
-                                         <b-form-radio v-model="data.TRC_registered">
-                                             Yes
-                                         </b-form-radio>
-                                     </div>
-                                     <div class="radio">
-                                         <b-form-radio v-model="data.TRC_registered">
-                                             No
-                                         </b-form-radio>
-                                     </div>
-                                 </div>
-                             </div>
-                         </div>
-                         <div class="col-xs-12 col-sm-6 col-md-4">
-                             <div class="form-group p-10">
-                                 <label class="control-label" for="text">TRC Reg No
-                                 </label>
-                                 <div class="col-md-12">
                                      <input type="text" class="form-control" v-model="data.TRC_reg_no" placeholder="School Name">
-                                 </div>
                              </div>
                          </div>
-                     </div>
-                     <div class="row even-row">
                          <div class="col-xs-12 col-sm-6 col-md-6">
                              <div class="form-group p-10">
-                                 <label class="control-label" for="text">School Posted From
+                                 <label class="control-label">School Posted From
                                  </label>
-                                 <div class="col-md-12">
                                      <input type="text" class="form-control" v-model="data.school_posted_from" placeholder="School Name">
-                                 </div>
                              </div>
                          </div>
-                         <div class="col-xs-12 col-sm-6 col-md-4">
+                         <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
-                                 <label class="control-label" for="text">Position
+                                 <label class="control-label">Position
                                  </label>
-                                 <div class="col-md-12">
                                      <input type="text" class="form-control" v-model="data.position" placeholder="School Name">
-                                 </div>
                              </div>
                          </div>
                      </div>
@@ -272,6 +222,11 @@ export default {
             staffCategories: {},
             staffStatuses: {},
             salaries: {},
+            employmentTypes: {},
+            academicQualif: {},
+            teachingQualif: {},
+            areaOfSpeciality: {},
+            subjectTaught: {},
             data: {
                 category: '',
                 grade_level: '', // remove
@@ -311,6 +266,11 @@ export default {
             this.staffStatuses = settings.staff_statuses;
             this.salaries = settings.salaries;
             this.religions = settings.religions;
+            this.employmentTypes = settings.employments;
+            this.academicQualif = settings.academic_qualifications;
+            this.teachingQualif = settings.teaching_qualifications;
+            this.areaOfSpeciality = settings.specialities
+            this.subjectTaught = settings.subjects
 
         }
 

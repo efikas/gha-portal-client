@@ -52,6 +52,6 @@ table.mytable tr td:nth-child(odd) {
     border-color: $content_color;
   }
 }
-input[type="text"], input[type="email"], input[type="number"], input[type="url"], select {
+input[type="text"]:not(.multiselect__input), input[type="email"], input[type="number"], input[type="url"], select {
   height: 40px;
 }
