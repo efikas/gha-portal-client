@@ -264,7 +264,7 @@
 
         methods: {
             onReady(instance) {
-                this.instances.push(instance)
+                // this.instances.push(instance)
             },
         },
 

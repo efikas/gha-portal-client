@@ -57,10 +57,12 @@
                     <!-- Nav tabs -->
                     <b-tabs>
                         <b-tab title="BASIC">
-                            <p>
-                                <button type="button" class="btn btn-outline-primary ekiti-btn pull-right">Edit
-                                </button>
-                            </p>
+                            <div>
+                                <p>
+                                    <a :href="`${schoolId}/update/basic`" type="button" class="btn btn-outline-primary ekiti-btn pull-right">Edit</a>
+                                </p>
+                                <br/><br/>
+                            </div>
                             <div class="table-responsive">
                                 <table class="table table-bordred table-striped mytable">
                                     <thead>
@@ -84,7 +86,7 @@
                                         <td>{{ schoolInfo.category }}</td>
                                     </tr>
                                     <tr><td>Type</td>
-                                        <td>{{ schoolInfo.type }}</td>
+                                        <td>{{ yesNo(schoolInfo.type) }}</td>
                                         <td>Location</td>
                                         <td>{{ schoolInfo.location }}</td>
                                     </tr>
@@ -99,27 +101,27 @@
                                         <td>{{ schoolInfo.geolocation }}</td>
                                     </tr>
                                     <tr><td>Average Distance</td>
-                                        <td>{{ schoolInfo.average_distance }}</td>
+                                        <td>{{ schoolInfo.average_distance }}KM</td>
                                         <td>Ownership</td>
                                         <td>{{ schoolInfo.ownership }}</td>
                                     </tr>
                                     <tr><td>Shifts</td>
-                                        <td>{{ schoolInfo.shift }}</td>
+                                        <td>{{ yesNo(schoolInfo.shift) }}</td>
                                         <td>Grant</td>
-                                        <td>{{ schoolInfo.grants }}</td>
+                                        <td>{{ yesNo(schoolInfo.grants) }}</td>
                                     </tr>
                                     <tr><td>Management Committee</td>
-                                        <td>{{ schoolInfo.management_committee }}</td>
+                                        <td>{{ yesNo(schoolInfo.management_committee) }}</td>
                                         <td>Development Plan</td>
-                                        <td>{{ schoolInfo.development_plan }}</td>
+                                        <td>{{ yesNo(schoolInfo.development_plan) }}</td>
                                     </tr>
                                     <tr><td>Mulitigrade</td>
-                                        <td>{{ schoolInfo.multigrade }}</td>
+                                        <td>{{ yesNo(schoolInfo.multigrade) }}</td>
                                         <td>LGA Ward</td>
                                         <td>{{ schoolInfo.ward.name }}</td>
                                     </tr>
                                     <tr><td>Recognision Status</td>
-                                        <td>{{ schoolInfo.recognition_status }}</td>
+                                        <td>{{ yesNo(schoolInfo.recognition_status) }}</td>
                                         <td>Number of student</td>
                                         <td>{{ schoolInfo.students }}</td>
                                     </tr>
@@ -136,7 +138,7 @@
                         <b-tab title="FACILITIES">
                             <div>
                                 <p>
-                                    <button type="button" class="btn btn-outline-primary pull-right">Edit</button>
+                                    <a :href="`${schoolId}/update/facilities`" type="button" class="btn btn-outline-primary ekiti-btn pull-right">Edit</a>
                                 </p>
                                 <br><br>
                             </div>
@@ -400,12 +402,14 @@
                         </b-tab>
                         <b-tab title="CLASSROOM">
                             <p>
-                                <button type="button" class="btn btn-outline-primary ekiti-btn pull-right">Edit</button>
+                                <a :href="`${schoolId}/update/classroom`" type="button" class="btn btn-outline-primary ekiti-btn pull-right">Edit</a>
                             </p>
 
                         </b-tab>
                         <b-tab title="LIBRARY">
-                            llllllllll
+                            <p>
+                                <a :href="`${schoolId}/update/library`" type="button" class="btn btn-outline-primary ekiti-btn pull-right">Edit</a>
+                            </p>
 
                         </b-tab>
                     </b-tabs>
@@ -474,6 +478,12 @@
             }
         },
         methods: {
+            yesNo(id){
+                if(id == 1){
+                    return 'Yes';
+                }
+                return 'No'
+            },
             show () {
                 this.$refs.modal.open();
             },

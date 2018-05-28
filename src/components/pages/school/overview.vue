@@ -114,10 +114,10 @@
                                <tr>
                                    <th>Primary</th>
                                    <th>Secondary</th>
-                                   <th>total</th>
+                                   <th>Total</th>
                                    <th>Primary</th>
                                    <th>Secondary</th>
-                                   <th>total</th>
+                                   <th>Total</th>
                                </tr>
                            </thead>
                            <tbody>
