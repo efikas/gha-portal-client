@@ -177,7 +177,7 @@
                 }
                 this.old_file = file;
             },
-            onComplete: function () {
+            onSubmit: function () {
                 this.$school.addSchool(this.data).then(response => {
 
                 })

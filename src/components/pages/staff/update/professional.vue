@@ -2,7 +2,7 @@
     <div>
          <b-card header="Professional Information" header-tag="h4" class="bg-header-card">
              <div>
-                 <form method="" class="form-horizontal">
+                 <form class="form-horizontal" @submit.prevent="onSubmit">
                      <div class="row odd-row">
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
@@ -207,7 +207,7 @@
                              </div>
                          </div>
                      </div>
-                     <button class="btn btn-primary btn-lg btn-school pull-right" @click="onComplete()">Submit</button>
+                     <button type="submit" class="btn btn-primary btn-lg btn-school pull-right">Submit</button>
                  </form>
              </div>
         </b-card>
@@ -252,10 +252,10 @@ export default {
     },
     components: {},
     methods: {
-       onComplete: function(){
-           this.$staff.addStaff(1,this.data).then(response => {
-
-            })
+       onSubmit: function(){
+           // this.$staff.addStaff(1,this.data).then(response => {
+           //
+           //  })
         }
     },
     mounted: function() {

@@ -1,7 +1,7 @@
 <template>
     <div>
         <b-card header="School Basic Information" header-tag="h4" class="bg-header-card">
-            <form method="" class="form-horizontal">
+            <form  class="form-horizontal" @submit.prevent="onSubmit">
                 <div class="row odd-row">
                     <div class="col-xs-12 col-sm-6 col-md-3">
                         <label  class="control-label">LGA</label>
@@ -462,8 +462,8 @@
                         </div>
                     </div>
                 </div>
+                <button type="submit" class="btn btn-primary btn-lg btn-school pull-right">Submit</button>
             </form>
-            <button class="btn btn-primary btn-lg btn-school pull-right" @click="onComplete()">Submit</button>
         </b-card>
     </div>
 </template>
@@ -531,12 +531,12 @@
                 }
                 this.old_file = file;
             },
-            onComplete: function () {
-                console.log("aaa")
-                this.$school.addSchool(this.data).then(response => {
-
-                })
-                // alert('Yay. Done!');
+            onSubmit() {
+                // console.log("aaa");
+                // this.$school.addSchool(this.data).then(response => {
+                //
+                // })
+                alert('Yay. Done!');
             },
             addMore(elementGroup) {
                 switch (elementGroup) {

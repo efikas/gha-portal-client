@@ -200,7 +200,7 @@
         },
         components: {},
         methods: {
-            onComplete: function () {
+            onSubmit: function () {
                 this.$school.addSchool(this.data).then(response => {
 
                 })

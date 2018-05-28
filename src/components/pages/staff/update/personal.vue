@@ -2,7 +2,7 @@
     <div>
          <b-card header="Personal Information" header-tag="h4" class="bg-header-card">
              <div>
-                 <form method="" class="form-horizontal">
+                 <form class="form-horizontal" @submit.prevent="onSubmit">
                      <div class="row odd-row">
                          <div class="col-md-8">
                              <div class="form-group p-10">
@@ -42,12 +42,12 @@
                                  <label class="control-label" for="text">Sex
                                  </label>
                                  <div class="radio">
-                                     <b-form-radio name="sex" v-model="data.sex" checked="true">
+                                     <b-form-radio name="sex" v-model="data.sex"  value="F">
                                          Female
                                      </b-form-radio>
                                  </div>
                                  <div class="radio">
-                                     <b-form-radio name="sex" v-model="data.sex">
+                                     <b-form-radio name="sex" v-model="data.sex" value="M">
                                          Male
                                      </b-form-radio>
                                  </div>
@@ -168,8 +168,9 @@
                              </div>
                          </div>
                      </div>
-                     <button class="btn btn-primary btn-lg btn-school pull-right" @click="onComplete()">Submit</button>
+                     <button type="submit" class="btn btn-primary btn-lg btn-school pull-right">Submit</button>
                  </form>
+
              </div>
         </b-card>
     </div>
@@ -212,10 +213,11 @@ export default {
         }
     },
     methods: {
-       onComplete: function(){
-           this.$staff.addStaff(1,this.data).then(response => {
-
-            })
+       onSubmit: function(){
+           alert(1111);
+           // this.$staff.addStaff(1,this.data).then(response => {
+           //
+           //  })
         },
         getSchoolId(){
            let _selectedSchool = this.allSchools.filter(school => {

@@ -585,7 +585,7 @@
                 }
                 this.old_file = file;
             },
-            onComplete: function () {
+            onSubmit: function () {
                 console.log("aaa")
                 this.$school.addSchool(this.data).then(response => {
 

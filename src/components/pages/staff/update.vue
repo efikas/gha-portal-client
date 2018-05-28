@@ -3,8 +3,8 @@
 </template>
 
 <script>
-    import personal from './subcomponents/personal';
-    import professional from './subcomponents/professional';
+    import personal from './update/personal';
+    import professional from './update/professional';
 
     export default {
         name: "staff-layout",

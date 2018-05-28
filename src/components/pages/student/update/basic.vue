@@ -1,33 +1,15 @@
 <template>
     <div>
-         <b-card header="Academic Information" header-tag="h4" class="bg-header-card">
+         <b-card header="Personal Information" header-tag="h4" class="bg-header-card">
              <div>
                  <form method="" class="form-horizontal">
                      <div class="row odd-row">
-                         <div class="col-md-4">
+                         <div class="col-md-8">
                              <div class="form-group p-10">
-                                 <label class="control-label col-md-8" for="admission_date">Year of Admission
+                                 <label class="control-label col-md-8">School Name
                                  </label>
                                  <div class="col-md-12">
-                                     <input type="text" class="form-control"  v-model="data.professional_info.admission_date" name="admission_date" id="admission_date" placeholder="School Name">
-                                 </div>
-                             </div>
-                         </div>
-                         <div class="col-xs-12 col-sm-6 col-md-6">
-                             <div class="form-group p-10">
-                                 <label class="control-label col-md-8" for="text">Student's Admission Status <span>*</span>
-                                 </label>
-                                 <div class="col-md-12">
-                                     <div class="radio">
-                                         <b-form-radio name="admission_status" v-model="data.professional_info.admission_status">
-                                             Fresh Enrollment/Placement
-                                         </b-form-radio>
-                                     </div>
-                                     <div class="radio">
-                                         <b-form-radio name="admission_status" v-model="data.professional_info.admission_status">
-                                             Transfer In
-                                         </b-form-radio>
-                                     </div>
+                                     <input type="text" class="form-control" v-model="data.basic_info.school_name" placeholder="School Name">
                                  </div>
                              </div>
                          </div>
@@ -35,35 +17,95 @@
                      <div class="row even-row">
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
-                                 <label class="control-label col-md-8" for="text">Admission Education Level <span>*</span>
+                                 <label class="control-label col-md-8">Firstname
                                  </label>
                                  <div class="col-md-12">
-                                     <select id="edu_level" v-model="data.professional_info.edu_level" name="edu_level" class="form-control" size="1">
-                                         <option value="0">
-                                             Select Education Level
-                                         </option>
-                                         <option value="1">1930</option>
-                                         <option value="2">1931</option>
-                                         <option value="3">1932</option>
-                                     </select>
+                                     <input type="text" class="form-control" v-model="data.basic_info.first_name" placeholder="First Name">
                                  </div>
                              </div>
                          </div>
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
-                                 <label class="control-label" for="text">Admission Class Level <span>*</span>
+                                 <label class="control-label col-md-12">Middle Name
                                  </label>
                                  <div class="col-md-12">
-                                     <input type="number" v-model="data.professional_info.admission_class_level" class="form-control" id="admission_class_level" placeholder="">
+                                     <input type="text" class="form-control" v-model="data.basic_info.middle_name" placeholder="Middle Name">
                                  </div>
                              </div>
                          </div>
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
-                                 <label class="control-label col-md-12" for="text">Current Education Level<span>*</span>
+                                 <label class="control-label">Last Name
                                  </label>
                                  <div class="col-md-12">
-                                     <select id="current_edu_level" v-model="data.professional_info.current_edu_level" name="current_edu_level" class="form-control" size="1">
+                                     <input type="text" class="form-control" v-model="data.basic_info.last_name" placeholder="">
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="col-xs-12 col-sm-6 col-md-3">
+                             <div class="form-group p-10">
+                                 <label class="control-label">Sex
+                                 </label>
+                                 <div class="col-md-12">
+                                     <div class="radio">
+                                         <b-form-radio name="sex" v-model="data.basic_info.sex">
+                                             Female
+                                         </b-form-radio>
+                                     </div>
+                                     <div class="radio">
+                                         <b-form-radio name="sex" v-model="data.basic_info.sex">
+                                             Male
+                                         </b-form-radio>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                     <div class="row odd-row">
+                         <div class="col-xs-12 col-sm-6 col-md-3">
+                             <div class="form-group p-10">
+                                 <label class="control-label col-md-8">Date of Birth
+                                 </label>
+                                 <div class="col-md-12">
+                                     <input type="date" class="form-control" v-model="data.basic_info.date_of_birth">
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="col-xs-12 col-sm-6 col-md-3">
+                             <div class="form-group p-10">
+                                 <label class="control-label col-md-12">Place of Birth
+                                 </label>
+                                 <div class="col-md-12">
+                                     <input type="text" class="form-control" v-model="data.basic_info.place_of_birth" id="pob" placeholder="Place of birth">
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="col-xs-12 col-sm-6 col-md-3">
+                             <div class="form-group p-10">
+                                 <label class="control-label">Phone Number (optional)
+                                 </label>
+                                 <div class="col-md-12">
+                                     <input type="phone" class="form-control" name="phone_number" v-model="data.basic_info.phone_number" placeholder="08064720000" id="phone_number">
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="col-xs-12 col-sm-6 col-md-3">
+                             <div class="form-group p-10">
+                                 <label class="control-label" for="email">Email (optional)
+                                 </label>
+                                 <div class="col-md-12">
+                                     <input type="email" class="form-control" v-model="data.basic_info.email" id="email" placeholder="aaa@abcd.com">
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                     <div class="row even-row">
+                         <div class="col-xs-12 col-sm-6 col-md-3">
+                             <div class="form-group p-10">
+                                 <label class="control-label col-md-8">Any special Challenge?
+                                 </label>
+                                 <div class="col-md-12">
+                                     <select v-model="data.basic_info.special_challenge" class="form-control" size="1">
                                          <option value="0">
                                              Select Year
                                          </option>
@@ -74,12 +116,34 @@
                                  </div>
                              </div>
                          </div>
+                         <div class="col-xs-12 col-sm-6 col-md-4">
+                             <div class="row">
+                                 <div class="col-xs-12 col-sm-6">
+                                     <div class="form-group p-10">
+                                         <label class="control-label">Height (in m)
+                                         </label>
+                                         <div class="col-md-12">
+                                             <input type="number" class="form-control" v-model="data.basic_info.height" placeholder="">
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <div class="col-xs-12 col-sm-6">
+                                     <div class="form-group p-10">
+                                         <label class="control-label">Width (in m)
+                                         </label>
+                                         <div class="col-md-12">
+                                             <input type="number" class="form-control" v-model="data.basic_info.width" placeholder="">
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
-                                 <label class="control-label col-md-12" for="text">Current Class Level <span>*</span>
+                                 <label class="control-label">Blood Group Type
                                  </label>
                                  <div class="col-md-12">
-                                     <input type="number" class="form-control" name="current_class_level" v-model="data.professional_info.current_class_level" id="current_class_level" placeholder="">
+                                     <input type="text" class="form-control" v-model="data.basic_info.blood_group" placeholder="A, B, AB, O">
                                  </div>
                              </div>
                          </div>
@@ -87,16 +151,16 @@
                      <div class="row odd-row">
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
-                                 <label class="control-label col-md-8" for="text">Registered for JSCE/SSCE? <span>*</span>
+                                 <label class="control-label col-md-8">Birth Cert Available? *
                                  </label>
                                  <div class="col-md-12">
                                      <div class="radio">
-                                         <b-form-radio name="exam_registration" v-model="data.professional_info.exam_registration">
+                                         <b-form-radio  v-model="data.basic_info.birth_cert_avail" name="birth_cert_avail">
                                              Yes
                                          </b-form-radio>
                                      </div>
                                      <div class="radio">
-                                         <b-form-radio name="exam_registration" v-model="data.professional_info.exam_registration">
+                                         <b-form-radio  v-model="data.basic_info.birth_cert_avail" name="birth_cert_avail">
                                              No
                                          </b-form-radio>
                                      </div>
@@ -105,36 +169,17 @@
                          </div>
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
-                                 <label class="control-label col-md-8" for="text">Boarding Student? <span>*</span>
+                                 <label class="control-label col-md-12">Birth Cert Type
                                  </label>
                                  <div class="col-md-12">
-                                     <div class="radio">
-                                         <b-form-radio name="boarding" v-model="data.professional_info.boarding">
-                                             Yes
-                                         </b-form-radio>
-                                     </div>
-                                     <div class="radio">
-                                         <b-form-radio name="boarding" v-model="data.boarding">
-                                             No
-                                         </b-form-radio>
-                                     </div>
-                                 </div>
-                             </div>
-                         </div>
-                         <div class="col-xs-12 col-sm-6 col-md-3">
-                             <div class="form-group p-10">
-                                 <label class="control-label col-md-12" for="text">Doom No </label>
-                                 <div class="col-md-12">
-                                     <input type="text" class="form-control" name="dorm_no" v-model="data.professional_info.dorm_no" placeholder="School Name">
-                                 </div>
-                             </div>
-                         </div>
-                         <div class="col-xs-12 col-sm-6 col-md-3">
-                             <div class="form-group p-10">
-                                 <label class="control-label col-md-12" for="text">Home Dist to School
-                                 </label>
-                                 <div class="col-md-12">
-                                     <input type="number" class="form-control" v-model="data.professional_info.distance_from_school" value="0">
+                                     <select name="birth_cert_type" v-model="data.basic_info.birth_cert_type" class="form-control" size="1">
+                                         <option value="0">
+                                             Select Religion
+                                         </option>
+                                         <option value="1">Christianity</option>
+                                         <option value="2">Islamic</option>
+                                         <option value="3">Budaism</option>
+                                     </select>
                                  </div>
                              </div>
                          </div>
@@ -142,7 +187,7 @@
                      <button class="btn btn-primary btn-lg btn-school pull-right" @click="onComplete()">Submit</button>
                  </form>
              </div>
-        </b-card>
+         </b-card>
     </div>
 </template>
 <script>
@@ -212,7 +257,7 @@ export default {
         }
     },
     methods: {
-       onComplete: function(){
+       onSubmit: function(){
             this.$student.addStudent(1,this.data).then(response => {
 
             })

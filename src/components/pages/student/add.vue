@@ -671,7 +671,7 @@ export default {
         }
     },
     methods: {
-       onComplete: function(){
+       onSubmit: function(){
             this.$student.addStudent(this.data).then(response => {
 
             })
