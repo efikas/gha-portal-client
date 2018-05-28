@@ -1,7 +1,14 @@
 <template>
     <div class="row">
         <div class="col-lg-12 mb-3">
-            <b-card header="List of Schools" header-tag="h4" class="bg-header-card">
+            <b-breadcrumb :items="items1" class="breadcrumb2" />
+
+            <b-card v-if="this.$route.params.lgaId">
+                <h2>List of {{ categoryName }} {{ levelName }} Schools in Ado</h2>
+
+            </b-card>
+
+            <b-card :header="(this.$route.params.lgaId) ? '' : 'List of Schools'" header-tag="h4" class="bg-header-card">
                 <div style="margin: 2%" v-if="schools.length < 1">
                     <skeleton-loading>
                     <row 
@@ -33,7 +40,7 @@
                 </skeleton-loading>
                 </div>
                 
-                <v-client-table :data="schools" :columns="columns" :options="options" v-if="schools.length > 0">
+                <v-client-table :data="schools" :columns="columns" :options="options" v-if="schools.length > 0" @row-click="rowClick">
                     <a slot="id" slot-scope="props">{{ props.index }}</a>
                     <router-link tag="a" class="list-font" slot="name" slot-scope="props" :to="{ name: 'school-profile', params: { id: props.row.id }}" v-html="props.row.name"></router-link>
                      <!--<a slot="school_name" slot-scope="props" :href="'/#/school/'+ props.row.id+'/profile'">{{ props.row.school_name }}</a>-->
@@ -66,6 +73,9 @@ export default {
             lgaId: '',
             level : '',
             categoryId: '',
+            lgaName : '',
+            categoryName : '',
+            levelName : '',
             options: {
                 sortIcon: {
                     base: 'fa',
@@ -82,7 +92,14 @@ export default {
                     //set dropdown to true to get dropdown instead of pagenation
                     dropdown: false
                 }
-            }
+            },
+            items1: [{
+                text: 'School',
+                link: '/school',
+            }, {
+                text: 'Manage',
+                active: true
+            }],
         }
     },
     mounted() {
@@ -92,14 +109,20 @@ export default {
             this.categoryId = this.$route.params.catId
             this.level = this.$route.params.level
 
+            //set the route parameter name
+            if(this.categoryId === '1') this.categoryName = 'Public';
+            if(this.categoryId === '2') this.categoryName = 'Private';
+            if(this.level === 'PRY') this.levelName = 'Primary';
+            if(this.level === 'SEC') this.levelName = 'Secondary';
+
             //get category and level and filter school list accordingly
             if(this.categoryId && this.level){
 
                 this.$school.getSchoolsPerLga(this.lgaId).then(data => {
-                    console.log(data.data)
-                    this.schools = data.filter( school =>{
+                    // console.log(data.data)
+                    this.schools = data.data.filter( school =>{
                         try {
-                            return (school.data.school_category_id == this.categoryId && school.data.education_levels == this.level.toUpperCase());
+                            return (school.category == this.categoryName && school.education_level == this.levelName);
                         }
                         catch(err) {
                            console.error(err);
@@ -112,9 +135,11 @@ export default {
             else if(this.categoryId){
 
                 this.$school.getSchoolsPerLga(this.lgaId).then(data => {
-                    this.schools = data.filter( school =>{
+                    // console.log(data.data)
+
+                    this.schools = data.data.filter( school =>{
                         try {
-                            return (school.data.school_category_id == this.categoryId);
+                            return (school.category == this.categoryName);
                         }
                         catch(err) {
                             console.error(err);
@@ -126,9 +151,11 @@ export default {
             else if(this.level){
 
                 this.$school.getSchoolsPerLga(this.lgaId).then(data => {
-                    this.schools = data.filter( school =>{
+                    // console.log(data.data)
+
+                    this.schools = data.data.filter( school =>{
                         try {
-                            return (school.data.education_levels == this.level.toUpperCase());
+                            return (school.education_level == this.levelName);
                         }
                         catch(err) {
                             console.error(err);
@@ -144,7 +171,12 @@ export default {
                 this.schools = data.data;
             })
         }
-        console.log(this.schools);
+        // console.log(this.schools);
+    },
+    methods: {
+        rowClick(){
+            // alert(this.row.id);
+        }
     }
 }
 </script>

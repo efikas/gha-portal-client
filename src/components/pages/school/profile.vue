@@ -60,7 +60,6 @@
                             <p>
                                 <button type="button" class="btn btn-outline-primary ekiti-btn pull-right">Edit
                                 </button>
-                            <h1>Personal Details</h1>
                             </p>
                             <div class="table-responsive">
                                 <table class="table table-bordred table-striped mytable">
@@ -135,11 +134,12 @@
 
                         </b-tab>
                         <b-tab title="FACILITIES">
-                            <p>
-                                <button type="button" class="btn btn-outline-primary pull-right">Edit
-                                </button>
-                            <h3>School Facilities</h3>
-                            </p>
+                            <div>
+                                <p>
+                                    <button type="button" class="btn btn-outline-primary pull-right">Edit</button>
+                                </p>
+                                <br><br>
+                            </div>
 
                             <b-card no-body class="mb-0">
                                 <b-card-header header-tag="header" class="p-1" role="tab">
@@ -147,9 +147,6 @@
                                 </b-card-header>
                                 <b-collapse id="accordion1" visible accordion="my-accordion" role="tabpanel">
                                     <b-card-body>
-                                        <div class="card-text">
-                                            <h2>Classrooms</h2>
-                                        </div>
                                         <div class="row">
                                             <div class="col-lg-12 mb-3">
                                                 <div class="table-responsive">
@@ -191,9 +188,6 @@
                                 </b-card-header>
                                 <b-collapse id="accordion2" accordion="my-accordion" role="tabpanel">
                                     <b-card-body>
-                                        <p class="card-text">
-                                        <h2>Others</h2>
-                                        </p>
                                         <div class="row">
                                             <div class="col-lg-12 mb-3">
                                                 <div class="table-responsive">
@@ -243,9 +237,6 @@
                                 </b-card-header>
                                 <b-collapse id="accordion3" accordion="my-accordion" role="tabpanel">
                                     <b-card-body>
-                                        <p class="card-text">
-                                        <h2>Source of Power</h2>
-                                        </p>
                                         <div class="row">
                                             <div class="col-lg-12 mb-3">
                                                 <div class="table-responsive">
@@ -287,9 +278,6 @@
                                 </b-card-header>
                                 <b-collapse id="accordion2" accordion="my-accordion" role="tabpanel">
                                     <b-card-body>
-                                        <p class="card-text">
-                                        <h2>Health Facilities</h2>
-                                        </p>
                                         <div class="row">
                                             <div class="col-lg-12 mb-3">
                                                 <div class="table-responsive">
@@ -327,10 +315,6 @@
                                 </b-card-header>
                                 <b-collapse id="accordion3" accordion="my-accordion" role="tabpanel">
                                     <b-card-body>
-
-                                        <p class="card-text">
-                                        <h2>Source of Water Supply</h2>
-                                        </p>
                                         <div class="row">
                                             <div class="col-lg-12 mb-3">
                                                 <div class="table-responsive">
@@ -376,9 +360,6 @@
                                 </b-card-header>
                                 <b-collapse id="accordion2" accordion="my-accordion" role="tabpanel">
                                     <b-card-body>
-                                        <p class="card-text">
-                                        <h2>Fence</h2>
-                                        </p>
                                         <div class="row">
                                             <div class="col-lg-12 mb-3">
                                                 <div class="table-responsive">
@@ -419,9 +400,7 @@
                         </b-tab>
                         <b-tab title="CLASSROOM">
                             <p>
-                                <button type="button" class="btn btn-outline-primary ekiti-btn pull-right">Edit
-                                </button>
-                            <h1>Parent/Guardian Details</h1>
+                                <button type="button" class="btn btn-outline-primary ekiti-btn pull-right">Edit</button>
                             </p>
 
                         </b-tab>

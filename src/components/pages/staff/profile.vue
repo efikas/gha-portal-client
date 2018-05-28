@@ -35,7 +35,6 @@
                             <p>
                                 <a :href="'/staff/' + staffId + '/update/personal'" type="button" class="btn btn-outline-primary ekiti-btn pull-right">Edit
                                 </a>
-                            <h1>Personal Details</h1>
                             </p>
                             <table class="table account-detailsg" v-if="staffInfo">
                                 <tbody>
@@ -84,7 +83,6 @@
                             <p>
                                 <a :href="'/staff/' + staffId + '/update/professional'" type="button" class="btn btn-outline-primary ekiti-btn pull-right">Edit
                                 </a>
-                            <h1>Professional Record</h1>
                             </p>
                             <table class="table account-detailsg" v-if="staffInfo">
                                 <tbody>

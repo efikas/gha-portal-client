@@ -30,7 +30,7 @@
                     </div>
                     <div class="text-ash">
                         <h4 class="mb-0 mt-2 text_size">742+</h4>
-                        <p class="m-0 mt-2">Students</p>
+                        <p class="m-0 mt-2">Primary Students</p>
                     </div>
                 </div>
             </div>
@@ -41,13 +41,13 @@
                     </div>
                     <div class="text-ash">
                         <h4 class="mb-0 mt-2 text_size">465+</h4>
-                        <p class="m-0 mt-2">Parent/Guardian</p>
+                        <p class="m-0 mt-2">Secondary Students</p>
                     </div>
                 </div>
             </div>
         </div>
          <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-8 col-offset-lg-2">
                 <b-card header="DISTRIBUTION OF STUDENTS/LGA" header-tag="h4" class="bg-header-card">
                     <div class="table-responsive">
                         <table class="table table-bordered table-striped">
@@ -64,7 +64,7 @@
                                     <td>{{ studentPerLga.name }}</td>
                                     <td>{{ getFemale(studentPerLga.students.female) }}</td>
                                     <td>{{ getMale(studentPerLga.students.male) }}</td>
-                                    <td>{{ getTotal(parseInt(studentPerLga.students.female) + parseInt(studentPerLga.students.male)) }}</td>
+                                    <td>{{ getTotal(Number(studentPerLga.students.female) + Number(studentPerLga.students.male)) }}</td>
                                 </tr>
                             </tbody>
                             <tfoot>
@@ -78,16 +78,16 @@
                 </b-card>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <b-card>
-                    <h5 class="ml-3 head_color">Annual Stats</h5>
-                    <div style="height: 305px;">
-                        <IEcharts :option="ajaxbar_chart" :loading="ajaxloading" @ready="onReady" ref="ajaxbar_chart"></IEcharts>
-                    </div>
-                </b-card>
-            </div>
-        </div>
+        <!--<div class="row">-->
+            <!--<div class="col-lg-12">-->
+                <!--<b-card>-->
+                    <!--<h5 class="ml-3 head_color">Annual Stats</h5>-->
+                    <!--<div style="height: 305px;">-->
+                        <!--<IEcharts :option="ajaxbar_chart" :loading="ajaxloading" @ready="onReady" ref="ajaxbar_chart"></IEcharts>-->
+                    <!--</div>-->
+                <!--</b-card>-->
+            <!--</div>-->
+        <!--</div>-->
     </div>
 </template>
 <script>
@@ -221,16 +221,18 @@
         },
 
         methods: {
+            //todo: recalculate total students
+
             getMale(maleStudentsPerLga){
-                this.totalMale = this.totalMale + 2;
+                this.totalMale = this.totalMale + Number(maleStudentsPerLga);
                 return maleStudentsPerLga;
             },
             getFemale(femaleStudentsPerLga){
-                this.totalFemale += parseInt(femaleStudentsPerLga);
+                this.totalFemale = this.totalFemale + Number(femaleStudentsPerLga);
                 return femaleStudentsPerLga;
             },
             getTotal(studentsTotalPerLga){
-                this.totalStudents += studentsTotalPerLga;
+                this.totalStudents = this.totalStudents + studentsTotalPerLga;
                 return studentsTotalPerLga;
             },
             onReady(instance) {

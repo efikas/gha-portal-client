@@ -184,7 +184,7 @@
                              </div>
                          </div>
                      </div>
-                     <button class="btn btn-primary btn-lg btn-school" @click="onComplete()">Submit</button>
+                     <button class="btn btn-primary btn-lg btn-school pull-right" @click="onComplete()">Submit</button>
                  </form>
              </div>
          </b-card>

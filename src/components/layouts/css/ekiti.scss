@@ -33,7 +33,7 @@
   }
 }
 
-table tr td:nth-child(odd) {
+table.mytable tr td:nth-child(odd) {
   width: 30% !important;
   color: #6b3d34;
   font-weight: bold;
