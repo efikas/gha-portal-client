@@ -107,8 +107,8 @@
                                  </label>
                                  <div class="col-md-12">
                                      <select class="form-control" size="1" v-model="data.lga_of_origin">
-                                         <option value="">Select lga_of_origin</option>
-                                         <option v-for="lga_of_origin in lga_of_origins" :value="lga_of_origin.id">{{lga_of_origin.name}}</option>
+                                         <option value="">Select Local Govt</option>
+                                         <option v-for="lga in lgaInSelectedState" :value="lga.id">{{lga.name}}</option>
                                      </select>
                                  </div>
                              </div>
@@ -189,7 +189,8 @@ export default {
             allSchools: [],     // holds the array of schools object
             staffId: null,
             states: {},
-            lga_of_origins: {},
+            //lgaInSelectedState: {},     // holds the local government in the selected state
+            allLga: {}, // hold all the local government
             religions: {},
             schoolName: '',
             data: {
@@ -214,10 +215,12 @@ export default {
     },
     methods: {
        onSubmit: function(){
-           alert(1111);
-           // this.$staff.addStaff(1,this.data).then(response => {
-           //
-           //  })
+           // alert(1111);
+           // console.log(this.data);
+           this.$staff.editStaff(this.staffId, this.data).then(response => {
+               console.log(response);
+
+            })
         },
         getSchoolId(){
            let _selectedSchool = this.allSchools.filter(school => {
@@ -227,6 +230,19 @@ export default {
             this.data.school_id = _selectedSchool[0].id;
         }
     },
+    computed: {
+        // Filter the local governments base on the selected state
+        lgaInSelectedState: function() {
+            if(this.data.state_of_origin){
+                let _filter;
+              _filter =  this.allLga.filter(lga => {
+                    return (lga.state_id == this.data.state_of_origin);
+                })
+               return _filter;
+            }
+           // return this.data.state_of_origin ? (this.value.interval * this.value.multiplier).toFixed(2) : 0
+        }
+    },
     mounted() {
         //populate the select boxes using the settings data from local storage
         let settings = JSON.parse(localStorage.getItem('settings'));
@@ -234,6 +250,7 @@ export default {
         if(settings) {
             this.states = settings.states;
             this.religions = settings.religions;
+            this.allLga = settings.lga_areas_all;
         }
 
         //get list of schools
@@ -244,7 +261,20 @@ export default {
         //get staff Data
         this.staffId = this.$route.params.id,
         this.$staff.staffProfile(this.staffId).then(data => {
-            this.data = data;
+            // this.data = data;
+            // this.data.forEach((_data, key) => {
+            //     this.data[key] = data[key];
+            // })
+            // Object.keys(this.data)
+            //     .forEach(function eachKey(key) {
+            //         this.data[key] = data[key];
+            //     })
+
+
+
+            Object.keys(this.data).forEach(key => {
+                this.data[key] = (data.hasOwnProperty(key)) ? data[key] : null;
+            })
         })
     },
     destroyed: function() {

@@ -35,6 +35,17 @@ export default {
         })
     },
 
+    editStaff(staffId, staffInfo){
+        return new Promise((resolve, reject) => {
+            axios.post('staff/' + staffId + '/edit', staffInfo)
+                .then(response => {
+                    resolve(response.data)
+                }).catch((error) => {
+                reject(error.response);
+            })
+        })
+    },
+
     importStaff(schoolId, schoolExcelFile){
         return new Promise((resolve, reject) => {
             axios.post('upload/' + schoolId + '/staff', schoolExcelFile)
