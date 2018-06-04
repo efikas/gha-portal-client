@@ -55,3 +55,9 @@ table.mytable tr td:nth-child(odd) {
 input[type="text"]:not(.multiselect__input), input[type="email"], input[type="number"], input[type="url"], select {
   height: 40px;
 }
+
+.custom-control-description span {
+  font-size: .8rem !important;
+  letter-spacing: 1px;
+  color: #684348 !important;
+}

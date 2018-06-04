@@ -1,345 +1,117 @@
 <template>
     <div>
         <b-card header="School Classroom Information" header-tag="h4" class="bg-header-card">
-            <form method="" class="form-horizontal">
-                <div>
-                    <div>
-                        INFORMATION ON CLASSROOMS/PLAYROOMS
-                    </div>
-                    <div>
-                        Record information for individual classroom, regardless of whether or not they are in
-                        use.
-                    </div>
-                </div>
-                <div class="row odd-row">
-                    <div class="col-xs-12 col-sm-6 col-md-3">
-                        <div class="form-group p-10">
-                            <label class="control-label col-md-12" for="text">Year Constructed</label>
-                            <div class="col-md-12">
-                                <select id="example-select" name="classroom_year_constructed"
-                                        v-model="data.classroom_details.classroom_year_constructed"
-                                        class="form-control" size="1">
-                                    <option value="">
-                                        Select Year
-                                    </option>
-                                    <option value="1">1930</option>
-                                    <option value="2">1931</option>
-                                    <option value="3">1932</option>
-                                </select>
-                            </div>
+            <form method="" class="form-horizontal" @submit.prevent="onSubmit">
+                    <div class="even-row classroom-wrapper-div">
+                        <a class="btn btn-outline-primary pull-right" @click="addClassroom()">+ ADD MORE</a>
+                        <div>
+                            INFORMATION ON classroomsS/PLAYROOMS
+                        </div>
+                        <div>
+                            Record information for individual classrooms, regardless of whether or not they are in
+                            use.
                         </div>
                     </div>
-                    <div class="col-xs-12 col-sm-6 col-md-2">
-                        <div class="form-group p-10">
-                            <label class="control-label" for="text">Length in (m)
-                            </label>
-                            <div class="col-md-12">
-                                <input type="number" class="form-control" id="text" name="classroom_length"
-                                        v-model="data.classroom_details.classroom_length"
-                                        placeholder="School Name">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-2">
-                        <div class="form-group p-10">
-                            <label class="control-label" for="text">Width in (m)
-                            </label>
-                            <div class="col-md-12">
-                                <input type="number" class="form-control" id="text" name="classroom_width"
-                                        v-model="data.classroom_details.classroom_width"
-                                        placeholder="School Name">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-2">
-                        <div class="form-group p-10">
-                            <label class="control-label" for="text">Number of Rooms
-                            </label>
-                            <div class="col-md-12">
-                                <input type="number" class="form-control" name="number_of_rooms"
-                                        v-model="data.classroom_details.number_of_rooms" id="text"
-                                        placeholder="School Name">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-3">
-                        <div class="form-group p-10">
-                            <label class="control-label col-md-12" for="text">Select Condition
-                            </label>
-                            <div class="col-md-12">
-                                <select id="example-select" name="classroom_condition"
-                                        v-model="data.classroom_details.classroom_condition"
-                                        class="form-control" size="1">
-                                    <option value="">
-                                        Select Condition
-                                    </option>
-                                    <option value="1">1930</option>
-                                    <option value="2">1931</option>
-                                    <option value="3">1932</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row even-row">
-                    <div class="col-xs-12 col-sm-6 col-md-2">
-                        <div class="form-group p-10">
-                            <label class="control-label col-md-12" for="text">Floor Material
-                            </label>
-                            <div class="col-md-12">
-                                <select id="example-select" name="floor_material"
-                                        v-model="data.classroom_details.floor_material" class="form-control"
-                                        size="1">
-                                    <option value="">
-                                        Select Year
-                                    </option>
-                                    <option value="1">1930</option>
-                                    <option value="2">1931</option>
-                                    <option value="3">1932</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-3">
-                        <div class="form-group p-10">
-                            <label class="control-label col-md-12" for="text">Wall Material
-                            </label>
-                            <div class="col-md-12">
-                                <select id="example-select" name="wall_material"
-                                        v-model="data.classroom_details.wall_material" class="form-control"
-                                        size="1">
-                                    <option value="">
-                                        Select Year
-                                    </option>
-                                    <option value="1">1930</option>
-                                    <option value="2">1931</option>
-                                    <option value="3">1932</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-3">
-                        <div class="form-group p-10">
-                            <label class="control-label col-md-12" for="text">Roof Material
-                            </label>
-                            <div class="col-md-12">
-                                <select id="example-select" name="roof_material"
-                                        v-model="data.classroom_details.roof_material" class="form-control"
-                                        size="1">
-                                    <option value="">
-                                        Select Year
-                                    </option>
-                                    <option value="1">1930</option>
-                                    <option value="2">1931</option>
-                                    <option value="3">1932</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-2">
-                        <div class="form-group p-10">
-                            <label class="control-label col-md-12" for="text">Seatings
-                            </label>
-                            <div class="col-md-12">
-                                <div class="radio">
-                                    <b-form-radio name="seatings" v-model="data.classroom_details.seatings">
-                                        Yes
-                                    </b-form-radio>
-                                </div>
-                                <div class="radio">
-                                    <b-form-radio name="seatings" v-model="data.classroom_details.seatings">
-                                        No
-                                    </b-form-radio>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-2">
-                        <div class="form-group p-10">
-                            <label class="control-label col-md-12" for="text">Blackboard
-                            </label>
-                            <div class="col-md-12">
-                                <div class="radio">
-                                    <b-form-radio name="blackboard" v-model="data.classroom_details.blackboard">
-                                        Yes
-                                    </b-form-radio>
-                                </div>
-                                <div class="radio">
-                                    <b-form-radio name="blackboard" v-model="data.classroom_details.blackboard">
-                                        No
-                                    </b-form-radio>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        ADDITIONAL CLASS INFORMATION
-                    </div>
-                    <div>
-                        Indicate seating capacity by grade and type of seating, counting only seats having a
-                        writing desk. e.g. if one 3 seater was available, the capacity is 3 Pupils not 1.
-                    </div>
-                </div>
-                <div class="row odd-row">
-                    <div class="col-sx-12 col-md-6">
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-6 col-md-3">
+
+                    <div v-for="(classroom, index) in data.classrooms" class="classroom-wrapper-div">
+                        <div class="remove-btn-div"><a class="btn btn-outline-danger pull-right red" @click="removeClassroom(index)">X</a></div>
+                        <div class="row odd-row">
+                            <div class="col-xs-12 col-sm-6 col-md-4">
                                 <div class="form-group p-10">
-                                    <label class="control-label col-md-12" for="text">Class Level
-                                    </label>
-                                    <div class="col-md-12">
-                                        <input type="text" class="form-control" name="classroom_level[]"
-                                                v-model="data.classroom_details.classroom_level[0]">
-                                    </div>
+                                    <label class="control-label col-md-12">Class Level</label>
+                                    <select class="form-control" v-model="data.classrooms[index].class_id" size="1">
+                                        <option value="">Select Class</option>
+                                        <option v-for="_class in classes" :value="_class.id">{{_class.class}}</option>
+                                    </select>
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-sm-6 col-md-3">
+                            <div class="col-xs-12 col-sm-6 col-md-2">
                                 <div class="form-group p-10">
-                                    <label class="control-label" for="text">1 Seater
-                                    </label>
-                                    <div class="col-md-12">
-                                        <input type="number" class="form-control" name="seater1[]"
-                                                v-model="data.classroom_details.seater1[0]">
-                                    </div>
+                                    <label class="control-label">Good</label>
+                                        <input type="number" v-model="data.classrooms[index].good" min="0" class="form-control" placeholder="">
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-sm-6 col-md-3">
+                            <div class="col-xs-12 col-sm-6 col-md-2">
                                 <div class="form-group p-10">
-                                    <label class="control-label" for="text">2 Seater
-                                    </label>
-                                    <div class="col-md-12">
-                                        <input type="number" class="form-control" name="seater2[]"
-                                                v-model="data.classroom_details.seater2[0]">
-                                    </div>
+                                    <label class="control-label">Needs Minor Repair</label>
+                                        <input type="number" v-model="data.classrooms[index].minor_repair" min="0" class="form-control" placeholder="">
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-sm-6 col-md-3">
+                            <div class="col-xs-12 col-sm-6 col-md-2">
                                 <div class="form-group p-10">
-                                    <label class="control-label" for="text">3 Seater
-                                    </label>
-                                    <div class="col-md-12">
-                                        <input type="number" class="form-control" name="seater3[]"
-                                                v-model="data.classroom_details.seater3[0]">
+                                    <label class="control-label">Needs Major Repair</label>
+                                        <input type="number" v-model="data.classrooms[index].major_repair" min="0" class="form-control" placeholder="">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-2">
+                                <div class="form-group p-10">
+                                    <label class="control-label">Unuseable</label>
+                                        <input type="number" v-model="data.classrooms[index].unusable" min="0" class="form-control" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="even-row">
+                            <div class="col-xs-8">
+                                <div class="form-group p-10">
+                                    <label class="control-label col-md-12">Comment</label>
+                                    <div class="col-xs-8">
+                                        <textarea class="form-control" v-model="data.classrooms[index].comment" placeholder="" cols="30" rows="4"></textarea>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sx-12 col-md-6">
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-6 col-md-3">
-                                <div class="form-group p-10">
-                                    <label class="control-label col-md-12" for="text">Class Level
-                                    </label>
-                                    <div class="col-md-12">
-                                        <input type="text" class="form-control" name="classroom_level[]"
-                                                v-model="data.classroom_details.classroom_level[1]">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-3">
-                                <div class="form-group p-10">
-                                    <label class="control-label" for="text">1 Seater
-                                    </label>
-                                    <div class="col-md-12">
-                                        <input type="number" class="form-control" name="seater1[]"
-                                                v-model="data.classroom_details.seater1[1]">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-3">
-                                <div class="form-group p-10">
-                                    <label class="control-label" for="text">2 Seater
-                                    </label>
-                                    <div class="col-md-12">
-                                        <input type="number" class="form-control" name="seater2[]"
-                                                v-model="data.classroom_details.seater2[1]">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-3">
-                                <div class="form-group p-10">
-                                    <label class="control-label" for="text">3 Seater
-                                    </label>
-                                    <div class="col-md-12">
-                                        <input type="number" class="form-control" name="seater3[]"
-                                                v-model="data.classroom_details.seater3[1]">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <button type="submit" class="btn btn-primary btn-lg btn-school pull-right">Submit</button>
             </form>
-            <button class="btn btn-primary btn-lg btn-school pull-right" @click="onComplete()">Submit</button>
         </b-card>
     </div>
 </template>
 <script>
-    import Vue from 'vue';
-    import VueFormWizard from 'vue-form-wizard'
-    import 'vue-form-wizard/dist/vue-form-wizard.min.css'
-    import vue2Dropzone from 'vue2-dropzone'
-    import 'vue2-dropzone/dist/vue2Dropzone.css'
-    import options from "src/validations/validations.js";
 
-    Vue.use(VueFormWizard, options);
     export default {
         data() {
             return {
-                dropzoneOptions: {
-                    url: 'https://httpbin.org/post',
-                    thumbnailWidth: 150,
-                    autoProcessQueue: false,
-                    // maxFilesize: 0.5,
-                    maxFiles: 1,
-                    headers: {"My-Awesome-Header": "header value"}
-                },
+                classConditions: [],
+                floorMaterials: [],
+                wallMaterials: [],
+                roofMaterials: [],
+                classes: [],
                 data: {
-                    ward_id: '',
-                    classroom_year_constructed: '1',
-                    classroom_length: '1',
-                    classroom_width: '10',
-                    number_of_room: '12',
-                    classroom_condition: '',
-                    floor_material: '2',
-                    wall_material: '',
-                    roof_material: '',
-                    seatings: '',
-                    blackboard: '',
-                    classroom_level: ['', ''],
-                    seater1: ['', ''],
-                    seater2: ['', ''],
-                    seater3: ['', ''],
+                    classrooms: [{}],
                 }
             }
         },
         components: {
-            vueDropzone: vue2Dropzone,
+
         },
         methods: {
-            upload_pic() {
-                this.$refs.user_image.processQueue();
-            },
-            uploaded() {
-                console.log("uploaded");
-            },
-            clearqueue(file) {
-                if (this.$refs.user_image.dropzone.files.length > 1) {
-                    this.$refs.user_image.dropzone.removeFile(this.old_file);
-                }
-                this.old_file = file;
-            },
             onSubmit: function () {
-                this.$school.addSchool(this.data).then(response => {
-
+                this.$school.editSchool(this.$route.params.id, this.data).then(response => {
+                    // console.log(response);
                 })
-                // alert('Yay. Done!');
-            }
+            },
+            addClassroom() {
+                this.data.classrooms.push({});
+            },
+            removeClassroom(index) {
+                this.data.classrooms.splice(index, 1);
+            },
         },
         mounted: function () {
+            //populate the select boxes using the settings data from local storage
+            let settings = JSON.parse(localStorage.getItem('settings'));
+
+            if(settings) {
+                // this.classConditions = settings.building_conditions;
+                // this.floorMaterials = settings.floors;
+                // this.wallMaterials = settings.walls;
+                // this.roofMaterials = settings.roofs;
+                this.classes = settings.classes;
+            }
+
+            this.$school.schoolProfile(this.$route.params.id).then(data => {
+                // this.data.schoolId = data.id
+            })
 
         },
         destroyed: function () {
@@ -401,5 +173,23 @@
         font-size: .8rem !important;
         letter-spacing: 1px;
         color: #684348 !important;
+    }
+
+    .classroom-wrapper-div:not(:last-of-type) {
+        border-bottom: solid #650606 2px;
+        margin: 20px 0px 20px 0px
+    }
+
+    .remove-btn-div {
+        height: 30px;
+        padding: 0px 10px 0px 0px;
+    }
+
+    .red {
+        color:  red !important;
+        font-weight: bold;
+    }
+    .red:hover {
+        color:  white !important;
     }
 </style>

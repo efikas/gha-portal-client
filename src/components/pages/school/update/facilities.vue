@@ -1,167 +1,32 @@
 <template>
     <div>
         <b-card header="School Facilities Information" header-tag="h4" class="bg-header-card">
-            <form method="" class="form-horizontal">
-                <div class="row odd-row">
-                    <div class="col-xs-12 col-sm-6 col-md-3">
-                        <div class="form-group p-10">
-                            <label class="control-label col-md-12" for="text">Bording Facilities
-                            </label>
-                            <div class="col-md-12">
-                                <div class="radio">
-                                    <b-form-radio :value="1" checked="false" name="boarding"
-                                                    v-model="data.facilities.boarding">
-                                        Yes
-                                    </b-form-radio>
-                                </div>
-                                <div class="radio">
-                                    <b-form-radio :value="2" checked="false" name="boarding"
-                                                    v-model="data.facilities.boarding">
-                                        No
-                                    </b-form-radio>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-3">
-                        <div class="form-group p-10">
-                            <label class="control-label" for="text">School Library
-                            </label>
-                            <div class="col-md-12">
-                                <div class="radio">
-                                    <b-form-radio :value="1" checked="false" name="sch_library"
-                                                    v-model="data.facilities.school_library">
-                                        Yes
-                                    </b-form-radio>
-                                </div>
-                                <div class="radio">
-                                    <b-form-radio :value="2" checked="false" name="sch_library"
-                                                    v-model="data.facilities.school_library">
-                                        No
-                                    </b-form-radio>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-3">
-                        <div class="form-group p-10">
-                            <label class="control-label" for="text">Security Guard?
-                            </label>
-                            <div class="col-md-16">
-                                <input type="number" min="0" v-model="data.facilities.security_guard"
-                                        class="form-control" id="text" placeholder="0">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <form method="" class="form-horizontal" @submit.prevent="onSubmit">
                 <div class="row even-row">
                     <div class="col-xs-12 col-sm-6 col-md-6">
                         <div class="form-group p-10">
-                            <label class="control-label col-md-12" for="text">School Building Type
+                            <label class="control-label col-md-12">School Building Type
                             </label>
                             <div class="col-md-12">
-                                <div class="radio">
-                                    <b-form-radio :value="1" checked="false" name="school_building_type"
-                                                    v-model="data.facilities.school_building_type">
-                                        <div>Proposely built</div>
-                                        <div>Proposely built for educational use</div>
-                                    </b-form-radio>
-                                </div>
-                                <div class="radio">
-                                    <b-form-radio :value="2" checked="false" name="school_building_type"
-                                                    v-model="data.facilities.school_building_type">
-                                        <div>Multiple Class in Rooms</div>
-                                        <div>Converted building, rooms holding multiple classes (no walls
-                                            between).
-                                        </div>
-                                    </b-form-radio>
-                                </div>
-                                <div class="radio">
-                                    <b-form-radio :value="3" checked="false" name="school_building_type"
-                                                    v-model="data.facilities.school_building_type">
-                                        <div>One Class per Room</div>
-                                        <div>Converted building, one class per room (with walls separating).
-                                        </div>
-                                    </b-form-radio>
-                                </div>
-                                <div class="radio">
-                                    <b-form-radio :value="4" checked="false" name="school_building_type"
-                                                    v-model="data.facilities.school_building_type">
-                                        <div>Residential Space</div>
-                                        <div>Converted space in a house/apartment (residential).</div>
-                                    </b-form-radio>
-                                </div>
-                                <div class="radio">
-                                    <b-form-radio :value="5" checked="false" name="school_building_type"
-                                                    v-model="data.facilities.school_building_type">
-                                        <div>Mixed-Use Building</div>
-                                        <div>Mixed-use building (School plus other commercial use)</div>
-                                    </b-form-radio>
-                                </div>
+                                <b-form-radio-group v-model="data.school_building_type" :options="schoolBuildingType" stacked name="school_building" />
                             </div>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-3">
                         <div class="form-group p-10">
-                            <label class="control-label" for="text">School Building Ownership
+                            <label class="control-label">School Building Ownership
                             </label>
                             <div class="col-md-12">
-                                <div class="radio">
-                                    <b-form-radio :value="1" name="school_building_ownership"
-                                                    v-model="data.facilities.school_building_ownership">
-                                        Owned
-                                    </b-form-radio>
-                                </div>
-                                <div class="radio">
-                                    <b-form-radio :value="2" name="school_building_ownership"
-                                                    v-model="data.facilities.school_building_ownership">
-                                        Rented
-                                    </b-form-radio>
-                                </div>
-                                <div class="radio">
-                                    <b-form-radio :value="3" checked="false" name="school_building_ownership"
-                                                    v-model="data.facilities.school_building_ownership">
-                                        Leased
-                                    </b-form-radio>
-                                </div>
-                                <div class="radio">
-                                    <b-form-radio :value="4" name="school_building_ownership"
-                                                    v-model="data.facilities.school_building_ownership">
-                                        Granted for free
-                                    </b-form-radio>
-                                </div>
+                                <b-form-radio-group v-model="data.school_building_ownership" :options="schoolBuildingOwnership" stacked name="sex" />
                             </div>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-3">
                         <div class="form-group p-10">
-                            <label class="control-label" for="school_fence_condition">School Fence Condition
+                            <label class="control-label">School Fence Condition
                             </label>
                             <div class="col-md-12">
-                                <div class="radio">
-                                    <b-form-radio :value="1" name="school_fence_condition"
-                                                    v-model="data.facilities.school_fence_condition">
-                                        No Fence/Wall
-                                    </b-form-radio>
-                                </div>
-                                <div class="radio">
-                                    <b-form-radio :value="2" name="school_fence_condition"
-                                                    v-model="data.facilities.school_fence_condition">
-                                        Fence is in good Condition
-                                    </b-form-radio>
-                                </div>
-                                <div class="radio">
-                                    <b-form-radio :value="3" name="school_fence_condition"
-                                                    v-model="data.facilities.school_fence_condition">
-                                        Fence needs minor repairs
-                                    </b-form-radio>
-                                </div>
-                                <div class="radio">
-                                    <b-form-radio :value="4" name="school_fence_condition"
-                                                    v-model="data.facilities.school_fence_condition">
-                                        Fence needs major repairs
-                                    </b-form-radio>
-                                </div>
+                                <b-form-radio-group v-model="data.school_fence_condition" :options="fenceCondition" stacked name="fence_condition" />
                             </div>
                         </div>
                     </div>
@@ -169,104 +34,27 @@
                 <div class="row odd-row">
                     <div class="col-xs-12 col-sm-6 col-md-6">
                         <div class="form-group p-10">
-                            <label class="control-label col-md-12" for="text">Play Rooms</label>
+                            <label class="control-label col-md-12">Play Rooms</label>
                             <div class="col-md-12">
-                                <div class="radio">
-                                    <b-form-radio name="false" :value="1" v-model="data.facilities.play_rooms">
-                                        None
-                                    </b-form-radio>
-                                </div>
-                                <div class="radio">
-                                    <b-form-radio name="false" :value="2" v-model="data.facilities.play_rooms">
-                                        Yes with Play Rugs
-                                    </b-form-radio>
-                                </div>
-                                <div class="radio">
-                                    <b-form-radio name="false" :value="3" v-model="data.facilities.play_rooms">
-                                        Yes with Sand Floor
-                                    </b-form-radio>
-                                </div>
-                                <div class="radio">
-                                    <b-form-radio name="false" :value="4" v-model="data.facilities.play_rooms">
-                                        Yes, no Sand/Rug Floor
-                                    </b-form-radio>
-                                </div>
+                                <b-form-radio-group v-model="data.play_rooms" :options="playRooms" stacked name="sex" />
                             </div>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-3">
                         <div class="form-group p-10">
-                            <label class="control-label" for="text">Play Facilities
+                            <label class="control-label">Play Facilities
                             </label>
                             <div class="col-md-12">
-                                <div class="checkbox">
-                                    <b-form-checkbox id="playroom" :value="1" v-model="data.facilities.play_facilities">
-                                        PlayRoom
-                                    </b-form-checkbox>
-                                </div>
-                                <div class="checkbox">
-                                    <b-form-checkbox id="merry_go_round" :value="2" v-model="data.facilities.play_facilities">
-                                        Merry Go Round
-                                    </b-form-checkbox>
-                                </div>
-                                <div class="checkbox">
-                                    <b-form-checkbox id="swing" :value="3" v-model="data.facilities.play_facilities">
-                                        Swing
-                                    </b-form-checkbox>
-                                </div>
-                                <div class="checkbox">
-                                    <b-form-checkbox id="ladder_slide" :value="4" v-model="data.facilities.play_facilities">
-                                        Ladder Slide
-                                    </b-form-checkbox>
-                                </div>
-                                <div class="checkbox">
-                                    <b-form-checkbox id="seesaw" :value="5" v-model="data.facilities.play_facilities">
-                                        See Saw
-                                    </b-form-checkbox>
-                                </div>
-                                <div class="checkbox">
-                                    <b-form-checkbox id="indoor_activity_material" :value="6" v-model="data.facilities.play_facilities">
-                                        Indoor Activity Material
-                                    </b-form-checkbox>
-                                </div>
+                                <b-form-radio-group v-model="data.play_facilities" :options="playFacilities" stacked name="sex" />
                             </div>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-3">
                         <div class="form-group p-10">
-                            <label class="control-label" for="text">Learning Materials
+                            <label class="control-label">Learning Materials
                             </label>
                             <div class="col-md-12">
-                                <div class="checkbox">
-                                    <b-form-checkbox id="chart" :value="1" v-model="data.facilities.learning_materials">
-                                        Charts
-                                    </b-form-checkbox>
-                                </div>
-                                <div class="checkbox">
-                                    <b-form-checkbox id="poaster" :value="2" v-model="data.facilities.learning_materials">
-                                        Posters
-                                    </b-form-checkbox>
-                                </div>
-                                <div class="checkbox">
-                                    <b-form-checkbox id="toys" :value="3" v-model="data.facilities.learning_materials">
-                                        Toys
-                                    </b-form-checkbox>
-                                </div>
-                                <div class="checkbox">
-                                    <b-form-checkbox id="audio_visual" :value="4" v-model="data.facilities.learning_materials">
-                                        Audio/Visual(Radio, TV, DVD)
-                                    </b-form-checkbox>
-                                </div>
-                                <div class="checkbox">
-                                    <b-form-checkbox id="word_puzzle_box" :value="5" v-model="data.facilities.learning_materials">
-                                        Word Puzzle Box
-                                    </b-form-checkbox>
-                                </div>
-                                <div class="checkbox">
-                                    <b-form-checkbox id="caregiver_guide" :value="6" v-model="data.facilities.learning_materials">
-                                        Caregiver Guide
-                                    </b-form-checkbox>
-                                </div>
+                                <b-form-checkbox-group v-model="data.learning_materials" :options="learningMaterials" stacked name="sex" />
                             </div>
                         </div>
                     </div>
@@ -274,31 +62,31 @@
                 <div class="row even-row">
                     <div class="col-xs-12 col-sm-6 col-md-3">
                         <div class="form-group p-10">
-                            <label class="control-label" for="text">Sources of Power
+                            <label class="control-label">Sources of Power
                             </label>
                             <div class="col-md-12">
                                 <div class="checkbox">
-                                    <b-form-checkbox id="phcn" :value="1" v-model="data.facilities.power_source">
+                                    <b-form-checkbox id="phcn" :value="1" v-model="data.power_source">
                                         PHCN/NEPA
                                     </b-form-checkbox>
                                 </div>
                                 <div class="checkbox">
-                                    <b-form-checkbox id="generator" :value="2" v-model="data.facilities.power_source">
+                                    <b-form-checkbox id="generator" :value="2" v-model="data.power_source">
                                         Generator
                                     </b-form-checkbox>
                                 </div>
                                 <div class="checkbox">
-                                    <b-form-checkbox id="solar" :value="3" v-model="data.facilities.power_source">
+                                    <b-form-checkbox id="solar" :value="3" v-model="data.power_source">
                                         Solar
                                     </b-form-checkbox>
                                 </div>
                                 <div class="checkbox">
-                                    <b-form-checkbox id="inverter" :value="4" v-model="data.facilities.power_source">
+                                    <b-form-checkbox id="inverter" :value="4" v-model="data.power_source">
                                         Inverter
                                     </b-form-checkbox>
                                 </div>
                                 <div class="checkbox">
-                                    <b-form-checkbox id="none" :value="5" v-model="data.facilities.power_source">
+                                    <b-form-checkbox id="none" :value="5" v-model="data.power_source">
                                         None
                                     </b-form-checkbox>
                                 </div>
@@ -307,196 +95,34 @@
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-3">
                         <div class="form-group p-10">
-                            <label class="control-label" for="text">Health Facilities
+                            <label class="control-label">Health Facilities
                             </label>
                             <div class="col-md-12">
-                                <div class="checkbox">
-                                    <b-form-checkbox id="health_clinic" :value="1" v-model="data.facilities.health_facilities">
-                                        Health Clinic
-                                    </b-form-checkbox>
-                                </div>
-                                <div class="checkbox">
-                                    <b-form-checkbox id="water_source" :value="2" v-model="data.facilities.health_facilities">
-                                        First Aid Kit
-                                    </b-form-checkbox>
-                                </div>
-                                <div class="checkbox">
-                                    <b-form-checkbox name="health_facilities"
-                                                        v-model="data.facilities.health_facilities">
-                                        None
-                                    </b-form-checkbox>
-                                </div>
+                                <b-form-checkbox-group v-model="data.health_facilities" :options="healthFacilities" stacked name="sex" />
                             </div>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-3">
                         <div class="form-group p-10">
-                            <label class="control-label" for="text">Sources of Water Supply
+                            <label class="control-label">Sources of Water Supply
                             </label>
                             <div class="col-md-12">
-                                <div class="checkbox">
-                                    <b-form-checkbox id="pipeborn" :value="1" v-model="data.facilities.water_supply">
-                                        Pipe-borne
-                                    </b-form-checkbox>
-                                </div>
-                                <div class="checkbox">
-                                    <b-form-checkbox id="borehole" :value="2" v-model="data.facilities.water_supply">
-                                        Borehole
-                                    </b-form-checkbox>
-                                </div>
-                                <div class="checkbox">
-                                    <b-form-checkbox id="well" :value="3" v-model="data.facilities.water_supply">
-                                        Well
-                                    </b-form-checkbox>
-                                </div>
-                                <div class="checkbox">
-                                    <b-form-checkbox id="others" :value="4" v-model="data.facilities.water_supply">
-                                        Others
-                                    </b-form-checkbox>
-                                </div>
-                                <div class="checkbox">
-                                    <b-form-checkbox id="none" :value="5" v-model="data.facilities.water_supply">
-                                        None
-                                    </b-form-checkbox>
-                                </div>
+                                <b-form-checkbox-group v-model="data.water_supply" :options="waterSupply" stacked name="sex" />
                             </div>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-3">
                         <div class="form-group p-10">
-                            <label class="control-label" for="text">Toilet Facilities
+                            <label class="control-label">Toilet Facilities
                             </label>
                             <div class="col-md-12">
-                                <div class="checkbox">
-                                    <b-form-checkbox id="pit-latrine" :value="1" v-model="data.facilities.toilet_facilities">
-                                        Pit Latrine
-                                    </b-form-checkbox>
-                                </div>
-                                <div class="checkbox">
-                                    <b-form-checkbox id="bucket_system" :value="2" v-model="data.facilities.toilet_facilities">
-                                        Bucket System
-                                    </b-form-checkbox>
-                                </div>
-                                <div class="checkbox">
-                                    <b-form-checkbox id="water_cistern" :value="3" v-model="data.facilities.toilet_facilities">
-                                        Water Cistern
-                                    </b-form-checkbox>
-                                </div>
-                                <div class="checkbox">
-                                    <b-form-checkbox id="others" :value="4" v-model="data.facilities.toilet_facilities">
-                                        Others
-                                    </b-form-checkbox>
-                                </div>
+                                <b-form-checkbox-group v-model="data.toilet_facilities" :options="toiletFacilities" stacked name="sex" />
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row odd-row">
-                    <div class="col-xs-12 col-sm-6 col-md-6">
-                        <div class="form-group p-10">
-                            <label class="control-label" for="text">Facilities Sharing</label>
-                            <div class="col-md-12">
-                                <input type="text" class="form-control" id="text" name="facilities_sharing"
-                                        v-model="data.facilities.facilities_sharing">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-6">
-                        <div class="form-group p-10">
-                            <label class="control-label" for="text">Facilities Shared  {{ data.facilities.facilities_shared }}
-                            </label>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="checkbox">
-                                        <b-form-checkbox  id="toilet" :value="1"
-                                                            v-model="data.facilities.facilities_shared">
-                                            Toilet
-                                        </b-form-checkbox>
-                                    </div>
-                                    <div class="checkbox">
-                                        <b-form-checkbox id="water_source" :value="2" v-model="data.facilities.facilities_shared">
-                                            Water Source
-                                        </b-form-checkbox>
-                                    </div>
-                                    <div class="checkbox">
-                                        <b-form-checkbox id="classrooms" :value="3" v-model="data.facilities.facilities_shared">
-                                            classroomss
-                                        </b-form-checkbox>
-                                    </div>
-                                    <div class="checkbox">
-                                        <b-form-checkbox id="play_ground" :value="4" v-model="data.facilities.facilities_shared">
-                                            Play Ground
-                                        </b-form-checkbox>
-                                    </div>
-                                    <div class="checkbox">
-                                        <b-form-checkbox id="whiteboards" :value="5" v-model="data.facilities.facilities_shared">
-                                            WhiteBoards
-                                        </b-form-checkbox>
-                                    </div>
-                                    <div class="checkbox">
-                                        <b-form-checkbox id="boarding_hostels" :value="6"  v-model="data.facilities.facilities_shared">
-                                            Boarding Hostels
-                                        </b-form-checkbox>
-                                    </div>
-                                    <div class="checkbox">
-                                        <b-form-checkbox id="kitchen" :value="7" v-model="data.facilities.facilities_shared">
-                                            Kitchen
-                                        </b-form-checkbox>
-                                    </div>
-                                    <div class="checkbox">
-                                        <b-form-checkbox id="bathrooms" :value="8"  v-model="data.facilities.facilities_shared">
-                                            Bathroooms
-                                        </b-form-checkbox>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="checkbox">
-                                        <b-form-checkbox id="computer" :value="9" v-model="data.facilities.facilities_shared">
-                                            Computer
-                                        </b-form-checkbox>
-                                    </div>
-                                    <div class="checkbox">
-                                        <b-form-checkbox id="labouratory" :value="10" v-model="data.facilities.facilities_shared">
-                                            Laboratory
-                                        </b-form-checkbox>
-                                    </div>
-                                    <div class="checkbox">
-                                        <b-form-checkbox id="library" :value="11" v-model="data.facilities.facilities_shared">
-                                            Library
-                                        </b-form-checkbox>
-                                    </div>
-                                    <div class="checkbox">
-                                        <b-form-checkbox id="wash_hand_basin" :value="12" v-model="data.facilities.facilities_shared">
-                                            Wash Hand Basin
-                                        </b-form-checkbox>
-                                    </div>
-                                    <div class="checkbox">
-                                        <b-form-checkbox id="staff_room" :value="13" v-model="data.facilities.facilities_shared">
-                                            Staff Room
-                                        </b-form-checkbox>
-                                    </div>
-                                    <div class="checkbox">
-                                        <b-form-checkbox id="offices" :value="14" v-model="data.facilities.facilities_shared">
-                                            Offices
-                                        </b-form-checkbox>
-                                    </div>
-                                    <div class="checkbox">
-                                        <b-form-checkbox id="dinning_room" :value="15" v-model="data.facilities.facilities_shared">
-                                            Dinning Room
-                                        </b-form-checkbox>
-                                    </div>
-                                    <div class="checkbox">
-                                        <b-form-checkbox id="play_rooms" :value="16" v-model="data.facilities.facilities_shared">
-                                            Play Rooms
-                                        </b-form-checkbox>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <button type="submit" class="btn btn-primary btn-lg btn-school pull-right">Submit</button>
             </form>
-            <button class="btn btn-primary btn-lg btn-school pull-right" @click="onComplete()">Submit</button>
         </b-card>
     </div>
 </template>
@@ -512,14 +138,18 @@
     export default {
         data() {
             return {
-                dropzoneOptions: {
-                    url: 'https://httpbin.org/post',
-                    thumbnailWidth: 150,
-                    autoProcessQueue: false,
-                    // maxFilesize: 0.5,
-                    maxFiles: 1,
-                    headers: {"My-Awesome-Header": "header value"}
-                },
+               facilitiesShared:[],
+                schoolBuildingType: [],
+                schoolBuildingOwnership: [],
+                fenceCondition: [],
+                playRooms: [],
+                playFacilities: [],
+                learningMaterials: [],
+                powerSource: [],
+                healthFacilities: [],
+                waterSupply: [],
+                toiletFacilities:[],
+                schoolId: '',
                 data: {
                     ward_id: '',
                     boarding: '1',
@@ -530,40 +160,58 @@
                     school_fence_condition: '1',
                     play_rooms: '1',
                     play_facilities: '1',
-                    learning_materials: '1',
-                    power_source: '1',
-                    health_facilities: '1',
-                    water_supply: '1',
-                    toilet_facilities: '1',
+                    learning_materials: [],
+                    power_source: [],
+                    health_facilities: [],
+                    water_supply: [],
+                    toilet_facilities: [],
                     facilities_sharing: '1',
                     facilities_shared: '1',
                 }
             }
         },
-        components: {
-            vueDropzone: vue2Dropzone,
-        },
         methods: {
-            upload_pic() {
-                this.$refs.user_image.processQueue();
-            },
-            uploaded() {
-                console.log("uploaded");
-            },
-            clearqueue(file) {
-                if (this.$refs.user_image.dropzone.files.length > 1) {
-                    this.$refs.user_image.dropzone.removeFile(this.old_file);
-                }
-                this.old_file = file;
-            },
             onSubmit: function () {
-                this.$school.addSchool(this.data).then(response => {
+
+                this.$school.editSchool(this.schoolId, this.data).then(response => {
+                    console.log(response);
 
                 })
-                // alert('Yay. Done!');
             }
         },
         mounted: function () {
+
+            //populate the select boxes using the settings data from local storage
+            let settings = JSON.parse(localStorage.getItem('settings'));
+
+            if(settings) {
+                settings.learning.forEach(item => this.learningMaterials.push({ text: item.material, value: item.id }));
+                settings.building_types.forEach(item => this.schoolBuildingType.push({ text: item.type + '<br />' + item.description, value: item.id }));
+                settings.buildings.forEach(item => this.schoolBuildingOwnership.push({ text: item.ownership, value: item.id }));
+                settings.healths.forEach(item => this.healthFacilities.push({ text: item.facility, value: { health_id: item.id } }));
+                settings.water.forEach(item => this.waterSupply.push({ text: item.source, value: item.id }));
+                settings.toilet_types.forEach(item => this.toiletFacilities.push({ text: item.type, value: item.id }));
+                settings.play_facilities.forEach(item => this.playFacilities.push({ text: item.type, value: item.id }));
+                settings.play_rooms.forEach(item => this.playRooms.push({ text: item.category, value: item.id }));
+                settings.fences.forEach(item => this.fenceCondition.push({ text: item.condition, value: item.id }));
+
+
+                    // facilitiesShared:[],
+                    // boarding: [],
+                    // schoolLibrary: [],
+                    // schoolBuildingType: [],
+                    // fenceCondition: [],
+                    // playRooms: [],
+                    // playFacilities: [],
+                    // powerSource: [],
+                    // toiletFacilities:[],
+            }
+
+            this.$school.schoolProfile(this.$route.params.id).then(data => {
+                this.schoolId = data.id
+            })
+
+
 
         },
         destroyed: function () {

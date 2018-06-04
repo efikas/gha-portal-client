@@ -3,6 +3,7 @@
         <b-card header="School Library Information" header-tag="h4" class="bg-header-card">
             <form method="" class="form-horizontal">
                 <div>
+                    <a class="btn btn-outline-primary pull-right" @click="addMore('pupil')">+ ADD MORE</a>
                     <div>
                         PUPILS TEXTBOOKS SUPPLIED
                     </div>
@@ -12,79 +13,47 @@
                     </div>
                 </div>
                 <div class="row odd-row">
-                    <div class="col-sx-12 col-md-6">
+                    <div class="col-sx-12 col-md-6" v-for="(pupil, index) in data.textbooks.pupil">
                         <div class="row">
                             <div class="col-xs-12 col-sm-6 col-md-6">
                                 <div class="form-group p-10">
-                                    <label class="control-label col-md-12" for="text">Subject Area
+                                    <label class="control-label col-md-12">Subject Area
                                     </label>
-                                    <div class="col-md-12">
-                                        <input type="text" class="form-control" name="pupil_subject_area[]"
-                                                v-model="data.school_textbooks.pupil_subject_area[0]">
-                                    </div>
-                                </div>
+                                    <select v-model="data.textbooks.pupil[index].subject" name="pupil_subject_area" class="form-control" size="1">
+                                        <option value="">Select Subject</option>
+                                        <option v-for="subjects in subjectArea" :value="subjects.id">{{subjects.subject}}</option>
+                                    </select>
+                                 </div>
                             </div>
-                            <div class="col-xs-12 col-sm-6 col-md-3">
-                                <div class="form-group p-10">
-                                    <label class="control-label" for="text">Class Level
-                                    </label>
-                                    <div class="col-md-12">
-                                        <input type="text" class="form-control" name="pupil_class_level[]"
-                                                v-model="data.school_textbooks.pupil_class_level[0]">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-3">
-                                <div class="form-group p-10">
-                                    <label class="control-label" for="text">Quantity Supplied
-                                    </label>
-                                    <div class="col-md-12">
-                                        <input type="number" class="form-control"
-                                                name="pupil_quantity_supplied[]"
-                                                v-model="data.school_textbooks.pupil_quantity_supplied[0]">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sx-12 col-md-6">
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-6 col-md-6">
-                                <div class="form-group p-10">
-                                    <label class="control-label col-md-12" for="text">Subject Area
-                                    </label>
-                                    <div class="col-md-12">
-                                        <input type="text" class="form-control" id="text"
-                                                name="pupil_subject_area[]"
-                                                v-model="data.school_textbooks.pupil_subject_area[1]">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-3">
+                            <div class="col-xs-12 col-sm-4 col-md-4">
                                 <div class="form-group p-10">
                                     <label class="control-label">Class Level
                                     </label>
-                                    <div class="col-md-12">
-                                        <input type="text" class="form-control" name="pupil_class_level[]"
-                                                v-model="data.school_textbooks.pupil_class_level[1]">
-                                    </div>
+                                    <select class="form-control" v-model="data.textbooks.pupil[index].level"  size="1">
+                                        <option value="">Select Class</option>
+                                        <option value="1">Pry 1</option>
+                                        <option value="2">Pry 2</option>
+                                        <option value="3">Pry 3</option>
+                                        <option value="4">Pry 4</option>
+                                        <option value="5">Pry 5</option>
+                                        <option value="6">Pry 6</option>
+                                    </select>
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-sm-6 col-md-3">
+                            <div class="col-xs-12 col-sm-2 col-md-2">
                                 <div class="form-group p-10">
-                                    <label class="control-label">Quantity Supplied
+                                    <label class="control-label">Quantity
                                     </label>
-                                    <div class="col-md-12">
-                                        <input type="number" class="form-control"
-                                                name="pupil_quantity_supplied[]"
-                                                v-model="data.school_textbooks.pupil_quantity_supplied[1]">
-                                    </div>
+                                    <input type="number" min="0" class="form-control"
+                                           name="pupil_quantity_supplied[]"
+                                           v-model="data.textbooks.pupil[index].quantity">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div>
+                    <a class="btn btn-outline-primary pull-right" @click="addMore('teacher')">+ ADD MORE</a>
                     <div>
                         TEACHERS' TEXTBOOKS SUPPLIED
                     </div>
@@ -94,74 +63,40 @@
                     </div>
                 </div>
                 <div class="row even-row">
-                    <div class="col-sx-12 col-md-6">
+                    <div class="col-sx-12 col-md-6" v-for="(teacher, index) in data.textbooks.teacher">
                         <div class="row">
                             <div class="col-xs-12 col-sm-6 col-md-6">
                                 <div class="form-group p-10">
-                                    <label class="control-label col-md-12" for="text">Subject Area
+                                    <label class="control-label col-md-12">Subject Area
                                     </label>
-                                    <div class="col-md-12">
-                                        <input type="text" class="form-control" id="text"
-                                                name="teacher_subject_area[]"
-                                                v-model="data.school_textbooks.teacher_subject_area[0]">
-                                    </div>
+                                    <select v-model="data.textbooks.teacher[index].subject" name="teacher_subject_area" class="form-control" size="1">
+                                        <option value="">Select Subject</option>
+                                        <option v-for="subjects in subjectArea" :value="subjects.id">{{subjects.subject}}</option>
+                                    </select>
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-sm-6 col-md-3">
+                            <div class="col-xs-12 col-sm-4 col-md-4">
                                 <div class="form-group p-10">
-                                    <label class="control-label" for="text">Class Level
+                                    <label class="control-label">Class Level
                                     </label>
-                                    <div class="col-md-12">
-                                        <input type="text" class="form-control" name="teacher_class_level[]"
-                                                v-model="data.school_textbooks.teacher_class_level[0]">
-                                    </div>
+                                    <select class="form-control" v-model="data.textbooks.teacher[index].level" size="1">
+                                        <option value="">Select Class</option>
+                                        <option value="1">Pry 1</option>
+                                        <option value="2">Pry 2</option>
+                                        <option value="3">Pry 3</option>
+                                        <option value="4">Pry 4</option>
+                                        <option value="5">Pry 5</option>
+                                        <option value="6">Pry 6</option>
+                                    </select>
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-sm-6 col-md-3">
+                            <div class="col-xs-12 col-sm-2 col-md-2">
                                 <div class="form-group p-10">
-                                    <label class="control-label" for="text">Quantity Supplied
+                                    <label class="control-label">Quantity
                                     </label>
-                                    <div class="col-md-12">
-                                        <input type="number" class="form-control"
-                                                name="teacher_quantity_supplied[]"
-                                                v-model="data.school_textbooks.teacher_quantity_supplied[0]">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sx-12 col-md-6">
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-6 col-md-6">
-                                <div class="form-group p-10">
-                                    <label class="control-label col-md-12" for="text">Subject Area
-                                    </label>
-                                    <div class="col-md-12">
-                                        <input type="text" class="form-control" id="text"
-                                                name="teacher_subject_area[]"
-                                                v-model="data.school_textbooks.teacher_subject_area[1]">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-3">
-                                <div class="form-group p-10">
-                                    <label class="control-label" for="text">Class Level
-                                    </label>
-                                    <div class="col-md-12">
-                                        <input type="text" class="form-control" name="teacher_class_level[]"
-                                                v-model="data.school_textbooks.teacher_class_level[1]">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-3">
-                                <div class="form-group p-10">
-                                    <label class="control-label" for="text">Quantity Supplied
-                                    </label>
-                                    <div class="col-md-12">
-                                        <input type="number" class="form-control"
-                                                name="teacher_quantity_supplied[]"
-                                                v-model="data.school_textbooks.teacher_quantity_supplied[1]">
-                                    </div>
+                                    <input type="number" min="0" class="form-control"
+                                           name="teacher_quantity_supplied"
+                                           v-model="data.textbooks.teacher[index].quantity">
                                 </div>
                             </div>
                         </div>
@@ -185,16 +120,21 @@
         name: "library-info",
         data() {
             return {
+                subjectArea: {},
                 data: {
                     ward_id: '',
-                    school_textbooks: {
-                        pupil_subject_area: ['', ''],
-                        pupil_class_level: ['', ''],
-                        pupil_quantity_supplied: ['', ''],
-                        teacher_subject_area: ['', ''],
-                        teacher_class_level: ['', ''],
-                        teacher_quantity_supplied: ['', ''],
-                    }
+                    // school_textbooks: {
+                    //     pupil_subject_area: ['', ''],
+                    //     pupil_class_level: ['', ''],
+                    //     pupil_quantity_supplied: ['', ''],
+                    //     teacher_subject_area: ['', ''],
+                    //     teacher_class_level: ['', ''],
+                    //     teacher_quantity_supplied: ['', ''],
+                    // },
+                    textbooks: {
+                        pupil: [{subject: '', level: '', quantity: ''}],
+                        teacher: [{subject: '', level: '', quantity: ''}],
+                    },
                 }
             }
         },
@@ -205,10 +145,27 @@
 
                 })
                 // alert('Yay. Done!');
+            },
+            addMore(elementGroup) {
+                switch (elementGroup) {
+                    case 'pupil':
+                        this.data.textbooks.pupil.push({subject: '', level: '', quantity: ''});
+                        break;
+                    case 'teacher':
+                        this.data.textbooks.teacher.push({subject: '', level: '', quantity: ''});
+                        break;
+                    default:
+                        break;
+                }
             }
         },
         mounted: function () {
+            let settings = JSON.parse(localStorage.getItem('settings'));
 
+            if(settings) {
+                this.subjectArea = settings.subjects
+
+            }
         },
         destroyed: function () {
 
@@ -266,7 +223,8 @@
     }
 
     .form-group label {
-        font-size: .8rem !important;
-        letter-spacing: 1px;
+        font-size: .7rem !important;
+        letter-spacing: .9px;
         color: #684348 !important;
     }
+    </style>

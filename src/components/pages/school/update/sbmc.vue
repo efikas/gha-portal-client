@@ -14,37 +14,36 @@
                 <div class="row odd-row" v-for="(members, index) in data.sbmc.members">
                     <div class="col-xs-12 col-sm-6 col-md-4">
                         <div class="form-group p-10">
-                            <label class="control-label col-md-12" for="text">Name
-                            </label>
-                                <input type="text" class="form-control" name="member_name"
-                                        v-model="data.sbmc.members[index].name" placeholder="membership Name">
+                            <label class="control-label col-md-12">Name</label>
+                            <input type="text" class="form-control" name="member_name"
+                                    v-model="data.sbmc.members[index].name" placeholder="membership Name">
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-2">
                         <div class="form-group p-10">
-                            <label class="control-label" for="text">Position
+                            <label class="control-label">Position
                             </label>
                                 <input type="text" class="form-control" name="member_position[]"
-                                        v-model="data.sbmc.members[index].position" placeholder="School Name">
+                                        v-model="data.sbmc.members[index].position" placeholder="Position">
 
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-2">
                         <div class="form-group p-10">
-                            <label class="control-label" for="text">Phone Number
+                            <label class="control-label">Phone Number
                             </label>
                                 <input type="text" class="form-control" name="member_phone_number[]"
                                         v-model="data.sbmc.members[index].phone_number"
-                                        placeholder="School Name">
+                                        placeholder="Phone Number">
 
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-4">
                         <div class="form-group p-10">
-                            <label class="control-label" for="text">Email
+                            <label class="control-label">Email
                             </label>
                                 <input type="email" class="form-control" name="member_email"
-                                        v-model="data.sbmc.members[index].email" placeholder="School Name">
+                                        v-model="data.sbmc.members[index].email" placeholder="Email">
 
                         </div>
                     </div>
@@ -61,7 +60,7 @@
                 <div class="row odd-row" v-for="(project, index) in data.sbmc.projects">
                     <div class="col-xs-12 col-sm-6 col-md-6">
                         <div class="form-group p-10">
-                            <label class="control-label col-md-12" for="text">Project Brief
+                            <label class="control-label col-md-12">Project Brief
                             </label>
                                 <input type="text" class="form-control" name="project_brief"
                                         v-model="data.sbmc.projects[index].brief" placeholder="">
@@ -70,7 +69,7 @@
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-2">
                         <div class="form-group p-10">
-                            <label class="control-label" for="text">Poject Cost
+                            <label class="control-label">Poject Cost
                             </label>
                                 <input type="text" class="form-control" name="project_cost[]"
                                         v-model="data.sbmc.projects[index].cost" placeholder="">
@@ -79,7 +78,7 @@
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-2">
                         <div class="form-group p-10">
-                            <label class="control-label" for="text">Source of Funding
+                            <label class="control-label">Source of Funding
                             </label>
                                 <input type="text" class="form-control" name="source_of_funding[]"
                                         v-model="data.sbmc.projects[index].funding" placeholder="">
@@ -88,7 +87,7 @@
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-2">
                         <div class="form-group p-10">
-                            <label class="control-label" for="text">Year
+                            <label class="control-label">Year
                             </label>
                                 <input type="text" class="form-control" name="project_year[]"
                                         v-model="data.sbmc.projects[index].year" placeholder="">

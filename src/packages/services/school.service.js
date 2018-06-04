@@ -55,6 +55,17 @@ export default {
             })
         })
     },
+
+    editSchool(schoolId, schoolInfo){
+        return new Promise((resolve, reject) => {
+            axios.post('school/' + schoolId + '/edit', schoolInfo)
+                .then(response => {
+                    resolve(response.data)
+                }).catch((error) => {
+                reject(error.response);
+            })
+        })
+    },
     importSchool(lgaId, schoolExcelFile){
         return new Promise((resolve, reject) => {
             axios.post('upload/' + lgaId + '/school', schoolExcelFile)

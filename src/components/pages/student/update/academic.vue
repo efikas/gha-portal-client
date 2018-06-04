@@ -6,25 +6,25 @@
                      <div class="row odd-row">
                          <div class="col-md-4">
                              <div class="form-group p-10">
-                                 <label class="control-label col-md-8" for="admission_date">Year of Admission
+                                 <label class="control-label col-md-8" for="admission_year">Year of Admission
                                  </label>
                                  <div class="col-md-12">
-                                     <input type="text" class="form-control"  v-model="data.professional_info.admission_date" name="admission_date" id="admission_date" placeholder="School Name">
+                                     <input type="text" class="form-control"  v-model="data.admission_year" name="admission_year" id="admission_year" placeholder="School Name">
                                  </div>
                              </div>
                          </div>
                          <div class="col-xs-12 col-sm-6 col-md-6">
                              <div class="form-group p-10">
-                                 <label class="control-label col-md-8" for="text">Student's Admission Status <span>*</span>
+                                 <label class="control-label col-md-8"data.>Student's Admission Status <span>*</span>
                                  </label>
                                  <div class="col-md-12">
                                      <div class="radio">
-                                         <b-form-radio name="admission_status" v-model="data.professional_info.admission_status">
+                                         <b-form-radio name="admission_status" value="1" v-model="data.admission_status">
                                              Fresh Enrollment/Placement
                                          </b-form-radio>
                                      </div>
                                      <div class="radio">
-                                         <b-form-radio name="admission_status" v-model="data.professional_info.admission_status">
+                                         <b-form-radio name="admission_status" value="2" v-model="data.admission_status">
                                              Transfer In
                                          </b-form-radio>
                                      </div>
@@ -35,51 +35,53 @@
                      <div class="row even-row">
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
-                                 <label class="control-label col-md-8" for="text">Admission Education Level <span>*</span>
-                                 </label>
                                  <div class="col-md-12">
-                                     <select id="edu_level" v-model="data.professional_info.edu_level" name="edu_level" class="form-control" size="1">
-                                         <option value="0">
-                                             Select Education Level
-                                         </option>
-                                         <option value="1">1930</option>
-                                         <option value="2">1931</option>
-                                         <option value="3">1932</option>
+                                     <label class="control-label"data.>Admission Education Level <span>*</span></label>
+                                     <select id="admission_education_level" v-model="data.admission_education_level" name="admission_education_level" class="form-control" size="1">
+                                         <option value="">Select Level</option>
+                                         <option v-for="level in educationLevels" :value="level.id">{{level.level}}</option>
                                      </select>
                                  </div>
                              </div>
                          </div>
+                         <!--<div class="col-xs-12 col-sm-6 col-md-3">-->
+                             <!--<div class="form-group p-10">-->
+                                 <!--<label class="control-label"data.>Admission Class Level <span>*</span>-->
+                                 <!--</label>-->
+                                 <!--<div class="col-md-12">-->
+                                     <!--<input type="number" v-model="data.admission_class_level" class="form-control" id="admission_class_level" placeholder="">-->
+                                 <!--</div>-->
+                             <!--</div>-->
+                         <!--</div>-->
+                         <!--<div class="col-xs-12 col-sm-6 col-md-3">-->
+                             <!--<div class="form-group p-10">-->
+                                 <!--<label class="control-label col-md-12"data.>Current Education Level<span>*</span>-->
+                                 <!--</label>-->
+                                 <!--<div class="col-md-12">-->
+                                     <!--<select id="current_admission_education_level" v-model="data.current_admission_education_level" name="current_admission_education_level" class="form-control" size="1">-->
+                                         <!--<option value="">Select Level</option>-->
+                                         <!--<option v-for="level in educationLevels" :value="level.id">{{level.level}}</option>-->
+                                     <!--</select>-->
+                                 <!--</div>-->
+                             <!--</div>-->
+                         <!--</div>-->
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
-                                 <label class="control-label" for="text">Admission Class Level <span>*</span>
+                                 <label class="control-label col-md-12"data.>Current Class Level <span>*</span>
                                  </label>
                                  <div class="col-md-12">
-                                     <input type="number" v-model="data.professional_info.admission_class_level" class="form-control" id="admission_class_level" placeholder="">
+                                     <input type="number" class="form-control" name="current_class_level" v-model="data.current_class_level" id="current_class_level" placeholder="">
                                  </div>
                              </div>
                          </div>
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
-                                 <label class="control-label col-md-12" for="text">Current Education Level<span>*</span>
-                                 </label>
+                                 <label class="control-label col-md-12"data.>Promotion Status<span>*</span></label>
                                  <div class="col-md-12">
-                                     <select id="current_edu_level" v-model="data.professional_info.current_edu_level" name="current_edu_level" class="form-control" size="1">
-                                         <option value="0">
-                                             Select Year
-                                         </option>
-                                         <option value="1">1930</option>
-                                         <option value="2">1931</option>
-                                         <option value="3">1932</option>
+                                     <select id="current_admission_education_level" v-model="data.promotion_status" name="current_admission_education_level" class="form-control" size="1">
+                                        <option value="">Select Level</option>
+                                        <option v-for="status in promotionStatus" :value="status.id">{{status.status}}</option>
                                      </select>
-                                 </div>
-                             </div>
-                         </div>
-                         <div class="col-xs-12 col-sm-6 col-md-3">
-                             <div class="form-group p-10">
-                                 <label class="control-label col-md-12" for="text">Current Class Level <span>*</span>
-                                 </label>
-                                 <div class="col-md-12">
-                                     <input type="number" class="form-control" name="current_class_level" v-model="data.professional_info.current_class_level" id="current_class_level" placeholder="">
                                  </div>
                              </div>
                          </div>
@@ -87,16 +89,16 @@
                      <div class="row odd-row">
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
-                                 <label class="control-label col-md-8" for="text">Registered for JSCE/SSCE? <span>*</span>
+                                 <label class="control-label col-md-8"data.>Boarding Student? <span>*</span>
                                  </label>
                                  <div class="col-md-12">
                                      <div class="radio">
-                                         <b-form-radio name="exam_registration" v-model="data.professional_info.exam_registration">
+                                         <b-form-radio name="boarding" value="1" v-model="data.boarding">
                                              Yes
                                          </b-form-radio>
                                      </div>
                                      <div class="radio">
-                                         <b-form-radio name="exam_registration" v-model="data.professional_info.exam_registration">
+                                         <b-form-radio name="boarding" value="0" v-model="data.boarding">
                                              No
                                          </b-form-radio>
                                      </div>
@@ -105,36 +107,18 @@
                          </div>
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
-                                 <label class="control-label col-md-8" for="text">Boarding Student? <span>*</span>
-                                 </label>
+                                 <label class="control-label col-md-12"data.>Doom No </label>
                                  <div class="col-md-12">
-                                     <div class="radio">
-                                         <b-form-radio name="boarding" v-model="data.professional_info.boarding">
-                                             Yes
-                                         </b-form-radio>
-                                     </div>
-                                     <div class="radio">
-                                         <b-form-radio name="boarding" v-model="data.boarding">
-                                             No
-                                         </b-form-radio>
-                                     </div>
+                                     <input type="text" class="form-control" name="dormitory_id" v-model="data.dormitory_id" placeholder="Dormitory Number">
                                  </div>
                              </div>
                          </div>
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
-                                 <label class="control-label col-md-12" for="text">Doom No </label>
-                                 <div class="col-md-12">
-                                     <input type="text" class="form-control" name="dorm_no" v-model="data.professional_info.dorm_no" placeholder="School Name">
-                                 </div>
-                             </div>
-                         </div>
-                         <div class="col-xs-12 col-sm-6 col-md-3">
-                             <div class="form-group p-10">
-                                 <label class="control-label col-md-12" for="text">Home Dist to School
+                                 <label class="control-label col-md-12"data.>Home Dist to School
                                  </label>
                                  <div class="col-md-12">
-                                     <input type="number" class="form-control" v-model="data.professional_info.distance_from_school" value="0">
+                                     <input type="number" min="0" class="form-control" v-model="data.distance_from_school" value="0">
                                  </div>
                              </div>
                          </div>
@@ -155,71 +139,47 @@ export default {
     data() {
         return {
             schoolId: '',
+            educationLevels: {},
+            promotionStatus: {},
             data: {
-                basic_info: {
-                    school_name: '',
-                    first_name: '',
-                    middle_name: '',
-                    last_name: '',
-                    sex: '',
-                    date_of_birth: '',
-                    place_of_birth: '',
-                    phone_number: '',
-                    email: '',
-                    special_challenge: '',
-                    height: '',
-                    width: '',
-                    blood_group: '',
-                    birth_cert_avail: '',
-                    birth_cert_type: '',
-                },
-                parent_info: {
-                    parent_status: '',
-                    g1title: '',
-                    g1fullname: '',
-                    g1relationship: '',
-                    g1_occupation: '',
-                    g1mobile: '',
-                    g1_phone: '',
-                    g1_email: '',
-                    g1_religious_status: '',
-                    g1_primary_contact: '',
-                    g1_contact_address: '',
-                    g2title: '',
-                    g2_full_name: '',
-                    g2_relationship: '',
-                    g2_occupation: '',
-                    g2_mobile: '',
-                    g2_phone: '',
-                    g2_email: '',
-                    g2_religious_status: '',
-                    g2_primary_contact: '',
-                    g2_contact_address: '',
-                },
-                professional_info: {
-                    admission_date: '',
-                    admission_status: '',
-                    edu_level: '',
-                    admission_class_level: '',
-                    current_edu_level: '',
-                    current_class_level: '',
-                    exam_registration: '',
-                    boarding: '',
-                    dorm_no: '',
-                    distance_from_school: '',
-                }
+                studentId: '',
+                admission_year: '',
+                admission_status: '',
+                admission_education_level: '',
+                // admission_class_level: '',
+                // current_admission_education_level: '',
+                current_class_level: '',
+                // exam_registration: '',
+                boarding: '',
+                dormitory_id: '',
+                promotion_status: '',
+                distance_from_school: '',
             }
         }
     },
     methods: {
        onSubmit: function(){
-            this.$student.addStudent(1,this.data).then(response => {
+            this.$student.addStudent(this.studentId,this.data).then(response => {
 
             })
         }
     },
     mounted: function() {
+        //populate the select boxes using the settings data from local storage
+        let settings = JSON.parse(localStorage.getItem('settings'));
 
+        if(settings) {
+            this.educationLevels = settings.educations;
+            this.promotionStatus = settings.promotions;
+        }
+
+        // console.log('route is : ' + this.$route.params.id);
+        this.studentId = this.$route.params.id;
+        this.$student.studentProfile(this.$route.params.id).then(data => {
+            this.data = data;
+            // this.schoolId = data.id;
+            // console.log(data);
+        });
     },
     destroyed: function() {
 
@@ -261,9 +221,9 @@ tab-content {
 form .odd-row:first-of-type{
     border-top:1px dashed #959DCC;
 }
-.form-group label{font-size:.8rem!important; letter-spacing:1px; color:#684348!important;}
-.bordered-box{/*margin:0 9px!important;*/border:1px dashed #a2b0b6;padding:16px!important;display:inline-block;position:relative;width:100%;border-radius:6px;/*box-shadow:0 1px 4px 0 rgba(0, 0, 0, 0.14);color:rgba(0,0,0, 0.87);*/background:#fff;}
-.col-md-m6.bordered-box{width:calc(50% - 18px)!important;}
-.divider-dotted{height:1px;border-bottom:1px dotted #e0e0e0;float:left;width:100%;margin:32px 0;}
+.form-group label{font-size:.7rem!important; letter-spacing:1px; color:#684348!important;}
+/*.bordered-box{!*margin:0 9px!important;*!border:1px dashed #a2b0b6;padding:16px!important;display:inline-block;position:relative;width:100%;border-radius:6px;!*box-shadow:0 1px 4px 0 rgba(0, 0, 0, 0.14);color:rgba(0,0,0, 0.87);*!background:#fff;}*/
+/*.col-md-m6.bordered-box{width:calc(50% - 18px)!important;}*/
+/*.divider-dotted{height:1px;border-bottom:1px dotted #e0e0e0;float:left;width:100%;margin:32px 0;}*/
 
 </style>

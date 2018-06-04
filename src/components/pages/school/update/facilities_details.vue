@@ -2,133 +2,24 @@
     <div>
         <b-card header="School Information" header-tag="h4" class="bg-header-card">
             <div class="row">
-                <div class="col-lg-12">
-                    <table class="table table-bordered table-striped">
+                <div class="col-lg-6">
+                    <form  class="form-horizontal" @submit.prevent="onSubmit">
+                        <table class="table table-bordered table-striped">
                         <thead>
                         <tr>
                             <th>FACILITY TYPE</th>
-                            <th>Number Of Useable</th>
-                            <th>Minor Repair</th>
-                            <th>Major Repair</th>
-                            <th>Number of unuseable</th>
+                            <th>Number Available</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>Toilets</td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                        </tr>
-                        <tr>
-                            <td>Computer</td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                        </tr>
-                        <tr>
-                            <td>Water Source</td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                        </tr>
-                        <tr>
-                            <td>Labouratory</td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                        </tr>
-                        <tr>
-                            <td>classrooms</td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                        </tr>
-                        <tr>
-                            <td>Library</td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                        </tr>
-                        <tr>
-                            <td>Play Ground</td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                        </tr>
-                        <tr>
-                            <td>Wash Hand Basin</td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                        </tr>
-                        <tr>
-                            <td>White Board</td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                        </tr>
-                        <tr>
-                            <td>Staff Room</td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                        </tr>
-                        <tr>
-                            <td>Bording Hostels</td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                        </tr>
-                        <tr>
-                            <td>Offices</td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                        </tr>
-                        <tr>
-                            <td>Kitchens</td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                        </tr>
-                        <tr>
-                            <td>Dining Room</td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                        </tr>
-                        <tr>
-                            <td>Bathrooms</td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                        </tr>
-                        <tr>
-                            <td>Play Rooms</td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
-                            <td><input type="number" min="0" class="form-control" placeholder=""></td>
+                        <tr v-for="(facility, index) in facilities">
+                            <td>{{facility.type}}</td>
+                            <td><input type="number" min="0" v-model="facility.status" class="form-control" placeholder=""></td>
                         </tr>
                         </tbody>
                     </table>
-                    <button class="btn btn-primary btn-lg btn-school pull-right" @click="onComplete()">Submit</button>
+                        <button type="submit" class="btn btn-primary btn-lg btn-school pull-right">Submit</button>
+                    </form>
                 </div>
             </div>
         </b-card>
@@ -146,45 +37,56 @@
     export default {
         data() {
             return {
-                dropzoneOptions: {
-                    url: 'https://httpbin.org/post',
-                    thumbnailWidth: 150,
-                    autoProcessQueue: false,
-                    // maxFilesize: 0.5,
-                    maxFiles: 1,
-                    headers: {"My-Awesome-Header": "header value"}
-                },
+                facilities: [],
+                schoolId: '',
                 data: {
-                    ward_id: '',
-                    facilities_details: {}
-
-                }
+                    facilities: [{}]
+                },
             }
-        },
-        components: {
-            vueDropzone: vue2Dropzone,
-        },
+            },
         methods: {
-            upload_pic() {
-                this.$refs.user_image.processQueue();
-            },
-            uploaded() {
-                console.log("uploaded");
-            },
-            clearqueue(file) {
-                if (this.$refs.user_image.dropzone.files.length > 1) {
-                    this.$refs.user_image.dropzone.removeFile(this.old_file);
-                }
-                this.old_file = file;
-            },
             onSubmit: function () {
-                this.$school.addSchool(this.data).then(response => {
+                this.data.facilities = [];
+                this.facilities.forEach(item => {
+                    this.data.facilities.push({facility_id: item.id, no_facility: item.status})
+                })
+                this.$school.editSchool(this.schoolId, this.data).then(response => {
+                    console.log(response);
 
                 })
-                // alert('Yay. Done!');
             }
         },
         mounted: function () {
+            let settings = JSON.parse(localStorage.getItem('settings'));
+
+            if(settings) {
+                this.facilities = settings.facility_types;
+
+            }
+
+            this.$school.schoolProfile(this.$route.params.id).then(data => {
+
+
+                this.schoolId = data.id;
+                // this.data.lga_id = data.ward.lga_id;
+                this.data.lga_ward_id = data.ward.id;
+                this.data.ownership = 1;
+
+                // // get lGA
+                // let _lga = this.lgasInfo.filter(item => {
+                //     return (item.id == data.ward.lga_id);
+                // })
+                // this.lga = _lga[0].name;
+                //
+                // // get ward
+                // let settings = JSON.parse(localStorage.getItem('settings'));
+                //
+                // let _wards = settings.lga_wards.filter(item => {
+                //     return (item.id == data.ward.id);
+                // })
+                // this.ward = _wards[0].name;
+
+            })
 
         },
         destroyed: function () {

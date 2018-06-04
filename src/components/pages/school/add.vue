@@ -640,7 +640,7 @@
             //todo: get the settings information
             let settings = localStorage.getItem('settings');
 
-            console.log(settings.lga_areas);
+            // console.log(settings.lga_areas);
             //populatre LGA
             // settings.lga_areas.forEach(item => {
             //     this.lgasInfo.push(item);

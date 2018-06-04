@@ -152,16 +152,7 @@
                                  <label class="control-label col-md-12">Training Workshop?
                                  </label>
                                  <div class="col-md-12">
-                                     <div class="radio">
-                                         <b-form-radio v-model="data.training_workshop">
-                                             Yes
-                                         </b-form-radio>
-                                     </div>
-                                     <div class="radio">
-                                         <b-form-radio v-model="data.training_workshop">
-                                             No
-                                         </b-form-radio>
-                                     </div>
+                                     <b-form-radio-group v-model="data.training_workshop" :options="yesNoOptions" stacked />
                                  </div>
                              </div>
                          </div>
@@ -170,16 +161,7 @@
                                  <label class="control-label col-md-12">Computer Literate?
                                  </label>
                                  <div class="col-md-12">
-                                     <div class="radio">
-                                         <b-form-radio v-model="data.computer_literate">
-                                             Yes
-                                         </b-form-radio>
-                                     </div>
-                                     <div class="radio">
-                                         <b-form-radio v-model="data.computer_literate">
-                                             No
-                                         </b-form-radio>
-                                     </div>
+                                     <b-form-radio-group v-model="data.computer_literate" :options="yesNoOptions" stacked name="sex" />
                                  </div>
                              </div>
                          </div>
@@ -227,6 +209,7 @@ export default {
             teachingQualif: {},
             areaOfSpeciality: {},
             subjectTaught: {},
+            yesNoOptions: [{ text: 'Yes', value: '1' },{ text: 'No', value: '0' }],
             data: {
                 category: '',
                 grade_level: '', // remove

@@ -6,11 +6,8 @@
                      <div class="row odd-row">
                          <div class="col-md-8">
                              <div class="form-group p-10">
-                                 <label class="control-label col-md-8">School Name
-                                 </label>
-                                 <div class="col-md-12">
-                                     <input type="text" class="form-control" v-model="data.basic_info.school_name" placeholder="School Name">
-                                 </div>
+                                 <label  class="control-label">School Name</label>
+                                 <multiselect v-model="schoolName" :show-labels="false" :options="schools" @input="getSchoolId"></multiselect>
                              </div>
                          </div>
                      </div>
@@ -20,7 +17,7 @@
                                  <label class="control-label col-md-8">Firstname
                                  </label>
                                  <div class="col-md-12">
-                                     <input type="text" class="form-control" v-model="data.basic_info.first_name" placeholder="First Name">
+                                     <input type="text" class="form-control" v-model="data.first_name" placeholder="First Name">
                                  </div>
                              </div>
                          </div>
@@ -29,7 +26,7 @@
                                  <label class="control-label col-md-12">Middle Name
                                  </label>
                                  <div class="col-md-12">
-                                     <input type="text" class="form-control" v-model="data.basic_info.middle_name" placeholder="Middle Name">
+                                     <input type="text" class="form-control" v-model="data.middle_name" placeholder="Middle Name">
                                  </div>
                              </div>
                          </div>
@@ -38,7 +35,7 @@
                                  <label class="control-label">Last Name
                                  </label>
                                  <div class="col-md-12">
-                                     <input type="text" class="form-control" v-model="data.basic_info.last_name" placeholder="">
+                                     <input type="text" class="form-control" v-model="data.last_name" placeholder="">
                                  </div>
                              </div>
                          </div>
@@ -48,12 +45,12 @@
                                  </label>
                                  <div class="col-md-12">
                                      <div class="radio">
-                                         <b-form-radio name="sex" v-model="data.basic_info.sex">
+                                         <b-form-radio name="sex" v-model="data.sex" value="F">
                                              Female
                                          </b-form-radio>
                                      </div>
                                      <div class="radio">
-                                         <b-form-radio name="sex" v-model="data.basic_info.sex">
+                                         <b-form-radio name="sex" v-model="data.sex" value="M">
                                              Male
                                          </b-form-radio>
                                      </div>
@@ -67,7 +64,7 @@
                                  <label class="control-label col-md-8">Date of Birth
                                  </label>
                                  <div class="col-md-12">
-                                     <input type="date" class="form-control" v-model="data.basic_info.date_of_birth">
+                                     <input type="date" class="form-control" v-model="data.date_of_birth">
                                  </div>
                              </div>
                          </div>
@@ -76,7 +73,7 @@
                                  <label class="control-label col-md-12">Place of Birth
                                  </label>
                                  <div class="col-md-12">
-                                     <input type="text" class="form-control" v-model="data.basic_info.place_of_birth" id="pob" placeholder="Place of birth">
+                                     <input type="text" class="form-control" v-model="data.place_of_birth" id="pob" placeholder="Place of birth">
                                  </div>
                              </div>
                          </div>
@@ -85,7 +82,7 @@
                                  <label class="control-label">Phone Number (optional)
                                  </label>
                                  <div class="col-md-12">
-                                     <input type="phone" class="form-control" name="phone_number" v-model="data.basic_info.phone_number" placeholder="08064720000" id="phone_number">
+                                     <input type="phone" class="form-control" name="phone_number" v-model="data.phone_number" placeholder="08064720000" id="phone_number">
                                  </div>
                              </div>
                          </div>
@@ -94,7 +91,7 @@
                                  <label class="control-label" for="email">Email (optional)
                                  </label>
                                  <div class="col-md-12">
-                                     <input type="email" class="form-control" v-model="data.basic_info.email" id="email" placeholder="aaa@abcd.com">
+                                     <input type="email" class="form-control" v-model="data.email" id="email" placeholder="aaa@abcd.com">
                                  </div>
                              </div>
                          </div>
@@ -102,18 +99,12 @@
                      <div class="row even-row">
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
-                                 <label class="control-label col-md-8">Any special Challenge?
+                                 <label class="control-label">Any special Challenge?
                                  </label>
-                                 <div class="col-md-12">
-                                     <select v-model="data.basic_info.special_challenge" class="form-control" size="1">
-                                         <option value="0">
-                                             Select Year
-                                         </option>
-                                         <option value="1">1930</option>
-                                         <option value="2">1931</option>
-                                         <option value="3">1932</option>
+                                     <select v-model="data.special_challenge" class="form-control" size="1">
+                                         <option value="">Select Challenge</option>
+                                         <option v-for="challenge in specialChallenges" :value="challenge.id">{{challenge.condition}}</option>
                                      </select>
-                                 </div>
                              </div>
                          </div>
                          <div class="col-xs-12 col-sm-6 col-md-4">
@@ -122,18 +113,14 @@
                                      <div class="form-group p-10">
                                          <label class="control-label">Height (in m)
                                          </label>
-                                         <div class="col-md-12">
-                                             <input type="number" class="form-control" v-model="data.basic_info.height" placeholder="">
-                                         </div>
+                                             <input type="number" class="form-control" v-model="data.height" placeholder="">
                                      </div>
                                  </div>
                                  <div class="col-xs-12 col-sm-6">
                                      <div class="form-group p-10">
                                          <label class="control-label">Width (in m)
                                          </label>
-                                         <div class="col-md-12">
-                                             <input type="number" class="form-control" v-model="data.basic_info.width" placeholder="">
-                                         </div>
+                                             <input type="number" class="form-control" v-model="data.width" placeholder="">
                                      </div>
                                  </div>
                              </div>
@@ -142,43 +129,19 @@
                              <div class="form-group p-10">
                                  <label class="control-label">Blood Group Type
                                  </label>
-                                 <div class="col-md-12">
-                                     <input type="text" class="form-control" v-model="data.basic_info.blood_group" placeholder="A, B, AB, O">
-                                 </div>
+                                     <input type="text" class="form-control" v-model="data.blood_group" placeholder="A, B, AB, O">
                              </div>
                          </div>
                      </div>
                      <div class="row odd-row">
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
-                                 <label class="control-label col-md-8">Birth Cert Available? *
-                                 </label>
-                                 <div class="col-md-12">
-                                     <div class="radio">
-                                         <b-form-radio  v-model="data.basic_info.birth_cert_avail" name="birth_cert_avail">
-                                             Yes
-                                         </b-form-radio>
-                                     </div>
-                                     <div class="radio">
-                                         <b-form-radio  v-model="data.basic_info.birth_cert_avail" name="birth_cert_avail">
-                                             No
-                                         </b-form-radio>
-                                     </div>
-                                 </div>
-                             </div>
-                         </div>
-                         <div class="col-xs-12 col-sm-6 col-md-3">
-                             <div class="form-group p-10">
                                  <label class="control-label col-md-12">Birth Cert Type
                                  </label>
                                  <div class="col-md-12">
-                                     <select name="birth_cert_type" v-model="data.basic_info.birth_cert_type" class="form-control" size="1">
-                                         <option value="0">
-                                             Select Religion
-                                         </option>
-                                         <option value="1">Christianity</option>
-                                         <option value="2">Islamic</option>
-                                         <option value="3">Budaism</option>
+                                     <select name="birth_cert_type" v-model="data.birth_cert_type" class="form-control" size="1">
+                                         <option value="">Select Cert Type</option>
+                                         <option v-for="cert in birthCerts" :value="cert.id">{{cert.birth_cert_type}}</option>
                                      </select>
                                  </div>
                              </div>
@@ -191,68 +154,37 @@
     </div>
 </template>
 <script>
-import Vue from 'vue';
-import VueFormWizard from 'vue-form-wizard'
-import 'vue-form-wizard/dist/vue-form-wizard.min.css'
-Vue.use(VueFormWizard)
-export default {
-    name: 'basic.vue',
+    import Multiselect from 'vue-multiselect';
+    export default {
+    name: 'student-basic',
+    components: {
+        Multiselect,
+    },
     data() {
         return {
-            schoolId: '',
+            schools: [],        // holds the array of school name
+            allSchools: [],     // holds the array of schools object
+            schoolName: '',
+            specialChallenges: {},
+            birthCerts: {},
             data: {
-                basic_info: {
-                    school_name: '',
-                    first_name: '',
-                    middle_name: '',
-                    last_name: '',
-                    sex: '',
-                    date_of_birth: '',
-                    place_of_birth: '',
-                    phone_number: '',
-                    email: '',
-                    special_challenge: '',
-                    height: '',
-                    width: '',
-                    blood_group: '',
-                    birth_cert_avail: '',
-                    birth_cert_type: '',
-                },
-                parent_info: {
-                    parent_status: '',
-                    g1title: '',
-                    g1fullname: '',
-                    g1relationship: '',
-                    g1_occupation: '',
-                    g1mobile: '',
-                    g1_phone: '',
-                    g1_email: '',
-                    g1_religious_status: '',
-                    g1_primary_contact: '',
-                    g1_contact_address: '',
-                    g2title: '',
-                    g2_full_name: '',
-                    g2_relationship: '',
-                    g2_occupation: '',
-                    g2_mobile: '',
-                    g2_phone: '',
-                    g2_email: '',
-                    g2_religious_status: '',
-                    g2_primary_contact: '',
-                    g2_contact_address: '',
-                },
-                professional_info: {
-                    admission_date: '',
-                    admission_status: '',
-                    edu_level: '',
-                    admission_class_level: '',
-                    current_edu_level: '',
-                    current_class_level: '',
-                    exam_registration: '',
-                    boarding: '',
-                    dorm_no: '',
-                    distance_from_school: '',
-                }
+                studentId: '',
+                schoolId: '',
+                school_name: '',
+                first_name: '',
+                middle_name: '',
+                last_name: '',
+                sex: '',
+                date_of_birth: '',
+                place_of_birth: '',
+                phone_number: '',
+                email: '',
+                special_challenge: '',
+                height: '',
+                width: '',
+                blood_group: '',
+                birth_cert_avail: '',
+                birth_cert_type: '',
             }
         }
     },
@@ -261,54 +193,98 @@ export default {
             this.$student.addStudent(1,this.data).then(response => {
 
             })
+        },
+        getSchoolId(){
+            let _selectedSchool = this.allSchools.filter(school => {
+                return (school.name == this.schoolName);
+            })
+
+            this.data.school_id = _selectedSchool[0].id;
         }
     },
     mounted: function() {
+        //populate the select boxes using the settings data from local storage
+        let settings = JSON.parse(localStorage.getItem('settings'));
 
+        if(settings) {
+            this.specialChallenges = settings.special_conditions;
+            this.birthCerts = settings.birth_certs;
+        }
+
+        // console.log('route is : ' + this.$route.params.id);
+        this.studentId = this.$route.params.id;
+        this.$student.studentProfile(this.$route.params.id).then(data => {
+            this.data = data;
+            this.schoolId = data.school_id;
+            // console.log(data);
+        });
+
+        //get list of schools
+        this.$school.allSchools().then(data => {
+            this.allSchools = data.data;
+        })
     },
     destroyed: function() {
 
+    },
+    watch: {
+        allSchools(value){
+            //allSchools is
+            value.forEach(school => {
+                this.schools.push(school.name);
+            })
+
+            // Get the school name from the school list using the school id
+            // after all school information has been loaded from the database
+            let _school = value.filter(school => {
+                return (school.id == this.data.school_id);
+            })
+
+            this.schoolName = _school[0].name;
+            // this.data.school_id = data.school_id;
+        }
     }
 }
 </script>
 <style type="text/css" scoped>
-#color {
-    height: 35px;
-}
+    #color {
+        height: 35px;
+    }
     /deep/ .form-control:disabled{
         cursor: not-allowed;
     }
     .disabled{
         cursor:not-allowed;
     }
-.form-control:active, .input-group .form-control:hover{
-    z-index: 1;
-}
+    .form-control:active, .input-group .form-control:hover{
+        z-index: 1;
+    }
 
-.dropzone_wrapper {
-    width: 100%;
-}
-.align-left{
-    float: left;
-}
+    .dropzone_wrapper {
+        width: 100%;
+    }
+    .align-left{
+        float: left;
+    }
     .align-right{
         float: right;
     }
 
-tab-content {
-    border-top: 1px solid grey;
-    border-bottom: 1px solid grey;
-}
+    tab-content {
+        border-top: 1px solid grey;
+        border-bottom: 1px solid grey;
+    }
 
-.even-row{background-color:
-#fafafa;border-top:1px dashed #959DCC;border-bottom:1px dashed #959DCC;min-height:62px;padding:8px 0;}
-.odd-row{padding:8px 0;}
-form .odd-row:first-of-type{
-    border-top:1px dashed #959DCC;
-}
-.form-group label{font-size:.8rem!important; letter-spacing:1px; color:#684348!important;}
-.bordered-box{/*margin:0 9px!important;*/border:1px dashed #a2b0b6;padding:16px!important;display:inline-block;position:relative;width:100%;border-radius:6px;/*box-shadow:0 1px 4px 0 rgba(0, 0, 0, 0.14);color:rgba(0,0,0, 0.87);*/background:#fff;}
-.col-md-m6.bordered-box{width:calc(50% - 18px)!important;}
-.divider-dotted{height:1px;border-bottom:1px dotted #e0e0e0;float:left;width:100%;margin:32px 0;}
+    .even-row{background-color:#fafafa;border-top:1px dashed #959DCC;border-bottom:1px dashed #959DCC;min-height:62px;padding:8px 0;}
+    .odd-row{padding:8px 0;}
+    form .odd-row:first-of-type{
+        border-top:1px dashed #959DCC;
+    }
+    .form-group label{font-size:.8rem!important; letter-spacing:1px; color:#684348!important;}
+    /* .form-group p:not(.no-block) label{min-width:200px;} */
+    /* .form-group label span,.form-box .header p > strong{font-size:.85rem!important;font-weight:bold!important;color:#FF5722!important;} */
+    /* .form-group label.active{color:#684348!important;font-size:.75rem!important;font-weight:400!important;-webkit-transform:translateY(-100%)!important;transform:translateY(-100%)!important;} */
+    /* .form-group{position:relative;margin-top:.25rem;padding-top:1.5rem!important;padding-bottom:.25rem!important;} */
 
 </style>
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>

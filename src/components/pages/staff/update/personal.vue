@@ -41,16 +41,17 @@
                              <div class="form-group p-10">
                                  <label class="control-label" for="text">Sex
                                  </label>
-                                 <div class="radio">
-                                     <b-form-radio name="sex" v-model="data.sex"  value="F">
-                                         Female
-                                     </b-form-radio>
-                                 </div>
-                                 <div class="radio">
-                                     <b-form-radio name="sex" v-model="data.sex" value="M">
-                                         Male
-                                     </b-form-radio>
-                                 </div>
+                                 <b-form-radio-group v-model="data.sex" :options="sexOptions" stacked name="sex" />
+                                 <!--<div class="radio">-->
+                                     <!--<b-form-radio name="sex" v-model="data.sex"  :value="data.sex">-->
+                                         <!--Female-->
+                                     <!--</b-form-radio>-->
+                                 <!--</div>-->
+                                 <!--<div class="radio">-->
+                                     <!--<b-form-radio name="sex" v-model="data.sex" :value="data.sex">-->
+                                         <!--Male-->
+                                     <!--</b-form-radio>-->
+                                 <!--</div>-->
                              </div>
                          </div>
                      </div>
@@ -193,6 +194,7 @@ export default {
             allLga: {}, // hold all the local government
             religions: {},
             schoolName: '',
+            sexOptions: [{ text: 'Female', value: 'F' },{ text: 'Male', value: 'M' }],
             data: {
                 school_id: '',
                 first_name: '',
