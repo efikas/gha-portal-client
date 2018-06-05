@@ -126,6 +126,32 @@
         methods: {
             onSubmit: function () {
                 this.$school.addSchool(this.data).then(response => {
+                    // if( response.status == 'success'){
+                        //     this.$swal({
+                        //         type: 'success',
+                        //         title: 'School Record updated Successfully!',
+                        //         confirmButtonColor: '#3085d6',
+                        //         confirmButtonText: 'Ok'
+                        //     }).then((result) => {
+                        //         if (result.value) {
+                        //             // todo reload page
+                        //             location.reload();
+                        //         }
+                        //     })
+                        // }
+                        // else {
+                        //     this.$swal({
+                        //         type: 'error',
+                        //         title: 'Error updating school information!',
+                        //         confirmButtonColor: '#3085d6',
+                        //         confirmButtonText: 'Ok'
+                        //     }).then((result) => {
+                        //         if (result.value) {
+                        //             // todo reload page
+                        //             location.reload();
+                        //         }
+                        //     })
+                        // }
                 })
             },
             addMore(elementGroup) {

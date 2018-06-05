@@ -79,7 +79,9 @@
     import Vue from 'vue'
     import VueForm from "vue-form";
     import options from "src/validations/validations.js";
+    import VueSweetalert2 from 'vue-sweetalert2';
 
+    Vue.use(VueSweetalert2);
     Vue.use(VueForm, options);
     export default {
         name: "login2",
@@ -116,7 +118,13 @@
                             this.$router.push(redirect);
                         })
                         .catch(response => {
-                            this.error = "The user credentials were incorrect."
+                            this.$swal({
+                                type: 'error',
+                                title: 'The user credentials were incorrect.',
+                                showConfirmButton: false,
+                                timer: 2500
+                            })
+                            // this.error = "The user credentials were incorrect."
                         });
                 }
             }

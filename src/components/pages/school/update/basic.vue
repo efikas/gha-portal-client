@@ -426,7 +426,7 @@
                     established: '',
                     average_distance: '0',
                     town: '',
-                    location: '',   //rural or urban
+                    location: '',   // rural or urban
                     email: '',
                     phone: '',
                     website: '',
@@ -460,6 +460,34 @@
                 this.$school.editSchool(this.schoolId, this.data).then(response => {
                     console.log(response);
 
+                    // if( response.status == 'success'){
+                    //     this.$swal({
+                    //         type: 'success',
+                    //         title: 'School Record updated Successfully!',
+                    //         confirmButtonColor: '#3085d6',
+                    //         confirmButtonText: 'Ok'
+                    //     }).then((result) => {
+                    //         if (result.value) {
+                    //             // todo reload page
+                    //             location.reload();
+                    //         }
+                    //     })
+                    // }
+                    // else {
+                    //     this.$swal({
+                    //         type: 'error',
+                    //         title: 'Error updating school information!',
+                    //         confirmButtonColor: '#3085d6',
+                    //         confirmButtonText: 'Ok'
+                    //     }).then((result) => {
+                    //         if (result.value) {
+                    //             // todo reload page
+                    //             location.reload();
+                    //         }
+                    //     })
+                    // }
+
+
                 })
             },
             addMore(elementGroup) {
@@ -489,19 +517,19 @@
                 this.wardKeys = [];
                 // alert(this.data.lga);
 
-                //get lga id
+                // get lga id
                 let _lgaId = this.lgasInfo.filter(item => {
                     return (item.name === this.lga);
                 });
 
                 _lgaId = _lgaId[0].id;
 
-                //todo: get the settings information
+                // todo: get the settings information
                 let settings = JSON.parse(localStorage.getItem('settings'));
 
                 // console.log(settings.lga_areas);
-                //populatre LGA
-                //todo: filter lga base on state
+                // populate LGA
+                // todo: filter lga base on state
                 let _wards = [];
                 settings.lga_wards.forEach(item => {
                     // this.lgasInfo.push(item);
@@ -565,7 +593,6 @@
                 this.ward = _wards[0].name;
 
             })
-
 
         },
         watch: {},

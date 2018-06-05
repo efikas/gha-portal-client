@@ -222,6 +222,33 @@ export default {
            this.$staff.editStaff(this.staffId, this.data).then(response => {
                console.log(response);
 
+               // if( response.status == 'success'){
+                   //     this.$swal({
+                   //         type: 'success',
+                   //         title: 'School Record updated Successfully!',
+                   //         confirmButtonColor: '#3085d6',
+                   //         confirmButtonText: 'Ok'
+                   //     }).then((result) => {
+                   //         if (result.value) {
+                   //             // todo reload page
+                   //             location.reload();
+                   //         }
+                   //     })
+                   // }
+                   // else {
+                   //     this.$swal({
+                   //         type: 'error',
+                   //         title: 'Error updating school information!',
+                   //         confirmButtonColor: '#3085d6',
+                   //         confirmButtonText: 'Ok'
+                   //     }).then((result) => {
+                   //         if (result.value) {
+                   //             // todo reload page
+                   //             location.reload();
+                   //         }
+                   //     })
+                   // }
+
             })
         },
         getSchoolId(){

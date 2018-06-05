@@ -88,6 +88,33 @@
             onSubmit: function () {
                 this.$school.editSchool(this.$route.params.id, this.data).then(response => {
                     // console.log(response);
+
+                    // if( response.status == 'success'){
+                        //     this.$swal({
+                        //         type: 'success',
+                        //         title: 'School Record updated Successfully!',
+                        //         confirmButtonColor: '#3085d6',
+                        //         confirmButtonText: 'Ok'
+                        //     }).then((result) => {
+                        //         if (result.value) {
+                        //             // todo reload page
+                        //             location.reload();
+                        //         }
+                        //     })
+                        // }
+                        // else {
+                        //     this.$swal({
+                        //         type: 'error',
+                        //         title: 'Error updating school information!',
+                        //         confirmButtonColor: '#3085d6',
+                        //         confirmButtonText: 'Ok'
+                        //     }).then((result) => {
+                        //         if (result.value) {
+                        //             // todo reload page
+                        //             location.reload();
+                        //         }
+                        //     })
+                        // }
                 })
             },
             addClassroom() {
@@ -111,6 +138,20 @@
 
             this.$school.schoolProfile(this.$route.params.id).then(data => {
                 // this.data.schoolId = data.id
+
+                // populating the classroom with the values coming from the API
+                this.data.classrooms = [];
+                data.classrooms.forEach( item => {
+                    this.data.classrooms.push({
+                        class_id: item.pivot.class_id,
+                        good: item.pivot.good,
+                        minor_repair: item.pivot.minor_repair,
+                        major_repair: item.pivot.major_repair,
+                        unusable: item.pivot.unusable,
+                        comment: item.pivot.comment,
+                    });
+
+                })
             })
 
         },
