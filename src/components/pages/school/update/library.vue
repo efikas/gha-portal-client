@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-card header="School Information" header-tag="h4" class="bg-header-card">
+        <b-card header="School Library Information" header-tag="h4" class="bg-header-card">
             <form method="" class="form-horizontal">
                 <div>
                     <div>
@@ -200,7 +200,7 @@
         },
         components: {},
         methods: {
-            onComplete: function () {
+            onSubmit: function () {
                 this.$school.addSchool(this.data).then(response => {
 
                 })

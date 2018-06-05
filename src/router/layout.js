@@ -127,7 +127,7 @@ const layout = [{
                 }
             },
             {
-                path: '/school/:id/staff',
+                path: '/school/:id/staffs',
                 component: resolve => require(['pages/staff/list'], resolve),
                 meta: {
                     title: "Staff List",
@@ -141,8 +141,7 @@ const layout = [{
                 meta:
                     {
                         title: "Add New Staff",
-                        guard:
-                            true
+                        guard: true
                     }
             },
             {
@@ -152,8 +151,7 @@ const layout = [{
                 meta:
                     {
                         title: "Manage Staff Record",
-                        guard:
-                            true
+                        guard: true
                     }
             },
             {
@@ -168,14 +166,21 @@ const layout = [{
                     }
             },
             {
+                path: ':id/update/:component',
+                component: resolve => require(['pages/staff/update'], resolve),
+                meta: {
+                    title: "Update Staff Record",
+                    guard: true
+                }
+            },
+            {
                 path: ':id',
                 component:
                     resolve => require(['pages/staff/profile'], resolve),
                 meta:
                     {
                         title: "Staff Profile",
-                        guard:
-                            true
+                        guard: true
                     }
             },
             {

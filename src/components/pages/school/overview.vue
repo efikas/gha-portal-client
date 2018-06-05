@@ -46,57 +46,100 @@
                 </div>
             </div>
         </div>
+        <!--<div class="row">-->
+            <!--<div class="col-xl-4 col-lg-6 col-md-6 col-sm-12" v-for="(schoolsPerLga, index) in schoolsPerLgas" :key="index">-->
+                <!--<div class="card user-profile">-->
+                    <!--<div class="card-block">-->
+                        <!--<div class="text-left">-->
+                            <!--<span class="float-right btn btn-success"  style="margin: 10px 10px 15px 0px">{{ schoolsPerLga.total.schools }}</span>-->
+                            <!--<h4 class="text-primary float-left" style="margin: 10px 0px 15px 10px">{{ schoolsPerLga.name }}</h4>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<table class="table table-bordred table-striped">-->
+                        <!--<tbody>-->
+                            <!--<tr @click="gotoLink(`lga/${schoolsPerLga.id}/category/1`)">-->
+                                <!--<td>Public Schools</td>-->
+                                <!--<td> {{ schoolsPerLga.public.total }}</td>-->
+                            <!--</tr>-->
+                            <!--<tr @click="gotoLink(`lga/${index + 1}/category/2`)">-->
+                                <!--<td>Private Schools</td>-->
+                                <!--<td> {{ schoolsPerLga.private.total }}</td>-->
+                            <!--</tr>-->
+                            <!--<tr @click="gotoLink(`lga/${index + 1}/level/PRY`)">-->
+                                <!--<td>Primary Schools</td>-->
+                                <!--<td> {{ schoolsPerLga.total.primary }}</td>-->
+                            <!--</tr>-->
+                            <!--<tr @click="gotoLink(`lga/${index + 1}/level/SEC`)">-->
+                                <!--<td>Secondary Schools</td>-->
+                                <!--<td> {{ schoolsPerLga.total.secondary }}</td>-->
+                            <!--</tr>-->
+                            <!--<tr @click="gotoLink(`lga/${index + 1}/category/1/level/PRY`)">-->
+                                <!--<td>Public Primary Schools</td>-->
+                                <!--<td> {{ schoolsPerLga.public.primary }}</td>-->
+                            <!--</tr>-->
+                            <!--<tr @click="gotoLink(`lga/${index + 1}/category/2/level/PRY`)">-->
+                                <!--<td>Private Primary Schools</td>-->
+                                <!--<td> {{ schoolsPerLga.private.primary }}</td>-->
+                            <!--</tr>-->
+                            <!--<tr @click="gotoLink(`lga/${index + 1}/category/1/level/SEC`)">-->
+                                <!--<td>Public Secondary Schools</td>-->
+                                <!--<td> {{ schoolsPerLga.public.secondary }}</td>-->
+                            <!--</tr>-->
+                            <!--<tr @click="gotoLink(`lga/${index + 1}/category/2/level/SEC`)">-->
+                                <!--<td>Private Secondary Schools</td>-->
+                                <!--<td> {{ schoolsPerLga.private.secondary }}</td>-->
+                            <!--</tr>-->
+                            <!--<tr>-->
+                                <!--<td colspan="2"><a :href="'schools/lga/' + (index + 1)" class="pull-right">details</a></td>-->
+                            <!--</tr>-->
+                        <!--</tbody>-->
+                    <!--</table>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+
         <div class="row">
-            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12" v-for="(schoolsPerLga, index) in schoolsPerLgas" :key="index">
-                <div class="card user-profile">
-                    <div class="card-block">
-                        <div class="text-left">
-                            <span class="float-right btn btn-success"  style="margin: 10px 10px 15px 0px">{{ schoolsPerLga.total.schools }}</span>
-                            <h4 class="text-primary float-left" style="margin: 10px 0px 15px 10px">{{ schoolsPerLga.name }}</h4>
-                        </div>
-                    </div>
-                    <table class="table table-bordred table-striped">
-                        <tbody>
-                            <tr @click="gotoLink(`lga/${index + 1}/category/1`)">
-                                <td>Public Schools</td>
-                                <td> {{ schoolsPerLga.public.total }}</td>
-                            </tr>
-                            <tr @click="gotoLink(`lga/${index + 1}/category/2`)">
-                                <td>Private Schools</td>
-                                <td> {{ schoolsPerLga.private.total }}</td>
-                            </tr>
-                            <tr @click="gotoLink(`lga/${index + 1}/level/PRY`)">
-                                <td>Primary Schools</td>
-                                <td> {{ schoolsPerLga.total.primary }}</td>
-                            </tr>
-                            <tr @click="gotoLink(`lga/${index + 1}/level/SEC`)">
-                                <td>Secondary Schools</td>
-                                <td> {{ schoolsPerLga.total.secondary }}</td>
-                            </tr>
-                            <tr @click="gotoLink(`lga/${index + 1}/category/1/level/PRY`)">
-                                <td>Public Primary Schools</td>
-                                <td> {{ schoolsPerLga.public.primary }}</td>
-                            </tr>
-                            <tr @click="gotoLink(`lga/${index + 1}/category/2/level/PRY`)">
-                                <td>Private Primary Schools</td>
-                                <td> {{ schoolsPerLga.private.primary }}</td>
-                            </tr>
-                            <tr @click="gotoLink(`lga/${index + 1}/category/1/level/SEC`)">
-                                <td>Public Secondary Schools</td>
-                                <td> {{ schoolsPerLga.public.secondary }}</td>
-                            </tr>
-                            <tr @click="gotoLink(`lga/${index + 1}/category/2/level/SEC`)">
-                                <td>Private Secondary Schools</td>
-                                <td> {{ schoolsPerLga.private.secondary }}</td>
-                            </tr>
-                            <tr>
-                                <td colspan="2"><a :href="'schools/lga/' + (index + 1)" class="pull-right">details</a></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+            <div class="col-lg-12">
+               <b-card>
+                   <div class="table-responsive">
+                       <table class="table table-bordered table-striped mytableh text-center">
+                           <thead>
+                               <tr>
+                                   <th rowspan="2">LGA</th>
+                                   <th colspan="3">Public</th>
+                                   <th colspan="3">Private</th>
+                                   <th rowspan="2" align="center">Total Primary</th>
+                                   <th rowspan="2">Total Secondary</th>
+                               </tr>
+                               <tr>
+                                   <th>Primary</th>
+                                   <th>Secondary</th>
+                                   <th>Total</th>
+                                   <th>Primary</th>
+                                   <th>Secondary</th>
+                                   <th>Total</th>
+                               </tr>
+                           </thead>
+                           <tbody>
+                            <tr v-for="(schoolsPerLga, index) in schoolsPerLgas" :key="index">
+                               <td @click="gotoLink(`lga/${schoolsPerLga.id}`)">{{ schoolsPerLga.name }}</td>
+                               <td @click="gotoLink(`lga/${schoolsPerLga.id}/category/1/level/PRY`)">{{ schoolsPerLga.public.primary }}</td>
+                               <td @click="gotoLink(`lga/${schoolsPerLga.id}/category/1/level/SEC`)">{{ schoolsPerLga.public.secondary }}</td>
+                               <td @click="gotoLink(`lga/${schoolsPerLga.id}/category/1`)">{{ schoolsPerLga.public.total }}</td>
+                               <td @click="gotoLink(`lga/${schoolsPerLga.id}/category/2/level/PRY`)">{{ schoolsPerLga.private.primary }}</td>
+                               <td @click="gotoLink(`lga/${schoolsPerLga.id}/category/2/level/SEC`)">{{ schoolsPerLga.private.secondary }}</td>
+                               <td @click="gotoLink(`lga/${schoolsPerLga.id}/category/2`)">{{ schoolsPerLga.private.total }}</td>
+                               <td @click="gotoLink(`lga/${schoolsPerLga.id}/level/PRY`)">{{ schoolsPerLga.total.primary }}</td>
+                               <td @click="gotoLink(`lga/${schoolsPerLga.id}/level/SEC`)">{{ schoolsPerLga.total.secondary }}</td>
+                           </tr>
+                           </tbody>
+                       </table>
+                   </div>
+               </b-card>
+
             </div>
         </div>
+
          <div class="row">
             <div class="col-lg-12">
                 <b-card>
@@ -299,10 +342,12 @@
         margin-top: 0px !important;
     }
 
-    .table tr:hover {
+    .table tr>td:hover {
         background-color: #ccc !important;
         color: #650611;
+        font-weight: bold;
     }
+
 </style>
 <style type="text/css" lang="scss">
     .index2_table .table-responsive .card {
@@ -629,7 +674,7 @@
         width: 100%;
     }
     .table {
-        font-weight: bold;
+        /*font-weight: bold;*/
     }
     .table tr {
         cursor: pointer;

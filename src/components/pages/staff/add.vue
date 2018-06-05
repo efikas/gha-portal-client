@@ -572,7 +572,7 @@
                 }
                 this.old_file = file;
             },
-            onComplete: function () {
+            onSubmit: function () {
                 this.$staff.addStaff(this.data).then(response => {
 
                 })

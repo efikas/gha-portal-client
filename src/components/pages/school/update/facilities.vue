@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-card header="School Information" header-tag="h4" class="bg-header-card">
+        <b-card header="School Facilities Information" header-tag="h4" class="bg-header-card">
             <form method="" class="form-horizontal">
                 <div class="row odd-row">
                     <div class="col-xs-12 col-sm-6 col-md-3">
@@ -496,6 +496,7 @@
                     </div>
                 </div>
             </form>
+            <button class="btn btn-primary btn-lg btn-school pull-right" @click="onComplete()">Submit</button>
         </b-card>
     </div>
 </template>
@@ -521,23 +522,21 @@
                 },
                 data: {
                     ward_id: '',
-                    facilities: {
-                        boarding: '1',
-                        school_library: '1',
-                        security_guard: '1',
-                        school_building_type: '1',
-                        school_building_ownership: '1',
-                        school_fence_condition: '1',
-                        play_rooms: '1',
-                        play_facilities: '1',
-                        learning_materials: '1',
-                        power_source: '1',
-                        health_facilities: '1',
-                        water_supply: '1',
-                        toilet_facilities: '1',
-                        facilities_sharing: '1',
-                        facilities_shared: '1',
-                    }
+                    boarding: '1',
+                    school_library: '1',
+                    security_guard: '1',
+                    school_building_type: '1',
+                    school_building_ownership: '1',
+                    school_fence_condition: '1',
+                    play_rooms: '1',
+                    play_facilities: '1',
+                    learning_materials: '1',
+                    power_source: '1',
+                    health_facilities: '1',
+                    water_supply: '1',
+                    toilet_facilities: '1',
+                    facilities_sharing: '1',
+                    facilities_shared: '1',
                 }
             }
         },
@@ -557,7 +556,7 @@
                 }
                 this.old_file = file;
             },
-            onComplete: function () {
+            onSubmit: function () {
                 this.$school.addSchool(this.data).then(response => {
 
                 })

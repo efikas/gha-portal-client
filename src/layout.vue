@@ -77,6 +77,12 @@
      */
     import anime from 'animejs'
 
+    /**
+     * Custom Style
+     */
+    import 'components/layouts/css/ekiti.scss'
+
+
     export default {
         name: 'layout',
         components: {
@@ -135,3 +141,4 @@
         }
     }
 </style>
+<!--<style src="components/layouts/css/ekiti.css"></style>-->

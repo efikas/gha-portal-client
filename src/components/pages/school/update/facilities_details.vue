@@ -128,7 +128,7 @@
                         </tr>
                         </tbody>
                     </table>
-                    <button class="btn btn-primary btn-lg btn-school" @click="onComplete()">Submit</button>
+                    <button class="btn btn-primary btn-lg btn-school pull-right" @click="onComplete()">Submit</button>
                 </div>
             </div>
         </b-card>
@@ -177,7 +177,7 @@
                 }
                 this.old_file = file;
             },
-            onComplete: function () {
+            onSubmit: function () {
                 this.$school.addSchool(this.data).then(response => {
 
                 })

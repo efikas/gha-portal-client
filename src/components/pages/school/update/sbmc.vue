@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-card header="School Information" header-tag="h4" class="bg-header-card">
+        <b-card header="School SBMC Information" header-tag="h4" class="bg-header-card">
             <form method="" class="form-horizontal">
                 <div>
                         <a class="btn btn-outline-primary pull-right" @click="addMore('members')">+ ADD MORE</a>
@@ -97,7 +97,7 @@
                     </div>
                 </div>
             </form>
-            <button class="btn btn-primary btn-lg btn-school" @click="onComplete()">Submit</button>
+            <button class="btn btn-primary btn-lg btn-school pull-right" @click="onComplete()">Submit</button>
         </b-card>
     </div>
 </template>
@@ -125,7 +125,7 @@
         },
         components: {},
         methods: {
-            onComplete: function () {
+            onSubmit: function () {
                 this.$school.addSchool(this.data).then(response => {
                 })
             },

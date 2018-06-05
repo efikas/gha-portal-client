@@ -517,7 +517,7 @@
                             </div>
                         </div>
                     </form>
-                    <button class="btn btn-primary btn-lg btn-school" @click="onComplete()">Submit</button>
+                    <button class="btn btn-primary btn-lg btn-school pull-right" @click="onComplete()">Submit</button>
         </b-card>
     </div>
 </template>
@@ -538,6 +538,7 @@
                 wards: [],
                 lgasInfo:[],
                 wardKeys: {}, // capture the ward id and ward name of the selected LGA
+                settings: null,
                 data: {
                     lga_ward_id: 3,
                     name: 'Saint Mathew Nur and pry school',
@@ -584,7 +585,7 @@
                 }
                 this.old_file = file;
             },
-            onComplete: function () {
+            onSubmit: function () {
                 console.log("aaa")
                 this.$school.addSchool(this.data).then(response => {
 
@@ -627,15 +628,31 @@
             } 
         },
         mounted: function () {
-            this.$lga.getLgas().then(data => {
-                data.forEach(item => {
-                    // console.log(item);
-                    this.lgasInfo.push(item);
-                    this.lgas.push(item.name);
-                });
-                console.log(this.lgasInfo);
-            })
+            // this.$lga.getLgas().then(data => {
+            //     data.forEach(item => {
+            //         // console.log(item);
+            //         this.lgasInfo.push(item);
+            //         this.lgas.push(item.name);
+            //     });
+            //     // console.log(this.lgasInfo);
+            // });
+
+            //todo: get the settings information
+            let settings = localStorage.getItem('settings');
+
+            console.log(settings.lga_areas);
+            //populatre LGA
+            // settings.lga_areas.forEach(item => {
+            //     this.lgasInfo.push(item);
+            //     this.lgas.push(item.name);
+            // })
+
             
+        },
+        watch: {
+            settings(data) {
+                let a = 5;
+            }
         },
         destroyed: function () {
 
