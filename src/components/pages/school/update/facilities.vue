@@ -17,7 +17,7 @@
                             <label class="control-label">School Building Ownership
                             </label>
                             <div class="col-md-12">
-                                <b-form-radio-group v-model="data.school_building_ownership" :options="schoolBuildingOwnership" stacked name="sex" />
+                                <b-form-radio-group v-model="data.building_ownership" :options="schoolBuildingOwnership" stacked name="sex" />
                             </div>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
                             <label class="control-label">Learning Materials
                             </label>
                             <div class="col-md-12">
-                                <b-form-checkbox-group v-model="data.learning_materials" :options="learningMaterials" stacked name="sex" />
+                                <b-form-checkbox-group v-model="data.learning" :options="learningMaterials" stacked name="sex" />
                             </div>
                         </div>
                     </div>
@@ -65,31 +65,7 @@
                             <label class="control-label">Sources of Power
                             </label>
                             <div class="col-md-12">
-                                <div class="checkbox">
-                                    <b-form-checkbox id="phcn" :value="1" v-model="data.power_source">
-                                        PHCN/NEPA
-                                    </b-form-checkbox>
-                                </div>
-                                <div class="checkbox">
-                                    <b-form-checkbox id="generator" :value="2" v-model="data.power_source">
-                                        Generator
-                                    </b-form-checkbox>
-                                </div>
-                                <div class="checkbox">
-                                    <b-form-checkbox id="solar" :value="3" v-model="data.power_source">
-                                        Solar
-                                    </b-form-checkbox>
-                                </div>
-                                <div class="checkbox">
-                                    <b-form-checkbox id="inverter" :value="4" v-model="data.power_source">
-                                        Inverter
-                                    </b-form-checkbox>
-                                </div>
-                                <div class="checkbox">
-                                    <b-form-checkbox id="none" :value="5" v-model="data.power_source">
-                                        None
-                                    </b-form-checkbox>
-                                </div>
+                                <b-form-checkbox-group v-model="data.power_sources" :options="powerSource" stacked />
                             </div>
                         </div>
                     </div>
@@ -98,7 +74,7 @@
                             <label class="control-label">Health Facilities
                             </label>
                             <div class="col-md-12">
-                                <b-form-checkbox-group v-model="data.health_facilities" :options="healthFacilities" stacked name="sex" />
+                                <b-form-checkbox-group v-model="data.health" :options="healthFacilities" stacked name="sex" />
                             </div>
                         </div>
                     </div>
@@ -107,7 +83,7 @@
                             <label class="control-label">Sources of Water Supply
                             </label>
                             <div class="col-md-12">
-                                <b-form-checkbox-group v-model="data.water_supply" :options="waterSupply" stacked name="sex" />
+                                <b-form-checkbox-group v-model="data.water" :options="waterSupply" stacked name="sex" />
                             </div>
                         </div>
                     </div>
@@ -116,7 +92,7 @@
                             <label class="control-label">Toilet Facilities
                             </label>
                             <div class="col-md-12">
-                                <b-form-checkbox-group v-model="data.toilet_facilities" :options="toiletFacilities" stacked name="sex" />
+                                <b-form-checkbox-group v-model="data.toilet" :options="toiletFacilities" stacked name="sex" />
                             </div>
                         </div>
                     </div>
@@ -151,22 +127,25 @@
                 toiletFacilities:[],
                 schoolId: '',
                 data: {
-                    ward_id: '',
-                    boarding: '1',
-                    school_library: '1',
-                    security_guard: '1',
+                    // ward_id: '',
+                    // boarding: '1',
+                    // school_library: '1',
+                    // security_guard: '1',
                     school_building_type: '1',
-                    school_building_ownership: '1',
+                    building_ownership: '1',
                     school_fence_condition: '1',
-                    play_rooms: '1',
-                    play_facilities: '1',
-                    learning_materials: [],
-                    power_source: [],
-                    health_facilities: [],
-                    water_supply: [],
-                    toilet_facilities: [],
-                    facilities_sharing: '1',
-                    facilities_shared: '1',
+
+                    building_ownership: '1',
+                    play_rooms: [],
+                    play_facilities: [],
+                    learning: [],
+                    power_sources: [],
+                    health: [],
+                    water: [],
+                    toilet: [],
+
+                    // facilities_sharing: '1',
+                    // facilities_shared: '1',
                 }
             }
         },
@@ -212,15 +191,16 @@
             let settings = JSON.parse(localStorage.getItem('settings'));
 
             if(settings) {
-                settings.learning.forEach(item => this.learningMaterials.push({ text: item.material, value: item.id }));
+                settings.learning.forEach(item => this.learningMaterials.push({ text: item.material, value: { learning_id: item.id } }));
                 settings.building_types.forEach(item => this.schoolBuildingType.push({ text: item.type + '<br />' + item.description, value: item.id }));
-                settings.buildings.forEach(item => this.schoolBuildingOwnership.push({ text: item.ownership, value: item.id }));
+                settings.buildings.forEach(item => this.schoolBuildingOwnership.push({ text: item.ownership, value: { building_id: item.id } }));
                 settings.healths.forEach(item => this.healthFacilities.push({ text: item.facility, value: { health_id: item.id } }));
-                settings.water.forEach(item => this.waterSupply.push({ text: item.source, value: item.id }));
-                settings.toilet_types.forEach(item => this.toiletFacilities.push({ text: item.type, value: item.id }));
+                settings.water.forEach(item => this.waterSupply.push({ text: item.source, value: { water_id: item.id } }));
+                settings.toilet_types.forEach(item => this.toiletFacilities.push({ text: item.type, value: { toilet_type_id: item.id } }));
                 settings.play_facilities.forEach(item => this.playFacilities.push({ text: item.type, value: item.id }));
                 settings.play_rooms.forEach(item => this.playRooms.push({ text: item.category, value: item.id }));
                 settings.fences.forEach(item => this.fenceCondition.push({ text: item.condition, value: item.id }));
+                settings.power_sources.forEach(item => this.powerSource.push({ text: item.power_sources, value: { power_source_id: item.id } }));
 
 
                     // facilitiesShared:[],

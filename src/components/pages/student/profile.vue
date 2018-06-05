@@ -35,7 +35,7 @@
                             <div style="margin: 0px 30px 0 30px">
                                 <p>
                                     <a :href="'/student/' + studentId + '/update/basic'" type="button" class="btn btn-outline-primary ekiti-btn pull-right">Edit
-                                    </a>
+                                    </a><br/><br/>
                                 </p>
                                 <div class="table-responsive">
                                     <table class="table table-bordred table-striped mytable">
@@ -87,7 +87,7 @@
                             <div style="margin: 0px 30px 0 30px">
                                 <p>
                                     <a :href="'/student/' + studentId + '/update/academic'" type="button" class="btn btn-outline-primary ekiti-btn pull-right">Edit
-                                    </a>
+                                    </a><br/><br/>
                                 </p>
 
                                 <div class="table-responsive" v-if="studentInfo">
@@ -128,7 +128,7 @@
                             <div style="margin: 0px 30px 0 30px">
                                 <p>
                                     <a :href="'/student/' + studentId + '/update/parent'" type="button" class="btn btn-outline-primary ekiti-btn pull-right">Edit
-                                    </a>
+                                    </a><br/><br/>
                                 </p>
                                 <div class="table-responsive" v-if="studentInfo">
                                     <table class="table table-bordred table-striped mytable">

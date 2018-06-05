@@ -19,7 +19,7 @@
                         <div class="row even-row">
                             <div class="col-xs-12 col-sm-6 col-md-3">
                                 <div class="form-group p-10">
-                                    <label class="control-label col-md-8" for="text">Firstname
+                                    <label class="control-label col-md-8">Firstname
                                     </label>
                                     <div class="col-md-12">
                                         <input type="text" class="form-control" v-model="data.first_name" placeholder="First Name">
@@ -28,7 +28,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-3">
                                 <div class="form-group p-10">
-                                    <label class="control-label col-md-12" for="text">Middle Name
+                                    <label class="control-label col-md-12">Middle Name
                                     </label>
                                     <div class="col-md-12">
                                         <input type="text" class="form-control" v-model="data.middle_name" placeholder="Middle Name">
@@ -37,7 +37,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-3">
                                 <div class="form-group p-10">
-                                    <label class="control-label" for="text">Last Name
+                                    <label class="control-label">Last Name
                                     </label>
                                     <div class="col-md-12">
                                         <input type="text" class="form-control" v-model="data.last_name" placeholder="">
@@ -46,7 +46,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-3">
                                 <div class="form-group p-10">
-                                    <label class="control-label" for="text">Sex
+                                    <label class="control-label">Sex
                                     </label>
                                     <div class="col-md-12">
                                         <div class="radio">
@@ -66,7 +66,7 @@
                         <div class="row odd-row">
                             <div class="col-xs-12 col-sm-6 col-md-3">
                                 <div class="form-group p-10">
-                                    <label class="control-label col-md-8" for="text">Date of Birth
+                                    <label class="control-label col-md-8">Date of Birth
                                     </label>
                                     <div class="col-md-12">
                                         <input type="date" class="form-control" v-model="data.date_of_birth">
@@ -75,7 +75,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-3">
                                 <div class="form-group p-10">
-                                    <label class="control-label col-md-12" for="text">Place of Birth
+                                    <label class="control-label col-md-12">Place of Birth
                                     </label>
                                     <div class="col-md-12">
                                         <input type="text" class="form-control" v-model="data.place_of_birth" id="pob" placeholder="Place of birth">
@@ -84,7 +84,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-3">
                                 <div class="form-group p-10">
-                                    <label class="control-label" for="text">Phone Number (optional)
+                                    <label class="control-label">Phone Number (optional)
                                     </label>
                                     <div class="col-md-12">
                                         <input type="phone" class="form-control" name="phone" v-model="data.phone" placeholder="08064720000" id="phone">
@@ -104,7 +104,7 @@
                         <div class="row even-row">
                             <div class="col-xs-12 col-sm-6 col-md-3">
                                 <div class="form-group p-10">
-                                    <label class="control-label col-md-8" for="text">Any special Challenge?
+                                    <label class="control-label col-md-8">Any special Challenge?
                                     </label>
                                     <div class="col-md-12">
                                         <select id="example-select" v-model="data.special_condition" class="form-control" size="1">
@@ -122,7 +122,7 @@
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-6">
                                         <div class="form-group p-10">
-                                            <label class="control-label" for="text">Height (in m)
+                                            <label class="control-label">Height (in m)
                                             </label>
                                             <div class="col-md-12">
                                                 <input type="number" min="0" class="form-control" v-model="data.height" placeholder="">
@@ -131,10 +131,10 @@
                                     </div>
                                     <div class="col-xs-12 col-sm-6">
                                         <div class="form-group p-10">
-                                            <label class="control-label" for="text">Width (in m)
+                                            <label class="control-label">Width (in m)
                                             </label>
                                             <div class="col-md-12">
-                                                <input type="number" min="0" class="form-control" v-model="data.width" placeholder="">
+                                                <input type="number" min="0" class="form-control" v-model="data.weight" placeholder="">
                                             </div>
                                         </div>
                                     </div>
@@ -153,7 +153,7 @@
                         <div class="row odd-row">
                             <div class="col-xs-12 col-sm-6 col-md-3">
                                 <div class="form-group p-10">
-                                    <label class="control-label col-md-8" for="text">Birth Cert Available? *
+                                    <label class="control-label col-md-8">Birth Cert Available? *
                                     </label>
                                      <div class="col-md-12">
                                         <div class="radio">
@@ -171,7 +171,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-3">
                                 <div class="form-group p-10">
-                                    <label class="control-label col-md-12" for="text">Birth Cert Type
+                                    <label class="control-label col-md-12">Birth Cert Type
                                     </label>
                                     <div class="col-md-12">
                                         <select id="example-select" name="birth_cert_type" v-model="data.birth_cert_type" class="form-control" size="1">
@@ -198,7 +198,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-6">
                                 <div class="form-group p-10">
-                                    <label class="control-label col-md-8" for="text">Student's Admission Status <span>*</span>
+                                    <label class="control-label col-md-8">Student's Admission Status <span>*</span>
                                     </label>
                                     <div class="col-md-12">
                                         <div class="radio">
@@ -218,7 +218,7 @@
                         <div class="row odd-row">
                             <div class="col-xs-12 col-sm-6 col-md-3">
                                 <div class="form-group p-10">
-                                    <label class="control-label col-md-8" for="text">Admission Education Level <span>*</span>
+                                    <label class="control-label col-md-8">Admission Education Level <span>*</span>
                                     </label>
                                     <div class="col-md-12">
                                         <select id="edu_level" v-model="data.edu_level" name="edu_level" class="form-control" size="1">
@@ -243,7 +243,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-3">
                                 <div class="form-group p-10">
-                                    <label class="control-label col-md-12" for="current_education_level">Current Education Level<span>*</span>
+                                    <label class="control-label col-md-12">Current Education Level<span>*</span>
                                     </label>
                                     <div class="col-md-12">
                                         <select id="current_edu_level" v-model="data.current_education_level" name="current_education_level" class="form-control" size="1">
@@ -259,7 +259,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-3">
                                 <div class="form-group p-10">
-                                    <label class="control-label col-md-12" for="text">Current Class Level <span>*</span>
+                                    <label class="control-label col-md-12">Current Class Level <span>*</span>
                                     </label>
                                     <div class="col-md-12">
                                         <input type="number" min="0" class="form-control" name="current_class_level" v-model="data.current_class_level" id="current_class_level" placeholder="">
@@ -270,7 +270,7 @@
                         <div class="row even-row">
                             <div class="col-xs-12 col-sm-6 col-md-3">
                                 <div class="form-group p-10">
-                                    <label class="control-label col-md-8" for="text">Registered for JSCE/SSCE? <span>*</span>
+                                    <label class="control-label col-md-8">Registered for JSCE/SSCE? <span>*</span>
                                     </label>
                                     <div class="col-md-12">
                                         <div class="radio">
@@ -288,7 +288,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-3">
                                 <div class="form-group p-10">
-                                    <label class="control-label col-md-8" for="text">Boarding Student? <span>*</span>
+                                    <label class="control-label col-md-8">Boarding Student? <span>*</span>
                                     </label>
                                     <div class="col-md-12">
                                         <div class="radio">
@@ -306,7 +306,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-3">
                                 <div class="form-group p-10">
-                                    <label class="control-label col-md-12" for="text">Doom No </label>
+                                    <label class="control-label col-md-12">Doom No </label>
                                     <div class="col-md-12">
                                         <input type="text" class="form-control" name="dorm_no" v-model="data.dorm_no" placeholder="School Name">
                                     </div>
@@ -314,7 +314,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-3">
                                 <div class="form-group p-10">
-                                    <label class="control-label col-md-12" for="text">Home Dist to School 
+                                    <label class="control-label col-md-12">Home Dist to School 
                                     </label>
                                     <div class="col-md-12">
                                         <input type="number" min="0" class="form-control" v-model="data.distance_from_school" value="0">
@@ -559,7 +559,7 @@
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-md-4">
                                     <div class="form-group p-10">
-                                        <label class="control-label" for="text">Religion
+                                        <label class="control-label">Religion
                                         </label>
                                         <div class="col-md-12">
                                             <select id="g2_religious_status" v-model="data.parent.g2_religious_status" name="g2_religious_status" class="form-control" size="1">
@@ -575,7 +575,7 @@
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-md-4">
                                     <div class="form-group p-10">
-                                        <label class="control-label col-md-8" for="g2_primary_contact">Is Primary Contact?
+                                        <label class="control-label col-md-8">Is Primary Contact?
                                         </label>
                                         <div class="col-md-12">
                                             <div class="radio">
@@ -671,7 +671,7 @@ export default {
         }
     },
     methods: {
-       onSubmit: function(){
+        onComplete: function(){
             this.$student.addStudent(this.data).then(response => {
 
             })

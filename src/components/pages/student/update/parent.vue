@@ -2,7 +2,7 @@
     <div>
          <b-card header="Parent Information" header-tag="h4" class="bg-header-card">
              <div>
-                 <form method="" class="form-horizontal">
+                 <form method="" class="form-horizontal" @submit.prevent="onSubmit">
                      <div class="form-horizonal bordered-box">
                          <div class="row odd-row">
                              <div class="col-md-12">
@@ -145,7 +145,7 @@
                              </div>
                          </div>
                      </div>
-                     <button type="submit" class="btn btn-primary btn-lg btn-school pull-right" @click="onComplete()">Submit</button>
+                     <button type="submit" class="btn btn-primary btn-lg btn-school pull-right">Submit</button>
                  </form>
              </div>
         </b-card>
@@ -182,7 +182,7 @@ export default {
     },
     methods: {
        onSubmit: function(){
-            this.$student.addStudent(1,this.data).then(response => {
+            this.$student.editStudent(this.studentId, this.data).then(response => {
 
             })
         },
