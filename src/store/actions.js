@@ -33,12 +33,15 @@ let actions = {
     },
 
     logout({ commit }, redirect='/') {
+        var vm = this;
         return new Promise(resolve => {
             setTimeout(() => {
                 // localStorage.setItem("token", "JWT");
-                Vue.auth.destroyToken()
+                Vue.auth.destroyToken();
                 commit('LOGOUT');
-                window.location.href = `/login?redirect=${redirect}`
+                window.location.href = `/login?redirect=${redirect}`;
+                // console.log('button');
+                // vm.$router.push({path: `/login?redirect=${redirect}`});
                 resolve();
             }, 1000);
         });

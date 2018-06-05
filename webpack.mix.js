@@ -57,11 +57,11 @@ mix.options({
 })
 
 // ===public path
-mix.setPublicPath('./dist')
+mix.setPublicPath('../server/public/')
 
 
 // === copy index.html to dist
-mix.copy('index.html', 'dist/')
+mix.copy('index.html', '../server/public/')
 
 
 // ===compile our main.js file
@@ -79,4 +79,4 @@ mix.js('src/main.js', '/')
 
 
 // Disable all Success notifications
-// mix.disableSuccessNotifications()
+mix.disableSuccessNotifications()
