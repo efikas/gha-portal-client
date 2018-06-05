@@ -54,7 +54,7 @@ import VueSkeletonLoading from 'vue-skeleton-loading';
 Vue.use(VueSkeletonLoading);
 Vue.use(ClientTable, {}, false);
 export default {
-    name: "advanced_tables",
+    name: "staffManage",
     components: {
         datatable
     },
