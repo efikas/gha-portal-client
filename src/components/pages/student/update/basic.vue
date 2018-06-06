@@ -82,7 +82,7 @@
                                  <label class="control-label">Phone Number (optional)
                                  </label>
                                  <div class="col-md-12">
-                                     <input type="phone" class="form-control" name="phone_number" v-model="data.phone_number" placeholder="08064720000" id="phone_number">
+                                     <input type="phone" class="form-control" name="phone" v-model="data.phone" placeholder="08064720000" id="phone">
                                  </div>
                              </div>
                          </div>
@@ -113,14 +113,14 @@
                                      <div class="form-group p-10">
                                          <label class="control-label">Height (in m)
                                          </label>
-                                             <input type="number" class="form-control" v-model="data.height" placeholder="">
+                                             <input type="number" step="0.1" class="form-control" v-model="data.height" placeholder="">
                                      </div>
                                  </div>
                                  <div class="col-xs-12 col-sm-6">
                                      <div class="form-group p-10">
-                                         <label class="control-label">Width (in m)
+                                         <label class="control-label">weight (in m)
                                          </label>
-                                             <input type="number" class="form-control" v-model="data.width" placeholder="">
+                                             <input type="number" step="0.1" class="form-control" v-model="data.weight" placeholder="">
                                      </div>
                                  </div>
                              </div>
@@ -167,9 +167,9 @@
             schoolName: '',
             specialChallenges: {},
             birthCerts: {},
+            schoolId: '',
             data: {
-                studentId: '',
-                schoolId: '',
+                school_id: '',
                 school_name: '',
                 first_name: '',
                 middle_name: '',
@@ -177,20 +177,19 @@
                 sex: '',
                 date_of_birth: '',
                 place_of_birth: '',
-                phone_number: '',
+                phone: '',
                 email: '',
-                special_challenge: '',
+                special_condition: '',
                 height: '',
-                width: '',
+                weight: '',
                 blood_group: '',
-                birth_cert_avail: '',
                 birth_cert_type: '',
             }
         }
     },
     methods: {
        onSubmit: function(){
-            this.$student.editStudent(studentId, this.data).then(response => {
+            this.$student.editStudent(this.studentId, this.data).then(response => {
 
             })
         },
@@ -216,7 +215,7 @@
         this.$student.studentProfile(this.$route.params.id).then(data => {
             this.data = data;
             this.schoolId = data.school_id;
-            // console.log(data);
+            console.log(data);
         });
 
         //get list of schools
@@ -261,7 +260,7 @@
     }
 
     .dropzone_wrapper {
-        width: 100%;
+        weight: 100%;
     }
     .align-left{
         float: left;
@@ -281,7 +280,7 @@
         border-top:1px dashed #959DCC;
     }
     .form-group label{font-size:.8rem!important; letter-spacing:1px; color:#684348!important;}
-    /* .form-group p:not(.no-block) label{min-width:200px;} */
+    /* .form-group p:not(.no-block) label{min-weight:200px;} */
     /* .form-group label span,.form-box .header p > strong{font-size:.85rem!important;font-weight:bold!important;color:#FF5722!important;} */
     /* .form-group label.active{color:#684348!important;font-size:.75rem!important;font-weight:400!important;-webkit-transform:translateY(-100%)!important;transform:translateY(-100%)!important;} */
     /* .form-group{position:relative;margin-top:.25rem;padding-top:1.5rem!important;padding-bottom:.25rem!important;} */

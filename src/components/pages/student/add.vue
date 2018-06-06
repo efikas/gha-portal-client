@@ -694,9 +694,46 @@ export default {
                 this.lgas.push(item.name);
             });
         })
+
+        let settings = JSON.parse(localStorage.getItem('settings'));
+
+        if(settings) {
+            this.specialChallenges = settings.special_conditions;
+            this.birthCerts = settings.birth_certs;
+        }
+
+        // console.log('route is : ' + this.$route.params.id);
+        this.studentId = this.$route.params.id;
+        this.$student.studentProfile(this.$route.params.id).then(data => {
+            this.data = data;
+            this.schoolId = data.school_id;
+            console.log(data);
+        });
+
+        //get list of schools
+        this.$school.allSchools().then(data => {
+            this.allSchools = data.data;
+        })
     },
     destroyed: function() {
 
+    },
+    watch: {
+        allSchools(value){
+            //allSchools is
+            value.forEach(school => {
+                this.schools.push(school.name);
+            })
+
+            // Get the school name from the school list using the school id
+            // after all school information has been loaded from the database
+            let _school = value.filter(school => {
+                return (school.id == this.data.school_id);
+            })
+
+            this.schoolName = _school[0].name;
+            // this.data.school_id = data.school_id;
+        }
     }
 }
 </script>

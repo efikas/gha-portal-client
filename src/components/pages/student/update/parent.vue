@@ -34,20 +34,27 @@
                                  </div>
                              </div>
                          </div>
+                     </div>
                          <div class="row">
                              <div class="col">
+                                 <br/><br/>
                                  <a class="btn btn-outline-primary pull-right mb-2" @click="addMore()">+ ADD MORE</a>
+                                <br/><br/>
                              </div>
                          </div>
-                        <div v-for="(guardian, index) in data.guardians">
-                             <div class="row even-row">
+                        <div v-for="(guardian, index) in data.guardians" class="mb-5">
+                            <div class="form-horizonal bordered-box">
+                                <div class="row even-row">
+                                    <div class="col-md-12">
+                                        <div class="remove-btn-div"><a class="btn btn-outline-danger pull-right red" @click="removeGuardian(index)">X</a></div>
+                                    </div>
                                  <div class="col-xs-12 col-sm-6 col-md-2">
                                      <div class="form-group p-10">
                                          <label class="control-label col-md-8">Title</label>
                                          <div class="col-md-12">
                                              <select v-model="data.guardians[index].title" class="form-control" size="1">
                                                  <option value="">Select Title</option>
-                                                 <option v-for="appellation in appellations" :value="appellation.id">{{appellation.appellation}}</option>
+                                                 <option v-for="appellation in appellations" :value="appellation.appellation">{{appellation.appellation}}</option>
                                              </select>
 
                                          </div>
@@ -68,18 +75,14 @@
                                          </label>
                                          <div class="col-md-12">
                                              <select id="eg1relationship" name="g1relationship" v-model="data.guardians[index].relationship" class="form-control" size="1">
-                                                 <option value="0">
-                                                     Select Education Level
-                                                 </option>
-                                                 <option value="1">1930</option>
-                                                 <option value="2">1931</option>
-                                                 <option value="3">1932</option>
+                                                 <option value="">Select Relationship</option>
+                                                 <option v-for="relation in relationship" :value="relation.id">{{relation.type}}</option>
                                              </select>
                                          </div>
                                      </div>
                                  </div>
                              </div>
-                             <div class="row odd-row">
+                                <div class="row odd-row">
                                  <div class="col-xs-12 col-sm-6 col-md-4">
                                      <div class="form-group p-10">
                                          <label class="control-label col-md-8" for="g1_occupation">Occupation
@@ -108,7 +111,7 @@
                                      </div>
                                  </div>
                              </div>
-                             <div class="row even-row">
+                                <div class="row even-row">
                                  <div class="col-xs-12 col-sm-6 col-md-4">
                                      <div class="form-group p-10">
                                          <label class="control-label col-md-8" for="g1_email">Email
@@ -131,7 +134,7 @@
                                      </div>
                                  </div>
                              </div>
-                             <div class="row odd-row">
+                                <div class="row odd-row">
                                  <div class="col-xs-12 col-sm-12 col-md-9">
                                      <div class="form-group p-10">
                                          <label class="control-label col-md-8" for="g1_contact_address">Contact Address
@@ -143,8 +146,8 @@
                                      </div>
                                  </div>
                              </div>
-                         </div>
-                     </div>
+                            </div>
+                        </div>
                      <button type="submit" class="btn btn-primary btn-lg btn-school pull-right">Submit</button>
                  </form>
              </div>
@@ -162,6 +165,7 @@ export default {
         return {
             appellations: {},
             religions: {},
+            relationship: {},
             schoolId: '',
             data: {
                 studentId: '',
@@ -198,7 +202,10 @@ export default {
                religious: '',
                contact_address: '',
            });
-        }
+        },
+        removeGuardian(index) {
+            this.data.guardians.splice(index, 1);
+        },
     },
     mounted: function() {
         //populate the select boxes using the settings data from local storage
@@ -207,6 +214,7 @@ export default {
         if(settings) {
             this.appellations = settings.appellations;
             this.religions = settings.religions;
+            this.relationship = settings.guardians;
         }
 
         // console.log('route is : ' + this.$route.params.id);
@@ -259,5 +267,23 @@ form .odd-row:first-of-type{
 .bordered-box{/*margin:0 9px!important;*/border:1px dashed #a2b0b6;padding:16px!important;display:inline-block;position:relative;width:100%;border-radius:6px;/*box-shadow:0 1px 4px 0 rgba(0, 0, 0, 0.14);color:rgba(0,0,0, 0.87);*/background:#fff;}
 .col-md-m6.bordered-box{width:calc(50% - 18px)!important;}
 .divider-dotted{height:1px;border-bottom:1px dotted #e0e0e0;float:left;width:100%;margin:32px 0;}
+
+.classroom-wrapper-div:not(:last-of-type) {
+    border-bottom: solid #650606 2px;
+    margin: 20px 0px 20px 0px
+}
+
+.remove-btn-div {
+    height: 30px;
+    padding: 0px 10px 0px 0px;
+}
+
+.red {
+    color:  red !important;
+    font-weight: bold;
+}
+.red:hover {
+    color:  white !important;
+}
 
 </style>

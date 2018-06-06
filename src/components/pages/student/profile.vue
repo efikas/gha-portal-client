@@ -33,7 +33,7 @@
                     <b-tabs>
                         <b-tab title="PERSONAL">
                             <div style="margin: 0px 30px 0 30px">
-                                <p>
+                                <p><br/>
                                     <a :href="'/student/' + studentId + '/update/basic'" type="button" class="btn btn-outline-primary ekiti-btn pull-right">Edit
                                     </a><br/><br/>
                                 </p>
@@ -85,7 +85,7 @@
                         </b-tab>
                         <b-tab title="ACADEMIC">
                             <div style="margin: 0px 30px 0 30px">
-                                <p>
+                                <p><br/>
                                     <a :href="'/student/' + studentId + '/update/academic'" type="button" class="btn btn-outline-primary ekiti-btn pull-right">Edit
                                     </a><br/><br/>
                                 </p>
@@ -126,7 +126,7 @@
                         </b-tab>
                         <b-tab title="PARENT/GUARDIAN">
                             <div style="margin: 0px 30px 0 30px">
-                                <p>
+                                <p><br/>
                                     <a :href="'/student/' + studentId + '/update/parent'" type="button" class="btn btn-outline-primary ekiti-btn pull-right">Edit
                                     </a><br/><br/>
                                 </p>
