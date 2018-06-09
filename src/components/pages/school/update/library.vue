@@ -124,6 +124,7 @@
                 data: {
                     ward_id: '',
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
                     // school_textbooks: {
                     //     pupil_subject_area: ['', ''],
@@ -134,6 +135,8 @@
                     //     teacher_quantity_supplied: ['', ''],
                     // },
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                     textbooks: {
                         pupil: [{subject: '', level: '', quantity: ''}],
                         teacher: [{subject: '', level: '', quantity: ''}],
@@ -146,6 +149,9 @@
             onSubmit: function () {
                 this.$school.addSchool(this.data).then(response => {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                     if (typeof  response == 'object'){
                         this.$swal({
                             type: 'success',
@@ -158,6 +164,7 @@
                             }
                         })
                     }
+<<<<<<< HEAD
 =======
                     // if( response.status == 'success'){
                         //     this.$swal({
@@ -173,6 +180,8 @@
                         //     })
                         // }
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                         // else {
                         //     this.$swal({
                         //         type: 'error',
@@ -208,15 +217,21 @@
             if(settings) {
                 this.subjectArea = settings.subjects
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
             }
 
             this.$school.schoolProfile(this.$route.params.id).then(data => {
                 this.schoolId = data.id
             })
+<<<<<<< HEAD
 =======
 
             }
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
         },
         destroyed: function () {
 

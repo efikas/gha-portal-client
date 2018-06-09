@@ -72,9 +72,15 @@ export default {
             schools: [],
             lgaId: '',
             level : '',
+<<<<<<< HEAD
             categoryId: '',
             lgaName : '',
             categoryName : '',
+=======
+            categoryId: null,
+            lgaName : '',
+            categoryName : null,
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
             levelName : '',
             options: {
                 sortIcon: {
@@ -105,11 +111,16 @@ export default {
     mounted() {
         //check for lga id and category id in the url
         if (this.$route.params.lgaId){
+<<<<<<< HEAD
+=======
+            let queryObject = null;
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
             this.lgaId = this.$route.params.lgaId
             this.categoryId = this.$route.params.catId
             this.level = this.$route.params.level
 
             //set the route parameter name
+<<<<<<< HEAD
             if(this.categoryId === '1') this.categoryName = 'Public';
             if(this.categoryId === '2') this.categoryName = 'Private';
             if(this.level === 'PRY') this.levelName = 'Primary';
@@ -195,6 +206,36 @@ export default {
                 })
             }
             else {}
+=======
+            if(this.categoryId === '1') this.categoryName = 'public';
+            if(this.categoryId === '2') this.categoryName = 'private';
+            if(this.level === 'PRY') this.levelName = 'primary';
+            if(this.level === 'SEC') this.levelName = 'secondary';
+
+            //get category and level and filter school list accordingly
+            if(this.categoryId && this.level){
+                queryObject = {
+                    category: this.categoryName,
+                    level: this.levelName,
+                };
+            }
+            else if(this.categoryId){
+                queryObject = {
+                    category: this.categoryName,
+                };
+            }
+            else if(this.level) {
+                queryObject = {
+                    level: this.levelName,
+                };
+            } else{}
+
+            console.log(queryObject);
+            this.$school.getSchoolsPerLga(this.lgaId, queryObject).then(data => {
+                // console.log(data.data)
+                this.schools = data;
+            })
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
         }
         else {
             this.$school.allSchools().then(data => {

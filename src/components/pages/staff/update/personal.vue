@@ -218,6 +218,9 @@ export default {
     methods: {
        onSubmit: function(){
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
            this.$staff.editStaff(this.staffId, this.data).then(response => {
                if (typeof  response == 'object'){
                    this.$swal({
@@ -231,6 +234,7 @@ export default {
                        }
                    })
                }
+<<<<<<< HEAD
 =======
            // alert(1111);
            // console.log(this.data);
@@ -251,6 +255,8 @@ export default {
                    //     })
                    // }
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                    // else {
                    //     this.$swal({
                    //         type: 'error',
@@ -272,9 +278,12 @@ export default {
                return (school.name == this.schoolName);
            })
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
             this.data.school_id = _selectedSchool[0].id;
         }
     },

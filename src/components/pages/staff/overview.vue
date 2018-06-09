@@ -100,16 +100,22 @@
             this.$dashboard.statistics()
                 .then((data) => {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                     this.teachingStaff = (data.staffs.teaching.male + data.staffs.teaching.female).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
                     this.nonTeachingStaff = (data.staffs.non_teaching.male + data.staffs.non_teaching.female).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
                     this.maleStaff = (data.staffs.teaching.male + data.staffs.non_teaching.male).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
                     this.femaleStaff = (data.staffs.teaching.female + data.staffs.non_teaching.female).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+<<<<<<< HEAD
 =======
                     this.teachingStaff = data.staffs.teaching.male + data.staffs.teaching.female;;
                     this.nonTeachingStaff = data.staffs.non_teaching.male + data.staffs.non_teaching.female;;
                     this.maleStaff = data.staffs.teaching.male + data.staffs.non_teaching.male;;
                     this.femaleStaff = data.staffs.teaching.female + data.staffs.non_teaching.female;;
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                     
                     let myData = sbemisData.dataMapping(data);
                     this.staff_gen_dist = {

@@ -589,6 +589,9 @@
                 console.log("aaa")
                 this.$school.addSchool(this.data).then(response => {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                     if (typeof  response == 'object'){
                         this.$swal({
                             type: 'success',
@@ -602,11 +605,14 @@
                         })
                     }
                 })
+<<<<<<< HEAD
 =======
 
                 })
                 // alert('Yay. Done!');
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
             },
             addMore(elementGroup) {
                 switch (elementGroup) {
@@ -628,18 +634,24 @@
                     default:
                         break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                 }
             },
             getWard(){
                 this.wards = []; // clear previous ward elements
                 this.wardKeys = [];
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                 let _lga = this.lgasInfo.filter(item => {
                     return (item.id === this.lgas.indexOf(this.data.lga) + 1);
                 });
@@ -669,6 +681,7 @@
             //     this.lgas.push(item.name);
             // })
 <<<<<<< HEAD
+<<<<<<< HEAD
         },
         watch: {},
 =======
@@ -681,6 +694,10 @@
             }
         },
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+        },
+        watch: {},
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
         destroyed: function () {
 
         }

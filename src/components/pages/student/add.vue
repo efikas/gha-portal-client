@@ -632,6 +632,7 @@ export default {
             school_name: '',
             data: {
 <<<<<<< HEAD
+<<<<<<< HEAD
                 parent: [{}]
 =======
                 school_id: '1',
@@ -671,6 +672,9 @@ export default {
                         contact_address: 'Ado'
                     }]
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+                parent: [{}]
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
             }
         }
     },
@@ -678,6 +682,9 @@ export default {
         onComplete: function(){
             this.$student.addStudent(this.data).then(response => {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                 if (typeof response == 'object'){
                     this.$swal({
                         type: 'success',
@@ -690,9 +697,12 @@ export default {
                         }
                     })
                 }
+<<<<<<< HEAD
 =======
 
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
             })
         },
         getSchool(){
@@ -714,6 +724,9 @@ export default {
             });
         })
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
 
         let settings = JSON.parse(localStorage.getItem('settings'));
 
@@ -754,11 +767,14 @@ export default {
             this.schoolName = _school[0].name;
             // this.data.school_id = data.school_id;
         }
+<<<<<<< HEAD
 =======
     },
     destroyed: function() {
 
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
     }
 }
 </script>

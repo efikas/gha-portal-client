@@ -92,6 +92,9 @@
                                 <tr class="m-0">
                                    <td>School Name</td>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                                     <td colspan="3"> {{ schoolName }}</td>
                                 </tr>
                                 <tr>
@@ -127,6 +130,7 @@
                                 <tr>
                                     <td>Computer Literate</td>
                                     <td colspan="3"> {{ yesNo(staffInfo.computer_literate) }}</td>
+<<<<<<< HEAD
 =======
                                     <td> {{ schoolName }}</td>
                                 </tr>
@@ -146,6 +150,8 @@
                                    <td>Staff Category</td>
                                     <td> {{ staffInfo.staff_category }}</td>
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                                 </tr>
                                 </tbody>
                             </table>
@@ -181,6 +187,7 @@ export default {
     },
     methods: {
 <<<<<<< HEAD
+<<<<<<< HEAD
         yesNo: (value) => {
            return (value == 1) ? 'Yes' : 'No';
         },
@@ -192,6 +199,11 @@ export default {
             this.$modal.hide('hello-world');
         }
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+        yesNo: (value) => {
+           return (value == 1) ? 'Yes' : 'No';
+        },
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
     },
     mounted: function() {
         this.staffId = this.$route.params.id,
@@ -200,15 +212,21 @@ export default {
             this.schoolName = data.school.name
             this.schoolId = data.school.id;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
 
             let settings = JSON.parse(localStorage.getItem('settings'));
             let _status = settings.staff_statuses.filter(item => {
                 return (item.id == data.status);
             });
             this.staffInfo.status = _status[0].status;
+<<<<<<< HEAD
 =======
             // console.log()
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
         })
     },
     watch: {

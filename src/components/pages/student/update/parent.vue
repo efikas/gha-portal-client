@@ -35,6 +35,9 @@
                              </div>
                          </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                      </div>
                          <div class="row">
                              <div class="col">
@@ -49,6 +52,7 @@
                                     <div class="col-md-12">
                                         <div class="remove-btn-div"><a class="btn btn-outline-danger pull-right red" @click="removeGuardian(index)">X</a></div>
                                     </div>
+<<<<<<< HEAD
 =======
                          <div class="row">
                              <div class="col">
@@ -58,6 +62,8 @@
                         <div v-for="(guardian, index) in data.guardians">
                              <div class="row even-row">
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                                  <div class="col-xs-12 col-sm-6 col-md-2">
                                      <div class="form-group p-10">
                                          <label class="control-label col-md-8">Title</label>
@@ -65,10 +71,14 @@
                                              <select v-model="data.guardians[index].title" class="form-control" size="1">
                                                  <option value="">Select Title</option>
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                  <option v-for="appellation in appellations" :value="appellation.appellation">{{appellation.appellation}}</option>
 =======
                                                  <option v-for="appellation in appellations" :value="appellation.id">{{appellation.appellation}}</option>
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+                                                 <option v-for="appellation in appellations" :value="appellation.appellation">{{appellation.appellation}}</option>
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                                              </select>
 
                                          </div>
@@ -90,6 +100,7 @@
                                          <div class="col-md-12">
                                              <select id="eg1relationship" name="g1relationship" v-model="data.guardians[index].relationship" class="form-control" size="1">
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                  <option value="">Select Relationship</option>
                                                  <option v-for="relation in relationship" :value="relation.id">{{relation.type}}</option>
 =======
@@ -100,16 +111,24 @@
                                                  <option value="2">1931</option>
                                                  <option value="3">1932</option>
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+                                                 <option value="">Select Relationship</option>
+                                                 <option v-for="relation in relationship" :value="relation.id">{{relation.type}}</option>
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                                              </select>
                                          </div>
                                      </div>
                                  </div>
                              </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
                                 <div class="row odd-row">
 =======
                              <div class="row odd-row">
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+                                <div class="row odd-row">
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                                  <div class="col-xs-12 col-sm-6 col-md-4">
                                      <div class="form-group p-10">
                                          <label class="control-label col-md-8" for="g1_occupation">Occupation
@@ -139,10 +158,14 @@
                                  </div>
                              </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
                                 <div class="row even-row">
 =======
                              <div class="row even-row">
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+                                <div class="row even-row">
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                                  <div class="col-xs-12 col-sm-6 col-md-4">
                                      <div class="form-group p-10">
                                          <label class="control-label col-md-8" for="g1_email">Email
@@ -166,10 +189,14 @@
                                  </div>
                              </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
                                 <div class="row odd-row">
 =======
                              <div class="row odd-row">
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+                                <div class="row odd-row">
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                                  <div class="col-xs-12 col-sm-12 col-md-9">
                                      <div class="form-group p-10">
                                          <label class="control-label col-md-8" for="g1_contact_address">Contact Address
@@ -182,12 +209,17 @@
                                  </div>
                              </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
                             </div>
                         </div>
 =======
                          </div>
                      </div>
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+                            </div>
+                        </div>
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                      <button type="submit" class="btn btn-primary btn-lg btn-school pull-right">Submit</button>
                  </form>
              </div>
@@ -206,13 +238,18 @@ export default {
             appellations: {},
             religions: {},
 <<<<<<< HEAD
+<<<<<<< HEAD
             relationship: {},
 =======
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+            relationship: {},
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
             schoolId: '',
             data: {
                 studentId: '',
                 parent_status: '',
+<<<<<<< HEAD
 <<<<<<< HEAD
                 guardians: [{}],
 =======
@@ -228,6 +265,9 @@ export default {
                     contact_address: '',
                 }],
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+                guardians: [{}],
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
             }
         }
     },
@@ -235,6 +275,9 @@ export default {
        onSubmit: function(){
             this.$student.editStudent(this.studentId, this.data).then(response => {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                 if (typeof  response == 'object'){
                     this.$swal({
                         type: 'success',
@@ -247,9 +290,12 @@ export default {
                         }
                     })
                 }
+<<<<<<< HEAD
 =======
 
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
             })
         },
         addMore() {
@@ -265,13 +311,19 @@ export default {
                contact_address: '',
            });
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
         },
         removeGuardian(index) {
             this.data.guardians.splice(index, 1);
         },
+<<<<<<< HEAD
 =======
         }
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
     },
     mounted: function() {
         //populate the select boxes using the settings data from local storage
@@ -281,9 +333,13 @@ export default {
             this.appellations = settings.appellations;
             this.religions = settings.religions;
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.relationship = settings.guardians;
 =======
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+            this.relationship = settings.guardians;
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
         }
 
         // console.log('route is : ' + this.$route.params.id);
@@ -338,6 +394,9 @@ form .odd-row:first-of-type{
 .divider-dotted{height:1px;border-bottom:1px dotted #e0e0e0;float:left;width:100%;margin:32px 0;}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
 .classroom-wrapper-div:not(:last-of-type) {
     border-bottom: solid #650606 2px;
     margin: 20px 0px 20px 0px
@@ -356,6 +415,9 @@ form .odd-row:first-of-type{
     color:  white !important;
 }
 
+<<<<<<< HEAD
 =======
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
 </style>

@@ -422,6 +422,9 @@
                 schoolId: null,
                 data: {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                     // lga_ward_id: null,
                     // name: '',
                     // established: '',
@@ -446,6 +449,7 @@
                     // grants: null,
                     // address: '',
                 },
+<<<<<<< HEAD
 =======
                     lga_ward_id: null,
                     name: '',
@@ -478,6 +482,8 @@
                     { name: 'Daniel' }
                 ],
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                 selectedSharedFacilities: [],
             }
         },
@@ -486,6 +492,9 @@
                 // console.log("aaa");
                 this.$school.editSchool(this.schoolId, this.data).then(response => {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
 
                     if (typeof  response == 'object'){
                         this.$swal({
@@ -499,6 +508,7 @@
                             }
                         })
                     }
+<<<<<<< HEAD
 =======
                     console.log(response);
 
@@ -516,6 +526,8 @@
                     //     })
                     // }
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                     // else {
                     //     this.$swal({
                     //         type: 'error',
@@ -589,9 +601,12 @@
                     // this.wardKeys[item.id] = item.name;
                 })
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
                 console.log(this.wards);
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
             },
             selectedWard(){
                 let settings = JSON.parse(localStorage.getItem('settings'));
@@ -615,16 +630,22 @@
 
             this.$school.schoolProfile(this.$route.params.id).then(data => {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                 this.data = data;
                 // Object.keys(this.data).forEach(key => {
                 //     this.data[key] = (data.hasOwnProperty(key)) ? data[key] : null;
                 // })
+<<<<<<< HEAD
 =======
 
                 Object.keys(this.data).forEach(key => {
                     this.data[key] = (data.hasOwnProperty(key)) ? data[key] : null;
                 })
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
 
                 this.schoolId = data.id;
                 // this.data.lga_id = data.ward.lga_id;

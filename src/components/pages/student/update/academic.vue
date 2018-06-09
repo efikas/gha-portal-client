@@ -1,6 +1,9 @@
 <template>
     <div>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
         <b-card header="Academic Information" header-tag="h4" class="bg-header-card">
             <div>
                 <form method="" class="form-horizontal" @submit.prevent="onSubmit">
@@ -118,6 +121,7 @@
                     <button type="submit" class="btn btn-primary btn-lg btn-school pull-right">Submit</button>
                 </form>
             </div>
+<<<<<<< HEAD
 =======
         <b-card header="Student Info" header-tag="h4" class="bg-header-card">
             <form-wizard @on-complete="onComplete" color="#e67e22">
@@ -730,6 +734,8 @@
 
             </form-wizard>
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
         </b-card>
     </div>
 </template>
@@ -738,6 +744,9 @@
     import VueFormWizard from 'vue-form-wizard'
     import 'vue-form-wizard/dist/vue-form-wizard.min.css'
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
     Vue.use(VueFormWizard)
     export default {
         name: 'basic.vue',
@@ -770,6 +779,7 @@
             }
         },
         mounted: function() {
+<<<<<<< HEAD
 =======
     import Multiselect from 'vue-multiselect';
 
@@ -852,10 +862,13 @@
             })
 
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
             //populate the select boxes using the settings data from local storage
             let settings = JSON.parse(localStorage.getItem('settings'));
 
             if(settings) {
+<<<<<<< HEAD
 <<<<<<< HEAD
                 this.educationLevels = settings.educations;
                 this.promotionStatus = settings.promotions;
@@ -863,6 +876,10 @@
                 this.specialChallenges = settings.special_conditions;
                 this.birthCerts = settings.birth_certs;
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+                this.educationLevels = settings.educations;
+                this.promotionStatus = settings.promotions;
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
             }
 
             // console.log('route is : ' + this.$route.params.id);
@@ -870,11 +887,15 @@
             this.$student.studentProfile(this.$route.params.id).then(data => {
                 this.data = data;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                 // this.schoolId = data.id;
             });
         },
         destroyed: function() {
 
+<<<<<<< HEAD
 =======
                 this.schoolId = data.school_id;
                 // console.log(data);
@@ -905,6 +926,8 @@
                 // this.data.school_id = data.school_id;
             }
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
         }
     }
 </script>
@@ -944,11 +967,15 @@
         border-top:1px dashed #959DCC;
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
     .form-group label{font-size:.7rem!important; letter-spacing:1px; color:#684348!important;}
     /*.bordered-box{!*margin:0 9px!important;*!border:1px dashed #a2b0b6;padding:16px!important;display:inline-block;position:relative;width:100%;border-radius:6px;!*box-shadow:0 1px 4px 0 rgba(0, 0, 0, 0.14);color:rgba(0,0,0, 0.87);*!background:#fff;}*/
     /*.col-md-m6.bordered-box{width:calc(50% - 18px)!important;}*/
     /*.divider-dotted{height:1px;border-bottom:1px dotted #e0e0e0;float:left;width:100%;margin:32px 0;}*/
 
+<<<<<<< HEAD
 </style>
 =======
     .form-group label{font-size:.8rem!important; letter-spacing:1px; color:#684348!important;}
@@ -961,3 +988,6 @@
 </style>
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+</style>
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77

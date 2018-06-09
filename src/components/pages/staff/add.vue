@@ -538,11 +538,15 @@
                     religion: '1',
                     residential_address: 'Ado Ekiti',
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
 
                     category: 2,
                     status: '2',
                     salary_source: '2',
                     last_promotion_year: '2018',
+<<<<<<< HEAD
 =======
                     category: 2,
                     // grade_level: '',
@@ -552,12 +556,17 @@
                     last_promotion_year: '2018',
                     // posting_year: '',
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                     employment_type: '1',
                     academic_qualification: '2',
                     teaching_qualification: '4',
                     speciality: 2,
                     subject_taught: '12',
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                     computer_literate: '1',
                     trc_reg_no: '345-356',
 
@@ -569,6 +578,7 @@
                     // training_workshop: '',
                     // trc_registered: '',
                     // posting_year: '',
+<<<<<<< HEAD
 =======
                     // class_taught: '',
                     // training_workshop: '',
@@ -578,6 +588,8 @@
                     // school_posted_from: '',
                     // position: '',
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                 }
             }
         },
@@ -597,6 +609,9 @@
             onSubmit: function () {
                 this.$staff.addStaff(this.data).then(response => {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                     if (typeof  response == 'object'){
                         this.$swal({
                             type: 'success',
@@ -609,9 +624,12 @@
                             }
                         })
                     }
+<<<<<<< HEAD
 =======
 
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                 })
             },
             getSchool(){

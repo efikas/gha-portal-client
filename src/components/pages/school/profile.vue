@@ -65,6 +65,7 @@
                             </div>
                             <div class="table-responsive">
                                 <table class="table table-bordred table-striped mytable">
+<<<<<<< HEAD
                                     <thead>
                                     <tr>
                                         <th class="col-3 views head">Information</th>
@@ -72,6 +73,8 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                                     <tr><td><i class="fa fa-home"></i> Name</td>
                                         <td colspan="3">{{ schoolInfo.name }}</td></tr>
                                     <tr><td><i class="fa fa-map"></i> Address</td>
@@ -130,7 +133,10 @@
                                         <td>Non Teaching Staff</td>
                                         <td>{{ schoolInfo.staffs.none_teaching }}</td>
                                     </tr>
+<<<<<<< HEAD
                                     </tbody>
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                                 </table>
                             </div>
 
@@ -141,6 +147,9 @@
                                     <a :href="`${schoolId}/update/facilities`" type="button" class="btn btn-outline-primary ekiti-btn pull-right">Edit</a>
                                 </p>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                                 <br>
                             </div>
                             <div class="row">
@@ -150,6 +159,7 @@
                                             <tbody>
                                             <tr>
                                                 <td>Power Source</td>
+<<<<<<< HEAD
                                                 <td>-</td>
                                             </tr>
                                             <tr>
@@ -163,6 +173,21 @@
                                             <tr>
                                                 <td>Water Source</td>
                                                 <td>-</td>
+=======
+                                                <td>{{ power_sources }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Health Facilities</td>
+                                                <td>{{ health }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Learning Materials</td>
+                                                <td>{{ learning }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Water Source</td>
+                                                <td>{{ water }}</td>
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                                             </tr>
                                             <tr>
                                                 <td>Fence</td>
@@ -184,7 +209,11 @@
                             <div class="row">
                                 <div class="col-lg-12 mb-3">
                                     <div class="table-responsive">
+<<<<<<< HEAD
                                         <table class="table table-bordred table-striped mytable">
+=======
+                                        <table class="table table-bordred table-striped mytable classroom-table">
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                                             <thead>
                                             <tr>
                                                 <th>Class</th>
@@ -192,6 +221,7 @@
                                                 <th>Minor Repair</th>
                                                 <th>Major repair</th>
                                                 <th>Unusable</th>
+<<<<<<< HEAD
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -205,6 +235,19 @@
                                             <tr>
                                                 <td>Comment</td>
                                                 <td colspan="4">-</td>
+=======
+                                                <th>Comment</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr v-for="classroom in schoolInfo.classrooms">
+                                                <td>{{ classroom.class }}</td>
+                                                <td>{{ classroom.pivot.good }}</td>
+                                                <td>{{ classroom.pivot.major_repair }}</td>
+                                                <td>{{ classroom.pivot.minor_repair }}</td>
+                                                <td>{{ classroom.pivot.unusable }}</td>
+                                                <td>{{ classroom.pivot.comment }}</td>
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                                             </tr>
                                             </tbody>
                                         </table>
@@ -243,6 +286,7 @@
                                             </tr>
                                             </thead>
                                             <tbody>
+<<<<<<< HEAD
                                             <tr>
                                                 <td>Staffroom</td>
                                                 <td>0</td>
@@ -266,6 +310,11 @@
                                             <tr>
                                                 <td>SBMC</td>
                                                 <td>0</td>
+=======
+                                            <tr v-for="facility in schoolInfo.facilities">
+                                                <td>{{ facility.type}}</td>
+                                                <td>{{ facility.status}}</td>
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                                             </tr>
                                             </tbody>
                                         </table>
@@ -276,6 +325,7 @@
                             </div>
 
                         </b-tab>
+<<<<<<< HEAD
 =======
                                 <br><br>
                             </div>
@@ -550,6 +600,8 @@
 
                         </b-tab>
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                     </b-tabs>
                 </b-card>
             </div>
@@ -601,6 +653,15 @@
                 totalTeachingStaff: 0,
                 totalNonTeachingStaff: 0,
                 schoolId: '',
+<<<<<<< HEAD
+=======
+                play_facilities: '',
+                learning: '',
+                power_sources: '',
+                health: '',
+                water: '',
+                toilet: '',
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
 
                 center: {
                     lat: 7.6401306,
@@ -648,6 +709,31 @@
                 this.schoolName = data.name;
                 this.schoolAddress = data.address;
                 this.schoolId = data.id;
+<<<<<<< HEAD
+=======
+
+                data.power_sources.forEach(item => {
+                    this.power_sources += item.power_sources + ', '
+                })
+                data.play_facilities.forEach(item => {
+                    this.play_facilities += item.play_facilities + ', '
+                })
+                data.learning.forEach(item => {
+                    this.learning += item.material + ', '
+                })
+                data.play_facilities.forEach(item => {
+                    this.play_facilities += item.play_facilities + ', '
+                })
+                data.health.forEach(item => {
+                    this.health += item.facility + ', '
+                })
+                data.water.forEach(item => {
+                    this.water += item.source + ', '
+                })
+                data.toilet.forEach(item => {
+                    this.toilet += item.toilet + ', '
+                })
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                 // console.log(this.schoolInfo);
             })
 
@@ -674,7 +760,11 @@
         border-top: .5px solid #c5c5c5;
         border-bottom: .5px solid #c5c5c5;
         color: #555;
+<<<<<<< HEAD
         font-style: bold;
+=======
+        /*font-style: bold;*/
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
     }
 
     .sbemis-table div {
@@ -684,7 +774,11 @@
         border-bottom: .5px solid #c5c5c5;
     }
 
+<<<<<<< HEAD
     .mytable tr td:nth-child(odd) {
+=======
+    .classroom-table tr td {
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
         width: 20% !important;
     }
 

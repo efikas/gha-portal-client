@@ -3,6 +3,9 @@
         <b-card header="School Facilities Information" header-tag="h4" class="bg-header-card">
             <form method="" class="form-horizontal" @submit.prevent="onSubmit">
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                 <!--<div class="row even-row">-->
                     <!--<div class="col-xs-12 col-sm-6 col-md-6">-->
                         <!--<div class="form-group p-10">-->
@@ -25,6 +28,7 @@
                     <!--</div>-->
                 <!--</div>-->
                 <div class="row odd-row">
+<<<<<<< HEAD
 =======
                 <div class="row even-row">
                     <div class="col-xs-12 col-sm-6 col-md-6">
@@ -37,6 +41,8 @@
                         </div>
                     </div>
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                     <div class="col-xs-12 col-sm-6 col-md-3">
                         <div class="form-group p-10">
                             <label class="control-label">School Building Ownership
@@ -48,6 +54,7 @@
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-3">
                         <div class="form-group p-10">
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
                             <label class="control-label">School Fence Condition
@@ -62,6 +69,8 @@
                     <div class="col-xs-12 col-sm-6 col-md-6">
                         <div class="form-group p-10">
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                             <label class="control-label col-md-12">Play Rooms</label>
                             <div class="col-md-12">
                                 <b-form-radio-group v-model="data.play_rooms" :options="playRooms" stacked name="sex" />
@@ -156,10 +165,14 @@
                 schoolId: '',
                 data: {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                     school_building_type: '',
                     building_ownership: '',
                     school_fence_condition: '',
                     building_ownership: '',
+<<<<<<< HEAD
 =======
                     // ward_id: '',
                     // boarding: '1',
@@ -171,6 +184,8 @@
 
                     building_ownership: '1',
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                     play_rooms: [],
                     play_facilities: [],
                     learning: [],
@@ -188,6 +203,7 @@
             onSubmit: function () {
 
                 this.$school.editSchool(this.schoolId, this.data).then(response => {
+<<<<<<< HEAD
 <<<<<<< HEAD
                     if (typeof  response == 'object'){
                         this.$swal({
@@ -218,6 +234,20 @@
                         //     })
                         // }
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+                    // if (typeof  response == 'object'){
+                    //     this.$swal({
+                    //         type: 'success',
+                    //         title: 'School Record added Successfully!',
+                    //         confirmButtonColor: '#3085d6',
+                    //         confirmButtonText: 'Ok'
+                    //     }).then((result) => {
+                    //         if (result.value) {
+                    //             location.reload();
+                    //         }
+                    //     })
+                    // }
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                         // else {
                         //     this.$swal({
                         //         type: 'error',
@@ -252,6 +282,7 @@
                 settings.fences.forEach(item => this.fenceCondition.push({ text: item.condition, value: item.id }));
                 settings.power_sources.forEach(item => this.powerSource.push({ text: item.power_sources, value: { power_source_id: item.id } }));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 
@@ -265,10 +296,39 @@
                     // powerSource: [],
                     // toiletFacilities:[],
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
             }
 
             this.$school.schoolProfile(this.$route.params.id).then(data => {
                 this.schoolId = data.id
+<<<<<<< HEAD
+=======
+
+                // populate the toilet array with data from the database
+                data.toilet.forEach(item => {
+                    this.data.toilet.push({toilet_type_id: item.pivot.toilet_type_id});
+                })
+
+
+                this.data.building_ownership = {building_id: data.building_ownership[0].pivot.building_id};
+                // this.data.play_rooms = data.play_rooms[0].pivot.play_room_id;
+                // this.data.play_facilities = data.play_facilities[0].pivot.play_facility_id;
+
+                data.learning.forEach(item => {
+                    this.data.learning.push({learning_id: item.pivot.learning_id})
+                })
+
+                data.power_sources.forEach(item => {
+                    this.data.power_sources.push({power_source_id: item.pivot.power_source_id})
+                })
+                data.health.forEach(item => {
+                    this.data.health.push({health_id: item.pivot.health_id})
+                })
+                data.water.forEach(item => {
+                    this.data.water.push({ water_id: item.pivot.water_id });
+                })
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
             })
 
 

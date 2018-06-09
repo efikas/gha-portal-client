@@ -83,10 +83,14 @@
                                  </label>
                                  <div class="col-md-12">
 <<<<<<< HEAD
+<<<<<<< HEAD
                                      <input type="phone" class="form-control" name="phone" v-model="data.phone" placeholder="08064720000" id="phone">
 =======
                                      <input type="phone" class="form-control" name="phone_number" v-model="data.phone_number" placeholder="08064720000" id="phone_number">
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+                                     <input type="phone" class="form-control" name="phone" v-model="data.phone" placeholder="08064720000" id="phone">
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                                  </div>
                              </div>
                          </div>
@@ -118,14 +122,19 @@
                                          <label class="control-label">Height (in m)
                                          </label>
 <<<<<<< HEAD
+<<<<<<< HEAD
                                              <input type="number" step="0.01" class="form-control" v-model="data.height" placeholder="">
 =======
                                              <input type="number" class="form-control" v-model="data.height" placeholder="">
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+                                             <input type="number" step="0.01" class="form-control" v-model="data.height" placeholder="">
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                                      </div>
                                  </div>
                                  <div class="col-xs-12 col-sm-6">
                                      <div class="form-group p-10">
+<<<<<<< HEAD
 <<<<<<< HEAD
                                          <label class="control-label">weight (in m)
                                          </label>
@@ -135,6 +144,11 @@
                                          </label>
                                              <input type="number" class="form-control" v-model="data.width" placeholder="">
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+                                         <label class="control-label">weight (in m)
+                                         </label>
+                                             <input type="number" step="0.1" class="form-control" v-model="data.weight" placeholder="">
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                                      </div>
                                  </div>
                              </div>
@@ -182,6 +196,7 @@
             specialChallenges: {},
             birthCerts: {},
 <<<<<<< HEAD
+<<<<<<< HEAD
             schoolId: '',
             data: {}
 =======
@@ -205,11 +220,18 @@
                 birth_cert_type: '',
             }
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+            schoolId: '',
+            data: {}
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
         }
     },
     methods: {
        onSubmit: function(){
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
             this.$student.editStudent(this.studentId, this.data).then(response => {
                 if (typeof  response == 'object'){
                     this.$swal({
@@ -223,10 +245,13 @@
                         }
                     })
                 }
+<<<<<<< HEAD
 =======
             this.$student.editStudent(studentId, this.data).then(response => {
 
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
             })
         },
         getSchoolId(){
@@ -247,17 +272,23 @@
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         // console.log('route is : ' + this.$route.params.id);
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
         this.studentId = this.$route.params.id;
         this.$student.studentProfile(this.$route.params.id).then(data => {
             this.data = data;
             this.schoolId = data.school_id;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             // console.log(data);
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
         });
 
         //get list of schools
@@ -303,10 +334,14 @@
 
     .dropzone_wrapper {
 <<<<<<< HEAD
+<<<<<<< HEAD
         weight: 100%;
 =======
         width: 100%;
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+        weight: 100%;
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
     }
     .align-left{
         float: left;
@@ -327,10 +362,14 @@
     }
     .form-group label{font-size:.8rem!important; letter-spacing:1px; color:#684348!important;}
 <<<<<<< HEAD
+<<<<<<< HEAD
     /* .form-group p:not(.no-block) label{min-weight:200px;} */
 =======
     /* .form-group p:not(.no-block) label{min-width:200px;} */
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+    /* .form-group p:not(.no-block) label{min-weight:200px;} */
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
     /* .form-group label span,.form-box .header p > strong{font-size:.85rem!important;font-weight:bold!important;color:#FF5722!important;} */
     /* .form-group label.active{color:#684348!important;font-size:.75rem!important;font-weight:400!important;-webkit-transform:translateY(-100%)!important;transform:translateY(-100%)!important;} */
     /* .form-group{position:relative;margin-top:.25rem;padding-top:1.5rem!important;padding-bottom:.25rem!important;} */

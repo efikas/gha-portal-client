@@ -8,10 +8,14 @@
                     </div>
                     <div class="text-ash">
 <<<<<<< HEAD
+<<<<<<< HEAD
                         <h4 class="mt-2 text_size">{{ totalFemale.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}</h4>
 =======
                         <h4 class="mt-2 text_size">{{ totalFemale }}</h4>
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+                        <h4 class="mt-2 text_size">{{ totalFemale.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}</h4>
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                         <p class="m-0 mt-2">Female Students</p>
                     </div>
                 </div>
@@ -23,10 +27,14 @@
                     </div>
                     <div class="text-ash">
 <<<<<<< HEAD
+<<<<<<< HEAD
                         <h4 class="mb-0 mt-2 text_size">{{ totalMale.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}</h4>
 =======
                         <h4 class="mb-0 mt-2 text_size">{{ totalMale }}</h4>
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+                        <h4 class="mb-0 mt-2 text_size">{{ totalMale.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}</h4>
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                         <p class="m-0 mt-2">Male Students</p>
                     </div>
                 </div>
@@ -73,20 +81,28 @@
                                     <td>{{ getFemale(studentPerLga.students.female) }}</td>
                                     <td>{{ getMale(studentPerLga.students.male) }}</td>
 <<<<<<< HEAD
+<<<<<<< HEAD
                                     <td>{{ getTotal(studentPerLga.students.female, studentPerLga.students.male) }}</td>
 =======
                                     <td>{{ getTotal(Number(studentPerLga.students.female) + Number(studentPerLga.students.male)) }}</td>
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+                                    <td>{{ getTotal(studentPerLga.students.female, studentPerLga.students.male) }}</td>
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                                 </tr>
                             </tbody>
                             <tfoot>
                                 <tr>
                                     <th colspan="3" class="text-right">Grand Total</th>
 <<<<<<< HEAD
+<<<<<<< HEAD
                                     <th>{{ totalStudents.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}</th>
 =======
                                     <th>{{ totalStudents }}</th>
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+                                    <th>{{ totalStudents.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}</th>
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                                 </tr>
                             </tfoot>
                         </table>
@@ -206,6 +222,9 @@
                 .then((data) => {
                     this.studentPerLgas = data;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                     data.forEach(item => {
                         this.totalMale += item.students.male;
                         this.totalFemale += item.students.female;
@@ -214,11 +233,14 @@
                 })
                 .catch((error) => console.log(error)
             )
+<<<<<<< HEAD
 =======
                 })
                 .catch((error) => console.log(error)
             ),
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
 
             // unsub = this.$store.subscribe((mutation, state) => {
             //     if (mutation.type == "left_menu") {
@@ -234,6 +256,9 @@
             // }),
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
             // axios.get("http://www.filltext.com/?rows=1&chartdata={numberArray|12,100}").then(response => {
             //         this.ajaxbar_chart.series[0].data = response.data[0].chartdata;
             //         this.ajaxloading = false;
@@ -241,6 +266,7 @@
             //     .catch(function (error) {
             //
             //     })
+<<<<<<< HEAD
 =======
             axios.get("http://www.filltext.com/?rows=1&chartdata={numberArray|12,100}").then(response => {
                     this.ajaxbar_chart.series[0].data = response.data[0].chartdata;
@@ -250,6 +276,8 @@
 
                 })
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
 
         },
         beforeRouteLeave(to, from, next) {
@@ -262,6 +290,9 @@
 
             getMale(maleStudentsPerLga){
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                 return maleStudentsPerLga.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
             },
             getFemale(femaleStudentsPerLga){
@@ -270,6 +301,7 @@
             getTotal(femaleStudentsPerLga, maleStudentsPerLga){
                 let studentsTotalPerLga = +femaleStudentsPerLga + (+maleStudentsPerLga);
                 return studentsTotalPerLga.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+<<<<<<< HEAD
 =======
                 this.totalMale = this.totalMale + Number(maleStudentsPerLga);
                 return maleStudentsPerLga;
@@ -282,6 +314,8 @@
                 this.totalStudents = this.totalStudents + studentsTotalPerLga;
                 return studentsTotalPerLga;
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
             },
             onReady(instance) {
                 this.instances.push(instance)
@@ -289,6 +323,9 @@
             // ===chart animation===
             update_chart() {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                 // setInterval(() => {
                 //     for (var i = 0; i < this.ajaxbar_chart.series.length; i++) {
                 //         this.ajaxbar_chart.series[i].data.shift();
@@ -296,6 +333,7 @@
                 //             1));
                 //     }
                 // }, 4000);
+<<<<<<< HEAD
 =======
                 setInterval(() => {
                     for (var i = 0; i < this.ajaxbar_chart.series.length; i++) {
@@ -305,6 +343,8 @@
                     }
                 }, 4000);
 >>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
+=======
+>>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
             },
             // ===chart animation===
         }
