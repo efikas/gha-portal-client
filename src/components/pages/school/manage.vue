@@ -72,15 +72,9 @@ export default {
             schools: [],
             lgaId: '',
             level : '',
-<<<<<<< HEAD
-            categoryId: '',
-            lgaName : '',
-            categoryName : '',
-=======
             categoryId: null,
             lgaName : '',
             categoryName : null,
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
             levelName : '',
             options: {
                 sortIcon: {
@@ -111,10 +105,8 @@ export default {
     mounted() {
         //check for lga id and category id in the url
         if (this.$route.params.lgaId){
-<<<<<<< HEAD
-=======
             let queryObject = null;
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
+
             this.lgaId = this.$route.params.lgaId
             this.categoryId = this.$route.params.catId
             this.level = this.$route.params.level
