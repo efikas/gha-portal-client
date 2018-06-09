@@ -99,10 +99,10 @@
          mounted: function () {
             this.$dashboard.statistics()
                 .then((data) => {
-                    this.teachingStaff = data.staffs.teaching.male + data.staffs.teaching.female;;
-                    this.nonTeachingStaff = data.staffs.non_teaching.male + data.staffs.non_teaching.female;;
-                    this.maleStaff = data.staffs.teaching.male + data.staffs.non_teaching.male;;
-                    this.femaleStaff = data.staffs.teaching.female + data.staffs.non_teaching.female;;
+                    this.teachingStaff = (data.staffs.teaching.male + data.staffs.teaching.female).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                    this.nonTeachingStaff = (data.staffs.non_teaching.male + data.staffs.non_teaching.female).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                    this.maleStaff = (data.staffs.teaching.male + data.staffs.non_teaching.male).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                    this.femaleStaff = (data.staffs.teaching.female + data.staffs.non_teaching.female).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
                     
                     let myData = sbemisData.dataMapping(data);
                     this.staff_gen_dist = {

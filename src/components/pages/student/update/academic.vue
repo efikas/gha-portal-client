@@ -70,7 +70,7 @@
                                 <label class="control-label col-md-12"data.>Current Class Level <span>*</span>
                                 </label>
                                 <div class="col-md-12">
-                                    <input type="number" min="0" class="form-control" name="edu_level" v-model="data.edu_level" id="edu_level" placeholder="">
+                                    <input type="number" min="0" class="form-control" name="education_level" v-model="data.education_level" id="education_level" placeholder="">
                                 </div>
                             </div>
                         </div>
@@ -134,23 +134,24 @@
                 promotionStatus: {},
                 yesNoOptions: [{ text: 'Yes', value: '1' },{ text: 'No', value: '0' }],
                 studentId: '',
-                data: {
-                    admission_year: '',
-                    admission_status: '',
-                    admission_education_level: '',
-                    // admission_class_level: '',
-                    promotion_status: '',
-                    edu_level: '',
-                    boarding: '',
-                    dormitory_id: '',
-                    distance_from_school: '',
-                }
+                data: {}
             }
         },
         methods: {
             onSubmit: function(){
                 this.$student.editStudent(this.studentId, this.data).then(response => {
-
+                    if (typeof  response == 'object'){
+                        this.$swal({
+                            type: 'success',
+                            title: 'School Record added Successfully!',
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'Ok'
+                        }).then((result) => {
+                            if (result.value) {
+                                location.reload();
+                            }
+                        })
+                    }
                 })
             }
         },
@@ -168,7 +169,6 @@
             this.$student.studentProfile(this.$route.params.id).then(data => {
                 this.data = data;
                 // this.schoolId = data.id;
-                // console.log(data);
             });
         },
         destroyed: function() {

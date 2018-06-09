@@ -113,7 +113,7 @@
                                      <div class="form-group p-10">
                                          <label class="control-label">Height (in m)
                                          </label>
-                                             <input type="number" step="0.1" class="form-control" v-model="data.height" placeholder="">
+                                             <input type="number" step="0.01" class="form-control" v-model="data.height" placeholder="">
                                      </div>
                                  </div>
                                  <div class="col-xs-12 col-sm-6">
@@ -168,29 +168,24 @@
             specialChallenges: {},
             birthCerts: {},
             schoolId: '',
-            data: {
-                school_id: '',
-                school_name: '',
-                first_name: '',
-                middle_name: '',
-                last_name: '',
-                sex: '',
-                date_of_birth: '',
-                place_of_birth: '',
-                phone: '',
-                email: '',
-                special_condition: '',
-                height: '',
-                weight: '',
-                blood_group: '',
-                birth_cert_type: '',
-            }
+            data: {}
         }
     },
     methods: {
        onSubmit: function(){
             this.$student.editStudent(this.studentId, this.data).then(response => {
-
+                if (typeof  response == 'object'){
+                    this.$swal({
+                        type: 'success',
+                        title: 'School Record added Successfully!',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'Ok'
+                    }).then((result) => {
+                        if (result.value) {
+                            location.reload();
+                        }
+                    })
+                }
             })
         },
         getSchoolId(){
@@ -210,12 +205,10 @@
             this.birthCerts = settings.birth_certs;
         }
 
-        // console.log('route is : ' + this.$route.params.id);
         this.studentId = this.$route.params.id;
         this.$student.studentProfile(this.$route.params.id).then(data => {
             this.data = data;
             this.schoolId = data.school_id;
-            console.log(data);
         });
 
         //get list of schools

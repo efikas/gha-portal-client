@@ -421,36 +421,30 @@
                 yesNoOptions: [{ text: 'Yes', value: '1' },{ text: 'No', value: '0' }],
                 schoolId: null,
                 data: {
-                    lga_ward_id: null,
-                    name: '',
-                    established: '',
-                    average_distance: '0',
-                    town: '',
-                    location: '',   // rural or urban
-                    email: '',
-                    phone: '',
-                    website: '',
-                    geolocation: '0.000 / 0.000000',
-                    category: '',   // private or public
-                    private_membership_name: '',
-                    boarding: '',
-                    type: null,
-                    ownership: 1,
-                    education_level: "",
-                    multigrade: null,
-                    shift: null,
-                    management_committee: null,
-                    pta_pf: null,
-                    development_plan: null,
-                    grants: null,
-                    address: '',
+                    // lga_ward_id: null,
+                    // name: '',
+                    // established: '',
+                    // average_distance: '0',
+                    // town: '',
+                    // location: '',   // rural or urban
+                    // email: '',
+                    // phone: '',
+                    // website: '',
+                    // geolocation: '0.000 / 0.000000',
+                    // category: '',   // private or public
+                    // private_membership_name: '',
+                    // boarding: '',
+                    // type: null,
+                    // ownership: 1,
+                    // education_level: "",
+                    // multigrade: null,
+                    // shift: null,
+                    // management_committee: null,
+                    // pta_pf: null,
+                    // development_plan: null,
+                    // grants: null,
+                    // address: '',
                 },
-                users: [
-                    { name: 'Patrick' },
-                    { name: 'Evan' },
-                    { name: 'Christian' },
-                    { name: 'Daniel' }
-                ],
                 selectedSharedFacilities: [],
             }
         },
@@ -458,21 +452,19 @@
             onSubmit() {
                 // console.log("aaa");
                 this.$school.editSchool(this.schoolId, this.data).then(response => {
-                    console.log(response);
 
-                    // if( response.status == 'success'){
-                    //     this.$swal({
-                    //         type: 'success',
-                    //         title: 'School Record updated Successfully!',
-                    //         confirmButtonColor: '#3085d6',
-                    //         confirmButtonText: 'Ok'
-                    //     }).then((result) => {
-                    //         if (result.value) {
-                    //             // todo reload page
-                    //             location.reload();
-                    //         }
-                    //     })
-                    // }
+                    if (typeof  response == 'object'){
+                        this.$swal({
+                            type: 'success',
+                            title: 'School Record added Successfully!',
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'Ok'
+                        }).then((result) => {
+                            if (result.value) {
+                                location.reload();
+                            }
+                        })
+                    }
                     // else {
                     //     this.$swal({
                     //         type: 'error',
@@ -545,7 +537,6 @@
                     this.wards.push(item.name);
                     // this.wardKeys[item.id] = item.name;
                 })
-                console.log(this.wards);
             },
             selectedWard(){
                 let settings = JSON.parse(localStorage.getItem('settings'));
@@ -568,10 +559,10 @@
             })
 
             this.$school.schoolProfile(this.$route.params.id).then(data => {
-
-                Object.keys(this.data).forEach(key => {
-                    this.data[key] = (data.hasOwnProperty(key)) ? data[key] : null;
-                })
+                this.data = data;
+                // Object.keys(this.data).forEach(key => {
+                //     this.data[key] = (data.hasOwnProperty(key)) ? data[key] : null;
+                // })
 
                 this.schoolId = data.id;
                 // this.data.lga_id = data.ward.lga_id;

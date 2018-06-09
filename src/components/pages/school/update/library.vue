@@ -123,14 +123,6 @@
                 subjectArea: {},
                 data: {
                     ward_id: '',
-                    // school_textbooks: {
-                    //     pupil_subject_area: ['', ''],
-                    //     pupil_class_level: ['', ''],
-                    //     pupil_quantity_supplied: ['', ''],
-                    //     teacher_subject_area: ['', ''],
-                    //     teacher_class_level: ['', ''],
-                    //     teacher_quantity_supplied: ['', ''],
-                    // },
                     textbooks: {
                         pupil: [{subject: '', level: '', quantity: ''}],
                         teacher: [{subject: '', level: '', quantity: ''}],
@@ -142,19 +134,18 @@
         methods: {
             onSubmit: function () {
                 this.$school.addSchool(this.data).then(response => {
-                    // if( response.status == 'success'){
-                        //     this.$swal({
-                        //         type: 'success',
-                        //         title: 'School Record updated Successfully!',
-                        //         confirmButtonColor: '#3085d6',
-                        //         confirmButtonText: 'Ok'
-                        //     }).then((result) => {
-                        //         if (result.value) {
-                        //             // todo reload page
-                        //             location.reload();
-                        //         }
-                        //     })
-                        // }
+                    if (typeof  response == 'object'){
+                        this.$swal({
+                            type: 'success',
+                            title: 'School Record added Successfully!',
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'Ok'
+                        }).then((result) => {
+                            if (result.value) {
+                                location.reload();
+                            }
+                        })
+                    }
                         // else {
                         //     this.$swal({
                         //         type: 'error',
@@ -189,8 +180,11 @@
 
             if(settings) {
                 this.subjectArea = settings.subjects
-
             }
+
+            this.$school.schoolProfile(this.$route.params.id).then(data => {
+                this.schoolId = data.id
+            })
         },
         destroyed: function () {
 

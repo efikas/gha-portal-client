@@ -170,24 +170,25 @@ export default {
             data: {
                 studentId: '',
                 parent_status: '',
-                guardians: [{
-                    title: '',
-                    fullname: '',
-                    relationship: '',
-                    occupation: '',
-                    mobile: '',
-                    phone: '',
-                    email: '',
-                    religious: '',
-                    contact_address: '',
-                }],
+                guardians: [{}],
             }
         }
     },
     methods: {
        onSubmit: function(){
             this.$student.editStudent(this.studentId, this.data).then(response => {
-
+                if (typeof  response == 'object'){
+                    this.$swal({
+                        type: 'success',
+                        title: 'School Record added Successfully!',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'Ok'
+                    }).then((result) => {
+                        if (result.value) {
+                            location.reload();
+                        }
+                    })
+                }
             })
         },
         addMore() {

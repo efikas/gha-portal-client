@@ -65,13 +65,6 @@
                             </div>
                             <div class="table-responsive">
                                 <table class="table table-bordred table-striped mytable">
-                                    <thead>
-                                    <tr>
-                                        <th class="col-3 views head">Information</th>
-                                        <th class="col-9 head" colspan="3">Details</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
                                     <tr><td><i class="fa fa-home"></i> Name</td>
                                         <td colspan="3">{{ schoolInfo.name }}</td></tr>
                                     <tr><td><i class="fa fa-map"></i> Address</td>
@@ -130,7 +123,6 @@
                                         <td>Non Teaching Staff</td>
                                         <td>{{ schoolInfo.staffs.none_teaching }}</td>
                                     </tr>
-                                    </tbody>
                                 </table>
                             </div>
 
@@ -140,276 +132,117 @@
                                 <p>
                                     <a :href="`${schoolId}/update/facilities`" type="button" class="btn btn-outline-primary ekiti-btn pull-right">Edit</a>
                                 </p>
-                                <br><br>
+                                <br>
                             </div>
-
-                            <b-card no-body class="mb-0">
-                                <b-card-header header-tag="header" class="p-1" role="tab">
-                                    <b-btn block href="#" v-b-toggle.accordion1 variant="default text-left">Classrooms</b-btn>
-                                </b-card-header>
-                                <b-collapse id="accordion1" visible accordion="my-accordion" role="tabpanel">
-                                    <b-card-body>
-                                        <div class="row">
-                                            <div class="col-lg-12 mb-3">
-                                                <div class="table-responsive">
-                                                    <table class="table table-bordred table-striped mytable">
-                                                        <thead>
-                                                        <tr>
-                                                            <th>CLASSROOM CONDITION</th>
-                                                            <th>NUMBER AVAILABLE</th>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                        <tr>
-                                                            <td>Good</td>
-                                                            <td>-</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Minor Repair</td>
-                                                            <td>-</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Major repair</td>
-                                                            <td>-</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Unusable</td>
-                                                            <td>-</td>
-                                                        </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </b-card-body>
-                                </b-collapse>
-                            </b-card>
-                            <b-card no-body class="mb-1">
-                                <b-card-header header-tag="header" class="p-1" role="tab">
-                                    <b-btn block href="#" v-b-toggle.accordion2 variant="default text-left">Others</b-btn>
-                                </b-card-header>
-                                <b-collapse id="accordion2" accordion="my-accordion" role="tabpanel">
-                                    <b-card-body>
-                                        <div class="row">
-                                            <div class="col-lg-12 mb-3">
-                                                <div class="table-responsive">
-                                                    <table class="table table-bordred table-striped mytable">
-                                                        <thead>
-                                                        <tr>
-                                                            <th>FACILITY</th>
-                                                            <th>NUMBER AVAILABLE</th>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                        <tr>
-                                                            <td>Staffroom</td>
-                                                            <td>0</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Offices</td>
-                                                            <td>0</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Laboratory</td>
-                                                            <td>0</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Library</td>
-                                                            <td>0</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Store</td>
-                                                            <td>0</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>SBMC</td>
-                                                            <td>0</td>
-                                                        </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </b-card-body>
-                                </b-collapse>
-                            </b-card>
-                            <b-card no-body class="mb-1">
-                                <b-card-header header-tag="header" class="p-1" role="tab">
-                                    <b-btn block href="#" v-b-toggle.accordion3 variant="default text-left">Source of Power</b-btn>
-                                </b-card-header>
-                                <b-collapse id="accordion3" accordion="my-accordion" role="tabpanel">
-                                    <b-card-body>
-                                        <div class="row">
-                                            <div class="col-lg-12 mb-3">
-                                                <div class="table-responsive">
-                                                    <table class="table table-bordred table-striped mytable">
-                                                        <thead>
-                                                        <tr>
-                                                            <th>FACILITY</th>
-                                                            <th>AVAILABILITY</th>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                        <tr>
-                                                            <td> PHCN/NEPA</td>
-                                                            <td>No</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Solar</td>
-                                                            <td>No</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Generator</td>
-                                                            <td>No</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>None</td>
-                                                            <td>No</td>
-                                                        </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </b-card-body>
-                                </b-collapse>
-                            </b-card>
-                            <b-card no-body class="mb-1">
-                                <b-card-header header-tag="header" class="p-1" role="tab">
-                                    <b-btn block href="#" v-b-toggle.accordion2 variant="default text-left">Health Facilities</b-btn>
-                                </b-card-header>
-                                <b-collapse id="accordion2" accordion="my-accordion" role="tabpanel">
-                                    <b-card-body>
-                                        <div class="row">
-                                            <div class="col-lg-12 mb-3">
-                                                <div class="table-responsive">
-                                                    <table class="table table-bordred table-striped mytable">
-                                                        <thead>
-                                                        <tr>
-                                                            <th>FACILITY</th>
-                                                            <th>AVAILABILITY</th>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                        <tr>
-                                                            <td>Health Clinic</td>
-                                                            <td>No</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>First Aid Kit</td>
-                                                            <td>No</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>None</td>
-                                                            <td>No</td>
-                                                        </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </b-card-body>
-                                </b-collapse>
-                            </b-card>
-                            <b-card no-body class="mb-1">
-                                <b-card-header header-tag="header" class="p-1" role="tab">
-                                    <b-btn block href="#" v-b-toggle.accordion3 variant="default text-left">Source of Water Supply</b-btn>
-                                </b-card-header>
-                                <b-collapse id="accordion3" accordion="my-accordion" role="tabpanel">
-                                    <b-card-body>
-                                        <div class="row">
-                                            <div class="col-lg-12 mb-3">
-                                                <div class="table-responsive">
-                                                    <table class="table table-bordred table-striped mytable">
-                                                        <thead>
-                                                        <tr>
-                                                            <th>FACILITY</th>
-                                                            <th>AVAILABILITY</th>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                        <tr>
-                                                            <td>Pipe-borne</td>
-                                                            <td>No</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Well</td>
-                                                            <td>No</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Borehole</td>
-                                                            <td>No</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Others</td>
-                                                            <td>No</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>None</td>
-                                                            <td>No</td>
-                                                        </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </b-card-body>
-                                </b-collapse>
-                            </b-card>
-                            <b-card no-body class="mb-1">
-                                <b-card-header header-tag="header" class="p-1" role="tab">
-                                    <b-btn block href="#" v-b-toggle.accordion2 variant="default text-left">Fence</b-btn>
-                                </b-card-header>
-                                <b-collapse id="accordion2" accordion="my-accordion" role="tabpanel">
-                                    <b-card-body>
-                                        <div class="row">
-                                            <div class="col-lg-12 mb-3">
-                                                <div class="table-responsive">
-                                                    <table class="table table-bordred table-striped mytable">
-                                                        <thead>
-                                                        <tr>
-                                                            <th>FACILITY</th>
-                                                            <th>AVAILABILITY</th>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                        <tr>
-                                                            <td>Good</td>
-                                                            <td>No</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Minor Repair</td>
-                                                            <td>No</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Major repair</td>
-                                                            <td>No</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Unusable</td>
-                                                            <td>No</td>
-                                                        </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </b-card-body>
-                                </b-collapse>
-                            </b-card>
-
-
+                            <div class="row">
+                                <div class="col-lg-12 mb-3">
+                                    <div class="table-responsive mt-lg-5">
+                                        <table class="table table-bordred table-striped mytable">
+                                            <tbody>
+                                            <tr>
+                                                <td>Power Source</td>
+                                                <td>{{ power_sources }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Health Facilities</td>
+                                                <td>{{ health }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Learning Materials</td>
+                                                <td>{{ learning }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Water Source</td>
+                                                <td>{{ water }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Fence</td>
+                                                <td>-</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
                         </b-tab>
                         <b-tab title="CLASSROOM">
-                            <p>
-                                <a :href="`${schoolId}/update/classroom`" type="button" class="btn btn-outline-primary ekiti-btn pull-right">Edit</a>
-                            </p>
+                            <div>
+                                <p>
+                                    <a :href="`${schoolId}/update/classroom`" type="button" class="btn btn-outline-primary ekiti-btn pull-right">Edit</a>
+                                </p><br/><br/>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-12 mb-3">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordred table-striped mytable classroom-table">
+                                            <thead>
+                                            <tr>
+                                                <th>Class</th>
+                                                <th>Good</th>
+                                                <th>Minor Repair</th>
+                                                <th>Major repair</th>
+                                                <th>Unusable</th>
+                                                <th>Comment</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr v-for="classroom in schoolInfo.classrooms">
+                                                <td>{{ classroom.class }}</td>
+                                                <td>{{ classroom.pivot.good }}</td>
+                                                <td>{{ classroom.pivot.major_repair }}</td>
+                                                <td>{{ classroom.pivot.minor_repair }}</td>
+                                                <td>{{ classroom.pivot.unusable }}</td>
+                                                <td>{{ classroom.pivot.comment }}</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
 
                         </b-tab>
                         <b-tab title="LIBRARY">
                             <p>
                                 <a :href="`${schoolId}/update/library`" type="button" class="btn btn-outline-primary ekiti-btn pull-right">Edit</a>
                             </p>
+
+                        </b-tab>
+                        <b-tab title="SBMC">
+                            <p>
+                                <a :href="`${schoolId}/update/sbmc`" type="button" class="btn btn-outline-primary ekiti-btn pull-right">Edit</a>
+                            </p>
+
+                        </b-tab>
+                        <b-tab title="OTHERS">
+                            <div>
+                                <p>
+                                    <a :href="`${schoolId}/update/other_facilities`" type="button" class="btn btn-outline-primary ekiti-btn pull-right">Edit</a>
+                                </p><br/><br/>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-12 mb-3">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordred table-striped mytable">
+                                            <thead>
+                                            <tr>
+                                                <th>FACILITY</th>
+                                                <th>NUMBER AVAILABLE</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr v-for="facility in schoolInfo.facilities">
+                                                <td>{{ facility.type}}</td>
+                                                <td>{{ facility.status}}</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+
+                                </div>
+                            </div>
 
                         </b-tab>
                     </b-tabs>
@@ -463,6 +296,12 @@
                 totalTeachingStaff: 0,
                 totalNonTeachingStaff: 0,
                 schoolId: '',
+                play_facilities: '',
+                learning: '',
+                power_sources: '',
+                health: '',
+                water: '',
+                toilet: '',
 
                 center: {
                     lat: 7.6401306,
@@ -510,6 +349,28 @@
                 this.schoolName = data.name;
                 this.schoolAddress = data.address;
                 this.schoolId = data.id;
+
+                data.power_sources.forEach(item => {
+                    this.power_sources += item.power_sources + ', '
+                })
+                data.play_facilities.forEach(item => {
+                    this.play_facilities += item.play_facilities + ', '
+                })
+                data.learning.forEach(item => {
+                    this.learning += item.material + ', '
+                })
+                data.play_facilities.forEach(item => {
+                    this.play_facilities += item.play_facilities + ', '
+                })
+                data.health.forEach(item => {
+                    this.health += item.facility + ', '
+                })
+                data.water.forEach(item => {
+                    this.water += item.source + ', '
+                })
+                data.toilet.forEach(item => {
+                    this.toilet += item.toilet + ', '
+                })
                 // console.log(this.schoolInfo);
             })
 
@@ -536,7 +397,7 @@
         border-top: .5px solid #c5c5c5;
         border-bottom: .5px solid #c5c5c5;
         color: #555;
-        font-style: bold;
+        /*font-style: bold;*/
     }
 
     .sbemis-table div {
@@ -546,7 +407,7 @@
         border-bottom: .5px solid #c5c5c5;
     }
 
-    .mytable tr td:nth-child(odd) {
+    .classroom-table tr td {
         width: 20% !important;
     }
 

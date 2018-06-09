@@ -72,9 +72,9 @@ export default {
             schools: [],
             lgaId: '',
             level : '',
-            categoryId: '',
+            categoryId: null,
             lgaName : '',
-            categoryName : '',
+            categoryName : null,
             levelName : '',
             options: {
                 sortIcon: {
@@ -105,66 +105,40 @@ export default {
     mounted() {
         //check for lga id and category id in the url
         if (this.$route.params.lgaId){
+            let queryObject = null;
             this.lgaId = this.$route.params.lgaId
             this.categoryId = this.$route.params.catId
             this.level = this.$route.params.level
 
             //set the route parameter name
-            if(this.categoryId === '1') this.categoryName = 'Public';
-            if(this.categoryId === '2') this.categoryName = 'Private';
-            if(this.level === 'PRY') this.levelName = 'Primary';
-            if(this.level === 'SEC') this.levelName = 'Secondary';
+            if(this.categoryId === '1') this.categoryName = 'public';
+            if(this.categoryId === '2') this.categoryName = 'private';
+            if(this.level === 'PRY') this.levelName = 'primary';
+            if(this.level === 'SEC') this.levelName = 'secondary';
 
             //get category and level and filter school list accordingly
             if(this.categoryId && this.level){
-
-                this.$school.getSchoolsPerLga(this.lgaId).then(data => {
-                    // console.log(data.data)
-                    this.schools = data.data.filter( school =>{
-                        try {
-                            return (school.category == this.categoryName && school.education_level == this.levelName);
-                        }
-                        catch(err) {
-                           console.error(err);
-                        }
-                        return [];
-                    })
-                })
+                queryObject = {
+                    category: this.categoryName,
+                    level: this.levelName,
+                };
             }
-
             else if(this.categoryId){
-
-                this.$school.getSchoolsPerLga(this.lgaId).then(data => {
-                    // console.log(data.data)
-
-                    this.schools = data.data.filter( school =>{
-                        try {
-                            return (school.category == this.categoryName);
-                        }
-                        catch(err) {
-                            console.error(err);
-                        }
-                        return [];
-                    })
-                })
+                queryObject = {
+                    category: this.categoryName,
+                };
             }
-            else if(this.level){
+            else if(this.level) {
+                queryObject = {
+                    level: this.levelName,
+                };
+            } else{}
 
-                this.$school.getSchoolsPerLga(this.lgaId).then(data => {
-                    // console.log(data.data)
-
-                    this.schools = data.data.filter( school =>{
-                        try {
-                            return (school.education_level == this.levelName);
-                        }
-                        catch(err) {
-                            console.error(err);
-                        }
-                        return [];
-                    })
-                })
-            }
-            else {}
+            console.log(queryObject);
+            this.$school.getSchoolsPerLga(this.lgaId, queryObject).then(data => {
+                // console.log(data.data)
+                this.schools = data;
+            })
         }
         else {
             this.$school.allSchools().then(data => {

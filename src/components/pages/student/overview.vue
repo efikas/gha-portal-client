@@ -7,7 +7,7 @@
                         <i class="fa fa-user-o fb_text"></i>
                     </div>
                     <div class="text-ash">
-                        <h4 class="mt-2 text_size">{{ totalFemale }}</h4>
+                        <h4 class="mt-2 text_size">{{ totalFemale.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}</h4>
                         <p class="m-0 mt-2">Female Students</p>
                     </div>
                 </div>
@@ -18,7 +18,7 @@
                         <i class="fa fa-link fb_text"></i>
                     </div>
                     <div class="text-ash">
-                        <h4 class="mb-0 mt-2 text_size">{{ totalMale }}</h4>
+                        <h4 class="mb-0 mt-2 text_size">{{ totalMale.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}</h4>
                         <p class="m-0 mt-2">Male Students</p>
                     </div>
                 </div>
@@ -64,13 +64,13 @@
                                     <td>{{ studentPerLga.name }}</td>
                                     <td>{{ getFemale(studentPerLga.students.female) }}</td>
                                     <td>{{ getMale(studentPerLga.students.male) }}</td>
-                                    <td>{{ getTotal(Number(studentPerLga.students.female) + Number(studentPerLga.students.male)) }}</td>
+                                    <td>{{ getTotal(studentPerLga.students.female, studentPerLga.students.male) }}</td>
                                 </tr>
                             </tbody>
                             <tfoot>
                                 <tr>
                                     <th colspan="3" class="text-right">Grand Total</th>
-                                    <th>{{ totalStudents }}</th>
+                                    <th>{{ totalStudents.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}</th>
                                 </tr>
                             </tfoot>
                         </table>
@@ -189,9 +189,14 @@
             this.$student.getStudentsPerLga()
                 .then((data) => {
                     this.studentPerLgas = data;
+                    data.forEach(item => {
+                        this.totalMale += item.students.male;
+                        this.totalFemale += item.students.female;
+                        this.totalStudents += item.students.female + item.students.male;
+                    })
                 })
                 .catch((error) => console.log(error)
-            ),
+            )
 
             // unsub = this.$store.subscribe((mutation, state) => {
             //     if (mutation.type == "left_menu") {
@@ -206,13 +211,13 @@
             //     }
             // }),
 
-            axios.get("http://www.filltext.com/?rows=1&chartdata={numberArray|12,100}").then(response => {
-                    this.ajaxbar_chart.series[0].data = response.data[0].chartdata;
-                    this.ajaxloading = false;
-                })
-                .catch(function (error) {
-
-                })
+            // axios.get("http://www.filltext.com/?rows=1&chartdata={numberArray|12,100}").then(response => {
+            //         this.ajaxbar_chart.series[0].data = response.data[0].chartdata;
+            //         this.ajaxloading = false;
+            //     })
+            //     .catch(function (error) {
+            //
+            //     })
 
         },
         beforeRouteLeave(to, from, next) {
@@ -224,29 +229,27 @@
             //todo: recalculate total students
 
             getMale(maleStudentsPerLga){
-                this.totalMale = this.totalMale + Number(maleStudentsPerLga);
-                return maleStudentsPerLga;
+                return maleStudentsPerLga.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
             },
             getFemale(femaleStudentsPerLga){
-                this.totalFemale = this.totalFemale + Number(femaleStudentsPerLga);
-                return femaleStudentsPerLga;
+                return femaleStudentsPerLga.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
             },
-            getTotal(studentsTotalPerLga){
-                this.totalStudents = this.totalStudents + studentsTotalPerLga;
-                return studentsTotalPerLga;
+            getTotal(femaleStudentsPerLga, maleStudentsPerLga){
+                let studentsTotalPerLga = +femaleStudentsPerLga + (+maleStudentsPerLga);
+                return studentsTotalPerLga.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
             },
             onReady(instance) {
                 this.instances.push(instance)
             },
             // ===chart animation===
             update_chart() {
-                setInterval(() => {
-                    for (var i = 0; i < this.ajaxbar_chart.series.length; i++) {
-                        this.ajaxbar_chart.series[i].data.shift();
-                        this.ajaxbar_chart.series[i].data.push(Math.floor((Math.random() * (1000 - 90) + 90) +
-                            1));
-                    }
-                }, 4000);
+                // setInterval(() => {
+                //     for (var i = 0; i < this.ajaxbar_chart.series.length; i++) {
+                //         this.ajaxbar_chart.series[i].data.shift();
+                //         this.ajaxbar_chart.series[i].data.push(Math.floor((Math.random() * (1000 - 90) + 90) +
+                //             1));
+                //     }
+                // }, 4000);
             },
             // ===chart animation===
         }

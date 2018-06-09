@@ -8,7 +8,7 @@
     import facilities from './update/facilities';
     import library from './update/library';
     import sbmc from './update/sbmc';
-    import facilities_details from './update/facilities_details';
+    import other_facilities from './update/other_facilities';
 
     export default {
         name: "staff-layout",
@@ -16,7 +16,7 @@
             'basic': basic,
             'classroom': classroom,
             'facilities': facilities,
-            'facilities_details': facilities_details,
+            'other_facilities': other_facilities,
             'library': library,
             'sbmc': sbmc,
         },
@@ -38,8 +38,8 @@
                     case 'facilities':
                         this.currentView = 'facilities';
                         break;
-                    case 'facilities_details':
-                        this.currentView = 'facilities_details';
+                    case 'other_facilities':
+                        this.currentView = 'other_facilities';
                         break;
                     case 'library':
                         this.currentView = 'library';

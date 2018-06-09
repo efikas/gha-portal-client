@@ -537,25 +537,27 @@
                     marital_status: '1',
                     religion: '1',
                     residential_address: 'Ado Ekiti',
+
                     category: 2,
-                    // grade_level: '',
                     status: '2',
                     salary_source: '2',
-                    // first_appointment: '',
                     last_promotion_year: '2018',
-                    // posting_year: '',
                     employment_type: '1',
                     academic_qualification: '2',
                     teaching_qualification: '4',
                     speciality: 2,
                     subject_taught: '12',
-                    // class_taught: '',
-                    // training_workshop: '',
                     computer_literate: '1',
-                    // trc_registered: '',
                     trc_reg_no: '345-356',
+
                     // school_posted_from: '',
                     // position: '',
+                    // first_appointment: '',
+                    // grade_level: '',
+                    // class_taught: '',
+                    // training_workshop: '',
+                    // trc_registered: '',
+                    // posting_year: '',
                 }
             }
         },
@@ -574,7 +576,18 @@
             },
             onSubmit: function () {
                 this.$staff.addStaff(this.data).then(response => {
-
+                    if (typeof  response == 'object'){
+                        this.$swal({
+                            type: 'success',
+                            title: 'School Record added Successfully!',
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'Ok'
+                        }).then((result) => {
+                            if (result.value) {
+                                location.reload();
+                            }
+                        })
+                    }
                 })
             },
             getSchool(){

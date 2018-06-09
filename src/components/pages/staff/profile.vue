@@ -91,23 +91,41 @@
                                 <tbody>
                                 <tr class="m-0">
                                    <td>School Name</td>
-                                    <td> {{ schoolName }}</td>
+                                    <td colspan="3"> {{ schoolName }}</td>
                                 </tr>
                                 <tr>
-                                   <td>Grade/Level</td>
-                                    <td> {{ staffInfo.gl_step }}</td>
+                                   <td>Academic Qualification</td>
+                                    <td> {{ staffInfo.academic_qualification }}</td>
+                                    <td>Specilaity</td>
+                                    <td> {{ staffInfo.speciality }}</td>
                                 </tr>
                                 <tr>
-                                   <td>Salary Source</td>
+                                    <td>Teaching Qualification</td>
+                                    <td> {{ staffInfo.teaching_qualification }}</td>
+                                    <td>Subject taught</td>
+                                    <td> {{ staffInfo.subject_taught }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Employment Type</td>
+                                    <td> {{ staffInfo.employment_type }}</td>
+                                    <td>Salary Source</td>
                                     <td> {{ staffInfo.salary_source }}</td>
                                 </tr>
                                 <tr>
-                                   <td>Employment Year</td>
-                                    <td> {{ staffInfo.year_of_posting }}</td>
+                                   <td>Staff Category</td>
+                                    <td> {{ staffInfo.category }}</td>
+                                    <td>Last Promotion</td>
+                                    <td> {{ staffInfo.last_promotion_year }}</td>
                                 </tr>
                                 <tr>
-                                   <td>Staff Category</td>
-                                    <td> {{ staffInfo.staff_category }}</td>
+                                    <td>TRC Reg No</td>
+                                    <td> {{ staffInfo.trc_reg_no }}</td>
+                                    <td>Staff Status</td>
+                                    <td> {{ staffInfo.status }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Computer Literate</td>
+                                    <td colspan="3"> {{ yesNo(staffInfo.computer_literate) }}</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -142,12 +160,9 @@ export default {
         }
     },
     methods: {
-        show () {
-            this.$modal.show('hello-world');
+        yesNo: (value) => {
+           return (value == 1) ? 'Yes' : 'No';
         },
-        hide () {
-            this.$modal.hide('hello-world');
-        }
     },
     mounted: function() {
         this.staffId = this.$route.params.id,
@@ -155,7 +170,12 @@ export default {
             this.staffInfo = data;
             this.schoolName = data.school.name
             this.schoolId = data.school.id;
-            // console.log()
+
+            let settings = JSON.parse(localStorage.getItem('settings'));
+            let _status = settings.staff_statuses.filter(item => {
+                return (item.id == data.status);
+            });
+            this.staffInfo.status = _status[0].status;
         })
     },
     watch: {

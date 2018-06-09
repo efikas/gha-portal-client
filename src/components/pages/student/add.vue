@@ -631,49 +631,25 @@ export default {
             schools: [],
             school_name: '',
             data: {
-                school_id: '1',
-                first_name: 'Ajadi',
-                middle_name: 'Tunde',
-                last_name: 'O',
-                sex: 'M',
-                date_of_birth: '1998/2/4',
-                place_of_birth: 'Ado',
-                phone: '080',
-                email: 'aaa@gmail.com',
-                special_condition: 3,
-                height: 1,
-                weight: 1,
-                blood_group: 'AS',
-                birth_cert_type: 2,
-                admission_year: '2008',
-                admission_status: 1,
-                edu_level: '4',
-                admission_education_level: '2',
-                // current_education_level: '',
-                // current_class_level: '',
-                // exam_registration: '',
-                boarding: 1,
-                dormitory_id: 23,
-                distance_from_school: 1,
-                parent: [{
-                        title: 'Mr',
-                        fullname: 'Ajayi Tolulope',
-                        relationship: 1,
-                        occupation: 'Business Man',
-                        mobile: '',
-                        phone: '08046473322',
-                        email: '',
-                        religion: 'Christianity',
-                        primary_contact: 'Ado',
-                        contact_address: 'Ado'
-                    }]
+                parent: [{}]
             }
         }
     },
     methods: {
         onComplete: function(){
             this.$student.addStudent(this.data).then(response => {
-
+                if (typeof response == 'object'){
+                    this.$swal({
+                        type: 'success',
+                        title: 'School Record added Successfully!',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'Ok'
+                    }).then((result) => {
+                        if (result.value) {
+                            location.reload();
+                        }
+                    })
+                }
             })
         },
         getSchool(){

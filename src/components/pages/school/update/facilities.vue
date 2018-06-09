@@ -2,16 +2,28 @@
     <div>
         <b-card header="School Facilities Information" header-tag="h4" class="bg-header-card">
             <form method="" class="form-horizontal" @submit.prevent="onSubmit">
-                <div class="row even-row">
-                    <div class="col-xs-12 col-sm-6 col-md-6">
-                        <div class="form-group p-10">
-                            <label class="control-label col-md-12">School Building Type
-                            </label>
-                            <div class="col-md-12">
-                                <b-form-radio-group v-model="data.school_building_type" :options="schoolBuildingType" stacked name="school_building" />
-                            </div>
-                        </div>
-                    </div>
+                <!--<div class="row even-row">-->
+                    <!--<div class="col-xs-12 col-sm-6 col-md-6">-->
+                        <!--<div class="form-group p-10">-->
+                            <!--<label class="control-label col-md-12">School Building Type-->
+                            <!--</label>-->
+                            <!--<div class="col-md-12">-->
+                                <!--<b-form-radio-group v-model="data.school_building_type" :options="schoolBuildingType" stacked name="school_building" />-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!---->
+                    <!--<div class="col-xs-12 col-sm-6 col-md-3">-->
+                        <!--<div class="form-group p-10">-->
+                            <!--<label class="control-label">School Fence Condition-->
+                            <!--</label>-->
+                            <!--<div class="col-md-12">-->
+                                <!--<b-form-radio-group v-model="data.school_fence_condition" :options="fenceCondition" stacked name="fence_condition" />-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <div class="row odd-row">
                     <div class="col-xs-12 col-sm-6 col-md-3">
                         <div class="form-group p-10">
                             <label class="control-label">School Building Ownership
@@ -22,17 +34,6 @@
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-3">
-                        <div class="form-group p-10">
-                            <label class="control-label">School Fence Condition
-                            </label>
-                            <div class="col-md-12">
-                                <b-form-radio-group v-model="data.school_fence_condition" :options="fenceCondition" stacked name="fence_condition" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row odd-row">
-                    <div class="col-xs-12 col-sm-6 col-md-6">
                         <div class="form-group p-10">
                             <label class="control-label col-md-12">Play Rooms</label>
                             <div class="col-md-12">
@@ -127,15 +128,10 @@
                 toiletFacilities:[],
                 schoolId: '',
                 data: {
-                    // ward_id: '',
-                    // boarding: '1',
-                    // school_library: '1',
-                    // security_guard: '1',
-                    school_building_type: '1',
-                    building_ownership: '1',
-                    school_fence_condition: '1',
-
-                    building_ownership: '1',
+                    school_building_type: '',
+                    building_ownership: '',
+                    school_fence_condition: '',
+                    building_ownership: '',
                     play_rooms: [],
                     play_facilities: [],
                     learning: [],
@@ -153,21 +149,18 @@
             onSubmit: function () {
 
                 this.$school.editSchool(this.schoolId, this.data).then(response => {
-                    console.log(response);
-
-                    // if( response.status == 'success'){
-                        //     this.$swal({
-                        //         type: 'success',
-                        //         title: 'School Record updated Successfully!',
-                        //         confirmButtonColor: '#3085d6',
-                        //         confirmButtonText: 'Ok'
-                        //     }).then((result) => {
-                        //         if (result.value) {
-                        //             // todo reload page
-                        //             location.reload();
-                        //         }
-                        //     })
-                        // }
+                    // if (typeof  response == 'object'){
+                    //     this.$swal({
+                    //         type: 'success',
+                    //         title: 'School Record added Successfully!',
+                    //         confirmButtonColor: '#3085d6',
+                    //         confirmButtonText: 'Ok'
+                    //     }).then((result) => {
+                    //         if (result.value) {
+                    //             location.reload();
+                    //         }
+                    //     })
+                    // }
                         // else {
                         //     this.$swal({
                         //         type: 'error',
@@ -201,21 +194,34 @@
                 settings.play_rooms.forEach(item => this.playRooms.push({ text: item.category, value: item.id }));
                 settings.fences.forEach(item => this.fenceCondition.push({ text: item.condition, value: item.id }));
                 settings.power_sources.forEach(item => this.powerSource.push({ text: item.power_sources, value: { power_source_id: item.id } }));
-
-
-                    // facilitiesShared:[],
-                    // boarding: [],
-                    // schoolLibrary: [],
-                    // schoolBuildingType: [],
-                    // fenceCondition: [],
-                    // playRooms: [],
-                    // playFacilities: [],
-                    // powerSource: [],
-                    // toiletFacilities:[],
             }
 
             this.$school.schoolProfile(this.$route.params.id).then(data => {
                 this.schoolId = data.id
+
+                // populate the toilet array with data from the database
+                data.toilet.forEach(item => {
+                    this.data.toilet.push({toilet_type_id: item.pivot.toilet_type_id});
+                })
+
+
+                this.data.building_ownership = {building_id: data.building_ownership[0].pivot.building_id};
+                // this.data.play_rooms = data.play_rooms[0].pivot.play_room_id;
+                // this.data.play_facilities = data.play_facilities[0].pivot.play_facility_id;
+
+                data.learning.forEach(item => {
+                    this.data.learning.push({learning_id: item.pivot.learning_id})
+                })
+
+                data.power_sources.forEach(item => {
+                    this.data.power_sources.push({power_source_id: item.pivot.power_source_id})
+                })
+                data.health.forEach(item => {
+                    this.data.health.push({health_id: item.pivot.health_id})
+                })
+                data.water.forEach(item => {
+                    this.data.water.push({ water_id: item.pivot.water_id });
+                })
             })
 
 

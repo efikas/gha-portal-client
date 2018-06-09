@@ -588,9 +588,19 @@
             onSubmit: function () {
                 console.log("aaa")
                 this.$school.addSchool(this.data).then(response => {
-
+                    if (typeof  response == 'object'){
+                        this.$swal({
+                            type: 'success',
+                            title: 'School Record added Successfully!',
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'Ok'
+                        }).then((result) => {
+                            if (result.value) {
+                                location.reload();
+                            }
+                        })
+                    }
                 })
-                // alert('Yay. Done!');
             },
             addMore(elementGroup) {
                 switch (elementGroup) {
@@ -611,13 +621,11 @@
                         break;
                     default:
                         break;
-
                 }
             },
             getWard(){
                 this.wards = []; // clear previous ward elements
                 this.wardKeys = [];
-
                 let _lga = this.lgasInfo.filter(item => {
                     return (item.id === this.lgas.indexOf(this.data.lga) + 1);
                 });
@@ -646,14 +654,8 @@
             //     this.lgasInfo.push(item);
             //     this.lgas.push(item.name);
             // })
-
-            
         },
-        watch: {
-            settings(data) {
-                let a = 5;
-            }
-        },
+        watch: {},
         destroyed: function () {
 
         }

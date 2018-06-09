@@ -13,8 +13,8 @@
                         </thead>
                         <tbody>
                         <tr v-for="(facility, index) in facilities">
-                            <td>{{facility.type}}</td>
-                            <td><input type="number" min="0" v-model="facility.status" class="form-control" placeholder=""></td>
+                            <td>{{facilities[index].type}}</td>
+                            <td><input type="number" min="0" v-model="facilities[index].status" class="form-control" placeholder=""></td>
                         </tr>
                         </tbody>
                     </table>
@@ -32,7 +32,9 @@
     import vue2Dropzone from 'vue2-dropzone'
     import 'vue2-dropzone/dist/vue2Dropzone.css'
     import options from "src/validations/validations.js";
+    import VueSweetalert2 from 'vue-sweetalert2';
 
+    Vue.use(VueSweetalert2);
     Vue.use(VueFormWizard, options);
     export default {
         data() {
@@ -51,21 +53,18 @@
                     this.data.facilities.push({facility_id: item.id, no_facility: item.status})
                 })
                 this.$school.editSchool(this.schoolId, this.data).then(response => {
-                    console.log(response);
-
-                    // if( response.status == 'success'){
-                        //     this.$swal({
-                        //         type: 'success',
-                        //         title: 'School Record updated Successfully!',
-                        //         confirmButtonColor: '#3085d6',
-                        //         confirmButtonText: 'Ok'
-                        //     }).then((result) => {
-                        //         if (result.value) {
-                        //             // todo reload page
-                        //             location.reload();
-                        //         }
-                        //     })
-                        // }
+                    // if (typeof  response == 'object'){
+                    //     this.$swal({
+                    //         type: 'success',
+                    //         title: 'School Record updated Successfully!',
+                    //         confirmButtonColor: '#3085d6',
+                    //         confirmButtonText: 'Ok'
+                    //     }).then((result) => {
+                    //         if (result.value) {
+                    //             window.location.href = 'http://localhost:8080/school/' + this.schoolId;
+                    //         }
+                    //     })
+                    // }
                         // else {
                         //     this.$swal({
                         //         type: 'error',
@@ -87,31 +86,21 @@
             let settings = JSON.parse(localStorage.getItem('settings'));
 
             if(settings) {
-                this.facilities = settings.facility_types;
-
+               this.facilities = settings.facility_types
             }
 
             this.$school.schoolProfile(this.$route.params.id).then(data => {
-
-
                 this.schoolId = data.id;
-                // this.data.lga_id = data.ward.lga_id;
-                this.data.lga_ward_id = data.ward.id;
-                this.data.ownership = 1;
-
-                // // get lGA
-                // let _lga = this.lgasInfo.filter(item => {
-                //     return (item.id == data.ward.lga_id);
-                // })
-                // this.lga = _lga[0].name;
-                //
-                // // get ward
-                // let settings = JSON.parse(localStorage.getItem('settings'));
-                //
-                // let _wards = settings.lga_wards.filter(item => {
-                //     return (item.id == data.ward.id);
-                // })
-                // this.ward = _wards[0].name;
+                // if(data.facilities.length > 0){
+                //     this.facilities = [];
+                //     data.facilities.forEach(item => {
+                //         this.facilities.push({
+                //             id: item.id,
+                //             type: item.type,
+                //             status: item.pivot.no_facility,
+                //         });
+                //     });
+                // }
 
             })
 

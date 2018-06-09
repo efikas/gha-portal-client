@@ -22,9 +22,17 @@ export default {
             })
         })
     },
-    getSchoolsPerLga(lgaId) {
+    getSchoolsPerLga(lgaId, queryObject = null) {
         return new Promise((resolve, reject) => {
-            axios.get(`lga/${lgaId}/schools`)
+            let query = '';
+            if (queryObject){
+                query = '?',
+                Object.keys(queryObject).forEach((key, index) => {
+                    query += (index > 0) ? '&': '';
+                    query += `${key}=${queryObject[key]}`;
+                })
+            }
+            axios.get(`lga/${lgaId}/schools${query}`)
                 .then(response => {
                     resolve(response.data)
                 }).catch((error) => {
