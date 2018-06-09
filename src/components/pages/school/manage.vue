@@ -111,94 +111,6 @@ export default {
             this.categoryId = this.$route.params.catId
             this.level = this.$route.params.level
 
-            //set the route parameter name
-<<<<<<< HEAD
-            if(this.categoryId === '1') this.categoryName = 'Public';
-            if(this.categoryId === '2') this.categoryName = 'Private';
-            if(this.level === 'PRY') this.levelName = 'Primary';
-            if(this.level === 'SEC') this.levelName = 'Secondary';
-
-            //get category and level and filter school list accordingly
-            if(this.categoryId && this.level){
-
-                this.$school.getSchoolsPerLga(this.lgaId).then(data => {
-                    // console.log(data.data)
-                    this.schools = data.data.filter( school =>{
-<<<<<<< HEAD
-                        // try {
-                            return (school.category == this.categoryName && school.education_level == this.levelName);
-                        // }
-                        // catch(err) {
-                        //    console.error(err);
-                        // }
-                        // return [];
-=======
-                        try {
-                            return (school.category == this.categoryName && school.education_level == this.levelName);
-                        }
-                        catch(err) {
-                           console.error(err);
-                        }
-                        return [];
->>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
-                    })
-                })
-            }
-
-            else if(this.categoryId){
-
-                this.$school.getSchoolsPerLga(this.lgaId).then(data => {
-                    // console.log(data.data)
-
-                    this.schools = data.data.filter( school =>{
-<<<<<<< HEAD
-                        // try {
-                            return (school.category == this.categoryName);
-                        // }
-                        // catch(err) {
-                        //     console.error(err);
-                        // }
-                        // return [];
-=======
-                        try {
-                            return (school.category == this.categoryName);
-                        }
-                        catch(err) {
-                            console.error(err);
-                        }
-                        return [];
->>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
-                    })
-                })
-            }
-            else if(this.level){
-
-                this.$school.getSchoolsPerLga(this.lgaId).then(data => {
-                    // console.log(data.data)
-
-                    this.schools = data.data.filter( school =>{
-<<<<<<< HEAD
-                        // try {
-                            return (school.education_level == this.levelName);
-                        // }
-                        // catch(err) {
-                        //     console.error(err);
-                        // }
-                        // return [];
-=======
-                        try {
-                            return (school.education_level == this.levelName);
-                        }
-                        catch(err) {
-                            console.error(err);
-                        }
-                        return [];
->>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
-                    })
-                })
-            }
-            else {}
-=======
             if(this.categoryId === '1') this.categoryName = 'public';
             if(this.categoryId === '2') this.categoryName = 'private';
             if(this.level === 'PRY') this.levelName = 'primary';
@@ -227,7 +139,6 @@ export default {
                 // console.log(data.data)
                 this.schools = data;
             })
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
         }
         else {
             this.$school.allSchools().then(data => {
