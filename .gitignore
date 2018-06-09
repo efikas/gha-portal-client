@@ -1,0 +1,7 @@
+/node_modules
+/.vscode
+/dist
+/.idea
+npm-debug.log
+mix-manifest.json
+hot
