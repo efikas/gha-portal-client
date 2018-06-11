@@ -1,86 +1,63 @@
 <template>
     <div>
         <b-card header="School Basic Information" header-tag="h4" class="bg-header-card">
-             <form method="" class="form-horizontal">
-                        <div class="row odd-row">
-                            <div class="col-xs-12 col-sm-6 col-md-3">
-                                <label  class="control-label">LGA</label>
-                                <multiselect v-model="data.lga" :show-labels="false" :options="lgas" @input="getWard"></multiselect>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group p-10">
-                                    <label class="control-label col-md-8" for="name">School Name
-                                    </label>
-                                    <div class="col-md-12">
-                                        <input type="text" class="form-control" v-model="data.name"
-                                               id="name" placeholder="School Name">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-3">
-                                <label>Ward</label>
-                                <multiselect v-model="data.ward" :show-labels="false" :options="wards"></multiselect>
+            <form method="" class="form-horizontal" @submit.prevent="onSubmit">
+                <div class="row odd-row">
+                    <div class="col-xs-12 col-sm-6 col-md-3">
+                        <label  class="control-label">LGA</label>
+                        <multiselect v-model="data.lga" :show-labels="false" :options="lgas" @input="getWard"></multiselect>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group p-10">
+                            <label class="control-label col-md-8" for="name">School Name
+                            </label>
+                            <div class="col-md-12">
+                                <input type="text" class="form-control" v-model="data.name" id="name" placeholder="School Name">
                             </div>
                         </div>
-                        <div class="row even-row">
-                            <div class="col-xs-12 col-sm-6 col-md-3">
-                                <div class="form-group p-10">
-                                    <label class="control-label col-md-12" for="year_established">Year Established
-                                    </label>
-                                    <div class="col-md-12">
-                                        <select id="year_established" v-model="data.established"
-                                                name="established" class="form-control" size="1">
-                                            <option value="0">
-                                                Select Year
-                                            </option>
-                                            <option value="1">1930</option>
-                                            <option value="2">1931</option>
-                                            <option value="3">1932</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-3">
-                                <div class="form-group p-10">
-                                    <label class="control-label" for="dist">Distance to Catchment Area
-                                    </label>
-                                    <div class="col-md-12">
-                                        <input type="number" min="0" v-model="data.average_distance"
-                                               class="form-control" id="dist" placeholder="">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-3">
-                                <div class="form-group p-10">
-                                    <label class="control-label" for="village_town">Village/Town
-                                    </label>
-                                    <div class="col-md-12">
-                                        <input type="text" v-model="data.village_town" class="form-control"
-                                               id="village_town" placeholder="">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-3">
-                                <div class="form-group p-10">
-                                    <label class="control-label" for="location">School Location
-                                    </label>
-                                    <div class="col-md-12">
-                                        <div class="radio">
-                                            <b-form-radio :value="1" checked="false" name="location"
-                                                          v-model="data.location">
-                                                Rural
-                                            </b-form-radio>
-                                        </div>
-                                        <div class="radio">
-                                            <b-form-radio :value="0" checked="false" name="location"
-                                                          v-model="data.location">
-                                                Urban
-                                            </b-form-radio>
-                                        </div>
-                                    </div>
-                                </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-3">
+                        <label>Ward</label>
+                        <multiselect v-model="data.ward" :show-labels="false" :options="wards"></multiselect>
+                    </div>
+                </div>
+                <div class="row even-row">
+                    <div class="col-xs-12 col-sm-6 col-md-3">
+                        <div class="form-group p-10">
+                            <label class="control-label col-md-12" for="year_established">Year Established
+                            </label>
+                            <div class="col-md-12">
+                                <input type="text" class="form-control" v-model="data.established"
+                                       id="year_established" placeholder="Year Established">
                             </div>
                         </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-3">
+                        <div class="form-group p-10">
+                            <label class="control-label" for="dist">Distance to Catchment Area
+                            </label>
+                            <input type="number" min="0" v-model="data.average_distance"
+                                    class="form-control" id="dist" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-3">
+                        <div class="form-group p-10">
+                            <label class="control-label" for="village_town">Village/Town
+                            </label>
+                            <input type="text" v-model="data.town" class="form-control"
+                                        id="village_town" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-3">
+                        <div class="form-group p-10">
+                            <label class="control-label" for="location">School Location
+                            </label>
+                            <div class="col-md-12">
+                                <b-form-radio-group v-model="data.location" :options="schoolLocationsOptions" stacked />
+                            </div>
+                        </div>
+                    </div>
+                </div>
                         <div class="row odd-row">
                             <div class="col-xs-12 col-sm-7">
                                 <div class="form-group p-10">
@@ -98,7 +75,7 @@
                                     </label>
                                     <div class="col-md-12">
                                         <input type="text" v-model="data.phone" class="form-control"
-                                               id="phone" placeholder="Enter value">
+                                               id="phone" placeholder="Enter Phone Number">
                                     </div>
                                 </div>
                             </div>
@@ -129,24 +106,13 @@
                                     <label class="control-label col-md-12" for="text">School Category
                                     </label>
                                     <div class="col-md-12">
-                                        <div class="radio">
-                                            <b-form-radio :value="1" checked="false" name="category"
-                                                          v-model="data.category">
-                                                Public
-                                            </b-form-radio>
-                                        </div>
-                                        <div class="radio">
-                                            <b-form-radio :value="2" checked="false" name="category"
-                                                          v-model="data.category">
-                                                Private
-                                            </b-form-radio>
-                                        </div>
+                                        <b-form-radio-group v-model="data.category" :options="schoolCategoryOptions" stacked />
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row odd-row">
-                            <div class="col-xs-12 col-sm-6 col-md-5">
+                            <div class="col-xs-12 col-sm-6 col-md-6">
                                 <div class="form-group p-10">
                                     <label class="control-label col-md-12" for="name_of_proprietor">Propritor Name
                                     </label>
@@ -157,37 +123,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-sm-6 col-md-3">
-                                <div class="form-group p-10">
-                                    <label class="control-label" for="text">Private Membership
-                                    </label>
-                                    <div class="col-md-12">
-                                        <div class="radio">
-                                            <b-form-radio :value="1" name="private_membership_status"
-                                                          v-model="data.private_membership_status"
-                                                          checked="false">
-                                                Yes
-                                            </b-form-radio>
-                                        </div>
-                                        <div class="radio" checked="false">
-                                            <b-form-radio :value="0" name="private_membership_status"
-                                                          v-model="data.private_membership_status">
-                                                No
-                                            </b-form-radio>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-4">
+                            <div class="col-xs-12 col-sm-6 col-md-6">
                                 <div class="form-group p-10">
                                     <label class="control-label" for="private_membership_name">Private Memebership's
                                         Name
                                     </label>
-                                    <div class="col-md-12">
-                                        <input type="text" v-model="data.private_membership_name"
+                                    <input type="text" v-model="data.private_membership_name"
                                                class="form-control" id="private_membership_name"
-                                               placeholder="PPrivate Memebership's Name">
-                                    </div>
+                                               placeholder="Memebership's Name">
                                 </div>
                             </div>
                         </div>
@@ -196,120 +139,14 @@
                                 <div class="form-group p-10">
                                     <label class="control-label col-md-12" for="text">School Type
                                     </label>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="radio">
-                                                <b-form-radio :value="1" checked="false" name="type"
-                                                              v-model="data.type">
-                                                    Regular
-                                                </b-form-radio>
-                                            </div>
-                                            <div class="radio">
-                                                <b-form-radio :value="2" checked="false" name="type"
-                                                              v-model="data.type">
-                                                    Islamiyya Integrated
-                                                </b-form-radio>
-                                            </div>
-                                            <div class="radio">
-                                                <b-form-radio :value="3" checked="false" name="type"
-                                                              v-model="data.type">
-                                                    Montessori
-                                                </b-form-radio>
-                                            </div>
-                                            <div class="radio">
-                                                <b-form-radio :value="4" checked="false" name="type"
-                                                              v-model="data.type">
-                                                    Special Needs
-                                                </b-form-radio>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="radio">
-                                                <b-form-radio :value="5" checked="false" name="type"
-                                                              v-model="data.type">
-                                                    Vocational Training Center
-                                                </b-form-radio>
-                                            </div>
-                                            <div class="radio">
-                                                <b-form-radio :value="6" checked="false" name="type"
-                                                              v-model="data.type">
-                                                    Science and Technology College
-                                                </b-form-radio>
-                                            </div>
-                                            <div class="radio">
-                                                <b-form-radio :value="7" checked="false" name="type"
-                                                              v-model="data.type">
-                                                    Nomadic (Migrant)
-                                                </b-form-radio>
-                                            </div>
-                                        </div>
-                                    </div>
+                                   <b-form-radio-group v-model="data.type" :options="schoolTypesOptions" stacked />
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-6">
                                 <div class="form-group p-10">
                                     <label class="control-label" for="text">School Ownership
                                     </label>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="radio">
-                                                <b-form-radio :value="1" checked="false" name="ownership"
-                                                              v-model="data.ownership">
-                                                    Community
-                                                </b-form-radio>
-                                            </div>
-                                            <div class="radio">
-                                                <b-form-radio :value="2" checked="false" name="ownership"
-                                                              v-model="data.ownership">
-                                                    Cooperation
-                                                </b-form-radio>
-                                            </div>
-                                            <div class="radio">
-                                                <b-form-radio :value="3" checked="false" name="ownership"
-                                                              v-model="data.ownership">
-                                                    Federal Government
-                                                </b-form-radio>
-                                            </div>
-                                            <div class="radio">
-                                                <b-form-radio :value="4" checked="false" name="ownership"
-                                                              v-model="data.ownership">
-                                                    State Government
-                                                </b-form-radio>
-                                            </div>
-                                            <div class="radio">
-                                                <b-form-radio :value="5" checked="false" name="ownership"
-                                                              v-model="data.ownership">
-                                                    Local Government
-                                                </b-form-radio>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="radio">
-                                                <b-form-radio :value="6" checked="false" name="ownership"
-                                                              v-model="data.ownership">
-                                                    Faith Based
-                                                </b-form-radio>
-                                            </div>
-                                            <div class="radio">
-                                                <b-form-radio :value="7" checked="false" name="ownership"
-                                                              v-model="data.ownership">
-                                                    Individual
-                                                </b-form-radio>
-                                            </div>
-                                            <div class="radio">
-                                                <b-form-radio :value="8" checked="false" name="ownership"
-                                                              v-model="data.ownership">
-                                                    NGO
-                                                </b-form-radio>
-                                            </div>
-                                            <div class="radio">
-                                                <b-form-radio :value="9" checked="false" name="ownership"
-                                                              v-model="data.ownership">
-                                                    Others
-                                                </b-form-radio>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <b-form-radio-group v-model="data.ownership" :options="schoolOwnershipOptions" stacked />
                                 </div>
                             </div>
                         </div>
@@ -319,18 +156,7 @@
                                     <label class="control-label col-md-12" for="education_level">Education Level
                                     </label>
                                     <div class="col-md-12">
-                                        <div class="radio">
-                                            <b-form-radio value="PRY" checked="false" name="education_level"
-                                                          v-model="data.education_level">
-                                                Primary
-                                            </b-form-radio>
-                                        </div>
-                                        <div class="radio">
-                                            <b-form-radio value="SEC" checked="false" name="education_level"
-                                                          v-model="data.education_level">
-                                                Secondary
-                                            </b-form-radio>
-                                        </div>
+                                        <b-form-radio-group v-model="data.education_level" :options="educationLevelOptions" stacked />
                                     </div>
                                 </div>
                             </div>
@@ -339,18 +165,7 @@
                                     <label class="control-label" for="text">Multigrading System
                                     </label>
                                     <div class="col-md-12">
-                                        <div class="radio">
-                                            <b-form-radio :value="1" checked="false" name="multigrade"
-                                                          v-model="data.multigrade">
-                                                Yes
-                                            </b-form-radio>
-                                        </div>
-                                        <div class="radio">
-                                            <b-form-radio :value="0" checked="false" name="multigrade"
-                                                          v-model="data.multigrade">
-                                                No
-                                            </b-form-radio>
-                                        </div>
+                                        <b-form-radio-group v-model="data.multigrade" :options="yesNoOptions" stacked name="multigrade" />
                                     </div>
                                 </div>
                             </div>
@@ -359,16 +174,7 @@
                                     <label class="control-label" for="text">shift
                                     </label>
                                     <div class="col-md-12">
-                                        <div class="radio">
-                                            <b-form-radio :value="1" checked="false" name="shift" v-model="data.shift">
-                                                Yes
-                                            </b-form-radio>
-                                        </div>
-                                        <div class="radio">
-                                            <b-form-radio :value="0" checked="false" name="shift" v-model="data.shift">
-                                                No
-                                            </b-form-radio>
-                                        </div>
+                                        <b-form-radio-group v-model="data.shift" :options="yesNoOptions" stacked name="shift" />
                                     </div>
                                 </div>
                             </div>
@@ -380,18 +186,7 @@
                                         Committee
                                     </label>
                                     <div class="col-md-12">
-                                        <div class="radio">
-                                            <b-form-radio :value="1" checked="false" name="management_committee"
-                                                          v-model="data.management_committee">
-                                                Yes
-                                            </b-form-radio>
-                                        </div>
-                                        <div class="radio">
-                                            <b-form-radio :value="0" checked="false" name="management_committee"
-                                                          v-model="data.management_committee">
-                                                No
-                                            </b-form-radio>
-                                        </div>
+                                         <b-form-radio-group v-model="data.management_committee" :options="yesNoOptions" stacked name="management_committee" />
                                     </div>
                                 </div>
                             </div>
@@ -400,18 +195,7 @@
                                     <label class="control-label" for="text">PTA/PTF/MA
                                     </label>
                                     <div class="col-md-12">
-                                        <div class="radio">
-                                            <b-form-radio :value="1" checked="false" name="pta_pf"
-                                                          v-model="data.pta_pf">
-                                                Yes
-                                            </b-form-radio>
-                                        </div>
-                                        <div class="radio">
-                                            <b-form-radio :value="0" checked="false" name="pta_pf"
-                                                          v-model="data.pta_pf">
-                                                No
-                                            </b-form-radio>
-                                        </div>
+                                        <b-form-radio-group v-model="data.pta_pf" :options="yesNoOptions" stacked name="pta_pf" />
                                     </div>
                                 </div>
                             </div>
@@ -420,18 +204,7 @@
                                     <label class="control-label" for="text">School Development Plan
                                     </label>
                                     <div class="col-md-12">
-                                        <div class="radio">
-                                            <b-form-radio :value="1" checked="false" name="development_plan"
-                                                          v-model="data.development_plan">
-                                                Yes
-                                            </b-form-radio>
-                                        </div>
-                                        <div class="radio">
-                                            <b-form-radio :value="0" checked="false" name="development_plan"
-                                                          v-model="data.development_plan">
-                                                No
-                                            </b-form-radio>
-                                        </div>
+                                        <b-form-radio-group v-model="data.development_plan" :options="yesNoOptions" stacked name="development_plan" />
                                     </div>
                                 </div>
                             </div>
@@ -440,23 +213,12 @@
                                     <label class="control-label" for="text">School grants
                                     </label>
                                     <div class="col-md-12">
-                                        <div class="radio">
-                                            <b-form-radio :value="1" checked="false" name="grants"
-                                                          v-model="data.grants">
-                                                Yes
-                                            </b-form-radio>
-                                        </div>
-                                        <div class="radio">
-                                            <b-form-radio :value="0" checked="false" name="grants"
-                                                          v-model="data.grants">
-                                                No
-                                            </b-form-radio>
-                                        </div>
+                                        <b-form-radio-group v-model="data.grants" :options="yesNoOptions" stacked name="grants" />
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row odd-row">
+                        <!-- <div class="row odd-row">
                             <div class="col-md-5">
                                 <div class="form-group p-10">
                                     <label class="control-label col-md-12" for="text">Date of Last Inspection Visit
@@ -503,12 +265,12 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row even-row">
-                            <div class="col-md-8">
+                        </div> -->
+                        <div class="row odd-row">
+                            <div class="col-md-12">
                                 <div class="form-group p-10">
                                     <label class="control-label col-md-4" for="address">School Address</label>
-                                    <div class="col-md-12">
+                                    <div class="col-md-8">
                                         <textarea rows="4" v-model="data.address"
                                                   class="form-control resize_vertical" id="address"
                                                   placeholder="School Address"></textarea>
@@ -516,8 +278,8 @@
                                 </div>
                             </div>
                         </div>
+                        <button type="submit" class="btn btn-primary btn-lg btn-school pull-right">Submit</button>
                     </form>
-                    <button class="btn btn-primary btn-lg btn-school pull-right" @click="onComplete()">Submit</button>
         </b-card>
     </div>
 </template>
@@ -538,60 +300,46 @@
                 wards: [],
                 lgasInfo:[],
                 wardKeys: {}, // capture the ward id and ward name of the selected LGA
+                schoolLocationsOptions:[{ text: 'Rural', value: 'rural' },{ text: 'Urban', value: 'urban' }],
+                educationLevelOptions:[{ text: 'Primary', value: 'Primary' },{ text: 'Secondary', value: 'Secondary' }],
+                schoolCategoryOptions: [{ text: 'Public', value: 'Public' },{ text: 'Private', value: 'Private' }],
+                schoolTypesOptions: [],
+                schoolOwnershipOptions: [],
+                lga: '',
+                ward: '',
+                yesNoOptions: [{ text: 'Yes', value: '1' },{ text: 'No', value: '0' }],
                 settings: null,
                 data: {
-                    lga_ward_id: 3,
-                    name: 'Saint Mathew Nur and pry school',
-                    established: '2008',
-                    average_distance: '1',
-                    town: 'Ado',
-                    location: 'Rural', //rural or urban
-                    email: 'saitpaul@gmail.com',
-                    phone: '080',
-                    website: 'www.sbemis.com',
-                    geolocation: '9.182 / -39.140625',
-                    category: 'Private', //private or public
-                    private_membership_name: 'Ado',
-                    type: 2,
-                    ownership: '1',
-                    education_level: "Primary",
-                    multigrade: 0,
-                    shift: 1,
-                    management_committee: 1,
-                    pta_pf: 0,
-                    development_plan: 1,
-                    grants: 1,
-                    address: 'ado',
+                    // lga_ward_id: 3,
+                    // name: 'Saint Mathew Nur and pry school',
+                    // established: '2008',
+                    // average_distance: '1',
+                    // town: 'Ado',
+                    // location: 'Rural', //rural or urban
+                    // email: 'saitpaul@gmail.com',
+                    // phone: '080',
+                    // website: 'www.sbemis.com',
+                    // geolocation: '9.182 / -39.140625',
+                    // category: 'Private', //private or public
+                    // private_membership_name: 'Ado',
+                    // type: 2,
+                    // ownership: '1',
+                    // education_level: "Primary",
+                    // multigrade: 0,
+                    // shift: 1,
+                    // management_committee: 1,
+                    // pta_pf: 0,
+                    // development_plan: 1,
+                    // grants: 1,
+                    // address: 'ado',
                 },
-                users: [
-                    { name: 'Patrick' },
-                    { name: 'Evan' },
-                    { name: 'Christian' },
-                    { name: 'Daniel' }
-                ],
                 selectedSharedFacilities: [],
             }
         },
         methods: {
-            upload_pic() {
-                this.$refs.user_image.processQueue();
-            },
-            uploaded() {
-                console.log("uploaded");
-            },
-            clearqueue(file) {
-                if (this.$refs.user_image.dropzone.files.length > 1) {
-                    this.$refs.user_image.dropzone.removeFile(this.old_file);
-                }
-                this.old_file = file;
-            },
             onSubmit: function () {
                 console.log("aaa")
                 this.$school.addSchool(this.data).then(response => {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                     if (typeof  response == 'object'){
                         this.$swal({
                             type: 'success',
@@ -605,53 +353,10 @@
                         })
                     }
                 })
-<<<<<<< HEAD
-=======
-
-                })
-                // alert('Yay. Done!');
->>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
-=======
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
-            },
-            addMore(elementGroup) {
-                switch (elementGroup) {
-                    case 'seater':
-                        this.data.classrooms.seater.push({type: "", class: '', quantity: ''});
-                        break;
-                    case 'pupil':
-                        this.data.textbooks.pupil.push({subject: '', level: '', quantity: ''});
-                        break;
-                    case 'teacher':
-                        this.data.textbooks.teacher.push({subject: '', level: '', quantity: ''});
-                        break;
-                    case 'members':
-                        this.data.sbmc.members.push({name: '', position: '', phone_number: '', email: ''});
-                        break;
-                    case 'projects':
-                        this.data.sbmc.projects.push({brief: '', cost: '', funding: '', year: ''});
-                        break;
-                    default:
-                        break;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
->>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
-=======
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
-                }
             },
             getWard(){
                 this.wards = []; // clear previous ward elements
                 this.wardKeys = [];
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
->>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
-=======
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                 let _lga = this.lgasInfo.filter(item => {
                     return (item.id === this.lgas.indexOf(this.data.lga) + 1);
                 });
@@ -662,42 +367,33 @@
             } 
         },
         mounted: function () {
-            // this.$lga.getLgas().then(data => {
-            //     data.forEach(item => {
-            //         // console.log(item);
-            //         this.lgasInfo.push(item);
-            //         this.lgas.push(item.name);
-            //     });
-            //     // console.log(this.lgasInfo);
-            // });
-
             //todo: get the settings information
-            let settings = localStorage.getItem('settings');
+            let settings = JSON.parse(localStorage.getItem('settings'));
 
-            // console.log(settings.lga_areas);
-            //populatre LGA
-            // settings.lga_areas.forEach(item => {
-            //     this.lgasInfo.push(item);
-            //     this.lgas.push(item.name);
-            // })
-<<<<<<< HEAD
-<<<<<<< HEAD
-        },
-        watch: {},
-=======
+            if(settings) {
+                // console.log(settings.lga_areas);
+                //populatre LGA
+                settings.lga_areas.forEach(item => {
+                    this.lgasInfo.push(item);
+                    this.lgas.push(item.name);
+                })
 
-            
-        },
-        watch: {
-            settings(data) {
-                let a = 5;
+                settings.school_ownerships.forEach(owner => {
+                    this.schoolOwnershipOptions.push({
+                        text: owner.owner,
+                        value: owner.id
+                    });
+                })
+
+                settings.school_types.forEach(type => {
+                    this.schoolTypesOptions.push({
+                        text: type.name,
+                        value: type.id
+                    });
+                })
             }
         },
->>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
-=======
-        },
         watch: {},
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
         destroyed: function () {
 
         }

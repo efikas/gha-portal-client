@@ -48,18 +48,7 @@
                                 <div class="form-group p-10">
                                     <label class="control-label">Sex
                                     </label>
-                                    <div class="col-md-12">
-                                        <div class="radio">
-                                            <b-form-radio name="sex" v-model="data.sex">
-                                                Female
-                                            </b-form-radio>
-                                        </div>
-                                        <div class="radio">
-                                            <b-form-radio name="sex" v-model="data.sex">
-                                                Male
-                                            </b-form-radio>
-                                        </div>
-                                    </div>
+                                    <b-form-radio-group v-model="data.sex" :options="sexOptions" stacked name="sex" />
                                 </div>
                             </div>
                         </div>
@@ -102,18 +91,14 @@
                             </div>
                         </div>
                         <div class="row even-row">
-                            <div class="col-xs-12 col-sm-6 col-md-3">
+                            <div class="col-xs-12 col-sm-6 col-md-4">
                                 <div class="form-group p-10">
                                     <label class="control-label col-md-8">Any special Challenge?
                                     </label>
                                     <div class="col-md-12">
-                                        <select id="example-select" v-model="data.special_condition" class="form-control" size="1">
-                                            <option value="0">
-                                                Select Year
-                                            </option>
-                                            <option value="1">1930</option>
-                                            <option value="2">1931</option>
-                                            <option value="3">1932</option>
+                                        <select v-model="data.special_condition" class="form-control" size="1">
+                                            <option value="">Select Challenge</option>
+                                            <option v-for="challenge in specialChallenges" :value="challenge.id">{{challenge.condition}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -124,23 +109,18 @@
                                         <div class="form-group p-10">
                                             <label class="control-label">Height (in m)
                                             </label>
-                                            <div class="col-md-12">
-                                                <input type="number" min="0" class="form-control" v-model="data.height" placeholder="">
-                                            </div>
+                                            <input type="number" min="0" class="form-control" v-model="data.height" placeholder="">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6">
                                         <div class="form-group p-10">
-                                            <label class="control-label">Width (in m)
-                                            </label>
-                                            <div class="col-md-12">
-                                                <input type="number" min="0" class="form-control" v-model="data.weight" placeholder="">
-                                            </div>
+                                            <label class="control-label">Weight (in Kg)</label>
+                                            <input type="number" min="0" class="form-control" v-model="data.weight" placeholder="">
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-sm-6 col-md-3">
+                            <div class="col-xs-12 col-sm-6 col-md-4">
                                 <div class="form-group p-10">
                                     <label class="control-label">Blood Group Type
                                     </label>
@@ -151,42 +131,18 @@
                             </div>
                         </div>
                         <div class="row odd-row">
-                            <div class="col-xs-12 col-sm-6 col-md-3">
-                                <div class="form-group p-10">
-                                    <label class="control-label col-md-8">Birth Cert Available? *
-                                    </label>
-                                     <div class="col-md-12">
-                                        <div class="radio">
-                                            <b-form-radio  v-model="data.birth_cert_avail" name="birth_cert_avail">
-                                                Yes
-                                            </b-form-radio>
-                                        </div>
-                                        <div class="radio">
-                                            <b-form-radio  v-model="data.birth_cert_avail" name="birth_cert_avail">
-                                                No
-                                            </b-form-radio>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-3">
+                            <div class="col-xs-12 col-sm-6 col-md-4">
                                 <div class="form-group p-10">
                                     <label class="control-label col-md-12">Birth Cert Type
                                     </label>
                                     <div class="col-md-12">
-                                        <select id="example-select" name="birth_cert_type" v-model="data.birth_cert_type" class="form-control" size="1">
-                                            <option value="0">
-                                                Select Religion
-                                            </option>
-                                            <option value="1">Christianity</option>
-                                            <option value="2">Islamic</option>
-                                            <option value="3">Budaism</option>
+                                        <select name="birth_cert_type" v-model="data.birth_cert_type" class="form-control" size="1">
+                                            <option value="">Select Cert Type</option>
+                                            <option v-for="cert in birthCerts" :value="cert.id">{{cert.birth_cert_type}}</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row even-row">
                             <div class="col-md-4">
                                 <div class="form-group p-10">
                                     <label class="control-label col-md-8" for="admission_year">Year of Admission
@@ -196,43 +152,29 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="col-xs-12 col-sm-6 col-md-4">
                                 <div class="form-group p-10">
                                     <label class="control-label col-md-8">Student's Admission Status <span>*</span>
                                     </label>
-                                    <div class="col-md-12">
-                                        <div class="radio">
-                                            <b-form-radio name="admission_status" v-model="data.admission_status">
-                                                Fresh Enrollment/Placement
-                                            </b-form-radio>
-                                        </div>
-                                        <div class="radio">
-                                            <b-form-radio name="admission_status" v-model="data.admission_status">
-                                                Transfer In
-                                            </b-form-radio>
-                                        </div>
-                                    </div>
+                                    <b-form-radio-group v-model="data.admission_status" :options="enrollmentOptions" stacked />
+                                    
                                 </div>
                             </div>
                         </div>
-                        <div class="row odd-row">
+                        <div class="row even-row">
                             <div class="col-xs-12 col-sm-6 col-md-3">
                                 <div class="form-group p-10">
                                     <label class="control-label col-md-8">Admission Education Level <span>*</span>
                                     </label>
                                     <div class="col-md-12">
-                                        <select id="edu_level" v-model="data.edu_level" name="edu_level" class="form-control" size="1">
-                                            <option value="0">
-                                                Select Education Level
-                                            </option>
-                                            <option value="1">1930</option>
-                                            <option value="2">1931</option>
-                                            <option value="3">1932</option>
+                                        <select id="admission_education_level" v-model="data.admission_education_level" name="admission_education_level" class="form-control" size="1">
+                                            <option value="">Select Level</option>
+                                            <option v-for="level in educationLevels" :value="level.id">{{level.level}}</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-sm-6 col-md-3">
+                            <!-- <div class="col-xs-12 col-sm-6 col-md-3">
                                 <div class="form-group p-10">
                                     <label class="control-label" for="admission_education_level">Admission Class Level <span>*</span>
                                     </label>
@@ -256,19 +198,30 @@
                                         </select>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="col-xs-12 col-sm-6 col-md-3">
                                 <div class="form-group p-10">
                                     <label class="control-label col-md-12">Current Class Level <span>*</span>
                                     </label>
                                     <div class="col-md-12">
-                                        <input type="number" min="0" class="form-control" name="current_class_level" v-model="data.current_class_level" id="current_class_level" placeholder="">
+                                        <input type="number" min="0" class="form-control" name="current_class_level" v-model="data.education_level" id="current_class_level" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-3">
+                                <div class="form-group p-10">
+                                    <label class="control-label col-md-12"data.>Promotion Status<span>*</span></label>
+                                    <div class="col-md-12">
+                                        <select id="current_admission_education_level" v-model="data.promotion_status" name="current_admission_education_level" class="form-control" size="1">
+                                            <option value="">Select Level</option>
+                                            <option v-for="status in promotionStatus" :value="status.id">{{status.status}}</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row even-row">
-                            <div class="col-xs-12 col-sm-6 col-md-3">
+                        <div class="row odd-row">
+                            <!-- <div class="col-xs-12 col-sm-6 col-md-3">
                                 <div class="form-group p-10">
                                     <label class="control-label col-md-8">Registered for JSCE/SSCE? <span>*</span>
                                     </label>
@@ -285,22 +238,13 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="col-xs-12 col-sm-6 col-md-3">
                                 <div class="form-group p-10">
                                     <label class="control-label col-md-8">Boarding Student? <span>*</span>
                                     </label>
                                     <div class="col-md-12">
-                                        <div class="radio">
-                                            <b-form-radio name="boarding" v-model="data.boarding">
-                                                Yes
-                                            </b-form-radio>
-                                        </div>
-                                        <div class="radio">
-                                            <b-form-radio name="boarding" v-model="data.boarding">
-                                                No
-                                            </b-form-radio>
-                                        </div>
+                                        <b-form-radio-group v-model="data.boarding" :options="yesNoOptions" stacked name="boarding" />
                                     </div>
                                 </div>
                             </div>
@@ -308,7 +252,7 @@
                                 <div class="form-group p-10">
                                     <label class="control-label col-md-12">Doom No </label>
                                     <div class="col-md-12">
-                                        <input type="text" class="form-control" name="dorm_no" v-model="data.dorm_no" placeholder="School Name">
+                                        <input type="text" class="form-control" name="dormitory_id" v-model="data.dormitory_id" placeholder="Dormitory Number">
                                     </div>
                                 </div>
                             </div>
@@ -335,26 +279,7 @@
                                         <label class="control-label col-md-8" for="admission_date">Are both parents alive?
                                         </label>
                                         <div class="col-md-12">
-                                            <div class="radio">
-                                                <b-form-radio name="parent_status" v-model="data.parent.parent_status">
-                                                Both Alive
-                                                </b-form-radio>
-                                            </div>
-                                            <div class="radio">
-                                                <b-form-radio name="parent_status"  v-model="data.parent.parent_status">
-                                                    Father Only
-                                                </b-form-radio>
-                                            </div>
-                                            <div class="radio">
-                                                <b-form-radio name="parent_status"  v-model="data.parent.parent_status">
-                                                    Mother Only
-                                                </b-form-radio>
-                                            </div>
-                                            <div class="radio">
-                                                <b-form-radio name="parent_status"  v-model="data.parent.parent_status">
-                                                None
-                                                </b-form-radio>
-                                            </div>
+                                            <b-form-radio-group v-model="data.parent_status" :options="parentOptions" stacked />
                                         </div>
                                     </div>
                                 </div>
@@ -365,7 +290,10 @@
                                         <label class="control-label col-md-8" for="g1title">Title
                                         </label>
                                         <div class="col-md-12">
-                                            <input type="text" class="form-control" v-model="data.parent.g1title" id="g1title" placeholder="Title">
+                                            <select v-model="data.guardians[0].title" class="form-control" size="1">
+                                                 <option value="">Select Title</option>
+                                                 <option v-for="appellation in appellations" :value="appellation.appellation">{{appellation.appellation}}</option>
+                                             </select>
                                         </div>
                                     </div>
                                 </div>
@@ -374,7 +302,7 @@
                                         <label class="control-label col-md-12" for="g1fullname">Fullname
                                         </label>
                                         <div class="col-md-12">
-                                            <input type="text" class="form-control" v-model="data.parent.g1fullname" id="g1fullname" placeholder="Fullname">
+                                            <input type="text" class="form-control" v-model="data.guardians[0].fullname" id="g1fullname" placeholder="Fullname">
                                         </div>
                                     </div>
                                 </div>
@@ -383,14 +311,10 @@
                                         <label class="control-label" for="g1relationship">Relationship
                                         </label>
                                         <div class="col-md-12">
-                                            <select id="eg1relationship" name="g1relationship" v-model="data.parent.g1relationship" class="form-control" size="1">
-                                                <option value="0">
-                                                    Select Education Level
-                                                </option>
-                                                <option value="1">1930</option>
-                                                <option value="2">1931</option>
-                                                <option value="3">1932</option>
-                                            </select>
+                                            <select id="eg1relationship" name="g1relationship" v-model="data.guardians[0].relationship" class="form-control" size="1">
+                                                 <option value="">Select Relationship</option>
+                                                 <option v-for="relation in relationship" :value="relation.id">{{relation.type}}</option>
+                                             </select>
                                         </div>
                                     </div>
                                 </div>
@@ -401,7 +325,7 @@
                                         <label class="control-label col-md-8" for="g1_occupation">Occupation
                                         </label>
                                         <div class="col-md-12">
-                                            <input type="text" class="form-control" v-model="data.parent.g1_occupation" id="g1_occupation" placeholder="Occupation">
+                                            <input type="text" class="form-control" v-model="data.guardians[0].occupation" id="g1_occupation" placeholder="Occupation">
                                         </div>
                                     </div>
                                 </div>
@@ -410,7 +334,7 @@
                                         <label class="control-label col-md-12" for="g1mobile">Mobile Number
                                         </label>
                                         <div class="col-md-12">
-                                            <input type="tel" class="form-control" v-model="data.parent.g1mobile" id="g1mobile" placeholder="">
+                                            <input type="tel" class="form-control" v-model="data.guardians[0].mobile" id="g1mobile" placeholder="">
                                         </div>
                                     </div>
                                 </div>
@@ -419,7 +343,7 @@
                                         <label class="control-label" for="g1_phone">Phone Number
                                         </label>
                                         <div class="col-md-12">
-                                            <input type="tel" class="form-control" v-model="data.parent.g1_phone" id="g1_phone" placeholder="08063888888">
+                                            <input type="tel" class="form-control" v-model="data.guardians[0].phone" id="g1_phone" placeholder="08063888888">
                                         </div>
                                     </div>
                                 </div>
@@ -430,7 +354,7 @@
                                         <label class="control-label col-md-8" for="g1_email">Email
                                         </label>
                                         <div class="col-md-12">
-                                            <input type="email" class="form-control" v-model="data.parent.g1_email" id="g1_email" placeholder="">
+                                            <input type="email" class="form-control" v-model="data.guardians[0].email" id="g1_email" placeholder="">
                                         </div>
                                     </div>
                                 </div>
@@ -439,32 +363,10 @@
                                         <label class="control-label" for="g1_religious_status">Religion
                                         </label>
                                         <div class="col-md-12">
-                                            <select id="example-select" v-model="data.parent.g1_religious_status" name="g1_religious_status" class="form-control" size="1">
-                                                <option value="0">
-                                                    Select Religion
-                                                </option>
-                                                <option value="1">1930</option>
-                                                <option value="2">1931</option>
-                                                <option value="3">1932</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 col-md-4">
-                                    <div class="form-group p-10">
-                                        <label class="control-label col-md-8" for="g1_primary_contact">Is Primary Contact?
-                                        </label>
-                                        <div class="col-md-12">
-                                            <div class="radio">
-                                                <b-form-radio name="g1_primary_contact" v-model="data.parent.g1_primary_contact">
-                                                Yes
-                                                </b-form-radio>
-                                            </div>
-                                            <div class="radio">
-                                                <b-form-radio name="g1_primary_contact" v-model="data.parent.g1_primary_contact">
-                                                No
-                                                </b-form-radio>
-                                            </div>
+                                            <select id="example-select" v-model="data.guardians[0].religious_status" name="g1_religious_status" class="form-control" size="1">
+                                                 <option value="">Select Religion</option>
+                                                 <option v-for="religion in religions" :value="religion.id">{{religion.religion}}</option>
+                                             </select>
                                         </div>
                                     </div>
                                 </div>
@@ -474,7 +376,7 @@
                                     <div class="form-group p-10">
                                         <label class="control-label col-md-8" for="g1_contact_address">Contact Address
                                         </label>
-                                            <textarea cols="6" class="form-control" id="g1_contact_address" v-model="data.parent.g1_contact_address">
+                                            <textarea cols="6" class="form-control" id="g1_contact_address" v-model="data.guardians[0].contact_address">
                                             </textarea>
                                     </div>
                                 </div>
@@ -488,7 +390,10 @@
                                         <label class="control-label col-md-8" for="g2title">Title
                                         </label>
                                         <div class="col-md-12">
-                                            <input type="text" class="form-control" v-model="data.parent.g2title" id="g2title" placeholder="Title">
+                                            <select v-model="data.guardians[1].title" class="form-control" size="1">
+                                                 <option value="">Select Title</option>
+                                                 <option v-for="appellation in appellations" :value="appellation.appellation">{{appellation.appellation}}</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -497,7 +402,7 @@
                                         <label class="control-label col-md-12" for="g2_full_name">Fullname
                                         </label>
                                         <div class="col-md-12">
-                                            <input type="text" class="form-control" id="g2_full_name" v-model="data.parent.g2_full_name" placeholder="Fullname">
+                                            <input type="text" class="form-control" id="g2_full_name" v-model="data.guardians[1].full_name" placeholder="Fullname">
                                         </div>
                                     </div>
                                 </div>
@@ -506,13 +411,9 @@
                                         <label class="control-label" for="g2_relationship">Relationship
                                         </label>
                                         <div class="col-md-12">
-                                            <select id="g2_relationship" v-model="data.parent.g2_relationship" name="g2_relationship" class="form-control" size="1">
-                                                <option value="0">
-                                                    Select Education Level
-                                                </option>
-                                                <option value="1">1930</option>
-                                                <option value="2">1931</option>
-                                                <option value="3">1932</option>
+                                            <select id="g2_relationship" name="g2relationship" v-model="data.guardians[1].relationship" class="form-control" size="1">
+                                                <option value="">Select Relationship</option>
+                                                <option v-for="relation in relationship" :value="relation.id">{{relation.type}}</option>
                                             </select>
                                         </div>
                                     </div>
@@ -524,7 +425,7 @@
                                         <label class="control-label col-md-8" for="g2_occupation">Occupation
                                         </label>
                                         <div class="col-md-12">
-                                            <input type="text" class="form-control" v-model="data.parent.g2_occupation" id="g2_occupation" placeholder="Occupation">
+                                            <input type="text" class="form-control" v-model="data.guardians[1].occupation" id="g2_occupation" placeholder="Occupation">
                                         </div>
                                     </div>
                                 </div>
@@ -533,7 +434,7 @@
                                         <label class="control-label col-md-12" for="g2_mobile">Mobile Number
                                         </label>
                                         <div class="col-md-12">
-                                            <input type="tel" class="form-control" v-model="data.parent.g2_mobile" id="g2_mobile" placeholder="">
+                                            <input type="tel" class="form-control" v-model="data.guardians[1].mobile" id="g2_mobile" placeholder="">
                                         </div>
                                     </div>
                                 </div>
@@ -542,7 +443,7 @@
                                         <label class="control-label" for="g2_phone">Phone Number
                                         </label>
                                         <div class="col-md-12">
-                                            <input type="tel" class="form-control" v-model="data.parent.g2_phone" id="g2_phone" placeholder="08063888888">
+                                            <input type="tel" class="form-control" v-model="data.guardians[1].phone" id="g2_phone" placeholder="08063888888">
                                         </div>
                                     </div>
                                 </div>
@@ -553,7 +454,7 @@
                                         <label class="control-label col-md-8" for="g2_email">Email
                                         </label>
                                         <div class="col-md-12">
-                                            <input type="email" class="form-control" v-model="data.parent.g2_email" id="g2_email" placeholder="">
+                                            <input type="email" class="form-control" v-model="data.guardians[1].email" id="g2_email" placeholder="">
                                         </div>
                                     </div>
                                 </div>
@@ -562,32 +463,10 @@
                                         <label class="control-label">Religion
                                         </label>
                                         <div class="col-md-12">
-                                            <select id="g2_religious_status" v-model="data.parent.g2_religious_status" name="g2_religious_status" class="form-control" size="1">
-                                                <option value="0">
-                                                    Select Religion
-                                                </option>
-                                                <option value="1">1930</option>
-                                                <option value="2">1931</option>
-                                                <option value="3">1932</option>
+                                            <select id="example-select" v-model="data.guardians[1].religious_status" name="g1_religious_status" class="form-control" size="1">
+                                                <option value="">Select Religion</option>
+                                                <option v-for="religion in religions" :value="religion.id">{{religion.religion}}</option>
                                             </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 col-md-4">
-                                    <div class="form-group p-10">
-                                        <label class="control-label col-md-8">Is Primary Contact?
-                                        </label>
-                                        <div class="col-md-12">
-                                            <div class="radio">
-                                                <b-form-radio name="g2_primary_contact" v-model="data.parent.g2_primary_contact">
-                                                    Yes
-                                                </b-form-radio>
-                                            </div>
-                                            <div class="radio">
-                                                <b-form-radio name="g2_primary_contact" v-model="data.parent.g2_primary_contact">
-                                                    No
-                                                </b-form-radio>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -598,7 +477,7 @@
                                         <label class="control-label col-md-8" for="g2_contact_address">Contact Address
                                         </label>
                                         <div class="col-md-12">
-                                            <textarea cols="6" class="form-control" id="g2_contact_address" v-model="data.parent.g2_contact_address">
+                                            <textarea cols="6" class="form-control" id="g2_contact_address" v-model="data.guardians[1].contact_address">
                                             </textarea>
                                         </div>
                                     </div>
@@ -629,62 +508,26 @@ export default {
             lga: '',
             lgas: [],
             schools: [],
+            specialChallenges: {},
+            birthCerts: {},
+            appellations: {},
+            religions: {},
+            relationship: {},
             school_name: '',
+            educationLevels: {},
+            promotionStatus: {},
+            sexOptions: [{ text: 'Female', value: 'F' },{ text: 'Male', value: 'M' }],
+            yesNoOptions: [{ text: 'Yes', value: '1' },{ text: 'No', value: '0' }],
+            parentOptions: [{ text: 'Both Alive', value: '1' },{ text: 'Father Only', value: '2' },{ text: 'Mother Only', value: '3' },{ text: 'None', value: '4' }],
+            enrollmentOptions: [{ text: 'Fresh Enrollment/Placement', value: '1' },{ text: 'Transfer In', value: '2' }],
             data: {
-<<<<<<< HEAD
-<<<<<<< HEAD
-                parent: [{}]
-=======
-                school_id: '1',
-                first_name: 'Ajadi',
-                middle_name: 'Tunde',
-                last_name: 'O',
-                sex: 'M',
-                date_of_birth: '1998/2/4',
-                place_of_birth: 'Ado',
-                phone: '080',
-                email: 'aaa@gmail.com',
-                special_condition: 3,
-                height: 1,
-                weight: 1,
-                blood_group: 'AS',
-                birth_cert_type: 2,
-                admission_year: '2008',
-                admission_status: 1,
-                edu_level: '4',
-                admission_education_level: '2',
-                // current_education_level: '',
-                // current_class_level: '',
-                // exam_registration: '',
-                boarding: 1,
-                dormitory_id: 23,
-                distance_from_school: 1,
-                parent: [{
-                        title: 'Mr',
-                        fullname: 'Ajayi Tolulope',
-                        relationship: 1,
-                        occupation: 'Business Man',
-                        mobile: '',
-                        phone: '08046473322',
-                        email: '',
-                        religion: 'Christianity',
-                        primary_contact: 'Ado',
-                        contact_address: 'Ado'
-                    }]
->>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
-=======
-                parent: [{}]
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
+                guardians: [{}, {}],
             }
         }
     },
     methods: {
         onComplete: function(){
             this.$student.addStudent(this.data).then(response => {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                 if (typeof response == 'object'){
                     this.$swal({
                         type: 'success',
@@ -697,12 +540,6 @@ export default {
                         }
                     })
                 }
-<<<<<<< HEAD
-=======
-
->>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
-=======
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
             })
         },
         getSchool(){
@@ -723,25 +560,18 @@ export default {
                 this.lgas.push(item.name);
             });
         })
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
 
         let settings = JSON.parse(localStorage.getItem('settings'));
 
         if(settings) {
             this.specialChallenges = settings.special_conditions;
             this.birthCerts = settings.birth_certs;
+            this.appellations = settings.appellations;
+            this.religions = settings.religions;
+            this.relationship = settings.guardians;
+            this.educationLevels = settings.educations;
+            this.promotionStatus = settings.promotions;
         }
-
-        // console.log('route is : ' + this.$route.params.id);
-        this.studentId = this.$route.params.id;
-        this.$student.studentProfile(this.$route.params.id).then(data => {
-            this.data = data;
-            this.schoolId = data.school_id;
-            console.log(data);
-        });
 
         //get list of schools
         this.$school.allSchools().then(data => {
@@ -767,14 +597,6 @@ export default {
             this.schoolName = _school[0].name;
             // this.data.school_id = data.school_id;
         }
-<<<<<<< HEAD
-=======
-    },
-    destroyed: function() {
-
->>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
-=======
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
     }
 }
 </script>

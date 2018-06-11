@@ -36,15 +36,7 @@
                 <v-client-table :data="schools" :columns="columns" v-if="schools.length > 0">
                      <span slot="id" slot-scope="props">{{ props.index }}</span>
                      <a class="list-font" slot="name" slot-scope="props" :href="'/school/'+ props.row.id + '/staffs'" v-html="props.row.name"></a>
-<<<<<<< HEAD
-<<<<<<< HEAD
                      <!--<a slot="view" slot-scope="props" class="fa fa-pencil icon-big  btn btn-outline-primary ekiti-btn" :href="'/school/'+ props.row.id+'/staffs'"></a>-->
-=======
-                     <a slot="view" slot-scope="props" class="fa fa-pencil icon-big  btn btn-outline-primary ekiti-btn" :href="'/school/'+ props.row.id+'/staffs'"></a>
->>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
-=======
-                     <!--<a slot="view" slot-scope="props" class="fa fa-pencil icon-big  btn btn-outline-primary ekiti-btn" :href="'/school/'+ props.row.id+'/staffs'"></a>-->
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                 </v-client-table>
             </b-card>
         </div>
@@ -68,15 +60,7 @@ export default {
     },
     data() {
         return {
-<<<<<<< HEAD
-<<<<<<< HEAD
             columns: ['id', 'name'],
-=======
-            columns: ['id', 'name', 'view'],
->>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
-=======
-            columns: ['id', 'name'],
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
             schools: [],
             options: {
                 sortIcon: {

@@ -173,21 +173,9 @@
             this.$dashboard.statistics()
                 .then((data) => {
                     console.log(data);
-<<<<<<< HEAD
-<<<<<<< HEAD
                     this.schools = data.schools.total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
                     this.staff = data.staffs.total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
                     this.students = data.students.total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-=======
-                    this.schools = data.schools.total;
-                    this.staff = data.staffs.total;
-                    this.students = data.students.total;
->>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
-=======
-                    this.schools = data.schools.total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-                    this.staff = data.staffs.total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-                    this.students = data.students.total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                     
                     let myData = sbemisData.dataMapping(data);
                     // console.log(myData.priv_sch);

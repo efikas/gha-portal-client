@@ -33,15 +33,7 @@
                     <b-tabs>
                         <b-tab title="PERSONAL">
                             <div style="margin: 0px 30px 0 30px">
-<<<<<<< HEAD
-<<<<<<< HEAD
                                 <p><br/>
-=======
-                                <p>
->>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
-=======
-                                <p><br/>
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                                     <a :href="'/student/' + studentId + '/update/basic'" type="button" class="btn btn-outline-primary ekiti-btn pull-right">Edit
                                     </a><br/><br/>
                                 </p>
@@ -93,15 +85,7 @@
                         </b-tab>
                         <b-tab title="ACADEMIC">
                             <div style="margin: 0px 30px 0 30px">
-<<<<<<< HEAD
-<<<<<<< HEAD
                                 <p><br/>
-=======
-                                <p>
->>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
-=======
-                                <p><br/>
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                                     <a :href="'/student/' + studentId + '/update/academic'" type="button" class="btn btn-outline-primary ekiti-btn pull-right">Edit
                                     </a><br/><br/>
                                 </p>
@@ -142,15 +126,7 @@
                         </b-tab>
                         <b-tab title="PARENT/GUARDIAN">
                             <div style="margin: 0px 30px 0 30px">
-<<<<<<< HEAD
-<<<<<<< HEAD
                                 <p><br/>
-=======
-                                <p>
->>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
-=======
-                                <p><br/>
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                                     <a :href="'/student/' + studentId + '/update/parent'" type="button" class="btn btn-outline-primary ekiti-btn pull-right">Edit
                                     </a><br/><br/>
                                 </p>

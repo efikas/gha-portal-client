@@ -14,19 +14,20 @@
                      <div class="row even-row">
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
-                                 <label class="control-label col-md-8" for="text">Firstname
-                                 </label>
+                                 <label class="control-label col-md-8" for="text">Firstname <span class="text-error">*</span></label>
                                  <div class="col-md-12">
-                                     <input type="text" class="form-control"  v-model="data.first_name" placeholder="First Name">
+                                     <input type="text" class="form-control" v-validate="validation.required" name="firstname"  v-model="data.first_name" placeholder="First Name">
+                                     <span class="text-error">{{ errors.first('firstname') }}</span>
                                  </div>
                              </div>
                          </div>
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
-                                 <label class="control-label col-md-12" for="text">Middle Name
+                                 <label class="control-label col-md-12" for="text">Middle Name <span class="text-error">*</span>
                                  </label>
                                  <div class="col-md-12">
-                                     <input type="text" class="form-control" v-model="data.middle_name" placeholder="Middle Name">
+                                     <input type="text" class="form-control" v-validate="validation.required" name="middlename" v-model="data.middle_name" placeholder="Middle Name">
+                                     <span class="text-error">{{ errors.first('middlename') }}</span>
                                  </div>
                              </div>
                          </div>
@@ -39,7 +40,7 @@
                          </div>
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
-                                 <label class="control-label" for="text">Sex
+                                 <label class="control-label" for="text">Sex <span class="text-error">*</span>
                                  </label>
                                  <b-form-radio-group v-model="data.sex" :options="sexOptions" stacked name="sex" />
                                  <!--<div class="radio">-->
@@ -58,16 +59,17 @@
                      <div class="row odd-row">
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
-                                 <label class="control-label col-md-8" for="text">Date of Birth
+                                 <label class="control-label col-md-8" for="text">Date of Birth <span class="text-error">*</span>
                                  </label>
                                  <div class="col-md-12">
-                                     <input type="date" class="form-control" v-model="data.date_of_birth">
+                                     <input type="date" class="form-control" v-validate="validation.required" name="birthdate" v-model="data.date_of_birth">
+                                     <span class="text-error">{{ errors.first('birthdate') }}</span>
                                  </div>
                              </div>
                          </div>
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
-                                 <label class="control-label col-md-12" for="text">Place of Birth
+                                 <label class="control-label col-md-12" for="text">Place of Birth <span class="text-error">*</span>
                                  </label>
                                  <div class="col-md-12">
                                      <input type="text" class="form-control" id="place_of_birth" placeholder="Place of birth" v-model="data.place_of_birth">
@@ -76,9 +78,10 @@
                          </div>
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
-                                 <label class="control-label" for="text">Phone Number
+                                 <label class="control-label" for="text">Phone Number <span class="text-error">*</span>
                                  </label>
-                                 <input type="phone" class="form-control" name="url" value="08064720000" id="url" v-model="data.phone">
+                                 <input type="phone" class="form-control" v-validate="validation.required" name="phone" value="08064720000" id="phone" v-model="data.phone">
+                                 <span class="text-error">{{ errors.first('phone') }}</span>
                               </div>
                          </div>
                          <div class="col-xs-12 col-sm-6 col-md-3">
@@ -92,7 +95,7 @@
                      <div class="row even-row">
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
-                                 <label class="control-label col-md-8" for="text">State of Origin
+                                 <label class="control-label col-md-8" for="text">State of Origin <span class="text-error">*</span>
                                  </label>
                                  <div class="col-md-12">
                                      <select  name="example-select" ref="state" class="form-control" size="1" v-model="data.state_of_origin">
@@ -104,7 +107,7 @@
                          </div>
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
-                                 <label class="control-label col-md-12" for="text">Local Govt of Origin
+                                 <label class="control-label col-md-12" for="text">Local Govt of Origin <span class="text-error">*</span>
                                  </label>
                                  <div class="col-md-12">
                                      <select class="form-control" size="1" v-model="data.lga_of_origin">
@@ -116,7 +119,7 @@
                          </div>
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
-                                 <label class="control-label" for="text">Home Town
+                                 <label class="control-label" for="text">Home Town <span class="text-error">*</span>
                                  </label>
                                  <input type="text" class="form-control" id="text" placeholder="" v-model="data.home_town">
                              </div>
@@ -132,23 +135,24 @@
                      <div class="row odd-row">
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
-                                 <label class="control-label col-md-8" for="text">Marital Status
+                                 <label class="control-label col-md-8" for="text">Marital Status <span class="text-error">*</span>
                                  </label>
                                  <div class="col-md-12">
                                      <select class="form-control" size="1" v-model="data.marital_status">
-                                         <option value="">
-                                             Select Status
-                                         </option>
-                                         <option value="0">Single</option>
-                                         <option value="1">Married</option>
-                                         <option value="2">Others</option>
+                                         <option value="">Select Status</option>
+                                         <option value="1">Single</option>
+                                         <option value="2">Married</option>
+                                         <option value="3">Divorced</option>
+                                         <option value="4">Widowed</option>
+                                         <option value="5">Separated</option>
+                                         <!-- <option value="6">Others</option> -->
                                      </select>
                                  </div>
                              </div>
                          </div>
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
-                                 <label class="control-label col-md-12" for="text">Religion
+                                 <label class="control-label col-md-12" for="text">Religion <span class="text-error">*</span>
                                  </label>
                                  <div class="col-md-12">
                                      <select class="form-control" size="1" v-model="data.religion">
@@ -162,7 +166,7 @@
                      <div class="row even-row">
                          <div class="col-md-8">
                              <div class="form-group p-10">
-                                 <label class="control-label col-md-4">Home/Residential Address</label>
+                                 <label class="control-label col-md-4">Home/Residential Address <span class="text-error">*</span></label>
                                  <div class="col-md-12">
                                      <textarea rows="4" class="form-control resize_vertical" v-model="data.residential_address" placeholder="Home/Residential Address"></textarea>
                                  </div>
@@ -171,14 +175,18 @@
                      </div>
                      <button type="submit" class="btn btn-primary btn-lg btn-school pull-right">Submit</button>
                  </form>
-
              </div>
         </b-card>
     </div>
 </template>
 <script>
     import Multiselect from 'vue-multiselect';
+    import Vue from 'vue';
+    import VueSweetalert2 from 'vue-sweetalert2';
+    import VeeValidate from 'vee-validate';
 
+    Vue.use(VueSweetalert2);
+    Vue.use(VeeValidate);
 export default {
     name: 'staff-personal',
     components: {
@@ -196,67 +204,46 @@ export default {
             schoolName: '',
             sexOptions: [{ text: 'Female', value: 'F' },{ text: 'Male', value: 'M' }],
             data: {
-                school_id: '',
-                first_name: '',
-                middle_name: '',
-                last_name: '',
-                sex: '',
-                date_of_birth: '',
-                place_of_birth: '',
-                phone: '',
-                email: '',
-                state_of_origin: '',
-                lga_of_origin: '',
-                home_town: '',
-                distance_from_school: '',
-                marital_status: '',
-                religion: '',
-                residential_address: '',
+                // school_id: '',
+                // first_name: '',
+                // middle_name: '',
+                // last_name: '',
+                // sex: '',
+                // date_of_birth: '',
+                // place_of_birth: '',
+                // phone: '',
+                // email: '',
+                // state_of_origin: '',
+                // lga_of_origin: '',
+                // home_town: '',
+                // distance_from_school: '',
+                // marital_status: '',
+                // religion: '',
+                // residential_address: '',
+            },
+            validation: {
+                text: 'required',
+                required: 'required',
+                email: 'email',
+                number: { regex: /\\.(js|ts)$/},
             }
         }
     },
     methods: {
        onSubmit: function(){
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
            this.$staff.editStaff(this.staffId, this.data).then(response => {
                if (typeof  response == 'object'){
                    this.$swal({
                        type: 'success',
-                       title: 'School Record added Successfully!',
+                       title: 'Staff Record updated Successfully!',
                        confirmButtonColor: '#3085d6',
                        confirmButtonText: 'Ok'
                    }).then((result) => {
                        if (result.value) {
-                           location.reload();
+                           window.location.href = 'http://localhost:8080/staff/' + this.staffId;
                        }
                    })
                }
-<<<<<<< HEAD
-=======
-           // alert(1111);
-           // console.log(this.data);
-           this.$staff.editStaff(this.staffId, this.data).then(response => {
-               console.log(response);
-
-               // if( response.status == 'success'){
-                   //     this.$swal({
-                   //         type: 'success',
-                   //         title: 'School Record updated Successfully!',
-                   //         confirmButtonColor: '#3085d6',
-                   //         confirmButtonText: 'Ok'
-                   //     }).then((result) => {
-                   //         if (result.value) {
-                   //             // todo reload page
-                   //             location.reload();
-                   //         }
-                   //     })
-                   // }
->>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
-=======
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                    // else {
                    //     this.$swal({
                    //         type: 'error',
@@ -277,13 +264,6 @@ export default {
            let _selectedSchool = this.allSchools.filter(school => {
                return (school.name == this.schoolName);
            })
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
->>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
-=======
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
             this.data.school_id = _selectedSchool[0].id;
         }
     },
@@ -318,20 +298,12 @@ export default {
         //get staff Data
         this.staffId = this.$route.params.id,
         this.$staff.staffProfile(this.staffId).then(data => {
-            // this.data = data;
-            // this.data.forEach((_data, key) => {
-            //     this.data[key] = data[key];
+            this.data = data;
+            this.schoolName = data.school.name
+
+            // Object.keys(this.data).forEach(key => {
+            //     this.data[key] = (data.hasOwnProperty(key)) ? data[key] : null;
             // })
-            // Object.keys(this.data)
-            //     .forEach(function eachKey(key) {
-            //         this.data[key] = data[key];
-            //     })
-
-
-
-            Object.keys(this.data).forEach(key => {
-                this.data[key] = (data.hasOwnProperty(key)) ? data[key] : null;
-            })
         })
     },
     destroyed: function() {
@@ -346,11 +318,11 @@ export default {
 
             // Get the school name from the school list using the school id
             // after all school information has been loaded from the database
-            let _school = value.filter(school => {
-                return (school.id == this.data.school_id);
-            })
+            // let _school = value.filter(school => {
+            //     return (school.id == this.data.school_id);
+            // })
 
-            this.schoolName = _school[0].name;
+            // this.schoolName = _school[0].name;
             // this.data.school_id = data.school_id;
         }
     }
@@ -384,6 +356,7 @@ tab-content {
     border-top: 1px solid grey;
     border-bottom: 1px solid grey;
 }
+
 
 .even-row{background-color:#fafafa;border-top:1px dashed #959DCC;border-bottom:1px dashed #959DCC;min-height:62px;padding:8px 0;}
 .odd-row{padding:8px 0;}

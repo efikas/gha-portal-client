@@ -18,32 +18,10 @@
                          </div>
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                                  <label class="control-label col-md-12">Staff Current Status
                                  </label>
                                  <div class="col-md-12">
                                      <select v-model="data.status" class="form-control" size="1">
-<<<<<<< HEAD
-=======
-                                 <label class="control-label">Current Grade Level/Step
-                                 </label>
-                                 <div class="col-md-12">
-                                     <input type="text" class="form-control" v-model="data.grade_level" placeholder="">
-                                 </div>
-                             </div>
-                         </div>
-                         <div class="col-xs-12 col-sm-6 col-md-3">
-                             <div class="form-group p-10">
-                                 <label class="control-label col-md-12">Staff Current Status
-                                 </label>
-                                 <div class="col-md-12">
-                                     <select v-model="data.current_status" class="form-control" size="1">
->>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
-=======
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                                          <option value="">Select Status</option>
                                          <option v-for="status in staffStatuses" :value="status.id">{{status.status}}</option>
                                      </select>
@@ -62,56 +40,12 @@
                                  </div>
                              </div>
                          </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-                     </div>
-                     <div class="row even-row">
-                         <div class="col-xs-12 col-sm-6 col-md-3">
-                             <div class="form-group p-10">
-                                 <label class="control-label col-md-12">Fist Appointment Year
-                                 </label>
-                                 <input type="number" class="form-control" v-model="data.first_appointment">
-                             </div>
-                         </div>
->>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
-=======
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
                                  <label class="control-label col-md-12">Year of Last Promotion
                                  </label>
                                  <div class="col-md-12">
-<<<<<<< HEAD
-<<<<<<< HEAD
                                      <input type="text" class="form-control" v-model="data.last_promotion_year" placeholder="Year of Last Promotion">
-=======
-                                     <input type="text" class="form-control" v-model="data.last_promotion" placeholder="Year of Last Promotion">
-                                 </div>
-                             </div>
-                         </div>
-                         <div class="col-xs-12 col-sm-6 col-md-3">
-                             <div class="form-group p-10">
-                                 <label class="control-label">Year of Posting
-                                 </label>
-                                 <div class="col-md-12">
-                                     <input type="text" class="form-control" v-model="data.posting_year" name="" value=""  placeholder="Year of Posting">
-                                 </div>
-                             </div>
-                         </div>
-                         <div class="col-xs-12 col-sm-6 col-md-3">
-                             <div class="form-group p-10">
-                                 <label class="control-label">Employment Type
-                                 </label>
-                                 <div class="col-md-12">
-                                     <select v-model="data.employment_type"  class="form-control" size="1">
-                                         <option value="">Select Employment</option>
-                                         <option v-for="type in employmentTypes" :value="type.id">{{type.type}}</option>
-                                     </select>
->>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
-=======
-                                     <input type="text" class="form-control" v-model="data.last_promotion_year" placeholder="Year of Last Promotion">
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                                  </div>
                              </div>
                          </div>
@@ -119,28 +53,11 @@
                      <div class="row odd-row">
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                                  <label class="control-label">Academic Qualification</label>
                                  <select v-model="data.academic_qualification" class="form-control" size="1">
                                      <option value="">Academic Qualification</option>
                                      <option v-for="academic in academicQualif" :value="academic.id">{{academic.qualification}}</option>
                                  </select>
-<<<<<<< HEAD
-=======
-                                 <label class="control-label">Academic Qualification
-                                 </label>
-                                 <div class="col-md-12">
-                                     <select v-model="data.academic_qualification" class="form-control" size="1">
-                                         <option value="">Academic Qualification</option>
-                                         <option v-for="academic in academicQualif" :value="academic.id">{{academic.qualification}}</option>
-                                     </select>
-                                 </div>
->>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
-=======
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                              </div>
                          </div>
                          <div class="col-xs-12 col-sm-6 col-md-3">
@@ -181,10 +98,6 @@
                          </div>
                      </div>
                      <div class="row even-row">
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
                                  <label class="control-label">Employment Type
@@ -201,75 +114,23 @@
                              <div class="form-group p-10">
                                  <label class="control-label">Class Taught
                                  </label>
-                                     <input type="text" class="form-control" v-model="data.class_taught" placeholder="School Name">
+                                     <input type="text" class="form-control" v-model="data.classes_taught" placeholder="School Name">
                              </div>
                          </div>
                          <div class="col-xs-12 col-sm-6 col-md-3">
-<<<<<<< HEAD
-=======
-                         <div class="col-xs-12 col-sm-6 col-md-4">
-                             <div class="form-group p-10">
-                                 <label class="control-label">Class Taught
-                                 </label>
-                                     <input type="text" class="form-control" v-model="data.class_taught" placeholder="School Name">
-                             </div>
-                         </div>
-                         <div class="col-xs-12 col-sm-6 col-md-4">
-                             <div class="form-group p-10">
-                                 <label class="control-label col-md-12">Training Workshop?
-                                 </label>
-                                 <div class="col-md-12">
-                                     <b-form-radio-group v-model="data.training_workshop" :options="yesNoOptions" stacked />
-                                 </div>
-                             </div>
-                         </div>
-                         <div class="col-xs-12 col-sm-6 col-md-4">
->>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
-=======
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                              <div class="form-group p-10">
                                  <label class="control-label col-md-12">Computer Literate?
                                  </label>
                                  <div class="col-md-12">
-                                     <b-form-radio-group v-model="data.computer_literate" :options="yesNoOptions" stacked name="sex" />
+                                     <b-form-radio-group v-model="data.computer_literate" :options="yesNoOptions" stacked />
                                  </div>
                              </div>
                          </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-                     </div>
-                     <div class="row odd-row">
->>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
-=======
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                          <div class="col-xs-12 col-sm-6 col-md-3">
                              <div class="form-group p-10">
                                  <label class="control-label">TRC Reg No
                                  </label>
-<<<<<<< HEAD
-<<<<<<< HEAD
                                      <input type="text" class="form-control" v-model="data.trc_reg_no" placeholder="School Name">
-=======
-                                     <input type="text" class="form-control" v-model="data.TRC_reg_no" placeholder="School Name">
-                             </div>
-                         </div>
-                         <div class="col-xs-12 col-sm-6 col-md-6">
-                             <div class="form-group p-10">
-                                 <label class="control-label">School Posted From
-                                 </label>
-                                     <input type="text" class="form-control" v-model="data.school_posted_from" placeholder="School Name">
-                             </div>
-                         </div>
-                         <div class="col-xs-12 col-sm-6 col-md-3">
-                             <div class="form-group p-10">
-                                 <label class="control-label">Position
-                                 </label>
-                                     <input type="text" class="form-control" v-model="data.position" placeholder="School Name">
->>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
-=======
-                                     <input type="text" class="form-control" v-model="data.trc_reg_no" placeholder="School Name">
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                              </div>
                          </div>
                      </div>
@@ -280,11 +141,15 @@
     </div>
 </template>
 <script>
+import Vue from 'vue';
+import VueSweetalert2 from 'vue-sweetalert2';
 
+Vue.use(VueSweetalert2);
 export default {
     name: 'professional',
     data() {
         return {
+            staffId: null,
             staffCategories: {},
             staffStatuses: {},
             salaries: {},
@@ -295,93 +160,37 @@ export default {
             subjectTaught: {},
             yesNoOptions: [{ text: 'Yes', value: '1' },{ text: 'No', value: '0' }],
             data: {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
-                category: '', //
-                status: '',
-                salary_source: '', //
-                last_promotion_year: '',
-<<<<<<< HEAD
-=======
-                category: '',
-                grade_level: '', // remove
-                current_status: '',
-                salary_source: '',
-                first_appointment: '', // remove
-                last_promotion: '',
-                posting_year: '', // remove
->>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
-=======
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
-                employment_type: '',
-                academic_qualification: '',
-                teaching_qualification: '',
-                speciality: '',
-                subject_taught: '',
-<<<<<<< HEAD
-<<<<<<< HEAD
-                classes_taught: '',
-                computer_literate: '',
-                trc_reg_no: '',
-=======
-                class_taught: '', // remove
-                training_workshop: '', // remove
-                computer_literate: '',
-                TRC_registered: '', // remove
-                TRC_reg_no: '',
-                school_posted_from: '', // remove
-                position: '', // remove
->>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
-=======
-                classes_taught: '',
-                computer_literate: '',
-                trc_reg_no: '',
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
+                // category: '', //
+                // status: '',
+                // salary_source: '', //
+                // last_promotion_year: '',
+                // employment_type: '',
+                // academic_qualification: '',
+                // teaching_qualification: '',
+                // speciality: '',
+                // subject_taught: '',
+                // classes_taught: '',
+                // computer_literate: '',
+                // trc_reg_no: '',
             }
         }
     },
     components: {},
     methods: {
        onSubmit: function(){
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
-           this.$staff.addStaff(1,this.data).then(response => {
-               if (typeof  response == 'object'){
-                   this.$swal({
-                       type: 'success',
-                       title: 'School Record added Successfully!',
-                       confirmButtonColor: '#3085d6',
-                       confirmButtonText: 'Ok'
-                   }).then((result) => {
-                       if (result.value) {
-                           location.reload();
-                       }
-                   })
-               }
-<<<<<<< HEAD
-=======
-           // this.$staff.addStaff(1,this.data).then(response => {
-           //
-           // if( response.status == 'success'){
-               //     this.$swal({
-               //         type: 'success',
-               //         title: 'School Record updated Successfully!',
-               //         confirmButtonColor: '#3085d6',
-               //         confirmButtonText: 'Ok'
-               //     }).then((result) => {
-               //         if (result.value) {
-               //             // todo reload page
-               //             location.reload();
-               //         }
-               //     })
-               // }
->>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
-=======
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
+           this.$staff.editStaff(this.staffId,this.data).then(response => {
+            //    if (typeof  response == 'object'){
+            //        this.$swal({
+            //            type: 'success',
+            //            title: 'Staff Record updated Successfully!',
+            //            confirmButtonColor: '#3085d6',
+            //            confirmButtonText: 'Ok'
+            //        }).then((result) => {
+            //            if (result.value) {
+            //                window.location.href = 'http://localhost:8080/staff/' + this.staffId;
+            //            }
+            //        })
+            //    }
                // else {
                //     this.$swal({
                //         type: 'error',
@@ -395,15 +204,7 @@ export default {
                //         }
                //     })
                // }
-<<<<<<< HEAD
-<<<<<<< HEAD
             })
-=======
-           //  })
->>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
-=======
-            })
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
         }
     },
     mounted: function() {
@@ -419,13 +220,6 @@ export default {
             this.teachingQualif = settings.teaching_qualifications;
             this.areaOfSpeciality = settings.specialities
             this.subjectTaught = settings.subjects
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
->>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
-=======
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
         }
 
 

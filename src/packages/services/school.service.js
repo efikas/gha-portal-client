@@ -22,11 +22,6 @@ export default {
             })
         })
     },
-<<<<<<< HEAD
-    getSchoolsPerLga(lgaId) {
-        return new Promise((resolve, reject) => {
-            axios.get(`lga/${lgaId}/schools`)
-=======
     getSchoolsPerLga(lgaId, queryObject = null) {
         return new Promise((resolve, reject) => {
             let query = '';
@@ -38,7 +33,6 @@ export default {
                 })
             }
             axios.get(`lga/${lgaId}/schools${query}`)
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                 .then(response => {
                     resolve(response.data)
                 }).catch((error) => {

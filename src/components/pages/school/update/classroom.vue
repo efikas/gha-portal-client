@@ -87,10 +87,6 @@
         methods: {
             onSubmit: function () {
                 this.$school.editSchool(this.$route.params.id, this.data).then(response => {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                     if (typeof  response == 'object'){
                         this.$swal({
                             type: 'success',
@@ -103,26 +99,6 @@
                             }
                         })
                     }
-<<<<<<< HEAD
-=======
-                    // console.log(response);
-
-                    // if( response.status == 'success'){
-                        //     this.$swal({
-                        //         type: 'success',
-                        //         title: 'School Record updated Successfully!',
-                        //         confirmButtonColor: '#3085d6',
-                        //         confirmButtonText: 'Ok'
-                        //     }).then((result) => {
-                        //         if (result.value) {
-                        //             // todo reload page
-                        //             location.reload();
-                        //         }
-                        //     })
-                        // }
->>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
-=======
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                         // else {
                         //     this.$swal({
                         //         type: 'error',

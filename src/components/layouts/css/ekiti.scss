@@ -1,63 +1,70 @@
 @import "skins/ekiti";
-
 .default-color {
-  color: $leftmenu_color;
+    color: $leftmenu_color;
 }
 
 .bg-default-card {
-  border: 1px solid $leftmenu_color;
-  >.card-header {
-    background-color: $leftmenu_color;
-    color: #fff;
-  }
+    border: 1px solid $leftmenu_color;
+    >.card-header {
+        background-color: $leftmenu_color;
+        color: #fff;
+    }
 }
 
 .list-font {
-  font-size: 12px;
-  color: $leftmenu_color;
-
- &:hover {
-   color: $content_color;
- }
+    font-size: 12px;
+    color: $leftmenu_color;
+    &:hover {
+        color: $content_color;
+    }
 }
 
 .ekiti-btn {
-  font-size: 11px;
-  color: $leftmenu_color;
-  border-color: $leftmenu_color;
-
-  &:hover {
-    background-color: $content_color;
-    border-color: $content_color;
-    color: $menu_hover_color;
-  }
+    font-size: 11px;
+    color: $leftmenu_color;
+    border-color: $leftmenu_color;
+    &:hover {
+        background-color: $content_color;
+        border-color: $content_color;
+        color: $menu_hover_color;
+    }
 }
 
 table.mytable tr td:nth-child(odd) {
-  width: 30% !important;
-  color: #6b3d34;
-  font-weight: bold;
+    width: 30% !important;
+    color: #6b3d34;
+    font-weight: bold;
 }
 
 .btn-school {
-  width: 200px;
-  align-self: center;
-  margin-left: calc(50% -  100px);
-  margin-top: 30px;
-  background-color: $content_color;
-  border-color: $content_color;
-
-  &:hover {
+    width: 200px;
+    align-self: center;
+    margin-left: calc(50% - 100px);
+    margin-top: 30px;
     background-color: $content_color;
     border-color: $content_color;
-  }
+    &:hover {
+        background-color: $content_color;
+        border-color: $content_color;
+    }
 }
-input[type="text"]:not(.multiselect__input), input[type="email"], input[type="number"], input[type="url"], select {
-  height: 40px;
+
+input[type="text"]:not(.multiselect__input),
+input[type="email"],
+input[type="number"],
+input[type="url"],
+select {
+    height: 40px;
 }
 
 .custom-control-description span {
-  font-size: .8rem !important;
-  letter-spacing: 1px;
-  color: #684348 !important;
+    font-size: .8rem !important;
+    letter-spacing: 1px;
+    color: #684348 !important;
+}
+
+.text-error {
+    font-size: .7em;
+    font-weight: 'bold';
+    color: red;
 }

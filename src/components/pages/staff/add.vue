@@ -1,39 +1,43 @@
 <template>
     <div>
         <b-card header="Staff Information" header-tag="h4" class="bg-header-card">
-            <form-wizard @on-complete="onComplete" color="#e67e22">
+            <form-wizard @on-complete="onSubmit" color="#e67e22">
                 <h2 slot="title"></h2>
                 <tab-content title="Staff Profile Info" icon="fa fa-user">
                     <div>
                         <form method="" class="form-horizontal">
                             <div class="row odd-row">
                                 <div class="col-lg-6">
-                                    <label>LGA</label>
+                                    <label>LGA <span class="text-error">*</span></label>
                                     <multiselect v-model="lga" :show-labels="false" :options="lgas" @input="getSchool"></multiselect>
+                                    <span class="text-error">{{ errors.first('schoolLga') }}</span>
                                 </div>
                                 <div class="col-lg-6">
-                                    <label>School Name</label>
+                                    <label>School Name <span class="text-error">*</span></label>
                                     <multiselect v-model="data.school_name" :show-labels="false" :options="schools"></multiselect>
+                                    <span class="text-error">{{ errors.first('school') }}</span>
                                 </div>
                             </div>
                             <div class="row even-row">
                                 <div class="col-xs-12 col-sm-6 col-md-3">
                                     <div class="form-group p-10">
-                                        <label class="control-label col-md-8" for="text">Firstname
+                                        <label class="control-label col-md-8" for="text">Firstname <span class="text-error">*</span>
                                         </label>
                                         <div class="col-md-12">
                                             <input type="text" class="form-control"
-                                                   v-model="data.first_name" placeholder="First Name">
+                                                   v-model="data.first_name" placeholder="First Name" v-validate="validation.required" name="firstname">
+                                                <span class="text-error">{{ errors.first('firstname') }}</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-md-3">
                                     <div class="form-group p-10">
-                                        <label class="control-label col-md-12" for="text">Middle Name
+                                        <label class="control-label col-md-12" for="text">Middle Name <span class="text-error">*</span>
                                         </label>
                                         <div class="col-md-12">
                                             <input type="text" class="form-control"
-                                                   v-model="data.middle_name" placeholder="Middle Name">
+                                                   v-model="data.middle_name" placeholder="Middle Name" v-validate="validation.required" name="middlename">
+                                                   <span class="text-error">{{ errors.first('middlename') }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -49,47 +53,37 @@
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-md-3">
                                     <div class="form-group p-10">
-                                        <label class="control-label" for="text">Sex
-                                        </label>
-                                        <div class="col-md-12">
-                                            <div class="radio">
-                                                <b-form-radio value="F" name="sex" v-model="data.sex">
-                                                    Female
-                                                </b-form-radio>
-                                            </div>
-                                            <div class="radio">
-                                                <b-form-radio value="M" name="sex" v-model="data.sex">
-                                                    Male
-                                                </b-form-radio>
-                                            </div>
-                                        </div>
+                                        <label class="control-label" for="text">Sex <span class="text-error">*</span></label>
+                                        <b-form-radio-group v-model="data.sex" :options="sexOptions" stacked name="sex" />
                                     </div>
                                 </div>
                             </div>
                             <div class="row odd-row">
                                 <div class="col-xs-12 col-sm-6 col-md-3">
                                     <div class="form-group p-10">
-                                        <label class="control-label col-md-8" for="text">Date of Birth
+                                        <label class="control-label col-md-8" for="text">Date of Birth <span class="text-error">*</span>
                                         </label>
                                         <div class="col-md-12">
-                                            <input type="date" class="form-control"
-                                                   v-model="data.date_of_birth">
+                                            <input type="date" class="form-control" v-validate="validation.required"
+                                                   v-model="data.date_of_birth" name="dob">
+                                                   <span class="text-error">{{ errors.first('dob') }}</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-md-3">
                                     <div class="form-group p-10">
-                                        <label class="control-label col-md-12" for="text">Place of Birth
+                                        <label class="control-label col-md-12" for="text">Place of Birth <span class="text-error">*</span>
                                         </label>
                                         <div class="col-md-12">
                                             <input type="text" class="form-control" id="pob"
-                                                   placeholder="Place of birth" v-model="data.pob">
+                                                   placeholder="Place of birth" v-model="data.pob" name="pob">
+                                                   <span class="text-error">{{ errors.first('pob') }}</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-md-3">
                                     <div class="form-group p-10">
-                                        <label class="control-label" for="text">Phone Number
+                                        <label class="control-label" for="text">Phone Number <span class="text-error">*</span>
                                         </label>
                                         <div class="col-md-12">
                                             <input type="phone" class="form-control" name="url" value="08064720000"
@@ -109,42 +103,34 @@
                                 </div>
                             </div>
                             <div class="row even-row">
-                                <div class="col-xs-12 col-sm-6 col-md-3">
+                                <div class="col-xs-12 col-sm-6 col-md-4">
                                     <div class="form-group p-10">
-                                        <label class="control-label col-md-8" for="text">State of Origin
+                                        <label class="control-label col-md-8" for="text">State of Origin <span class="text-error">*</span>
                                         </label>
                                         <div class="col-md-12">
                                             <select name="example-select" class="form-control" size="1"
                                                     v-model="data.state_of_origin">
-                                                <option value="0">
-                                                    Select Year
-                                                </option>
-                                                <option value="1">1930</option>
-                                                <option value="2">1931</option>
-                                                <option value="3">1932</option>
+                                                <option value="">Select State</option>
+                                                <option v-for="state in states" :value="state.id">{{state.name}}</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xs-12 col-sm-6 col-md-3">
+                                <div class="col-xs-12 col-sm-6 col-md-4">
                                     <div class="form-group p-10">
-                                        <label class="control-label col-md-12" for="text">Local Govt of Origin
+                                        <label class="control-label col-md-12" for="text">Local Govt of Origin <span class="text-error">*</span>
                                         </label>
                                         <div class="col-md-12">
                                             <select class="form-control" size="1" v-model="data.lga_of_origin">
-                                                <option value="0">
-                                                    Select Year
-                                                </option>
-                                                <option value="1">1930</option>
-                                                <option value="2">1931</option>
-                                                <option value="3">1932</option>
+                                                <option value="">Select Local Govt</option>
+                                                <option v-for="lga in lgaInSelectedState" :value="lga.id">{{lga.name}}</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xs-12 col-sm-6 col-md-3">
+                                <div class="col-xs-12 col-sm-6 col-md-4">
                                     <div class="form-group p-10">
-                                        <label class="control-label" for="text">Home Town
+                                        <label class="control-label" for="text">Home Town <span class="text-error">*</span>
                                         </label>
                                         <div class="col-md-12">
                                             <input type="text" class="form-control" id="text" placeholder=""
@@ -156,44 +142,39 @@
                             <div class="row odd-row">
                                 <div class="col-xs-12 col-sm-6 col-md-3">
                                     <div class="form-group p-10">
-                                        <label class="control-label col-md-8" for="text">Marital Status
+                                        <label class="control-label col-md-8" for="text">Marital Status <span class="text-error">*</span>
                                         </label>
                                         <div class="col-md-12">
-                                            <select class="form-control" size="1"
-                                                    v-model="data.marital_status">
-                                                <option value="">
-                                                    Select Status
-                                                </option>
-                                                <option value="0">Single</option>
-                                                <option value="1">Married</option>
-                                                <option value="2">Others</option>
+                                            <select class="form-control" size="1" v-model="data.marital_status">
+                                                <option value="">Select Status</option>
+                                                 <option value="1">Single</option>
+                                                <option value="2">Married</option>
+                                                <option value="3">Divorced</option>
+                                                <option value="4">Widowed</option>
+                                                <option value="5">Separated</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xs-12 col-sm-6 col-md-3">
+                                <div class="col-xs-12 col-sm-6 col-md-9">
                                     <div class="form-group p-10">
-                                        <label class="control-label col-md-12" for="text">Religion
+                                        <label class="control-label col-md-3" for="text">Religion <span class="text-error">*</span>
                                         </label>
-                                        <div class="col-md-12">
+                                        <div class="col-md-3">
                                             <select class="form-control" size="1" v-model="data.religion">
-                                                <option value="0">
-                                                    Select Religion
-                                                </option>
-                                                <option value="1">Christianity</option>
-                                                <option value="2">Islamic</option>
-                                                <option value="3">Budaism</option>
+                                                <option value="">Select Religion</option>
+                                                <option v-for="religion in religions" :value="religion.id">{{religion.religion}}</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="row even-row">
-                                <div class="col-md-8">
+                                <div class="col-md-12">
                                     <div class="form-group p-10">
-                                        <label class="control-label col-md-4">Home/Residential
+                                        <label class="control-label col-md-8">Home/Residential <span class="text-error">*</span>
                                             Address</label>
-                                        <div class="col-md-12">
+                                        <div class="col-md-8">
                                             <textarea rows="4" class="form-control resize_vertical"
                                                       v-model="data.residential_address"
                                                       placeholder="Home/Residential Address"></textarea>
@@ -208,19 +189,14 @@
                     <div>
                         <form method="" class="form-horizontal">
                             <div class="row odd-row">
-                                <div class="col-xs-12 col-sm-6 col-md-3">
+                                <div class="col-xs-12 col-sm-6 col-md-4">
                                     <div class="form-group p-10">
-                                        <label class="control-label col-md-8" for="text">Staff Type
+                                        <label class="control-label col-md-8" for="text">Staff Type <span class="text-error">*</span>
                                         </label>
                                         <div class="col-md-12">
-                                            <select v-model="data.category" class="form-control"
-                                                    size="1">
-                                                <option value="0">
-                                                    Select Year
-                                                </option>
-                                                <option value="1">1930</option>
-                                                <option value="2">1931</option>
-                                                <option value="3">1932</option>
+                                            <select v-model="data.category" class="form-control" size="1">
+                                                <option value="">Select Category</option>
+                                                <option v-for="category in staffCategories" :value="category.id">{{category.category}}</option>
                                             </select>
                                         </div>
                                     </div>
@@ -235,43 +211,33 @@
                                         </div>
                                     </div>
                                 </div> -->
-                                <div class="col-xs-12 col-sm-6 col-md-3">
+                                <div class="col-xs-12 col-sm-6 col-md-4">
                                     <div class="form-group p-10">
-                                        <label class="control-label col-md-12" for="text">Staff Current Status
+                                        <label class="control-label col-md-12" for="text">Staff Current Status <span class="text-error">*</span>
                                         </label>
                                         <div class="col-md-12">
-                                            <select v-model="data.status" class="form-control"
-                                                    size="1">
-                                                <option value="0">
-                                                    Select Year
-                                                </option>
-                                                <option value="1">1930</option>
-                                                <option value="2">1931</option>
-                                                <option value="3">1932</option>
+                                            <select v-model="data.status" class="form-control" size="1">
+                                                <option value="">Select Status</option>
+                                                <option v-for="status in staffStatuses" :value="status.id">{{status.status}}</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xs-12 col-sm-6 col-md-3">
+                                <div class="col-xs-12 col-sm-6 col-md-4">
                                     <div class="form-group p-10">
-                                        <label class="control-label col-md-12" for="text">Salary Source
+                                        <label class="control-label col-md-12" for="text">Salary Source <span class="text-error">*</span>
                                         </label>
                                         <div class="col-md-12">
-                                            <select v-model="data.salary_source" class="form-control"
-                                                    size="1">
-                                                <option value="0">
-                                                    Select Year
-                                                </option>
-                                                <option value="1">1930</option>
-                                                <option value="2">1931</option>
-                                                <option value="3">1932</option>
+                                            <select v-model="data.salary_source" class="form-control" size="1">
+                                                <option value="">Select Salary Source</option>
+                                                <option v-for="salary in salaries" :value="salary.id">{{salary.source}}</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="row even-row">
-                                <div class="col-xs-12 col-sm-6 col-md-3">
+                                <!-- <div class="col-xs-12 col-sm-6 col-md-3">
                                     <div class="form-group p-10">
                                         <label class="control-label col-md-8" for="text">Fist Appointment Year
                                         </label>
@@ -280,10 +246,10 @@
                                                    v-model="data.first_appointment">
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="col-xs-12 col-sm-6 col-md-3">
                                     <div class="form-group p-10">
-                                        <label class="control-label col-md-12" for="text">Year of Last Promotion
+                                        <label class="control-label col-md-12" for="text">Year of Last Promotion <span class="text-error">*</span>
                                         </label>
                                         <div class="col-md-12">
                                             <input type="text" class="form-control"
@@ -292,7 +258,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xs-12 col-sm-6 col-md-3">
+                                <!-- <div class="col-xs-12 col-sm-6 col-md-3">
                                     <div class="form-group p-10">
                                         <label class="control-label" for="text">Year of Posting
                                         </label>
@@ -302,168 +268,94 @@
                                                    placeholder="Year of Posting">
                                         </div>
                                     </div>
+                                </div> -->
+                                <div class="col-xs-12 col-sm-6 col-md-3">
+                                    <div class="form-group p-10">
+                                        <label class="control-label" for="text">Employment Type <span class="text-error">*</span>
+                                        </label>
+                                        <div class="col-md-12">
+                                            <select v-model="data.employment_type"  class="form-control" size="1">
+                                                <option value="">Select Employment</option>
+                                                <option v-for="type in employmentTypes" :value="type.id">{{type.type}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-md-3">
                                     <div class="form-group p-10">
-                                        <label class="control-label" for="text">Employment Type
+                                        <label class="control-label col-md-8" for="text">Academic Qualification <span class="text-error">*</span>
                                         </label>
                                         <div class="col-md-12">
-                                            <select v-model="data.employment_type"
-                                                    class="form-control" size="1">
-                                                <option value="0">
-                                                    Select Employment
-                                                </option>
-                                                <option value="1">1930</option>
-                                                <option value="2">1931</option>
-                                                <option value="3">1932</option>
+                                            <select v-model="data.academic_qualification" class="form-control" size="1">
+                                                <option value="">Academic Qualification</option>
+                                                <option v-for="academic in academicQualif" :value="academic.id">{{academic.qualification}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-3">
+                                    <div class="form-group p-10">
+                                        <label class="control-label col-md-12" for="text">Teaching Qualification <span class="text-error">*</span>
+                                        </label>
+                                        <div class="col-md-12">
+                                            <select v-model="data.teaching_qualification" class="form-control" size="1">
+                                                <option value="">Teaching Qualification</option>
+                                                <option v-for="teaching in teachingQualif" :value="teaching.id">{{teaching.qualification}}</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="row odd-row">
-                                <div class="col-xs-12 col-sm-6 col-md-3">
+                                <div class="col-xs-12 col-sm-6 col-md-4">
                                     <div class="form-group p-10">
-                                        <label class="control-label col-md-8" for="text">Academic Qualification
+                                        <label class="control-label col-md-12" for="text">Area of Specialty <span class="text-error">*</span>
                                         </label>
                                         <div class="col-md-12">
-                                            <select v-model="data.academic_qualification"
-                                                    class="form-control" size="1">
-                                                <option value="0">
-                                                    Select Year
-                                                </option>
-                                                <option value="1">1930</option>
-                                                <option value="2">1931</option>
-                                                <option value="3">1932</option>
+                                            <select v-model="data.speciality" class="form-control" size="1">
+                                                <option value="">Area of Speciality</option>
+                                                <option v-for="specility in areaOfSpeciality" :value="specility.id">{{specility.name}}</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xs-12 col-sm-6 col-md-3">
+                                <div class="col-xs-12 col-sm-6 col-md-4">
                                     <div class="form-group p-10">
-                                        <label class="control-label col-md-12" for="text">Teaching Qualification
+                                        <label class="control-label col-md-12" for="text">Main Subject Taught <span class="text-error">*</span>
                                         </label>
                                         <div class="col-md-12">
-                                            <select v-model="data.teaching_qualification"
-                                                    class="form-control" size="1">
-                                                <option value="0">
-                                                    Select Year
-                                                </option>
-                                                <option value="1">1930</option>
-                                                <option value="2">1931</option>
-                                                <option value="3">1932</option>
+                                            <select v-model="data.subject_taught" class="form-control" size="1">
+                                                <option value="">main Subject Taught</option>
+                                                <option v-for="subjects in subjectTaught" :value="subjects.id">{{subjects.subject}}</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xs-12 col-sm-6 col-md-3">
+                                <div class="col-xs-12 col-sm-6 col-md-4">
                                     <div class="form-group p-10">
-                                        <label class="control-label col-md-12" for="text">Area of Specialty
+                                        <label class="control-label" for="text">Class Taught <span class="text-error">*</span>
                                         </label>
                                         <div class="col-md-12">
-                                            <select v-model="data.speciality" class="form-control"
-                                                    size="1">
-                                                <option value="0">
-                                                    Select Year
-                                                </option>
-                                                <option value="1">1930</option>
-                                                <option value="2">1931</option>
-                                                <option value="3">1932</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 col-md-3">
-                                    <div class="form-group p-10">
-                                        <label class="control-label col-md-12" for="text">Main Subject Taught
-                                        </label>
-                                        <div class="col-md-12">
-                                            <select v-model="data.subject_taught" class="form-control"
-                                                    size="1">
-                                                <option value="0">
-                                                    Select Year
-                                                </option>
-                                                <option value="1">1930</option>
-                                                <option value="2">1931</option>
-                                                <option value="3">1932</option>
-                                            </select>
+                                            <input type="text" class="form-control"
+                                                   v-model="data.classes_taught"
+                                                   placeholder="School Name">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="row even-row">
-                                <div class="col-xs-12 col-sm-6 col-md-4">
-                                    <div class="form-group p-10">
-                                        <label class="control-label" for="text">Class Taught
-                                        </label>
-                                        <div class="col-md-12">
-                                            <input type="text" class="form-control"
-                                                   v-model="data.class_taught"
-                                                   placeholder="School Name">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 col-md-4">
-                                    <div class="form-group p-10">
-                                        <label class="control-label col-md-12" for="text">Training Workshop?
-                                        </label>
-                                        <div class="col-md-12">
-                                            <div class="radio">
-                                                <b-form-radio value="0" v-model="data.training_workshop">
-                                                    Yes
-                                                </b-form-radio>
-                                            </div>
-                                            <div class="radio">
-                                                <b-form-radio value="1" v-model="data.training_workshop">
-                                                    No
-                                                </b-form-radio>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 col-md-4">
-                                    <div class="form-group p-10">
-                                        <label class="control-label col-md-12" for="text">Computer Literate?
-                                        </label>
-                                        <div class="col-md-12">
-                                            <div class="radio">
-                                                <b-form-radio value="0" v-model="data.computer_literate">
-                                                    Yes
-                                                </b-form-radio>
-                                            </div>
-                                            <div class="radio">
-                                                <b-form-radio value="1" v-model="data.computer_literate">
-                                                    No
-                                                </b-form-radio>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row odd-row">
                                 <div class="col-xs-12 col-sm-6 col-md-3">
                                     <div class="form-group p-10">
-                                        <label class="control-label" for="text">TRC Registered?
+                                        <label class="control-label col-md-12" for="text">Computer Literate? <span class="text-error">*</span>
                                         </label>
-                                        <div class="col-md-12">
-                                            <div class="radio">
-                                                <b-form-radio value="0" v-model="data.TRC_registered">
-                                                    Yes
-                                                </b-form-radio>
-                                            </div>
-                                            <div class="radio">
-                                                <b-form-radio value="1" v-model="data.TRC_registered">
-                                                    No
-                                                </b-form-radio>
-                                            </div>
-                                        </div>
+                                        <b-form-radio-group v-model="data.computer_literate" :options="yesNoOptions" stacked />
                                     </div>
                                 </div>
-                                <div class="col-xs-12 col-sm-6 col-md-4">
+                                <div class="col-xs-12 col-sm-9">
                                     <div class="form-group p-10">
-                                        <label class="control-label" for="text">TRC Reg No
+                                        <label class="control-label" for="text">TRC Reg No <span class="text-error">*</span>
                                         </label>
-                                        <div class="col-md-12">
+                                        <div class="col-md-3">
                                             <input type="text" class="form-control"
                                                    v-model="data.TRC_reg_no"
                                                    placeholder="School Name">
@@ -471,7 +363,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row even-row">
+                            <!-- <div class="row even-row">
                                 <div class="col-xs-12 col-sm-6 col-md-6">
                                     <div class="form-group p-10">
                                         <label class="control-label" for="text">School Posted From
@@ -483,7 +375,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xs-12 col-sm-6 col-md-4">
+                                <div class="col-xs-12 col-lg-8">
                                     <div class="form-group p-10">
                                         <label class="control-label" for="text">Position
                                         </label>
@@ -493,7 +385,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </form>
                     </div>
                 </tab-content>
@@ -505,15 +397,14 @@
     import Vue from 'vue';
     import VueFormWizard from 'vue-form-wizard'
     import 'vue-form-wizard/dist/vue-form-wizard.min.css'
-    import vue2Dropzone from 'vue2-dropzone'
-    import 'vue2-dropzone/dist/vue2Dropzone.css'
     import options from "src/validations/validations.js";
     import Multiselect from 'vue-multiselect';
+    import VeeValidate from 'vee-validate';
 
+    Vue.use(VeeValidate);
     Vue.use(VueFormWizard, options);
     export default {
         components: {
-            vueDropzone: vue2Dropzone,
             Multiselect,
         },
         data() {
@@ -521,54 +412,52 @@
                 lgas: [],
                 schools: [],
                 lga: '',
+                schools: [],        // holds the array of school name
+                allSchools: [],     // holds the array of schools object
+                staffId: null,
+                states: {},
+                //lgaInSelectedState: {},     // holds the local government in the selected state
+                allLga: {}, // hold all the local government
+                religions: {},
+                staffCategories: {},
+                staffStatuses: {},
+                salaries: {},
+                employmentTypes: {},
+                academicQualif: {},
+                teachingQualif: {},
+                areaOfSpeciality: {},
+                subjectTaught: {},
+                schoolName: '',
+                sexOptions: [{ text: 'Female', value: 'F' },{ text: 'Male', value: 'M' }],
+                yesNoOptions: [{ text: 'Yes', value: '1' },{ text: 'No', value: '0' }],
                 data: {
-                    school_id: '1',
-                    first_name: 'Alabi',
-                    middle_name: 'Oluwaseun',
-                    last_name: 'Mathew',
-                    sex: 'M',
-                    date_of_birth: '1987-2-2',
-                    place_of_birth: 'Ado',
-                    phone: '08065423821',
-                    email: 'mathew@gmail.com',
-                    state_of_origin: '7',
-                    lga_of_origin: '25',
-                    home_town: 'Ado',
-                    marital_status: '1',
-                    religion: '1',
-                    residential_address: 'Ado Ekiti',
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
+                    // school_id: '1',
+                    // first_name: 'Alabi',
+                    // middle_name: 'Oluwaseun',
+                    // last_name: 'Mathew',
+                    // sex: 'M',
+                    // date_of_birth: '1987-2-2',
+                    // place_of_birth: 'Ado',
+                    // phone: '08065423821',
+                    // email: 'mathew@gmail.com',
+                    // state_of_origin: '7',
+                    // lga_of_origin: '25',
+                    // home_town: 'Ado',
+                    // marital_status: '1',
+                    // religion: '1',
+                    // residential_address: 'Ado Ekiti',
 
-                    category: 2,
-                    status: '2',
-                    salary_source: '2',
-                    last_promotion_year: '2018',
-<<<<<<< HEAD
-=======
-                    category: 2,
-                    // grade_level: '',
-                    status: '2',
-                    salary_source: '2',
-                    // first_appointment: '',
-                    last_promotion_year: '2018',
-                    // posting_year: '',
->>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
-=======
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
-                    employment_type: '1',
-                    academic_qualification: '2',
-                    teaching_qualification: '4',
-                    speciality: 2,
-                    subject_taught: '12',
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
-                    computer_literate: '1',
-                    trc_reg_no: '345-356',
+                    // category: 2,
+                    // status: '2',
+                    // salary_source: '2',
+                    // last_promotion_year: '2018',
+                    // employment_type: '1',
+                    // academic_qualification: '2',
+                    // teaching_qualification: '4',
+                    // speciality: 2,
+                    // subject_taught: '12',
+                    // computer_literate: '1',
+                    // trc_reg_no: '345-356',
 
                     // school_posted_from: '',
                     // position: '',
@@ -578,40 +467,18 @@
                     // training_workshop: '',
                     // trc_registered: '',
                     // posting_year: '',
-<<<<<<< HEAD
-=======
-                    // class_taught: '',
-                    // training_workshop: '',
-                    computer_literate: '1',
-                    // trc_registered: '',
-                    trc_reg_no: '345-356',
-                    // school_posted_from: '',
-                    // position: '',
->>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
-=======
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
-                }
+                },
+                validation: {
+                text: 'required',
+                required: 'required',
+                email: 'email',
+                number: { regex: /\\.(js|ts)$/},
+            }
             }
         },
         methods: {
-            upload_pic() {
-                this.$refs.user_image.processQueue();
-            },
-            uploaded() {
-                console.log("uploaded");
-            },
-            clearqueue(file) {
-                if (this.$refs.user_image.dropzone.files.length > 1) {
-                    this.$refs.user_image.dropzone.removeFile(this.old_file);
-                }
-                this.old_file = file;
-            },
             onSubmit: function () {
                 this.$staff.addStaff(this.data).then(response => {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                     if (typeof  response == 'object'){
                         this.$swal({
                             type: 'success',
@@ -624,12 +491,6 @@
                             }
                         })
                     }
-<<<<<<< HEAD
-=======
-
->>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
-=======
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                 })
             },
             getSchool(){
@@ -650,6 +511,42 @@
                     this.lgas.push(item.name);
                 });
             })
+
+            //populate the select boxes using the settings data from local storage
+            let settings = JSON.parse(localStorage.getItem('settings'));
+
+            if(settings) {
+                this.states = settings.states;
+                this.religions = settings.religions;
+                this.allLga = settings.lga_areas_all;
+                this.staffCategories = settings.staff_categories;
+                this.staffStatuses = settings.staff_statuses;
+                this.salaries = settings.salaries;
+                this.religions = settings.religions;
+                this.employmentTypes = settings.employments;
+                this.academicQualif = settings.academic_qualifications;
+                this.teachingQualif = settings.teaching_qualifications;
+                this.areaOfSpeciality = settings.specialities
+                this.subjectTaught = settings.subjects
+            }
+
+            //get list of schools
+            this.$school.allSchools().then(data => {
+                this.allSchools = data.data;
+            })
+        },
+        computed: {
+            // Filter the local governments base on the selected state
+            lgaInSelectedState: function() {
+                if(this.data.state_of_origin){
+                    let _filter;
+                _filter =  this.allLga.filter(lga => {
+                        return (lga.state_id == this.data.state_of_origin);
+                    })
+                return _filter;
+                }
+            // return this.data.state_of_origin ? (this.value.interval * this.value.multiplier).toFixed(2) : 0
+            }
         },
         destroyed: function () {
 

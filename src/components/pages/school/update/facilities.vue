@@ -2,10 +2,6 @@
     <div>
         <b-card header="School Facilities Information" header-tag="h4" class="bg-header-card">
             <form method="" class="form-horizontal" @submit.prevent="onSubmit">
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                 <!--<div class="row even-row">-->
                     <!--<div class="col-xs-12 col-sm-6 col-md-6">-->
                         <!--<div class="form-group p-10">-->
@@ -28,21 +24,6 @@
                     <!--</div>-->
                 <!--</div>-->
                 <div class="row odd-row">
-<<<<<<< HEAD
-=======
-                <div class="row even-row">
-                    <div class="col-xs-12 col-sm-6 col-md-6">
-                        <div class="form-group p-10">
-                            <label class="control-label col-md-12">School Building Type
-                            </label>
-                            <div class="col-md-12">
-                                <b-form-radio-group v-model="data.school_building_type" :options="schoolBuildingType" stacked name="school_building" />
-                            </div>
-                        </div>
-                    </div>
->>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
-=======
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                     <div class="col-xs-12 col-sm-6 col-md-3">
                         <div class="form-group p-10">
                             <label class="control-label">School Building Ownership
@@ -54,23 +35,6 @@
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-3">
                         <div class="form-group p-10">
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-                            <label class="control-label">School Fence Condition
-                            </label>
-                            <div class="col-md-12">
-                                <b-form-radio-group v-model="data.school_fence_condition" :options="fenceCondition" stacked name="fence_condition" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row odd-row">
-                    <div class="col-xs-12 col-sm-6 col-md-6">
-                        <div class="form-group p-10">
->>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
-=======
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                             <label class="control-label col-md-12">Play Rooms</label>
                             <div class="col-md-12">
                                 <b-form-radio-group v-model="data.play_rooms" :options="playRooms" stacked name="sex" />
@@ -164,28 +128,10 @@
                 toiletFacilities:[],
                 schoolId: '',
                 data: {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                     school_building_type: '',
                     building_ownership: '',
                     school_fence_condition: '',
                     building_ownership: '',
-<<<<<<< HEAD
-=======
-                    // ward_id: '',
-                    // boarding: '1',
-                    // school_library: '1',
-                    // security_guard: '1',
-                    school_building_type: '1',
-                    building_ownership: '1',
-                    school_fence_condition: '1',
-
-                    building_ownership: '1',
->>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
-=======
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                     play_rooms: [],
                     play_facilities: [],
                     learning: [],
@@ -203,38 +149,6 @@
             onSubmit: function () {
 
                 this.$school.editSchool(this.schoolId, this.data).then(response => {
-<<<<<<< HEAD
-<<<<<<< HEAD
-                    if (typeof  response == 'object'){
-                        this.$swal({
-                            type: 'success',
-                            title: 'School Record added Successfully!',
-                            confirmButtonColor: '#3085d6',
-                            confirmButtonText: 'Ok'
-                        }).then((result) => {
-                            if (result.value) {
-                                location.reload();
-                            }
-                        })
-                    }
-=======
-                    console.log(response);
-
-                    // if( response.status == 'success'){
-                        //     this.$swal({
-                        //         type: 'success',
-                        //         title: 'School Record updated Successfully!',
-                        //         confirmButtonColor: '#3085d6',
-                        //         confirmButtonText: 'Ok'
-                        //     }).then((result) => {
-                        //         if (result.value) {
-                        //             // todo reload page
-                        //             location.reload();
-                        //         }
-                        //     })
-                        // }
->>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
-=======
                     // if (typeof  response == 'object'){
                     //     this.$swal({
                     //         type: 'success',
@@ -247,7 +161,6 @@
                     //         }
                     //     })
                     // }
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
                         // else {
                         //     this.$swal({
                         //         type: 'error',
@@ -281,29 +194,10 @@
                 settings.play_rooms.forEach(item => this.playRooms.push({ text: item.category, value: item.id }));
                 settings.fences.forEach(item => this.fenceCondition.push({ text: item.condition, value: item.id }));
                 settings.power_sources.forEach(item => this.powerSource.push({ text: item.power_sources, value: { power_source_id: item.id } }));
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
-
-                    // facilitiesShared:[],
-                    // boarding: [],
-                    // schoolLibrary: [],
-                    // schoolBuildingType: [],
-                    // fenceCondition: [],
-                    // playRooms: [],
-                    // playFacilities: [],
-                    // powerSource: [],
-                    // toiletFacilities:[],
->>>>>>> aebf69b674fe3fafcab8ee2efb079da7d40405b2
-=======
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
             }
 
             this.$school.schoolProfile(this.$route.params.id).then(data => {
                 this.schoolId = data.id
-<<<<<<< HEAD
-=======
 
                 // populate the toilet array with data from the database
                 data.toilet.forEach(item => {
@@ -328,7 +222,6 @@
                 data.water.forEach(item => {
                     this.data.water.push({ water_id: item.pivot.water_id });
                 })
->>>>>>> 4a549e8c38f4b84b7629c75a71e3a5bde68cbe77
             })
 
 
