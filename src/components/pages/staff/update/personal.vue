@@ -121,7 +121,8 @@
                              <div class="form-group p-10">
                                  <label class="control-label" for="text">Home Town <span class="text-error">*</span>
                                  </label>
-                                 <input type="text" class="form-control" id="text" placeholder="" v-model="data.home_town">
+                                 <input type="text" class="form-control" id="text" v-validate="validation.required" name="home_town" placeholder="" v-model="data.home_town">
+                                 <span class="text-error">{{ errors.first('home_town') }}</span>
                              </div>
                          </div>
                          <div class="col-xs-12 col-sm-6 col-md-3">
@@ -168,7 +169,8 @@
                              <div class="form-group p-10">
                                  <label class="control-label col-md-4">Home/Residential Address <span class="text-error">*</span></label>
                                  <div class="col-md-12">
-                                     <textarea rows="4" class="form-control resize_vertical" v-model="data.residential_address" placeholder="Home/Residential Address"></textarea>
+                                     <textarea rows="4" class="form-control resize_vertical" v-validate="validation.required" name="address" v-model="data.residential_address" placeholder="Home/Residential Address"></textarea>
+                                     <span class="text-error">{{ errors.first('address') }}</span>
                                  </div>
                              </div>
                          </div>

@@ -8,37 +8,41 @@
                     <form method="" class="form-horizontal">
                         <div class="row odd-row">
                             <div class="col-lg-6">
-                                <label>LGA</label>
+                                <label>LGA <span class="text-error">*</span></label>
                                 <multiselect v-model="lga" :show-labels="false" :options="lgas" @input="getSchool"></multiselect>
+                                <span class="text-error">{{ errors.first('religion') }}</span>
                             </div>
                             <div class="col-lg-6">
-                                <label>School Name</label>
+                                <label>School Name <span class="text-error">*</span></label>
                                 <multiselect v-model="school_name" :show-labels="false" :options="schools"></multiselect>
+                                <span class="text-error">{{ errors.first('religion') }}</span>
                             </div>
                         </div>
                         <div class="row even-row">
                             <div class="col-xs-12 col-sm-6 col-md-3">
                                 <div class="form-group p-10">
-                                    <label class="control-label col-md-8">Firstname
+                                    <label class="control-label col-md-8">Firstname <span class="text-error">*</span>
                                     </label>
                                     <div class="col-md-12">
-                                        <input type="text" class="form-control" v-model="data.first_name" placeholder="First Name">
+                                        <input type="text" class="form-control" v-model="data.first_name" v-validate="validation.required"
+                                               name="first_name" required placeholder="First Name">
+                                        <span class="text-error">{{ errors.first('first_name') }}</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-3">
                                 <div class="form-group p-10">
-                                    <label class="control-label col-md-12">Middle Name
-                                    </label>
+                                    <label class="control-label col-md-12">Middle Name <span class="text-error">*</span></label>
                                     <div class="col-md-12">
-                                        <input type="text" class="form-control" v-model="data.middle_name" placeholder="Middle Name">
+                                        <input type="text" class="form-control" v-model="data.middle_name" v-validate="validation.required"
+                                               name="middle_name" required placeholder="Middle Name">
+                                        <span class="text-error">{{ errors.first('middle_name') }}</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-3">
                                 <div class="form-group p-10">
-                                    <label class="control-label">Last Name
-                                    </label>
+                                    <label class="control-label">Last Name</label>
                                     <div class="col-md-12">
                                         <input type="text" class="form-control" v-model="data.last_name" placeholder="">
                                     </div>
@@ -46,9 +50,9 @@
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-3">
                                 <div class="form-group p-10">
-                                    <label class="control-label">Sex
-                                    </label>
+                                    <label class="control-label">Sex <span class="text-error">*</span></label>
                                     <b-form-radio-group v-model="data.sex" :options="sexOptions" stacked name="sex" />
+                                    <span class="text-error">{{ errors.first('sex') }}</span>
                                 </div>
                             </div>
                         </div>
@@ -59,22 +63,23 @@
                                     </label>
                                     <div class="col-md-12">
                                         <input type="date" class="form-control" v-model="data.date_of_birth">
+                                        <span class="text-error">{{ errors.first('dob') }}</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-3">
                                 <div class="form-group p-10">
-                                    <label class="control-label col-md-12">Place of Birth
-                                    </label>
+                                    <label class="control-label col-md-12">Place of Birth <span class="text-error">*</span></label>
                                     <div class="col-md-12">
-                                        <input type="text" class="form-control" v-model="data.place_of_birth" id="pob" placeholder="Place of birth">
+                                        <input type="text" class="form-control" v-model="data.place_of_birth"
+                                               id="pob" v-validate="validation.required" name="pob" required placeholder="Place of birth">
+                                        <span class="text-error">{{ errors.first('pob') }}</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-3">
                                 <div class="form-group p-10">
-                                    <label class="control-label">Phone Number (optional)
-                                    </label>
+                                    <label class="control-label">Phone Number (optional)</label>
                                     <div class="col-md-12">
                                         <input type="phone" class="form-control" name="phone" v-model="data.phone" placeholder="08064720000" id="phone">
                                     </div>
@@ -82,8 +87,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-3">
                                 <div class="form-group p-10">
-                                    <label class="control-label" for="email">Email (optional)
-                                    </label>
+                                    <label class="control-label" for="email">Email (optional)</label>
                                     <div class="col-md-12">
                                         <input type="email" class="form-control" v-model="data.email" id="email" placeholder="aaa@abcd.com">
                                     </div>
@@ -93,13 +97,13 @@
                         <div class="row even-row">
                             <div class="col-xs-12 col-sm-6 col-md-4">
                                 <div class="form-group p-10">
-                                    <label class="control-label col-md-8">Any special Challenge?
-                                    </label>
+                                    <label class="control-label col-md-8">Any special Challenge?  <span class="text-error">*</span></label>
                                     <div class="col-md-12">
-                                        <select v-model="data.special_condition" class="form-control" size="1">
+                                        <select v-model="data.special_condition" class="form-control" size="1" required>
                                             <option value="">Select Challenge</option>
                                             <option v-for="challenge in specialChallenges" :value="challenge.id">{{challenge.condition}}</option>
                                         </select>
+                                        <span class="text-error">{{ errors.first('special_condition') }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -107,8 +111,7 @@
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-6">
                                         <div class="form-group p-10">
-                                            <label class="control-label">Height (in m)
-                                            </label>
+                                            <label class="control-label">Height (in m)</label>
                                             <input type="number" min="0" class="form-control" v-model="data.height" placeholder="">
                                         </div>
                                     </div>
@@ -122,8 +125,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-4">
                                 <div class="form-group p-10">
-                                    <label class="control-label">Blood Group Type
-                                    </label>
+                                    <label class="control-label">Blood Group Type</label>
                                     <div class="col-md-12">
                                         <input type="text" class="form-control" v-model="data.blood_group" placeholder="A, B, AB, O">
                                     </div>
@@ -133,44 +135,44 @@
                         <div class="row odd-row">
                             <div class="col-xs-12 col-sm-6 col-md-4">
                                 <div class="form-group p-10">
-                                    <label class="control-label col-md-12">Birth Cert Type
-                                    </label>
+                                    <label class="control-label col-md-12">Birth Cert Type <span class="text-error">*</span></label>
                                     <div class="col-md-12">
-                                        <select name="birth_cert_type" v-model="data.birth_cert_type" class="form-control" size="1">
+                                        <select name="birth_cert_type" v-model="data.birth_cert_type" class="form-control" size="1" required>
                                             <option value="">Select Cert Type</option>
                                             <option v-for="cert in birthCerts" :value="cert.id">{{cert.birth_cert_type}}</option>
                                         </select>
+                                        <span class="text-error">{{ errors.first('birth_cert_type') }}</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group p-10">
-                                    <label class="control-label col-md-8" for="admission_year">Year of Admission
-                                    </label>
+                                    <label class="control-label col-md-8" for="admission_year">Year of Admission <span class="text-error">*</span></label>
                                     <div class="col-md-12">
-                                        <input type="text" class="form-control"  v-model="data.admission_year" name="admission_year" id="admission_year" placeholder="School Name">
+                                        <input type="text" class="form-control"  v-model="data.admission_year" name="admission_year"
+                                               id="admission_year" v-validate="validation.required" required placeholder="Admission Year">
+                                        <span class="text-error">{{ errors.first('admission_year') }}</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-4">
                                 <div class="form-group p-10">
-                                    <label class="control-label col-md-8">Student's Admission Status <span>*</span>
-                                    </label>
+                                    <label class="control-label col-md-8">Student's Admission Status <span class="text-error">*</span></label>
                                     <b-form-radio-group v-model="data.admission_status" :options="enrollmentOptions" stacked />
-                                    
+                                    <span class="text-error">{{ errors.first('admission_status') }}</span>
                                 </div>
                             </div>
                         </div>
                         <div class="row even-row">
                             <div class="col-xs-12 col-sm-6 col-md-3">
                                 <div class="form-group p-10">
-                                    <label class="control-label col-md-8">Admission Education Level <span>*</span>
-                                    </label>
+                                    <label class="control-label col-md-8">Admission Education Level <span class="text-error">*</span></label>
                                     <div class="col-md-12">
-                                        <select id="admission_education_level" v-model="data.admission_education_level" name="admission_education_level" class="form-control" size="1">
+                                        <select id="admission_education_level" v-model="data.admission_education_level" name="admission_education_level" class="form-control" size="1" required>
                                             <option value="">Select Level</option>
                                             <option v-for="level in educationLevels" :value="level.id">{{level.level}}</option>
                                         </select>
+                                        <span class="text-error">{{ errors.first('admission_education_level') }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -201,16 +203,17 @@
                             </div> -->
                             <div class="col-xs-12 col-sm-6 col-md-3">
                                 <div class="form-group p-10">
-                                    <label class="control-label col-md-12">Current Class Level <span>*</span>
-                                    </label>
+                                    <label class="control-label col-md-12">Current Class Level <span class="text-error">*</span></label>
                                     <div class="col-md-12">
-                                        <input type="number" min="0" class="form-control" name="current_class_level" v-model="data.education_level" id="current_class_level" placeholder="">
+                                        <input type="number" min="0" class="form-control" name="current_class_level" v-model="data.education_level"
+                                               id="current_class_level" placeholder="" v-validate="validation.required" required>
+                                        <span class="text-error">{{ errors.first('current_class_level') }}</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-3">
                                 <div class="form-group p-10">
-                                    <label class="control-label col-md-12"data.>Promotion Status<span>*</span></label>
+                                    <label class="control-label col-md-12"data.>Promotion Status <span class="text-error">*</span></label>
                                     <div class="col-md-12">
                                         <select id="current_admission_education_level" v-model="data.promotion_status" name="current_admission_education_level" class="form-control" size="1">
                                             <option value="">Select Level</option>
@@ -241,10 +244,10 @@
                             </div> -->
                             <div class="col-xs-12 col-sm-6 col-md-3">
                                 <div class="form-group p-10">
-                                    <label class="control-label col-md-8">Boarding Student? <span>*</span>
-                                    </label>
+                                    <label class="control-label col-md-8">Boarding Student? <span class="text-error">*</span></label>
                                     <div class="col-md-12">
                                         <b-form-radio-group v-model="data.boarding" :options="yesNoOptions" stacked name="boarding" />
+                                        <span class="text-error">{{ errors.first('boarding') }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -258,10 +261,11 @@
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-3">
                                 <div class="form-group p-10">
-                                    <label class="control-label col-md-12">Home Dist to School 
-                                    </label>
+                                    <label class="control-label col-md-12">Home Dist to School <span class="text-error">*</span></label>
                                     <div class="col-md-12">
-                                        <input type="number" min="0" class="form-control" v-model="data.distance_from_school" value="0">
+                                        <input type="number" min="0" class="form-control" v-model="data.distance_from_school" value="0"
+                                            v-validate="validation.required" name="distance_from_school" required>
+                                        <span class="text-error">{{ errors.first('distance_from_school') }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -276,10 +280,10 @@
                             <div class="row odd-row">
                                 <div class="col-md-12">
                                     <div class="form-group p-10">
-                                        <label class="control-label col-md-8" for="admission_date">Are both parents alive?
-                                        </label>
+                                        <label class="control-label col-md-8">Are both parents alive? <span class="text-error">*</span></label>
                                         <div class="col-md-12">
                                             <b-form-radio-group v-model="data.parent_status" :options="parentOptions" stacked />
+                                            <span class="text-error">{{ errors.first('parent_status') }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -287,34 +291,36 @@
                             <div class="row even-row">
                                 <div class="col-xs-12 col-sm-6 col-md-2">
                                     <div class="form-group p-10">
-                                        <label class="control-label col-md-8" for="g1title">Title
+                                        <label class="control-label col-md-8">Title
                                         </label>
                                         <div class="col-md-12">
-                                            <select v-model="data.guardians[0].title" class="form-control" size="1">
+                                            <select v-model="data.guardians[0].title" class="form-control" size="1" required>
                                                  <option value="">Select Title</option>
                                                  <option v-for="appellation in appellations" :value="appellation.appellation">{{appellation.appellation}}</option>
                                              </select>
+                                            <span class="text-error">{{ errors.first('g1_title') }}</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-md-7">
                                     <div class="form-group p-10">
-                                        <label class="control-label col-md-12" for="g1fullname">Fullname
-                                        </label>
+                                        <label class="control-label col-md-12" for="g1fullname">Fullname <span class="text-error">*</span></label>
                                         <div class="col-md-12">
-                                            <input type="text" class="form-control" v-model="data.guardians[0].fullname" id="g1fullname" placeholder="Fullname">
+                                            <input type="text" class="form-control" v-model="data.guardians[0].fullname" id="g1fullname"
+                                                   placeholder="Fullname" v-validate="validation.required" name="g1_fullname" required>
+                                            <span class="text-error">{{ errors.first('g1_fullname') }}</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-md-3">
                                     <div class="form-group p-10">
-                                        <label class="control-label" for="g1relationship">Relationship
-                                        </label>
+                                        <label class="control-label">Relationship <span class="text-error">*</span></label>
                                         <div class="col-md-12">
-                                            <select id="eg1relationship" name="g1relationship" v-model="data.guardians[0].relationship" class="form-control" size="1">
+                                            <select id="eg1relationship" name="g1relationship" v-model="data.guardians[0].relationship" class="form-control" size="1" required>
                                                  <option value="">Select Relationship</option>
                                                  <option v-for="relation in relationship" :value="relation.id">{{relation.type}}</option>
                                              </select>
+                                            <span class="text-error">{{ errors.first('g1_relationship') }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -322,28 +328,30 @@
                             <div class="row odd-row">
                                 <div class="col-xs-12 col-sm-6 col-md-4">
                                     <div class="form-group p-10">
-                                        <label class="control-label col-md-8" for="g1_occupation">Occupation
-                                        </label>
+                                        <label class="control-label col-md-8" for="g1_occupation">Occupation <span class="text-error">*</span></label>
                                         <div class="col-md-12">
-                                            <input type="text" class="form-control" v-model="data.guardians[0].occupation" id="g1_occupation" placeholder="Occupation">
+                                            <input type="text" class="form-control" v-model="data.guardians[0].occupation" id="g1_occupation"
+                                                  v-validate="validation.required" name="g1_guardians" placeholder="Occupation">
+                                            <span class="text-error">{{ errors.first('g1_guardians') }}</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-md-4">
                                     <div class="form-group p-10">
-                                        <label class="control-label col-md-12" for="g1mobile">Mobile Number
-                                        </label>
+                                        <label class="control-label col-md-12" for="g1mobile">Mobile Number <span class="text-error">*</span></label>
                                         <div class="col-md-12">
-                                            <input type="tel" class="form-control" v-model="data.guardians[0].mobile" id="g1mobile" placeholder="">
+                                            <input type="tel" class="form-control" v-model="data.guardians[0].mobile"
+                                                   v-validate="validation.required" name="g1_mobile" id="g1mobile" placeholder="">
+                                            <span class="text-error">{{ errors.first('g1_mobile') }}</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-md-4">
                                     <div class="form-group p-10">
-                                        <label class="control-label" for="g1_phone">Phone Number
-                                        </label>
+                                        <label class="control-label" for="g1_phone">Phone Number</label>
                                         <div class="col-md-12">
                                             <input type="tel" class="form-control" v-model="data.guardians[0].phone" id="g1_phone" placeholder="08063888888">
+
                                         </div>
                                     </div>
                                 </div>
@@ -351,8 +359,7 @@
                             <div class="row even-row">
                                 <div class="col-xs-12 col-sm-6 col-md-4">
                                     <div class="form-group p-10">
-                                        <label class="control-label col-md-8" for="g1_email">Email
-                                        </label>
+                                        <label class="control-label col-md-8" for="g1_email">Email</label>
                                         <div class="col-md-12">
                                             <input type="email" class="form-control" v-model="data.guardians[0].email" id="g1_email" placeholder="">
                                         </div>
@@ -360,13 +367,13 @@
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-md-4">
                                     <div class="form-group p-10">
-                                        <label class="control-label" for="g1_religious_status">Religion
-                                        </label>
+                                        <label class="control-label">Religion <span class="text-error">*</span></label>
                                         <div class="col-md-12">
-                                            <select id="example-select" v-model="data.guardians[0].religious_status" name="g1_religious_status" class="form-control" size="1">
+                                            <select v-model="data.guardians[0].religious_status" name="g1_religious_status" class="form-control" size="1">
                                                  <option value="">Select Religion</option>
                                                  <option v-for="religion in religions" :value="religion.id">{{religion.religion}}</option>
                                              </select>
+                                            <span class="text-error">{{ errors.first('g1_religion') }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -374,10 +381,11 @@
                             <div class="row odd-row">
                                 <div class="col-xs-12 col-sm-12 col-md-9">
                                     <div class="form-group p-10">
-                                        <label class="control-label col-md-8" for="g1_contact_address">Contact Address
-                                        </label>
-                                            <textarea cols="6" class="form-control" id="g1_contact_address" v-model="data.guardians[0].contact_address">
+                                        <label class="control-label col-md-8" for="g1_contact_address">Contact Address <span class="text-error">*</span></label>
+                                            <textarea cols="6" class="form-control" id="g1_contact_address" v-model="data.guardians[0].contact_address"
+                                                     v-validate="validation.required" required >
                                             </textarea>
+                                        <span class="text-error">{{ errors.first('g1_address') }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -387,7 +395,7 @@
                             <div class="row odd-row">
                                 <div class="col-xs-12 col-sm-6 col-md-2">
                                     <div class="form-group p-10">
-                                        <label class="control-label col-md-8" for="g2title">Title
+                                        <label class="control-label col-md-8">Title
                                         </label>
                                         <div class="col-md-12">
                                             <select v-model="data.guardians[1].title" class="form-control" size="1">
@@ -497,7 +505,9 @@ import Vue from 'vue';
 import VueFormWizard from 'vue-form-wizard'
 import 'vue-form-wizard/dist/vue-form-wizard.min.css'
 import Multiselect from 'vue-multiselect';
+import VeeValidate from 'vee-validate';
 
+Vue.use(VeeValidate);
 Vue.use(VueFormWizard)
 export default {
     components: {
@@ -516,12 +526,19 @@ export default {
             school_name: '',
             educationLevels: {},
             promotionStatus: {},
+            admissionStatusOptions: [],
             sexOptions: [{ text: 'Female', value: 'F' },{ text: 'Male', value: 'M' }],
             yesNoOptions: [{ text: 'Yes', value: '1' },{ text: 'No', value: '0' }],
             parentOptions: [{ text: 'Both Alive', value: '1' },{ text: 'Father Only', value: '2' },{ text: 'Mother Only', value: '3' },{ text: 'None', value: '4' }],
-            enrollmentOptions: [{ text: 'Fresh Enrollment/Placement', value: '1' },{ text: 'Transfer In', value: '2' }],
+            enrollmentOptions: [],
             data: {
                 guardians: [{}, {}],
+            },
+            validation: {
+                text: 'required',
+                required: 'required',
+                email: 'email',
+                number: { regex: /\\.(js|ts)$/},
             }
         }
     },
@@ -571,6 +588,11 @@ export default {
             this.relationship = settings.guardians;
             this.educationLevels = settings.educations;
             this.promotionStatus = settings.promotions;
+            settings.admissions.forEach(item => {
+                this.enrollmentOptions.push({ text: item.status, value: item.id });
+            })
+
+
         }
 
         //get list of schools

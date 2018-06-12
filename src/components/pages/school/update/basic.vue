@@ -58,7 +58,7 @@
                             <label class="control-label">School Location
                             </label>
                             <div class="col-md-12">
-                                <b-form-radio-group v-model="data.location" :options="schoolLocationOptions" stacked />
+                                <b-form-radio-group v-model="data.location" :options="schoolLocationsOptions" stacked />
                             </div>
                         </div>
                     </div>
@@ -111,7 +111,7 @@
                             <label class="control-label col-md-12">School Category
                             </label>
                             <div class="col-md-12">
-                                <b-form-radio-group v-model="data.category" :options="categoryOptions" stacked />
+                                <b-form-radio-group v-model="data.category" :options="schoolCategoryOptions" stacked />
                             </div>
                         </div>
                     </div>
@@ -119,7 +119,7 @@
                 <div class="row odd-row">
                     <div class="col-xs-12 col-sm-6 col-md-3">
                         <div class="form-group p-10">
-                            <label class="control-label col-md-12" for="text">Boarding Facilities
+                            <label class="control-label col-md-12">Boarding Facilities
                             </label>
                             <div class="col-md-12">
                                 <b-form-radio-group v-model="data.boarding" :options="yesNoOptions" stacked name="sex" />
@@ -273,7 +273,7 @@
                 lgasInfo:[],
                 wardKeys: [], // capture the ward id and ward name of the selected LGA
                 settings: null,
-                schoolLocationsOptions:[{ text: 'Rural', value: 'rural' },{ text: 'Urban', value: 'urban' }],
+                schoolLocationsOptions:[{ text: 'Rural', value: 'Rural' },{ text: 'Urban', value: 'Urban' }],
                 educationLevelOptions:[{ text: 'Primary', value: 'Primary' },{ text: 'Secondary', value: 'Secondary' }],
                 schoolCategoryOptions: [{ text: 'Public', value: 'Public' },{ text: 'Private', value: 'Private' }],
                 schoolTypesOptions: [],
@@ -315,18 +315,18 @@
                 // console.log("aaa");
                 this.$school.editSchool(this.schoolId, this.data).then(response => {
 
-                    if (typeof  response == 'object'){
-                        this.$swal({
-                            type: 'success',
-                            title: 'School Record added Successfully!',
-                            confirmButtonColor: '#3085d6',
-                            confirmButtonText: 'Ok'
-                        }).then((result) => {
-                            if (result.value) {
-                                location.reload();
-                            }
-                        })
-                    }
+                    // if (typeof  response == 'object'){
+                    //     this.$swal({
+                    //         type: 'success',
+                    //         title: 'School Record added Successfully!',
+                    //         confirmButtonColor: '#3085d6',
+                    //         confirmButtonText: 'Ok'
+                    //     }).then((result) => {
+                    //         if (result.value) {
+                    //             window.location.href = 'http://localhost:8080/school/' + this.schoolId;
+                    //         }
+                    //     })
+                    // }
                     // else {
                     //     this.$swal({
                     //         type: 'error',
@@ -431,13 +431,17 @@
                 })
                 this.lga = _lga[0].name;
 
-                // get ward
-                let settings = JSON.parse(localStorage.getItem('settings'));
+                // populate ward
+                this.getWard()
+                this.ward = data.ward.name;
 
-                let _wards = settings.lga_wards.filter(item => {
-                    return (item.id == data.ward.id);
-                })
-                this.ward = _wards[0].name;
+                // get ward
+                // let settings = JSON.parse(localStorage.getItem('settings'));
+                //
+                // let _wards = settings.lga_wards.filter(item => {
+                //     return (item.id == data.ward.id);
+                // })
+                // this.ward = _wards[0].name;
 
             })
 
