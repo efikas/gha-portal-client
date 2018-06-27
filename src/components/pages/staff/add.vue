@@ -3,18 +3,18 @@
         <b-card header="Staff Information" header-tag="h4" class="bg-header-card">
             <form-wizard @on-complete="onSubmit" color="#e67e22">
                 <h2 slot="title"></h2>
-                <tab-content title="Staff Profile Info" icon="fa fa-user">
+                <tab-content title="Staff Profile Info" icon="fa fa-user" :before-change="beforeTabSwitch">
                     <div>
                         <form method="" class="form-horizontal">
                             <div class="row odd-row">
                                 <div class="col-lg-6">
                                     <label>LGA <span class="text-error">*</span></label>
-                                    <multiselect v-model="lga" :show-labels="false" :options="lgas" @input="getSchool"></multiselect>
+                                    <multiselect v-model="selectedLga" :show-labels="false" :options="lgas" @input="getSchool"></multiselect>
                                     <span class="text-error">{{ errors.first('schoolLga') }}</span>
                                 </div>
                                 <div class="col-lg-6">
                                     <label>School Name <span class="text-error">*</span></label>
-                                    <multiselect v-model="data.school_name" :show-labels="false" :options="schools"></multiselect>
+                                    <multiselect v-model="selectedSchool" :show-labels="false" :options="schools" @input="getSchoolId"></multiselect>
                                     <span class="text-error">{{ errors.first('school') }}</span>
                                 </div>
                             </div>
@@ -176,12 +176,11 @@
                             <div class="row even-row">
                                 <div class="col-md-12">
                                     <div class="form-group p-10">
-                                        <label class="control-label col-md-8">Home/Residential <span class="text-error">*</span>
-                                            Address</label>
+                                        <label class="control-label col-md-8">Home/Residential Address <span class="text-error">*</span></label>
                                         <div class="col-md-8">
                                             <textarea rows="4" class="form-control resize_vertical"
                                                       v-model="data.residential_address"
-                                                      placeholder="Home/Residential Address"></textarea>
+                                                      placeholder="Home/Residential Address" required></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -422,10 +421,11 @@
         data() {
             return {
                 lgas: [],
-                schools: [],
-                lga: '',
+                selectedLga: '',
+                allLgaInfo: [],     // hold the is and name of all the local governments in the state
                 schools: [],        // holds the array of school name
                 allSchools: [],     // holds the array of schools object
+                selectedSchool: '',
                 staffId: null,
                 states: {},
                 //lgaInSelectedState: {},     // holds the local government in the selected state
@@ -505,20 +505,34 @@
                     }
                 })
             },
+            beforeTabSwitch: function(){
+                alert("This is called before switchind tabs")
+                return true;
+            },
             getSchool(){
-                //Since array index is starting from 0, we need to increment by 1 to start 
-                // the index from 1
-                this.$lga.getLgasSchool(this.lgas.indexOf(this.lga) + 1).then(data => {
+                // Multiselect give the index of the selected to this.lga
+                // the index is the used to get the id of the selected lga from allLgaInfo
+                // the local govt id is the use to get list of schools in the local govt
+
+                let _lgaId = this.allLgaInfo[this.lgas.indexOf(this.selectedLga)].id;
+                this.$lga.getLgasSchool(_lgaId).then(data => {
                     this.schools = [];
                     this.school = '';
                     data.forEach(item => {
-                        this.schools.push(item.school_name);
+                        this.schools.push(item.name);
                     });
                 })
-            } 
+            },
+            getSchoolId() {
+                let _selectedSchool = this.allSchools.filter(school => {
+                    return (school.name == this.selectedSchool);
+                })
+                this.data.school_id = _selectedSchool[0].id;
+            }
         },
         mounted: function () {
             this.$lga.getLgas().then(data => {
+                this.allLgaInfo = data;
                 data.forEach(item => {
                     this.lgas.push(item.name);
                 });

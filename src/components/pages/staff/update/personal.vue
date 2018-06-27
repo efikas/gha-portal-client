@@ -121,7 +121,7 @@
                              <div class="form-group p-10">
                                  <label class="control-label" for="text">Home Town <span class="text-error">*</span>
                                  </label>
-                                 <input type="text" class="form-control" id="text" v-validate="validation.required" name="home_town" placeholder="" v-model="data.home_town">
+                                 <input type="text" class="form-control" v-validate="validation.required" name="home_town" placeholder="" v-model="data.home_town">
                                  <span class="text-error">{{ errors.first('home_town') }}</span>
                              </div>
                          </div>
@@ -233,6 +233,13 @@ export default {
     },
     methods: {
        onSubmit: function(){
+           // Validate form
+           this.$validator.validate().then(result => {
+               if (!result) {
+                   // do stuff if not valid.
+                   console.log(this.errors.first);
+               }
+           });
            this.$staff.editStaff(this.staffId, this.data).then(response => {
                if (typeof  response == 'object'){
                    this.$swal({
@@ -246,23 +253,23 @@ export default {
                        }
                    })
                }
-                   // else {
-                   //     this.$swal({
-                   //         type: 'error',
-                   //         title: 'Error updating school information!',
-                   //         confirmButtonColor: '#3085d6',
-                   //         confirmButtonText: 'Ok'
-                   //     }).then((result) => {
-                   //         if (result.value) {
-                   //             // todo reload page
-                   //             location.reload();
-                   //         }
-                   //     })
-                   // }
-
+           //         // else {
+           //         //     this.$swal({
+           //         //         type: 'error',
+           //         //         title: 'Error updating school information!',
+           //         //         confirmButtonColor: '#3085d6',
+           //         //         confirmButtonText: 'Ok'
+           //         //     }).then((result) => {
+           //         //         if (result.value) {
+           //         //             // todo reload page
+           //         //             location.reload();
+           //         //         }
+           //         //     })
+           //         // }
+           //
             })
         },
-        getSchoolId(){
+        getSchoolId() {
            let _selectedSchool = this.allSchools.filter(school => {
                return (school.name == this.schoolName);
            })

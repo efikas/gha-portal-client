@@ -122,7 +122,7 @@
                             <label class="control-label col-md-12">Boarding Facilities
                             </label>
                             <div class="col-md-12">
-                                <b-form-radio-group v-model="data.boarding" :options="yesNoOptions" stacked name="sex" />
+                                <b-form-radio-group  :options="yesNoOptions" stacked name="sex" />
                             </div>
                         </div>
                     </div>
@@ -315,18 +315,18 @@
                 // console.log("aaa");
                 this.$school.editSchool(this.schoolId, this.data).then(response => {
 
-                    // if (typeof  response == 'object'){
-                    //     this.$swal({
-                    //         type: 'success',
-                    //         title: 'School Record added Successfully!',
-                    //         confirmButtonColor: '#3085d6',
-                    //         confirmButtonText: 'Ok'
-                    //     }).then((result) => {
-                    //         if (result.value) {
-                    //             window.location.href = 'http://localhost:8080/school/' + this.schoolId;
-                    //         }
-                    //     })
-                    // }
+                    if (typeof  response == 'object'){
+                        this.$swal({
+                            type: 'success',
+                            title: 'School Record added Successfully!',
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'Ok'
+                        }).then((result) => {
+                            if (result.value) {
+                                window.location.href = 'http://localhost:8080/school/' + this.schoolId;
+                            }
+                        })
+                    }
                     // else {
                     //     this.$swal({
                     //         type: 'error',

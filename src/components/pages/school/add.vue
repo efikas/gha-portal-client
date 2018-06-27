@@ -50,7 +50,7 @@
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-3">
                         <div class="form-group p-10">
-                            <label class="control-label" for="location">School Location
+                            <label class="control-label">School Location
                             </label>
                             <div class="col-md-12">
                                 <b-form-radio-group v-model="data.location" :options="schoolLocationsOptions" stacked />
@@ -83,7 +83,7 @@
                         <div class="row even-row">
                             <div class="col-xs-12 col-sm-5">
                                 <div class="form-group p-10">
-                                    <label class="control-label" for="website">Website
+                                    <label class="control-label">Website
                                     </label>
                                     <div class="col-md-12">
                                         <input type="url" v-model="data.website" class="form-control"
@@ -93,7 +93,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-4">
                                 <div class="form-group p-10">
-                                    <label class="control-label" for="text">Map Coordinate (Lat, Long)
+                                    <label class="control-label">Map Coordinate (Lat, Long)
                                     </label>
                                     <input type="text" v-model="data.geolocation"
                                            class="form-control" id="long" placeholder="e.g. 9.182 / -39.140625">
@@ -103,7 +103,7 @@
 
                             <div class="col-xs-12 col-sm-6 col-md-3">
                                 <div class="form-group p-10">
-                                    <label class="control-label col-md-12" for="text">School Category
+                                    <label class="control-label col-md-12">School Category
                                     </label>
                                     <div class="col-md-12">
                                         <b-form-radio-group v-model="data.category" :options="schoolCategoryOptions" stacked />
@@ -137,14 +137,14 @@
                         <div class="row even-row">
                             <div class="col-xs-12 col-sm-6">
                                 <div class="form-group p-10">
-                                    <label class="control-label col-md-12" for="text">School Type
+                                    <label class="control-label col-md-12">School Type
                                     </label>
                                    <b-form-radio-group v-model="data.type" :options="schoolTypesOptions" stacked />
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-6">
                                 <div class="form-group p-10">
-                                    <label class="control-label" for="text">School Ownership
+                                    <label class="control-label">School Ownership
                                     </label>
                                     <b-form-radio-group v-model="data.ownership" :options="schoolOwnershipOptions" stacked />
                                 </div>
@@ -153,7 +153,7 @@
                         <div class="row odd-row">
                             <div class="col-xs-12 col-sm-6 col-md-4">
                                 <div class="form-group p-10">
-                                    <label class="control-label col-md-12" for="education_level">Education Level
+                                    <label class="control-label col-md-12">Education Level
                                     </label>
                                     <div class="col-md-12">
                                         <b-form-radio-group v-model="data.education_level" :options="educationLevelOptions" stacked />
@@ -162,7 +162,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-4">
                                 <div class="form-group p-10">
-                                    <label class="control-label" for="text">Multigrading System
+                                    <label class="control-label">Multigrading System
                                     </label>
                                     <div class="col-md-12">
                                         <b-form-radio-group v-model="data.multigrade" :options="yesNoOptions" stacked name="multigrade" />
@@ -171,7 +171,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-4">
                                 <div class="form-group p-10">
-                                    <label class="control-label" for="text">shift
+                                    <label class="control-label">shift
                                     </label>
                                     <div class="col-md-12">
                                         <b-form-radio-group v-model="data.shift" :options="yesNoOptions" stacked name="shift" />
@@ -182,7 +182,7 @@
                         <div class="row even-row">
                             <div class="col-xs-12 col-sm-6 col-md-3">
                                 <div class="form-group p-10">
-                                    <label class="control-label col-md-12" for="management_committee">Management
+                                    <label class="control-label col-md-12">Management
                                         Committee
                                     </label>
                                     <div class="col-md-12">
@@ -192,7 +192,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-3">
                                 <div class="form-group p-10">
-                                    <label class="control-label" for="text">PTA/PTF/MA
+                                    <label class="control-label">PTA/PTF/MA
                                     </label>
                                     <div class="col-md-12">
                                         <b-form-radio-group v-model="data.pta_pf" :options="yesNoOptions" stacked name="pta_pf" />
@@ -201,7 +201,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-3">
                                 <div class="form-group p-10">
-                                    <label class="control-label" for="text">School Development Plan
+                                    <label class="control-label">School Development Plan
                                     </label>
                                     <div class="col-md-12">
                                         <b-form-radio-group v-model="data.development_plan" :options="yesNoOptions" stacked name="development_plan" />
@@ -210,7 +210,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-3">
                                 <div class="form-group p-10">
-                                    <label class="control-label" for="text">School grants
+                                    <label class="control-label">School grants
                                     </label>
                                     <div class="col-md-12">
                                         <b-form-radio-group v-model="data.grants" :options="yesNoOptions" stacked name="grants" />
@@ -221,7 +221,7 @@
                         <!-- <div class="row odd-row">
                             <div class="col-md-5">
                                 <div class="form-group p-10">
-                                    <label class="control-label col-md-12" for="text">Date of Last Inspection Visit
+                                    <label class="control-label col-md-12">Date of Last Inspection Visit
                                     </label>
                                     <div class="col-md-12">
                                         <input type="date" v-model="data.date_last_inspection"
@@ -241,7 +241,7 @@
                             </div>
                             <div class="col-md-">
                                 <div class="form-group p-10">
-                                    <label class="control-label" for="text">Inspection Authority
+                                    <label class="control-label">Inspection Authority
                                     </label>
                                     <div class="col-md-12">
                                         <div class="radio">

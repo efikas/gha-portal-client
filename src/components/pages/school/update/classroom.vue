@@ -95,7 +95,7 @@
                             confirmButtonText: 'Ok'
                         }).then((result) => {
                             if (result.value) {
-                                location.reload();
+                                window.location.href = 'http://localhost:8080/school/' + this.schoolId;
                             }
                         })
                     }
@@ -122,7 +122,7 @@
             },
         },
         mounted: function () {
-            //populate the select boxes using the settings data from local storage
+            // populate the select boxes using the settings data from local storage
             let settings = JSON.parse(localStorage.getItem('settings'));
 
             if(settings) {

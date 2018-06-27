@@ -90,16 +90,15 @@
 
             this.$school.schoolProfile(this.$route.params.id).then(data => {
                 this.schoolId = data.id;
-                // if(data.facilities.length > 0){
-                //     this.facilities = [];
-                //     data.facilities.forEach(item => {
-                //         this.facilities.push({
-                //             id: item.id,
-                //             type: item.type,
-                //             status: item.pivot.no_facility,
-                //         });
-                //     });
-                // }
+                if(data.facilities.length > 0){
+                    // this.facilities = [];
+                    // data.facilities.forEach((item, index) => {
+                    //     this.facilities[index].status = item.pivot.no_facility;
+                    // });
+                    for (let i = 0; i < this.facilities.length; i++){
+                        this.facilities[i].status = data.facilities[i].pivot.no_facility;
+                    }
+                }
 
             })
 

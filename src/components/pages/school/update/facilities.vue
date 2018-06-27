@@ -29,7 +29,7 @@
                             <label class="control-label">School Building Ownership
                             </label>
                             <div class="col-md-12">
-                                <b-form-radio-group v-model="data.building_ownership" :options="schoolBuildingOwnership" stacked name="sex" />
+                                <b-form-radio-group v-model="data.building_ownership" :options="schoolBuildingOwnership" stacked name="building_ownership" />
                             </div>
                         </div>
                     </div>
@@ -37,7 +37,7 @@
                         <div class="form-group p-10">
                             <label class="control-label col-md-12">Play Rooms</label>
                             <div class="col-md-12">
-                                <b-form-radio-group v-model="data.play_rooms" :options="playRooms" stacked name="sex" />
+                                <b-form-radio-group v-model="data.play_rooms" :options="playRooms" stacked name="play_rooms" />
                             </div>
                         </div>
                     </div>
@@ -46,7 +46,7 @@
                             <label class="control-label">Play Facilities
                             </label>
                             <div class="col-md-12">
-                                <b-form-radio-group v-model="data.play_facilities" :options="playFacilities" stacked name="sex" />
+                                <b-form-radio-group v-model="data.play_facilities" :options="playFacilities" stacked name="play_facilities" />
                             </div>
                         </div>
                     </div>
@@ -55,7 +55,7 @@
                             <label class="control-label">Learning Materials
                             </label>
                             <div class="col-md-12">
-                                <b-form-checkbox-group v-model="data.learning" :options="learningMaterials" stacked name="sex" />
+                                <b-form-checkbox-group v-model="data.learning" :options="learningMaterials" stacked name="learning" />
                             </div>
                         </div>
                     </div>
@@ -75,7 +75,7 @@
                             <label class="control-label">Health Facilities
                             </label>
                             <div class="col-md-12">
-                                <b-form-checkbox-group v-model="data.health" :options="healthFacilities" stacked name="sex" />
+                                <b-form-checkbox-group v-model="data.health" :options="healthFacilities" stacked name="health" />
                             </div>
                         </div>
                     </div>
@@ -84,7 +84,7 @@
                             <label class="control-label">Sources of Water Supply
                             </label>
                             <div class="col-md-12">
-                                <b-form-checkbox-group v-model="data.water" :options="waterSupply" stacked name="sex" />
+                                <b-form-checkbox-group v-model="data.water" :options="waterSupply" stacked name="water" />
                             </div>
                         </div>
                     </div>
@@ -93,7 +93,7 @@
                             <label class="control-label">Toilet Facilities
                             </label>
                             <div class="col-md-12">
-                                <b-form-checkbox-group v-model="data.toilet" :options="toiletFacilities" stacked name="sex" />
+                                <b-form-checkbox-group v-model="data.toilet" :options="toiletFacilities" stacked name="toilet" />
                             </div>
                         </div>
                     </div>
@@ -132,21 +132,42 @@
                     building_ownership: '',
                     school_fence_condition: '',
                     building_ownership: '',
-                    play_rooms: [],
-                    play_facilities: [],
+                    play_rooms: '',
+                    play_facilities: '',
                     learning: [],
                     power_sources: [],
                     health: [],
                     water: [],
                     toilet: [],
-
-                    // facilities_sharing: '1',
-                    // facilities_shared: '1',
                 }
             }
         },
         methods: {
             onSubmit: function () {
+                // reset
+                this.data.play_rooms = '';
+                this.data.play_facilities = ''
+                this.data.learning = [];
+                this.data.power_sources = [];
+                this.data.health = [];
+                this.data.water = [];
+                this.data.toilet = [];
+
+                // this.data.learning.forEach( (item, index) => {
+                //     this.data.learning[index] = {learning_id: item}
+                // })
+                // this.data.toilet.forEach( (item, index) => {
+                //     this.data.toilet[index] = {toilet_type_id: item}
+                // })
+                // this.data.power_sources.forEach( (item, index) => {
+                //     this.data.power_sources[index] = {power_source_id: item}
+                // })
+                // this.data.health.forEach( (item, index) => {
+                //     this.data.health[index] = {health_id: item}
+                // })
+                // this.data.water.forEach( (item, index) => {
+                //     this.data.water[index] = {water_id: item}
+                // })
 
                 this.$school.editSchool(this.schoolId, this.data).then(response => {
                     // if (typeof  response == 'object'){
@@ -157,7 +178,7 @@
                     //         confirmButtonText: 'Ok'
                     //     }).then((result) => {
                     //         if (result.value) {
-                    //             location.reload();
+                    //             window.location.href = 'http://localhost:8080/school/' + this.schoolId;
                     //         }
                     //     })
                     // }
@@ -184,52 +205,80 @@
             let settings = JSON.parse(localStorage.getItem('settings'));
 
             if(settings) {
-                settings.learning.forEach(item => this.learningMaterials.push({ text: item.material, value: { learning_id: item.id } }));
-                settings.building_types.forEach(item => this.schoolBuildingType.push({ text: item.type + '<br />' + item.description, value: item.id }));
-                settings.buildings.forEach(item => this.schoolBuildingOwnership.push({ text: item.ownership, value: { building_id: item.id } }));
-                settings.healths.forEach(item => this.healthFacilities.push({ text: item.facility, value: { health_id: item.id } }));
-                settings.water.forEach(item => this.waterSupply.push({ text: item.source, value: { water_id: item.id } }));
-                settings.toilet_types.forEach(item => this.toiletFacilities.push({ text: item.type, value: { toilet_type_id: item.id } }));
+
+                settings.learning.forEach(item => this.learningMaterials.push({ text: item.material, value: item.id }));
+                settings.buildings.forEach(item => this.schoolBuildingOwnership.push({ text: item.ownership, value: { building_id: item.id } }))
+                settings.healths.forEach(item => this.healthFacilities.push({ text: item.facility, value: item.id }));
+                settings.water.forEach(item => this.waterSupply.push({ text: item.source, value: item.id }));
+                settings.toilet_types.forEach(item => this.toiletFacilities.push({ text: item.type, value: item.id }));
                 settings.play_facilities.forEach(item => this.playFacilities.push({ text: item.type, value: item.id }));
                 settings.play_rooms.forEach(item => this.playRooms.push({ text: item.category, value: item.id }));
-                settings.fences.forEach(item => this.fenceCondition.push({ text: item.condition, value: item.id }));
-                settings.power_sources.forEach(item => this.powerSource.push({ text: item.power_sources, value: { power_source_id: item.id } }));
+                settings.power_sources.forEach(item => this.powerSource.push({ text: item.power_sources, value: item.id }));
+                // settings.fences.forEach(item => this.fenceCondition.push({ text: item.condition, value: item.id }))
+                // settings.building_types.forEach(item => this.schoolBuildingType.push({ text: item.type + '<br />' + item.description, value: item.id }));
             }
 
             this.$school.schoolProfile(this.$route.params.id).then(data => {
                 this.schoolId = data.id
 
-                // populate the toilet array with data from the database
-                data.toilet.forEach(item => {
-                    this.data.toilet.push({toilet_type_id: item.pivot.toilet_type_id});
-                })
+                this.play_rooms = '';
+                this.play_facilities = ''
+                this.learning = [];
+                this.power_sources = [];
+                this.health = [];
+                this.water = [];
+                this.toilet = [];
 
+                // this.data.learning.forEach( (item, index) => {
+                //     this.data.learning[index] = {learning_id: item}
+                // })
+                // this.data.toilet.forEach( (item, index) => {
+                //     this.data.toilet[index] = {toilet_id: item}
+                // })
+                // this.data.power_sources.forEach( (item, index) => {
+                //     this.data.power_sources[index] = {power_sources_id: item}
+                // })
+                // this.data.health.forEach( (item, index) => {
+                //     this.data.health[index] = {health_id: item}
+                // })
+                // this.data.water.forEach( (item, index) => {
+                //     this.data.water[index] = {water_id: item}
+                // })
 
-                this.data.building_ownership = {building_id: data.building_ownership[0].pivot.building_id};
-                // this.data.play_rooms = data.play_rooms[0].pivot.play_room_id;
-                // this.data.play_facilities = data.play_facilities[0].pivot.play_facility_id;
+                console.log(this.data.learning);
 
-                data.learning.forEach(item => {
-                    this.data.learning.push({learning_id: item.pivot.learning_id})
-                })
+                this.data.building_ownership = (typeof data.building_ownership[0] !== 'undefined') ? {building_id: data.building_ownership[0].pivot.building_id} : '';
+                this.data.play_rooms = (typeof data.play_rooms[0] !== 'undefined') ? data.play_rooms[0].pivot.play_room_id : '';
+                this.data.play_facilities = (typeof data.play_facilities[0] !== 'undefined') ? data.play_facilities[0].pivot.play_facility_id : '';
 
-                data.power_sources.forEach(item => {
-                    this.data.power_sources.push({power_source_id: item.pivot.power_source_id})
-                })
-                data.health.forEach(item => {
-                    this.data.health.push({health_id: item.pivot.health_id})
-                })
-                data.water.forEach(item => {
-                    this.data.water.push({ water_id: item.pivot.water_id });
-                })
+                // for (let i = 0; i < data.toilet.length; i++){
+                //     this.data.toilet[i] = { toilet_type_id: data.learning[i].pivot.toilet_type_id };
+                // }
+                //
+                // for (let i = 0; i < data.learning.length; i++){
+                //     this.data.learning[i] = {learning_id: data.learning[i].pivot.learning_id};
+                // }
+                // for (let i = 0; i < data.power_sources.length; i++){
+                //     this.data.power_sources[i] = {power_source_id: data.power_sources[i].pivot.power_source_id};
+                // }
+                // for (let i = 0; i < data.health.length; i++){
+                //     this.data.health[i] = {health_id: data.health[i].pivot.health_id};
+                // }
+                // for (let i = 0; i < data.water.length; i++){
+                //     this.data.water[i] = { water_id: data.water[i].pivot.water_id };
+                // }
+
+                data.toilet.forEach(item => { this.data.toilet.push(item.pivot.toilet_type_id);})
+                data.learning.forEach(item => { this.data.learning.push(item.pivot.learning_id); })
+                data.power_sources.forEach(item => { this.data.power_sources.push(item.pivot.power_source_id) })
+                data.health.forEach(item => { this.data.health.push(item.pivot.health_id) })
+                data.water.forEach(item => { this.data.water.push(item.pivot.water_id ); })
+
+                console.log(this.data.power_sources);
             })
 
-
-
         },
-        destroyed: function () {
-
-        }
+        destroyed: function () {}
     }
 </script>
 <style type="text/css" scoped>

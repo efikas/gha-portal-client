@@ -234,12 +234,11 @@
                                             <tbody>
                                             <tr v-for="facility in schoolInfo.facilities">
                                                 <td>{{ facility.type}}</td>
-                                                <td>{{ facility.status}}</td>
+                                                <td>{{ facility.pivot.no_facility}}</td>
                                             </tr>
                                             </tbody>
                                         </table>
                                     </div>
-
 
                                 </div>
                             </div>

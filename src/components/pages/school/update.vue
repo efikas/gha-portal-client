@@ -8,6 +8,7 @@
     import facilities from './update/facilities';
     import library from './update/library';
     import sbmc from './update/sbmc';
+    import project from './update/project';
     import other_facilities from './update/other_facilities';
 
     export default {
@@ -19,6 +20,7 @@
             'other_facilities': other_facilities,
             'library': library,
             'sbmc': sbmc,
+            'project': project,
         },
         data(){
             return {
@@ -46,6 +48,9 @@
                         break;
                     case 'sbmc':
                         this.currentView = 'sbmc';
+                        break;
+                    case 'project':
+                        this.currentView = 'project';
                         break;
                     default:
                         break;

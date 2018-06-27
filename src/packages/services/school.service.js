@@ -74,6 +74,16 @@ export default {
             })
         })
     },
+    editSchoolSbmc(schoolInfo){
+        return new Promise((resolve, reject) => {
+            axios.post('school-sbmc', schoolInfo)
+                .then(response => {
+                    resolve(response.data)
+                }).catch((error) => {
+                reject(error.response);
+            })
+        })
+    },
     importSchool(lgaId, schoolExcelFile){
         return new Promise((resolve, reject) => {
             axios.post('upload/' + lgaId + '/school', schoolExcelFile)

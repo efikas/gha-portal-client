@@ -1,9 +1,9 @@
 <template>
     <div>
         <b-card header="School SBMC Information" header-tag="h4" class="bg-header-card">
-            <form method="" class="form-horizontal">
+            <form method="" class="form-horizontal"  @submit.prevent="onSubmit">
                 <div>
-                        <a class="btn btn-outline-primary pull-right" @click="addMore('members')">+ ADD MORE</a>
+                    <a class="btn btn-outline-primary pull-right" @click="addMore('members')">+ ADD MORE</a>
                     <div>
                         MEMBERSHIP DETAILS
                     </div>
@@ -11,92 +11,106 @@
                         Provide the following details about the membership details of the SBMC of this school.
                     </div>
                 </div>
-                <div class="row odd-row" v-for="(members, index) in data.sbmc.members">
-                    <div class="col-xs-12 col-sm-6 col-md-4">
-                        <div class="form-group p-10">
-                            <label class="control-label col-md-12">Name</label>
-                            <input type="text" class="form-control" name="member_name"
-                                    v-model="data.sbmc.members[index].name" placeholder="membership Name">
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-2">
-                        <div class="form-group p-10">
-                            <label class="control-label">Position
-                            </label>
-                                <input type="text" class="form-control" name="member_position[]"
-                                        v-model="data.sbmc.members[index].position" placeholder="Position">
+                <div v-for="(members, index) in data.members" class="mb-5">
+                    <div class="form-horizonal bordered-box">
+                        <div class="row even-row">
+                            <div class="col-md-12">
+                                <div class="remove-btn-div"><a class="btn btn-outline-danger pull-right red" @click="removeElement('members', index)">X</a></div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-4">
+                                <div class="form-group p-10">
+                                    <label class="control-label col-md-12">Name</label>
+                                    <input type="text" class="form-control" name="member_name"
+                                            v-model="data.members[index].name" placeholder="membership Name" required>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-2">
+                                <div class="form-group p-10">
+                                    <label class="control-label">Position
+                                    </label>
+                                        <input type="text" class="form-control" name="member_position[]"
+                                                v-model="data.members[index].office" placeholder="Position" required>
 
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-2">
-                        <div class="form-group p-10">
-                            <label class="control-label">Phone Number
-                            </label>
-                                <input type="text" class="form-control" name="member_phone_number[]"
-                                        v-model="data.sbmc.members[index].phone_number"
-                                        placeholder="Phone Number">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-2">
+                                <div class="form-group p-10">
+                                    <label class="control-label">Phone Number
+                                    </label>
+                                        <input type="tel" maxlength="11" class="form-control" name="member_phone_number[]"
+                                                v-model="data.members[index].phone"
+                                                placeholder="Phone Number" required>
 
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-4">
-                        <div class="form-group p-10">
-                            <label class="control-label">Email
-                            </label>
-                                <input type="email" class="form-control" name="member_email"
-                                        v-model="data.sbmc.members[index].email" placeholder="Email">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-4">
+                                <div class="form-group p-10">
+                                    <label class="control-label">Email
+                                    </label>
+                                        <input type="email" class="form-control" name="member_email"
+                                                v-model="data.members[index].email" placeholder="Email">
 
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div>
-                        <a class="btn btn-outline-primary pull-right" @click="addMore('projects')">+ ADD MORE</a>
-                    <div>
-                        PROJECTS DETAILS
-                    </div>
-                    <div>
-                        Indicate projects overseen by the SBMC of this school, whether ongoing or completed.
-                    </div>
-                </div>
-                <div class="row odd-row" v-for="(project, index) in data.sbmc.projects">
-                    <div class="col-xs-12 col-sm-6 col-md-6">
-                        <div class="form-group p-10">
-                            <label class="control-label col-md-12">Project Brief
-                            </label>
-                                <input type="text" class="form-control" name="project_brief"
-                                        v-model="data.sbmc.projects[index].brief" placeholder="">
+                <!--<div>-->
+                        <!--<a class="btn btn-outline-primary pull-right" @click="addMore('projects')">+ ADD MORE</a>-->
+                    <!--<div>-->
+                        <!--PROJECTS DETAILS-->
+                    <!--</div>-->
+                    <!--<div>-->
+                        <!--Indicate projects overseen by the SBMC of this school, whether ongoing or completed.-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div v-for="(project, index) in data.projects" class="mb-5">-->
+                    <!--<div class="form-horizonal bordered-box">-->
+                        <!--<div class="row even-row">-->
+                            <!--<div class="col-md-12">-->
+                                <!--<div class="remove-btn-div"><a class="btn btn-outline-danger pull-right red" @click="removeElement('projects', index)">X</a></div>-->
+                            <!--</div>-->
+                            <!--<div class="col-xs-12 col-sm-6 col-md-6">-->
+                                <!--<div class="form-group p-10">-->
+                                    <!--<label class="control-label col-md-12">Project Brief-->
+                                    <!--</label>-->
+                                        <!--<input type="text" class="form-control" name="project_brief"-->
+                                                <!--v-model="data.projects[index].brief" placeholder="">-->
 
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-2">
-                        <div class="form-group p-10">
-                            <label class="control-label">Poject Cost
-                            </label>
-                                <input type="text" class="form-control" name="project_cost[]"
-                                        v-model="data.sbmc.projects[index].cost" placeholder="">
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="col-xs-12 col-sm-6 col-md-2">-->
+                                <!--<div class="form-group p-10">-->
+                                    <!--<label class="control-label">Poject Cost-->
+                                    <!--</label>-->
+                                        <!--<input type="text" class="form-control" name="project_cost[]"-->
+                                                <!--v-model="data.projects[index].cost" placeholder="">-->
 
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-2">
-                        <div class="form-group p-10">
-                            <label class="control-label">Source of Funding
-                            </label>
-                                <input type="text" class="form-control" name="source_of_funding[]"
-                                        v-model="data.sbmc.projects[index].funding" placeholder="">
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="col-xs-12 col-sm-6 col-md-2">-->
+                                <!--<div class="form-group p-10">-->
+                                    <!--<label class="control-label">Source of Funding-->
+                                    <!--</label>-->
+                                        <!--<input type="text" class="form-control" name="source_of_funding[]"-->
+                                                <!--v-model="data.projects[index].funding" placeholder="">-->
 
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-2">
-                        <div class="form-group p-10">
-                            <label class="control-label">Year
-                            </label>
-                                <input type="text" class="form-control" name="project_year[]"
-                                        v-model="data.sbmc.projects[index].year" placeholder="">
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="col-xs-12 col-sm-6 col-md-2">-->
+                                <!--<div class="form-group p-10">-->
+                                    <!--<label class="control-label">Year-->
+                                    <!--</label>-->
+                                        <!--<input type="text" class="form-control" name="project_year[]"-->
+                                                <!--v-model="data.projects[index].year" placeholder="">-->
 
-                        </div>
-                    </div>
-                </div>
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <button type="submit" class="btn btn-primary btn-lg btn-school pull-right">Submit</button>
             </form>
-            <button class="btn btn-primary btn-lg btn-school pull-right" @click="onComplete()">Submit</button>
         </b-card>
     </div>
 </template>
@@ -113,11 +127,9 @@
         data() {
             return {
                 data: {
-                    ward_id: '',
-                    sbmc: {
-                        members: [{name: '', position: '', phone_number: '', email: ''}],
-                        projects: [{brief: '', cost: '', funding: '', year: ''}]
-                    },
+                    school_id: '',
+                    members: [{}],
+                    // projects: [{brief: '', cost: '', funding: '', year: ''}]
 
                 }
             }
@@ -125,7 +137,7 @@
         components: {},
         methods: {
             onSubmit: function () {
-                this.$school.addSchool(this.data).then(response => {
+                this.$school.editSchoolSbmc(this.data).then(response => {
                     // if( response.status == 'success'){
                         //     this.$swal({
                         //         type: 'success',
@@ -157,19 +169,35 @@
             addMore(elementGroup) {
                 switch (elementGroup) {
                     case 'members':
-                        this.data.sbmc.members.push({name: '', position: '', phone_number: '', email: ''});
+                        this.data.members.push({name: '', position: '', phone_number: '', email: ''});
                         break;
                     case 'projects':
-                        this.data.sbmc.projects.push({brief: '', cost: '', funding: '', year: ''});
+                        this.data.projects.push({brief: '', cost: '', funding: '', year: ''});
                         break;
                     default:
                         break;
 
                 }
-            }
+            },
+            removeElement(elementGroup, index) {
+                switch (elementGroup) {
+                    case 'members':
+                        this.data.members.splice(index, 1);
+                        break;
+                    case 'projects':
+                        this.data.projects.splice(index, 1);
+                        break;
+                    default:
+                        break;
+
+                }
+            },
         },
         mounted: function () {
-
+            this.data.school_id = this.$route.params.id;
+            // this.$school.schoolProfile(this.$route.params.id).then(data => {
+            //     // this.data = data;
+            // });
         },
         destroyed: function () {
 
