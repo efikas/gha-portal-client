@@ -74,9 +74,19 @@ export default {
             })
         })
     },
-    editSchoolSbmc(schoolInfo){
+    editSchoolSbmc(schoolSbmc){
         return new Promise((resolve, reject) => {
-            axios.post('school-sbmc', schoolInfo)
+            axios.post('school-sbmc', schoolSbmc)
+                .then(response => {
+                    resolve(response.data)
+                }).catch((error) => {
+                reject(error.response);
+            })
+        })
+    },
+    editSchoolProject(schoolProjects){
+        return new Promise((resolve, reject) => {
+            axios.post('school-project', schoolProjects)
                 .then(response => {
                     resolve(response.data)
                 }).catch((error) => {

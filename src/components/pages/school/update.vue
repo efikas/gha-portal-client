@@ -3,13 +3,13 @@
 </template>
 
 <script>
-    import basic from './update/basic';
-    import classroom from './update/classroom';
-    import facilities from './update/facilities';
-    import library from './update/library';
-    import sbmc from './update/sbmc';
-    import project from './update/project';
-    import other_facilities from './update/other_facilities';
+    import basic from './subcomponents/basic';
+    import classroom from './subcomponents/classroom';
+    import facilities from './subcomponents/facilities';
+    import library from './subcomponents/library';
+    import sbmc from './subcomponents/sbmc';
+    import project from './subcomponents/project';
+    import other_facilities from './subcomponents/other_facilities';
 
     export default {
         name: "staff-layout",

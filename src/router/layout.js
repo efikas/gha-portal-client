@@ -116,7 +116,6 @@ const layout = [{
         meta: {
             guard: true,
         },
-
         children: [
             {
                 path: '',
@@ -253,8 +252,7 @@ const layout = [{
             },
             {
                 path: ':id',
-                component:
-                    resolve => require(['pages/student/profile'], resolve),
+                component: resolve => require(['pages/student/profile'], resolve),
                 meta: {
                     title: "Student Profile",
                     guard: true
@@ -262,37 +260,65 @@ const layout = [{
             }
         ]
     }
-
     ,
     {
         path: '/attendance',
-        component:
-            resolve => require(['pages/attendance'], resolve),
+        component: resolve => require(['pages/attendance/layout'], resolve),
         meta:
             {
                 title: "Attendance",
                 guard:
                     true
-            }
-    }
-
-    ,
-    {
-        path: '/sbmc',
-        component:
-            resolve => require(['pages/sbmc'], resolve),
-        meta:
+            },
+        children: [
             {
-                title: "SBMC",
-                guard:
-                    true
+                path: 'report',
+                component: resolve => require(['pages/attendance/report'], resolve),
+                meta: {
+                    title: "Report",
+                    guard: true
+                }
+            },
+            {
+                path: 'update',
+                component: resolve => require(['pages/attendance/update'], resolve),
+                meta: {
+                    title: "Update",
+                    guard: true
+                }
             }
+        ]
+    },
+    {
+        path: '/exam',
+        component: resolve => require(['pages/exam/layout'], resolve),
+        meta: {
+            title: "Exam",
+            guard: true
+        },
+        children: [
+            {
+                path: 'report',
+                component: resolve => require(['pages/exam/report'], resolve),
+                meta: {
+                    title: "Report",
+                    guard: true
+                }
+            },
+            {
+                path: 'update',
+                component: resolve => require(['pages/exam/update'], resolve),
+                meta: {
+                    title: "Update",
+                    guard: true
+                }
+            }
+        ]
     }
     ,
     {
         path: '/report',
-        component:
-            resolve => require(['pages/report'], resolve),
+        component: resolve => require(['pages/report'], resolve),
         meta:
             {
                 title: "Report",

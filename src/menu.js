@@ -68,13 +68,29 @@ const menu_items = [{
     },
     {
         name: 'Attendance',
-        link: '/attendance',
-        icon: 'fa fa-calendar-check-o'
+        icon: 'fa fa-calendar-check-o',
+        child: [{
+            name: 'Report',
+            link: '/attendance/report',
+            icon: 'fa fa-clipboard'
+        }, {
+            name: 'Update',
+            link: '/attendance/update',
+            icon: 'fa fa-codepen'
+        }]
     },
     {
-        name: 'SBMC',
-        link: '/SBMC',
-        icon: 'fa fa-qrcode'
+        name: 'Exam',
+        icon: 'fa fa-qrcode',
+        child: [{
+            name: 'Report',
+            link: '/exam/report',
+            icon: 'fa fa-clipboard'
+        }, {
+            name: 'Update',
+            link: '/exam/update',
+            icon: 'fa fa-codepen'
+        }]
     },
     {
         name: 'Report',

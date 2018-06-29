@@ -10,12 +10,10 @@
                             <div class="col-lg-6">
                                 <label>LGA <span class="text-error">*</span></label>
                                 <multiselect v-model="lga" :show-labels="false" :options="lgas" @input="getSchool"></multiselect>
-                                <span class="text-error">{{ errors.first('religion') }}</span>
                             </div>
                             <div class="col-lg-6">
                                 <label>School Name <span class="text-error">*</span></label>
                                 <multiselect v-model="school_name" :show-labels="false" :options="schools"></multiselect>
-                                <span class="text-error">{{ errors.first('religion') }}</span>
                             </div>
                         </div>
                         <div class="row even-row">
@@ -103,7 +101,7 @@
                                             <option value="">Select Challenge</option>
                                             <option v-for="challenge in specialChallenges" :value="challenge.id">{{challenge.condition}}</option>
                                         </select>
-                                        <span class="text-error">{{ errors.first('special_condition') }}</span>
+                                        <span class="text-error"></span>
                                     </div>
                                 </div>
                             </div>
@@ -247,7 +245,7 @@
                                     <label class="control-label col-md-8">Boarding Student? <span class="text-error">*</span></label>
                                     <div class="col-md-12">
                                         <b-form-radio-group v-model="data.boarding" :options="yesNoOptions" stacked name="boarding" />
-                                        <span class="text-error">{{ errors.first('boarding') }}</span>
+                                        <span class="text-error"></span>
                                     </div>
                                 </div>
                             </div>
@@ -283,7 +281,7 @@
                                         <label class="control-label col-md-8">Are both parents alive? <span class="text-error">*</span></label>
                                         <div class="col-md-12">
                                             <b-form-radio-group v-model="data.parent_status" :options="parentOptions" stacked />
-                                            <span class="text-error">{{ errors.first('parent_status') }}</span>
+                                            <span class="text-error"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -294,11 +292,11 @@
                                         <label class="control-label col-md-8">Title
                                         </label>
                                         <div class="col-md-12">
-                                            <select v-model="data.guardians[0].title" class="form-control" size="1" required>
+                                            <select v-model="data.guardians[0].title" class="form-control" size="1" name required>
                                                  <option value="">Select Title</option>
                                                  <option v-for="appellation in appellations" :value="appellation.appellation">{{appellation.appellation}}</option>
                                              </select>
-                                            <span class="text-error">{{ errors.first('g1_title') }}</span>
+                                            <span class="text-error"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -351,7 +349,6 @@
                                         <label class="control-label" for="g1_phone">Phone Number</label>
                                         <div class="col-md-12">
                                             <input type="tel" class="form-control" v-model="data.guardians[0].phone" id="g1_phone" placeholder="08063888888">
-
                                         </div>
                                     </div>
                                 </div>
@@ -373,7 +370,7 @@
                                                  <option value="">Select Religion</option>
                                                  <option v-for="religion in religions" :value="religion.id">{{religion.religion}}</option>
                                              </select>
-                                            <span class="text-error">{{ errors.first('g1_religion') }}</span>
+                                            <span class="text-error">{{ errors.first('g1_religious_status') }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -382,10 +379,10 @@
                                 <div class="col-xs-12 col-sm-12 col-md-9">
                                     <div class="form-group p-10">
                                         <label class="control-label col-md-8" for="g1_contact_address">Contact Address <span class="text-error">*</span></label>
-                                            <textarea cols="6" class="form-control" id="g1_contact_address" v-model="data.guardians[0].contact_address"
+                                            <textarea cols="6" class="form-control" name="g1_contact_address" id="g1_contact_address" v-model="data.guardians[0].contact_address"
                                                      v-validate="validation.required" required >
                                             </textarea>
-                                        <span class="text-error">{{ errors.first('g1_address') }}</span>
+                                        <span class="text-error">{{ errors.first('g1_contact_address') }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -515,8 +512,9 @@ export default {
         },
     data() {
         return {
-            lga: '',
-            lgas: [],
+            lga: '',  // selected local government
+            lgasInfo: [], // hold the local government and their ids
+            lgas: [], // hold the local government names
             schools: [],
             specialChallenges: {},
             birthCerts: {},
@@ -560,27 +558,38 @@ export default {
             })
         },
         getSchool(){
+            // get lga id
+            let _lgaId = this.lgasInfo.filter(item => {
+                return (item.name === this.lga);
+            });
+
             //Since array index is starting from 0, we need to increment by 1 to start 
             // the index from 1
-            this.$lga.getLgasSchool(this.lgas.indexOf(this.lga) + 1).then(data => {
+            this.$lga.getLgasSchool(_lgaId[0].id).then(data => {
                 this.schools = [];
                 this.school = '';
-            //     data.forEach(item => {
-            //         this.schools.push(item.school_name);
-            //     });
+                data.forEach(item => {
+                    this.schools.push(item.name);
+                });
             })
         } 
     },
     mounted: function () {
-        this.$lga.getLgas().then(data => {
-            data.forEach(item => {
-                this.lgas.push(item.name);
-            });
-        })
+        // this.$lga.getLgas().then(data => {
+        //     data.forEach(item => {
+        //         this.lgas.push(item.name);
+        //     });
+        // })
 
         let settings = JSON.parse(localStorage.getItem('settings'));
 
         if(settings) {
+            //populatre LGA
+            settings.lga_areas.forEach(item => {
+                this.lgasInfo.push(item);
+                this.lgas.push(item.name);
+            })
+
             this.specialChallenges = settings.special_conditions;
             this.birthCerts = settings.birth_certs;
             this.appellations = settings.appellations;

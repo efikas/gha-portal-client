@@ -3,9 +3,9 @@
 </template>
 
 <script>
-    import basic from './update/basic';
-    import parent from './update/parent';
-    import academic from './update/academic';
+    import basic from './subcomponents/basic';
+    import parent from './subcomponents/parent';
+    import academic from './subcomponents/academic';
 
     export default {
         name: "staff-layout",

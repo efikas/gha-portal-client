@@ -1,7 +1,7 @@
 <template>
     <div>
         <b-card header="School SBMC Information" header-tag="h4" class="bg-header-card">
-            <form method="" class="form-horizontal"  @submit.prevent="onSubmit">\
+            <form method="" class="form-horizontal"  @submit.prevent="onSubmit">
                 <div>
                         <a class="btn btn-outline-primary pull-right" @click="addMore">+ ADD MORE</a>
                     <div>
@@ -83,7 +83,7 @@
         components: {},
         methods: {
             onSubmit: function () {
-                this.$school.editSchoolSbmc(this.data).then(response => {
+                this.$school.editSchoolProject(this.data).then(response => {
                     // if( response.status == 'success'){
                         //     this.$swal({
                         //         type: 'success',

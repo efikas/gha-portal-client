@@ -3,7 +3,7 @@
         <b-card header="School SBMC Information" header-tag="h4" class="bg-header-card">
             <form method="" class="form-horizontal"  @submit.prevent="onSubmit">
                 <div>
-                    <a class="btn btn-outline-primary pull-right" @click="addMore('members')">+ ADD MORE</a>
+                    <a class="btn btn-outline-primary pull-right" @click="addMore()">+ ADD MORE</a>
                     <div>
                         MEMBERSHIP DETAILS
                     </div>
@@ -15,7 +15,7 @@
                     <div class="form-horizonal bordered-box">
                         <div class="row even-row">
                             <div class="col-md-12">
-                                <div class="remove-btn-div"><a class="btn btn-outline-danger pull-right red" @click="removeElement('members', index)">X</a></div>
+                                <div class="remove-btn-div"><a class="btn btn-outline-danger pull-right red" @click="removeElement(index)">X</a></div>
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-4">
                                 <div class="form-group p-10">
@@ -166,32 +166,12 @@
                         // }
                 })
             },
-            addMore(elementGroup) {
-                switch (elementGroup) {
-                    case 'members':
-                        this.data.members.push({name: '', position: '', phone_number: '', email: ''});
-                        break;
-                    case 'projects':
-                        this.data.projects.push({brief: '', cost: '', funding: '', year: ''});
-                        break;
-                    default:
-                        break;
-
-                }
+            addMore() {
+                this.data.members.push({name: '', position: '', phone_number: '', email: ''});
             },
-            removeElement(elementGroup, index) {
-                switch (elementGroup) {
-                    case 'members':
-                        this.data.members.splice(index, 1);
-                        break;
-                    case 'projects':
-                        this.data.projects.splice(index, 1);
-                        break;
-                    default:
-                        break;
-
-                }
-            },
+            removeElement(index) {
+                this.data.members.splice(index, 1);
+            }
         },
         mounted: function () {
             this.data.school_id = this.$route.params.id;
