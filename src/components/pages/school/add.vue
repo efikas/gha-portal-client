@@ -5,7 +5,7 @@
                 <div class="row odd-row">
                     <div class="col-xs-12 col-sm-6 col-md-3">
                         <label  class="control-label">LGA</label>
-                        <multiselect v-model="data.lga" :show-labels="false" :options="lgas" @input="getWard"></multiselect>
+                        <multiselect v-model="lga" :show-labels="false" :options="lgas" @input="getWard"></multiselect>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group p-10">
@@ -18,7 +18,7 @@
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-3">
                         <label>Ward</label>
-                        <multiselect v-model="data.ward" :show-labels="false" :options="wards"></multiselect>
+                        <multiselect v-model="data.ward" :show-labels="false" :options="wards" @input="selectedWard"></multiselect>
                     </div>
                 </div>
                 <div class="row even-row">
@@ -338,7 +338,7 @@
         },
         methods: {
             onSubmit: function () {
-                console.log("aaa")
+                // console.log("aaa")
                 this.$school.addSchool(this.data).then(response => {
                     if (typeof  response == 'object'){
                         this.$swal({
@@ -357,13 +357,43 @@
             getWard(){
                 this.wards = []; // clear previous ward elements
                 this.wardKeys = [];
-                let _lga = this.lgasInfo.filter(item => {
-                    return (item.id === this.lgas.indexOf(this.data.lga) + 1);
+                // get lga id
+                let _lgaId = this.lgasInfo.filter(item => {
+                    return (item.name === this.lga);
                 });
-                _lga[0].wards.forEach(item => {
-                    this.wards.push(item.name);
-                    this.wardKeys[item.id] = item.name;
+                console.log(_lgaId);
+
+                _lgaId = _lgaId[0].id;
+
+                // todo: get the settings information
+                let settings = JSON.parse(localStorage.getItem('settings'));
+
+                // console.log(settings.lga_areas);
+                // populate LGA
+                // todo: filter lga base on state
+                let _wards = [];
+                settings.lga_wards.forEach(item => {
+                    // this.lgasInfo.push(item);
+                    _wards.push(item);
                 })
+
+
+                this.wardKeys =_wards.filter(item => {
+                    return (item.lga_id == _lgaId);
+                });
+
+                this.wardKeys.forEach(item => {
+                    this.wards.push(item.name);
+                    // this.wardKeys[item.id] = item.name;
+                })
+            },
+            selectedWard(){
+                let settings = JSON.parse(localStorage.getItem('settings'));
+                let _wardId = settings.lga_wards.filter(item => {
+                    return (item.name == this.ward);
+                })
+                this.data.lga_ward_id = _wardId[0].id;
+
             } 
         },
         mounted: function () {
