@@ -70,10 +70,10 @@
             setAuthenticatedUser() {
                 this.$auth.getUser()
                     .then(response => {
-                        let data = response.data
+                        let data = ( typeof response.data == 'object' ) ? response.data : {};
                         data.picture = require("img/authors/prf4.jpg")
                         this.$store.dispatch('setUser', data)
-                        console.log(response.data)
+                        // console.log(response.data)
                     })
             }
         }

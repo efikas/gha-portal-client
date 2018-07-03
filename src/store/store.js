@@ -22,6 +22,7 @@ const store = new Vuex.Store({
         page_title: null,
         pending: false,
         isLoggedIn: !!Vue.auth.getToken(),
+        // user: JSON.parse(localStorage.getItem('user')),
         user: JSON.parse(localStorage.getItem('user')),
         cal_events: [{
             id: 0,
