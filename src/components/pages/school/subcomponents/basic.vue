@@ -323,7 +323,7 @@
                             confirmButtonText: 'Ok'
                         }).then((result) => {
                             if (result.value) {
-                                window.location.href = 'http://localhost:8080/school/' + this.schoolId;
+                                // window.location.href = 'http://' + window.location.hostname + '/school/' + this.schoolId;
                             }
                         })
                     }
@@ -415,6 +415,19 @@
             }
 
             this.$school.schoolProfile(this.$route.params.id).then(data => {
+                delete data.classrooms;
+                delete data.building_ownership;
+                delete data.staffs;
+                delete data.ward;
+                delete data.water;
+                delete data.toilet;
+                delete data.play_facilities;
+                delete data.play_rooms;
+                delete data.power_sources;
+                delete data.health;
+                delete data.learning;
+                delete data.facilities;
+                // console.log(data.classrooms);
                 this.data = data;
                 // Object.keys(this.data).forEach(key => {
                 //     this.data[key] = (data.hasOwnProperty(key)) ? data[key] : null;

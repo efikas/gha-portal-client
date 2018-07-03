@@ -364,6 +364,41 @@
                     this.wards.push(item.name);
                     this.wardKeys[item.id] = item.name;
                 })
+
+
+
+                this.wards = []; // clear previous ward elements
+                this.wardKeys = [];
+                // alert(this.data.lga);
+
+                // get lga id
+                let _lgaId = this.lgasInfo.filter(item => {
+                    return (item.name === this.lga);
+                });
+
+                _lgaId = _lgaId[0].id;
+
+                // todo: get the settings information
+                let settings = JSON.parse(localStorage.getItem('settings'));
+
+                // console.log(settings.lga_areas);
+                // populate LGA
+                // todo: filter lga base on state
+                let _wards = [];
+                settings.lga_wards.forEach(item => {
+                    // this.lgasInfo.push(item);
+                    _wards.push(item);
+                })
+
+
+                this.wardKeys =_wards.filter(item => {
+                    return (item.lga_id == _lgaId);
+                });
+
+                this.wardKeys.forEach(item => {
+                    this.wards.push(item.name);
+                    // this.wardKeys[item.id] = item.name;
+                })
             } 
         },
         mounted: function () {
@@ -372,7 +407,7 @@
 
             if(settings) {
                 // console.log(settings.lga_areas);
-                //populatre LGA
+                // populate LGA
                 settings.lga_areas.forEach(item => {
                     this.lgasInfo.push(item);
                     this.lgas.push(item.name);
