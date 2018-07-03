@@ -2,7 +2,12 @@
     <aside class="right-aside">
         <!-- Content Header (Page header) -->
         <section class="content-header ">
-            <h1>{{this.$store.state.page_title?this.$store.state.page_title:this.$route.meta.title}}</h1>
+            <h1>{{this.$store.state.page_title?this.$store.state.page_title:this.$route.meta.title}}
+
+                <div class="pull-right" style="margin-right: 2%; font-size: 0.7em">
+
+                </div>
+            </h1>
         </section>
         <!-- Main content -->
         <section class="content">

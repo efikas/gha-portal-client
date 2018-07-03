@@ -1,11 +1,11 @@
-<template>
+cd<template>
     <div>
         <SchoolCard :iData="schoolInfo" />
         <div class="row">
             <div class="col-xl-4 col-lg-5">
                 <b-card class="bg-default-card" v-if="staffInfo">
                     <div class="profile text-center ">
-                        <img :src="this.$store.state.user.picture" alt="User Image" class="rounded-circle img-fluid profile-thumb mb-3">
+                        <img :src="staffInfo.biometric.photo" alt="User Image" class="rounded-circle img-fluid profile-thumb mb-3">
                         <h4 class="text-gray">{{ staffInfo.first_name + ' ' + staffInfo.middle_name + ' ' + staffInfo.last_name }}</h4>
                         <p>{{this.$store.state.user.job}}</p>
                     </div>

@@ -53,7 +53,7 @@
         }
     })
     export default {
-        name: "SchoolCard.vue",
+        name: "SchoolCard",
         props: ['iData'],
         data() {
             return {

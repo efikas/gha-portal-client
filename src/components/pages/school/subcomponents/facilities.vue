@@ -170,31 +170,31 @@
                 // })
 
                 this.$school.editSchool(this.schoolId, this.data).then(response => {
-                    // if (typeof  response == 'object'){
-                    //     this.$swal({
-                    //         type: 'success',
-                    //         title: 'School Record added Successfully!',
-                    //         confirmButtonColor: '#3085d6',
-                    //         confirmButtonText: 'Ok'
-                    //     }).then((result) => {
-                    //         if (result.value) {
-                    //             window.location.href = 'http://localhost:8080/school/' + this.schoolId;
-                    //         }
-                    //     })
-                    // }
-                        // else {
-                        //     this.$swal({
-                        //         type: 'error',
-                        //         title: 'Error updating school information!',
-                        //         confirmButtonColor: '#3085d6',
-                        //         confirmButtonText: 'Ok'
-                        //     }).then((result) => {
-                        //         if (result.value) {
-                        //             // todo reload page
-                        //             location.reload();
-                        //         }
-                        //     })
-                        // }
+                    if (typeof  response == 'object'){
+                        this.$swal({
+                            type: 'success',
+                            title: 'School Record added Successfully!',
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'Ok'
+                        }).then((result) => {
+                            if (result.value) {
+                                window.location.href = window.location.hostname + '/school/' + this.schoolId;
+                            }
+                        })
+                    }
+                        else {
+                            this.$swal({
+                                type: 'error',
+                                title: 'Error updating school information!',
+                                confirmButtonColor: '#3085d6',
+                                confirmButtonText: 'Ok'
+                            }).then((result) => {
+                                if (result.value) {
+                                    // todo reload page
+                                    location.reload();
+                                }
+                            })
+                        }
 
                 })
             }

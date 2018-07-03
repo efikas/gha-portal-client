@@ -55,60 +55,6 @@
                         </div>
                     </div>
                 </div>
-                <!--<div>-->
-                        <!--<a class="btn btn-outline-primary pull-right" @click="addMore('projects')">+ ADD MORE</a>-->
-                    <!--<div>-->
-                        <!--PROJECTS DETAILS-->
-                    <!--</div>-->
-                    <!--<div>-->
-                        <!--Indicate projects overseen by the SBMC of this school, whether ongoing or completed.-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<div v-for="(project, index) in data.projects" class="mb-5">-->
-                    <!--<div class="form-horizonal bordered-box">-->
-                        <!--<div class="row even-row">-->
-                            <!--<div class="col-md-12">-->
-                                <!--<div class="remove-btn-div"><a class="btn btn-outline-danger pull-right red" @click="removeElement('projects', index)">X</a></div>-->
-                            <!--</div>-->
-                            <!--<div class="col-xs-12 col-sm-6 col-md-6">-->
-                                <!--<div class="form-group p-10">-->
-                                    <!--<label class="control-label col-md-12">Project Brief-->
-                                    <!--</label>-->
-                                        <!--<input type="text" class="form-control" name="project_brief"-->
-                                                <!--v-model="data.projects[index].brief" placeholder="">-->
-
-                                <!--</div>-->
-                            <!--</div>-->
-                            <!--<div class="col-xs-12 col-sm-6 col-md-2">-->
-                                <!--<div class="form-group p-10">-->
-                                    <!--<label class="control-label">Poject Cost-->
-                                    <!--</label>-->
-                                        <!--<input type="text" class="form-control" name="project_cost[]"-->
-                                                <!--v-model="data.projects[index].cost" placeholder="">-->
-
-                                <!--</div>-->
-                            <!--</div>-->
-                            <!--<div class="col-xs-12 col-sm-6 col-md-2">-->
-                                <!--<div class="form-group p-10">-->
-                                    <!--<label class="control-label">Source of Funding-->
-                                    <!--</label>-->
-                                        <!--<input type="text" class="form-control" name="source_of_funding[]"-->
-                                                <!--v-model="data.projects[index].funding" placeholder="">-->
-
-                                <!--</div>-->
-                            <!--</div>-->
-                            <!--<div class="col-xs-12 col-sm-6 col-md-2">-->
-                                <!--<div class="form-group p-10">-->
-                                    <!--<label class="control-label">Year-->
-                                    <!--</label>-->
-                                        <!--<input type="text" class="form-control" name="project_year[]"-->
-                                                <!--v-model="data.projects[index].year" placeholder="">-->
-
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
                 <button type="submit" class="btn btn-primary btn-lg btn-school pull-right">Submit</button>
             </form>
         </b-card>
@@ -129,7 +75,6 @@
                 data: {
                     school_id: '',
                     members: [{}],
-                    // projects: [{brief: '', cost: '', funding: '', year: ''}]
 
                 }
             }
@@ -138,32 +83,32 @@
         methods: {
             onSubmit: function () {
                 this.$school.editSchoolSbmc(this.data).then(response => {
-                    // if( response.status == 'success'){
-                        //     this.$swal({
-                        //         type: 'success',
-                        //         title: 'School Record updated Successfully!',
-                        //         confirmButtonColor: '#3085d6',
-                        //         confirmButtonText: 'Ok'
-                        //     }).then((result) => {
-                        //         if (result.value) {
-                        //             // todo reload page
-                        //             location.reload();
-                        //         }
-                        //     })
-                        // }
-                        // else {
-                        //     this.$swal({
-                        //         type: 'error',
-                        //         title: 'Error updating school information!',
-                        //         confirmButtonColor: '#3085d6',
-                        //         confirmButtonText: 'Ok'
-                        //     }).then((result) => {
-                        //         if (result.value) {
-                        //             // todo reload page
-                        //             location.reload();
-                        //         }
-                        //     })
-                        // }
+                    if( typeof  response == 'object' ){
+                            this.$swal({
+                                type: 'success',
+                                title: 'School Record updated Successfully!',
+                                confirmButtonColor: '#3085d6',
+                                confirmButtonText: 'Ok'
+                            }).then((result) => {
+                                if (result.value) {
+                                    // todo reload page
+                                    window.location.href = window.location.hostname + '/school/' + this.schoolId;
+                                }
+                            })
+                        }
+                        else {
+                            this.$swal({
+                                type: 'error',
+                                title: 'Error updating school information!',
+                                confirmButtonColor: '#3085d6',
+                                confirmButtonText: 'Ok'
+                            }).then((result) => {
+                                if (result.value) {
+                                    // todo reload page
+
+                                }
+                            })
+                        }
                 })
             },
             addMore() {
@@ -175,9 +120,18 @@
         },
         mounted: function () {
             this.data.school_id = this.$route.params.id;
-            // this.$school.schoolProfile(this.$route.params.id).then(data => {
-            //     // this.data = data;
-            // });
+            this.$school.schoolProfile(this.$route.params.id).then(data => {
+                this.data.members = [];
+                data.sbmc.forEach(member => {
+                    this.data.members.push({
+                        name: member.name,
+                        office: member.office,
+                        phone: member.phone,
+                        email: member.email,
+                    })
+                })
+                // this.data = data;
+            });
         },
         destroyed: function () {
 

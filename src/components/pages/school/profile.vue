@@ -250,7 +250,6 @@
 
         </div>
 
-
         <!--<sweet-modal icon="error" blocking ref="modal">-->
             <!--This is an error…-->
 

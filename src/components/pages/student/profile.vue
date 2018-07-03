@@ -1,11 +1,11 @@
 <template>
     <div>
-        <SchoolCard :iData="schoolInfo" />
+        <SchoolCard v-if="studentInfo" :iData="schoolInfo" />
         <div class="row">
             <div class="col-xl-4 col-lg-5">
-                <b-card class="bg-default-card">
+                <b-card class="bg-default-card" v-if="studentInfo">
                     <div class="profile text-center ">
-                        <img :src="this.$store.state.user.picture" alt="User Image" class="rounded-circle img-fluid profile-thumb mb-3">
+                        <img :src="showImage(studentInfo)" alt="User Image" class="rounded-circle img-fluid profile-thumb mb-3">
                         <h4 class="text-gray">{{this.$store.state.user.name}}</h4>
                         <p>{{this.$store.state.user.job}}</p>
                     </div>
@@ -130,20 +130,20 @@
                                     <a :href="'/student/' + studentId + '/update/parent'" type="button" class="btn btn-outline-primary ekiti-btn pull-right">Edit
                                     </a><br/><br/>
                                 </p>
-                                <div class="table-responsive" v-if="studentInfo">
-                                    <table class="table table-bordred table-striped mytable">
+                                <div class="table-responsive" v-if="studentInfo.guardians">
+                                    <table class="table table-bordred table-striped mytable" v-for="guardian in studentInfo.guardians">
                                         <tr><td>Full Name</td>
-                                            <td>{{ studentInfo.guardians[0].title }} {{ studentInfo.guardians[0].fullname }}</td></tr>
+                                            <td>{{ guardian.title }} {{ guardian.fullname }}</td></tr>
                                         <tr><td>Relationship</td>
-                                            <td> {{ studentInfo.guardians[0].relationship }}</td></tr>
+                                            <td> {{ guardian.relationship }}</td></tr>
                                         <tr><td>Mobile Number</td>
-                                            <td> {{ studentInfo.guardians[0].Mobile }}</td></tr>
+                                            <td> {{ guardian.Mobile }}</td></tr>
                                         <tr><td>Phone Number</td>
-                                            <td> {{ studentInfo.guardians[0].phone }}</td></tr>
+                                            <td> {{ guardian.phone }}</td></tr>
                                         <tr><td>Email Address</td>
-                                            <td> {{ studentInfo.guardians[0].email }}</td></tr>
+                                            <td> {{ guardian.email }}</td></tr>
                                         <tr><td>Religion</td>
-                                            <td> {{ studentInfo.guardians[0].religion }}</td>
+                                            <td> {{ guardian.religion }}</td>
                                         </tr>
                                     </table>
                                 </div>
@@ -190,6 +190,16 @@ export default {
                 this.schoolInfo = data;
             })
         }
+    },
+    methods: {
+      showImage(obj) {
+          if(typeof  obj.biometric){
+              if ( obj.biometric.photo ){
+                  return "http://api.sbemis.net" + obj.biometric.photo;
+              }
+          }
+          return "/assets/img/authors/user.jpg"
+      }
     },
   destroyed: function() {},
 };

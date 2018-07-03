@@ -158,6 +158,9 @@
                 this.classes = settings.classes;
                 this.subjects = settings.subjects
             }
+        },
+        computed: {
+
         }
     }
 </script>
