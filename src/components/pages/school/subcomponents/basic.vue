@@ -433,20 +433,29 @@
                 //     this.data[key] = (data.hasOwnProperty(key)) ? data[key] : null;
                 // })
 
+                // populate the input element with data coming from database 
                 this.schoolId = data.id;
+                console.log(data);
                 // this.data.lga_id = data.ward.lga_id;
-                this.data.lga_ward_id = data.ward.id;
+                this.data.lga_ward_id = data.lga_ward_id;
                 this.data.ownership = 1;
 
-                // get lGA
+                // get the ward info from the list of wards in the 
+                // local storage
+                let _wardInfo = settings.lga_wards.filter(item => {
+                    return (item.id == data.lga_ward_id);
+                })
+                this.ward = _wardInfo[0].name;
+
+                // get the local govt id, and use it to get the local govt info
                 let _lga = this.lgasInfo.filter(item => {
-                    return (item.id == data.ward.lga_id);
+                    return (item.id == _wardInfo[0].lga_id);
                 })
                 this.lga = _lga[0].name;
 
                 // populate ward
                 this.getWard()
-                this.ward = data.ward.name;
+                
 
                 // get ward
                 // let settings = JSON.parse(localStorage.getItem('settings'));

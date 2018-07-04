@@ -75,7 +75,7 @@ mix.js('src/main.js', '/')
 
 
 // Disable all OS notifications
-// mix.disableNotifications()
+mix.disableNotifications()
 
 
 // Disable all Success notifications

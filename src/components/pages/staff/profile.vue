@@ -1,11 +1,11 @@
 cd<template>
     <div>
-        <SchoolCard :iData="schoolInfo" />
+        <SchoolCard :iData="schoolInfo" v-if="staffInfo" />
         <div class="row">
             <div class="col-xl-4 col-lg-5">
                 <b-card class="bg-default-card" v-if="staffInfo">
                     <div class="profile text-center ">
-                        <img :src="staffInfo.biometric.photo" alt="User Image" class="rounded-circle img-fluid profile-thumb mb-3">
+                        <img :src="showImage(staffInfo)" alt="User Image" class="rounded-circle img-fluid profile-thumb mb-3">
                         <h4 class="text-gray">{{ staffInfo.first_name + ' ' + staffInfo.middle_name + ' ' + staffInfo.last_name }}</h4>
                         <p>{{this.$store.state.user.job}}</p>
                     </div>
@@ -28,7 +28,7 @@ cd<template>
                 </b-card>
             </div>
             <div class="col-xl-8 col-lg-7">
-                <b-card class="bg-default-card data">
+                <b-card class="bg-default-card data" v-if="staffInfo">
                     <!-- Nav tabs -->
                     <b-tabs>
                         <b-tab title="PERSONAL">
@@ -163,6 +163,14 @@ export default {
         yesNo: (value) => {
            return (value == 1) ? 'Yes' : 'No';
         },
+        showImage(obj) {
+          if(typeof  obj.biometric){
+              if ( obj.biometric && obj.biometric.photo ){
+                  return "http://api.sbemis.net" + obj.biometric.photo;
+              }
+          }
+          return "assets/img/authors/user.jpg"
+      }
     },
     mounted: function() {
         this.staffId = this.$route.params.id,

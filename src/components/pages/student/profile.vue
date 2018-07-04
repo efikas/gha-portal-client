@@ -194,11 +194,11 @@ export default {
     methods: {
       showImage(obj) {
           if(typeof  obj.biometric){
-              if ( obj.biometric.photo ){
+              if ( obj.biometric && obj.biometric.photo ){
                   return "http://api.sbemis.net" + obj.biometric.photo;
               }
           }
-          return "/assets/img/authors/user.jpg"
+          return "assets/img/authors/user.jpg"
       }
     },
   destroyed: function() {},
