@@ -429,14 +429,9 @@
                 delete data.facilities;
                 // console.log(data.classrooms);
                 this.data = data;
-                // Object.keys(this.data).forEach(key => {
-                //     this.data[key] = (data.hasOwnProperty(key)) ? data[key] : null;
-                // })
 
                 // populate the input element with data coming from database 
                 this.schoolId = data.id;
-                console.log(data);
-                // this.data.lga_id = data.ward.lga_id;
                 this.data.lga_ward_id = data.lga_ward_id;
                 this.data.ownership = 1;
 
@@ -453,18 +448,8 @@
                 })
                 this.lga = _lga[0].name;
 
-                // populate ward
+                // populate ward base on the lga set
                 this.getWard()
-                
-
-                // get ward
-                // let settings = JSON.parse(localStorage.getItem('settings'));
-                //
-                // let _wards = settings.lga_wards.filter(item => {
-                //     return (item.id == data.ward.id);
-                // })
-                // this.ward = _wards[0].name;
-
             })
 
         },
