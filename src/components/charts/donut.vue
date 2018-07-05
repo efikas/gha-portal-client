@@ -94,7 +94,10 @@
             onReady(instance) {
                 this.instances.push(instance)
             },
-            
+        },
+        beforeRouteLeave(to, from, next) {
+            unsub();
+            next();
         },
         watch: {
             iData(value){
