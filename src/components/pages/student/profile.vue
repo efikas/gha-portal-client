@@ -131,7 +131,8 @@
                                     </a><br/><br/>
                                 </p>
                                 <div class="table-responsive" v-if="studentInfo.guardians">
-                                    <table class="table table-bordred table-striped mytable" v-for="guardian in studentInfo.guardians">
+                                    <table class="table table-bordred table-striped mytable guardian-table" v-for="(guardian, index) in studentInfo.guardians">
+                                        <tr><td colspan="2" class="text-center"> <h5>Guardian {{ index + 1 }}</h5></td></tr>
                                         <tr><td>Full Name</td>
                                             <td>{{ guardian.title }} {{ guardian.fullname }}</td></tr>
                                         <tr><td>Relationship</td>
@@ -194,11 +195,11 @@ export default {
     methods: {
       showImage(obj) {
           if(typeof  obj.biometric){
-              if ( obj.biometric.photo ){
+              if ( obj.biometric && obj.biometric.photo ){
                   return "http://api.sbemis.net" + obj.biometric.photo;
               }
           }
-          return "/assets/img/authors/user.jpg"
+          return "assets/img/authors/user.jpg"
       }
     },
   destroyed: function() {},
@@ -233,6 +234,10 @@ td.views {
 }
 .pl-0 {
     padding-left: 0px
+}
+
+.guardian-table {
+    margin-bottom: 30px;
 }
 </style>
 

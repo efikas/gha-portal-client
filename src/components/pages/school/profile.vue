@@ -1,5 +1,10 @@
 <template>
     <div>
+        <b-card v-if="schoolInfo" class="bg-default-card text-right">
+           <a href="#">Exam</a> |
+           <a href="#">Attendance</a> |
+           <a href="#">Transport</a>
+        </b-card>
         <div class="row">
             <div class="col-lg-4">
                 <b-card v-if="schoolInfo" class="bg-default-card">
@@ -413,6 +418,16 @@
     header.card-header a {
         color: #650606;
     }
+
+    .bg-default-card a {
+        color:  #650606;
+        font-weight: bold;
+    }
+    .bg-default-card a:hover {
+        color: #8f3535;
+        font-weight: bold;
+    }
+
 
     card-header{
         background-color: whitesmoke;

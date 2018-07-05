@@ -18,7 +18,7 @@
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-3">
                         <label>Ward</label>
-                        <multiselect v-model="data.ward" :show-labels="false" :options="wards" @input="selectedWard"></multiselect>
+                        <multiselect v-model="ward" :show-labels="false" :options="wards" @input="selectedWard"></multiselect>
                     </div>
                 </div>
                 <div class="row even-row">
@@ -289,7 +289,7 @@
     import Multiselect from 'vue-multiselect';
 
     Vue.use(options);
-    export default {
+    export default { 
         name: 'school-add',
         components: {
             Multiselect,
@@ -308,7 +308,7 @@
                 lga: '',
                 ward: '',
                 yesNoOptions: [{ text: 'Yes', value: '1' },{ text: 'No', value: '0' }],
-                settings: null,
+                settings: {},
                 data: {
                     // lga_ward_id: 3,
                     // name: 'Saint Mathew Nur and pry school',
@@ -355,24 +355,24 @@
                 })
             },
             getWard(){
+
+                this.ward = '';
                 this.wards = []; // clear previous ward elements
                 this.wardKeys = [];
+                // alert(this.data.lga);
+
                 // get lga id
                 let _lgaId = this.lgasInfo.filter(item => {
                     return (item.name === this.lga);
                 });
-                console.log(_lgaId);
 
                 _lgaId = _lgaId[0].id;
 
-                // todo: get the settings information
-                let settings = JSON.parse(localStorage.getItem('settings'));
-
-                // console.log(settings.lga_areas);
+               
                 // populate LGA
                 // todo: filter lga base on state
                 let _wards = [];
-                settings.lga_wards.forEach(item => {
+                this.settings.lga_wards.forEach(item => {
                     // this.lgasInfo.push(item);
                     _wards.push(item);
                 })
@@ -388,34 +388,39 @@
                 })
             },
             selectedWard(){
-                let settings = JSON.parse(localStorage.getItem('settings'));
-                let _wardId = settings.lga_wards.filter(item => {
+                /**
+                * @description called to get the id of the selected ward
+                * @name selectedWard
+                * @returns null
+                 */
+
+                let _wardId = this.settings.lga_wards.filter(item => {
                     return (item.name == this.ward);
                 })
-                this.data.lga_ward_id = _wardId[0].id;
 
+                // assign the selected ward id in the data object
+                this.data.lga_ward_id = _wardId[0].id;
             } 
         },
         mounted: function () {
             //todo: get the settings information
-            let settings = JSON.parse(localStorage.getItem('settings'));
+            this.settings = JSON.parse(localStorage.getItem('settings'));
 
-            if(settings) {
-                // console.log(settings.lga_areas);
-                //populatre LGA
-                settings.lga_areas.forEach(item => {
+            if(this.settings) {
+                // populate LGA
+                this.settings.lga_areas.forEach(item => {
                     this.lgasInfo.push(item);
                     this.lgas.push(item.name);
                 })
 
-                settings.school_ownerships.forEach(owner => {
+                this.settings.school_ownerships.forEach(owner => {
                     this.schoolOwnershipOptions.push({
                         text: owner.owner,
                         value: owner.id
                     });
                 })
 
-                settings.school_types.forEach(type => {
+                this.settings.school_types.forEach(type => {
                     this.schoolTypesOptions.push({
                         text: type.name,
                         value: type.id

@@ -10,7 +10,7 @@
                         </div>
                         <div class="col-lg-6">
                             <label>Schools</label>
-                            <multiselect v-model="school" :show-labels="false" :options="schools" @input="getSchoolId"></multiselect>
+                            <multiselect v-model="school_name" :show-labels="false" :options="schools" @input="getSchoolId"></multiselect>
                         </div>
                     </div>
                     <br><br>
@@ -34,13 +34,14 @@ export default {
     },
     data(){
         return{
-            lga: '',
-            school: '',
             schoolId: '',
-            lgas: [],
-            schools: [],
             schoolIds: [], // to hold the school id and the name of selected LGA
+            lga: '',  // selected local government
+            lgasInfo: [], // hold the local government and their ids
+            lgas: [], // hold the local government names
+            schools: [], // hold the list of the of the school in the selected local govt
             file: '',
+            school_name: '',
         }
     },
     methods: {
@@ -61,33 +62,60 @@ export default {
             this.$refs.file.click();
         },
         getSchool(){
+            // get lga id
+            let _lgaId = this.lgasInfo.filter(item => {
+                return (item.name === this.lga);
+            });
+
             //Since array index is starting from 0, we need to increment by 1 to start 
             // the index from 1
-            // this.$lga.getLgasSchool(this.lgas.indexOf(this.lga) + 1).then(data => {
-            this.$lga.getLgasSchool(114).then(data => {
+            this.$lga.getLgasSchool(_lgaId[0].id).then(data => {
                 this.schools = [];
-                this.schoolIds = [];
-                this.school = '';
-                data.data.forEach(item => {
-                    this.schools.push(item.school_name);
-                    this.schoolIds.push({
-                        id: item.id,
-                        name: item.school_name,
-                    });
+                this.school_name = '';
+                data.forEach(item => {
+                    this.schools.push(item.name);
                 });
             })
-        },
+        }, 
         getSchoolId(){
-            this.schoolId = this.schoolIds[this.schools.indexOf(this.school)].id;
-            // console.log(this.schoolId);
+            let _selectedSchool = this.allSchools.filter(school => {
+                return (school.name == this.school_name);
+            })
+
+            this.schoolId = _selectedSchool[0].id;
         } 
     },
     mounted() {
-        this.$lga.getLgas().then(data => {
-            data.forEach(item => {
+        let settings = JSON.parse(localStorage.getItem('settings'));
+         if(settings) {
+            //populatre LGA
+            settings.lga_areas.forEach(item => {
+                this.lgasInfo.push(item);
                 this.lgas.push(item.name);
-            });
+            })
+        }
+
+        //get list of schools
+        this.$school.allSchools().then(data => {
+            this.allSchools = data.data;
         })
+    },
+    watch: {
+        allSchools(value){
+            //allSchools is
+            value.forEach(school => {
+                this.schools.push(school.name);
+            })
+
+            // Get the school name from the school list using the school id
+            // after all school information has been loaded from the database
+            let _school = value.filter(school => {
+                return (school.id == this.data.school_id);
+            })
+
+            this.schoolName = _school[0].name;
+            // this.data.school_id = data.school_id;
+        }
     }
 }
 </script>

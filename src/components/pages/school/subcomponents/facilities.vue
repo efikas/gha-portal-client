@@ -178,7 +178,7 @@
                             confirmButtonText: 'Ok'
                         }).then((result) => {
                             if (result.value) {
-                                window.location.href = window.location.hostname + '/school/' + this.schoolId;
+                                window.location.href ='http://' + window.location.hostname + '/school/' + this.schoolId;
                             }
                         })
                     }
