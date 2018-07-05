@@ -1,16 +1,19 @@
 <template>
     <div>
         <b-card>
+            <a type="button" class="fa fa-download icon-big btn btn-outline-primary ekiti-btn pull-right"></a>
             <h5 class="ml-3 head_color">{{ this.iData['header'] || '' }}</h5>
             <vue-chartist :data="donut.data" :options="donut.options" type="Pie" :responsiveOptions="donut.responsiveoptions" ref="chartist6"></vue-chartist>
             <div class="row">
-                <template v-for="item in progressBar">
-                   <div class="col-lg-3 col-sm-12 text_color">
+                <template>
+                   <div v-for="(item, index) in progressBar" :key="index">
+                       <div class="col-lg-3 col-sm-12 text_color">
                         {{ item['name']}} ({{ item['percent'] }}%)
-                    </div>
-                    <div class="col-lg-9 col-sm-12 progress_color1">
-                        <b-progress v-model="item['percent']"  show-progress class="mb-4"></b-progress>
-                    </div>
+                        </div>
+                        <div class="col-lg-9 col-sm-12 progress_color1">
+                            <b-progress v-model="item['percent']"  show-progress class="mb-4"></b-progress>
+                        </div>
+                   </div>
                 </template>
             </div>
         </b-card>
@@ -94,7 +97,9 @@
             onReady(instance) {
                 this.instances.push(instance)
             },
-            
+            exportToExcel(){
+                localStorage.get()
+            }   
         },
         watch: {
             iData(value){

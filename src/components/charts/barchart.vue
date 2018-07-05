@@ -1,6 +1,7 @@
 <template>
     <div>
         <b-card>
+            <a type="button" class="fa fa-download icon-big btn btn-outline-primary ekiti-btn pull-right"></a>
             <h5 class="ml-3 head_color">{{ this.iData['header'] || '' }}</h5>
             <div style="height: 305px;">
                 <IEcharts :option="ajaxbar_chart" :loading="ajaxloading" @ready="onReady" ref="ajaxbar_chart"></IEcharts>

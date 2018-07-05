@@ -400,7 +400,6 @@
 
                 // assign the selected ward id in the data object
                 this.data.lga_ward_id = _wardId[0].id;
-                console.log(this.data.lga_ward_id);
             } 
         },
         mounted: function () {

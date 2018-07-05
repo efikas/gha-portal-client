@@ -249,7 +249,7 @@ export default {
                        confirmButtonText: 'Ok'
                    }).then((result) => {
                        if (result.value) {
-                           window.location.href = 'http://' + window.hostname + '/staff/' + this.staffId;
+                           window.location.href = 'http://' + window.location.hostname + '/staff/' + this.staffId;
                        }
                    })
                }

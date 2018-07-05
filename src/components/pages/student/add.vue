@@ -13,7 +13,7 @@
                             </div>
                             <div class="col-lg-6">
                                 <label>School Name <span class="text-error">*</span></label>
-                                <multiselect v-model="school_name" :show-labels="false" :options="schools"></multiselect>
+                                <multiselect v-model="school_name" :show-labels="false" :options="schools" @input="getSchoolId"></multiselect>
                             </div>
                         </div>
                         <div class="row even-row">
@@ -515,7 +515,7 @@ export default {
             lga: '',  // selected local government
             lgasInfo: [], // hold the local government and their ids
             lgas: [], // hold the local government names
-            schools: [],
+            schools: [], // hold the list of the of the school in the selected local govt
             specialChallenges: {},
             birthCerts: {},
             appellations: {},
@@ -567,19 +567,21 @@ export default {
             // the index from 1
             this.$lga.getLgasSchool(_lgaId[0].id).then(data => {
                 this.schools = [];
-                this.school = '';
+                this.school_name = '';
                 data.forEach(item => {
                     this.schools.push(item.name);
                 });
             })
+        }, 
+        getSchoolId(){
+            let _selectedSchool = this.allSchools.filter(school => {
+                return (school.name == this.school_name);
+            })
+
+            this.data.school_id = _selectedSchool[0].id;
         } 
     },
     mounted: function () {
-        // this.$lga.getLgas().then(data => {
-        //     data.forEach(item => {
-        //         this.lgas.push(item.name);
-        //     });
-        // })
 
         let settings = JSON.parse(localStorage.getItem('settings'));
 
@@ -600,8 +602,6 @@ export default {
             settings.admissions.forEach(item => {
                 this.enrollmentOptions.push({ text: item.status, value: item.id });
             })
-
-
         }
 
         //get list of schools

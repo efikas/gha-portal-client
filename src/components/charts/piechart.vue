@@ -1,6 +1,7 @@
 <template>
     <div>
         <b-card>
+            <a type="button" class="fa fa-download icon-big btn btn-outline-primary ekiti-btn pull-right"></a>
             <h3 class="card-title">{{ this.iData['header'] }}</h3>
             <div style="height: 350px;">
                 <IEcharts :option="ajaxpie" :loading="ajaxloading" @ready="onReady"></IEcharts>

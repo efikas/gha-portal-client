@@ -323,7 +323,7 @@
                             confirmButtonText: 'Ok'
                         }).then((result) => {
                             if (result.value) {
-                                // window.location.href = 'http://' + window.location.hostname + '/school/' + this.schoolId;
+                                window.location.href = 'http://localhost:8080/school/' + this.schoolId;
                             }
                         })
                     }
