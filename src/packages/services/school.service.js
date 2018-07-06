@@ -86,7 +86,7 @@ export default {
     },
     editSchoolProject(schoolProjects){
         return new Promise((resolve, reject) => {
-            axios.post('project', schoolProjects)
+            axios.post('school-project', schoolProjects)
                 .then(response => {
                     resolve(response.data)
                 }).catch((error) => {

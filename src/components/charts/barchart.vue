@@ -1,7 +1,7 @@
 <template>
     <div>
         <b-card>
-            <a type="button" class="fa fa-download icon-big btn btn-outline-primary ekiti-btn pull-right"></a>
+            <a type="button" class="fa fa-download icon-big btn btn-outline-primary ekiti-btn pull-right" @click="exportExcel"></a>
             <h5 class="ml-3 head_color">{{ this.iData['header'] || '' }}</h5>
             <div style="height: 305px;">
                 <IEcharts :option="ajaxbar_chart" :loading="ajaxloading" @ready="onReady" ref="ajaxbar_chart"></IEcharts>
@@ -35,12 +35,14 @@
 
     import 'echarts/lib/component/timeline';
     import 'echarts/lib/component/toolbox';
+    import { exportToExcel } from '../../modules/mixins/exportToExcel'
 
     // Vue.use(VueAwesomeSwiper);
     var unsub;
     export default {
         name: "barchart",
         props: ['iData', 'colors'],
+         mixins: [exportToExcel],
         components: {
             IEcharts,
             // countTo,
@@ -132,10 +134,12 @@
             }
         },
         watch: {
-            iData(value){
-                value['value'].forEach((item, index) => {
+            iData(received){
+                this.excelData = received['value']; // value to  use in exporting excel
+                
+                received['value'].forEach((item, index) => {
                     this.ajaxbar_chart.xAxis[0].data.push(item.name);
-                    this.ajaxbar_chart.series[0].data.push(item.data);
+                    this.ajaxbar_chart.series[0].data.push(item.value);
                 })
                 this.ajaxloading = false;
             }
