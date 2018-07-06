@@ -99,14 +99,7 @@
         methods: {
             onReady(instance) {
                 this.instances.push(instance)
-            },
-<<<<<<< HEAD
-            exportToExcel(){
-                localStorage.get()
             }
-=======
-            
->>>>>>> 02cdad71b78f2a9841612e7dbc79ec94a776bb6a
         },
         beforeRouteLeave(to, from, next) {
             unsub();
