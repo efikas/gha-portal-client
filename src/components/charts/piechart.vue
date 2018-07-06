@@ -1,7 +1,7 @@
 <template>
     <div>
         <b-card>
-            <a type="button" class="fa fa-download icon-big btn btn-outline-primary ekiti-btn pull-right"></a>
+            <a type="button" class="fa fa-download icon-big btn btn-outline-primary ekiti-btn pull-right" @click="exportExcel"></a>
             <h3 class="card-title">{{ this.iData['header'] }}</h3>
             <div style="height: 350px;">
                 <IEcharts :option="ajaxpie" :loading="ajaxloading" @ready="onReady"></IEcharts>
@@ -29,12 +29,14 @@
 
     import 'echarts/lib/component/timeline';
     import 'echarts/lib/component/toolbox';
+    import { exportToExcel } from '../../modules/mixins/exportToExcel'
 
 
     var unsub;
     export default {
         name: "piechart",
         props: ['header', 'iData'],
+         mixins: [exportToExcel],
         components: {
             IEcharts,
         },
@@ -99,9 +101,11 @@
         },
 
         watch: {
-            iData(value){
-                this.ajaxpie.series[0].data = value['value'];
-                value['value'].forEach((item, index) => {
+            iData(received){
+                this.excelData = received['value']; // value to  use in exporting excel
+                
+                this.ajaxpie.series[0].data = received['value'];
+                received['value'].forEach((item, index) => {
                     this.ajaxpie.legend.data.push(item.name);
                 })
                 this.ajaxloading = false;

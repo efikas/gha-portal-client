@@ -1,6 +1,7 @@
 <template>
     <div>
         <b-card>
+            <a type="button" class="fa fa-download icon-big btn btn-outline-primary ekiti-btn pull-right" @click="exportExcel"></a>
             <h5 class="ml-3 head_color">{{ this.iData['header'] || '' }}</h5>
             <div style="height: 305px;">
                 <IEcharts :option="doughnut" :loading="loading" @ready="onReady"></IEcharts>
@@ -34,12 +35,14 @@
 
     import 'echarts/lib/component/timeline';
     import 'echarts/lib/component/toolbox';
+    import { exportToExcel } from '../../modules/mixins/exportToExcel'
 
-    Vue.use(VueAwesomeSwiper);
+    // Vue.use(VueAwesomeSwiper);
     var unsub;
     export default {
         name: "doughnut",
         props: ['iData', 'colors'],
+         mixins: [exportToExcel],
         components: {
             IEcharts,
             countTo,
@@ -122,15 +125,16 @@
             
         },
         watch: {
-            iData(value){
+            iData(received){
+                 this.excelData = received['value']; // value to  use in exporting excel
                 let colors = [
                               '#3498db ', '#2ecc71', '#d69292','#8599c1','#4f699c','#8fa9dc','#d4ab6e'
                             ];
-                value['value'].forEach((item, index)=>{
+                received['value'].forEach((item, index)=>{
                     this.doughnut.legend.data.push(item.name)
                     this.graphData.push(
                         {
-                            value: item.data,
+                            value: item.value,
                             name: item.name,
                             itemStyle : {
                                 normal : {

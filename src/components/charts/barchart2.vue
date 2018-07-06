@@ -165,7 +165,7 @@
             iData(value){
                 value['value'].forEach((item, index) => {
                     this.bar.xAxis.data.push(item.name);
-                    this.bar.series[0].data.push(item.data);
+                    this.bar.series[0].data.push(item.value);
                 })
                 this.ajaxloading = false;
             }

@@ -92,7 +92,7 @@
                             }).then((result) => {
                                 if (result.value) {
                                     // todo reload page
-                                    window.location.href = 'http://localhost:8080/school/' + this.schoolId;
+                                    window.location.href = 'http://localhost:8080/school/' + this.data.school_id;
                                 }
                             })
                         }

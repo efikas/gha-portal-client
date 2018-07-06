@@ -283,15 +283,15 @@ module.exports = {
         });
 
         // PTS Public
-        _dist.sch_rural.push({name: 'Private Sec', data: parseInt(values.schools.privates.rural.secondary)})
-        _dist.sch_rural.push({name: 'Public Sec', data: parseInt(values.schools.publics.rural.secondary)})
-        _dist.sch_rural.push({name: 'Private Pry', data: parseInt(values.schools.privates.rural.primary)})
-        _dist.sch_rural.push({name: 'Public Pry', data: parseInt(values.schools.publics.rural.primary)})
+        _dist.sch_rural.push({name: 'Private Sec', value: parseInt(values.schools.privates.rural.secondary)})
+        _dist.sch_rural.push({name: 'Public Sec', value: parseInt(values.schools.publics.rural.secondary)})
+        _dist.sch_rural.push({name: 'Private Pry', value: parseInt(values.schools.privates.rural.primary)})
+        _dist.sch_rural.push({name: 'Public Pry', value: parseInt(values.schools.publics.rural.primary)})
 
-        _dist.sch_urban.push({name: 'Private Sec', data: parseInt(values.schools.privates.urban.secondary)})
-        _dist.sch_urban.push({name: 'Public Sec', data: parseInt(values.schools.publics.urban.secondary)})
-        _dist.sch_urban.push({name: 'Private Pry', data: parseInt(values.schools.privates.urban.primary)})
-        _dist.sch_urban.push({name: 'Public Pry', data: parseInt(values.schools.publics.urban.primary)})
+        _dist.sch_urban.push({name: 'Private Sec', value: parseInt(values.schools.privates.urban.secondary)})
+        _dist.sch_urban.push({name: 'Public Sec', value: parseInt(values.schools.publics.urban.secondary)})
+        _dist.sch_urban.push({name: 'Private Pry', value: parseInt(values.schools.privates.urban.primary)})
+        _dist.sch_urban.push({name: 'Public Pry', value: parseInt(values.schools.publics.urban.primary)})
 
         _dist.sch_dist = [
             {
@@ -360,10 +360,10 @@ module.exports = {
         let staffPubPry = parseInt(values.staffs.public.primary.male) + parseInt(values.staffs.public.primary.female)
         let staffPubSec = parseInt(values.staffs.public.secondary.male) + parseInt(values.staffs.public.secondary.female)
 
-        _dist.STAFF_SCH_ST.push({name: 'Private Secondary', data: [staffPrivSec]})
-        _dist.STAFF_SCH_ST.push({name: 'Public Secondary', data: [staffPubSec]})
-        _dist.STAFF_SCH_ST.push({name: 'Private Primary', data: [staffPrivPry]})
-        _dist.STAFF_SCH_ST.push({name: 'Public Primary', data: [staffPubPry]})
+        _dist.STAFF_SCH_ST.push({name: 'Private Secondary', value: [staffPrivSec]})
+        _dist.STAFF_SCH_ST.push({name: 'Public Secondary', value: [staffPubSec]})
+        _dist.STAFF_SCH_ST.push({name: 'Private Primary', value: [staffPrivPry]})
+        _dist.STAFF_SCH_ST.push({name: 'Public Primary', value: [staffPubPry]})
 
         _dist.male_staff.push(parseInt(values.staffs.public.primary.male))
         _dist.male_staff.push(parseInt(values.staffs.public.secondary.male))
@@ -377,14 +377,14 @@ module.exports = {
 
         _dist.male_female_staff = {
             distributions: ['Pri Sec', 'Pub Sec', 'Pri Pry', 'Pub Pry'],
-            data: [_dist.male_staff, _dist.female_staff]
+            value: [_dist.male_staff, _dist.female_staff]
         };
 
         _dist.gen_acad_staff_dist = [
-            {name: 'Female Academic Staff', data: parseInt(values.staffs.teaching.female)},
-            {name: 'Male Academic Staff', data: parseInt(values.staffs.teaching.male)},
-            {name: 'Female Non Academic Staff', data: parseInt(values.staffs.non_teaching.female)},
-            {name: 'Male Non Academic Staff', data: parseInt(values.staffs.non_teaching.male)}
+            {name: 'Female Academic Staff', value: parseInt(values.staffs.teaching.female)},
+            {name: 'Male Academic Staff', value: parseInt(values.staffs.teaching.male)},
+            {name: 'Female Non Academic Staff', value: parseInt(values.staffs.non_teaching.female)},
+            {name: 'Male Non Academic Staff', value: parseInt(values.staffs.non_teaching.male)}
         ];
 
 

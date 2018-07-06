@@ -22,7 +22,7 @@
                                     <label class="control-label col-md-12">Project Brief
                                     </label>
                                         <input type="text" class="form-control" name="project_brief"
-                                                v-model="data.projects[index].brief" placeholder="">
+                                                v-model="data.projects[index].name" placeholder="">
 
                                 </div>
                             </div>
@@ -47,9 +47,7 @@
                                 <div class="form-group p-10">
                                     <label class="control-label">Year
                                     </label>
-                                        <input type="text" class="form-control" name="project_year[]"
-                                                v-model="data.projects[index].year" placeholder="">
-
+                                    <input type="date" class="form-control" v-model="data.projects[index].date" > 
                                 </div>
                             </div>
                         </div>
@@ -75,7 +73,9 @@
                 data: {
                     school_id: '',
                     // members: [{}],
-                    projects: [{name: '', discription: '', cost: '', funding: '', year: ''}]
+                    // projects: [{name: '', discription: '', cost: '', funding: '', year: ''}]
+                     projects: [{}]
+
 
                 }
             }
@@ -91,9 +91,9 @@
                             confirmButtonColor: '#3085d6',
                             confirmButtonText: 'Ok'
                         }).then((result) => {
-                            if (result.value) {
+                         if (result.value) {
                                 // todo reload page
-                                window.location.href = window.location.hostname + '/school/' + this.schoolId;
+                                window.location.href = 'http://' + window.location.hostname + ':' + window.location.port + '/school/' + this.schoolId; 
                             }
                         })
                     }
@@ -113,7 +113,7 @@
                 })
             },
             addMore() {
-                this.data.projects.push({brief: '', cost: '', funding: '', year: ''});
+                this.data.projects.push({brief: '', cost: '', funding: '', date: ''});
             },
             removeElement(index) {
                 this.data.projects.splice(index, 1);
@@ -121,9 +121,17 @@
         },
         mounted: function () {
             this.data.school_id = this.$route.params.id;
-            // this.$school.schoolProfile(this.$route.params.id).then(data => {
-            //     // this.data = data;
-            // });
+            this.$school.schoolProfile(this.$route.params.id).then(data => {
+                this.data.projects = [];
+                data.projects.forEach(project => {
+                    this.data.projects.push({
+                        name: project.name,
+                        cost: project.cost,
+                        funding: project.funding,
+                        date: project.date.split(' ')[0]
+                    })
+                })
+            });
         },
         destroyed: function () {
 

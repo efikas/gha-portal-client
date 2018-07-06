@@ -1,7 +1,7 @@
 <template>
     <div>
         <b-card>
-            <a type="button" class="fa fa-download icon-big btn btn-outline-primary ekiti-btn pull-right"></a>
+            <a type="button" class="fa fa-download icon-big btn btn-outline-primary ekiti-btn pull-right" @click="exportExcel"></a>
             <h5 class="ml-3 head_color">{{ this.iData['header'] || '' }}</h5>
             <vue-chartist :data="donut.data" :options="donut.options" type="Pie" :responsiveOptions="donut.responsiveoptions" ref="chartist6"></vue-chartist>
             <div class="row">
@@ -38,11 +38,13 @@
 
     import 'echarts/lib/component/timeline';
     import 'echarts/lib/component/toolbox';
+    import { exportToExcel } from '../../modules/mixins/exportToExcel'
 
     var unsub;
     export default {
         name: "echart",
         props: ['iData'],
+        mixins: [exportToExcel],
         components: {
             IEcharts,
             VueChartist,
@@ -52,6 +54,7 @@
                 loading: false,
                 ajaxloading: true,
                 progressBar: [],
+                excelData: [],
                 
                 // ======donut chart start=======
                 donut: {
@@ -97,14 +100,18 @@
             onReady(instance) {
                 this.instances.push(instance)
             },
-            exportToExcel(){
-                localStorage.get()
-            }   
+            
+        },
+        beforeRouteLeave(to, from, next) {
+            unsub();
+            next();
         },
         watch: {
-            iData(value){
-                this.progressBar = value['value'];
-                value['value'].forEach(item =>{
+            iData(received){
+                this.progressBar = received['value'];
+                this.excelData = received['value']; // value to  use in exporting excel
+
+                received['value'].forEach(item =>{
                     this.donut.data.labels.push(item['name']);
                     this.donut.data.series.push(item['value']);
                 })
