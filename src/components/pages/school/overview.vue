@@ -102,7 +102,8 @@
             <div class="col-lg-12">
                <b-card>
                    <div class="table-responsive">
-                       <table class="table table-bordered table-striped mytableh text-center">
+                       <a type="button" class="fa fa-download icon-big btn btn-outline-primary ekiti-btn pull-right mb-2" @click="exportExcel"></a>
+                       <table class="table table-bordered table-striped mytableh text-center" ref="export">
                            <thead>
                                <tr>
                                    <th rowspan="2">LGA</th>
@@ -143,6 +144,7 @@
          <div class="row">
             <div class="col-lg-12">
                 <b-card>
+                    <a type="button" class="fa fa-download icon-big btn btn-outline-primary ekiti-btn pull-right mb-2"></a>
                     <h5 class="ml-3 head_color">Annual Stats</h5>
                     <div style="height: 305px;">
                         <IEcharts :option="ajaxbar_chart" :loading="ajaxloading" @ready="onReady" ref="ajaxbar_chart"></IEcharts>
@@ -321,6 +323,20 @@
                 }, 4000);
             },
             // ===chart animation===
+
+            exportExcel() {
+                const mimeType = 'data:application/vnd.ms-excel';
+                const html = this.$refs.export.innerHTML.replace(/ /g, '%20');
+
+                const d = new Date();
+
+                var dummy = document.createElement('a');
+                dummy.href = mimeType + ', ' + '<table>' + html + '</table>';
+                dummy.download = 'school distributions' + '-' + d.getFullYear() + '-' + (d.getMonth() +
+                    1) + '-' + d.getDate() + '-' + d.getHours() + '-' + d.getMinutes() + '-' + d.getSeconds() +
+                    '.xls';
+                dummy.click();
+            },
         }
     }
 </script>

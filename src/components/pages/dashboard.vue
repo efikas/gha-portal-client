@@ -116,11 +116,11 @@
     require('swiper/dist/css/swiper.css')
     import VueAwesomeSwiper from 'vue-awesome-swiper';
 
-    import piechart from '../charts/piechart.vue'
-    import barchart from '../charts/barchart.vue'
-    import donut from '../charts/donut.vue'
-    import stackbar from '../charts/stackbar.vue'
-    import doughnut from '../charts/doughnut.vue'
+    import piechart from '../custom_components/piechart.vue'
+    import barchart from '../custom_components/barchart.vue'
+    import donut from '../custom_components/donut.vue'
+    import stackbar from '../custom_components/stackbar.vue'
+    import doughnut from '../custom_components/doughnut.vue'
 
     let sbemisData = require('../../modules/draw-graphs.js')
 

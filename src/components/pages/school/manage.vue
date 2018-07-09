@@ -8,45 +8,9 @@
 
             </b-card>
 
-            <b-card :header="(this.$route.params.lgaId) ? '' : 'List of Schools'" header-tag="h4" class="bg-header-card">
-                <div style="margin: 2%" v-if="schools.length < 1">
-                    <skeleton-loading>
-                    <row 
-                        :gutter="{
-                            bottom: '15px'
-                        }"
-                    >
-                        <square-skeleton 
-                            :count="2"
-                            :boxProperties="{
-                                top: '10px',
-                                width: '100%',
-                                height: '55px'
-                            }"
-                        >
-                        </square-skeleton>
-                    </row>
-                    <row :gutter="{top: '20px'}">
-                        <square-skeleton 
-                            :count="4"
-                            :boxProperties="{
-                                height: '55px',
-                                width: '100%',
-                                bottom: '10px'
-                            }" 
-                        >
-                        </square-skeleton>
-                    </row>
-                </skeleton-loading>
-                </div>
-                
-                <v-client-table :data="schools" :columns="columns" :options="options" v-if="schools.length > 0" @row-click="rowClick">
-                    <a slot="id" slot-scope="props">{{ props.index }}</a>
-                    <router-link tag="a" class="list-font" slot="name" slot-scope="props" :to="{ name: 'school-profile', params: { id: props.row.id }}" v-html="props.row.name"></router-link>
-                     <!--<a slot="school_name" slot-scope="props" :href="'/#/school/'+ props.row.id+'/profile'">{{ props.row.school_name }}</a>-->
-                     <router-link tag="a" slot="view" slot-scope="props" class="fa fa-pencil icon-big btn btn-outline-primary ekiti-btn" :to="{ name: 'school-profile', params: { id: props.row.id }}"></router-link>
-                </v-client-table>
-            </b-card>
+            <school-table :table-data="schools"
+                          :header="(this.$route.params.lgaId) ? `List of ${ categoryName } ${ levelName } Schools in Ado` : 'List of Schools'"
+                          :route-to="'school-profile'"></school-table>
         </div>
     </div>
 </template>
@@ -58,13 +22,15 @@ import {
 } from 'vue-tables-2';
 import datatable from "components/plugins/DataTable/DataTable.vue";
 import VueSkeletonLoading from 'vue-skeleton-loading';
+import schoolTable from '../../custom_components/schoolTable';
 
 Vue.use(ClientTable, {}, false);
 Vue.use(VueSkeletonLoading);
 export default {
     name: "advanced_tables",
     components: {
-        datatable
+        datatable,
+        schoolTable
     },
     data() {
         return {
@@ -116,7 +82,7 @@ export default {
             if(this.level === 'PRY') this.levelName = 'primary';
             if(this.level === 'SEC') this.levelName = 'secondary';
 
-            //get category and level and filter school list accordingly
+            //get category and level and construct query accordingly
             if(this.categoryId && this.level){
                 queryObject = {
                     category: this.categoryName,
@@ -134,7 +100,7 @@ export default {
                 };
             } else{}
 
-            console.log(queryObject);
+            // console.log(queryObject);
             this.$school.getSchoolsPerLga(this.lgaId, queryObject).then(data => {
                 // console.log(data.data)
                 this.schools = data;

@@ -34,6 +34,7 @@
                         </row>
                     </skeleton-loading>
                 </div>
+                <a type="button" class="fa fa-download icon-big btn btn-outline-primary ekiti-btn pull-right" v-if="staffs.length > 0"></a>
                 <v-client-table :data="staffs" :columns="columns" v-if="staffs.length > 0">
                      <span slot="id" slot-scope="props">{{ props.index }}</span>
                      <a class="list-font" slot="Name" slot-scope="props" :href="'/staff/'+ props.row.id" v-html="props.row.first_name + ' ' + props.row.last_name + ' ' + props.row.middle_name"></a>

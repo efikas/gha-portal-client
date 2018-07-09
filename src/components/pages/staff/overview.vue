@@ -65,9 +65,9 @@
 <script>
     import Vue from 'vue';
     import datatable from "components/plugins/DataTable/DataTable.vue";
-    import piechart from '../../charts/piechart.vue'
-    import stackbar from '../../charts/stackbar.vue'
-    import doughnut from '../../charts/doughnut.vue'
+    import piechart from '../../custom_components/piechart.vue'
+    import stackbar from '../../custom_components/stackbar.vue'
+    import doughnut from '../../custom_components/doughnut.vue'
 
     let sbemisData = require('../../../modules/draw-graphs.js')
 

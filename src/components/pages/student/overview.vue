@@ -49,8 +49,9 @@
          <div class="row">
             <div class="col-lg-8 col-offset-lg-2">
                 <b-card header="DISTRIBUTION OF STUDENTS/LGA" header-tag="h4" class="bg-header-card">
+                    <a type="button" class="fa fa-download icon-big btn btn-outline-primary ekiti-btn pull-right mb-2" @click="exportExcel"></a>
                     <div class="table-responsive">
-                        <table class="table table-bordered table-striped">
+                        <table class="table table-bordered table-striped" ref="export">
                             <thead>
                                 <tr>
                                     <th>Local Govt</th>
@@ -252,6 +253,22 @@
                 // }, 4000);
             },
             // ===chart animation===
+            exportExcel() {
+                const mimeType = 'data:application/vnd.ms-excel';
+                let html = this.$refs.export.innerHTML.replace(/ /g, '%20');
+
+                // attach a row to the head
+                html = '<head><tr><th colspan="4">DISTRIBUTION OF STUDENTS/LGA</th></tr>' + html.split('<head>')[0];
+
+                const d = new Date();
+
+                var dummy = document.createElement('a');
+                dummy.href = mimeType + ', ' + '<table>' + html + '</table>';
+                dummy.download = 'school distributions' + '-' + d.getFullYear() + '-' + (d.getMonth() +
+                    1) + '-' + d.getDate() + '-' + d.getHours() + '-' + d.getMinutes() + '-' + d.getSeconds() +
+                    '.xls';
+                dummy.click();
+            },
         }
     }
 </script>

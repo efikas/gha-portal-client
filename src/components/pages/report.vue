@@ -103,11 +103,11 @@ import vue2Dropzone from 'vue2-dropzone'
 import 'vue2-dropzone/dist/vue2Dropzone.css'
 let sbemisData = require('../../modules/draw-graphs.js')
 
-import piechart from '../charts/piechart.vue'
-import barchart from '../charts/barchart.vue'
-import donut from '../charts/donut.vue'
-import stackbar from '../charts/stackbar.vue'
-import doughnut from '../charts/doughnut.vue'
+import piechart from '../custom_components/piechart.vue'
+import barchart from '../custom_components/barchart.vue'
+import donut from '../custom_components/donut.vue'
+import stackbar from '../custom_components/stackbar.vue'
+import doughnut from '../custom_components/doughnut.vue'
 
 export default {
     name: 'vue2-dropzone',

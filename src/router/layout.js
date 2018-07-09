@@ -127,6 +127,7 @@ const layout = [{
             },
             {
                 path: '/school/:id/staffs',
+                name: "staff-list",
                 component: resolve => require(['pages/staff/list'], resolve),
                 meta: {
                     title: "Staff List",
@@ -211,6 +212,7 @@ const layout = [{
             },
             {
                 path: '/school/:id/students',
+                name: "student-list",
                 component: resolve => require(['pages/student/list'], resolve),
                 meta: {
                     title: "Students List",
