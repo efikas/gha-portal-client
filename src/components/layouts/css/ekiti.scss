@@ -63,8 +63,12 @@ select {
     color: #684348 !important;
 }
 
-.text-error {
+.text-error, .required-fields {
     font-size: .7em;
-    font-weight: 'bold';
+    font-weight: bold;
     color: red;
+}
+
+.required-fields {
+    font-size: 1em;
 }

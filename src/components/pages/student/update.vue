@@ -17,9 +17,9 @@
 
     Vue.use(VueSweetalert2);
 
-    import studentBasic from './sub/studentBasic';
-    import studentAcademic from './sub/studentAcademic';
-    import studentParent from './sub/studentParent';
+    import studentBasic from './subcomponents/studentBasic';
+    import studentAcademic from './subcomponents/studentAcademic';
+    import studentParent from './subcomponents/studentParent';
 
     export default {
         name: "staff-layout",
