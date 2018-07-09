@@ -6,9 +6,269 @@
             <tab-content title="Student Basic Info" icon="fa fa-user">
                 <div>
                     <form method="" class="form-horizontal">
-                        <student-basic :data="data" :page="'create'"></student-basic>
-                        <student-academic :data="data" :page="'create'"></student-academic>
-                        <student-parent :data="data" :page="'create'"></student-parent>
+                        <div class="row odd-row">
+                            <div class="col-lg-6">
+                                <label>LGA <span class="text-error">*</span></label>
+                                <multiselect v-model="lga" :show-labels="false" :options="lgas" @input="getSchool"></multiselect>
+                            </div>
+                            <div class="col-lg-6">
+                                <label>School Name <span class="text-error">*</span></label>
+                                <multiselect v-model="school_name" :show-labels="false" :options="schools" @input="getSchoolId"></multiselect>
+                            </div>
+                        </div>
+                        <div class="row even-row">
+                            <div class="col-xs-12 col-sm-6 col-md-3">
+                                <div class="form-group p-10">
+                                    <label class="control-label col-md-8">Firstname <span class="text-error">*</span>
+                                    </label>
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control" v-model="data.first_name" v-validate="validation.required"
+                                               name="first_name" required placeholder="First Name">
+                                        <span class="text-error">{{ errors.first('first_name') }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-3">
+                                <div class="form-group p-10">
+                                    <label class="control-label col-md-12">Middle Name <span class="text-error">*</span></label>
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control" v-model="data.middle_name" v-validate="validation.required"
+                                               name="middle_name" required placeholder="Middle Name">
+                                        <span class="text-error">{{ errors.first('middle_name') }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-3">
+                                <div class="form-group p-10">
+                                    <label class="control-label">Last Name</label>
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control" v-model="data.last_name" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-3">
+                                <div class="form-group p-10">
+                                    <label class="control-label">Sex <span class="text-error">*</span></label>
+                                    <b-form-radio-group v-model="data.sex" :options="sexOptions" stacked name="sex" />
+                                    <span class="text-error">{{ errors.first('sex') }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row odd-row">
+                            <div class="col-xs-12 col-sm-6 col-md-3">
+                                <div class="form-group p-10">
+                                    <label class="control-label col-md-8">Date of Birth
+                                    </label>
+                                    <div class="col-md-12">
+                                        <input type="date" class="form-control" v-model="data.date_of_birth">
+                                        <span class="text-error">{{ errors.first('dob') }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-3">
+                                <div class="form-group p-10">
+                                    <label class="control-label col-md-12">Place of Birth <span class="text-error">*</span></label>
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control" v-model="data.place_of_birth"
+                                               id="pob" v-validate="validation.required" name="pob" required placeholder="Place of birth">
+                                        <span class="text-error">{{ errors.first('pob') }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-3">
+                                <div class="form-group p-10">
+                                    <label class="control-label">Phone Number (optional)</label>
+                                    <div class="col-md-12">
+                                        <input type="phone" class="form-control" name="phone" v-model="data.phone" placeholder="08064720000" id="phone">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-3">
+                                <div class="form-group p-10">
+                                    <label class="control-label" for="email">Email (optional)</label>
+                                    <div class="col-md-12">
+                                        <input type="email" class="form-control" v-model="data.email" id="email" placeholder="aaa@abcd.com">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row even-row">
+                            <div class="col-xs-12 col-sm-6 col-md-4">
+                                <div class="form-group p-10">
+                                    <label class="control-label col-md-8">Any special Challenge?  <span class="text-error">*</span></label>
+                                    <div class="col-md-12">
+                                        <select v-model="data.special_condition" class="form-control" size="1" required>
+                                            <option value="">Select Challenge</option>
+                                            <option v-for="challenge in specialChallenges" :value="challenge.id">{{challenge.condition}}</option>
+                                        </select>
+                                        <span class="text-error"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-4">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-6">
+                                        <div class="form-group p-10">
+                                            <label class="control-label">Height (in m)</label>
+                                            <input type="number" min="0" class="form-control" v-model="data.height" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6">
+                                        <div class="form-group p-10">
+                                            <label class="control-label">Weight (in Kg)</label>
+                                            <input type="number" min="0" class="form-control" v-model="data.weight" placeholder="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-4">
+                                <div class="form-group p-10">
+                                    <label class="control-label">Blood Group Type</label>
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control" v-model="data.blood_group" placeholder="A, B, AB, O">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row odd-row">
+                            <div class="col-xs-12 col-sm-6 col-md-4">
+                                <div class="form-group p-10">
+                                    <label class="control-label col-md-12">Birth Cert Type <span class="text-error">*</span></label>
+                                    <div class="col-md-12">
+                                        <select name="birth_cert_type" v-model="data.birth_cert_type" class="form-control" size="1" required>
+                                            <option value="">Select Cert Type</option>
+                                            <option v-for="cert in birthCerts" :value="cert.id">{{cert.birth_cert_type}}</option>
+                                        </select>
+                                        <span class="text-error">{{ errors.first('birth_cert_type') }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group p-10">
+                                    <label class="control-label col-md-8" for="admission_year">Year of Admission <span class="text-error">*</span></label>
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control"  v-model="data.first_name" name="admission_year"
+                                               id="admission_year" v-validate="validation.required" required placeholder="Admission Year">
+                                        <span class="text-error">{{ errors.first('admission_year') }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-4">
+                                <div class="form-group p-10">
+                                    <label class="control-label col-md-8">Student's Admission Status <span class="text-error">*</span></label>
+                                    <b-form-radio-group v-model="data.admission_status" :options="enrollmentOptions" stacked />
+                                    <span class="text-error">{{ errors.first('admission_status') }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row even-row">
+                            <div class="col-xs-12 col-sm-6 col-md-3">
+                                <div class="form-group p-10">
+                                    <label class="control-label col-md-8">Admission Education Level <span class="text-error">*</span></label>
+                                    <div class="col-md-12">
+                                        <select id="admission_education_level" v-model="data.admission_education_level" name="admission_education_level" class="form-control" size="1" required>
+                                            <option value="">Select Level</option>
+                                            <option v-for="level in educationLevels" :value="level.id">{{level.level}}</option>
+                                        </select>
+                                        <span class="text-error">{{ errors.first('admission_education_level') }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="col-xs-12 col-sm-6 col-md-3">
+                                <div class="form-group p-10">
+                                    <label class="control-label" for="admission_education_level">Admission Class Level <span>*</span>
+                                    </label>
+                                    <div class="col-md-12">
+                                        <input type="number" min="0" v-model="data.admission_education_level" class="form-control" id="admission_education_level" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-3">
+                                <div class="form-group p-10">
+                                    <label class="control-label col-md-12">Current Education Level<span>*</span>
+                                    </label>
+                                    <div class="col-md-12">
+                                        <select id="current_edu_level" v-model="data.current_education_level" name="current_education_level" class="form-control" size="1">
+                                            <option value="0">
+                                                Select Year
+                                            </option>
+                                            <option value="1">1930</option>
+                                            <option value="2">1931</option>
+                                            <option value="3">1932</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <div class="col-xs-12 col-sm-6 col-md-3">
+                                <div class="form-group p-10">
+                                    <label class="control-label col-md-12">Current Class Level <span class="text-error">*</span></label>
+                                    <div class="col-md-12">
+                                        <input type="number" min="0" class="form-control" name="current_class_level" v-model="data.education_level"
+                                               id="current_class_level" placeholder="" v-validate="validation.required" required>
+                                        <span class="text-error">{{ errors.first('current_class_level') }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-3">
+                                <div class="form-group p-10">
+                                    <label class="control-label col-md-12"data.>Promotion Status <span class="text-error">*</span></label>
+                                    <div class="col-md-12">
+                                        <select id="current_admission_education_level" v-model="data.promotion_status" name="current_admission_education_level" class="form-control" size="1">
+                                            <option value="">Select Level</option>
+                                            <option v-for="status in promotionStatus" :value="status.id">{{status.status}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row odd-row">
+                            <!-- <div class="col-xs-12 col-sm-6 col-md-3">
+                                <div class="form-group p-10">
+                                    <label class="control-label col-md-8">Registered for JSCE/SSCE? <span>*</span>
+                                    </label>
+                                    <div class="col-md-12">
+                                        <div class="radio">
+                                            <b-form-radio name="exam_registration" v-model="data.exam_registration">
+                                                Yes
+                                            </b-form-radio>
+                                        </div>
+                                        <div class="radio">
+                                            <b-form-radio name="exam_registration" v-model="data.exam_registration">
+                                                No
+                                            </b-form-radio>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <div class="col-xs-12 col-sm-6 col-md-3">
+                                <div class="form-group p-10">
+                                    <label class="control-label col-md-8">Boarding Student? <span class="text-error">*</span></label>
+                                    <div class="col-md-12">
+                                        <b-form-radio-group v-model="data.boarding" :options="yesNoOptions" stacked name="boarding" />
+                                        <span class="text-error"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-3">
+                                <div class="form-group p-10">
+                                    <label class="control-label col-md-12">Doom No </label>
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control" name="dormitory_id" v-model="data.dormitory_id" placeholder="Dormitory Number">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-3">
+                                <div class="form-group p-10">
+                                    <label class="control-label col-md-12">Home Dist to School <span class="text-error">*</span></label>
+                                    <div class="col-md-12">
+                                        <input type="number" min="0" class="form-control" v-model="data.distance_from_school" value="0"
+                                            v-validate="validation.required" name="distance_from_school" required>
+                                        <span class="text-error">{{ errors.first('distance_from_school') }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </tab-content>
@@ -244,18 +504,12 @@ import VueFormWizard from 'vue-form-wizard'
 import 'vue-form-wizard/dist/vue-form-wizard.min.css'
 import Multiselect from 'vue-multiselect';
 import VeeValidate from 'vee-validate';
-import studentBasic from './sub/studentBasic';
-import studentAcademic from './sub/studentAcademic';
-import studentParent from './sub/studentParent';
 
 Vue.use(VeeValidate);
 Vue.use(VueFormWizard)
 export default {
     components: {
             Multiselect,
-            studentBasic,
-            studentAcademic,
-            studentParent
         },
     data() {
         return {
