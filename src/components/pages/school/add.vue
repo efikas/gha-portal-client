@@ -2,250 +2,7 @@
     <div>
         <b-card header="School Basic Information" header-tag="h4" class="bg-header-card">
             <form method="" class="form-horizontal" @submit.prevent="onSubmit">
-                <div class="row odd-row">
-                    <div class="col-md-3 col-md-3">
-                        <div class="form-group p-10">
-                            <label class="control-label col-md-8">LGA <abbr title="required">*</abbr></label>
-                            <div class="col-md-12">
-                                <multiselect v-model="lga" :show-labels="false" :options="lgas"
-                                             @input="getWard"></multiselect>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-md-3">
-                        <div class="form-group p-10">
-                            <label>Ward <abbr title="required">*</abbr></label>
-                            <multiselect v-model="ward" :show-labels="false" :options="wards"
-                                         @input="selectedWard"></multiselect>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group p-10">
-                            <label class="control-label col-md-8" for="name">School Name
-                                <abbr title="required">*</abbr></label>
-                            <div class="col-md-12">
-                                <input type="text" class="form-control" v-model="data.name" id="name"
-                                       placeholder="School Name">
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="row even-row">
-                    <div class="col-xs-12 col-sm-6 col-md-3">
-                        <div class="form-group p-10">
-                            <label class="control-label">Location
-                                <abbr title="required">*</abbr></label>
-                            <div class="col-md-12">
-                                <b-form-radio-group v-model="data.location" :options="schoolLocationsOptions" stacked/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-3">
-                        <div class="form-group p-10">
-                            <label class="control-label col-md-12" for="year_established">Year Established
-                            </label>
-                            <div class="col-md-12">
-                                <input type="text" class="form-control" v-model="data.established"
-                                       id="year_established" placeholder="Year Established">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-3">
-                        <div class="form-group p-10">
-                            <label class="control-label" for="dist">Distance to Catchment Area
-                            </label>
-                            <input type="number" min="0" v-model="data.average_distance"
-                                   class="form-control" id="dist" placeholder="">
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-3">
-                        <div class="form-group p-10">
-                            <label class="control-label" for="village_town">Village/Town
-                                <abbr title="required">*</abbr></label>
-                            <input type="text" v-model="data.town" class="form-control"
-                                   id="village_town" placeholder="">
-                        </div>
-                    </div>
-                </div>
-                <div class="row odd-row">
-                    <div class="col-xs-12 col-sm-7">
-                        <div class="form-group p-10">
-                            <label class="control-label col-md-8" for="email">Email
-                            </label>
-                            <div class="col-md-12">
-                                <input type="email" v-model="data.email"
-                                       class="form-control" id="email" placeholder="Email">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-5">
-                        <div class="form-group p-10">
-                            <label class="control-label col-md-12" for="phone">Phone Nunber
-                                <abbr title="required">*</abbr></label>
-                            <div class="col-md-12">
-                                <input type="text" v-model="data.phone" class="form-control"
-                                       id="phone" placeholder="Enter Phone Number">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row even-row">
-                    <div class="col-xs-12 col-sm-5">
-                        <div class="form-group p-10">
-                            <label class="control-label">Website
-                            </label>
-                            <div class="col-md-12">
-                                <input type="url" v-model="data.website" class="form-control"
-                                       name="website" value="http://www.example.com/" id="url">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-4">
-                        <div class="form-group p-10">
-                            <label class="control-label">Map Coordinate (Lat, Long)
-                            </label>
-                            <input type="text" v-model="data.geolocation"
-                                   class="form-control" id="long" placeholder="e.g. 9.182 / -39.140625">
-
-                        </div>
-                    </div>
-
-                    <div class="col-xs-12 col-sm-6 col-md-3">
-                        <div class="form-group p-10">
-                            <label class="control-label col-md-12">School Category
-                                <abbr title="required">*</abbr></label>
-                            <div class="col-md-12">
-                                <b-form-radio-group v-model="data.category" :options="schoolCategoryOptions" stacked/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row odd-row">
-                    <div class="col-xs-12 col-sm-6 col-md-6">
-                        <div class="form-group p-10">
-                            <label class="control-label col-md-12" for="name_of_proprietor">Propritor Name
-                            </label>
-                            <div class="col-md-12">
-                                <input type="text" v-model="data.name_of_proprietor"
-                                       class="form-control" id="name_of_proprietor"
-                                       placeholder="Propritor Name">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-6">
-                        <div class="form-group p-10">
-                            <label class="control-label" for="private_membership_name">Private Memebership's
-                                Name
-                            </label>
-                            <input type="text" v-model="data.private_membership_name"
-                                   class="form-control" id="private_membership_name"
-                                   placeholder="Memebership's Name">
-                        </div>
-                    </div>
-                </div>
-                <div class="row even-row">
-                    <div class="col-xs-12 col-sm-6">
-                        <div class="form-group p-10">
-                            <label class="control-label col-md-12">Type
-                                <abbr title="required">*</abbr></label>
-                            <b-form-radio-group v-model="data.type" :options="schoolTypesOptions" stacked/>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6">
-                        <div class="form-group p-10">
-                            <label class="control-label">School Ownership
-                            </label>
-                            <b-form-radio-group v-model="data.ownership" :options="schoolOwnershipOptions" stacked/>
-                        </div>
-                    </div>
-                </div>
-                <div class="row odd-row">
-                    <div class="col-xs-12 col-sm-6 col-md-4">
-                        <div class="form-group p-10">
-                            <label class="control-label col-md-12">Education Level
-                                <abbr title="required">*</abbr></label>
-                            <div class="col-md-12">
-                                <b-form-radio-group v-model="data.education_level" :options="educationLevelOptions"
-                                                    stacked/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-4">
-                        <div class="form-group p-10">
-                            <label class="control-label">Multigrading System
-                                <abbr title="required">*</abbr></label>
-                            <div class="col-md-12">
-                                <b-form-radio-group v-model="data.multigrade" :options="yesNoOptions" stacked
-                                                    name="multigrade"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-4">
-                        <div class="form-group p-10">
-                            <label class="control-label">shift
-                                <abbr title="required">*</abbr></label>
-                            <div class="col-md-12">
-                                <b-form-radio-group v-model="data.shift" :options="yesNoOptions" stacked name="shift"/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row even-row">
-                    <div class="col-xs-12 col-sm-6 col-md-3">
-                        <div class="form-group p-10">
-                            <label class="control-label col-md-12">Management
-                                Committee
-                            </label>
-                            <div class="col-md-12">
-                                <b-form-radio-group v-model="data.management_committee" :options="yesNoOptions" stacked
-                                                    name="management_committee"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-3">
-                        <div class="form-group p-10">
-                            <label class="control-label">PTA/PTF/MA
-                                <abbr title="required">*</abbr></label>
-                            <div class="col-md-12">
-                                <b-form-radio-group v-model="data.pta_pf" :options="yesNoOptions" stacked
-                                                    name="pta_pf"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-3">
-                        <div class="form-group p-10">
-                            <label class="control-label">School Development Plan
-                            </label>
-                            <div class="col-md-12">
-                                <b-form-radio-group v-model="data.development_plan" :options="yesNoOptions" stacked
-                                                    name="development_plan"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-3">
-                        <div class="form-group p-10">
-                            <label class="control-label">School grants
-                                <abbr title="required">*</abbr></label>
-                            <div class="col-md-12">
-                                <b-form-radio-group v-model="data.grants" :options="yesNoOptions" stacked
-                                                    name="grants"/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row odd-row">
-                    <div class="col-md-12">
-                        <div class="form-group p-10">
-                            <label class="control-label col-md-4" for="address">Address <abbr title="required">*</abbr></label>
-                            <div class="col-md-8">
-                                        <textarea rows="4" v-model="data.address"
-                                                  class="form-control resize_vertical" id="address"
-                                                  placeholder="School Address"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <basic-form :data="data"></basic-form>
                 <button type="submit" class="btn btn-primary btn-lg btn-school pull-right">Submit</button>
             </form>
         </b-card>
@@ -253,14 +10,22 @@
 </template>
 <script>
     import Vue from 'vue';
+    import miniToastr from 'mini-toastr';
+    miniToastr.init();
+
     import options from "src/validations/validations.js";
     import Multiselect from 'vue-multiselect';
+    import BasicForm from './forms/basic_form.vue';
+
+    import Toaster from  '../../mixins/toaster';
 
     Vue.use(options);
     export default {
         name: 'school-add',
+        mixins: [ Toaster ],
         components: {
             Multiselect,
+            basicForm: BasicForm,
         },
         data() {
             return {
@@ -306,20 +71,17 @@
         },
         methods: {
             onSubmit: function () {
-                // console.log("aaa")
+                var vm =  this;
                 this.$school.addSchool(this.data).then(response => {
-                    if (typeof  response == 'object') {
-                        this.$swal({
-                            type: 'success',
-                            title: 'School Record added Successfully!',
-                            confirmButtonColor: '#3085d6',
-                            confirmButtonText: 'Ok'
-                        }).then((result) => {
-                            if (result.value) {
-                                location.reload();
-                            }
-                        })
+                    if (typeof  response === 'object') {
+                        miniToastr.success("School Record added Successfully!", "Success");
+                        vm.$router.push('/school')
+                    } else {
+
                     }
+                }).catch(error => {
+                    console.log(error.data.errors);
+                    miniToastr.error("error: saving record!", "Error");
                 })
             },
             getWard() {
@@ -370,8 +132,7 @@
                 this.data.lga_ward_id = _wardId[0].id;
             }
         },
-        mounted: function () {
-            //todo: get the settings information
+        created () {
             this.settings = JSON.parse(localStorage.getItem('settings'));
 
             if (this.settings) {

@@ -35,7 +35,7 @@
                     <label class="control-label">Location
                         <abbr title="required">*</abbr></label>
                     <div class="col-md-12">
-                        <b-form-radio-group v-model="data.location" :options="schoolLocationsOptions" stacked/>
+                        <b-form-radio-group v-model="data.location" :options="schoolLocationsOptions" />
                     </div>
                 </div>
             </div>
@@ -114,7 +114,7 @@
                     <label class="control-label col-md-12">School Category
                         <abbr title="required">*</abbr></label>
                     <div class="col-md-12">
-                        <b-form-radio-group v-model="data.category" :options="schoolCategoryOptions" stacked/>
+                        <b-form-radio-group v-model="data.category" :options="schoolCategoryOptions" />
                     </div>
                 </div>
             </div>
@@ -133,7 +133,7 @@
             </div>
             <div class="col-xs-12 col-sm-6 col-md-6">
                 <div class="form-group p-10">
-                    <label class="control-label" for="private_membership_name">Private Memebership's
+                    <label class="control-label" for="private_membership_name">Private Membership's
                         Name
                     </label>
                     <input type="text" v-model="data.private_membership_name"
@@ -147,14 +147,14 @@
                 <div class="form-group p-10">
                     <label class="control-label col-md-12">Type
                         <abbr title="required">*</abbr></label>
-                    <b-form-radio-group v-model="data.type" :options="schoolTypesOptions" stacked/>
+                    <b-form-radio-group v-model="data.type" :options="schoolTypesOptions" stacked />
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6">
                 <div class="form-group p-10">
                     <label class="control-label">School Ownership
-                    </label>
-                    <b-form-radio-group v-model="data.ownership" :options="schoolOwnershipOptions" stacked/>
+                        <abbr title="required">*</abbr></label>
+                    <b-form-radio-group v-model="data.ownership" :options="schoolOwnershipOptions" stacked />
                 </div>
             </div>
         </div>
@@ -165,7 +165,7 @@
                         <abbr title="required">*</abbr></label>
                     <div class="col-md-12">
                         <b-form-radio-group v-model="data.education_level" :options="educationLevelOptions"
-                                            stacked/>
+                                            />
                     </div>
                 </div>
             </div>
@@ -174,7 +174,7 @@
                     <label class="control-label">Multigrading System
                         <abbr title="required">*</abbr></label>
                     <div class="col-md-12">
-                        <b-form-radio-group v-model="data.multigrade" :options="yesNoOptions" stacked
+                        <b-form-radio-group v-model="data.multigrade" :options="yesNoOptions" 
                                             name="multigrade"/>
                     </div>
                 </div>
@@ -184,7 +184,7 @@
                     <label class="control-label">shift
                         <abbr title="required">*</abbr></label>
                     <div class="col-md-12">
-                        <b-form-radio-group v-model="data.shift" :options="yesNoOptions" stacked name="shift"/>
+                        <b-form-radio-group v-model="data.shift" :options="yesNoOptions"  name="shift"/>
                     </div>
                 </div>
             </div>
@@ -196,7 +196,7 @@
                         Committee
                     </label>
                     <div class="col-md-12">
-                        <b-form-radio-group v-model="data.management_committee" :options="yesNoOptions" stacked
+                        <b-form-radio-group v-model="data.management_committee" :options="yesNoOptions" 
                                             name="management_committee"/>
                     </div>
                 </div>
@@ -206,7 +206,7 @@
                     <label class="control-label">PTA/PTF/MA
                         <abbr title="required">*</abbr></label>
                     <div class="col-md-12">
-                        <b-form-radio-group v-model="data.pta_pf" :options="yesNoOptions" stacked
+                        <b-form-radio-group v-model="data.pta_pf" :options="yesNoOptions" 
                                             name="pta_pf"/>
                     </div>
                 </div>
@@ -216,7 +216,7 @@
                     <label class="control-label">School Development Plan
                     </label>
                     <div class="col-md-12">
-                        <b-form-radio-group v-model="data.development_plan" :options="yesNoOptions" stacked
+                        <b-form-radio-group v-model="data.development_plan" :options="yesNoOptions" 
                                             name="development_plan"/>
                     </div>
                 </div>
@@ -226,7 +226,7 @@
                     <label class="control-label">School grants
                         <abbr title="required">*</abbr></label>
                     <div class="col-md-12">
-                        <b-form-radio-group v-model="data.grants" :options="yesNoOptions" stacked
+                        <b-form-radio-group v-model="data.grants" :options="yesNoOptions" 
                                             name="grants"/>
                     </div>
                 </div>
@@ -253,8 +253,10 @@
 
     Vue.use(options);
     export default {
-        name: 'school-add',
-        props: ['data'],
+        name: 'school_basic_form',
+        props: {
+            data: {type: Object, required: true}
+        },
         components: {
             Multiselect,
         },
@@ -273,30 +275,6 @@
                 ward: '',
                 yesNoOptions: [{text: 'Yes', value: '1'}, {text: 'No', value: '0'}],
                 settings: {},
-                data: {
-                    // lga_ward_id: 3,
-                    // name: 'Saint Mathew Nur and pry school',
-                    // established: '2008',
-                    // average_distance: '1',
-                    // town: 'Ado',
-                    // location: 'Rural', //rural or urban
-                    // email: 'saitpaul@gmail.com',
-                    // phone: '080',
-                    // website: 'www.sbemis.com',
-                    // geolocation: '9.182 / -39.140625',
-                    // category: 'Private', //private or public
-                    // private_membership_name: 'Ado',
-                    // type: 2,
-                    // ownership: '1',
-                    // education_level: "Primary",
-                    // multigrade: 0,
-                    // shift: 1,
-                    // management_committee: 1,
-                    // pta_pf: 0,
-                    // development_plan: 1,
-                    // grants: 1,
-                    // address: 'ado',
-                },
                 selectedSharedFacilities: [],
             }
         },
@@ -349,7 +327,7 @@
                 this.data.lga_ward_id = _wardId[0].id;
             }
         },
-        created () {
+        created() {
             this.settings = JSON.parse(localStorage.getItem('settings'));
 
             if (this.settings) {
@@ -361,8 +339,8 @@
 
                 this.settings.school_ownerships.forEach(item => {
                     this.schoolOwnershipOptions.push({
-                        text: owner.owner,
-                        value: owner.id
+                        text: item.owner,
+                        value: item.id
                     });
                 })
 
