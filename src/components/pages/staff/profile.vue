@@ -141,6 +141,7 @@ import Vue from 'vue'
 import vScroll from "components/plugins/scroll/vScroll.vue"
 import VModal from 'vue-js-modal'
 import SchoolCard from "../../widgets/sbemis/SchoolCard";
+import {apiURL} from '../../../packages/resources'
 
 Vue.use(VModal)
 
@@ -166,10 +167,10 @@ export default {
         showImage(obj) {
           if(typeof  obj.biometric){
               if ( obj.biometric && obj.biometric.photo ){
-                  return "http://api.sbemis.net" + obj.biometric.photo;
+                  return apiURL + obj.biometric.photo;
               }
           }
-          return "assets/img/authors/user.jpg"
+          return require("img/authors/user.jpg");
       }
     },
     mounted: function() {
