@@ -14,13 +14,14 @@
     import options from "src/validations/validations.js";
     import Multiselect from 'vue-multiselect';
     import BasicForm from './forms/basic_form.vue';
-    import Toaster from  '../../mixins/toaster';
+    import Toaster from '../../mixins/toaster';
+    import { schoolBasicData } from '../../../data.js'
 
     Vue.use(options);
 
     export default {
         name: 'school-add',
-        mixins: [ Toaster ],
+        mixins: [Toaster],
         components: {
             Multiselect,
             basicForm: BasicForm,
@@ -41,36 +42,13 @@
                 ward: '',
                 yesNoOptions: [{text: 'Yes', value: '1'}, {text: 'No', value: '0'}],
                 settings: {},
-                data: {
-                    // lga_ward_id: 3,
-                    // name: '',
-                    // established: '2008',
-                    // average_distance: '1',
-                    // town: 'Ado',
-                    // location: 'Rural', //rural or urban
-                    // email: 'saitpaul@gmail.com',
-                    // phone: '080',
-                    // website: 'www.sbemis.com',
-                    // geolocation: '9.182 / -39.140625',
-                    // category: 'Private', //private or public
-                    // private_membership_name: 'Ado',
-                    // type: 2,
-                    // ownership: '1',
-                    // education_level: "Primary",
-                    // multigrade: 0,
-                    // shift: 1,
-                    // management_committee: 1,
-                    // pta_pf: 0,
-                    // development_plan: 1,
-                    // grants: 1,
-                    // address: 'ado',
-                },
+                data: {},//schoolBasicData,
                 selectedSharedFacilities: [],
             }
         },
         methods: {
             onSubmit: function () {
-                var vm =  this;
+                var vm = this;
                 if (this.formstate.$invalid) {
                     return;
                 } else {
@@ -135,7 +113,7 @@
                 this.data.lga_ward_id = _wardId[0].id;
             }
         },
-        created () {
+        created() {
             this.settings = JSON.parse(localStorage.getItem('settings'));
 
             if (this.settings) {
