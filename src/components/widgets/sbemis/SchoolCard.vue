@@ -16,7 +16,7 @@
                     <div class="row" style="flex: 1; flex-direction: row; display: flex; justify-content: space-around">
                         <div class="text-center">
                             <h6><a :href="`/school/${this.schoolId}/staff`">All Staff</a></h6>
-                            <h1>{{ this.totalTeachingStaff }}</h1>
+                            <h1>{{ this.totalTeachingStaff + this.totalNonTeachingStaff }}</h1>
                         </div>
                         <div class="text-center">
                             <h6><a :href="`/school/${this.schoolId}/teaching`">Teaching Staff</a></h6>
