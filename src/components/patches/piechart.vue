@@ -82,7 +82,8 @@
                 if (mutation.type == "left_menu") {
                     this.instances.forEach(function (item) {
                         setTimeout(function () {
-                            item.resize();
+                            if( typeof item.resize !== 'undefined')
+                                item.resize();
                         });
                     });
                 }

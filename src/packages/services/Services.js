@@ -4,14 +4,16 @@ import School from './school.service'
 import Dashboard from './dashboard.service'
 import Lga from './lga.service'
 import Settings from './settings.service'
+import Admin from './user.service'
 
 export default function (Vue) {
-    Vue.student = Student
-    Vue.staff = Staff
-    Vue.school = School
-    Vue.dashboard = Dashboard
-    Vue.lga = Lga
-    Vue.settings = Settings
+    Vue.student = Student;
+    Vue.staff = Staff;
+    Vue.school = School;
+    Vue.dashboard = Dashboard;
+    Vue.lga = Lga;
+    Vue.settings = Settings;
+    Vue.admin = Admin;
 
     Object.defineProperties(Vue.prototype, {
         $student: {
@@ -39,9 +41,9 @@ export default function (Vue) {
                 return Vue.lga
             }
         },
-        $settings: {
+        $admin: {
             get: () => {
-                return Vue.settings
+                return Vue.admin
             }
         }
     })

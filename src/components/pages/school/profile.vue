@@ -358,9 +358,6 @@
             SweetModal,
             SweetModalTab
         },
-        mounted: function () {
-
-        },
         destroyed: function () {
 
         },
@@ -394,7 +391,7 @@
         },
         methods: {
             yesNo(id) {
-                if (id == 1) {
+                if (id === 1) {
                     return 'Yes';
                 }
                 return 'No'
@@ -418,22 +415,22 @@
 
                 data.power_sources.forEach(item => {
                     this.power_sources += item.power_sources + ', '
-                })
+                });
                 data.play_facilities.forEach(item => {
                     this.play_facilities += item.play_facilities + ', '
-                })
+                });
                 data.learning.forEach(item => {
                     this.learning += item.material + ', '
-                })
+                });
                 data.play_facilities.forEach(item => {
                     this.play_facilities += item.play_facilities + ', '
-                })
+                });
                 data.health.forEach(item => {
                     this.health += item.facility + ', '
-                })
+                });
                 data.water.forEach(item => {
                     this.water += item.source + ', '
-                })
+                });
                 data.toilet.forEach(item => {
                     this.toilet += item.toilet + ', '
                 })

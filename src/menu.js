@@ -97,5 +97,14 @@ const menu_items = [{
         link: '/report',
         icon: 'fa fa-line-chart'
     },
+    {
+        name: 'Users',
+        icon: 'fa fa-qrcode',
+        child: [{
+            name: 'View all',
+            link: '/admin',
+            icon: 'fa fa-clipboard'
+        },]
+    },
 ];
 export default menu_items;

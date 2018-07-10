@@ -107,9 +107,9 @@ export default {
             })
         }
         else {
-            this.$school.allSchools().then(data => {
-                this.schools = data.data;
-            })
+                this.$school.allSchools().then(data => {
+                    this.schools = data.data;
+                })
         }
         // console.log(this.schools);
     },

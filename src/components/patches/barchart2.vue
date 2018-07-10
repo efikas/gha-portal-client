@@ -127,18 +127,16 @@
            
         },
         mounted: function () {
-            // unsub = this.$store.subscribe((mutation, state) => {
-            //     if (mutation.type == "left_menu") {
-            //         this.instances.forEach(function (item, index) {
-            //             setTimeout(function () {
-            //                 item.resize();
-            //             });
-            //         });
-            //         setTimeout(() => {
-            //             this.$refs.swiper.swiper.update();
-            //         });
-            //     }
-            // });
+            unsub = this.$store.subscribe((mutation, state) => {
+                if (mutation.type === "left_menu") {
+                    this.instances.forEach(function (item) {
+                        setTimeout(function () {
+                            if( typeof item.resize !== 'undefined')
+                                item.resize();
+                        });
+                    });
+                }
+            });
         },
         beforeRouteLeave(to, from, next) {
             unsub();

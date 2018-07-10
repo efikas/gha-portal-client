@@ -6,7 +6,7 @@
             <vue-chartist :data="donut.data" :options="donut.options" type="Pie" :responsiveOptions="donut.responsiveoptions" ref="chartist6"></vue-chartist>
             <div class="row">
                 <template>
-                   <div v-for="(item, index) in progressBar" :key="index">
+                   <div class="col-md-12" v-for="(item, index) in progressBar" :key="index">
                        <div class="col-lg-3 col-sm-12 text_color">
                         {{ item['name']}} ({{ item['percent'] }}%)
                         </div>
@@ -95,7 +95,18 @@
 
             }
         },
-        
+        mounted: function () {
+            unsub = this.$store.subscribe((mutation, state) => {
+                if (mutation.type === "left_menu") {
+                    this.instances.forEach(function (item) {
+                        setTimeout(function () {
+                            if( typeof item.resize !== 'undefined')
+                                item.resize();
+                        });
+                    });
+                }
+            });
+        },
         methods: {
             onReady(instance) {
                 this.instances.push(instance)

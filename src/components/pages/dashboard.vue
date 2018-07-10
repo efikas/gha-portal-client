@@ -1,62 +1,9 @@
 <template>
     <div>
-         <div class="row mb-4">
-            <div class="col-lg-3  col-sm-6 mb-3">
-                <div class="text-center widget_social_icons box_shadow orange">
-                    <div class="p-2">
-                        <div class="widget_social_inner1">
-                            <i class="material-icons fb_text">home</i>
-                        </div>
-                        <div class="text-ash">
-                            <h4 class="mb-0 mt-2 text_size">{{ schools }}</h4>
-                        </div>
-                    </div>
-                    <p class="m-0 orange text-center widget-social_link tiny upper"><a href="school" style="display: block">Schools <i class="fa fa-angle-right"></i></a></p>
-                </div>
-            </div>
-            <div class="col-lg-3  col-sm-6 mb-3">
-                <div class="text-center widget_social_icons box_shadow pink">
-                    <div class="p-2">
-                        <div class="widget_social_inner1">
-                            <i class="material-icons fb_text">group</i>
-                        </div>
-                        <div class="text-ash">
-                            <h4 class="mb-0 mt-2 text_size">{{ staff }}</h4>
-                        </div>
-                    </div>
-                    <p class="m-0 pink text-center widget-social_link tiny upper"><a href="staff" style="display: block">Staffs <i class="fa fa-angle-right"></i></a></p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-3">
-                <div class="text-center widget_social_icons box_shadow blue">
-                    <div class="p-2">
-                        <div class=" widget_social_inner1">
-                            <i class="material-icons fb_text">person</i>
-                        </div>
-                        <div class="text-ash">
-                            <h4 class="mb-0 mt-2 text_size">{{ students }}</h4>
-                        </div>
-                    </div>
-                    <p class="m-0 blue text-center widget-social_link tiny upper"><a href="student" style="display: block">Students <i class="fa fa-angle-right"></i></a></p>
-                </div>
-            </div>
-            <div class="col-lg-3  col-md-6 mb-3">
-                <div class="text-center widget_social_icons box_shadow teal">
-                    <div class="p-2">
-                        <div class=" widget_social_inner1">
-                            <i class="material-icons fb_text">people</i>
-                        </div>
-                        <div class="text-ash">
-                            <h4 class="mb-0 mt-2 text_size">{{ guardians }}</h4>
-                        </div>
-                    </div>
-                    <p class="m-0 teal text-center widget-social_link tiny upper"><a href="#" style="display: block">Parent/Guardian <i class="fa fa-angle-right"></i></a></p>
-                </div>
-            </div>
-        </div>
-         <div class="row">
+        <topCard></topCard>
+        <div class="row">
             <div class="col-lg-6 mb-3">
-                 <piechart :iData="this.priv_sch"></piechart>
+                <piechart :iData="this.priv_sch"></piechart>
             </div>
             <div class="col-lg-6 mb-3">
                 <piechart :iData="this.pub_sch"></piechart>
@@ -70,7 +17,7 @@
             <div class="col-lg-6">
                 <donut :iData="this.stu_sec_sch"></donut>
             </div>
-             <div class="col-lg-6">
+            <div class="col-lg-6">
                 <donut :iData="this.stu_pri_sch"></donut>
             </div>
             <div class="col-lg-6 mb-3">
@@ -79,19 +26,6 @@
             <div class="col-lg-6 mb-3">
                 <barchart :iData="this.sch_urban"></barchart>
             </div>
-            <!-- <div class="col-lg-6 mb-3">
-                <piechart :header="'Distribution of School In Rural/Urban'" :data="{}"></piechart>
-            </div>
-            <div class="col-lg-6 mb-3">
-                <piechart :header="'Total Number of Attendance Weekly'" :data="{}"></piechart> -->
-            <!-- </div>   -->
-
-            <!-- <div class="col-lg-6 mb-3">
-                <piechart :iData="this.staff_gen_dist"></piechart>
-            </div>
-            <div class="col-lg-6 mb-3">
-                <stackbar :iData="this.male_female_staff"></stackbar>
-            </div> -->
             <div class="col-lg-6 mb-3">
                 <piechart :iData="this.staff_gen_dist"></piechart>
             </div>
@@ -113,6 +47,7 @@
     import IEcharts from 'vue-echarts-v3/src/full.js';
 
     import 'zrender/lib/vml/vml';
+
     require('swiper/dist/css/swiper.css')
     import VueAwesomeSwiper from 'vue-awesome-swiper';
 
@@ -121,19 +56,21 @@
     import donut from '../patches/donut.vue'
     import stackbar from '../patches/stackbar.vue'
     import doughnut from '../patches/doughnut.vue'
+    import topCard from './dashboard/partial/topCard'
 
-    let sbemisData = require('../../modules/draw-graphs.js')
+    let sbemisData = require('../../modules/draw-graphs.js');
 
-    Vue.use(VueAwesomeSwiper); 
+    Vue.use(VueAwesomeSwiper);
     var unsub;
     export default {
         name: "echart",
         components: {
+            topCard,
             piechart,
             barchart,
             stackbar,
             doughnut,
-            donut 
+            donut
         },
         data() {
             return {
@@ -141,10 +78,7 @@
                 instances: [],
                 loading: false,
                 ajaxloading: true,
-                schools: 'loading...',
-                staff: 'loading...',
-                students: 'loading...',
-                guardians: 'loading...',
+
                 priv_sch: {},
                 pub_sch: {},
                 pri_sch: {},
@@ -157,28 +91,12 @@
                 staff_gen_dist: {},
                 male_female_staff: {},
                 gen_acad_staff_dist: {},
-
-                // STU_ATTEND: {},
-                // STAFF_GEN_ST: {},
-                // STAFF_ST: {},
-                // GEN_ACAD_STAFF_ST: {},
-                // GEN_NON_STAFF_ST: {},
-                // STAFF_SCH_ST: {},
-                // MALE_STAFF: {},
-                // FEMALE_STAFF: {},
-                
             }
         },
         created() {
             this.$dashboard.statistics()
                 .then((data) => {
-                    console.log(data);
-                    this.schools = data.schools.total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-                    this.staff = data.staffs.total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-                    this.students = data.students.total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-                    
                     let myData = sbemisData.dataMapping(data);
-                    // console.log(myData.priv_sch);
 
                     this.priv_sch = {
                         header: 'Private School Distribution',
@@ -204,7 +122,6 @@
                         header: 'Student Population In Primary School',
                         value: myData.stu_pri_sch
                     };
-                    // console.log(myData.sch_rural)
                     this.sch_rural = {
                         header: 'School Distribution in Rural Area',
                         value: myData.sch_rural
@@ -213,14 +130,6 @@
                         header: 'School Distribution in Urban Area',
                         value: myData.sch_urban
                     };
-                    // this.sch_urban = {
-                    //     header: 'School Distribution i Rural/Urban Area',
-                    //     value: myData.sch_urban
-                    // };
-                    // this.sch_urban = {
-                    //     header: 'Weekly Attendance',
-                    //     value: myData.sch_urban
-                    // };
                     this.staff_gen_dist = {
                         header: 'Staff Gender Comparism',
                         value: myData.staff_gen_dist
@@ -243,22 +152,8 @@
                 .catch((error) => window.alert("failed"))
         },
         mounted: function () {
-            
-            // unsub = this.$store.subscribe((mutation, state) => {
-            //     if (mutation.type == "left_menu") {
-            //         this.instances.forEach(function (item, index) {
-            //             setTimeout(function () {
-            //                 item.resize();
-            //             });
-            //         });
-            //         setTimeout(() => {
-            //             this.$refs.swiper.swiper.update();
-            //         });
-            //     }
-            // });
         },
         beforeRouteLeave(to, from, next) {
-            // unsub();
             next();
         },
 
@@ -269,11 +164,11 @@
         },
 
         computed: {
-            data: ()=>{
-                
+            data: () => {
+
             }
         }
-        
+
     }
 </script>
 <style type="text/css" lang="scss">
@@ -292,7 +187,6 @@
         font-size: 40px;
         line-height: normal;
     }
-
 
     .social .bg-default-card {
         i {
@@ -341,6 +235,7 @@
     .text-blue {
         color: #215fe2;
     }
+
     .icon_color {
         font-size: 27px;
         color: #828686;

@@ -327,7 +327,18 @@ const layout = [{
                 guard:
                     true
             }
+    },
+    {
+        path: '/admin',
+        component: resolve => require(['pages/user/users'], resolve),
+        meta: {
+            title: "User Administration",
+            guard: true
+        },
+        children: []
     }
+
+
 ]
 
 export default layout

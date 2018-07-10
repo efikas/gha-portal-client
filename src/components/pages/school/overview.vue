@@ -1,109 +1,12 @@
 <template>
     <div>
-         <div class="row mb-4">
-            <div class="col-lg-3  col-sm-6 mb-3">
-                <div class="text-center p-3 widget_social_icons box_shadow">
-                    <div class="widget_social_inner1">
-                        <i class="fa fa-user-o fb_text"></i>
-                    </div>
-                    <div class="text-ash">
-                        <h4 class="mt-2 text_size">7465+</h4>
-                        <p class="m-0 mt-2">Schools</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3  col-sm-6 mb-3">
-                <div class="text-center p-3 widget_social_icons box_shadow ">
-                    <div class="widget_social_inner1">
-                        <i class="fa fa-link fb_text"></i>
-                    </div>
-                    <div class="text-ash">
-                        <h4 class="mb-0 mt-2 text_size">1245+</h4>
-                        <p class="m-0 mt-2">Staff</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-3">
-                <div class="text-center p-3 widget_social_icons box_shadow">
-                    <div class=" widget_social_inner1">
-                        <i class="fa fa-comments-o fb_text"></i>
-                    </div>
-                    <div class="text-ash">
-                        <h4 class="mb-0 mt-2 text_size">742+</h4>
-                        <p class="m-0 mt-2">Students</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3  col-md-6 mb-3">
-                <div class="text-center p-3 widget_social_icons box_shadow">
-                    <div class=" widget_social_inner1">
-                        <i class="fa fa-clone fb_text"></i>
-                    </div>
-                    <div class="text-ash">
-                        <h4 class="mb-0 mt-2 text_size">465+</h4>
-                        <p class="m-0 mt-2">Parent/Guardian</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--<div class="row">-->
-            <!--<div class="col-xl-4 col-lg-6 col-md-6 col-sm-12" v-for="(schoolsPerLga, index) in schoolsPerLgas" :key="index">-->
-                <!--<div class="card user-profile">-->
-                    <!--<div class="card-block">-->
-                        <!--<div class="text-left">-->
-                            <!--<span class="float-right btn btn-success"  style="margin: 10px 10px 15px 0px">{{ schoolsPerLga.total.schools }}</span>-->
-                            <!--<h4 class="text-primary float-left" style="margin: 10px 0px 15px 10px">{{ schoolsPerLga.name }}</h4>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                    <!--<table class="table table-bordred table-striped">-->
-                        <!--<tbody>-->
-                            <!--<tr @click="gotoLink(`lga/${schoolsPerLga.id}/category/1`)">-->
-                                <!--<td>Public Schools</td>-->
-                                <!--<td> {{ schoolsPerLga.public.total }}</td>-->
-                            <!--</tr>-->
-                            <!--<tr @click="gotoLink(`lga/${index + 1}/category/2`)">-->
-                                <!--<td>Private Schools</td>-->
-                                <!--<td> {{ schoolsPerLga.private.total }}</td>-->
-                            <!--</tr>-->
-                            <!--<tr @click="gotoLink(`lga/${index + 1}/level/PRY`)">-->
-                                <!--<td>Primary Schools</td>-->
-                                <!--<td> {{ schoolsPerLga.total.primary }}</td>-->
-                            <!--</tr>-->
-                            <!--<tr @click="gotoLink(`lga/${index + 1}/level/SEC`)">-->
-                                <!--<td>Secondary Schools</td>-->
-                                <!--<td> {{ schoolsPerLga.total.secondary }}</td>-->
-                            <!--</tr>-->
-                            <!--<tr @click="gotoLink(`lga/${index + 1}/category/1/level/PRY`)">-->
-                                <!--<td>Public Primary Schools</td>-->
-                                <!--<td> {{ schoolsPerLga.public.primary }}</td>-->
-                            <!--</tr>-->
-                            <!--<tr @click="gotoLink(`lga/${index + 1}/category/2/level/PRY`)">-->
-                                <!--<td>Private Primary Schools</td>-->
-                                <!--<td> {{ schoolsPerLga.private.primary }}</td>-->
-                            <!--</tr>-->
-                            <!--<tr @click="gotoLink(`lga/${index + 1}/category/1/level/SEC`)">-->
-                                <!--<td>Public Secondary Schools</td>-->
-                                <!--<td> {{ schoolsPerLga.public.secondary }}</td>-->
-                            <!--</tr>-->
-                            <!--<tr @click="gotoLink(`lga/${index + 1}/category/2/level/SEC`)">-->
-                                <!--<td>Private Secondary Schools</td>-->
-                                <!--<td> {{ schoolsPerLga.private.secondary }}</td>-->
-                            <!--</tr>-->
-                            <!--<tr>-->
-                                <!--<td colspan="2"><a :href="'schools/lga/' + (index + 1)" class="pull-right">details</a></td>-->
-                            <!--</tr>-->
-                        <!--</tbody>-->
-                    <!--</table>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-
+        <topCard></topCard>
         <div class="row">
             <div class="col-lg-12">
                <b-card>
                    <div class="table-responsive">
                        <a type="button" class="fa fa-download icon-big btn btn-outline-primary ekiti-btn pull-right mb-2" @click="exportExcel"></a>
-                       <table class="table table-bordered table-striped mytableh text-center" ref="export">
+                       <table class="table table-bordered table-striped mytableh text-center" ref="exportRef">
                            <thead>
                                <tr>
                                    <th rowspan="2">LGA</th>
@@ -158,6 +61,8 @@
     import Vue from 'vue';
 
     import IEcharts from 'vue-echarts-v3/src/full.js';
+    import topCard from '../dashboard/partial/topCard'
+
 
     import 'zrender/lib/vml/vml';
     require('swiper/dist/css/swiper.css')
@@ -175,6 +80,7 @@
     export default {
         name: "index2",
         components: {
+            topCard,
             IEcharts,
             datatable,
             countTo,
@@ -326,7 +232,7 @@
 
             exportExcel() {
                 const mimeType = 'data:application/vnd.ms-excel';
-                const html = this.$refs.export.innerHTML.replace(/ /g, '%20');
+                const html = this.$refs.exportRef.innerHTML.replace(/ /g, '%20');
 
                 const d = new Date();
 
