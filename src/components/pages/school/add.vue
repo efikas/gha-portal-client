@@ -71,9 +71,9 @@
         methods: {
             onSubmit: function () {
                 var vm =  this;
-                // if (this.formstate.$invalid) {
-                //     return;
-                // } else {
+                if (this.formstate.$invalid) {
+                    return;
+                } else {
                     this.$school.addSchool(this.data).then(response => {
                         if (typeof  response === 'object') {
                             this.successMsg("School Record added Successfully!", "Success");
@@ -85,7 +85,7 @@
                         console.log(error.data.errors);
                         this.errorMsg("error: saving record!", "Error");
                     });
-                // }
+                }
             },
             getWard() {
 
