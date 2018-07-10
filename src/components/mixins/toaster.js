@@ -32,17 +32,17 @@ export default {
     },
 
     methods: {
-        successMsg() {
-            miniToastr.success("Some success msg", "Success title")
+        successMsg(msg, title) {
+            miniToastr.success(msg, title)
         },
-        infoMsg() {
-            miniToastr.info("Some info msg", "Note title")
+        infoMsg(msg, title) {
+            miniToastr.info(msg, title)
         },
-        warnMsg() {
-            miniToastr.warn("Some waqrning msg", "Warning")
+        warnMsg(msg, title) {
+            miniToastr.warn(msg, title)
         },
-        errorMsg() {
-            miniToastr.error("Some error msg", "Error")
+        errorMsg(msg, title) {
+            miniToastr.error(msg, title)
         },
         dynamicMsg() {
             miniToastr[this.type](this.msg, this.title)

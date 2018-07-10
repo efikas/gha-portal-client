@@ -11,16 +11,12 @@
 <script>
     import Vue from 'vue';
 
-    import VueForm from "vue-form";
     import options from "src/validations/validations.js";
     import Multiselect from 'vue-multiselect';
     import BasicForm from './forms/basic_form.vue';
-
-    import miniToastr from 'mini-toastr';
-    miniToastr.init();
     import Toaster from  '../../mixins/toaster';
 
-    Vue.use(VueForm, options);
+    Vue.use(options);
 
     export default {
         name: 'school-add',
@@ -75,21 +71,21 @@
         methods: {
             onSubmit: function () {
                 var vm =  this;
-                if (this.formstate.$invalid) {
-                    return;
-                } else {
+                // if (this.formstate.$invalid) {
+                //     return;
+                // } else {
                     this.$school.addSchool(this.data).then(response => {
                         if (typeof  response === 'object') {
-                            miniToastr.success("School Record added Successfully!", "Success");
+                            this.successMsg("School Record added Successfully!", "Success");
                             vm.$router.push('/school')
                         } else {
 
                         }
                     }).catch(error => {
                         console.log(error.data.errors);
-                        miniToastr.error("error: saving record!", "Error");
+                        this.errorMsg("error: saving record!", "Error");
                     });
-                }
+                // }
             },
             getWard() {
 

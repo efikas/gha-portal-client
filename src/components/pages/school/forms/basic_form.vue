@@ -345,6 +345,7 @@
                         <textarea rows="4" v-model="data.address"
                                   class="form-control resize_vertical" id="address"
                                   name="address"
+                                  required
                                   placeholder="School Address"></textarea>
                         <field-messages name="address" show="$invalid && $submitted"
                                         class="text-danger">
@@ -358,10 +359,8 @@
 </template>
 <script>
     import Vue from 'vue';
-    import options from "src/validations/validations.js";
     import Multiselect from 'vue-multiselect';
 
-    Vue.use(options);
     export default {
         name: 'school_basic_form',
         props: {
@@ -464,6 +463,11 @@
         },
     }
 </script>
+<style>
+    .form-control {
+        transition: initial;
+    }
+</style>
 <style type="text/css" scoped>
 
     /deep/ .form-control:disabled {
