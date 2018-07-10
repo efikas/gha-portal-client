@@ -15,7 +15,7 @@ import {
 } from 'vue-tables-2';
 import datatable from "components/plugins/DataTable/DataTable.vue";
 import VueSkeletonLoading from 'vue-skeleton-loading';
-import schoolTable from '../../custom_components/schoolTable';
+import schoolTable from '../../patches/schoolTable';
 
 Vue.use(VueSkeletonLoading);
 

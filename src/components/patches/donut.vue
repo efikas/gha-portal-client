@@ -38,7 +38,7 @@
 
     import 'echarts/lib/component/timeline';
     import 'echarts/lib/component/toolbox';
-    import { exportToExcel } from '../../modules/mixins/exportToExcel'
+    import { exportToExcel } from '../mixins/exportToExcel'
 
     var unsub;
     export default {

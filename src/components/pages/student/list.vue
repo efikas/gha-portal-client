@@ -34,7 +34,7 @@
                         </row>
                     </skeleton-loading>
                 </div>
-                <a type="button" class="fa fa-download icon-big btn btn-outline-primary ekiti-btn pull-right" v-if="students.length > 0"></a>
+                <a type="button" class="fa fa-download icon-big btn btn-outline-primary ekiti-btn pull-right" v-if="students.length > 0" @click="exportExcel"></a>
                 <v-client-table :data="students" :columns="columns" :options="options" v-if="students.length > 0">
                      <span slot="id" slot-scope="props">{{ props.index }}</span>
                      <a class="list-font" slot="Name" slot-scope="props" :href="'/student/'+ props.row.id" v-html="props.row.first_name + ' ' + props.row.last_name + ' ' + props.row.middle_name"></a>
@@ -57,7 +57,7 @@ import VueSkeletonLoading from 'vue-skeleton-loading';
 Vue.use(VueSkeletonLoading);
 Vue.use(ClientTable, {}, false);
 export default {
-    name: "staff_list",
+    name: "student_list",
     components: {
         datatable,
         SchoolCard,
@@ -86,7 +86,7 @@ export default {
             }
         }
     },
-    mounted() {
+    created() {
         // get school informations
         this.$school.schoolProfile(this.$route.params.id).then(data => {
             this.schoolInfo = data;
@@ -96,7 +96,52 @@ export default {
        this.$student.schoolStudents(this.$route.params.id).then(data => {
             this.students = data.data;
         });
+    },
 
+    methods: {
+        checkNull(val) {
+            return  val === null ? "" : val;
+        },
+        exportExcel() {
+            const mimeType = 'data:application/vnd.ms-excel';
+            const html = this.renderTable().replace(/ /g, '%20');
+
+            const d = new Date();
+
+            var dummy = document.createElement('a');
+            dummy.href = mimeType + ', ' + html;
+            dummy.download = 'students-' + this.schoolInfo.name.toLowerCase().replace(/ /g, '-') + '-' + d.getFullYear() + '-' + (d.getMonth() +
+                1) + '-' + d.getDate() + '-' + d.getHours() + '-' + d.getMinutes() + '-' + d.getSeconds() +
+                '.xls';
+            dummy.click();
+        },
+
+        renderTable() {
+            console.log(this.students)
+            var table = '<table><thead>' +
+                '<tr>' +
+                '<th>ID</th>' +
+                '<th>LAST NAME</th>' +
+                '<th>MIDDLE NAME</th>' +
+                '<th>FIRST NAME</th>' +
+                '<th>SEX</th>' +
+                '<th>CLASS</th>' +
+                '</tr></thead>';
+            table += '<tbody>';
+
+            for (var i = 0; i < this.students.length; i++) {
+                table += '<tr>';
+                table += `<td>${this.checkNull(this.students[i].id)}</td>`;
+                table += `<td>${this.checkNull(this.students[i].last_name)}</td>`;
+                table += `<td>${this.checkNull(this.students[i].middle_name)}</td>`;
+                table += `<td>${this.checkNull(this.students[i].first_name)}</td>`;
+                table += `<td>${this.checkNull(this.students[i].sex)}</td>`;
+                table += `<td>${this.checkNull( this.students[i].current_class != null ? this.students[i].current_class.class : '' )}</td>`;
+                table += '</tr>';
+            }
+            table += '</tbody></table>';
+            return table;
+        },
     }
 }
 </script>

@@ -28,23 +28,6 @@ export const exportToExcel = {
 
                 table += '<tr>';
 
-                // check if the body have multiple value in a column
-                // if(Array.isArray(this.excelData[0])){
-
-                // 	for (var i = 0; i < this.excelData[0].length; i++) {
-                //     const row = this.rows[i];
-                //     table += '<tr>';
-                //     for (var j = 0; j < this.columns.length; j++) {
-                //         const column = this.columns[j];
-                //         table += '<td>';
-                //         table += this.collect(row, column.field);
-                //         table += '</td>';
-                //     }
-                //     table += '</tr>';
-                // }
-                // }
-
-
                 for (var i = 0; i < this.excelData.length; i++) {
                     const column = this.excelData[i];
                     table += '<th>';

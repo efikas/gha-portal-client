@@ -4,7 +4,7 @@
             <a type="button" class="fa fa-download icon-big btn btn-outline-primary ekiti-btn pull-right" @click="exportExcel"></a>
             <h5 class="ml-3 head_color">{{ this.iData['header'] || '' }}</h5>
             <div style="height: 305px;">
-                <IEcharts :option="doughnut" :loading="loading" @ready="onReady"></IEcharts>
+                <IEcharts :option="stacked" :loading="loading" @ready="onReady"></IEcharts>
             </div>
         </b-card>
     </div>
@@ -35,12 +35,12 @@
 
     import 'echarts/lib/component/timeline';
     import 'echarts/lib/component/toolbox';
-    import { exportToExcel } from '../../modules/mixins/exportToExcel'
+    import { exportToExcel } from '../mixins/exportToExcel'
 
     // Vue.use(VueAwesomeSwiper);
     var unsub;
     export default {
-        name: "doughnut",
+        name: "stackbarchart",
         props: ['iData', 'colors'],
          mixins: [exportToExcel],
         components: {
@@ -55,43 +55,43 @@
                 instances: [],
                 loading: false,
                 ajaxloading: true,
+                legend: [],
                 graphData: [],
-                doughnut: {
+                stacked: {
+                    title: {
+
+                        subtext: ''
+                    },
                     tooltip: {
-                        trigger: 'item',
-                        formatter: "{a} <br/>{b}: {c} ({d}%)"
+                        trigger: 'axis',
+                        axisPointer: { //  Axis indicator, coordinate trigger effective
+                            type: 'shadow' // The default is a straight line：'line' | 'shadow'
+                        }
                     },
                     legend: {
-                        orient: 'vertical',
-                        x: 'left',
                         data: []
                     },
+
+                    calculable: true,
+                    xAxis: [{
+                        type: 'category',
+                        data: ['Mon', 'Tue', 'Wed', 'Thu']
+                    }],
+                    yAxis: [{
+                        type: 'value'
+                    }],
                     series: [{
-                        name: 'Sales',
-                        type: 'pie',
-                        radius: ['50%', '70%'],
-                        avoidLabelOverlap: false,
-                        label: {
-                            normal: {
-                                show: false,
-                                position: 'center'
-                            },
-                            emphasis: {
-                                show: false,
-                                textStyle: {
-                                    fontSize: '30',
-                                    fontWeight: 'bold'
-                                }
-                            }
-                        },
-                        labelLine: {
-                            normal: {
-                                show: false
-                            }
-                        },
+                        name: 'B',
+                        type: 'bar',
+                        stack: 'advertising',
+                        data: []
+                    }, {
+                        name: 'C',
+                        type: 'bar',
+                        stack: 'advertising',
                         data: []
                     }]
-                }
+                },
                
             }
         },
@@ -127,25 +127,18 @@
         watch: {
             iData(received){
                  this.excelData = received['value']; // value to  use in exporting excel
-                let colors = [
-                              '#3498db ', '#2ecc71', '#d69292','#8599c1','#4f699c','#8fa9dc','#d4ab6e'
-                            ];
-                received['value'].forEach((item, index)=>{
-                    this.doughnut.legend.data.push(item.name)
-                    this.graphData.push(
-                        {
-                            value: item.value,
-                            name: item.name,
-                            itemStyle : {
-                                normal : {
-                                    color :colors[index] 
-                                }
-                            }
-                        }
-                    )
-                })
+                this.stacked.legend.data = received['legend'];
+                this.stacked.xAxis[0].data = received['value']['distributions']
 
-                this.doughnut.series[0].data = this.graphData; 
+                received['value']['value'].forEach((item, index) => {
+                    this.graphData.push({
+                        name: received['legend'][index],
+                        type: 'bar',
+                        stack: 'advertising',
+                        data: received['value']['value'][index]
+                    });
+                });
+                this.stacked.series = this.graphData;
             }
         }
     }

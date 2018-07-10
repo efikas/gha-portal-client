@@ -32,11 +32,6 @@
                             </router-link>
                         </b-dropdown-item>
                         <b-dropdown-item exact class="dropdown_content">
-                            <router-link to="/lockscreen" exact class="drpodowtext">
-                                <i class="fa fa-lock"></i> Lock
-                            </router-link>
-                        </b-dropdown-item>
-                        <b-dropdown-item exact class="dropdown_content">
                             <a href="javascript:void(0)" @click="$store.dispatch('logout')" class="drpodowtext">
                                 <i class="fa fa-sign-out"></i> Logout
                             </a>

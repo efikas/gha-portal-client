@@ -10,7 +10,9 @@
 
             <school-table :table-data="schools"
                           :header="(this.$route.params.lgaId) ? `List of ${ categoryName } ${ levelName } Schools in Ado` : 'List of Schools'"
-                          :route-to="'school-profile'"></school-table>
+                          :route-to="'school-profile'"
+                          :renderFn="renderTable"
+            ></school-table>
         </div>
     </div>
 </template>
@@ -20,16 +22,14 @@ import {
     ClientTable,
     Event
 } from 'vue-tables-2';
-import datatable from "components/plugins/DataTable/DataTable.vue";
 import VueSkeletonLoading from 'vue-skeleton-loading';
-import schoolTable from '../../custom_components/schoolTable';
+import schoolTable from '../../patches/schoolTable';
 
 Vue.use(ClientTable, {}, false);
 Vue.use(VueSkeletonLoading);
 export default {
-    name: "advanced_tables",
+    name: "school_manage",
     components: {
-        datatable,
         schoolTable
     },
     data() {
@@ -116,7 +116,21 @@ export default {
     methods: {
         rowClick(){
             // alert(this.row.id);
-        }
+        },
+        renderTable() {
+            var table = '<table><thead><tr><th>ID</th><th>SCHOOL NAME</th><th>ADDRESS</th></tr></thead>';
+            table += '<tbody>';
+
+            for (var i = 0; i < this.schools.length; i++) {
+                table += '<tr>';
+                table += `<td>${this.schools[i].id}</td>`;
+                table += `<td>${this.schools[i].name}</td>`;
+                table += `<td>${this.schools[i].address}</td>`;
+                table += '</tr>';
+            }
+            table += '</tbody></table>';
+            return table;
+        },
     }
 }
 </script>
