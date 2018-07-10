@@ -1,30 +1,49 @@
 <template>
     <div>
         <div class="row odd-row">
+            <div class="form-group">
+
+            </div>
             <div class="col-md-3 col-md-3">
                 <div class="form-group p-10">
-                    <label class="control-label col-md-8">LGA <abbr title="required">*</abbr></label>
-                    <div class="col-md-12">
-                        <multiselect v-model="lga" :show-labels="false" :options="lgas"
-                                     @input="getWard"></multiselect>
-                    </div>
+                    <validate tag="div">
+                        <label class="control-label col-md-8">LGA <abbr title="required">*</abbr></label>
+                        <div class="col-md-12">
+                            <multiselect v-model="lga" name="lga"
+                                         :show-labels="false"
+                                         :options="lgas"
+                                         @input="getWard"></multiselect>
+                        </div>
+                        <field-messages name="lga" show="$invalid && $submitted"
+                                        class="text-danger">
+                            <div slot="required">LGA is a required field</div>
+                        </field-messages>
+                    </validate>
                 </div>
             </div>
             <div class="col-md-3 col-md-3">
                 <div class="form-group p-10">
                     <label>Ward <abbr title="required">*</abbr></label>
-                    <multiselect v-model="ward" :show-labels="false" :options="wards"
+                    <multiselect v-model="ward" required :show-labels="false" :options="wards"
                                  @input="selectedWard"></multiselect>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group p-10">
-                    <label class="control-label col-md-8" for="name">School Name
-                        <abbr title="required">*</abbr></label>
-                    <div class="col-md-12">
-                        <input type="text" class="form-control" v-model="data.name" id="name"
-                               placeholder="School Name">
-                    </div>
+                    <validate tag="div">
+                        <label class="control-label col-md-8" for="name">School Name
+                            <abbr title="required">*</abbr></label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control"
+                                   name="school_name" v-model="data.name"
+                                   required id="name"
+                                   placeholder="School Name">
+                            <field-messages name="school_name" show="$invalid && $submitted"
+                                            class="text-danger">
+                                <div slot="required">School name is a required field</div>
+                            </field-messages>
+                        </div>
+                    </validate>
                 </div>
             </div>
 
@@ -34,19 +53,26 @@
                 <div class="form-group p-10">
                     <label class="control-label">Location
                         <abbr title="required">*</abbr></label>
-                    <div class="col-md-12">
-                        <b-form-radio-group v-model="data.location" :options="schoolLocationsOptions" />
-                    </div>
+                    <validate tag="div">
+                        <b-form-radio-group v-model="data.location"
+                                            required
+                                            :options="schoolLocationsOptions" name="location"/>
+                        <field-messages name="location" show="$invalid && $submitted"
+                                        class="text-danger">
+                            <div slot="required">This is a required field</div>
+                        </field-messages>
+                    </validate>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-3">
                 <div class="form-group p-10">
                     <label class="control-label col-md-12" for="year_established">Year Established
                     </label>
-                    <div class="col-md-12">
-                        <input type="text" class="form-control" v-model="data.established"
-                               id="year_established" placeholder="Year Established">
-                    </div>
+                    <input type="text" class="form-control" v-model="data.established"
+                           id="year_established" name="year_established"
+                           required
+                           placeholder="Year Established"/>
+
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-3">
@@ -54,15 +80,22 @@
                     <label class="control-label" for="dist">Distance to Catchment Area
                     </label>
                     <input type="number" min="0" v-model="data.average_distance"
-                           class="form-control" id="dist" placeholder="">
+                           class="form-control" id="dist" placeholder=""/>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-3">
                 <div class="form-group p-10">
                     <label class="control-label" for="village_town">Village/Town
                         <abbr title="required">*</abbr></label>
-                    <input type="text" v-model="data.town" class="form-control"
-                           id="village_town" placeholder="">
+                    <validate tag="div" class="col-md-12">
+                        <input type="text" v-model="data.town" class="form-control"
+                               id="village_town" name="village_town" required placeholder="">
+                        <field-messages name="village_town" show="$invalid && $submitted"
+                                        class="text-danger">
+                            <div slot="required">This is a required field</div>
+                        </field-messages>
+                    </validate>
+
                 </div>
             </div>
         </div>
@@ -73,7 +106,7 @@
                     </label>
                     <div class="col-md-12">
                         <input type="email" v-model="data.email"
-                               class="form-control" id="email" placeholder="Email">
+                               class="form-control" id="email" placeholder="Email"/>
                     </div>
                 </div>
             </div>
@@ -81,10 +114,16 @@
                 <div class="form-group p-10">
                     <label class="control-label col-md-12" for="phone">Phone Nunber
                         <abbr title="required">*</abbr></label>
-                    <div class="col-md-12">
+                    <validate tag="div" class="col-md-12">
                         <input type="text" v-model="data.phone" class="form-control"
-                               id="phone" placeholder="Enter Phone Number">
-                    </div>
+                               id="phone" name="phone" required placeholder="Enter Phone Number"/>
+
+                        <field-messages name="phone" show="$invalid && $submitted"
+                                        class="text-danger">
+                            <div slot="required">This is a required field</div>
+                        </field-messages>
+                    </validate>
+
                 </div>
             </div>
         </div>
@@ -113,9 +152,16 @@
                 <div class="form-group p-10">
                     <label class="control-label col-md-12">School Category
                         <abbr title="required">*</abbr></label>
-                    <div class="col-md-12">
-                        <b-form-radio-group v-model="data.category" :options="schoolCategoryOptions" />
-                    </div>
+                    <validate tag="div" class="col-md-12">
+                        <b-form-radio-group v-model="data.category"
+                                            name="category" required
+                                            :options="schoolCategoryOptions"/>
+                        <field-messages name="category" show="$invalid && $submitted"
+                                        class="text-danger">
+                            <div slot="required">This is a required field</div>
+                        </field-messages>
+                    </validate>
+
                 </div>
             </div>
         </div>
@@ -147,14 +193,35 @@
                 <div class="form-group p-10">
                     <label class="control-label col-md-12">Type
                         <abbr title="required">*</abbr></label>
-                    <b-form-radio-group v-model="data.type" :options="schoolTypesOptions" stacked />
+                    <validate tag="div" class="col-md-12">
+                        <b-form-radio-group
+                                v-model="data.type"
+                                required
+                                name="school_type"
+                                :options="schoolTypesOptions" stacked/>
+                        <field-messages name="school_type" show="$invalid && $submitted"
+                                        class="text-danger">
+                            <div slot="required">This is a required field</div>
+                        </field-messages>
+                    </validate>
+
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6">
                 <div class="form-group p-10">
                     <label class="control-label">School Ownership
                         <abbr title="required">*</abbr></label>
-                    <b-form-radio-group v-model="data.ownership" :options="schoolOwnershipOptions" stacked />
+                    <validate tag="div" class="">
+                        <b-form-radio-group
+                                v-model="data.ownership"
+                                required
+                                name="ownership"
+                                :options="schoolOwnershipOptions" stacked/>
+                        <field-messages name="ownership" show="$invalid && $submitted"
+                                        class="text-danger">
+                            <div slot="required">This is a required field</div>
+                        </field-messages>
+                    </validate>
                 </div>
             </div>
         </div>
@@ -163,29 +230,51 @@
                 <div class="form-group p-10">
                     <label class="control-label col-md-12">Education Level
                         <abbr title="required">*</abbr></label>
-                    <div class="col-md-12">
-                        <b-form-radio-group v-model="data.education_level" :options="educationLevelOptions"
-                                            />
-                    </div>
+                    <validate tag="div" class="col-md-12">
+                        <b-form-radio-group
+                                v-model="data.education_level"
+                                name="education_level"
+                                required
+                                :options="educationLevelOptions"/>
+                        <field-messages name="education_level" show="$invalid && $submitted"
+                                        class="text-danger">
+                            <div slot="required">This is a required field</div>
+                        </field-messages>
+                    </validate>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-4">
                 <div class="form-group p-10">
                     <label class="control-label">Multigrading System
                         <abbr title="required">*</abbr></label>
-                    <div class="col-md-12">
-                        <b-form-radio-group v-model="data.multigrade" :options="yesNoOptions" 
-                                            name="multigrade"/>
-                    </div>
+                    <validate tag="div" class="">
+                        <b-form-radio-group
+                                v-model="data.multigrade"
+                                name="multigrade"
+                                required
+                                :options="yesNoOptions"/>
+                        <field-messages name="multigrade" show="$invalid && $submitted"
+                                        class="text-danger">
+                            <div slot="required">This is a required field</div>
+                        </field-messages>
+                    </validate>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-4">
                 <div class="form-group p-10">
                     <label class="control-label">shift
                         <abbr title="required">*</abbr></label>
-                    <div class="col-md-12">
-                        <b-form-radio-group v-model="data.shift" :options="yesNoOptions"  name="shift"/>
-                    </div>
+                    <validate tag="div" class="">
+                        <b-form-radio-group
+                                v-model="data.shift"
+                                name="shift"
+                                required
+                                :options="yesNoOptions"/>
+                        <field-messages name="shift" show="$invalid && $submitted"
+                                        class="text-danger">
+                            <div slot="required">This is a required field</div>
+                        </field-messages>
+                    </validate>
                 </div>
             </div>
         </div>
@@ -196,8 +285,10 @@
                         Committee
                     </label>
                     <div class="col-md-12">
-                        <b-form-radio-group v-model="data.management_committee" :options="yesNoOptions" 
-                                            name="management_committee"/>
+                        <b-form-radio-group
+                                v-model="data.management_committee"
+                                name="management_committee"
+                                :options="yesNoOptions"/>
                     </div>
                 </div>
             </div>
@@ -205,18 +296,25 @@
                 <div class="form-group p-10">
                     <label class="control-label">PTA/PTF/MA
                         <abbr title="required">*</abbr></label>
-                    <div class="col-md-12">
-                        <b-form-radio-group v-model="data.pta_pf" :options="yesNoOptions" 
-                                            name="pta_pf"/>
-                    </div>
+                    <validate tag="div" class="">
+                        <b-form-radio-group
+                                v-model="data.pta_pf"
+                                name="pta_pf"
+                                required
+                                :options="yesNoOptions"/>
+                        <field-messages name="pta_pf" show="$invalid && $submitted"
+                                        class="text-danger">
+                            <div slot="required">This is a required field</div>
+                        </field-messages>
+                    </validate>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-3">
                 <div class="form-group p-10">
                     <label class="control-label">School Development Plan
                     </label>
-                    <div class="col-md-12">
-                        <b-form-radio-group v-model="data.development_plan" :options="yesNoOptions" 
+                    <div class="">
+                        <b-form-radio-group v-model="data.development_plan" :options="yesNoOptions"
                                             name="development_plan"/>
                     </div>
                 </div>
@@ -225,10 +323,17 @@
                 <div class="form-group p-10">
                     <label class="control-label">School grants
                         <abbr title="required">*</abbr></label>
-                    <div class="col-md-12">
-                        <b-form-radio-group v-model="data.grants" :options="yesNoOptions" 
-                                            name="grants"/>
-                    </div>
+                    <validate tag="div" class="">
+                        <b-form-radio-group
+                                v-model="data.grants"
+                                name="grants"
+                                required
+                                :options="yesNoOptions"/>
+                        <field-messages name="grants" show="$invalid && $submitted"
+                                        class="text-danger">
+                            <div slot="required">This is a required field</div>
+                        </field-messages>
+                    </validate>
                 </div>
             </div>
         </div>
@@ -236,11 +341,16 @@
             <div class="col-md-12">
                 <div class="form-group p-10">
                     <label class="control-label col-md-4" for="address">Address <abbr title="required">*</abbr></label>
-                    <div class="col-md-8">
-                                        <textarea rows="4" v-model="data.address"
-                                                  class="form-control resize_vertical" id="address"
-                                                  placeholder="School Address"></textarea>
-                    </div>
+                    <validate tag="div" class="col-md-8">
+                        <textarea rows="4" v-model="data.address"
+                                  class="form-control resize_vertical" id="address"
+                                  name="address"
+                                  placeholder="School Address"></textarea>
+                        <field-messages name="address" show="$invalid && $submitted"
+                                        class="text-danger">
+                            <div slot="required">This is a required field</div>
+                        </field-messages>
+                    </validate>
                 </div>
             </div>
         </div>
@@ -304,7 +414,7 @@
 
 
                 this.wardKeys = _wards.filter(item => {
-                    return (item.lga_id == _lgaId);
+                    return (item.lga_id === _lgaId);
                 });
 
                 this.wardKeys.forEach(item => {

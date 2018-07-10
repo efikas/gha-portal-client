@@ -1,25 +1,27 @@
 <template>
     <div>
         <b-card header="School Basic Information" header-tag="h4" class="bg-header-card">
-            <form method="" class="form-horizontal" @submit.prevent="onSubmit">
+            <vue-form :state="formstate" method="" class="form-horizontal" @submit.prevent="onSubmit">
                 <basic-form :data="data"></basic-form>
                 <button type="submit" class="btn btn-primary btn-lg btn-school pull-right">Submit</button>
-            </form>
+            </vue-form>
         </b-card>
     </div>
 </template>
 <script>
     import Vue from 'vue';
-    import miniToastr from 'mini-toastr';
-    miniToastr.init();
 
+    import VueForm from "vue-form";
     import options from "src/validations/validations.js";
     import Multiselect from 'vue-multiselect';
     import BasicForm from './forms/basic_form.vue';
 
+    import miniToastr from 'mini-toastr';
+    miniToastr.init();
     import Toaster from  '../../mixins/toaster';
 
-    Vue.use(options);
+    Vue.use(VueForm, options);
+
     export default {
         name: 'school-add',
         mixins: [ Toaster ],
@@ -29,6 +31,7 @@
         },
         data() {
             return {
+                formstate: {},
                 lgas: [],
                 wards: [],
                 lgasInfo: [],
@@ -44,7 +47,7 @@
                 settings: {},
                 data: {
                     // lga_ward_id: 3,
-                    // name: 'Saint Mathew Nur and pry school',
+                    // name: '',
                     // established: '2008',
                     // average_distance: '1',
                     // town: 'Ado',
@@ -72,17 +75,21 @@
         methods: {
             onSubmit: function () {
                 var vm =  this;
-                this.$school.addSchool(this.data).then(response => {
-                    if (typeof  response === 'object') {
-                        miniToastr.success("School Record added Successfully!", "Success");
-                        vm.$router.push('/school')
-                    } else {
+                if (this.formstate.$invalid) {
+                    return;
+                } else {
+                    this.$school.addSchool(this.data).then(response => {
+                        if (typeof  response === 'object') {
+                            miniToastr.success("School Record added Successfully!", "Success");
+                            vm.$router.push('/school')
+                        } else {
 
-                    }
-                }).catch(error => {
-                    console.log(error.data.errors);
-                    miniToastr.error("error: saving record!", "Error");
-                })
+                        }
+                    }).catch(error => {
+                        console.log(error.data.errors);
+                        miniToastr.error("error: saving record!", "Error");
+                    });
+                }
             },
             getWard() {
 

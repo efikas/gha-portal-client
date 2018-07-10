@@ -1,3 +1,6 @@
+import miniToastr from 'mini-toastr';
+miniToastr.init();
+
 export default {
     data() {
         return {

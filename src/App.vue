@@ -11,12 +11,15 @@ require('./packages/config')
 
 import Auth from './packages/auth/Auth'
 import Services from './packages/services/Services'
+import VueForm from "vue-form";
+
 
 // Vue.use(Config)
 Vue.use(Auth)
 Vue.use(Services)
 Vue.use(ToggleButton)
 Vue.use(BootstrapVue);
+Vue.use(VueForm);
 
 export default {
     name: 'app'
