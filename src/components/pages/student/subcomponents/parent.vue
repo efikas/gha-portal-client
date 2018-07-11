@@ -10,7 +10,7 @@
                                      <label class="control-label col-md-8">Are both parents alive?
                                      </label>
                                      <div class="col-md-12">
-                                         <b-form-radio-group v-model="data.parent_status" :options="parentOptions" stacked />
+                                         <b-form-radio-group v-model="data.parent_status" :options="parentOptions" />
                                         </div>
                                  </div>
                              </div>

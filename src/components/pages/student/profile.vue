@@ -199,7 +199,7 @@ export default {
                   return "http://api.sbemis.net" + obj.biometric.photo;
               }
           }
-          return "assets/img/authors/user.jpg"
+          return require("img/authors/user.jpg");
       }
     },
   destroyed: function() {},
