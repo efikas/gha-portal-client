@@ -12,48 +12,6 @@
                         <gmap-marker v-for="m in markers" :key="m.position.lat" :position="m.position" :clickable="true"
                                      :draggable="true" @click="center=m.position"></gmap-marker>
                     </gmap-map>
-                    <!--<div style="display: flex; flex: fit-content; flex-direction: column; justify-content: space-between">-->
-                    <!--<div class="row mb-5" style="justify-content: flex-start; flex: 1">-->
-                    <!--<h2>{{ this.schoolName }}</h2>-->
-                    <!--<h4>{{ this.schoolAddress }}</h4>-->
-                    <!--</div>-->
-
-                    <!--<div class="row" style="flex: 1; flex-direction: row; display: flex; justify-content: space-around">-->
-                    <!--<div class="col-4j">-->
-                    <!--<h5>Teaching Staff</h5>-->
-                    <!--<h1>{{ this.totalTeachingStaff }}</h1>-->
-                    <!--</div>-->
-                    <!--<div class="col-4j" >-->
-                    <!--<h5>Non-Teaching Staff</h5>-->
-                    <!--<h1>{{ this.totalNonTeachingStaff }}</h1>-->
-                    <!--</div>-->
-                    <!--<div class="col-4h">-->
-                    <!--<h5><a :href="`/school/${this.schoolId}/students`">Students</a></h5>-->
-                    <!--<h1>{{ this.totalStudent }}</h1>-->
-                    <!--</div>-->
-                    <!--&lt;!&ndash; <div class="col-12">-->
-                    <!--<a :href="'/school/2/update/basic'" class="btn btn-outline-primary ">Basic</i></a>-->
-                    <!--<a :href="'/school/2/update/facilities'" class="btn btn-outline-primary ">facilities</i></a>-->
-                    <!--<a :href="'/school/2/update/library'" class="btn btn-outline-primary ">library</i></a>-->
-                    <!--<a :href="'/school/2/update/classroom'" class="btn btn-outline-primary ">classroom</i></a>-->
-                    <!--<a :href="'/school/2/update/sbmc'" class="btn btn-outline-primary ">sbmc</i></a>-->
-                    <!--</div> &ndash;&gt;-->
-                    <!--</div>-->
-                    <!--<div class="" style="border:1px solid red; flex: 1; display: flex; flex-direction: row; align-items: flex-end">-->
-                    <!--<div class="btn-group pull-right" role="group" style="align-self: flex-end">-->
-                    <!--<button type="button" class="btn btn-outline-primary hvr-underline-from-center">Basic-->
-                    <!--</button>-->
-                    <!--<button type="button" class="btn btn-outline-primary hvr-underline-from-center">facilities-->
-                    <!--</button>-->
-                    <!--<button type="button" class="btn btn-outline-primary hvr-underline-from-center">library-->
-                    <!--</button>-->
-                    <!--<button type="button" class="btn btn-outline-primary hvr-underline-from-center">classroom-->
-                    <!--</button>-->
-                    <!--<button type="button" class="btn btn-outline-primary hvr-underline-from-center">sbmc-->
-                    <!--</button>-->
-                    <!--</div>-->
-                    <!--</div>-->
-                    <!--</div>-->
                 </b-card>
             </div>
 
@@ -267,7 +225,7 @@
                         <b-tab title="OTHERS">
                             <div>
                                 <p>
-                                    <a :href="`${schoolId}/update/other_facilities`" type="button"
+                                    <a :href="`${schoolId}/update/others`" type="button"
                                        class="btn btn-outline-primary ekiti-btn pull-right">Edit</a>
                                 </p><br/><br/>
                             </div>
@@ -327,16 +285,9 @@
             </div>
 
         </div>
-
-        <!--<sweet-modal icon="error" blocking ref="modal">-->
-        <!--This is an error…-->
-
-        <!--<sweet-button slot="button" color="red" v-on:click="submit()">Press this Button</sweet-button>-->
-        <!--</sweet-modal>-->
     </div>
 </template>
 <script>
-    var unsub;
     import Vue from 'vue'
     import * as VueGoogleMaps from 'vue2-google-maps'
     import store from 'src/store/store.js'
@@ -351,15 +302,12 @@
             // v: 'OPTIONAL VERSION NUMBER',
             // libraries: 'places', // If you need to use place input
         }
-    })
+    });
     export default {
         name: "gmaps",
         components: {
             SweetModal,
             SweetModalTab
-        },
-        destroyed: function () {
-
         },
         data() {
             return {

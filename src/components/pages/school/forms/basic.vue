@@ -1,18 +1,14 @@
 <template>
     <div>
         <div class="row odd-row">
-            <div class="form-group">
-
-            </div>
             <div class="col-md-3 col-md-3">
                 <div class="form-group p-10">
                     <validate tag="div">
                         <label class="control-label col-md-8">LGA <abbr title="required">*</abbr></label>
                         <div class="col-md-12">
-                            <multiselect v-model="lga" name="lga"
-                                         :show-labels="false"
-                                         :options="lgas"
-                                         @input="getWard"></multiselect>
+                            <b-form-select
+                                    v-model="lga" :options="lgas"
+                                    required class="mb-3"/>
                         </div>
                         <field-messages name="lga" show="$invalid && $submitted"
                                         class="text-danger">
@@ -24,8 +20,10 @@
             <div class="col-md-3 col-md-3">
                 <div class="form-group p-10">
                     <label>Ward <abbr title="required">*</abbr></label>
-                    <multiselect v-model="ward" required :show-labels="false" :options="wards"
-                                 @input="selectedWard"></multiselect>
+                    <b-form-select
+                            v-model="data.lga_ward_id" :options="wards"
+                            required class="mb-3">
+                    </b-form-select>
                 </div>
             </div>
             <div class="col-md-6">
@@ -358,8 +356,6 @@
     </div>
 </template>
 <script>
-    import Vue from 'vue';
-    import Multiselect from 'vue-multiselect';
 
     export default {
         name: 'school_basic_form',
@@ -367,12 +363,11 @@
             data: {type: Object, required: true}
         },
         components: {
-            Multiselect,
         },
         data() {
             return {
-                lgas: [],
-                wards: [],
+                lgas: [{value: null, text: 'Please select an option'}],
+                wards: [{value: null, text: 'Please select an option'}],
                 lgasInfo: [],
                 wardKeys: {}, // capture the ward id and ward name of the selected LGA
                 schoolLocationsOptions: [{text: 'Rural', value: 'rural'}, {text: 'Urban', value: 'urban'}],
@@ -380,70 +375,45 @@
                 schoolCategoryOptions: [{text: 'Public', value: 'Public'}, {text: 'Private', value: 'Private'}],
                 schoolTypesOptions: [],
                 schoolOwnershipOptions: [],
-                lga: '',
-                ward: '',
+                lga: null,
                 yesNoOptions: [{text: 'Yes', value: '1'}, {text: 'No', value: '0'}],
                 settings: {},
                 selectedSharedFacilities: [],
             }
         },
         methods: {
-            getWard() {
-
-                this.ward = '';
-                this.wards = []; // clear previous ward elements
-                this.wardKeys = [];
-                // alert(this.data.lga);
-
-                // get lga id
-                let _lgaId = this.lgasInfo.filter(item => {
-                    return (item.name === this.lga);
-                });
-
-                _lgaId = _lgaId[0].id;
-
-
-                // populate LGA
-                // todo: filter lga base on state
-                let _wards = [];
-                this.settings.lga_wards.forEach(item => {
-                    // this.lgasInfo.push(item);
-                    _wards.push(item);
-                })
-
-
-                this.wardKeys = _wards.filter(item => {
-                    return (item.lga_id === _lgaId);
-                });
-
-                this.wardKeys.forEach(item => {
-                    this.wards.push(item.name);
-                    // this.wardKeys[item.id] = item.name;
-                })
+          changedLga() {
+              this.wards = [{value: null, text: 'Please select an option'}];
+              // this.data.lga_ward_id = null;
+              this.settings.lga_wards.filter(item => {
+                  if (item.lga_id === this.lga)
+                      this.wards.push({value: item.id, text: item.name});
+              });
+          }
+        },
+        watch: {
+            lga() {
+                this.changedLga();
             },
-            selectedWard() {
-                /**
-                 * @description called to get the id of the selected ward
-                 * @name selectedWard
-                 * @returns null
-                 */
-
-                let _wardId = this.settings.lga_wards.filter(item => {
-                    return (item.name == this.ward);
-                })
-
-                // assign the selected ward id in the data object
-                this.data.lga_ward_id = _wardId[0].id;
+        },
+        mounted() {
+            if (typeof this.data.lga_ward_id !== 'undefined') {
+                var vm = this;
+                this.settings.lga_wards.filter(item => {
+                    if (item.id === this.data.lga_ward_id) {
+                        vm.data.lga_ward_id = item.id;
+                        this.lga = item.lga_id;
+                    }
+                });
             }
         },
         created() {
             this.settings = JSON.parse(localStorage.getItem('settings'));
-
             if (this.settings) {
                 // populate LGA
+                // this.lgas.push({ value: null, text: 'Please select an option' });
                 this.settings.lga_areas.forEach(item => {
-                    this.lgasInfo.push(item);
-                    this.lgas.push(item.name);
+                    this.lgas.push({value: item.id, text: item.name});
                 })
 
                 this.settings.school_ownerships.forEach(item => {
@@ -460,7 +430,19 @@
                     });
                 })
             }
+
         },
+        updated() {
+            if (typeof this.data.lga_ward_id !== 'undefined') {
+                var vm = this;
+                this.settings.lga_wards.filter(item => {
+                    if (item.id === this.data.lga_ward_id) {
+                        vm.data.lga_ward_id = item.id;
+                        this.lga = item.lga_id;
+                    }
+                });
+            }
+        }
     }
 </script>
 <style>
