@@ -30,7 +30,10 @@ const store = new Vuex.Store({
         gmap_key: 'AIzaSyBTnQCx3FXEnfWPPWTKAwIxt6wSjAn_8ug',
         openWeather_key: 'c00194f61244d2b33b863bff6d94e663',
         google_analytics_key: null,
-        data: JSON.parse(localStorage.getItem('data'))
+        data: JSON.parse(localStorage.getItem('data')),
+        client_id: 2,
+        client_secret: "BsPZmqDtu7w5iFQuWOiPIOzdU17Uw64jbg9FWzZI",
+        grant_type: "password",
     },
     mutations,
     actions,

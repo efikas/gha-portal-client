@@ -6,9 +6,9 @@ let actions = {
     login  ({commit, dispatch, state}, payload) {
         return new Promise((resolve, reject) => {
             axios.post('/oauth/token', {
-                client_id: 2,
-                client_secret: "BsPZmqDtu7w5iFQuWOiPIOzdU17Uw64jbg9FWzZI",
-                grant_type: "password",
+                client_id: state.client_id,
+                client_secret: state.client_secret,
+                grant_type: state.grant_type,
                 username: payload.username,
                 password: payload.password
             })
