@@ -14,7 +14,7 @@
     import options from "src/validations/validations.js";
     import BasicForm from './forms/basic.vue';
     import Toaster from '../../mixins/toaster';
-    import { schoolBasicData } from '../../../data.js'
+    import { schoolBasicData } from '../../../data/school'
 
     Vue.use(options);
 

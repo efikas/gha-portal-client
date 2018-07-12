@@ -5,6 +5,9 @@ import mutations from './mutations'
 import actions from  './actions'
 import getters from  './getters'
 
+import school from './modules/school';
+import student from './modules/student';
+
 
 Vue.use(Vuex)
 
@@ -15,35 +18,28 @@ function addDays(noOfDays) {
 //=======vuex store start===========
 const store = new Vuex.Store({
     state: {
-        count: 0,
         left_open: false,
         preloader: true,
         site_name: "SBEMIS",
         page_title: null,
         pending: false,
-        isLoggedIn: !!Vue.auth.getToken(),
-        // user: JSON.parse(localStorage.getItem('user')),
+        isLoggedIn: false, //!!this.getters.token,
+        token: localStorage.getItem('token'),
         user: JSON.parse(localStorage.getItem('user')),
-        cal_events: [{
-            id: 0,
-            title: 'Office',
-            start: Date.now(),
-            end: Date.now() + addDays(1)
-        }, {
-            id: 1,
-            title: 'Holidays',
-            start: Date.now() + addDays(3),
-            end: Date.now() + addDays(4)
-        }],
         // Add your application keys
         gmap_key: 'AIzaSyBTnQCx3FXEnfWPPWTKAwIxt6wSjAn_8ug',
         openWeather_key: 'c00194f61244d2b33b863bff6d94e663',
-        google_analytics_key: null
-
+        google_analytics_key: null,
+        data: JSON.parse(localStorage.getItem('data'))
     },
     mutations,
     actions,
-    getters
-})
+    getters,
+
+    modules: {
+        school,
+        student
+    }
+});
 //=======vuex store end===========
 export default store

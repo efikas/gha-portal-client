@@ -1,4 +1,4 @@
-export const schoolBasicData = {
+export const school = {
     lga_ward_id: 3,
     name: 'New name',
     established: '2008',

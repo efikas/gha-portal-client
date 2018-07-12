@@ -1,9 +1,7 @@
-import Vue from "vue";
-import axios from "axios/index";
-import {apiURL} from './resources'
+import axios from 'axios'
+import {apiURL} from './resource'
 
-
-axios.defaults.baseURL = apiURL
+axios.defaults.baseURL = apiURL;
 
 axios.interceptors.request.use(function (config) {
     if (typeof window === "undefined") {
@@ -11,12 +9,12 @@ axios.interceptors.request.use(function (config) {
     }
 
     // const token = window.localStorage.getItem('token');
-    const token = Vue.auth.getToken();
-
-    if (token) {
-        config.headers['Access-Control-Allow-Origin'] = '*'
-        config.headers.Authorization = `Bearer ${token}`
-    }
+    // const token = Vue.auth.getToken();
+    //
+    // if (token) {
+    //     config.headers['Access-Control-Allow-Origin'] = '*'
+    //     config.headers.Authorization = `Bearer ${token}`
+    // }
 
     return config
 })
@@ -28,9 +26,9 @@ axios.interceptors.response.use(function (response) {
     }, function (error) {
         // Do something with response error
 
-        if (error.response.status === 401){
+        if (typeof error.response !== 'undefined' && error.response.status === 401){
             //Todo: add sweetAlert here
-            Vue.auth.destroyToken();
+            // Vue.auth.destroyToken();
             window.location.href = "/login?redirect=" + to.fullPath
         }
 
@@ -38,4 +36,4 @@ axios.interceptors.response.use(function (response) {
     }
 );
 
-export default axios;
+export default axios

@@ -20,7 +20,8 @@
                                 <div class="form-group">
                                     <validate tag="div">
                                         <label for="email"> E-mail</label>
-                                        <input v-model="model.email" name="email" id="email" type="email" required autofocus
+                                        <input v-model="model.email" name="email" id="email" type="email" required
+                                               autofocus
                                                placeholder="E-mail" class="form-control"/>
                                         <field-messages name="email" show="$invalid && $submitted" class="text-danger">
                                             <div slot="required">Email is a required field</div>
@@ -36,7 +37,8 @@
                                         <input v-model="model.password" name="password" id="password" type="password"
                                                required placeholder="Password" class="form-control" minlength="4"
                                                maxlength="10"/>
-                                        <field-messages name="password" show="$invalid && $submitted" class="text-danger">
+                                        <field-messages name="password" show="$invalid && $submitted"
+                                                        class="text-danger">
                                             <div slot="required">Password is required</div>
                                             <div slot="minlength">Password should be atleast 4 characters long</div>
                                             <div slot="maxlength">Password should be atmost 10 characters long</div>
@@ -47,7 +49,8 @@
                             <div class="col-lg-12 col-md-12">
                                 <validate tag="label">
                                     <label class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input checkbox_label" name="remember"
+                                        <input type="checkbox" class="custom-control-input checkbox_label"
+                                               name="remember"
                                                id="remember" v-model="model.remember" check-box>
                                         <span class="custom-control-indicator"></span>
                                         <span class="custom-control-description">Remember Me</span>
@@ -64,7 +67,9 @@
                                         </router-link>
                                     </p>
                                     <!--<div class="form-group">-->
-                                    <button type="submit" class="btn btn-block btn-primary login-btn"><i class="fa fa-lock"></i> Login</button>
+                                    <button type="submit" class="btn btn-block btn-primary login-btn"><i
+                                            class="fa fa-lock"></i> Login
+                                    </button>
                                     <!--</div>-->
                                 </div>
                             </div>
@@ -101,23 +106,15 @@
                 if (this.formstate.$invalid) {
                     return;
                 } else {
-                    this.error = ""
-                    let credentials = {
-                        client_id: 2,
-                        client_secret: "BsPZmqDtu7w5iFQuWOiPIOzdU17Uw64jbg9FWzZI",
-                        grant_type: "password",
-                        username: this.model.email,
-                        password: this.model.password
-                    };
-
-                    this.$auth.login(credentials)
-                        .then((data) => {
-                            // console.log(data);
-                            var redirect = this.$route.query.redirect || "/"
+                    this.error = "";
+                    this.$store.dispatch('login', {username: this.model.email, password: this.model.password})
+                        .then(() => {
+                            let redirect = this.$route.query.redirect || "/"
                             // console.log(redirect)
-                            this.$router.push(redirect);
+                            window.location.href = redirect;
                         })
-                        .catch(response => {
+                        .catch(error => {
+                            alert(111);
                             this.$swal({
                                 type: 'error',
                                 title: 'The user credentials were incorrect.',
@@ -126,18 +123,19 @@
                             })
                             // this.error = "The user credentials were incorrect."
                         });
+
                 }
             }
         },
-        mounted() {
-            this.$settings.getSettings().then(data => {
-                localStorage.setItem('settings', JSON.stringify(data));
-            });
+        created() {
+            // this.$settings.getSettings().then(data => {
+            //     localStorage.setItem('settings', JSON.stringify(data));
+            // });
         },
         destroyed: function () {
 
         },
-    //
+        //
     }
 </script>
 <style scoped>
@@ -160,7 +158,7 @@
     }
 
     .logo {
-        min-height:60px;
+        min-height: 60px;
     }
 
     label {

@@ -32,6 +32,7 @@ if (google_analytics_key) {
 // Remove the productionTip in dev tool console
 Vue.config.productionTip = false
 
+// require('./axios')
 require('assets/css/icon.css');
 
 new Vue({

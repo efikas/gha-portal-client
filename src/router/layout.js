@@ -1,5 +1,6 @@
 const layout = [{
     path: '/',
+    name: 'dashboard',
     component: resolve => require(['pages/dashboard'], resolve),
     meta: {
         title: "Dashboard",
@@ -8,12 +9,7 @@ const layout = [{
 },
     {
         path: '/school',
-        component: resolve => require(['pages/school/layout'], resolve),
-        meta: {
-            guard: true,
-            roles: ['admin', 'staff'],
-            permissions: ['view']
-        },
+        component: resolve => require(['pages/school/school'], resolve),
         children: [
             {
                 path: '',
@@ -34,7 +30,7 @@ const layout = [{
                 }
             },
             {
-                path: 'lga/:lgaId',
+                path: 'lga',
                 name: 'school-manage-by_lga',
                 component: resolve => require(['pages/school/manage'], resolve),
                 meta: {

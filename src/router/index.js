@@ -10,34 +10,24 @@ const router = new VueRouter({
     linkActiveClass: "active",
     // hashbang: false,
     mode: 'history',
+    scrollBehaviour(to, from, savedPosition) {
+        if (savedPosition) {
+            return savedPosition;
+        }
+
+        if (to.hash) {
+            return {selector: to.hash}
+        }
+        return {x: 0, y: 0};
+    }
 })
 
-router.beforeEach(
-    (to, from, next) => {
-        // if(to.matched.some(record => {
-        //     if (record.meta.roles)
-        //         // console.log(record.meta.roles)
-        //         record.meta.roles.forEach((role) => {
-        //             console.log(role)
-        //             if (role === 'admin')
-        //                 console.log('is admin')
-        //             // return false
-        //         })
-        //     }))
-        if (to.matched.some(record => record.meta.guests)) {
-            if (Vue.auth.isAuthenticated()) {
-                return next({
-                    path: '/'
-                })
-            } else next()
-        }
-        else if (to.matched.some(record => record.meta.guard)) {
-            if (!Vue.auth.isAuthenticated()) {
-                // return window.location.href = '/#/login'
+router.beforeEach((to, from, next) => {
+        if (to.matched.some(record => record.meta.guard)) {
+            if (!store.getters.isLoggedIn) {
                 return next({
                     path: "/login?redirect=" + to.fullPath
                 })
-                // return window.location.href = "/login?redirect=" + to.fullPath
             } else next()
         }
 
@@ -54,7 +44,7 @@ router.beforeEach((to, from, next) => {
         document.documentElement.scrollTop = 0
     }
     next()
-})
+});
 
 //====change page title after route change
 

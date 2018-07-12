@@ -40,8 +40,9 @@
                 data:{}
             }
         },
-        created() {
-            this.$school.schoolProfile(this.$route.params.id).then(data => {
+        created: async function() {
+
+            await this.$school.schoolProfile(this.$route.params.id).then(data => {
                 this.data = data;
             });
 

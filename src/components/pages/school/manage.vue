@@ -68,19 +68,19 @@ export default {
             }],
         }
     },
-    mounted() {
+    created() {
         //check for lga id and category id in the url
-        if (this.$route.params.lgaId){
+        if (this.$route.query.id){
             let queryObject = null;
-            this.lgaId = this.$route.params.lgaId
-            this.categoryId = this.$route.params.catId
-            this.level = this.$route.params.level
+            this.lgaId = this.$route.query.id
+            this.categoryId = this.$route.query.cat
+            this.level = this.$route.query.level
 
             //set the route parameter name
             if(this.categoryId === '1') this.categoryName = 'public';
             if(this.categoryId === '2') this.categoryName = 'private';
-            if(this.level === 'PRY') this.levelName = 'primary';
-            if(this.level === 'SEC') this.levelName = 'secondary';
+            if(this.level === 'pry') this.levelName = 'primary';
+            if(this.level === 'sec') this.levelName = 'secondary';
 
             //get category and level and construct query accordingly
             if(this.categoryId && this.level){
