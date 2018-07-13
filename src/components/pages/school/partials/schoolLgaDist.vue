@@ -29,47 +29,51 @@
                             <tbody>
                             <tr v-for="(lga, index) in lgaSchStats" :key="index">
                                 <td>
-                                    <router-link :to="gotoLink({id: lga.id})">{{ lga.name }}</router-link>
+                                    <a href="javascript:void (0)" @click="gotoLink(index, {id: lga.id})">{{ lga.name }} </a>
                                 </td>
                                 <td>
-                                    <router-link :to="gotoLink({id: lga.id, cat: 1, level: 'pry'})">
+                                    <a href="javascript:void (0)"
+                                       @click="gotoLink(index, {id: lga.id, category: 1, level: 'pry'})">
                                         {{ lga.public.primary }}
-                                    </router-link>
+                                    </a>
                                 </td>
                                 <td>
-                                    <router-link :to="gotoLink({id: lga.id, cat: 1, level: 'sec'})">
+                                    <a href="javascript:void (0)"
+                                       @click="gotoLink(index, {id: lga.id, category: 1, level: 'sec'})">
                                         {{ lga.public.secondary }}
-                                    </router-link>
+                                    </a>
                                 </td>
                                 <td>
-                                    <router-link :to="gotoLink({id: lga.id, cat: 1})">
+                                    <a href="javascript:void (0)" @click="gotoLink(index, {id: lga.id, category: 1})">
                                         {{ lga.public.total }}
-                                    </router-link>
+                                    </a>
                                 </td>
                                 <td>
-                                    <router-link :to="gotoLink({id: lga.id, cat: 2, level: 'pry'})">
+                                    <a href="javascript:void (0)"
+                                       @click="gotoLink(index, {id: lga.id, category: 2, level: 'pry'})">
                                         {{ lga.private.primary }}
-                                    </router-link>
+                                    </a>
                                 </td>
                                 <td>
-                                    <router-link :to="gotoLink({id: lga.id, cat: 2, level: 'sec'})">
+                                    <a href="javascript:void (0)"
+                                       @click="gotoLink(index, {id: lga.id, category: 2, level: 'sec'})">
                                         {{ lga.private.secondary }}
-                                    </router-link>
+                                    </a>
                                 </td>
                                 <td>
-                                    <router-link :to="gotoLink({id: lga.id, cat: 2})">
+                                    <a href="javascript:void (0)" @click="gotoLink(index, {id: lga.id, category: 2})">
                                         {{ lga.private.total }}
-                                    </router-link>
+                                    </a>
                                 </td>
                                 <td>
-                                    <router-link :to="gotoLink({id: lga.id, level: 'pry'})">
+                                    <a href="javascript:void (0)" @click="gotoLink(index, {id: lga.id, level: 'pry'})">
                                         {{ lga.total.primary }}
-                                    </router-link>
+                                    </a>
                                 </td>
                                 <td>
-                                    <router-link :to="gotoLink({id: lga.id, level: 'sec'})">
+                                    <a href="javascript:void (0)" @click="gotoLink(index, {id: lga.id, level: 'sec'})">
                                         {{ lga.total.secondary }}
-                                    </router-link>
+                                    </a>
                                 </td>
                                 <td>
                                     {{ lga.total.secondary + lga.total.primary }}
@@ -82,29 +86,121 @@
 
             </div>
         </div>
+        <transition name="modal" v-if="showModal">
+            <div class="modal-mask">
+                <div class="modal-wrapper">
+                    <div class="modal-container">
+
+                        <div class="modal-header">
+                            <h3 v-html="modalTitle"></h3>
+                            <button class="modal-default-button btn btn-default" @click.stop="hideModal($event)">
+                                <i class="fa fa-close"></i>
+                            </button>
+                        </div>
+
+                        <div class="modal-body">
+                            <slot name="body">
+                                <div style="margin: 2%" v-if="!schools.length">
+                                    <skeleton-loading>
+                                        <row :gutter="{top: '20px'}">
+                                            <square-skeleton :count="5" :boxProperties="{ height: '30px', width: '100%', bottom: '10px' }"></square-skeleton>
+                                        </row>
+                                    </skeleton-loading>
+                                </div>
+
+                                <v-client-table :data="schools" :columns="columns" :options="options" v-else>
+                                    <a slot="id" slot-scope="props">{{ props.index }}</a>
+                                    <router-link tag="a" class="list-font" slot="name" slot-scope="props"
+                                                 :to="{ name: 'school', params: { id: props.row.id }}"
+                                                 v-html="props.row.name"></router-link>
+                                    <!--<router-link tag="a" slot="view" slot-scope="props"-->
+                                    <!--class="fa fa-pencil icon-big btn btn-outline-primary ekiti-btn"-->
+                                    <!--:to="{ name: routeTo, params: { id: props.row.id }}"></router-link>-->
+                                </v-client-table>
+                            </slot>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </transition>
     </div>
 </template>
 
 <script>
+    import Vue from 'vue';
+    import {
+        ClientTable,
+        Event
+    } from 'vue-tables-2';
+    import VueSkeletonLoading from 'vue-skeleton-loading';
+
+    Vue.use(ClientTable, {}, false);
+    Vue.use(VueSkeletonLoading);
 
     export default {
-        name: "index2",
+        components: {},
         data() {
-            return {}
+            return {
+                showModal: false,
+                modalTitle: '',
+                columns: ['id', 'name', 'view'],
+                options: {
+                    sortIcon: {
+                        base: 'fa',
+                        up: 'fa fa-angle-up',
+                        down: 'fa fa-angle-down'
+                    },
+                    // see the options API
+                    // skin: "table-hover table-striped table-bordered",
+                    perPage: 10,
+                    // footerHeadings: true,
+                    highlightMatches: true,
+                    pagination: {
+                        chunk: 7,
+                        //set dropdown to true to get dropdown instead of pagenation
+                        dropdown: false
+                    }
+                },
+            }
         },
         created: function () {
             this.$store.dispatch('lgaSchStats');
         },
 
         computed: {
-            lgaSchStats() {
+            schools() {
                 return this.$store.getters.schools;
+            },
+            lgaSchStats() {
+                return this.$store.getters.school_stats;
             }
         },
 
         methods: {
-            gotoLink(query) {
-                return {name: 'school-lga', query};
+            hideModal(event) {
+                this.showModal = false;
+                event.stopPropagation();
+            },
+            formModalTitle(index, query) {
+                this.modalTitle ='';
+                if(query.category) this.modalTitle += query.category.toUpperCase() + " ";
+                if(query.level) this.modalTitle += query.level.toUpperCase() + " ";
+                this.modalTitle += 'SCHOOLS IN ' + `<strong>${this.lgaSchStats[index].name.toUpperCase()}</strong>`;
+            },
+            gotoLink(index, query) {
+                if (query.id) {
+                    //set the route parameter name
+                    if (query.category) {
+                        query.category = query.category === 1 ? 'public' : 'private';
+                    }
+                    if (query.level) {
+                        query.level = query.level === 'pry' ? 'primary' : 'secondary';
+                    }
+                    this.$store.commit('SET_LGA_SCHOOLS', []);
+                    this.$store.dispatch('lgaSchools', query);
+                    this.formModalTitle(index, query);
+                    this.showModal = true;
+                }
             },
             exportExcel() {
                 const mimeType = 'data:application/vnd.ms-excel';
@@ -126,18 +222,89 @@
     .table td {
         padding: 0px !important;
     }
+
     .table td {
         padding: 0px !important;
         font-size: 12px;
     }
+
     .table tr a {
         cursor: pointer;
         display: block;
         margin: 0 !important;
         padding: 3px;
     }
+
     .table a:hover {
         text-decoration: underline !important;
     }
 
+</style>
+<style scoped lang="scss">
+    @import "~components/layouts/css/customvariables";
+    .modal-mask {
+        position: fixed;
+        z-index: 9998;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, .8);
+        display: table;
+        transition: opacity .3s ease;
+    }
+
+    .modal-wrapper {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    .modal-container {
+        width: 800px;
+        margin: 0px auto;
+        padding: 20px 30px;
+        background-color: #fff;
+        border-radius: 2px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+        transition: all .3s ease;
+        font-family: Helvetica, Arial, sans-serif;
+    }
+
+    .modal-header h3 {
+        margin-top: 0;
+        color: $content_color;
+    }
+
+    .modal-body {
+        margin: 20px 0;
+        height: 300px;
+        overflow: auto;
+    }
+
+    .modal-default-button {
+        float: right;
+    }
+
+    /*
+     * The following styles are auto-applied to elements with
+     * transition="modal" when their visibility is toggled
+     * by Vue.js.
+     *
+     * You can easily play with the modal transition by editing
+     * these styles.
+     */
+
+    .modal-enter {
+        opacity: 0;
+    }
+
+    .modal-leave-active {
+        opacity: 0;
+    }
+
+    .modal-enter .modal-container,
+    .modal-leave-active .modal-container {
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+    }
 </style>

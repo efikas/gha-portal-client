@@ -4,6 +4,7 @@ import { school } from '../../data/school'
 const state = {
     schools: [],
     school: {},
+    school_stat:[]
 };
 
 const getters = {
@@ -12,6 +13,9 @@ const getters = {
     },
     school: (state) => {
         return state.school
+    },
+    school_stats: (state) => {
+        return state.school_stat
     }
 };
 
@@ -23,7 +27,7 @@ const mutations = {
         state.school = school
     },
     'SET_LGA_SCH_STAT' (state, schStat) {
-        state.schools = schStat
+        state.school_stat = schStat
     },
 
     'SET_LGA_SCHOOLS' (state, schools) {
@@ -46,11 +50,10 @@ const actions = {
             console.log(error.response)
         })
     },
-    lgaSchools: ({commit}, paylod) => {
-        let lgaId = paylod.lgaId;
-        axios.get(`/lga/${lgaId}/schools`, {params: paylod})
+    lgaSchools: ({commit}, params) => {
+        let lgaId = params.id;
+        axios.get(`/lga/${lgaId}/schools`, {params})
             .then(response => {
-                console.log(response.data);
                 commit('SET_LGA_SCHOOLS', response.data);
             }).catch((error) => {
             reject(error.response);

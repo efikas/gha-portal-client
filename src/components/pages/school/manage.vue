@@ -35,11 +35,6 @@ export default {
     data() {
         return {
             columns: ['id', 'name', 'view'],
-            lgaId: '',
-            level : '',
-            categoryId: null,
-            lgaName : '',
-            category : null,
             options: {
                 sortIcon: {
                     base: 'fa',
@@ -88,11 +83,6 @@ export default {
                 query.level = this.level;
             }
             this.$store.dispatch('lgaSchools', query);
-        }
-        else {
-                this.$school.allSchools().then(data => {
-                    this.schools = data.data;
-                })
         }
         // console.log(this.schools);
     },

@@ -93,7 +93,7 @@ const layout = [{
                 }
             },
             { //todo: fix routes that overrides
-                name: "school-profile",
+                name: "school",
                 path: ':id',
                 component: resolve => require(['pages/school/profile'], resolve),
                 meta: {

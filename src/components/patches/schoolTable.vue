@@ -1,6 +1,6 @@
 <template>
     <b-card :header="header" header-tag="h4" class="bg-header-card">
-        <div style="margin: 2%" v-if="tableData.length < 1">
+        <div style="margin: 2%" v-if="schools.length < 1">
             <skeleton-loading>
                 <row
                         :gutter="{
@@ -31,8 +31,8 @@
             </skeleton-loading>
         </div>
         <a type="button" class="fa fa-download icon-big btn btn-outline-primary ekiti-btn pull-right"
-           v-if="tableData.length > 0" @click="exportExcel"></a>
-        <v-client-table :data="tableData" :columns="columns" :options="options" v-if="tableData.length > 0"
+           v-if="schools.length > 0" @click="exportExcel"></a>
+        <v-client-table :data="schools" :columns="columns" :options="options" v-if="schools.length > 0"
                         @row-click="rowClick">
             <a slot="id" slot-scope="props">{{ props.index }}</a>
             <router-link tag="a" class="list-font" slot="name" slot-scope="props"
@@ -58,7 +58,7 @@
     export default {
         name: "schoolTable",
         props: {
-            tableData: Array,
+            schools: Array,
             header: String,
             routeTo: String,
             renderFn: Function
