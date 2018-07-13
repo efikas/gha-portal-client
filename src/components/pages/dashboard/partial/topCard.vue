@@ -1,64 +1,62 @@
 <template>
     <div>
-        <div class="row mb-4">
-            <div class="col-lg-3  col-sm-6 mb-3">
-                <div class="text-center widget_social_icons box_shadow orange">
-                    <div class="p-2">
-                        <div class="widget_social_inner1">
-                            <i class="material-icons fb_text">home</i>
-                        </div>
-                        <div class="text-ash">
-                            <h4 class="mb-0 mt-2 text_size">{{ schools | commasep }}</h4>
-                        </div>
+        <div class="col-lg-3  col-sm-6 mb-3">
+            <div class="text-center widget_social_icons box_shadow orange">
+                <div class="p-2">
+                    <div class="widget_social_inner1">
+                        <i class="material-icons fb_text">home</i>
                     </div>
-                    <p class="m-0 orange text-center widget-social_link tiny upper"><a href="school"
-                                                                                       style="display: block">Schools <i
-                            class="fa fa-angle-right"></i></a></p>
+                    <div class="text-ash">
+                        <h4 class="mb-0 mt-2 text_size">{{ schools | commasep }}</h4>
+                    </div>
                 </div>
+                <p class="m-0 orange text-center widget-social_link tiny upper"><a href="school"
+                                                                                   style="display: block">Schools <i
+                        class="fa fa-angle-right"></i></a></p>
             </div>
-            <div class="col-lg-3  col-sm-6 mb-3">
-                <div class="text-center widget_social_icons box_shadow pink">
-                    <div class="p-2">
-                        <div class="widget_social_inner1">
-                            <i class="material-icons fb_text">group</i>
-                        </div>
-                        <div class="text-ash">
-                            <h4 class="mb-0 mt-2 text_size">{{ staff | commasep}}</h4>
-                        </div>
+        </div>
+        <div class="col-lg-3  col-sm-6 mb-3">
+            <div class="text-center widget_social_icons box_shadow pink">
+                <div class="p-2">
+                    <div class="widget_social_inner1">
+                        <i class="material-icons fb_text">group</i>
                     </div>
-                    <p class="m-0 pink text-center widget-social_link tiny upper"><a href="staff"
-                                                                                     style="display: block">Staffs <i
-                            class="fa fa-angle-right"></i></a></p>
+                    <div class="text-ash">
+                        <h4 class="mb-0 mt-2 text_size">{{ staff | commasep}}</h4>
+                    </div>
                 </div>
+                <p class="m-0 pink text-center widget-social_link tiny upper"><a href="staff"
+                                                                                 style="display: block">Staffs <i
+                        class="fa fa-angle-right"></i></a></p>
             </div>
-            <div class="col-lg-3 col-md-6 mb-3">
-                <div class="text-center widget_social_icons box_shadow blue">
-                    <div class="p-2">
-                        <div class=" widget_social_inner1">
-                            <i class="material-icons fb_text">person</i>
-                        </div>
-                        <div class="text-ash">
-                            <h4 class="mb-0 mt-2 text_size">{{ students | commasep}}</h4>
-                        </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-3">
+            <div class="text-center widget_social_icons box_shadow blue">
+                <div class="p-2">
+                    <div class=" widget_social_inner1">
+                        <i class="material-icons fb_text">person</i>
                     </div>
-                    <p class="m-0 blue text-center widget-social_link tiny upper"><a href="student"
-                                                                                     style="display: block">Students <i
-                            class="fa fa-angle-right"></i></a></p>
+                    <div class="text-ash">
+                        <h4 class="mb-0 mt-2 text_size">{{ students | commasep}}</h4>
+                    </div>
                 </div>
+                <p class="m-0 blue text-center widget-social_link tiny upper"><a href="student"
+                                                                                 style="display: block">Students <i
+                        class="fa fa-angle-right"></i></a></p>
             </div>
-            <div class="col-lg-3  col-md-6 mb-3">
-                <div class="text-center widget_social_icons box_shadow teal">
-                    <div class="p-2">
-                        <div class=" widget_social_inner1">
-                            <i class="material-icons fb_text">people</i>
-                        </div>
-                        <div class="text-ash">
-                            <h4 class="mb-0 mt-2 text_size">{{ guardians | commasep }}</h4>
-                        </div>
+        </div>
+        <div class="col-lg-3  col-md-6 mb-3">
+            <div class="text-center widget_social_icons box_shadow teal">
+                <div class="p-2">
+                    <div class=" widget_social_inner1">
+                        <i class="material-icons fb_text">people</i>
                     </div>
-                    <p class="m-0 teal text-center widget-social_link tiny upper"><a href="#" style="display: block">Parent/Guardian
-                        <i class="fa fa-angle-right"></i></a></p>
+                    <div class="text-ash">
+                        <h4 class="mb-0 mt-2 text_size">{{ guardians | commasep }}</h4>
+                    </div>
                 </div>
+                <p class="m-0 teal text-center widget-social_link tiny upper"><a href="#" style="display: block">Parent/Guardian
+                    <i class="fa fa-angle-right"></i></a></p>
             </div>
         </div>
     </div>
@@ -69,8 +67,7 @@
         name: "topCard",
 
         data() {
-            return {
-            }
+            return {}
         },
 
         computed: {
@@ -103,6 +100,7 @@
     .index2_swiper .swiper-pagination-bullet-active {
         background: #08aa80;
     }
+
     /*===============================notes========*/
 
     .notes {
@@ -116,8 +114,7 @@
     }
 
     .notes p {
-        border-bottom: 1px solid #dfe8ec;
-    ;
+        border-bottom: 1px solid #dfe8ec;;
     }
 
     .notes::after {
@@ -143,7 +140,6 @@
         font-size: 40px;
         line-height: normal;
     }
-
 
     .social .bg-default-card {
         i {
@@ -414,12 +410,15 @@
     .profile-img {
         background-color: #fff;
     }
-    .chat-conversation{
+
+    .chat-conversation {
         width: 100%;
     }
+
     .table {
         /*font-weight: bold;*/
     }
+
     .table tr {
         cursor: pointer;
     }

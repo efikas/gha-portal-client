@@ -1,6 +1,6 @@
 <template>
     <div>
-        <topCard></topCard>
+        <topCard class="row mb-4"></topCard>
         <school-lga-distribution></school-lga-distribution>
         <school-distribution></school-distribution>
     </div>

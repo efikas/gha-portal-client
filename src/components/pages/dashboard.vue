@@ -1,6 +1,8 @@
 <template>
     <div>
-        <topCard></topCard>
+
+        <topCard class="row mb-4"></topCard>
+
         <div class="row">
             <div class="col-lg-6 mb-3">
                 <piechart :iData="this.priv_sch"></piechart>
