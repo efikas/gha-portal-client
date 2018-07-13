@@ -359,10 +359,6 @@
         },
         async created() {
             await this.$store.dispatch('school', this.$route.params.id);
-
-            // data.power_sources.forEach(item => {
-            //     this.power_sources += item.power_sources + ', '
-            // });
             // data.play_facilities.forEach(item => {
             //     this.play_facilities += item.play_facilities + ', '
             // });
