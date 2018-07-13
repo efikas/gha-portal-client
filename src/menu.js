@@ -11,7 +11,7 @@ const menu_items = [{
             link: '/school',
             icon: 'fa fa-clipboard'
         }, {
-            name: 'Manage',
+            name: 'Schools',
             link: '/school/manage',
             icon: 'fa fa-codepen'
         }, {

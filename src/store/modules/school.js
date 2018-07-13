@@ -21,7 +21,7 @@ const getters = {
 
 const mutations = {
     'SET_SCHOOLS'(state, schools) {
-        state.school = schools
+        state.schools = schools
     },
     'SET_SCHOOL'(state, school) {
         state.school = school
@@ -37,7 +37,12 @@ const mutations = {
 
 const actions = {
     schools: ({commit}) => {
-        commit('SET_SCHOOLS')
+        axios.get('/schools')
+            .then(response => {
+                commit('SET_SCHOOLS', response.data.data)
+            }).catch((error) => {
+            console.log(error.response);
+        })
     },
     school: ({commit}, id) => {
         commit('SET_SCHOOL', school)
@@ -56,7 +61,7 @@ const actions = {
             .then(response => {
                 commit('SET_LGA_SCHOOLS', response.data);
             }).catch((error) => {
-            reject(error.response);
+            console.log(error.response);
         })
     }
 };
