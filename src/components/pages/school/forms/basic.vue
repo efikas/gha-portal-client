@@ -358,7 +358,6 @@
 <script>
 
     export default {
-        name: 'school_basic_form',
         props: {
             data: {type: Object, required: true}
         },

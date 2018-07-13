@@ -1,13 +1,13 @@
 <template>
     <div>
-        <b-card v-if="schoolInfo" class="bg-default-card text-right">
+        <b-card v-if="school" class="bg-default-card text-right">
             <a href="#">Exam</a> |
             <a href="#">Attendance</a>
         </b-card>
         <div class="row">
             <div class="col-lg-4">
-                <b-card v-if="schoolInfo" class="bg-default-card">
-                    <h5 class="default-color">{{ this.schoolName }} </h5>
+                <b-card v-if="school" class="bg-default-card">
+                    <h5 class="default-color">{{ school.name }} </h5>
                     <gmap-map :center="center" :zoom="16" class="gmap" ref="gmap1">
                         <gmap-marker v-for="m in markers" :key="m.position.lat" :position="m.position" :clickable="true"
                                      :draggable="true" @click="center=m.position"></gmap-marker>
@@ -16,7 +16,7 @@
             </div>
 
             <div class="col-lg-8">
-                <b-card class="bg-default-card data" v-if="schoolInfo">
+                <b-card class="bg-default-card data" v-if="school">
                     <!-- Nav tabs -->
                     <b-tabs>
                         <b-tab title="BASIC">
@@ -31,79 +31,79 @@
                                 <table class="table table-bordred table-striped mytable">
                                     <tr>
                                         <td><i class="fa fa-home"></i> Name</td>
-                                        <td colspan="3">{{ schoolInfo.name }}</td>
+                                        <td colspan="3">{{ school.name }}</td>
                                     </tr>
                                     <tr>
                                         <td><i class="fa fa-map"></i> Address</td>
-                                        <td colspan="3">{{ schoolInfo.address }}</td>
+                                        <td colspan="3">{{ school.address }}</td>
                                     </tr>
                                     <tr>
                                         <td><i class="fa fa-envelope"></i> Email</td>
-                                        <td colspan="3">{{ schoolInfo.email }}</td>
+                                        <td colspan="3">{{ school.email }}</td>
                                     </tr>
                                     <tr>
                                         <td><i class="fa fa-globe"></i> Website</td>
-                                        <td colspan="3">{{ schoolInfo.website }}</td>
+                                        <td colspan="3">{{ school.website }}</td>
                                     </tr>
                                     <tr>
                                         <td>Education Level</td>
-                                        <td>{{ schoolInfo.education_level }}</td>
+                                        <td>{{ school.education_level }}</td>
                                         <td>Category</td>
-                                        <td>{{ schoolInfo.category }}</td>
+                                        <td>{{ school.category }}</td>
                                     </tr>
                                     <tr>
                                         <td>Type</td>
-                                        <td>{{ yesNo(schoolInfo.type) }}</td>
+                                        <td>{{ yesNo(school.type) }}</td>
                                         <td>Location</td>
-                                        <td>{{ schoolInfo.location }}</td>
+                                        <td>{{ school.location }}</td>
                                     </tr>
                                     <tr>
                                         <td>Town</td>
-                                        <td>{{ schoolInfo.town }}</td>
+                                        <td>{{ school.town }}</td>
                                         <td>Phone</td>
-                                        <td>{{ schoolInfo.phone }}</td>
+                                        <td>{{ school.phone }}</td>
                                     </tr>
                                     <tr>
                                         <td>Date Established</td>
-                                        <td>{{ schoolInfo.established }}</td>
+                                        <td>{{ school.established }}</td>
                                         <td>Geo-location</td>
-                                        <td>{{ schoolInfo.geolocation }}</td>
+                                        <td>{{ school.geolocation }}</td>
                                     </tr>
                                     <tr>
                                         <td>Average Distance</td>
-                                        <td>{{ schoolInfo.average_distance }}KM</td>
+                                        <td>{{ school.average_distance }}KM</td>
                                         <td>Ownership</td>
-                                        <td>{{ schoolInfo.ownership }}</td>
+                                        <td>{{ school.ownership }}</td>
                                     </tr>
                                     <tr>
                                         <td>Shifts</td>
-                                        <td>{{ yesNo(schoolInfo.shift) }}</td>
+                                        <td>{{ yesNo(school.shift) }}</td>
                                         <td>Grant</td>
-                                        <td>{{ yesNo(schoolInfo.grants) }}</td>
+                                        <td>{{ yesNo(school.grants) }}</td>
                                     </tr>
                                     <tr>
                                         <td>Management Committee</td>
-                                        <td>{{ yesNo(schoolInfo.management_committee) }}</td>
+                                        <td>{{ yesNo(school.management_committee) }}</td>
                                         <td>Development Plan</td>
-                                        <td>{{ yesNo(schoolInfo.development_plan) }}</td>
+                                        <td>{{ yesNo(school.development_plan) }}</td>
                                     </tr>
                                     <tr>
                                         <td>Mulitigrade</td>
-                                        <td>{{ yesNo(schoolInfo.multigrade) }}</td>
+                                        <td>{{ yesNo(school.multigrade) }}</td>
                                         <td>LGA Ward</td>
-                                        <td>{{ schoolInfo.ward.name }}</td>
+                                        <td>{{ school.ward.name }}</td>
                                     </tr>
                                     <tr>
                                         <td>Recognision Status</td>
-                                        <td>{{ yesNo(schoolInfo.recognition_status) }}</td>
+                                        <td>{{ yesNo(school.recognition_status) }}</td>
                                         <td>Number of student</td>
-                                        <td>{{ schoolInfo.students }}</td>
+                                        <td>{{ school.students }}</td>
                                     </tr>
                                     <tr>
                                         <td>Teaching Staff</td>
-                                        <td>{{ schoolInfo.staffs.teaching }}</td>
+                                        <td>{{ school.staffs.teaching }}</td>
                                         <td>Non Teaching Staff</td>
-                                        <td>{{ schoolInfo.staffs.none_teaching }}</td>
+                                        <td>{{ school.staffs.none_teaching }}</td>
                                     </tr>
                                 </table>
                             </div>
@@ -124,7 +124,7 @@
                                             <tbody>
                                             <tr>
                                                 <td>Power Source</td>
-                                                <td>{{ power_sources }}</td>
+                                                <td>{{ power_sources.join(', ') }}</td>
                                             </tr>
                                             <tr>
                                                 <td>Health Facilities</td>
@@ -171,7 +171,7 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr v-for="classroom in schoolInfo.classrooms">
+                                            <tr v-for="classroom in school.classrooms">
                                                 <td>{{ classroom.class }}</td>
                                                 <td>{{ classroom.pivot.good }}</td>
                                                 <td>{{ classroom.pivot.major_repair }}</td>
@@ -210,7 +210,7 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr v-for="official in schoolInfo.sbmc">
+                                        <tr v-for="official in school.sbmc">
                                             <td>{{ official.name }}</td>
                                             <td>{{ official.office }}</td>
                                             <td>{{ official.phone }}</td>
@@ -241,7 +241,7 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr v-for="facility in schoolInfo.facilities">
+                                            <tr v-for="facility in school.facilities">
                                                 <td>{{ facility.type}}</td>
                                                 <td>{{ facility.pivot.no_facility}}</td>
                                             </tr>
@@ -265,7 +265,7 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <tr v-for="project in schoolInfo.projects">
+                                                <tr v-for="project in school.projects">
                                                     <td>{{ project.name }}</td>
                                                     <td>{{ project.cost }}</td>
                                                     <td>{{ project.funding }}</td>
@@ -291,6 +291,7 @@
     import Vue from 'vue'
     import * as VueGoogleMaps from 'vue2-google-maps'
     import store from 'src/store/store.js'
+    import {mapGetters} from 'vuex'
     import {SweetModal, SweetModalTab} from 'sweet-modal-vue'
     // import VueCollapse from 'vue2-collapse'
 
@@ -304,22 +305,18 @@
         }
     });
     export default {
-        name: "gmaps",
         components: {
             SweetModal,
             SweetModalTab
         },
         data() {
             return {
-                schoolName: '',
-                schoolAddress: '',
                 totalStudent: 0,
                 totalTeachingStaff: 0,
                 totalNonTeachingStaff: 0,
-                schoolId: '',
                 play_facilities: '',
                 learning: '',
-                power_sources: '',
+                schoolId: 421,
                 health: '',
                 water: '',
                 toilet: '',
@@ -334,15 +331,11 @@
                         lng: 5.2033970
                     }
                 }],
-                schoolInfo: null,
             }
         },
         methods: {
             yesNo(id) {
-                if (id === 1) {
-                    return 'Yes';
-                }
-                return 'No'
+                return id === 1 ? 'Yes' : 'No';
             },
             show() {
                 this.$refs.modal.open();
@@ -350,41 +343,44 @@
             submit() {
             }
         },
-        created() {
-            this.$school.schoolProfile(this.$route.params.id).then(data => {
-                this.schoolInfo = data;
+        computed: {
+            ...mapGetters([
+                'school',
+                'data'
+            ]),
+            power_sources() {
+                return this.data.power_sources.reduce((prev, next, index) => {
+                    if(this.school.power_source_ids.indexOf(next.id) === 0) {
+                        prev.push(next.power_sources)
+                    }
+                    return prev
+                }, [])
+            },
+        },
+        async created() {
+            await this.$store.dispatch('school', this.$route.params.id);
 
-                this.totalNonTeachingStaff = data.staffs.none_teaching;
-                this.totalTeachingStaff = data.staffs.teaching;
-                this.totalStudent = data.students;
-                this.schoolName = data.name;
-                this.schoolAddress = data.address;
-                this.schoolId = data.id;
-
-                data.power_sources.forEach(item => {
-                    this.power_sources += item.power_sources + ', '
-                });
-                data.play_facilities.forEach(item => {
-                    this.play_facilities += item.play_facilities + ', '
-                });
-                data.learning.forEach(item => {
-                    this.learning += item.material + ', '
-                });
-                data.play_facilities.forEach(item => {
-                    this.play_facilities += item.play_facilities + ', '
-                });
-                data.health.forEach(item => {
-                    this.health += item.facility + ', '
-                });
-                data.water.forEach(item => {
-                    this.water += item.source + ', '
-                });
-                data.toilet.forEach(item => {
-                    this.toilet += item.toilet + ', '
-                })
-                // console.log(this.schoolInfo);
-            })
-
+            // data.power_sources.forEach(item => {
+            //     this.power_sources += item.power_sources + ', '
+            // });
+            // data.play_facilities.forEach(item => {
+            //     this.play_facilities += item.play_facilities + ', '
+            // });
+            // data.learning.forEach(item => {
+            //     this.learning += item.material + ', '
+            // });
+            // data.play_facilities.forEach(item => {
+            //     this.play_facilities += item.play_facilities + ', '
+            // });
+            // data.health.forEach(item => {
+            //     this.health += item.facility + ', '
+            // });
+            // data.water.forEach(item => {
+            //     this.water += item.source + ', '
+            // });
+            // data.toilet.forEach(item => {
+            //     this.toilet += item.toilet + ', '
+            // })
         },
         beforeRouteLeave(to, from, next) {
             // unsub();

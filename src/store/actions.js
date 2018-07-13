@@ -13,8 +13,7 @@ let actions = {
     },
 
     login({commit, dispatch, state}, payload) {
-        return new Promise((resolve, reject) => {
-            axios.post('/oauth/token', {
+        return axios.post('/oauth/token', {
                 client_id: state.client_id,
                 client_secret: state.client_secret,
                 grant_type: state.grant_type,
@@ -30,12 +29,12 @@ let actions = {
                         expiration: response.data.expires_in
                     });
                     commit('SET_SITE_DATA', response.data.site_data);
-                    resolve(response.data);
-                }).catch((error) => {
+                    return Promise.resolve(response.data)
+                })
+            .catch((error) => {
                 console.log(error);
-                reject(error.response);
+                return Promise.reject(error)
             });
-        });
     },
 
     logout: function ({commit}) {

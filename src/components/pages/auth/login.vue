@@ -109,12 +109,10 @@
                     this.error = "";
                     this.$store.dispatch('login', {username: this.model.email, password: this.model.password})
                         .then(() => {
-                            let redirect = this.$route.query.redirect || "/"
                             // console.log(redirect)
-                            window.location.href = redirect;
+                            window.location.href = this.$route.query.redirect || "/";
                         })
                         .catch(error => {
-                            alert(111);
                             this.$swal({
                                 type: 'error',
                                 title: 'The user credentials were incorrect.',
