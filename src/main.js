@@ -29,6 +29,12 @@ if (google_analytics_key) {
 
 }
 
+Vue.filter('commasep', val => {
+    if (val) {
+        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
+});
+
 // Remove the productionTip in dev tool console
 Vue.config.productionTip = false
 

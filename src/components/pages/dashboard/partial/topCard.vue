@@ -8,7 +8,7 @@
                             <i class="material-icons fb_text">home</i>
                         </div>
                         <div class="text-ash">
-                            <h4 class="mb-0 mt-2 text_size">{{ schools }}</h4>
+                            <h4 class="mb-0 mt-2 text_size">{{ schools | commasep }}</h4>
                         </div>
                     </div>
                     <p class="m-0 orange text-center widget-social_link tiny upper"><a href="school"
@@ -23,7 +23,7 @@
                             <i class="material-icons fb_text">group</i>
                         </div>
                         <div class="text-ash">
-                            <h4 class="mb-0 mt-2 text_size">{{ staff }}</h4>
+                            <h4 class="mb-0 mt-2 text_size">{{ staff | commasep}}</h4>
                         </div>
                     </div>
                     <p class="m-0 pink text-center widget-social_link tiny upper"><a href="staff"
@@ -38,7 +38,7 @@
                             <i class="material-icons fb_text">person</i>
                         </div>
                         <div class="text-ash">
-                            <h4 class="mb-0 mt-2 text_size">{{ students }}</h4>
+                            <h4 class="mb-0 mt-2 text_size">{{ students | commasep}}</h4>
                         </div>
                     </div>
                     <p class="m-0 blue text-center widget-social_link tiny upper"><a href="student"
@@ -53,7 +53,7 @@
                             <i class="material-icons fb_text">people</i>
                         </div>
                         <div class="text-ash">
-                            <h4 class="mb-0 mt-2 text_size">{{ guardians }}</h4>
+                            <h4 class="mb-0 mt-2 text_size">{{ guardians | commasep }}</h4>
                         </div>
                     </div>
                     <p class="m-0 teal text-center widget-social_link tiny upper"><a href="#" style="display: block">Parent/Guardian
@@ -70,21 +70,26 @@
 
         data() {
             return {
-                schools: 'loading...',
-                staff: 'loading...',
-                students: 'loading...',
-                guardians: 'loading...',
+            }
+        },
+
+        computed: {
+            schools() {
+                return this.$store.state.statistics ? this.$store.state.statistics.schools.total : 'loading...';
+            },
+            staff() {
+                return this.$store.state.statistics ? this.$store.state.statistics.staffs.total : 'loading...';
+            },
+            students() {
+                return this.$store.state.statistics ? this.$store.state.statistics.students.total : 'loading...';
+            },
+            guardians() {
+                return this.$store.state.statistics ? this.$store.state.statistics.guardians : 'loading...';
             }
         },
 
         created() {
-            this.$dashboard.statistics()
-                .then((data) => {
-                    this.schools = data.schools.total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-                    this.staff = data.staffs.total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-                    this.students = data.students.total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-                    this.guardians = data.guardians.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-                }).catch((error) => window.alert("failed"))
+            this.$store.dispatch('loadStatistics');
         }
     }
 </script>

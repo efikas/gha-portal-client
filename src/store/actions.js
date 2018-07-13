@@ -3,7 +3,16 @@ import axios from '../axios'
 import router from "../router";
 
 let actions = {
-    login  ({commit, dispatch, state}, payload) {
+    loadStatistics({commit}) {
+        axios.get('/statistics')
+            .then(response => {
+                commit('SET_STATISTICS', response.data);
+            }).catch((error) => {
+            console.log(error);
+        });
+    },
+
+    login({commit, dispatch, state}, payload) {
         return new Promise((resolve, reject) => {
             axios.post('/oauth/token', {
                 client_id: state.client_id,

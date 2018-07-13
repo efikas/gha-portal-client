@@ -17,20 +17,7 @@
     import 'zrender/lib/vml/vml';
     require('swiper/dist/css/swiper.css')
 
-    import 'echarts/lib/chart/pie';
-
-    import 'echarts/lib/component/legend';
-    import 'echarts/lib/component/tooltip';
-
-    import 'echarts/lib/component/title';
-
-    import 'echarts/lib/component/markPoint';
-    import 'echarts/lib/component/markLine';
-
-    import 'echarts/lib/component/timeline';
-    import 'echarts/lib/component/toolbox';
     import { exportToExcel } from '../mixins/exportToExcel'
-
 
     var unsub;
     export default {
@@ -79,10 +66,10 @@
         },
         mounted: function () {
             unsub = this.$store.subscribe((mutation, state) => {
-                if (mutation.type == "left_menu") {
+                if (mutation.type === "left_menu") {
                     this.instances.forEach(function (item) {
                         setTimeout(function () {
-                            if( typeof item.resize !== 'undefined')
+                            if( typeof item.resize === 'function')
                                 item.resize();
                         });
                     });
@@ -119,5 +106,3 @@
 </script>
 <!-- styles -->
 <!-- adding scoped attribute will apply the css to this component only -->
-<style src="assets/css/widgets.css" scoped></style>
-<style src="chartist/dist/chartist.css"></style>

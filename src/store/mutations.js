@@ -63,6 +63,11 @@ let mutations = {
     'SET_SITE_DATA' (state, data) {
         localStorage.setItem('data', JSON.stringify(data));
     },
+
+    'SET_STATISTICS' (state, statistics) {
+        state.statistics = statistics;
+    },
+
     [LOGIN] (state) {
         state.pending = true;
     },

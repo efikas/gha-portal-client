@@ -20,24 +20,9 @@
     </div>
 </template>
 <script>
-    import Vue from 'vue';
-
-    import IEcharts from 'vue-echarts-v3/src/full.js';
 
     import VueChartist from 'v-chartist'
 
-    import 'echarts/lib/chart/pie';
-
-    import 'echarts/lib/component/legend';
-    import 'echarts/lib/component/tooltip';
-
-    import 'echarts/lib/component/title';
-
-    import 'echarts/lib/component/markPoint';
-    import 'echarts/lib/component/markLine';
-
-    import 'echarts/lib/component/timeline';
-    import 'echarts/lib/component/toolbox';
     import { exportToExcel } from '../mixins/exportToExcel'
 
     var unsub;
@@ -46,11 +31,11 @@
         props: ['iData'],
         mixins: [exportToExcel],
         components: {
-            IEcharts,
             VueChartist,
         },
         data() {
             return {
+                instances: [],
                 loading: false,
                 ajaxloading: true,
                 progressBar: [],
@@ -100,7 +85,7 @@
                 if (mutation.type === "left_menu") {
                     this.instances.forEach(function (item) {
                         setTimeout(function () {
-                            if( typeof item.resize !== 'undefined')
+                            if( typeof item.resize === 'function')
                                 item.resize();
                         });
                     });
@@ -129,6 +114,4 @@
         }
     }
 </script>
-<!-- styles -->
-<!-- adding scoped attribute will apply the css to this component only -->
 <style src="chartist/dist/chartist.css"></style>
