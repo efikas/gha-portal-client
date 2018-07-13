@@ -23,7 +23,7 @@ const layout = [{
             {
                 path: 'manage',
                 name: 'school-manage',
-                component: resolve => require(['pages/school/manage'], resolve),
+                component: resolve => require(['pages/school/schools'], resolve),
                 meta: {
                     title: "Manage Schools",
                     guard: true
@@ -32,34 +32,7 @@ const layout = [{
             {
                 path: 'lga',
                 name: 'school-lga',
-                component: resolve => require(['pages/school/manage'], resolve),
-                meta: {
-                    title: "Manage Schools",
-                    guard: true
-                }
-            },
-            {
-                path: 'lga/:lgaId/category/:catId',
-                name: 'school-manage-by_category',
-                component: resolve => require(['pages/school/manage'], resolve),
-                meta: {
-                    title: "Manage Schools",
-                    guard: true
-                }
-            },
-            {
-                path: 'lga/:lgaId/category/:catId/level/:level',
-                name: 'school-manage-by_category_level',
-                component: resolve => require(['pages/school/manage'], resolve),
-                meta: {
-                    title: "Manage Schools",
-                    guard: true
-                }
-            },
-            {
-                path: 'lga/:lgaId/level/:level',
-                name: 'school-manage-by_level',
-                component: resolve => require(['pages/school/manage'], resolve),
+                component: resolve => require(['pages/school/schools'], resolve),
                 meta: {
                     title: "Manage Schools",
                     guard: true
