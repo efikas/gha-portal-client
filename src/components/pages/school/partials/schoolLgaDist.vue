@@ -13,8 +13,9 @@
                                 <th rowspan="2">LGA</th>
                                 <th colspan="3">Public</th>
                                 <th colspan="3">Private</th>
-                                <th rowspan="2" align="center">Total Primary</th>
-                                <th rowspan="2">Total Secondary</th>
+                                <th rowspan="2" align="center">+Primary</th>
+                                <th rowspan="2">+Secondary</th>
+                                <th rowspan="2">Total</th>
                             </tr>
                             <tr>
                                 <th>Primary</th>
@@ -26,31 +27,52 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr v-for="(schoolsPerLga, index) in schoolsPerLgas" :key="index">
-                                <td @click="gotoLink(schoolsPerLga.id)">{{ schoolsPerLga.name }}</td>
-                                <td @click="gotoLink(schoolsPerLga.id/category/1/level/PRY)">{{
-                                    schoolsPerLga.public.primary }}
+                            <tr v-for="(lga, index) in lgaSchStats" :key="index">
+                                <td>
+                                    <router-link :to="gotoLink({id: lga.id})">{{ lga.name }}</router-link>
                                 </td>
-                                <td @click="gotoLink(schoolsPerLga.id/category/1/level/SEC)">{{
-                                    schoolsPerLga.public.secondary }}
+                                <td>
+                                    <router-link :to="gotoLink({id: lga.id, cat: 1, level: 'pry'})">
+                                        {{ lga.public.primary }}
+                                    </router-link>
                                 </td>
-                                <td @click="gotoLink(schoolsPerLga.id/category/1)">{{
-                                    schoolsPerLga.public.total }}
+                                <td>
+                                    <router-link :to="gotoLink({id: lga.id, cat: 1, level: 'sec'})">
+                                        {{ lga.public.secondary }}
+                                    </router-link>
                                 </td>
-                                <td @click="gotoLink(schoolsPerLga.id/category/2/level/PRY)">{{
-                                    schoolsPerLga.private.primary }}
+                                <td>
+                                    <router-link :to="gotoLink({id: lga.id, cat: 1})">
+                                        {{ lga.public.total }}
+                                    </router-link>
                                 </td>
-                                <td @click="gotoLink(schoolsPerLga.id/category/2/level/SEC)">{{
-                                    schoolsPerLga.private.secondary }}
+                                <td>
+                                    <router-link :to="gotoLink({id: lga.id, cat: 2, level: 'pry'})">
+                                        {{ lga.private.primary }}
+                                    </router-link>
                                 </td>
-                                <td @click="gotoLink(schoolsPerLga.id/category/2)">{{
-                                    schoolsPerLga.private.total }}
+                                <td>
+                                    <router-link :to="gotoLink({id: lga.id, cat: 2, level: 'sec'})">
+                                        {{ lga.private.secondary }}
+                                    </router-link>
                                 </td>
-                                <td @click="gotoLink(schoolsPerLga.id/level/PRY)">{{
-                                    schoolsPerLga.total.primary }}
+                                <td>
+                                    <router-link :to="gotoLink({id: lga.id, cat: 2})">
+                                        {{ lga.private.total }}
+                                    </router-link>
                                 </td>
-                                <td @click="gotoLink(schoolsPerLga.id/level/SEC)">{{
-                                    schoolsPerLga.total.secondary }}
+                                <td>
+                                    <router-link :to="gotoLink({id: lga.id, level: 'pry'})">
+                                        {{ lga.total.primary }}
+                                    </router-link>
+                                </td>
+                                <td>
+                                    <router-link :to="gotoLink({id: lga.id, level: 'sec'})">
+                                        {{ lga.total.secondary }}
+                                    </router-link>
+                                </td>
+                                <td>
+                                    {{ lga.total.secondary + lga.total.primary }}
                                 </td>
                             </tr>
                             </tbody>
@@ -68,20 +90,22 @@
     export default {
         name: "index2",
         data() {
-            return {
-                schoolsPerLgas: []
-            }
+            return {}
         },
         created: function () {
-            this.$school.getSchoolsDistributionsPerLga()
-                .then((data) => {
-                    this.schoolsPerLgas = data;
-                })
-                .catch((error) => console.log(error))
+            this.$store.dispatch('lgaSchStats');
+        },
+
+        computed: {
+            lgaSchStats() {
+                return this.$store.getters.schools;
+            }
         },
 
         methods: {
-
+            gotoLink(query) {
+                return {name: 'school-lga', query};
+            },
             exportExcel() {
                 const mimeType = 'data:application/vnd.ms-excel';
                 const html = this.$refs.exportRef.innerHTML.replace(/ /g, '%20');
@@ -99,11 +123,21 @@
     }
 </script>
 <style scoped>
-    .table tr > td:hover {
-        background-color: #ccc !important;
-        color: #650611;
-        font-weight: bold;
+    .table td {
+        padding: 0px !important;
+    }
+    .table td {
+        padding: 0px !important;
+        font-size: 12px;
+    }
+    .table tr a {
         cursor: pointer;
+        display: block;
+        margin: 0 !important;
+        padding: 3px;
+    }
+    .table a:hover {
+        text-decoration: underline !important;
     }
 
 </style>

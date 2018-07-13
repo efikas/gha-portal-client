@@ -4,12 +4,12 @@
             <b-breadcrumb :items="items1" class="breadcrumb2" />
 
             <b-card v-if="this.$route.params.lgaId">
-                <h2>List of {{ categoryName }} {{ levelName }} Schools in Ado</h2>
+                <h2>List of {{ category }} {{ level }} Schools in Ado</h2>
 
             </b-card>
 
             <school-table :table-data="schools"
-                          :header="(this.$route.params.lgaId) ? `List of ${ categoryName } ${ levelName } Schools in Ado` : 'List of Schools'"
+                          :header="(this.$route.params.lgaId) ? `List of ${ category } ${ level } Schools in Ado` : 'List of Schools'"
                           :route-to="'school-profile'"
                           :renderFn="renderTable"
             ></school-table>
@@ -35,13 +35,11 @@ export default {
     data() {
         return {
             columns: ['id', 'name', 'view'],
-            schools: [],
             lgaId: '',
             level : '',
             categoryId: null,
             lgaName : '',
-            categoryName : null,
-            levelName : '',
+            category : null,
             options: {
                 sortIcon: {
                     base: 'fa',
@@ -68,43 +66,28 @@ export default {
             }],
         }
     },
+
+    computed: {
+        schools() {
+            return this.$store.getters.schools;
+        }
+    },
+
     created() {
         //check for lga id and category id in the url
         if (this.$route.query.id){
-            let queryObject = null;
-            this.lgaId = this.$route.query.id
-            this.categoryId = this.$route.query.cat
-            this.level = this.$route.query.level
+            let query = {lgaId: this.$route.query.id};
 
             //set the route parameter name
-            if(this.categoryId === '1') this.categoryName = 'public';
-            if(this.categoryId === '2') this.categoryName = 'private';
-            if(this.level === 'pry') this.levelName = 'primary';
-            if(this.level === 'sec') this.levelName = 'secondary';
-
-            //get category and level and construct query accordingly
-            if(this.categoryId && this.level){
-                queryObject = {
-                    category: this.categoryName,
-                    level: this.levelName,
-                };
+            if(this.$route.query.cat) {
+                this.category = this.$route.query.cat === 1 ? 'public':'private';
+                query.category = this.category;
             }
-            else if(this.categoryId){
-                queryObject = {
-                    category: this.categoryName,
-                };
+            if(this.$route.query.level) {
+                this.level = this.$route.query.level === 'pry' ? 'primary' : 'secondary';
+                query.level = this.level;
             }
-            else if(this.level) {
-                queryObject = {
-                    level: this.levelName,
-                };
-            } else{}
-
-            // console.log(queryObject);
-            this.$school.getSchoolsPerLga(this.lgaId, queryObject).then(data => {
-                // console.log(data.data)
-                this.schools = data;
-            })
+            this.$store.dispatch('lgaSchools', query);
         }
         else {
                 this.$school.allSchools().then(data => {

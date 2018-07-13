@@ -31,7 +31,7 @@ const layout = [{
             },
             {
                 path: 'lga',
-                name: 'school-manage-by_lga',
+                name: 'school-lga',
                 component: resolve => require(['pages/school/manage'], resolve),
                 meta: {
                     title: "Manage Schools",

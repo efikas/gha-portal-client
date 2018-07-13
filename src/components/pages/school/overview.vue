@@ -1,6 +1,6 @@
 <template>
     <div>
-        <topCard class="row mb-4"></topCard>
+        <topCard></topCard>
         <school-lga-distribution></school-lga-distribution>
         <school-distribution></school-distribution>
     </div>
@@ -36,9 +36,6 @@
         },
 
         methods: {
-            gotoLink(url) {
-                this.$router.push('school/' + url);
-            },
 
             exportExcel() {
                 const mimeType = 'data:application/vnd.ms-excel';
