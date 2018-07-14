@@ -6,7 +6,7 @@
                     <label class="control-label">School Building Ownership
                     </label>
                     <div class="col-md-12">
-                        <b-form-radio-group v-model="data.building_id" :options="schoolBuilding" stacked
+                        <b-form-radio-group v-model="school.building_id" :options="buildings" stacked
                                             name="building_ownership"/>
                     </div>
                 </div>
@@ -15,7 +15,8 @@
                 <div class="form-group p-10">
                     <label class="control-label col-md-12">Play Rooms</label>
                     <div class="col-md-12">
-                        <b-form-radio-group v-model="data.play_room_id" :options="playRooms" stacked name="play_rooms"/>
+                        <b-form-radio-group v-model="school.play_room_id" :options="play_rooms" stacked
+                                            name="play_rooms"/>
                     </div>
                 </div>
             </div>
@@ -24,7 +25,7 @@
                     <label class="control-label">Play Facilities
                     </label>
                     <div class="col-md-12">
-                        <b-form-radio-group v-model="data.play_facility_id" :options="playFacilities" stacked
+                        <b-form-radio-group v-model="school.play_facility_id" :options="play_facilities" stacked
                                             name="play_facilities"/>
                     </div>
                 </div>
@@ -34,7 +35,7 @@
                     <label class="control-label">Learning Materials
                     </label>
                     <div class="col-md-12">
-                        <b-form-checkbox-group v-model="data.learning_ids" :options="learningMaterials" stacked
+                        <b-form-checkbox-group v-model="school.learning_ids" :options="learning" stacked
                                                name="learning"/>
                     </div>
                 </div>
@@ -46,7 +47,7 @@
                     <label class="control-label">Sources of Power
                     </label>
                     <div class="col-md-12">
-                        <b-form-checkbox-group v-model="data.power_source_ids" :options="powerSource" stacked/>
+                        <b-form-checkbox-group v-model="school.power_source_ids" :options="power_sources" stacked/>
                     </div>
                 </div>
             </div>
@@ -55,7 +56,8 @@
                     <label class="control-label">Health Facilities
                     </label>
                     <div class="col-md-12">
-                        <b-form-checkbox-group v-model="data.health_ids" :options="healthFacilities" stacked name="health"/>
+                        <b-form-checkbox-group v-model="school.health_ids" :options="healths" stacked
+                                               name="health"/>
                     </div>
                 </div>
             </div>
@@ -64,7 +66,7 @@
                     <label class="control-label">Sources of Water Supply
                     </label>
                     <div class="col-md-12">
-                        <b-form-checkbox-group v-model="data.water_ids" :options="waterSupply" stacked name="water"/>
+                        <b-form-checkbox-group v-model="school.water_ids" :options="waters" stacked name="water"/>
                     </div>
                 </div>
             </div>
@@ -73,7 +75,8 @@
                     <label class="control-label">Toilet Facilities
                     </label>
                     <div class="col-md-12">
-                        <b-form-checkbox-group v-model="data.toilet_ids" :options="toiletFacilities" stacked name="toilet"/>
+                        <b-form-checkbox-group v-model="school.toilet_ids" :options="toilets" stacked
+                                               name="toilet"/>
                     </div>
                 </div>
             </div>
@@ -81,48 +84,65 @@
     </div>
 </template>
 <script>
-    import Vue from 'vue';
-    import options from "src/validations/validations.js";
 
-    Vue.use(options);
+    import {mapGetters} from 'vuex';
+
     export default {
         props: {
-            data: {type: Object, required: true}
+            // data: {type: Object, required: true}
         },
         data() {
             return {
-                facilitiesShared: [],
-                schoolBuildingType: [],
-                schoolBuilding: [],
-                fenceCondition: [],
-                playRooms: [],
-                playFacilities: [],
-                learningMaterials: [],
-                powerSource: [],
-                healthFacilities: [],
-                waterSupply: [],
-                toiletFacilities: [],
-                schoolId: ''
             }
         },
-        methods: {},
-        created() {
-            let settings = JSON.parse(localStorage.getItem('settings'));
-
-            if (settings) {
-
-                settings.learning.forEach(item => this.learningMaterials.push({text: item.material, value: item.id}));
-                settings.buildings.forEach(item => this.schoolBuilding.push({
-                    text: item.ownership,
-                    value: item.id
-                }))
-                settings.healths.forEach(item => this.healthFacilities.push({text: item.facility, value: item.id}));
-                settings.water.forEach(item => this.waterSupply.push({text: item.source, value: item.id}));
-                settings.toilet_types.forEach(item => this.toiletFacilities.push({text: item.type, value: item.id}));
-                settings.play_facilities.forEach(item => this.playFacilities.push({text: item.type, value: item.id}));
-                settings.play_rooms.forEach(item => this.playRooms.push({text: item.category, value: item.id}));
-                settings.power_sources.forEach(item => this.powerSource.push({text: item.power_sources, value: item.id}));
+        computed: {
+            ...mapGetters([
+                'data',
+                'school'
+            ]),
+            learning() {
+                return this.data.learning.map(item =>
+                    ({text: item.material, value: item.id})
+                );
+            },
+            buildings() {
+                return this.data.buildings.map(item =>
+                    ({text: item.ownership, value: item.id})
+                )
+            },
+            healths() {
+                return this.data.healths.map(item =>
+                    ({text: item.facility, value: item.id})
+                );
+            },
+            waters() {
+                return this.data.water.map(item =>
+                    ({text: item.source, value: item.id})
+                );
+            },
+            toilets() {
+                return this.data.toilet_types.map(item =>
+                    ({text: item.type, value: item.id})
+                );
+            },
+            play_facilities() {
+                return this.data.play_facilities.map(item =>
+                    ({text: item.type, value: item.id})
+                );
+            },
+            play_rooms() {
+                return this.data.play_rooms.map(item =>
+                    ({text: item.category, value: item.id})
+                );
+            },
+            power_sources() {
+                return this.data.power_sources.map(item =>
+                    ({text: item.power_sources, value: item.id})
+                );
             }
+        },
+        async created() {
+            await this.$store.dispatch('school', this.$route.params.id);
         }
     }
 </script>

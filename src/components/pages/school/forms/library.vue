@@ -1,7 +1,7 @@
 <template>
     <div>
         <b-card header="School Library Information" header-tag="h4" class="bg-header-card">
-            <form method="" class="form-horizontal"  @submit.prevent="onSubmit">
+            <form method="" class="form-horizontal" @submit.prevent="onSubmit">
                 <div class="mb-3">
                     <a class="btn btn-outline-primary pull-right" @click="addMore('pupil')">+ ADD MORE</a>
                     <div>
@@ -17,23 +17,28 @@
                         <div class="form-horizonal bordered-box">
                             <div class="row even-row">
                                 <div class="col-md-12">
-                                    <div class="remove-btn-div"><a class=" btn-sm btn btn-outline-danger pull-right red" @click="removeElement('pupil', index)">X</a></div>
+                                    <div class="remove-btn-div"><a class=" btn-sm btn btn-outline-danger pull-right red"
+                                                                   @click="removeElement('pupil', index)">X</a></div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-md-6">
                                     <div class="form-group p-10">
                                         <label class="control-label col-md-12">Subject Area
                                         </label>
-                                        <select v-model="data.textbooks.pupil[index].subject" name="pupil_subject_area" class="form-control" size="1">
+                                        <select v-model="data.textbooks.pupil[index].subject" name="pupil_subject_area"
+                                                class="form-control" size="1">
                                             <option value="">Select Subject</option>
-                                            <option v-for="subjects in subjectArea" :value="subjects.id">{{subjects.subject}}</option>
+                                            <option v-for="subjects in subjectArea" :value="subjects.id">
+                                                {{subjects.subject}}
+                                            </option>
                                         </select>
-                                     </div>
+                                    </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-4 col-md-4">
                                     <div class="form-group p-10">
                                         <label class="control-label">Class Level
                                         </label>
-                                        <select class="form-control" v-model="data.textbooks.pupil[index].level"  size="1">
+                                        <select class="form-control" v-model="data.textbooks.pupil[index].level"
+                                                size="1">
                                             <option value="">Select Class</option>
                                             <option value="1">Pry 1</option>
                                             <option value="2">Pry 2</option>
@@ -72,15 +77,19 @@
                         <div class="form-horizonal bordered-box">
                             <div class="row even-row">
                                 <div class="col-md-12">
-                                    <div class="remove-btn-div"><a class="btn btn-sm btn-outline-danger pull-right red" @click="removeElement('teacher', index)">X</a></div>
+                                    <div class="remove-btn-div"><a class="btn btn-sm btn-outline-danger pull-right red"
+                                                                   @click="removeElement('teacher', index)">X</a></div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-md-6">
                                     <div class="form-group p-10">
                                         <label class="control-label col-md-12">Subject Area
                                         </label>
-                                        <select v-model="data.textbooks.teacher[index].subject" name="teacher_subject_area" class="form-control" size="1">
+                                        <select v-model="data.textbooks.teacher[index].subject"
+                                                name="teacher_subject_area" class="form-control" size="1">
                                             <option value="">Select Subject</option>
-                                            <option v-for="subjects in subjectArea" :value="subjects.id">{{subjects.subject}}</option>
+                                            <option v-for="subjects in subjectArea" :value="subjects.id">
+                                                {{subjects.subject}}
+                                            </option>
                                         </select>
                                     </div>
                                 </div>
@@ -88,7 +97,8 @@
                                     <div class="form-group p-10">
                                         <label class="control-label">Class Level
                                         </label>
-                                        <select class="form-control" v-model="data.textbooks.teacher[index].level" size="1">
+                                        <select class="form-control" v-model="data.textbooks.teacher[index].level"
+                                                size="1">
                                             <option value="">Select Class</option>
                                             <option value="1">Pry 1</option>
                                             <option value="2">Pry 2</option>
@@ -119,156 +129,9 @@
 </template>
 
 <script>
-    import Vue from 'vue';
-    import VueFormWizard from 'vue-form-wizard'
-    import 'vue-form-wizard/dist/vue-form-wizard.min.css'
-    import vue2Dropzone from 'vue2-dropzone'
-    import 'vue2-dropzone/dist/vue2Dropzone.css'
-    import options from "src/validations/validations.js";
-
-    Vue.use(VueFormWizard, options);
     export default {
-        name: "library-info",
         data() {
-            return {
-                subjectArea: {},
-                data: {
-                    ward_id: '',
-                    textbooks: {
-                        pupil: [{subject: '', level: '', quantity: ''}],
-                        teacher: [{subject: '', level: '', quantity: ''}],
-                    },
-                }
-            }
-        },
-        components: {},
-        methods: {
-            onSubmit: function () {
-                this.$school.editSchool(this.data).then(response => {
-                    if (typeof  response == 'object'){
-                        this.$swal({
-                            type: 'success',
-                            title: 'School Record added Successfully!',
-                            confirmButtonColor: '#3085d6',
-                            confirmButtonText: 'Ok'
-                        }).then((result) => {
-                            if (result.value) {
-                                window.location.href = window.location.hostname + '/school/' + this.schoolId;
-                            }
-                        })
-                    }
-                    else {
-                        this.$swal({
-                            type: 'error',
-                            title: 'Error updating school information!',
-                            confirmButtonColor: '#3085d6',
-                            confirmButtonText: 'Ok'
-                        }).then((result) => {
-                            if (result.value) {
-                                // todo reload page
-                                location.reload();
-                            }
-                        })
-                    }
-                })
-                // alert('Yay. Done!');
-            },
-            addMore(elementGroup) {
-                switch (elementGroup) {
-                    case 'pupil':
-                        this.data.textbooks.pupil.push({subject: '', level: '', quantity: ''});
-                        break;
-                    case 'teacher':
-                        this.data.textbooks.teacher.push({subject: '', level: '', quantity: ''});
-                        break;
-                    default:
-                        break;
-                }
-            },
-            removeElement(elementGroup, index) {
-                switch (elementGroup) {
-                    case 'pupil':
-                        this.data.textbooks.pupil.splice(index, 1);
-                        break;
-                    case 'teacher':
-                        this.data.textbooks.teacher.splice(index, 1);
-                        break;
-                    default:
-                        break;
-                }
-            }
-        },
-        mounted: function () {
-            let settings = JSON.parse(localStorage.getItem('settings'));
-
-            if(settings) {
-                this.subjectArea = settings.subjects
-            }
-
-            this.$school.schoolProfile(this.$route.params.id).then(data => {
-                this.schoolId = data.id
-            })
-        },
-        destroyed: function () {
-
+            return {}
         }
     }
 </script>
-<style type="text/css" scoped>
-    #color {
-        height: 35px;
-    }
-
-    /deep/ .form-control:disabled {
-        cursor: not-allowed;
-    }
-
-    .disabled {
-        cursor: not-allowed;
-    }
-
-    .form-control:active, .input-group .form-control:hover {
-        z-index: 1;
-    }
-
-    .dropzone_wrapper {
-        width: 100%;
-    }
-
-    .align-left {
-        float: left;
-    }
-
-    .align-right {
-        float: right;
-    }
-
-    tab-content {
-        border-top: 1px solid grey;
-        border-bottom: 1px solid grey;
-    }
-
-    .even-row {
-        background-color: #fafafa;
-        border: 1px dashed #959DCC;
-        min-height: 62px;
-        padding: 8px 0;
-    }
-
-    .odd-row {
-        padding: 8px 0;
-    }
-
-    form .odd-row:first-of-type {
-        border-top: 1px dashed #959DCC;
-    }
-
-    .form-group label {
-        font-size: .7rem !important;
-        letter-spacing: .9px;
-        color: #684348 !important;
-    }
-    .bordered-bottom {
-        border-bottom: 2px #684348 solid;
-    }
-    </style>

@@ -175,13 +175,13 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr v-for="classroom in school.classrooms">
+                                            <tr v-for="classroom in classrooms">
                                                 <td>{{ classroom.class }}</td>
-                                                <td>{{ classroom.pivot.good }}</td>
-                                                <td>{{ classroom.pivot.major_repair }}</td>
-                                                <td>{{ classroom.pivot.minor_repair }}</td>
-                                                <td>{{ classroom.pivot.unusable }}</td>
-                                                <td>{{ classroom.pivot.comment }}</td>
+                                                <td>{{ classroom.good }}</td>
+                                                <td>{{ classroom.major_repair }}</td>
+                                                <td>{{ classroom.minor_repair }}</td>
+                                                <td>{{ classroom.unusable }}</td>
+                                                <td>{{ classroom.comment }}</td>
                                             </tr>
                                             </tbody>
                                         </table>
@@ -245,9 +245,9 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr v-for="facility in school.facilities">
-                                                <td>{{ facility.type}}</td>
-                                                <td>{{ facility.pivot.no_facility}}</td>
+                                            <tr v-for="facility in facilities">
+                                                <td>{{ facility.facility}}</td>
+                                                <td>{{ facility.no_facility}}</td>
                                             </tr>
                                             </tbody>
                                         </table>
@@ -397,9 +397,30 @@
                     return prev
                 }, '')
             },
+            classrooms() {
+                return this.school.classroom_list.map((obj) => {
+                    obj.class = this.data.classes.reduce((prev, next) => {
+                        if(obj.class_id === next.id) {
+                            prev = next.class
+                        }
+                        return prev;
+                    }, '');
+                    return obj;
+                });
+            },
+            facilities() {
+                return this.school.facility_list.map((obj) => {
+                    obj.facility = this.data.facility_types.reduce((prev, next) => {
+                        if(obj.facility_id === next.id) {
+                            prev = next.type
+                        }
+                        return prev;
+                    }, '');
+                    return obj;
+                });
+            }
         },
         async created() {
-            console.log(this.$store.getters.data)
             await this.$store.dispatch('school', this.$route.params.id);
         }
     }

@@ -11,14 +11,14 @@
             </div>
         </div>
 
-        <div v-for="(classroom, index) in data.classroom_list" class="classroom-wrapper-div">
+        <div v-for="(classroom, index) in school.classroom_list" class="classroom-wrapper-div">
             <div class="remove-btn-div"><a class="btn btn-outline-danger pull-right red"
                                            @click="removeClassroom(index)">X</a></div>
             <div class="row odd-row">
                 <div class="col-xs-12 col-sm-6 col-md-4">
                     <div class="form-group p-10">
                         <label class="control-label col-md-12">Class Level</label>
-                        <select class="form-control" v-model="data.classroom_list[index].class_id" size="1">
+                        <select class="form-control" v-model="school.classroom_list[index].class_id" size="1">
                             <option value="">Select Class</option>
                             <option v-for="_class in classes" :value="_class.id">{{_class.class}}</option>
                         </select>
@@ -27,28 +27,28 @@
                 <div class="col-xs-12 col-sm-6 col-md-2">
                     <div class="form-group p-10">
                         <label class="control-label">Good</label>
-                        <input type="number" v-model="data.classroom_list[index].good" min="0" class="form-control"
+                        <input type="number" v-model="school.classroom_list[index].good" min="0" class="form-control"
                                placeholder="">
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-2">
                     <div class="form-group p-10">
                         <label class="control-label">Needs Minor Repair</label>
-                        <input type="number" v-model="data.classroom_list[index].minor_repair" min="0" class="form-control"
+                        <input type="number" v-model="school.classroom_list[index].minor_repair" min="0" class="form-control"
                                placeholder="">
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-2">
                     <div class="form-group p-10">
                         <label class="control-label">Needs Major Repair</label>
-                        <input type="number" v-model="data.classroom_list[index].major_repair" min="0" class="form-control"
+                        <input type="number" v-model="school.classroom_list[index].major_repair" min="0" class="form-control"
                                placeholder="">
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-2">
                     <div class="form-group p-10">
                         <label class="control-label">Unuseable</label>
-                        <input type="number" v-model="data.classroom_list[index].unusable" min="0" class="form-control"
+                        <input type="number" v-model="school.classroom_list[index].unusable" min="0" class="form-control"
                                placeholder="">
                     </div>
                 </div>
@@ -58,7 +58,7 @@
                     <div class="form-group p-10">
                         <label class="control-label col-md-12">Comment</label>
                         <div class="col-xs-8">
-                            <textarea class="form-control" v-model="data.classroom_list[index].comment" placeholder=""
+                            <textarea class="form-control" v-model="school.classroom_list[index].comment" placeholder=""
                                       cols="30" rows="4"></textarea>
                         </div>
                     </div>
@@ -68,40 +68,34 @@
     </div>
 </template>
 <script>
+    import { mapGetters } from 'vuex'
 
     export default {
         props: {
-          data: { type: Object, required: true }  
+          // data: { type: Object, required: true }
         },
         data() {
-            return {
-                classConditions: [],
-                floorMaterials: [],
-                wallMaterials: [],
-                roofMaterials: [],
-                classes: [],
-            }
+            return {}
         },
-        components: {},
         methods: {
             addClassroom() {
-                this.data.classroom_list.push({});
+                this.school.classroom_list.push({});
             },
             removeClassroom(index) {
-                this.data.classroom_list.splice(index, 1);
+                this.school.classroom_list.splice(index, 1);
             },
         },
-        mounted: function () {
-            // populate the select boxes using the settings data from local storage
-            let settings = JSON.parse(localStorage.getItem('settings'));
-
-            if (settings) {
-                this.classes = settings.classes;
+        computed: {
+            ...mapGetters([
+               'data',
+               'school' 
+            ]),
+            classes(){
+                return this.data.classes;
             }
-
         },
-        destroyed: function () {
-
+        async created() {
+            await this.$store.dispatch('school', this.$route.params.id);
         }
     }
 </script>

@@ -64,7 +64,6 @@
         data() {
             return {}
         },
-        components: {},
         methods: {
             addMore() {
                 this.data.sbmc.push({name: '', position: '', phone_number: '', email: ''});
@@ -72,11 +71,6 @@
             removeElement(index) {
                 this.data.sbmc.splice(index, 1);
             }
-        },
-        created: function () {
-        },
-        destroyed: function () {
-
         }
     }
 </script>

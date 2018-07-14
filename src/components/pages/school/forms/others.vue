@@ -23,47 +23,36 @@
 </template>
 <script>
 
+    import {mapGetters} from 'vuex'
+
     export default {
         props: {
-            data: {type: Object, required: true}
+            // data: {type: Object, required: true}
         },
         data() {
             return {}
         },
-        methods: {},
-        created: function () {
-            let settings = JSON.parse(localStorage.getItem('settings'));
-
-            if(settings) {
-                this.facilities = settings.facility_types
-            }
-
-            console.log('created', this.data.facility_list)
-
-            this.facilities.filter(facility => {
-                if ( typeof this.data.facility_list !== 'undefined')
-                {
-                    for(var i = 0; i<this.data.facility_list.length; i++) {
-                        if(this.data.facility_list[i].facility_id === facility.id) {
-                            facility.no_facility = this.data.facility_list[i].no_facility
+        computed: {
+            ...mapGetters([
+                'data',
+                'school'
+            ]),
+            facilities() {
+                return this.data.facility_types.filter(facility => {
+                    if (typeof this.school.facility_list !== 'undefined') {
+                        for (let i = 0; i < this.school.facility_list.length; i++) {
+                            if (this.school.facility_list[i].facility_id === facility.id) {
+                                facility.no_facility = this.school.facility_list[i].no_facility
+                            }
                         }
                     }
-                }
-            });
+                    return true;
+                });
+            }
         },
 
-        mounted() {
-            console.log('updated', this.data.facility_list)
-            this.facilities.filter(facility => {
-                if ( typeof this.data.facility_list !== 'undefined')
-                {
-                    for(var i = 0; i<this.data.facility_list.length; i++) {
-                        if(this.data.facility_list[i].facility_id === facility.id) {
-                            facility.no_facility = this.data.facility_list[i].no_facility
-                        }
-                    }
-                }
-            });
+        async created() {
+            await this.$store.dispatch('school', this.$route.params.id);
         },
     }
 </script>
@@ -72,7 +61,6 @@
     /deep/ .form-control:disabled {
         cursor: not-allowed;
     }
-
 
     .form-control:active, .input-group .form-control:hover {
         z-index: 1;

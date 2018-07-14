@@ -7,7 +7,7 @@
                         <label class="control-label col-md-8">LGA <abbr title="required">*</abbr></label>
                         <div class="col-md-12">
                             <b-form-select
-                                    v-model="lga" :options="lgas"
+                                    v-model="school.ward.lga_id" :options="lga_areas"
                                     required class="mb-3"/>
                         </div>
                         <field-messages name="lga" show="$invalid && $submitted"
@@ -21,7 +21,7 @@
                 <div class="form-group p-10">
                     <label>Ward <abbr title="required">*</abbr></label>
                     <b-form-select
-                            v-model="data.lga_ward_id" :options="wards"
+                            v-model="school.lga_ward_id" :options="wards"
                             required class="mb-3">
                     </b-form-select>
                 </div>
@@ -33,7 +33,7 @@
                             <abbr title="required">*</abbr></label>
                         <div class="col-md-12">
                             <input type="text" class="form-control"
-                                   name="school_name" v-model="data.name"
+                                   name="school_name" v-model="school.name"
                                    required id="name"
                                    placeholder="School Name">
                             <field-messages name="school_name" show="$invalid && $submitted"
@@ -52,7 +52,7 @@
                     <label class="control-label">Location
                         <abbr title="required">*</abbr></label>
                     <validate tag="div">
-                        <b-form-radio-group v-model="data.location"
+                        <b-form-radio-group v-model="school.location"
                                             required
                                             :options="schoolLocationsOptions" name="location"/>
                         <field-messages name="location" show="$invalid && $submitted"
@@ -66,7 +66,7 @@
                 <div class="form-group p-10">
                     <label class="control-label col-md-12" for="year_established">Year Established
                     </label>
-                    <input type="text" class="form-control" v-model="data.established"
+                    <input type="text" class="form-control" v-model="school.established"
                            id="year_established" name="year_established"
                            required
                            placeholder="Year Established"/>
@@ -77,7 +77,7 @@
                 <div class="form-group p-10">
                     <label class="control-label" for="dist">Distance to Catchment Area
                     </label>
-                    <input type="number" min="0" v-model="data.average_distance"
+                    <input type="number" min="0" v-model="school.average_distance"
                            class="form-control" id="dist" placeholder=""/>
                 </div>
             </div>
@@ -86,7 +86,7 @@
                     <label class="control-label" for="village_town">Village/Town
                         <abbr title="required">*</abbr></label>
                     <validate tag="div" class="col-md-12">
-                        <input type="text" v-model="data.town" class="form-control"
+                        <input type="text" v-model="school.town" class="form-control"
                                id="village_town" name="village_town" required placeholder="">
                         <field-messages name="village_town" show="$invalid && $submitted"
                                         class="text-danger">
@@ -103,7 +103,7 @@
                     <label class="control-label col-md-8" for="email">Email
                     </label>
                     <div class="col-md-12">
-                        <input type="email" v-model="data.email"
+                        <input type="email" v-model="school.email"
                                class="form-control" id="email" placeholder="Email"/>
                     </div>
                 </div>
@@ -113,7 +113,7 @@
                     <label class="control-label col-md-12" for="phone">Phone Nunber
                         <abbr title="required">*</abbr></label>
                     <validate tag="div" class="col-md-12">
-                        <input type="text" v-model="data.phone" class="form-control"
+                        <input type="text" v-model="school.phone" class="form-control"
                                id="phone" name="phone" required placeholder="Enter Phone Number"/>
 
                         <field-messages name="phone" show="$invalid && $submitted"
@@ -131,7 +131,7 @@
                     <label class="control-label">Website
                     </label>
                     <div class="col-md-12">
-                        <input type="url" v-model="data.website" class="form-control"
+                        <input type="url" v-model="school.website" class="form-control"
                                name="website" value="http://www.example.com/" id="url">
                     </div>
                 </div>
@@ -140,7 +140,7 @@
                 <div class="form-group p-10">
                     <label class="control-label">Map Coordinate (Lat, Long)
                     </label>
-                    <input type="text" v-model="data.geolocation"
+                    <input type="text" v-model="school.geolocation"
                            class="form-control" id="long" placeholder="e.g. 9.182 / -39.140625">
 
                 </div>
@@ -151,7 +151,7 @@
                     <label class="control-label col-md-12">School Category
                         <abbr title="required">*</abbr></label>
                     <validate tag="div" class="col-md-12">
-                        <b-form-radio-group v-model="data.category"
+                        <b-form-radio-group v-model="school.category"
                                             name="category" required
                                             :options="schoolCategoryOptions"/>
                         <field-messages name="category" show="$invalid && $submitted"
@@ -169,7 +169,7 @@
                     <label class="control-label col-md-12" for="name_of_proprietor">Propritor Name
                     </label>
                     <div class="col-md-12">
-                        <input type="text" v-model="data.name_of_proprietor"
+                        <input type="text" v-model="school.name_of_proprietor"
                                class="form-control" id="name_of_proprietor"
                                placeholder="Propritor Name">
                     </div>
@@ -180,7 +180,7 @@
                     <label class="control-label" for="private_membership_name">Private Membership's
                         Name
                     </label>
-                    <input type="text" v-model="data.private_membership_name"
+                    <input type="text" v-model="school.private_membership_name"
                            class="form-control" id="private_membership_name"
                            placeholder="Memebership's Name">
                 </div>
@@ -193,10 +193,10 @@
                         <abbr title="required">*</abbr></label>
                     <validate tag="div" class="col-md-12">
                         <b-form-radio-group
-                                v-model="data.type"
+                                v-model="school.type"
                                 required
                                 name="school_type"
-                                :options="schoolTypesOptions" stacked/>
+                                :options="school_type" stacked/>
                         <field-messages name="school_type" show="$invalid && $submitted"
                                         class="text-danger">
                             <div slot="required">This is a required field</div>
@@ -211,10 +211,10 @@
                         <abbr title="required">*</abbr></label>
                     <validate tag="div" class="">
                         <b-form-radio-group
-                                v-model="data.ownership"
+                                v-model="school.ownership"
                                 required
                                 name="ownership"
-                                :options="schoolOwnershipOptions" stacked/>
+                                :options="ownership" stacked/>
                         <field-messages name="ownership" show="$invalid && $submitted"
                                         class="text-danger">
                             <div slot="required">This is a required field</div>
@@ -230,7 +230,7 @@
                         <abbr title="required">*</abbr></label>
                     <validate tag="div" class="col-md-12">
                         <b-form-radio-group
-                                v-model="data.education_level"
+                                v-model="school.education_level"
                                 name="education_level"
                                 required
                                 :options="educationLevelOptions"/>
@@ -247,7 +247,7 @@
                         <abbr title="required">*</abbr></label>
                     <validate tag="div" class="">
                         <b-form-radio-group
-                                v-model="data.multigrade"
+                                v-model="school.multigrade"
                                 name="multigrade"
                                 required
                                 :options="yesNoOptions"/>
@@ -264,7 +264,7 @@
                         <abbr title="required">*</abbr></label>
                     <validate tag="div" class="">
                         <b-form-radio-group
-                                v-model="data.shift"
+                                v-model="school.shift"
                                 name="shift"
                                 required
                                 :options="yesNoOptions"/>
@@ -284,7 +284,7 @@
                     </label>
                     <div class="col-md-12">
                         <b-form-radio-group
-                                v-model="data.management_committee"
+                                v-model="school.management_committee"
                                 name="management_committee"
                                 :options="yesNoOptions"/>
                     </div>
@@ -296,7 +296,7 @@
                         <abbr title="required">*</abbr></label>
                     <validate tag="div" class="">
                         <b-form-radio-group
-                                v-model="data.pta_pf"
+                                v-model="school.pta_pf"
                                 name="pta_pf"
                                 required
                                 :options="yesNoOptions"/>
@@ -312,7 +312,7 @@
                     <label class="control-label">School Development Plan
                     </label>
                     <div class="">
-                        <b-form-radio-group v-model="data.development_plan" :options="yesNoOptions"
+                        <b-form-radio-group v-model="school.development_plan" :options="yesNoOptions"
                                             name="development_plan"/>
                     </div>
                 </div>
@@ -323,7 +323,7 @@
                         <abbr title="required">*</abbr></label>
                     <validate tag="div" class="">
                         <b-form-radio-group
-                                v-model="data.grants"
+                                v-model="school.grants"
                                 name="grants"
                                 required
                                 :options="yesNoOptions"/>
@@ -340,7 +340,7 @@
                 <div class="form-group p-10">
                     <label class="control-label col-md-4" for="address">Address <abbr title="required">*</abbr></label>
                     <validate tag="div" class="col-md-8">
-                        <textarea rows="4" v-model="data.address"
+                        <textarea rows="4" v-model="school.address"
                                   class="form-control resize_vertical" id="address"
                                   name="address"
                                   required
@@ -357,91 +357,65 @@
 </template>
 <script>
 
+    import Vue from 'vue';
+    import options from "src/validations/validations.js";
+
+    Vue.use(options);
+
+    import {mapGetters} from 'vuex';
+
     export default {
         props: {
-            data: {type: Object, required: true}
+            // data: {type: Object, required: true}
         },
-        components: {
-        },
+        components: {},
         data() {
             return {
                 lgas: [{value: null, text: 'Please select an option'}],
-                wards: [{value: null, text: 'Please select an option'}],
                 lgasInfo: [],
                 wardKeys: {}, // capture the ward id and ward name of the selected LGA
                 schoolLocationsOptions: [{text: 'Rural', value: 'rural'}, {text: 'Urban', value: 'urban'}],
                 educationLevelOptions: [{text: 'Primary', value: 'Primary'}, {text: 'Secondary', value: 'Secondary'}],
                 schoolCategoryOptions: [{text: 'Public', value: 'Public'}, {text: 'Private', value: 'Private'}],
-                schoolTypesOptions: [],
-                schoolOwnershipOptions: [],
-                lga: null,
                 yesNoOptions: [{text: 'Yes', value: '1'}, {text: 'No', value: '0'}],
                 settings: {},
+                lga: null,
                 selectedSharedFacilities: [],
             }
         },
-        methods: {
-          changedLga() {
-              this.wards = [{value: null, text: 'Please select an option'}];
-              // this.data.lga_ward_id = null;
-              this.settings.lga_wards.filter(item => {
-                  if (item.lga_id === this.lga)
-                      this.wards.push({value: item.id, text: item.name});
-              });
-          }
-        },
-        watch: {
-            lga() {
-                this.changedLga();
+        computed: {
+            ...mapGetters([
+                'data',
+                'school'
+            ]),
+            lga_areas() {
+                return [{value: null, text: 'Please select an option'}]
+                    .concat(this.data.lga_areas.map(item => {
+                        return {value: item.id, text: item.name};
+                    }));
             },
-        },
-        mounted() {
-            if (typeof this.data.lga_ward_id !== 'undefined') {
-                var vm = this;
-                this.settings.lga_wards.filter(item => {
-                    if (item.id === this.data.lga_ward_id) {
-                        vm.data.lga_ward_id = item.id;
-                        this.lga = item.lga_id;
-                    }
-                });
+            ownership() {
+                return [{value: null, text: 'Please select an option'}]
+                    .concat(this.data.school_ownerships.map(item => ({value: item.id, text: item.owner})));
+            },
+            school_type() {
+                return [{value: null, text: 'Please select an option'}]
+                    .concat(this.data.school_types.map(item => ({value: item.id, text: item.name})));
+            },
+            wards() {
+                //[{value: null, text: 'Please select an option'}]
+                return [{value: null, text: 'Please select an option'}]
+                    .concat(this.data.lga_wards.reduce((prev, next, index) => {
+                        if (this.school.ward.lga_id === next.lga_id) {
+                            prev.push({value: next.id, text: next.name});
+                        }
+                        return prev
+                    }, []));
             }
         },
-        created() {
-            this.settings = JSON.parse(localStorage.getItem('settings'));
-            if (this.settings) {
-                // populate LGA
-                // this.lgas.push({ value: null, text: 'Please select an option' });
-                this.settings.lga_areas.forEach(item => {
-                    this.lgas.push({value: item.id, text: item.name});
-                })
-
-                this.settings.school_ownerships.forEach(item => {
-                    this.schoolOwnershipOptions.push({
-                        text: item.owner,
-                        value: item.id
-                    });
-                })
-
-                this.settings.school_types.forEach(type => {
-                    this.schoolTypesOptions.push({
-                        text: type.name,
-                        value: type.id
-                    });
-                })
-            }
-
+        async created() {
+            await this.$store.dispatch('school', this.$route.params.id);
         },
-        updated() {
-            if (typeof this.data.lga_ward_id !== 'undefined') {
-                var vm = this;
-                this.settings.lga_wards.filter(item => {
-                    if (item.id === this.data.lga_ward_id) {
-                        vm.data.lga_ward_id = item.id;
-                        this.lga = item.lga_id;
-                    }
-                });
-            }
-        }
     }
 </script>
 <style>
