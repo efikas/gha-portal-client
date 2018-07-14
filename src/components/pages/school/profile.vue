@@ -124,23 +124,27 @@
                                             <tbody>
                                             <tr>
                                                 <td>Power Source</td>
-                                                <td>{{ power_sources.join(', ') }}</td>
+                                                <td>{{ power_sources }}</td>
                                             </tr>
                                             <tr>
                                                 <td>Health Facilities</td>
-                                                <td>{{ health }}</td>
+                                                <td>{{ healths }}</td>
                                             </tr>
                                             <tr>
                                                 <td>Learning Materials</td>
-                                                <td>{{ learning }}</td>
+                                                <td>{{ learnings }}</td>
                                             </tr>
                                             <tr>
                                                 <td>Water Source</td>
-                                                <td>{{ water }}</td>
+                                                <td>{{ waters }}</td>
                                             </tr>
                                             <tr>
-                                                <td>Fence</td>
-                                                <td>-</td>
+                                                <td>Toilets</td>
+                                                <td>{{ toilets }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Play facilities</td>
+                                                <td>{{ play_facilities }}</td>
                                             </tr>
                                             </tbody>
                                         </table>
@@ -314,12 +318,7 @@
                 totalStudent: 0,
                 totalTeachingStaff: 0,
                 totalNonTeachingStaff: 0,
-                play_facilities: '',
-                learning: '',
                 schoolId: 421,
-                health: '',
-                water: '',
-                toilet: '',
 
                 center: {
                     lat: 7.6401306,
@@ -354,10 +353,51 @@
                         prev.push(next.power_sources)
                     }
                     return prev
-                }, [])
+                }, []).join(', ')
             },
+            waters() {
+                return this.data.water.reduce((prev, next, index) => {
+                    if(this.school.water_ids.indexOf(next.id) === 0) {
+                        prev.push(next.source)
+                    }
+                    return prev
+                }, []).join(', ')
+            },
+            healths() {
+                return this.data.healths.reduce((prev, next, index) => {
+                    if(this.school.health_ids.indexOf(next.id) === 0) {
+                        prev.push(next.facility)
+                    }
+                    return prev
+                }, []).join(', ')
+            },
+            toilets() {
+                return this.data.toilet_types.reduce((prev, next, index) => {
+                    if(this.school.toilet_ids.indexOf(next.id) === 0) {
+                        prev.push(next.type)
+                    }
+                    return prev
+                }, []).join(', ')
+            },
+            play_facilities() {
+                return this.data.play_facilities.reduce((prev, next, index) => {
+                    if(this.school.play_facility_id === next.id) {
+                        prev.push(next.type)
+                    }
+                    return prev
+                }, []).join(', ')
+            },
+            learnings() {
+                return this.data.healths.reduce((prev, next, index) => {
+                    if(this.school.learning_ids.indexOf(next.id) === 0) {
+                        prev.push(next.material)
+                    }
+                    return prev
+                }, []).join(', ')
+            }
         },
         async created() {
+            console.log(this.$store.getters.data)
             await this.$store.dispatch('school', this.$route.params.id);
             // data.play_facilities.forEach(item => {
             //     this.play_facilities += item.play_facilities + ', '
