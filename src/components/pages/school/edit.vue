@@ -2,7 +2,7 @@
     <div>
         <b-card header="School Basic Information" header-tag="h4" class="bg-header-card">
             <vue-form :state="formstate" method="" class="form-horizontal" @submit.prevent="onSubmit">
-                <basic-form :data="data"></basic-form>
+                <component :is="currentView" :data="data"></component>
                 <button type="submit" class="btn btn-primary btn-lg btn-school pull-right">Submit</button>
             </vue-form>
         </b-card>
@@ -10,64 +10,67 @@
 </template>
 
 <script>
-    import Vue from 'vue';
-    import BasicForm from './forms/basic.vue';
-    import classroom from './subcomponents/classroom';
-    import facilities from './forms/facilities';
-    import library from './subcomponents/library';
-    import sbmc from './subcomponents/sbmc';
-    import project from './subcomponents/project';
-    import other_facilities from './subcomponents/other_facilities';
+    // import Vue from 'vue';
+    // import options from "src/validations/validations.js";
+    // Vue.use(options);
 
-    import options from "src/validations/validations.js";
-    Vue.use(options);
+    import BasicForm from './forms/basic';
+    import classroom from './forms/classroom';
+    import facilities from './forms/facilities';
+    import library from './forms/library';
+    import sbmc from './forms/sbmc';
+    import project from './forms/project';
+    import others from './forms/others';
 
     export default {
         name: "staff-layout",
         components: {
-            'basicForm': BasicForm,
+            'basic': BasicForm,
             'classroom': classroom,
             'facilities': facilities,
-            'other_facilities': other_facilities,
+            'other': others,
             'library': library,
             'sbmc': sbmc,
             'project': project,
         },
         data(){
             return {
-                currentView: '',
                 formstate: {},
+                currentView: '',
+                data:{}
             }
         },
-        mounted() {
-            // ]'$route.params.component']: function () {
-            //     console.log(this.$route.params.component);
-                switch (this.$route.params.component) {
-                    case 'basic':
-                        this.currentView = 'basic';
-                        break;
-                    case 'classroom':
-                        this.currentView = 'classroom';
-                        break;
-                    case 'facilities':
-                        this.currentView = 'facilities';
-                        break;
-                    case 'other_facilities':
-                        this.currentView = 'other_facilities';
-                        break;
-                    case 'library':
-                        this.currentView = 'library';
-                        break;
-                    case 'sbmc':
-                        this.currentView = 'sbmc';
-                        break;
-                    case 'project':
-                        this.currentView = 'project';
-                        break;
-                    default:
-                        break;
-                }
-            // }
+        created: async function() {
+
+            await this.$school.schoolProfile(this.$route.params.id).then(data => {
+                this.data = data;
+            });
+
+            switch (this.$route.params.component) {
+                case 'basic':
+                    this.currentView = 'basic';
+                    break;
+                case 'classroom':
+                    this.currentView = 'classroom';
+                    break;
+                case 'facilities':
+                    this.currentView = 'facilities';
+                    break;
+                case 'others':
+                    this.currentView = 'other';
+                    break;
+                case 'library':
+                    this.currentView = 'library';
+                    break;
+                case 'sbmc':
+                    this.currentView = 'sbmc';
+                    break;
+                case 'project':
+                    this.currentView = 'project';
+                    break;
+                default:
+                    break;
+            }
         }
     }
 </script>
