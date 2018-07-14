@@ -1,5 +1,10 @@
 <template>
     <div>
+        <div class="row">
+            <div class="col-md-12">
+                <SchoolCard :iData="schoolInfo"></SchoolCard>
+            </div>
+        </div>
         <b-card v-if="school" class="bg-default-card text-right">
             <a href="#">Exam</a> |
             <a href="#">Attendance</a>
@@ -297,6 +302,7 @@
     import store from 'src/store/store.js'
     import {mapGetters} from 'vuex'
     import {SweetModal, SweetModalTab} from 'sweet-modal-vue'
+    import SchoolCard from "../../widgets/sbemis/SchoolCard1";
     // import VueCollapse from 'vue2-collapse'
 
     // Loading the plugin into the Vue.
@@ -310,6 +316,7 @@
     });
     export default {
         components: {
+            SchoolCard,
             SweetModal
         },
         data() {

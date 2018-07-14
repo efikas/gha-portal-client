@@ -47,11 +47,9 @@ const actions = {
     },
     school: ({commit}, id) => {
         return axios.get(`/school/${id}`).then(response => {
-            // console.log(response.data);
             commit('SET_SCHOOL', response.data)
             return Promise.resolve(response.data)
         }).catch((error) => {
-            console.log(error.response)
             return Promise.reject(error.response)
         })
     },
@@ -60,7 +58,6 @@ const actions = {
             commit('SET_LGA_SCH_STAT', response.data);
             return Promise.resolve(response.data)
         }).catch((error) => {
-            console.log(error.response)
             return Promise.reject(error.response)
         })
     },
@@ -70,7 +67,6 @@ const actions = {
             commit('SET_LGA_SCHOOLS', response.data);
             return Promise.resolve(response.data)
         }).catch((error) => {
-            console.log(error.response);
             return Promise.reject(error.response)
         })
     }

@@ -1,34 +1,35 @@
 <template>
     <b-card>
-        <div class="row" :if="iData.length > 0">
+        <div class="row">
             <div class="col-6">
                 <gmap-map :center="center" :zoom="16" class="gmap" ref="gmap1">
-                    <gmap-marker v-for="m in markers" :key="m.position.lat" :position="m.position" :clickable="true" :draggable="true" @click="center=m.position"></gmap-marker>
+                    <gmap-marker v-for="m in markers" :key="m.position.lat" :position="m.position" :clickable="true"
+                                 :draggable="true" @click="center=m.position"></gmap-marker>
                 </gmap-map>
             </div>
             <div class="col-6">
                 <div style="display: flex; flex: fit-content; flex-direction: column; justify-content: space-between">
                     <div class="row mb-4" style="justify-content: flex-start; flex: 1">
-                        <h4 class="default-color">{{ this.schoolName }}</h4>
-                        <h5>{{ this.schoolAddress }}</h5>
+                        <h4 class="default-color">{{ school.name }}</h4>
+                        <h5>{{ school.address }}</h5>
                     </div>
 
                     <div class="row" style="flex: 1; flex-direction: row; display: flex; justify-content: space-around">
                         <div class="text-center">
-                            <h6><a :href="`/school/${this.schoolId}/staff`">All Staff</a></h6>
-                            <h1>{{ this.totalTeachingStaff + this.totalNonTeachingStaff }}</h1>
+                            <h6><a :href="`/school/${school.id}/staff`">All Staff</a></h6>
+                            <h1>{{ school.staffs.teaching + school.staffs.none_teaching }}</h1>
                         </div>
                         <div class="text-center">
-                            <h6><a :href="`/school/${this.schoolId}/teaching`">Teaching Staff</a></h6>
-                            <h1>{{ this.totalTeachingStaff }}</h1>
-                        </div>
-                        <div class="text-center" >
-                            <h6> <a :href="`/school/${this.schoolId}/non-teaching`">Non-Teaching Staff</a></h6>
-                            <h1>{{ this.totalNonTeachingStaff }}</h1>
+                            <h6><a :href="`/school/${school.id}/staff?teaching=1`">Teaching Staff</a></h6>
+                            <h1>{{ school.staffs.teaching }}</h1>
                         </div>
                         <div class="text-center">
-                            <h6><a :href="`/school/${this.schoolId}/students`">Students</a></h6>
-                            <h1>{{ this.totalStudent }}</h1>
+                            <h6><a :href="`/school/${school.id}/staff?teaching=0`">Non-Teaching Staff</a></h6>
+                            <h1>{{ school.staffs.none_teaching }}</h1>
+                        </div>
+                        <div class="text-center">
+                            <h6><a :href="`/school/${school.id}/students`">Students</a></h6>
+                            <h1>{{ school.students }}</h1>
                         </div>
 
                     </div>
@@ -44,7 +45,9 @@
 <script>
     import Vue from 'vue';
     import * as VueGoogleMaps from 'vue2-google-maps'
-    import store from 'src/store/store.js'
+    import {mapGetters} from 'vuex'
+    import store from '../../../store/store'
+
     Vue.use(VueGoogleMaps, {
         load: {
             key: store.state.gmap_key
@@ -53,15 +56,8 @@
         }
     })
     export default {
-        name: "SchoolCard",
-        props: ['iData'],
         data() {
             return {
-                schoolName: '',
-                schoolAddress: '',
-                totalStudent: 0,
-                totalTeachingStaff: 0,
-                totalNonTeachingStaff: 0,
                 schoolId: '',
                 center: {
                     lat: 7.6401306,
@@ -73,18 +69,11 @@
                         lng: 5.2033970
                     }
                 }]
-                }
-        },
-        watch: {
-            iData(data){
-                this.totalNonTeachingStaff = data.staffs.none_teaching;
-                this.totalTeachingStaff = data.staffs.teaching;
-                this.totalStudent = data.students;
-                this.schoolName = data.name;
-                this.schoolAddress = data.address;
-                this.schoolId = data.id;
             }
-        }
+        },
+        computed: mapGetters([
+            'school'
+        ]),
     }
 </script>
 

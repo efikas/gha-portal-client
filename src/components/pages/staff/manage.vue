@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <div class="col-lg-12 mb-3">
-            <school-table :table-data="schools"
+            <school-table :schools="schools"
                           :header="'List of Schools'"
                           :route-to="'staff-list'"></school-table>
         </div>
