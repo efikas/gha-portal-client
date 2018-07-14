@@ -22,7 +22,7 @@
                         <b-tab title="BASIC">
                             <div>
                                 <p>
-                                    <a :href="`${schoolId}/update/basic`" type="button"
+                                    <a :href="`${school.id}/update/basic`" type="button"
                                        class="btn btn-outline-primary ekiti-btn pull-right">Edit</a>
                                 </p>
                                 <br/><br/>
@@ -53,7 +53,7 @@
                                     </tr>
                                     <tr>
                                         <td>Type</td>
-                                        <td>{{ yesNo(school.type) }}</td>
+                                        <td>{{ school_type }}</td>
                                         <td>Location</td>
                                         <td>{{ school.location }}</td>
                                     </tr>
@@ -112,7 +112,7 @@
                         <b-tab title="FACILITIES">
                             <div>
                                 <p>
-                                    <a :href="`${schoolId}/update/facilities`" type="button"
+                                    <a :href="`${school.id}/update/facilities`" type="button"
                                        class="btn btn-outline-primary ekiti-btn pull-right">Edit</a>
                                 </p>
                                 <br>
@@ -132,7 +132,7 @@
                                             </tr>
                                             <tr>
                                                 <td>Learning Materials</td>
-                                                <td>{{ learnings }}</td>
+                                                <td>{{ learning }}</td>
                                             </tr>
                                             <tr>
                                                 <td>Water Source</td>
@@ -155,7 +155,7 @@
                         <b-tab title="CLASSROOM">
                             <div>
                                 <p>
-                                    <a :href="`${schoolId}/update/classroom`" type="button"
+                                    <a :href="`${school.id}/update/classroom`" type="button"
                                        class="btn btn-outline-primary ekiti-btn pull-right">Edit</a>
                                 </p><br/><br/>
                             </div>
@@ -192,7 +192,7 @@
                         </b-tab>
                         <b-tab title="LIBRARY">
                             <p>
-                                <a :href="`${schoolId}/update/library`" type="button"
+                                <a :href="`${school.id}/update/library`" type="button"
                                    class="btn btn-outline-primary ekiti-btn pull-right">Edit</a>
                             </p>
 
@@ -200,7 +200,7 @@
                         <b-tab title="SBMC">
                             <div>
                                 <p>
-                                    <a :href="`${schoolId}/update/sbmc`" type="button"
+                                    <a :href="`${school.id}/update/sbmc`" type="button"
                                        class="btn btn-outline-primary ekiti-btn pull-right">Edit</a>
                                 </p>
                                 <div class="table-responsive">
@@ -229,7 +229,7 @@
                         <b-tab title="OTHERS">
                             <div>
                                 <p>
-                                    <a :href="`${schoolId}/update/others`" type="button"
+                                    <a :href="`${school.id}/update/others`" type="button"
                                        class="btn btn-outline-primary ekiti-btn pull-right">Edit</a>
                                 </p><br/><br/>
                             </div>
@@ -255,7 +255,7 @@
                                     <div class="mb-2">
                                         <p>
                                             <span class="pull-left"><h4>Projects</h4></span>
-                                            <a :href="`${schoolId}/update/project`" type="button"
+                                            <a :href="`${school.id}/update/project`" type="button"
                                                class="btn btn-outline-primary ekiti-btn pull-right">Edit</a>
                                         </p>
                                         <div class="table-responsive">
@@ -310,16 +310,10 @@
     });
     export default {
         components: {
-            SweetModal,
-            SweetModalTab
+            SweetModal
         },
         data() {
             return {
-                totalStudent: 0,
-                totalTeachingStaff: 0,
-                totalNonTeachingStaff: 0,
-                schoolId: 421,
-
                 center: {
                     lat: 7.6401306,
                     lng: 5.2033970
@@ -387,41 +381,27 @@
                     return prev
                 }, []).join(', ')
             },
-            learnings() {
+            learning() {
                 return this.data.healths.reduce((prev, next, index) => {
                     if(this.school.learning_ids.indexOf(next.id) === 0) {
                         prev.push(next.material)
                     }
                     return prev
                 }, []).join(', ')
-            }
+            },
+            school_type() {
+                return this.data.school_types.reduce((prev, next, index) => {
+                    if(this.school.type === next.id) {
+                        prev = next.name
+                    }
+                    return prev
+                }, '')
+            },
         },
         async created() {
             console.log(this.$store.getters.data)
             await this.$store.dispatch('school', this.$route.params.id);
-            // data.play_facilities.forEach(item => {
-            //     this.play_facilities += item.play_facilities + ', '
-            // });
-            // data.learning.forEach(item => {
-            //     this.learning += item.material + ', '
-            // });
-            // data.play_facilities.forEach(item => {
-            //     this.play_facilities += item.play_facilities + ', '
-            // });
-            // data.health.forEach(item => {
-            //     this.health += item.facility + ', '
-            // });
-            // data.water.forEach(item => {
-            //     this.water += item.source + ', '
-            // });
-            // data.toilet.forEach(item => {
-            //     this.toilet += item.toilet + ', '
-            // })
-        },
-        beforeRouteLeave(to, from, next) {
-            // unsub();
-            next();
-        },
+        }
     }
 </script>
 <style src="hover.css/css/hover.css"></style>
