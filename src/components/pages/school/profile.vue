@@ -2,7 +2,7 @@
     <div>
         <div class="row">
             <div class="col-md-12">
-                <SchoolCard :iData="schoolInfo"></SchoolCard>
+                <SchoolCard></SchoolCard>
             </div>
         </div>
         <b-card v-if="school" class="bg-default-card text-right">

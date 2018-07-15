@@ -159,7 +159,7 @@
 </template>
 <script>
 import vScroll from "components/plugins/scroll/vScroll.vue";
-import SchoolCard from "../../widgets/sbemis/SchoolCard";
+import SchoolCard from "../../widgets/sbemis/SchoolCard1";
 
 export default {
   name: "user_profile",

@@ -140,7 +140,7 @@ cd<template>
 import Vue from 'vue'
 import vScroll from "components/plugins/scroll/vScroll.vue"
 import VModal from 'vue-js-modal'
-import SchoolCard from "../../widgets/sbemis/SchoolCard";
+import SchoolCard from "../../widgets/sbemis/SchoolCard1";
 import {apiURL} from '../../../packages/resources'
 
 Vue.use(VModal)

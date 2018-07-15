@@ -3,8 +3,8 @@
         <div class="col-lg-12 mb-3">
             <SchoolCard :iData="schoolInfo" />
 
-            <b-card header="List of Staffs" header-tag="h4" class="bg-header-card">
-                <div style="margin: 2%" v-if="staffs.length < 1">
+            <b-card header="List of Students" header-tag="h4" class="bg-header-card">
+                <div style="margin: 2%" v-if="students.length < 1">
                     <skeleton-loading>
                         <row :gutter="{top: '20px'}">
                             <square-skeleton 
@@ -19,11 +19,11 @@
                         </row>
                     </skeleton-loading>
                 </div>
-                <a type="button" class="fa fa-download icon-big btn btn-outline-primary ekiti-btn pull-right" v-if="staffs.length > 0" @click="exportExcel"></a>
-                <v-client-table :data="staffs" :columns="columns" v-if="staffs.length > 0">
+                <a type="button" class="fa fa-download icon-big btn btn-outline-primary ekiti-btn pull-right" v-if="students.length > 0" @click="exportExcel"></a>
+                <v-client-table :data="students" :columns="columns" :options="options" v-if="students.length > 0">
                      <span slot="id" slot-scope="props">{{ props.index }}</span>
-                     <a class="list-font" slot="Name" slot-scope="props" :href="'/staff/'+ props.row.id" v-html="props.row.first_name + ' ' + props.row.last_name + ' ' + props.row.middle_name"></a>
-                     <a slot="view" slot-scope="props" class="fa fa-eye btn btn-outline-primary ekiti-btn" :href="'/staff/'+ props.row.id"></a>
+                     <a class="list-font" slot="Name" slot-scope="props" :href="'/student/'+ props.row.id" v-html="props.row.first_name + ' ' + props.row.last_name + ' ' + props.row.middle_name"></a>
+                     <a slot="view" slot-scope="props" class="fa fa-eye btn btn-outline-primary ekiti-btn" :href="'/student/'+ props.row.id"></a>
                 </v-client-table>
             </b-card>
         </div>
@@ -36,21 +36,22 @@ import {
     Event
 } from 'vue-tables-2';
 import datatable from "components/plugins/DataTable/DataTable.vue";
-import VueSkeletonLoading from 'vue-skeleton-loading';
 import SchoolCard from "../../widgets/sbemis/SchoolCard1";
+import VueSkeletonLoading from 'vue-skeleton-loading';
 
 Vue.use(VueSkeletonLoading);
 Vue.use(ClientTable, {}, false);
 export default {
-    name: "staff_list",
+    name: "student_list",
     components: {
+        datatable,
         SchoolCard,
     },
     data() {
         return {
             schoolInfo: {},
             columns: ['id', 'Name', 'view'],
-            staffs: [],
+            students: [],
             options: {
                 sortIcon: {
                     base: 'fa',
@@ -58,8 +59,8 @@ export default {
                     down: 'fa fa-angle-down'
                 },
                 // see the options API
-                skin: "table-hover table-striped table-bordered",
-                perPage: 30,
+                // skin: "table-hover table-striped table-bordered",
+                perPage: 50,
                 // footerHeadings: true,
                 highlightMatches: true,
                 pagination: {
@@ -76,9 +77,10 @@ export default {
             this.schoolInfo = data;
         })
 
-       this.$staff.schoolStaff(this.$route.params.id).then(data => {
-            this.staffs = data.data;
-        })
+        //Get students in the school
+       this.$student.schoolStudents(this.$route.params.id).then(data => {
+            this.students = data.data;
+        });
     },
 
     methods: {
@@ -93,14 +95,14 @@ export default {
 
             var dummy = document.createElement('a');
             dummy.href = mimeType + ', ' + html;
-            dummy.download = 'staffs-' + this.schoolInfo.name.toLowerCase().replace(/ /g, '-') + '-' + d.getFullYear() + '-' + (d.getMonth() +
+            dummy.download = 'students-' + this.schoolInfo.name.toLowerCase().replace(/ /g, '-') + '-' + d.getFullYear() + '-' + (d.getMonth() +
                 1) + '-' + d.getDate() + '-' + d.getHours() + '-' + d.getMinutes() + '-' + d.getSeconds() +
                 '.xls';
             dummy.click();
         },
 
         renderTable() {
-            console.log(this.staffs)
+            console.log(this.students)
             var table = '<table><thead>' +
                 '<tr>' +
                 '<th>ID</th>' +
@@ -108,18 +110,18 @@ export default {
                 '<th>MIDDLE NAME</th>' +
                 '<th>FIRST NAME</th>' +
                 '<th>SEX</th>' +
-                '<th>PHONE</th>' +
+                '<th>CLASS</th>' +
                 '</tr></thead>';
             table += '<tbody>';
 
-            for (var i = 0; i < this.staffs.length; i++) {
+            for (var i = 0; i < this.students.length; i++) {
                 table += '<tr>';
-                table += `<td>${this.checkNull(this.staffs[i].id)}</td>`;
-                table += `<td>${this.checkNull(this.staffs[i].last_name)}</td>`;
-                table += `<td>${this.checkNull(this.staffs[i].middle_name)}</td>`;
-                table += `<td>${this.checkNull(this.staffs[i].first_name)}</td>`;
-                table += `<td>${this.checkNull(this.staffs[i].sex)}</td>`;
-                table += `<td>${this.checkNull(this.staffs[i].phone)}</td>`;
+                table += `<td>${this.checkNull(this.students[i].id)}</td>`;
+                table += `<td>${this.checkNull(this.students[i].last_name)}</td>`;
+                table += `<td>${this.checkNull(this.students[i].middle_name)}</td>`;
+                table += `<td>${this.checkNull(this.students[i].first_name)}</td>`;
+                table += `<td>${this.checkNull(this.students[i].sex)}</td>`;
+                table += `<td>${this.checkNull( this.students[i].current_class != null ? this.students[i].current_class.class : '' )}</td>`;
                 table += '</tr>';
             }
             table += '</tbody></table>';
@@ -129,6 +131,7 @@ export default {
 }
 </script>
 <style scoped>
+
     .icon-big {
      font-size: 20px;
     }

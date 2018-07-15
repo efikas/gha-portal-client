@@ -7,6 +7,7 @@ import getters from  './getters'
 
 import school from './modules/school';
 import student from './modules/student';
+import staff from  './modules/staff'
 
 
 Vue.use(Vuex)
@@ -44,7 +45,8 @@ const store = new Vuex.Store({
 
     modules: {
         school,
-        student
+        student,
+        staff
     }
 });
 //=======vuex store end===========

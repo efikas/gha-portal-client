@@ -8,31 +8,16 @@ const state = {
 };
 
 const getters = {
-    schools: (state) => {
-        return state.schools
-    },
-    school: (state) => {
-        return state.school
-    },
-    school_stats: (state) => {
-        return state.school_stat
-    }
+    schools: state => state.schools,
+    school: state => state.school,
+    school_stats: state => state.school_stat,
 };
 
 const mutations = {
-    'SET_SCHOOLS'(state, schools) {
-        state.schools = schools
-    },
-    'SET_SCHOOL'(state, school) {
-        state.school = school
-    },
-    'SET_LGA_SCH_STAT'(state, schStat) {
-        state.school_stat = schStat
-    },
-
-    'SET_LGA_SCHOOLS'(state, schools) {
-        state.schools = schools
-    }
+    'SET_SCHOOLS': (state, schools) => state.schools = schools,
+    'SET_SCHOOL': (state, school) => state.school = school,
+    'SET_LGA_SCH_STAT': (state, schStat) => state.school_stat = schStat,
+    'SET_LGA_SCHOOLS': (state, schools) => state.schools = schools,
 };
 
 const actions = {

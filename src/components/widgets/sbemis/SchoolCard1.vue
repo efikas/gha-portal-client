@@ -1,5 +1,5 @@
 <template>
-    <b-card>
+    <b-card v-if="Object.keys(school).length">
         <div class="row">
             <div class="col-6">
                 <gmap-map :center="center" :zoom="16" class="gmap" ref="gmap1">
@@ -16,15 +16,15 @@
 
                     <div class="row" style="flex: 1; flex-direction: row; display: flex; justify-content: space-around">
                         <div class="text-center">
-                            <h6><a :href="`/school/${school.id}/staff`">All Staff</a></h6>
+                            <h6><router-link :to="{name:'school-staffs', params: {id: school.id}}">All Staff</router-link></h6>
                             <h1>{{ school.staffs.teaching + school.staffs.none_teaching }}</h1>
                         </div>
                         <div class="text-center">
-                            <h6><a :href="`/school/${school.id}/staff?teaching=1`">Teaching Staff</a></h6>
+                            <h6><router-link :to="{name:'school-staffs', params: {id: school.id}, query:{t:1}}">Teaching Staff</router-link></h6>
                             <h1>{{ school.staffs.teaching }}</h1>
                         </div>
                         <div class="text-center">
-                            <h6><a :href="`/school/${school.id}/staff?teaching=0`">Non-Teaching Staff</a></h6>
+                            <h6><router-link :to="{name:'school-staffs', params: {id: school.id}, query:{t:0}}">Non-Teaching Staff</router-link></h6>
                             <h1>{{ school.staffs.none_teaching }}</h1>
                         </div>
                         <div class="text-center">
@@ -58,7 +58,6 @@
     export default {
         data() {
             return {
-                schoolId: '',
                 center: {
                     lat: 7.6401306,
                     lng: 5.2033970

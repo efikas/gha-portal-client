@@ -65,6 +65,24 @@ const layout = [{
                     guard: true
                 }
             },
+            {
+                path: ':id/staffs',
+                name: "school-staffs",
+                component: resolve => require(['pages/school/staffs'], resolve),
+                meta: {
+                    title: "Staff List",
+                    guard: true
+                }
+            },
+            {
+                path: ':id/students',
+                name: "school-students",
+                component: resolve => require(['pages/school/students'], resolve),
+                meta: {
+                    title: "Students List",
+                    guard: true
+                }
+            },
             { //todo: fix routes that overrides
                 name: "school",
                 path: ':id',
@@ -89,15 +107,6 @@ const layout = [{
             {
                 path: '',
                 component: resolve => require(['pages/staff/overview'], resolve),
-                meta: {
-                    title: "Staff List",
-                    guard: true
-                }
-            },
-            {
-                path: '/school/:id/staffs',
-                name: "staff-list",
-                component: resolve => require(['pages/staff/list'], resolve),
                 meta: {
                     title: "Staff List",
                     guard: true
@@ -176,15 +185,6 @@ const layout = [{
                 component: resolve => require(['pages/student/overview'], resolve),
                 meta: {
                     title: "Student List",
-                    guard: true
-                }
-            },
-            {
-                path: '/school/:id/students',
-                name: "student-list",
-                component: resolve => require(['pages/student/list'], resolve),
-                meta: {
-                    title: "Students List",
                     guard: true
                 }
             },

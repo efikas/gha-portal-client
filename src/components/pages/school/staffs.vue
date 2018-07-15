@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <div class="col-lg-12 mb-3">
-            <SchoolCard :iData="schoolInfo" />
+            <SchoolCard></SchoolCard>
 
             <b-card header="List of Staffs" header-tag="h4" class="bg-header-card">
                 <div style="margin: 2%" v-if="staffs.length < 1">
@@ -19,12 +19,14 @@
                         </row>
                     </skeleton-loading>
                 </div>
-                <a type="button" class="fa fa-download icon-big btn btn-outline-primary ekiti-btn pull-right" v-if="staffs.length > 0" @click="exportExcel"></a>
-                <v-client-table :data="staffs" :columns="columns" v-if="staffs.length > 0">
-                     <span slot="id" slot-scope="props">{{ props.index }}</span>
-                     <a class="list-font" slot="Name" slot-scope="props" :href="'/staff/'+ props.row.id" v-html="props.row.first_name + ' ' + props.row.last_name + ' ' + props.row.middle_name"></a>
-                     <a slot="view" slot-scope="props" class="fa fa-eye btn btn-outline-primary ekiti-btn" :href="'/staff/'+ props.row.id"></a>
-                </v-client-table>
+                <div v-else>
+                    <a type="button" class="fa fa-download icon-big btn btn-outline-primary ekiti-btn pull-right" @click="exportExcel"></a>
+                    <v-client-table :data="staffs" :columns="columns" >
+                        <span slot="id" slot-scope="props">{{ props.index }}</span>
+                        <a class="list-font" slot="Name" slot-scope="props" :href="'/staff/'+ props.row.id" v-html="props.row.first_name + ' ' + props.row.last_name + ' ' + props.row.middle_name"></a>
+                        <a slot="view" slot-scope="props" class="fa fa-eye btn btn-outline-primary ekiti-btn" :href="'/staff/'+ props.row.id"></a>
+                    </v-client-table>
+                </div>
             </b-card>
         </div>
     </div>
@@ -35,9 +37,10 @@ import {
     ClientTable,
     Event
 } from 'vue-tables-2';
-import datatable from "components/plugins/DataTable/DataTable.vue";
 import VueSkeletonLoading from 'vue-skeleton-loading';
 import SchoolCard from "../../widgets/sbemis/SchoolCard1";
+import {mapGetters, mapActions} from 'vuex'
+import store from '../../../store/store'
 
 Vue.use(VueSkeletonLoading);
 Vue.use(ClientTable, {}, false);
@@ -48,9 +51,11 @@ export default {
     },
     data() {
         return {
+            school_id: this.$route.params.id,
+            params: null,
+            category: this.$route.query.t,
             schoolInfo: {},
             columns: ['id', 'Name', 'view'],
-            staffs: [],
             options: {
                 sortIcon: {
                     base: 'fa',
@@ -70,21 +75,22 @@ export default {
             }
         }
     },
+    computed:{
+        ...mapGetters([
+            'staffs'
+        ]),
+    },
+    watch: {
+      $route:(route) => {
+          this.params = route.query ? {category: route.query.t} : null;
+          store.dispatch('staffs', {id: route.params.id, params: this.params});
+      },
+    },
     created() {
-        // get school informations
-        this.$school.schoolProfile(this.$route.params.id).then(data => {
-            this.schoolInfo = data;
-        })
-
-       this.$staff.schoolStaff(this.$route.params.id).then(data => {
-            this.staffs = data.data;
-        })
+        this.$store.dispatch('staffs', {id: this.school_id, params: this.params});
     },
 
     methods: {
-        checkNull(val) {
-            return  val === null ? "" : val;
-        },
         exportExcel() {
             const mimeType = 'data:application/vnd.ms-excel';
             const html = this.renderTable().replace(/ /g, '%20');
