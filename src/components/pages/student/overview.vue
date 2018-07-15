@@ -4,7 +4,7 @@
             <div class="col-lg-3  col-sm-6 mb-3">
                 <div class="text-center p-3 widget_social_icons box_shadow teal">
                     <div class="widget_social_inner1">
-                        <i class="fa fa-user-o fb_text"></i>
+                        <i class="fa fa-female fb_text"></i>
                     </div>
                     <div class="text-ash">
                         <h4 class="mt-2 text_size">{{ totalFemale.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}</h4>
@@ -15,7 +15,7 @@
             <div class="col-lg-3  col-sm-6 mb-3">
                 <div class="text-center p-3 widget_social_icons box_shadow pink">
                     <div class="widget_social_inner1">
-                        <i class="fa fa-link fb_text"></i>
+                        <i class="fa fa-male fb_text"></i>
                     </div>
                     <div class="text-ash">
                         <h4 class="mb-0 mt-2 text_size">{{ totalMale.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}</h4>
@@ -25,12 +25,12 @@
             </div>
             <div class="col-lg-3 col-md-6 mb-3">
                 <div class="text-center p-3 widget_social_icons box_shadow blue">
-                    <div class=" widget_social_inner1">
-                        <i class="fa fa-comments-o fb_text"></i>
+                    <div class="widget_social_inner1">
+                        <i class="fa fa-clone fb_text"></i>
                     </div>
                     <div class="text-ash">
-                        <h4 class="mb-0 mt-2 text_size">742+</h4>
-                        <p class="m-0 mt-2">Primary Students</p>
+                        <h4 class="mb-0 mt-2 text_size">{{ studentPerLgas.length }}</h4>
+                        <p class="m-0 mt-2">LGA</p>
                     </div>
                 </div>
             </div>
@@ -40,14 +40,14 @@
                         <i class="fa fa-clone fb_text"></i>
                     </div>
                     <div class="text-ash">
-                        <h4 class="mb-0 mt-2 text_size">465+</h4>
-                        <p class="m-0 mt-2">Secondary Students</p>
+                        <h4 class="mb-0 mt-2 text_size">{{ totalStudents.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}</h4>
+                        <p class="m-0 mt-2">Total Students</p>
                     </div>
                 </div>
             </div>
         </div>
          <div class="row">
-            <div class="col-lg-8 col-offset-lg-2">
+            <div class="col-md-12 col-offset-lg-2">
                 <b-card header="DISTRIBUTION OF STUDENTS/LGA" header-tag="h4" class="bg-header-card">
                     <a type="button" class="fa fa-download icon-big btn btn-outline-primary ekiti-btn pull-right mb-2" @click="exportExcel"></a>
                     <div class="table-responsive">

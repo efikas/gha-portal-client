@@ -5,8 +5,7 @@
                 <div role="tablist">
                     <b-card no-body class="mb-1">
                         <b-card-header header-tag="header" class="p-1" role="tab">
-                            <b-btn block href="#" v-b-toggle.accordion1 variant="info" class="text-left">
-                                <i class="fa fa-user-o fb_text"></i>
+                            <b-btn block href="#" v-b-toggle.accordion1 variant="default" class="text-left">
                                 School
                             </b-btn>
                         </b-card-header>
@@ -30,7 +29,7 @@
                                     </div>
                                     <div class="col-lg-6 mb-3">
                                         <barchart :iData="this.sch_urban"></barchart>
-                                    </div>     
+                                    </div>
                                 </div>
                             </b-card-body>
                         </b-collapse>
@@ -41,7 +40,7 @@
                 <div role="tablist">
                     <b-card no-body class="mb-1">
                         <b-card-header header-tag="header" class="p-1" role="tab">
-                            <b-btn block href="#" v-b-toggle.accordion2 variant="info" class="text-left">
+                            <b-btn block href="#" v-b-toggle.accordion2 variant="default" class="text-left">
                                 Staff
                             </b-btn>
                         </b-card-header>
@@ -62,10 +61,10 @@
                                 </div>
                                 <div class="col-lg-6 mb-3">
                                     <piechart :iData="this.staff_dist"></piechart>
-                                </div> 
+                                </div>
                                 <div class="col-lg-6 mb-3">
                                     <doughnut :iData="this.gen_acad_staff_dist"></doughnut>
-                                </div> 
+                                </div>
                             </div>
                         </b-card-body>
                         </b-collapse>
@@ -76,7 +75,7 @@
                 <div role="tablist">
                     <b-card no-body class="mb-1">
                         <b-card-header header-tag="header" class="p-1" role="tab">
-                            <b-btn block href="#" v-b-toggle.accordion3 variant="info" class="text-left">
+                            <b-btn block href="#" v-b-toggle.accordion3 variant="default" class="text-left">
                                 Student
                             </b-btn>
                         </b-card-header>
