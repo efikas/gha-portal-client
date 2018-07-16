@@ -6,7 +6,7 @@
                 <b-card class="col-md-10 bg-clear-card" bg-variant="light" text-variant="dark">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="" style="padding: 0; margin-left: 40px; margin-bottom: -50px">
+                            <div class="" style="padding: 0; margin-left: 40px; margin-bottom: -40px">
                                 <div style="">
                                     <img :src="showImage()" alt="User Image"
                                          class="img-fluid profile-thumb"/>
@@ -25,7 +25,35 @@
                     </div>
                     <div slot="footer">
                         <div class="row" style="padding: 0">
-                            <div class="col-md-12" style="height: 50px"></div>
+                            <div class="col-md-9 offset-3" style="height: 50px">
+                                <nav class="navbar navbar-expand-lg navbar-light">
+
+                                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                        <ul class="navbar-nav mr-auto">
+                                            <li class="nav-item active">
+                                                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="#">Link</a>
+                                            </li>
+                                            <li class="nav-item dropdown">
+                                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Dropdown
+                                                </a>
+                                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                    <a class="dropdown-item" href="#">Action</a>
+                                                    <a class="dropdown-item" href="#">Another action</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="#">Something else here</a>
+                                                </div>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link disabled" href="#">Disabled</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </nav>
+                            </div>
                         </div>
                     </div>
                 </b-card>
