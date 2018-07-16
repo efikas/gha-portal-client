@@ -172,7 +172,7 @@
 
     }
 </script>
-<style type="text/css" lang="scss">
+<style type="text/css" lang="scss" scoped>
     @import "~components/layouts/css/customvariables";
 
     .social .bg-default-card .info {

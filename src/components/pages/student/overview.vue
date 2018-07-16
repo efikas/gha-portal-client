@@ -290,7 +290,7 @@
         margin-top: 0px !important;
     }
 </style>
-<style type="text/css" lang="scss">
+<style type="text/css" lang="scss" scoped>
     @import "~components/layouts/css/customvariables";
 
     .index2_table .table-responsive .card {

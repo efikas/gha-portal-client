@@ -169,7 +169,7 @@
         margin-top: 0px !important;
     }
 </style>
-<style type="text/css" lang="scss">
+<style type="text/css" lang="scss" scoped>
     .index2_table .table-responsive .card {
         border: none;
         box-shadow: none;

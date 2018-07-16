@@ -21,13 +21,19 @@
                     <a type="button" class="fa fa-download icon-big btn btn-outline-primary ekiti-btn pull-right"
                        @click="exportExcel"></a>
                     <v-client-table :data="schools" :columns="columns" :options="options">
-                        <a slot="id" slot-scope="props">{{ props.index }}</a>
-                        <router-link tag="a" class="list-font" slot="name" slot-scope="props"
-                                     :to="{ name: 'school', params: { id: props.row.id }}" v-html="props.row.name"></router-link>
-                        <!--<a slot="school_name" slot-scope="props" :href="'/#/school/'+ props.row.id+'/profile'">{{ props.row.school_name }}</a>-->
-                        <!--<router-link tag="a" slot="view" slot-scope="props"-->
-                        <!--class="fa fa-pencil icon-big btn btn-outline-primary ekiti-btn"-->
-                        <!--:to="{ name: routeTo, params: { id: props.row.id }}"></router-link>-->
+                        <router-link
+                                class="list-font"
+                                slot="name"
+                                slot-scope="props"
+                                :to="{ name: 'school', params: { id: props.row.id }}"
+                                v-html="props.row.name"
+                        >
+                        </router-link>
+                        <!--<router-link class="list-font" slot="Name" slot-scope="props" :href="'/staff/'+ props.row.id" v-html="props.row.first_name + ' ' + props.row.last_name + ' ' + props.row.middle_name"></router-link>-->
+                        <div slot="actions" slot-scope="props">
+                            <router-link class="btn btn-outline-primary ekiti-btn" :to="{name:'school-staffs', params:{id: props.row.id}}"><i class="fa fa-male"></i> Staffs</router-link>
+                            <router-link class="btn btn-outline-primary ekiti-btn" :to="{name:'school-students', params:{id: props.row.id}}"><i class="fa fa-users"></i> Students</router-link>
+                        </div>
                     </v-client-table>
                 </div>
             </b-card>
@@ -52,7 +58,7 @@ export default {
     },
     data() {
         return {
-            columns: ['id', 'name'],
+            columns: ['id', 'name', 'actions'],
             options: {
                 sortIcon: {
                     base: 'fa',
@@ -141,13 +147,15 @@ export default {
     }
 }
 </script>
-<style scoped>
- .icon-big {
-     font-size: 20px;
- }
-</style>
-
 <style lang="scss" scoped>
+    .icon-big {
+        font-size: 20px;
+    }
+    .fb_text{
+        font-size: 15px;
+        float: left;
+        margin-right: 3px;
+    }
 
 </style>
 
