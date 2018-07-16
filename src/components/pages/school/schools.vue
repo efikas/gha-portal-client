@@ -22,14 +22,13 @@
                        @click="exportExcel"></a>
                     <v-client-table :data="schools" :columns="columns" :options="options">
                         <router-link
-                                class="list-font"
+                                class="list-font sch-link"
                                 slot="name"
                                 slot-scope="props"
                                 :to="{ name: 'school', params: { id: props.row.id }}"
                                 v-html="props.row.name"
                         >
                         </router-link>
-                        <!--<router-link class="list-font" slot="Name" slot-scope="props" :href="'/staff/'+ props.row.id" v-html="props.row.first_name + ' ' + props.row.last_name + ' ' + props.row.middle_name"></router-link>-->
                         <div slot="actions" slot-scope="props">
                             <router-link class="btn btn-outline-primary ekiti-btn" :to="{name:'school-staffs', params:{id: props.row.id}}"><i class="fa fa-male"></i> Staffs</router-link>
                             <router-link class="btn btn-outline-primary ekiti-btn" :to="{name:'school-students', params:{id: props.row.id}}"><i class="fa fa-users"></i> Students</router-link>
@@ -41,16 +40,7 @@
     </div>
 </template>
 <script>
-import Vue from 'vue';
-import {
-    ClientTable,
-    Event
-} from 'vue-tables-2';
-import VueSkeletonLoading from 'vue-skeleton-loading';
 import schoolTable from '../../patches/schoolTable';
-
-Vue.use(ClientTable, {}, false);
-Vue.use(VueSkeletonLoading);
 export default {
     name: "school_manage",
     components: {
@@ -76,13 +66,6 @@ export default {
                     dropdown: false
                 }
             },
-            items1: [{
-                text: 'School',
-                link: '/school',
-            }, {
-                text: 'Manage',
-                active: true
-            }],
         }
     },
 
@@ -147,6 +130,11 @@ export default {
     }
 }
 </script>
+<style>
+    .VueTables__search-field label {
+        border: 1px solid red;
+    }
+</style>
 <style lang="scss" scoped>
     .icon-big {
         font-size: 20px;
@@ -155,6 +143,13 @@ export default {
         font-size: 15px;
         float: left;
         margin-right: 3px;
+    }
+    .sch-link{
+        display: block;
+        padding: 3px;
+    }
+    .sch-link:hover{
+        text-decoration: underline !important;
     }
 
 </style>

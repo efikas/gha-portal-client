@@ -8,17 +8,21 @@ import Vue from "vue";
 import BootstrapVue from 'bootstrap-vue';
 import ToggleButton from 'vue-js-toggle-button'
 
-import Auth from './packages/auth/Auth'
-import Services from './packages/services/Services'
+// import Auth from './packages/auth/Auth'
+// import Services from './packages/services/Services'
 import VueForm from "vue-form";
+import {ClientTable, Event} from 'vue-tables-2';
+import VueSkeletonLoading from 'vue-skeleton-loading';
 
 
 // Vue.use(Config)
-Vue.use(Auth)
-Vue.use(Services)
+// Vue.use(Auth)
+// Vue.use(Services)
 Vue.use(ToggleButton)
 Vue.use(BootstrapVue);
 Vue.use(VueForm);
+Vue.use(ClientTable, {}, false);
+Vue.use(VueSkeletonLoading);
 
 export default {
     name: 'app'
