@@ -6,39 +6,39 @@
             <div class="col-lg-6 mb-3">
                 <piechart :iData="private_school"></piechart>
             </div>
-            <!--<div class="col-lg-6 mb-3">-->
-                <!--<piechart :iData="public_school"></piechart>-->
-            <!--</div>-->
-            <!--<div class="col-lg-6 mb-3">-->
-                <!--<piechart :iData="primary_school"></piechart>-->
-            <!--</div>-->
-            <!--<div class="col-lg-6 mb-3">-->
-                <!--<piechart :iData="secondary_school"></piechart>-->
-            <!--</div>-->
-            <!--<div class="col-lg-6">-->
-                <!--<donut :iData="secondary_school_student"></donut>-->
-            <!--</div>-->
-            <!--<div class="col-lg-6">-->
-                <!--<donut :iData="primary_school_student"></donut>-->
-            <!--</div>-->
-            <!--<div class="col-lg-6 mb-3">-->
-                <!--<barchart :iData="rural_school"></barchart>-->
-            <!--</div>-->
-            <!--<div class="col-lg-6 mb-3">-->
-                <!--<barchart :iData="urban_school"></barchart>-->
-            <!--</div>-->
-            <!--<div class="col-lg-6 mb-3">-->
-                <!--<piechart :iData="staff_category_compare"></piechart>-->
-            <!--</div>-->
-            <!--<div class="col-lg-6 mb-3">-->
-                <!--<stackbar :iData="staff_gender_distribution"></stackbar>-->
-            <!--</div>-->
-            <!--<div class="col-lg-6 mb-3">-->
-                <!--<piechart :iData="staff_gender_compare"></piechart>-->
-            <!--</div>-->
-            <!--<div class="col-lg-6 mb-3">-->
-                <!--<doughnut :iData="staff_academic_distribution"></doughnut>-->
-            <!--</div>-->
+            <div class="col-lg-6 mb-3">
+                <piechart :iData="public_school"></piechart>
+            </div>
+            <div class="col-lg-6 mb-3">
+                <piechart :iData="primary_school"></piechart>
+            </div>
+            <div class="col-lg-6 mb-3">
+                <piechart :iData="secondary_school"></piechart>
+            </div>
+            <div class="col-lg-6">
+                <donut :iData="secondary_school_student"></donut>
+            </div>
+            <div class="col-lg-6">
+                <donut :iData="primary_school_student"></donut>
+            </div>
+            <div class="col-lg-6 mb-3">
+                <barchart :iData="rural_school"></barchart>
+            </div>
+            <div class="col-lg-6 mb-3">
+                <barchart :iData="urban_school"></barchart>
+            </div>
+            <div class="col-lg-6 mb-3">
+                <piechart :iData="staff_category_compare"></piechart>
+            </div>
+            <div class="col-lg-6 mb-3">
+                <stackbar :iData="staff_gender_distribution"></stackbar>
+            </div>
+            <div class="col-lg-6 mb-3">
+                <piechart :iData="staff_gender_compare"></piechart>
+            </div>
+            <div class="col-lg-6 mb-3">
+                <doughnut :iData="staff_academic_distribution"></doughnut>
+            </div>
         </div>
     </div>
 </template>
@@ -81,7 +81,7 @@
                 ajaxloading: true,
                 reshape: null,
 
-                priv_sch: {},
+                // priv_sch: {},
                 pub_sch: {},
                 pri_sch: {},
                 sec_sch: {},
@@ -99,91 +99,85 @@
             ...mapGetters([
                 'statistics'
             ]),
-
             private_school() {
-                return {header: 'Private School Distribution', value: this.reshape}
+                return {
+                    header: 'Private School Distribution',
+                    value: this.reshape ? this.reshape.priv_sch : {}
+                }
             },
             public_school() {
-                return {header: 'Public School Distribution', value: this.reshape.pub_sch}
+                return {
+                    header: 'Public School Distribution',
+                    value: this.reshape ? this.reshape.pub_sch : {}
+                }
             },
             primary_school() {
-                return {header: 'Primary School Distribution', value: this.reshape.pri_sch}
+                return {
+                    header: 'Primary School Distribution',
+                    value: this.reshape ? this.reshape.pri_sch : {}
+                }
             },
             secondary_school() {
-                return {header: 'Secondary School Distribution', value: this.reshape.sec_sch}
+                return {header: 'Secondary School Distribution',
+                    value: this.reshape ? this.reshape.sec_sch : {}
+                }
             },
             secondary_school_student() {
                 return {
                     header: 'Student Population In Primary School',
-                    value: this.reshape.stu_sec_sch
+                    value: this.reshape ? this.reshape.stu_sec_sch : {}
                 }
             },
             primary_school_student() {
                 return {
                     header: 'Student Population In Primary School',
-                    value: this.reshape.stu_pri_sch
+                    value: this.reshape ? this.reshape.stu_pri_sch : {}
                 }
             },
             rural_school() {
                 return {
                     header: 'School Distribution in Rural Area',
-                    value: this.reshape.sch_rural
+                    value: this.reshape ? this.reshape.sch_rural : {}
                 }
             },
             urban_school() {
                 return {
                     header: 'School Distribution in Urban Area',
-                    value: this.reshape.sch_rural
+                    value: this.reshape ? this.reshape.sch_rural : {}
                 }
             },
             staff_gender_compare() {
                 return {
                     header: 'Staff Gender Comparison',
-                    value: this.reshape.staff_gen_dist
+                    value: this.reshape ? this.reshape.staff_gen_dist : {}
                 }
             },
             staff_category_compare() {
                 return {
                     header: 'Teaching Staff/Non Teaching Staff Comparision',
-                    value: this.reshape.staff_dist
+                    value: this.reshape ? this.reshape.staff_dist : {}
                 }
             },
             staff_academic_distribution() {
                 return {
                     header: 'Teaching/Non Teaching Staff Distribution',
                     legend: ['Male', 'Female'],
-                    value: this.reshape.gen_acad_staff_dist
+                    value: this.reshape ? this.reshape.gen_acad_staff_dist : {}
                 }
             },
             staff_gender_distribution() {
                 return {
                     header: 'Male/Female Staff Distribution',
                     legend: ['Male', 'Female'],
-                    value: this.reshape.male_female_staff
+                    value: this.reshape ? this.reshape.male_female_staff : {}
                 }
             }
         },
 
         async created() {
-            // alert(111);
-            await this.$store.dispatch('loadStatistics')
-                .then(() => {
-                    this.reshape = dataMapping(this.statistics);
-                    console.log(this.private_school)
-                });
-
-            // let myData = dataMapping(data);
-            //
-            // console.log(this.reshape)
-            //
-            // this.male_female_staff = {
-            //     header: 'Male/Female Staff Distribution',
-            //     legend: ['Male', 'Female'],
-            //     value: myData.male_female_staff
-            // };
-
-        },
-
+            await this.$store.dispatch('loadStatistics');
+            this.reshape = dataMapping(this.statistics);
+        }
     }
 </script>
 <style type="text/css" lang="scss" scoped>
