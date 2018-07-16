@@ -1,35 +1,37 @@
 <template>
-    <div>
+    <div style="margin-top: -0%">
         <SchoolCard></SchoolCard>
-        <div class="row">
-            <div class="col-md-10">
-                <b-card class="">
-                    <div class="profile text-center ">
-                        <img :src="showImage()" alt="User Image"
-                             class="rounded-circle img-fluid profile-thumb mb-3" />
-                    </div>
-                    <div class="profile_details">
-                        <div class="row">
-                            <div class="col-12 mt-3">
-                                <div class="row">
-                                    <div class="col-6 text-right mt-1">Firstname :</div>
-                                    <div class="col-6 mt-1 pl-0">{{ student.first_name }}</div>
-                                    <div class="col-6 text-right mt-1">Middlename :</div>
-                                    <div class="col-6 mt-1 pl-0">{{ student.middle_name }}</div>
-                                    <div class="col-6 text-right mt-1">Lastname :</div>
-                                    <div class="col-6 mt-1 pl-0">{{ student.last_name }}</div>
-                                    <div class="col-6 text-right mt-1">Gender :</div>
-                                    <div class="col-6 mt-1 pl-0">{{ student.sex }}</div>
+        <div class="container">
+            <div class="row">
+                <b-card class="col-md-10 bg-clear-card" bg-variant="light" text-variant="dark">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="" style="padding: 0; margin-left: 40px; margin-bottom: -50px">
+                                <div style="">
+                                    <img :src="showImage()" alt="User Image"
+                                         class="img-fluid profile-thumb"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-9 offset-3" style="padding: 0;">
+                                    <div class="profile-name" style="position: absolute; bottom: 0px;">
+                                        <p> {{ student.first_name }}
+                                            {{ student.middle_name }}
+                                            {{ student.last_name}}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div slot="footer">
+                        <div class="row" style="padding: 0">
+                            <div class="col-md-12" style="height: 50px"></div>
+                        </div>
+                    </div>
                 </b-card>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-xl-8 col-lg-7">
-                <b-card class="bg-default-card data">
+            <div class="row">
+                <b-card class="col-md-10 bg-clear-card">
                     <!-- Nav tabs -->
                     <b-tabs>
                         <b-tab title="PERSONAL">
@@ -206,6 +208,23 @@
     };
 </script>
 <style scoped>
+    .profile-name{
+        padding: 5px;
+        /*background: linear-gradient(to bottom, gray, #000000);*/
+        /*color: black;*/
+        width: inherit;
+        font-family: "Courier 10 Pitch", sans-serif;
+        font-size: 25px;
+        font-weight: bold;
+    }
+    .bg-clear-card{
+        padding: 0!important;
+    }
+    .card-footer {
+        padding-top: 0!important;
+        padding-bottom: 0!important;
+        margin: 0!important;
+    }
     td.views {
         background-color: #e5e5e5 !important;
         padding-top: 12px;
@@ -243,5 +262,4 @@
     }
 </style>
 
-<style src="assets/css/user_profile.css" scoped>
-</style>
+<style src="assets/css/user_profile.css" scoped></style>

@@ -119,7 +119,7 @@ const layout = [{
                     resolve => require(['pages/staff/staff'], resolve),
                 meta:
                     {
-                        title: "",
+                        title: " ",
                         guard: true
                     }
             },
