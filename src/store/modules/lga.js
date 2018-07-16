@@ -8,19 +8,19 @@ import axios from '../../axios'
 // })
 
 const state = {
-    lga_school_distrubition:[]
+    lga_school_distribution:[]
 };
 
 const getters = {
-  lga_school_distrubition: state => state.lga_school_distrubition
+  lga_school_distribution: state => state.lga_school_distribution
 };
 
 const mutations = {
-    'SET_LGA_SCHOOL_DISTRIBUTION': (state, payload) => state.lga_school_distrubition = payload
+    'SET_LGA_SCHOOL_DISTRIBUTION': (state, payload) => state.lga_school_distribution = payload
 };
 
 const actions = {
-    lga_school_distrubition: ({commit}) => {
+    lga_school_distribution: ({commit}) => {
         return axios.get(`lga/schools`)
             .then(response => {
                 commit('SET_LGA_SCHOOL_DISTRIBUTION', response.data)
@@ -30,3 +30,5 @@ const actions = {
             })
     }
 };
+
+export default { state, getters, mutations, actions }

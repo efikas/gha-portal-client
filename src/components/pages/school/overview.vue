@@ -22,14 +22,6 @@
                 schoolsPerLgas: []
             }
         },
-        created: function () {
-            this.$school.getSchoolsDistributionsPerLga()
-                .then((data) => {
-                    this.schoolsPerLgas = data;
-                })
-                .catch((error) => console.log(error)
-                )
-        },
         methods: {
 
             exportExcel() {

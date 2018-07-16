@@ -3,10 +3,12 @@
         <div class="row">
             <div class="col-lg-12">
                 <b-card>
-                    <a type="button" class="fa fa-download icon-big btn btn-outline-primary ekiti-btn pull-right mb-2"></a>
+                    <a type="button"
+                       class="fa fa-download icon-big btn btn-outline-primary ekiti-btn pull-right mb-2"></a>
                     <h5 class="ml-3 head_color">School Distributions</h5>
-                    <div style="height: 305px;">
-                        <IEcharts :option="ajaxbar_chart" :loading="ajaxloading" @ready="onReady" ref="ajaxbar_chart"></IEcharts>
+                    <div class="echarts" style="height: 305px;">
+                        <IEcharts :option="ajaxbar_chart" :loading="ajaxloading" @ready="onReady"
+                                  ref="ajaxbar_chart"></IEcharts>
                     </div>
                 </b-card>
             </div>
@@ -19,7 +21,6 @@
     import IEcharts from 'vue-echarts-v3/src/full.js';
 
     export default {
-        name: "schoolDistChart",
         components: {
             IEcharts,
         },
@@ -56,9 +57,9 @@
                     xAxis: [{
                         type: 'category',
                         name: 'YEAR',
-                        nameRotate: 90,
-                        data: ['ADO', 'EFON', 'ADO', 'ADO', 'ADO', 'EMURE', 'ADO', 'ADO', 'IJERO', 'IKERE',
-                            'IKOLE', 'ADO', 'IREPO', 'ISE', 'MOBA', 'OYE']
+                        nameRotate: 180,
+                        data: ['AD', 'EF', 'EE', 'E.S.W', 'E.W', 'EM', 'Gb', 'I.O', 'IJ', 'IK',
+                            'IL', 'IE', 'I/I', 'I/O', 'MB', 'OE']
                     }],
                     yAxis: [{
                         type: 'value',
@@ -99,28 +100,29 @@
                 },
             }
         },
-
         methods: {
             onReady(instance) {
                 this.instances.push(instance)
             },
         },
 
-        created: function () {
-            this.$school.getSchoolsDistributionsPerLga()
-                .then((data) => {
-                    this.schoolsPerLgas = data;
-                    data.forEach(item => {
-                        this.ajaxbar_chart.series[0].data.push(item.public.total);
-                        this.ajaxbar_chart.series[1].data.push(item.private.total);
-                        this.ajaxbar_chart.series[2].data.push(item.total.primary);
-                        this.ajaxbar_chart.series[3].data.push(item.total.secondary);
-                        this.ajaxloading = false;
-                    })
-                })
-                .catch((error) => console.log(error)
-                )
+        async created() {
+            await this.$store.dispatch('lga_school_distribution');
+            // this.ajaxbar_chart.xAxis[0].data = [];
+            this.$store.getters.lga_school_distribution.forEach(item => {
+                // this.ajaxbar_chart.xAxis[0].data.push(item.name)
+                this.ajaxbar_chart.series[0].data.push(item.public.total);
+                this.ajaxbar_chart.series[1].data.push(item.private.total);
+                this.ajaxbar_chart.series[2].data.push(item.total.primary);
+                this.ajaxbar_chart.series[3].data.push(item.total.secondary);
+                this.ajaxloading = false;
+            })
         },
 
     }
 </script>
+<style scoped>
+    .echarts {
+        font-size: 10px;
+    }
+</style>

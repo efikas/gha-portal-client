@@ -1,13 +1,14 @@
 import 'es6-promise/auto'
-import Vue from 'vue'
+import Vue  from 'vue'
 import Vuex from 'vuex'
-import mutations from './mutations'
-import actions from  './actions'
-import getters from  './getters'
+import mutations    from './mutations'
+import actions  from  './actions'
+import getters  from  './getters'
 
-import school from './modules/school';
-import student from './modules/student';
-import staff from  './modules/staff'
+import lga  from './modules/lga';
+import school   from './modules/school';
+import student  from './modules/student';
+import staff    from  './modules/staff'
 
 
 Vue.use(Vuex)
@@ -44,6 +45,7 @@ const store = new Vuex.Store({
     getters,
 
     modules: {
+        lga,
         school,
         student,
         staff
