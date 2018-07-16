@@ -23,7 +23,7 @@
 // import vue2Dropzone from 'vue2-dropzone'
 // import 'vue2-dropzone/dist/vue2Dropzone.css'
 import Multiselect from 'vue-multiselect';
-import {apiURL} from '../../../packages/resources'
+import {apiURL} from 'src/resource'
 
 export default {
     name: 'school-import',

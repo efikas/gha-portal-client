@@ -3,7 +3,7 @@ import {school} from '../../data/school'
 
 const state = {
     schools: [],
-    school: {},
+    school: { ward: {}},
     school_stat: []
 };
 
@@ -33,6 +33,13 @@ const actions = {
     school: ({commit}, id) => {
         return axios.get(`/school/${id}`).then(response => {
             commit('SET_SCHOOL', response.data)
+            return Promise.resolve(response.data)
+        }).catch((error) => {
+            return Promise.reject(error.response)
+        })
+    },
+    addSchool: (payload) => {
+        return axios.post('schools', payload).then(response => {
             return Promise.resolve(response.data)
         }).catch((error) => {
             return Promise.reject(error.response)

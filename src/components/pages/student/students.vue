@@ -1,10 +1,10 @@
 <template>
     <div class="row">
         <div class="col-lg-12 mb-3">
-            <SchoolCard v-if="Object.keys(school).length"></SchoolCard>
+            <SchoolCard></SchoolCard>
 
             <b-card header="List of Students" header-tag="h4" class="bg-header-card">
-                <div style="margin: 2%" v-if="Object.keys(school).length">
+                <div style="margin: 2%" v-if="school.id">
                     <skeleton-loading>
                         <row :gutter="{top: '20px'}">
                             <square-skeleton 

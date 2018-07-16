@@ -179,9 +179,6 @@ cd
         color: #555;
     }
 
-    //'Single','Married','Divorced','Widowed','Separated'
 </style>
-
-<style src="assets/css/user_profile.css" scoped>
-</style>
+<style src="assets/css/user_profile.css" scoped></style>
 

@@ -244,9 +244,9 @@ import VueFormWizard from 'vue-form-wizard'
 import 'vue-form-wizard/dist/vue-form-wizard.min.css'
 import Multiselect from 'vue-multiselect';
 import VeeValidate from 'vee-validate';
-import studentBasic from './subcomponents/studentBasic';
-import studentAcademic from './subcomponents/studentAcademic';
-import studentParent from './subcomponents/studentParent';
+import studentBasic from './forms/studentBasic';
+import studentAcademic from './forms/studentAcademic';
+import studentParent from './forms/studentParent';
 
 Vue.use(VeeValidate);
 Vue.use(VueFormWizard)

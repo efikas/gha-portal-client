@@ -2,8 +2,8 @@
     <div>
         <SchoolCard></SchoolCard>
         <div class="row">
-            <div class="col-xl-4 col-lg-5">
-                <b-card class="bg-default-card">
+            <div class="col-md-10">
+                <b-card class="">
                     <div class="profile text-center ">
                         <img :src="showImage()" alt="User Image"
                              class="rounded-circle img-fluid profile-thumb mb-3" />
@@ -26,6 +26,8 @@
                     </div>
                 </b-card>
             </div>
+        </div>
+        <div class="row">
             <div class="col-xl-8 col-lg-7">
                 <b-card class="bg-default-card data">
                     <!-- Nav tabs -->

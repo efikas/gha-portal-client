@@ -4,48 +4,47 @@
         <topCard></topCard>
         <div class="row">
             <div class="col-lg-6 mb-3">
-                <piechart :iData="this.priv_sch"></piechart>
+                <piechart :iData="private_school"></piechart>
             </div>
-            <div class="col-lg-6 mb-3">
-                <piechart :iData="this.pub_sch"></piechart>
-            </div>
-            <div class="col-lg-6 mb-3">
-                <piechart :iData="this.pri_sch"></piechart>
-            </div>
-            <div class="col-lg-6 mb-3">
-                <piechart :iData="this.sec_sch"></piechart>
-            </div>
-            <div class="col-lg-6">
-                <donut :iData="this.stu_sec_sch"></donut>
-            </div>
-            <div class="col-lg-6">
-                <donut :iData="this.stu_pri_sch"></donut>
-            </div>
-            <div class="col-lg-6 mb-3">
-                <barchart :iData="this.sch_rural"></barchart>
-            </div>
-            <div class="col-lg-6 mb-3">
-                <barchart :iData="this.sch_urban"></barchart>
-            </div>
-            <div class="col-lg-6 mb-3">
-                <piechart :iData="this.staff_gen_dist"></piechart>
-            </div>
-            <div class="col-lg-6 mb-3">
-                <stackbar :iData="this.male_female_staff"></stackbar>
-            </div>
-            <div class="col-lg-6 mb-3">
-                <piechart :iData="this.staff_dist"></piechart>
-            </div>
-            <div class="col-lg-6 mb-3">
-                <doughnut :iData="this.gen_acad_staff_dist"></doughnut>
-            </div>
+            <!--<div class="col-lg-6 mb-3">-->
+                <!--<piechart :iData="public_school"></piechart>-->
+            <!--</div>-->
+            <!--<div class="col-lg-6 mb-3">-->
+                <!--<piechart :iData="primary_school"></piechart>-->
+            <!--</div>-->
+            <!--<div class="col-lg-6 mb-3">-->
+                <!--<piechart :iData="secondary_school"></piechart>-->
+            <!--</div>-->
+            <!--<div class="col-lg-6">-->
+                <!--<donut :iData="secondary_school_student"></donut>-->
+            <!--</div>-->
+            <!--<div class="col-lg-6">-->
+                <!--<donut :iData="primary_school_student"></donut>-->
+            <!--</div>-->
+            <!--<div class="col-lg-6 mb-3">-->
+                <!--<barchart :iData="rural_school"></barchart>-->
+            <!--</div>-->
+            <!--<div class="col-lg-6 mb-3">-->
+                <!--<barchart :iData="urban_school"></barchart>-->
+            <!--</div>-->
+            <!--<div class="col-lg-6 mb-3">-->
+                <!--<piechart :iData="staff_category_compare"></piechart>-->
+            <!--</div>-->
+            <!--<div class="col-lg-6 mb-3">-->
+                <!--<stackbar :iData="staff_gender_distribution"></stackbar>-->
+            <!--</div>-->
+            <!--<div class="col-lg-6 mb-3">-->
+                <!--<piechart :iData="staff_gender_compare"></piechart>-->
+            <!--</div>-->
+            <!--<div class="col-lg-6 mb-3">-->
+                <!--<doughnut :iData="staff_academic_distribution"></doughnut>-->
+            <!--</div>-->
         </div>
     </div>
 </template>
 <script>
     import Vue from 'vue';
 
-    import IEcharts from 'vue-echarts-v3/src/full.js';
 
     import 'zrender/lib/vml/vml';
 
@@ -58,8 +57,9 @@
     import stackbar from '../patches/stackbar.vue'
     import doughnut from '../patches/doughnut.vue'
     import topCard from './dashboard/partial/topCard'
+    import {mapGetters} from 'vuex'
 
-    let sbemisData = require('../../modules/draw-graphs.js');
+    import {dataMapping} from '../../modules/draw-graphs.js';
 
     Vue.use(VueAwesomeSwiper);
     var unsub;
@@ -79,6 +79,7 @@
                 instances: [],
                 loading: false,
                 ajaxloading: true,
+                reshape: null,
 
                 priv_sch: {},
                 pub_sch: {},
@@ -94,81 +95,94 @@
                 gen_acad_staff_dist: {},
             }
         },
-        created() {
-            this.$dashboard.statistics()
-                .then((data) => {
-                    let myData = sbemisData.dataMapping(data);
-
-                    this.priv_sch = {
-                        header: 'Private School Distribution',
-                        value: myData.priv_sch
-                    };
-                    this.pub_sch = {
-                        header: 'Public School Distributiong',
-                        value: myData.pub_sch
-                    };
-                    this.pri_sch = {
-                        header: 'Primary School Distribution',
-                        value: myData.pri_sch
-                    };
-                    this.sec_sch = {
-                        header: 'Secondary School Distribution',
-                        value: myData.sec_sch
-                    };
-                    this.stu_sec_sch = {
-                        header: 'Student Population In Secondary School',
-                        value: myData.stu_sec_sch
-                    };
-                    this.stu_pri_sch = {
-                        header: 'Student Population In Primary School',
-                        value: myData.stu_pri_sch
-                    };
-                    this.sch_rural = {
-                        header: 'School Distribution in Rural Area',
-                        value: myData.sch_rural
-                    };
-                    this.sch_urban = {
-                        header: 'School Distribution in Urban Area',
-                        value: myData.sch_urban
-                    };
-                    this.staff_gen_dist = {
-                        header: 'Staff Gender Comparism',
-                        value: myData.staff_gen_dist
-                    };
-                    this.staff_dist = {
-                        header: 'Teaching Staff/Non Teaching Staff Comparision',
-                        value: myData.staff_dist
-                    };
-                    this.male_female_staff = {
-                        header: 'Male/Female Staff Distribution',
-                        legend: ['Male', 'Female'],
-                        value: myData.male_female_staff
-                    };
-                    this.gen_acad_staff_dist = {
-                        header: 'Teaching/Non Teaching Staff Distribution',
-                        legend: ['Male', 'Female'],
-                        value: myData.gen_acad_staff_dist
-                    };
-                })
-                .catch((error) => window.alert("failed"))
-        },
-        mounted: function () {
-        },
-        beforeRouteLeave(to, from, next) {
-            next();
-        },
-
-        methods: {
-            onReady(instance) {
-                // this.instances.push(instance)
-            },
-        },
-
         computed: {
-            data: () => {
+            ...mapGetters([
+                'statistics'
+            ]),
 
+            private_school() {
+                return {header: 'Private School Distribution', value: this.reshape}
+            },
+            public_school() {
+                return {header: 'Public School Distribution', value: this.reshape.pub_sch}
+            },
+            primary_school() {
+                return {header: 'Primary School Distribution', value: this.reshape.pri_sch}
+            },
+            secondary_school() {
+                return {header: 'Secondary School Distribution', value: this.reshape.sec_sch}
+            },
+            secondary_school_student() {
+                return {
+                    header: 'Student Population In Primary School',
+                    value: this.reshape.stu_sec_sch
+                }
+            },
+            primary_school_student() {
+                return {
+                    header: 'Student Population In Primary School',
+                    value: this.reshape.stu_pri_sch
+                }
+            },
+            rural_school() {
+                return {
+                    header: 'School Distribution in Rural Area',
+                    value: this.reshape.sch_rural
+                }
+            },
+            urban_school() {
+                return {
+                    header: 'School Distribution in Urban Area',
+                    value: this.reshape.sch_rural
+                }
+            },
+            staff_gender_compare() {
+                return {
+                    header: 'Staff Gender Comparison',
+                    value: this.reshape.staff_gen_dist
+                }
+            },
+            staff_category_compare() {
+                return {
+                    header: 'Teaching Staff/Non Teaching Staff Comparision',
+                    value: this.reshape.staff_dist
+                }
+            },
+            staff_academic_distribution() {
+                return {
+                    header: 'Teaching/Non Teaching Staff Distribution',
+                    legend: ['Male', 'Female'],
+                    value: this.reshape.gen_acad_staff_dist
+                }
+            },
+            staff_gender_distribution() {
+                return {
+                    header: 'Male/Female Staff Distribution',
+                    legend: ['Male', 'Female'],
+                    value: this.reshape.male_female_staff
+                }
             }
-        }
+        },
+
+        async created() {
+            // alert(111);
+            await this.$store.dispatch('loadStatistics')
+                .then(() => {
+                    this.reshape = dataMapping(this.statistics);
+                    console.log(this.private_school)
+                });
+
+            // let myData = dataMapping(data);
+            //
+            // console.log(this.reshape)
+            //
+            // this.male_female_staff = {
+            //     header: 'Male/Female Staff Distribution',
+            //     legend: ['Male', 'Female'],
+            //     value: myData.male_female_staff
+            // };
+
+        },
 
     }
 </script>

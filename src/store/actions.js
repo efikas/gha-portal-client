@@ -4,11 +4,13 @@ import router from "../router";
 
 let actions = {
     loadStatistics({commit}) {
-        axios.get('/statistics')
+        return axios.get('/statistics')
             .then(response => {
                 commit('SET_STATISTICS', response.data);
+                return Promise.resolve(response.data);
             }).catch((error) => {
             console.log(error);
+            return Promise.reject(error.response)
         });
     },
 

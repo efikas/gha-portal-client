@@ -9,14 +9,9 @@
     </div>
 </template>
 <script>
-    import Vue from 'vue';
-
-    import options from "src/validations/validations.js";
     import BasicForm from './forms/basic.vue';
     import Toaster from '../../mixins/toaster';
     import { schoolBasicData } from '../../../data/school'
-
-    Vue.use(options);
 
     export default {
         name: 'school-add',
@@ -36,10 +31,12 @@
                 if (this.formstate.$invalid) {
                     return;
                 } else {
-                    this.$school.addSchool(this.data).then(response => {
+
+                    this.$store.dispatch('addSchool', this.data)
+                        .then(response => {
                         if (typeof  response === 'object') {
                             this.successMsg("School Record added Successfully!", "Success");
-                            vm.$router.push('/school')
+                            return vm.$router.push({name:'school-profile', params:{id: response.id}});
                         } else {
 
                         }

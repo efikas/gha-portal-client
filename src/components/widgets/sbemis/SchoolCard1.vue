@@ -1,5 +1,5 @@
 <template>
-    <b-card v-if="Object.keys(school).length">
+    <b-card v-if="school.id">
         <div class="row">
             <div class="col-6">
                 <gmap-map :center="center" :zoom="16" class="gmap" ref="gmap1">

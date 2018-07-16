@@ -25,7 +25,8 @@
 </template>
 <script>
 import Multiselect from 'vue-multiselect';
-import {apiURL} from '../../../packages/resources'
+import {apiURL} from 'src/resource'
+
 
 export default {
     name: 'student-import',

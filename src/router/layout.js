@@ -68,7 +68,7 @@ const layout = [{
             {
                 path: ':id/staffs',
                 name: "school-staffs",
-                component: resolve => require(['pages/school/staffs'], resolve),
+                component: resolve => require(['pages/staff/staffs'], resolve),
                 meta: {
                     title: "Staff List",
                     guard: true
@@ -77,7 +77,7 @@ const layout = [{
             {
                 path: ':id/students',
                 name: "school-students",
-                component: resolve => require(['pages/school/students'], resolve),
+                component: resolve => require(['pages/student/students'], resolve),
                 meta: {
                     title: "Students List",
                     guard: true
@@ -114,11 +114,12 @@ const layout = [{
             },
             {
                 path: ':id',
+                name: 'school-profile',
                 component:
-                    resolve => require(['pages/school/staff'], resolve),
+                    resolve => require(['pages/staff/staff'], resolve),
                 meta:
                     {
-                        title: "Staff Profile",
+                        title: "",
                         guard: true
                     }
             },
@@ -173,9 +174,9 @@ const layout = [{
             {
                 path: ':id',
                 name: 'student-profile',
-                component: resolve => require(['pages/school/student'], resolve),
+                component: resolve => require(['pages/student/student'], resolve),
                 meta: {
-                    title: "Student Profile",
+                    title: " ",
                     guard: true
                 }
             },

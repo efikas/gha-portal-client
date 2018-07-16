@@ -406,7 +406,7 @@
                 //[{value: null, text: 'Please select an option'}]
                 return [{value: null, text: 'Please select an option'}]
                     .concat(this.data.lga_wards.reduce((prev, next, index) => {
-                        if (this.school.ward.lga_id === next.lga_id) {
+                        if (Object.keys(this.school).length && this.school.ward.lga_id === next.lga_id) {
                             prev.push({value: next.id, text: next.name});
                         }
                         return prev
@@ -414,7 +414,8 @@
             }
         },
         async created() {
-            await this.$store.dispatch('school', this.$route.params.id);
+            if(this.$route.params.id)
+                await this.$store.dispatch('school', this.$route.params.id);
         },
     }
 </script>
