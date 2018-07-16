@@ -87,7 +87,7 @@ export default {
       },
     },
     created() {
-        this.$store.dispatch('staffs', {id: this.school_id, params: this.params});
+        this.$store.dispatch('staffs', {id: this.$route.params.id, params: this.params});
     },
 
     methods: {

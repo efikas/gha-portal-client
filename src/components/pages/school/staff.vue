@@ -46,12 +46,6 @@ cd
                             </div>
                             <table class="table table-bordred table-striped mytable" v-if="staff">
                                 <tbody>
-                                <tr class="m-0">
-                                    <td><i class="fa fa-user"></i> Name</td>
-                                    <td colspan="3"> {{ `${staff.first_name} ${staff.last_name}
-                                        ${staff.middle_name}` }}
-                                    </td>
-                                </tr>
                                 <tr>
                                     <td><i class="fa fa-genderless"></i> Gender</td>
                                     <td> {{ staff.sex }}</td>
