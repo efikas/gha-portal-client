@@ -7,10 +7,7 @@ cd
                 <b-card class="bg-default-card">
                     <div class="profile text-center ">
                         <img :src="showImage()" alt="User Image"
-                             class="rounded-circle img-fluid profile-thumb mb-3">
-                        <h4 class="text-gray">{{ staff.first_name + ' ' + staff.middle_name + ' ' +
-                            staff.last_name }}</h4>
-                        <p>{{this.$store.state.user.job}}</p>
+                             class="rounded-circle img-fluid profile-thumb mb-3" />
                     </div>
                     <div class="profile_details">
                         <div class="row">
@@ -147,7 +144,7 @@ cd
 
     import {mapGetters} from 'vuex';
     import SchoolCard from "../../widgets/sbemis/SchoolCard1";
-    import {URL} from '../../../resource'
+    import {baseURL} from '../../../resource'
 
 
     export default {
@@ -164,7 +161,7 @@ cd
             showImage() {
                 if (typeof  this.staff.biometric) {
                     if (this.staff.biometric && this.staff.biometric.photo) {
-                        return URL + this.staff.biometric.photo;
+                        return baseURL + this.staff.biometric.photo;
                     }
                 }
                 return require("img/authors/user.jpg");
