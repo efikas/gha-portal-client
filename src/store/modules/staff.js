@@ -26,7 +26,7 @@ const actions = {
         })
     },
     staff: ({commit}, id) => {
-        return axios.get(`/school/${id}`).then(response => {
+        return axios.get(`/staff/${id}`).then(response => {
             commit('SET_STAFF', response.data)
             return Promise.resolve(response.data)
         }).catch((error) => {

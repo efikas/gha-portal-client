@@ -1,26 +1,33 @@
-cd<template>
+cd
+<template>
     <div>
-        <SchoolCard :iData="schoolInfo" v-if="staffInfo" />
+        <SchoolCard></SchoolCard>
         <div class="row">
             <div class="col-xl-4 col-lg-5">
-                <b-card class="bg-default-card" v-if="staffInfo">
+                <b-card class="bg-default-card">
                     <div class="profile text-center ">
-                        <img :src="showImage(staffInfo)" alt="User Image" class="rounded-circle img-fluid profile-thumb mb-3">
-                        <h4 class="text-gray">{{ staffInfo.first_name + ' ' + staffInfo.middle_name + ' ' + staffInfo.last_name }}</h4>
+                        <img :src="showImage()" alt="User Image"
+                             class="rounded-circle img-fluid profile-thumb mb-3">
+                        <h4 class="text-gray">{{ staff.first_name + ' ' + staff.middle_name + ' ' +
+                            staff.last_name }}</h4>
                         <p>{{this.$store.state.user.job}}</p>
                     </div>
                     <div class="profile_details">
                         <div class="row">
                             <div class="col-12 mt-3">
-                                <div class="row" v-if="staffInfo">
-                                    <div class="col-6 mt-1 pl-5 default-color"><i class="fa fa-user"></i> Firstname :</div>
-                                    <div class="col-6 mt-1 pl-0">{{ staffInfo.first_name }}</div>
-                                    <div class="col-6 mt-1 pl-5 default-color"><i class="fa fa-user"></i> Middlename :</div>
-                                    <div class="col-6 mt-1 pl-0">{{ staffInfo.middle_name }}</div>
-                                    <div class="col-6 mt-1 pl-5 default-color"><i class="fa fa-user"></i> Lastname :</div>
-                                    <div class="col-6 mt-1 pl-0">{{ staffInfo.last_name }}</div>
-                                    <div class="col-6 mt-1 pl-5 default-color"><i class="fa fa-genderless"></i> Gender :</div>
-                                    <div class="col-6 mt-1 pl-0">{{ staffInfo.sex }}</div>
+                                <div class="row" v-if="staff">
+                                    <div class="col-6 mt-1 pl-5 default-color"><i class="fa fa-user"></i> Firstname :
+                                    </div>
+                                    <div class="col-6 mt-1 pl-0">{{ staff.first_name }}</div>
+                                    <div class="col-6 mt-1 pl-5 default-color"><i class="fa fa-user"></i> Middlename :
+                                    </div>
+                                    <div class="col-6 mt-1 pl-0">{{ staff.middle_name }}</div>
+                                    <div class="col-6 mt-1 pl-5 default-color"><i class="fa fa-user"></i> Lastname :
+                                    </div>
+                                    <div class="col-6 mt-1 pl-0">{{ staff.last_name }}</div>
+                                    <div class="col-6 mt-1 pl-5 default-color"><i class="fa fa-genderless"></i> Gender :
+                                    </div>
+                                    <div class="col-6 mt-1 pl-0">{{ staff.sex }}</div>
                                 </div>
                             </div>
                         </div>
@@ -28,104 +35,104 @@ cd<template>
                 </b-card>
             </div>
             <div class="col-xl-8 col-lg-7">
-                <b-card class="bg-default-card data" v-if="staffInfo">
+                <b-card class="bg-default-card data" v-if="staff">
                     <!-- Nav tabs -->
                     <b-tabs>
                         <b-tab title="PERSONAL">
-                           <div>
-                               <p>
-                                   <br>
-                                   <a :href="'/staff/' + staffId + '/update/personal'" type="button" class="btn btn-outline-primary ekiti-btn pull-right">Edit
-                                   </a><br/><br/>
-                               </p>
-                           </div>
-                            <table class="table table-bordred table-striped mytable" v-if="staffInfo">
+                            <div>
+                                <p>
+                                    <br>
+                                    <a :href="'/staff/' + '' + '/update/personal'" type="button"
+                                       class="btn btn-outline-primary ekiti-btn pull-right">Edit
+                                    </a><br/><br/>
+                                </p>
+                            </div>
+                            <table class="table table-bordred table-striped mytable" v-if="staff">
                                 <tbody>
                                 <tr class="m-0">
-                                   <td><i class="fa fa-user"></i> Name</td>
-                                    <td colspan="3"> {{ `${staffInfo.first_name} ${staffInfo.last_name} ${staffInfo.middle_name}` }}</td>
+                                    <td><i class="fa fa-user"></i> Name</td>
+                                    <td colspan="3"> {{ `${staff.first_name} ${staff.last_name}
+                                        ${staff.middle_name}` }}
+                                    </td>
                                 </tr>
                                 <tr>
-                                   <td><i class="fa fa-genderless"></i> Gender</td>
-                                    <td> {{ staffInfo.sex }}</td>
+                                    <td><i class="fa fa-genderless"></i> Gender</td>
+                                    <td> {{ staff.sex }}</td>
                                     <td><i class="fa fa-calendar"></i> Date of Birth</td>
-                                    <td> {{ staffInfo.date_of_birth }}</td>
+                                    <td> {{ staff.date_of_birth }}</td>
                                 </tr>
                                 <tr>
-                                   <td><i class="fa fa-envelope"></i> Email</td>
-                                    <td> {{ staffInfo.email_address }}</td>
-                                   <td><i class="fa fa-phone"></i> Phone</td>
-                                    <td> {{ staffInfo.phone_number }}</td>
+                                    <td><i class="fa fa-envelope"></i> Email</td>
+                                    <td> {{ staff.email_address }}</td>
+                                    <td><i class="fa fa-phone"></i> Phone</td>
+                                    <td> {{ staff.phone_number }}</td>
                                 </tr>
                                 <tr>
                                     <td>State of Birth</td>
-                                    <td> {{ staffInfo.state_of_birth }}</td>
-                                   <td>Place of Birth</td>
-                                    <td>{{ staffInfo.place_of_birth }}</td>
+                                    <td> {{ staff.state_of_birth }}</td>
+                                    <td>Place of Birth</td>
+                                    <td>{{ staff.place_of_birth }}</td>
                                 </tr>
                                 <tr>
-                                   <td>Local Government</td>
-                                    <td> {{ staffInfo.lga_of_origin }}</td>
-                                   <td>Home Town</td>
-                                    <td> {{ staffInfo.home_town }}</td>
+                                    <td>Local Government</td>
+                                    <td> {{ staff.lga_of_origin }}</td>
+                                    <td>Home Town</td>
+                                    <td> {{ staff.home_town }}</td>
                                 </tr>
                                 <tr>
-                                   <td>Marital Status</td>
-                                    <td> {{ staffInfo.marital_status }}</td>
-                                   <td>Religious Status</td>
-                                    <td> {{ staffInfo.religious_status }}</td>
+                                    <td>Marital Status</td>
+                                    <td> {{ staff.marital_status }}</td>
+                                    <td>Religious Status</td>
+                                    <td> {{ staff.religious_status }}</td>
                                 </tr>
                                 <tr>
-                                   <td>House Address</td>
-                                    <td colspan="3"> {{ staffInfo.residential_address }}</td>
+                                    <td>House Address</td>
+                                    <td colspan="3"> {{ staff.residential_address }}</td>
                                 </tr>
                                 </tbody>
                             </table>
                         </b-tab>
                         <b-tab title="PROFESSIONAL">
                             <p><br/>
-                                <a :href="'/staff/' + staffId + '/update/professional'" type="button" class="btn btn-outline-primary ekiti-btn pull-right">Edit
+                                <a :href="'/staff/' + '' + '/update/professional'" type="button"
+                                   class="btn btn-outline-primary ekiti-btn pull-right">Edit
                                 </a><br/><br/>
                             </p>
-                            <table class="table table-bordred table-striped mytable" v-if="staffInfo">
+                            <table class="table table-bordred table-striped mytable" v-if="staff">
                                 <tbody>
-                                <tr class="m-0">
-                                   <td>School Name</td>
-                                    <td colspan="3"> {{ schoolName }}</td>
-                                </tr>
                                 <tr>
-                                   <td>Academic Qualification</td>
-                                    <td> {{ staffInfo.academic_qualification }}</td>
+                                    <td>Academic Qualification</td>
+                                    <td> {{ staff.academic_qualification }}</td>
                                     <td>Specilaity</td>
-                                    <td> {{ staffInfo.speciality }}</td>
+                                    <td> {{ staff.speciality }}</td>
                                 </tr>
                                 <tr>
                                     <td>Teaching Qualification</td>
-                                    <td> {{ staffInfo.teaching_qualification }}</td>
+                                    <td> {{ staff.teaching_qualification }}</td>
                                     <td>Subject taught</td>
-                                    <td> {{ staffInfo.subject_taught }}</td>
+                                    <td> {{ staff.subject_taught }}</td>
                                 </tr>
                                 <tr>
                                     <td>Employment Type</td>
-                                    <td> {{ staffInfo.employment_type }}</td>
+                                    <td> {{ staff.employment_type }}</td>
                                     <td>Salary Source</td>
-                                    <td> {{ staffInfo.salary_source }}</td>
+                                    <td> {{ staff.salary_source }}</td>
                                 </tr>
                                 <tr>
-                                   <td>Staff Category</td>
-                                    <td> {{ staffInfo.category }}</td>
+                                    <td>Staff Category</td>
+                                    <td> {{ staff.category }}</td>
                                     <td>Last Promotion</td>
-                                    <td> {{ staffInfo.last_promotion_year }}</td>
+                                    <td> {{ staff.last_promotion_year }}</td>
                                 </tr>
                                 <tr>
                                     <td>TRC Reg No</td>
-                                    <td> {{ staffInfo.trc_reg_no }}</td>
+                                    <td> {{ staff.trc_reg_no }}</td>
                                     <td>Staff Status</td>
-                                    <td> {{ staffInfo.status }}</td>
+                                    <td> {{ staff.status }}</td>
                                 </tr>
                                 <tr>
                                     <td>Computer Literate</td>
-                                    <td colspan="3"> {{ yesNo(staffInfo.computer_literate) }}</td>
+                                    <td colspan="3"> {{ yesNo(staff.computer_literate) }}</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -137,75 +144,51 @@ cd<template>
     </div>
 </template>
 <script>
-import Vue from 'vue'
-import vScroll from "components/plugins/scroll/vScroll.vue"
-import VModal from 'vue-js-modal'
-import SchoolCard from "../../widgets/sbemis/SchoolCard1";
-import {apiURL} from '../../../packages/resources'
 
-Vue.use(VModal)
+    import {mapGetters} from 'vuex';
+    import SchoolCard from "../../widgets/sbemis/SchoolCard1";
+    import {URL} from '../../../resource'
 
-export default {
-    name: "user_profile",
-    components: {
-        vScroll,
-        SchoolCard,
-    },
-    data(){
-        return {
-            staffInfo: null,
-            schoolName: '',
-            schoolInfo: {},
-            schoolId: null,
-            staffId: null,
-        }
-    },
-    methods: {
-        yesNo: (value) => {
-           return (value == 1) ? 'Yes' : 'No';
+
+    export default {
+        components: {
+            SchoolCard,
         },
-        showImage(obj) {
-          if(typeof  obj.biometric){
-              if ( obj.biometric && obj.biometric.photo ){
-                  return apiURL + obj.biometric.photo;
-              }
-          }
-          return require("img/authors/user.jpg");
-      }
-    },
-    mounted: function() {
-        this.staffId = this.$route.params.id,
-        this.$staff.staffProfile(this.$route.params.id).then(data => {
-            this.staffInfo = data;
-            this.schoolName = data.school.name
-            this.schoolId = data.school.id;
-
-            let settings = JSON.parse(localStorage.getItem('settings'));
-            let _status = settings.staff_statuses.filter(item => {
-                return (item.id == data.status);
-            });
-            this.staffInfo.status = _status[0].status;
-        })
-    },
-    watch: {
-        schoolId(value){
-            // get school informations
-            this.$school.schoolProfile(value).then(data => {
-                this.schoolInfo = data;
-            })
+        data() {
+            return {}
+        },
+        methods: {
+            yesNo: (value) => {
+                return (value == 1) ? 'Yes' : 'No';
+            },
+            showImage() {
+                if (typeof  this.staff.biometric) {
+                    if (this.staff.biometric && this.staff.biometric.photo) {
+                        return URL + this.staff.biometric.photo;
+                    }
+                }
+                return require("img/authors/user.jpg");
+            }
+        },
+        computed: mapGetters([
+            'staff'
+        ]),
+        created: function () {
+            this.$store.dispatch('staff', this.$route.params.id);
+        },
+        destroyed: function () {
         }
-    },
-    destroyed: function() {}
-}
+    }
 </script>
 <style scoped lang="scss">
-td.views {
-    background-color: #e5e5e5 !important;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    color: #555;
-}
-//'Single','Married','Divorced','Widowed','Separated'
+    td.views {
+        background-color: #e5e5e5 !important;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        color: #555;
+    }
+
+    //'Single','Married','Divorced','Widowed','Separated'
 </style>
 
 <style src="assets/css/user_profile.css" scoped>

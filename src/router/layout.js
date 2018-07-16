@@ -172,6 +172,7 @@ const layout = [{
             },
             {
                 path: ':id',
+                name: 'student-profile',
                 component: resolve => require(['pages/school/student'], resolve),
                 meta: {
                     title: "Student Profile",
