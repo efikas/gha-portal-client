@@ -1,5 +1,4 @@
 import axios from '../../axios'
-import {school} from '../../data/school'
 
 const state = {
     schools: [],

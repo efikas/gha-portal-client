@@ -30,11 +30,6 @@
                 .catch((error) => console.log(error)
                 )
         },
-        beforeRouteLeave(to, from, next) {
-            // unsub();
-            next();
-        },
-
         methods: {
 
             exportExcel() {
