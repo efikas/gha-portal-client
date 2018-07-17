@@ -24,35 +24,20 @@
                         </div>
                     </div>
                     <div slot="footer">
-                        <div class="row" style="padding: 0">
-                            <div class="col-md-9 offset-3" style="height: 50px">
-                                <nav class="navbar navbar-expand-lg navbar-light">
-
-                                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                        <ul class="navbar-nav mr-auto">
-                                            <li class="nav-item active">
-                                                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#">Link</a>
-                                            </li>
-                                            <li class="nav-item dropdown">
-                                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    Dropdown
-                                                </a>
-                                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                                    <a class="dropdown-item" href="#">Action</a>
-                                                    <a class="dropdown-item" href="#">Another action</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item" href="#">Something else here</a>
-                                                </div>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link disabled" href="#">Disabled</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </nav>
+                        <div class="row" style="padding: 0;">
+                            <div class="col-md-9 offset-3" style="padding: 0;">
+                                <b-nav tabs>
+                                    <b-nav-item active>Active</b-nav-item>
+                                    <b-nav-item>Link</b-nav-item>
+                                    <b-nav-item>Link with a long name </b-nav-item>
+                                    <b-nav-item disabled>Disabled</b-nav-item>
+                                    <b-nav-item-dropdown id="nav7_ddown" text="Dropdown" extra-toggle-classes="nav-link-custom" right>
+                                        <b-dropdown-item>one</b-dropdown-item>
+                                        <b-dropdown-item>two</b-dropdown-item>
+                                        <b-dropdown-divider></b-dropdown-divider>
+                                        <b-dropdown-item>three</b-dropdown-item>
+                                    </b-nav-item-dropdown>
+                                </b-nav>
                             </div>
                         </div>
                     </div>
