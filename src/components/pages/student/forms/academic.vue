@@ -33,27 +33,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!--<div class="col-xs-12 col-sm-6 col-md-3">-->
-                        <!--<div class="form-group p-10">-->
-                        <!--<label class="control-label">Admission Class Level <span>*</span>-->
-                        <!--</label>-->
-                        <!--<div class="col-md-12">-->
-                        <!--<input type="number" v-model="admission_class_level" class="form-control" id="admission_class_level" placeholder="">-->
-                        <!--</div>-->
-                        <!--</div>-->
-                        <!--</div>-->
-                        <!--<div class="col-xs-12 col-sm-6 col-md-3">-->
-                        <!--<div class="form-group p-10">-->
-                        <!--<label class="control-label col-md-12">Current Education Level<span>*</span>-->
-                        <!--</label>-->
-                        <!--<div class="col-md-12">-->
-                        <!--<select id="current_admission_education_level" v-model="current_admission_education_level" name="current_admission_education_level" class="form-control" size="1">-->
-                        <!--<option value="">Select Level</option>-->
-                        <!--<option v-for="level in educationLevels" :value="level.id">{{level.level}}</option>-->
-                        <!--</select>-->
-                        <!--</div>-->
-                        <!--</div>-->
-                        <!--</div>-->
                         <div class="col-xs-12 col-sm-6 col-md-3">
                             <div class="form-group p-10">
                                 <label class="control-label col-md-12">Current Class Level <span>*</span>

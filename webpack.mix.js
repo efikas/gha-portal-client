@@ -17,9 +17,9 @@ const path = require('path')
  * this allows you to use $() in all files.
  */
 
-// mix.autoload({
-//     jquery: ['$', 'window.jQuery', 'jQuery']
-// });
+mix.autoload({
+    jquery: ['$', 'window.jQuery', 'jQuery']
+});
 
 //====set alias for isotope
 mix.webpackConfig({
