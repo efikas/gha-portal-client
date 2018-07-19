@@ -1,5 +1,5 @@
 <template>
-    <div style="margin-top: -0%">
+    <div style="margin-top: -0%; width: 1000px">
         <SchoolCard></SchoolCard>
         <div class="container">
             <div class="row">
@@ -122,6 +122,12 @@
 <style>
     .card-profile-link {
         font-size: 30px;
+    }
+</style>
+<style>
+    .modal-open{
+        position: fixed;
+        overflow: hidden;
     }
 </style>
 <style scoped>

@@ -7,8 +7,7 @@
                     <i class=" fa fa-edit card-profile-link pull-right"></i>
                 </a>
 
-
-                <b-modal id="modal6" title="Personal Information" size="lg" lazy centered no-fade hide-footer >
+                <b-modal id="modal6" title="Personal Information" size="lg" lazy centered hide-footer >
                     <personal-form></personal-form>
                 </b-modal>
 
@@ -17,6 +16,7 @@
                     <router-link :to="{query:$route.query}" class="default-color">Personal</router-link>
                 </h3>
             </div>
+
             <div class="p-5">
                 <div class="table-responsive">
                     <table class="table table-borderless table-striped mytable">
@@ -74,28 +74,28 @@
 <script>
     import {mapGetters} from 'vuex'
     import PersonalForm from '../../forms/basic'
+    import modal from 'components/plugins/modal.vue';
 
     export default {
         name: "personal",
         components: {
-          PersonalForm
+          PersonalForm,
+            modal
+        },
+        data() {
+            return {
+                isModalVisible: false,
+            }
         },
         computed: {
             ...mapGetters([
                 'student'
             ])
         },
-        mounted() {
-            $('#modal6').bind('hidden.bs.modal', function () {
-                $("html").css("margin-right", "0px");
-            });
-            $('#modal6').bind('show.bs.modal', function () {
-                $("html").css("margin-right", "-15px");
-            });
-        }
+        methods:{
+        },
     }
 </script>
-
 <style scoped>
     .table-borderless > tbody > tr > td,
     .table-borderless > tbody > tr > th,

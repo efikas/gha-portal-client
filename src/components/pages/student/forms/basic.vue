@@ -1,11 +1,14 @@
 <template>
     <div>
         <div class="row odd-row">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="form-group p-10">
                     <label class="control-label">School Name</label>
-                    <multiselect v-model="schoolName" :show-labels="false" :options="schools"
-                                 @input="getSchoolId"></multiselect>
+                    <!--<select v-model="student.school_id" class="form-control">-->
+                        <!--<option v-for="school in schools" >{{school.name}}</option>-->
+                    <!--</select>-->
+                    <multiselect v-model="selectedSchool" :show-labels="false" :options="schoolsMapping"
+                                 @input="setSchoolId"></multiselect>
                 </div>
             </div>
         </div>
@@ -14,48 +17,32 @@
                 <div class="form-group">
                     <label class="control-label">First name
                     </label>
-                        <input type="text" class="form-control" v-model="data.first_name" placeholder="First Name" />
+                        <input type="text" class="form-control" v-model="student.first_name" placeholder="First Name" />
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-4">
                 <div class="form-group">
                     <label class="control-label">Middle Name
                     </label>
-                        <input type="text" class="form-control" v-model="data.middle_name" placeholder="Middle Name" />
+                        <input type="text" class="form-control" v-model="student.middle_name" placeholder="Middle Name" />
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-4">
                 <div class="form-group">
                     <label class="control-label">Last Name
                     </label>
-                        <input type="text" class="form-control" v-model="data.last_name" placeholder="" />
+                        <input type="text" class="form-control" v-model="student.last_name" placeholder="" />
                 </div>
             </div>
-            <!--<div class="col-xs-12 col-sm-6 col-md-3">-->
-                <!--<div class="form-group p-10">-->
-                    <!--<label class="control-label">Sex-->
-                    <!--</label>-->
-                    <!--<b-form-radio-group v-model="data.sex" :options="sexOptions" stacked name="sex"/>-->
-                <!--</div>-->
-            <!--</div>-->
         </div>
         <div class="row odd-row">
             <div class="col-xs-12 col-sm-6 col-md-3">
                 <div class="form-group p-10">
-                    <label class="control-label col-md-8">Date of Birth
+                    <label class="control-label" for="email">Email (optional)
                     </label>
-                    <div class="col-md-12">
-                        <input type="date" class="form-control" v-model="data.date_of_birth">
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-3">
-                <div class="form-group p-10">
-                    <label class="control-label col-md-12">Place of Birth
-                    </label>
-                    <div class="col-md-12">
-                        <input type="text" class="form-control" v-model="data.place_of_birth" id="pob"
-                               placeholder="Place of birth">
+                    <div class="">
+                        <input type="email" class="form-control" v-model="student.email" id="email"
+                               placeholder="example@domain.com">
                     </div>
                 </div>
             </div>
@@ -64,32 +51,69 @@
                     <label class="control-label">Phone Number (optional)
                     </label>
                     <div class="col-md-12">
-                        <input type="phone" class="form-control" name="phone" v-model="data.phone"
+                        <input type="text" class="form-control" name="phone" v-model="student.phone"
                                placeholder="08064720000" id="phone">
                     </div>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-3">
                 <div class="form-group p-10">
-                    <label class="control-label" for="email">Email (optional)
+                    <label class="control-label">Sex
+                    </label>
+                    <b-form-radio-group v-model="student.sex" :options="sexOptions" name="sex"/>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="form-group p-10">
+                    <label class="control-label col-md-12">Place of Birth
                     </label>
                     <div class="col-md-12">
-                        <input type="email" class="form-control" v-model="data.email" id="email"
-                               placeholder="aaa@abcd.com">
+                        <input type="text" class="form-control" v-model="student.place_of_birth" id="pob"
+                               placeholder="Place of birth">
                     </div>
                 </div>
             </div>
         </div>
         <div class="row even-row">
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="form-group p-10">
+                    <label class="control-label col-md-8">Date of Birth
+                    </label>
+                    <div class="col-md-12">
+                        <input type="date" class="form-control" v-model="student.date_of_birth">
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="form-group p-10">
+                    <label class="control-label col-md-12">Birth Cert Type
+                    </label>
+                    <div class="">
+                        <select name="birth_cert_type" v-model="student.birth_cert_type" class="form-control" size="1">
+                            <option value="null">Select Cert Type</option>
+                            <option v-for="cert in data.birth_certs" :value="cert.id">{{cert.birth_cert_type}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
             <div class="col-xs-12 col-sm-6 col-md-3">
                 <div class="form-group p-10">
                     <label class="control-label">Any special Challenge?
                     </label>
-                    <select v-model="data.special_condition" class="form-control" size="1">
-                        <option value="">Select Challenge</option>
-                        <option v-for="challenge in specialChallenges" :value="challenge.id">{{challenge.condition}}
+                    <select v-model="student.special_condition" class="form-control" size="1">
+                        <option value="null">Select Challenge</option>
+                        <option v-for="challenge in data.special_conditions" :value="challenge.id">{{challenge.condition}}
                         </option>
                     </select>
+                </div>
+            </div>
+        </div>
+        <div class="row odd-row">
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="form-group p-10">
+                    <label class="control-label">Blood Group Type
+                    </label>
+                    <input type="text" class="form-control" v-model="student.blood_group" placeholder="A, B, AB, O">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-4">
@@ -98,48 +122,27 @@
                         <div class="form-group p-10">
                             <label class="control-label">Height (in m)
                             </label>
-                            <input type="number" step="0.01" class="form-control" v-model="data.height" placeholder="">
+                            <input type="number" step="0.01" class="form-control" v-model="student.height" placeholder="">
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-6">
                         <div class="form-group p-10">
                             <label class="control-label">weight (in Kg)
                             </label>
-                            <input type="number" step="0.1" class="form-control" v-model="data.weight" placeholder="">
+                            <input type="number" step="0.1" class="form-control" v-model="student.weight" placeholder="">
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-6 col-md-3">
-                <div class="form-group p-10">
-                    <label class="control-label">Blood Group Type
-                    </label>
-                    <input type="text" class="form-control" v-model="data.blood_group" placeholder="A, B, AB, O">
-                </div>
-            </div>
         </div>
-        <div class="row odd-row">
-            <div class="col-xs-12 col-sm-6 col-md-3">
-                <div class="form-group p-10">
-                    <label class="control-label col-md-12">Birth Cert Type
-                    </label>
-                    <div class="col-md-12">
-                        <select name="birth_cert_type" v-model="data.birth_cert_type" class="form-control" size="1">
-                            <option value="">Select Cert Type</option>
-                            <option v-for="cert in birthCerts" :value="cert.id">{{cert.birth_cert_type}}</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+        <button type="submit" @click.prevent="onSubmit" class="btn btn-primary btn-lg btn-school pull-right">Submit</button>
     </div>
 </template>
 <script>
     import Multiselect from 'vue-multiselect';
-    import Vue from 'vue';
-    import VueSweetalert2 from 'vue-sweetalert2';
+    import {mapGetters} from 'vuex'
 
-    Vue.use(VueSweetalert2);
     export default {
         name: 'student-basic',
         components: {
@@ -147,80 +150,72 @@
         },
         data() {
             return {
-                schools: [],        // holds the array of school name
-                allSchools: [],     // holds the array of schools object
-                schoolName: '',
-                specialChallenges: {},
-                birthCerts: {},
-                schoolId: '',
+                selectedSchool: null,
+                // student: this.$store.state.student,
                 sexOptions: [{text: 'Female', value: 'F'}, {text: 'Male', value: 'M'}],
-                data: {}
+            }
+        },
+        computed: {
+            ...mapGetters([
+                'student',
+                'schools',
+                'data'
+            ]),
+            schoolsMapping() {
+                return this.schools.map(school => {
+                    if(this.student.school_id === school.id) {
+                        this.selectedSchool = school.name;
+                    }
+                    return school.name;
+                })
             }
         },
         methods: {
-            onSubmit: function () {
-                this.$student.editStudent(this.studentId, this.data).then(response => {
-                    if (typeof  response == 'object') {
-                        this.$swal({
-                            type: 'success',
-                            title: 'Srudent Record updated Successfully!',
-                            confirmButtonColor: '#3085d6',
-                            confirmButtonText: 'Ok'
-                        }).then((result) => {
-                            if (result.value) {
-                                window.location.href = 'http://localhost:8080/student/' + this.studentId;
-                            }
-                        })
+            setSchoolId() {
+                this.schools.filter(school => {
+                    if(school.name === this.selectedSchool) {
+                        this.student.school_id = school.id;
                     }
-                })
+                });
             },
-            getSchoolId() {
-                let _selectedSchool = this.allSchools.filter(school => {
-                    return (school.name == this.schoolName);
-                })
+            onSubmit: function () {
+                let form = {
+                    'school_id': this.student.school_id,
+                    'first_name': this.student.first_name,
+                    'last_name': this.student.last_name,
+                    'middle_name': this.student.middle_name,
+                    'email': this.student.email,
+                    'phone': this.student.middle_name,
+                    'sex': this.student.sex,
+                    'place_of_birth': this.student.place_of_birth,
+                    'date_of_birth': this.student.date_of_birth,
+                    'birth_cert_type': this.student.birth_cert_type,
+                    'special_condition': this.student.special_condition,
+                    'blood_group': this.student.blood_group,
+                    'height': this.student.height,
+                    'weight': this.student.weight,
+                    'admission_year': this.student.admission_year,
+                };
 
-                this.data.school_id = _selectedSchool[0].id;
-            }
+                if(this.student.id) {
+                    this.$store.dispatch('updateStudent', form).then(()=>{
+                        console.log('record updated')
+                    }).catch(() => {
+                        console.log('error')
+                    });
+                } else {
+                    this.$store.dispatch('storeStudent', form).then(()=>{
+                        console.log('record created')
+                    }).catch(() => {
+                        console.log('error')
+                    });
+                }
+
+            },
         },
-        mounted: function () {
-            //populate the select boxes using the settings data from local storage
-            let settings = JSON.parse(localStorage.getItem('settings'));
-
-            if (settings) {
-                this.specialChallenges = settings.special_conditions;
-                this.birthCerts = settings.birth_certs;
-            }
-
-            this.studentId = this.$route.params.id;
-            this.$student.studentProfile(this.$route.params.id).then(data => {
-                this.data = data;
-                this.schoolId = data.school_id;
-            });
-
-            //get list of schools
-            this.$school.allSchools().then(data => {
-                this.allSchools = data.data;
-            })
-        },
-        destroyed: function () {
-
-        },
-        watch: {
-            allSchools(value) {
-                //allSchools is
-                value.forEach(school => {
-                    this.schools.push(school.name);
-                })
-
-                // Get the school name from the school list using the school id
-                // after all school information has been loaded from the database
-                let _school = value.filter(school => {
-                    return (school.id == this.data.school_id);
-                })
-
-                this.schoolName = _school[0].name;
-                // this.data.school_id = data.school_id;
-            }
+        async created () {
+            await this.$store.dispatch('schools');
+            // this.schools = this.$store.getters.schools;
         }
     }
 </script>
@@ -279,11 +274,5 @@
         letter-spacing: 1px;
         color: #684348 !important;
     }
-
-    /* .form-group p:not(.no-block) label{min-weight:200px;} */
-    /* .form-group label span,.form-box .header p > strong{font-size:.85rem!important;font-weight:bold!important;color:#FF5722!important;} */
-    /* .form-group label.active{color:#684348!important;font-size:.75rem!important;font-weight:400!important;-webkit-transform:translateY(-100%)!important;transform:translateY(-100%)!important;} */
-    /* .form-group{position:relative;margin-top:.25rem;padding-top:1.5rem!important;padding-bottom:.25rem!important;} */
-
 </style>
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>

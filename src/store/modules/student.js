@@ -33,6 +33,22 @@ const actions = {
             return Promise.reject(error.response)
         })
     },
+    storeStudent: ({commit}, payload) => {
+        return axios.post('/student', payload).then(response => {
+            return Promise.resolve(response.data)
+        }).catch((error) => {
+            return Promise.reject(error.response)
+        })
+    },
+    updateStudent: ({commit, dispatch, getters}, payload) => {
+        return axios.post(`/student/${getters.student.id}/edit`, payload)
+            .then(response => {
+                dispatch('student', getters.student.id);
+                return Promise.resolve(response.data)
+            }).catch((error) => {
+                return Promise.reject(error.response)
+            })
+    },
 };
 
-export default { state, getters, mutations, actions }
+export default {state, getters, mutations, actions}

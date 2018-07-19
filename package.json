@@ -36,6 +36,7 @@
         "geolocator": "^2.1.1",
         "highcharts": "^6.0.7",
         "hover.css": "^2.2.1",
+        "jquery": "^3.3.1",
         "mini-toastr": "^0.7.2",
         "npm": "^5.10.0",
         "postcss-rtl": "^1.1.3",
