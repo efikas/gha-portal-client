@@ -30,14 +30,8 @@
                                 <div class="form-group">
                                     <label for="password"> Password</label>
                                     <input v-model="password" name="password" id="password" type="password"
-                                           required placeholder="Password" class="form-control" minlength="4"
+                                           placeholder="Password" class="form-control" minlength="4"
                                            maxlength="10"/>
-                                    <field-messages name="password" show="$invalid && $submitted"
-                                                    class="text-danger">
-                                        <div slot="required">Password is required</div>
-                                        <div slot="minlength">Password should be atleast 4 characters long</div>
-                                        <div slot="maxlength">Password should be atmost 10 characters long</div>
-                                    </field-messages>
                                 </div>
                             </div>
                             <!--<div class="col-lg-12 col-md-12">-->
@@ -82,8 +76,8 @@
         name: "login2",
         data() {
             return {
-                email: "",
-                password: "ericson",
+                email: null,
+                password: null,
                 error: ""
             }
         },
