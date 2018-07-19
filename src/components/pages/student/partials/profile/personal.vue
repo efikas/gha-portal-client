@@ -51,13 +51,13 @@
                         </tr>
                         <tr>
                             <td>Special Condition</td>
-                            <td> {{ student.special_condition }}</td>
+                            <td> {{ student.special_condition?data.special_conditions[student.special_condition].condition:null }}</td>
                             <td>Bloodgroup</td>
                             <td> {{ student.blood_group }}</td>
                         </tr>
                         <tr>
                             <td>Birth certificate Type</td>
-                            <td colspan="3"> {{ student.birth_cert_type }}</td>
+                            <td colspan="3"> {{ student.birth_cert_type?data.birth_certs[student.birth_cert_type].birth_cert_type:null }}</td>
                         </tr>
                         </tbody>
                     </table>
@@ -85,7 +85,8 @@
         },
         computed: {
             ...mapGetters([
-                'student'
+                'student',
+                'data'
             ])
         },
         methods:{

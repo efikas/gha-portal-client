@@ -27,7 +27,7 @@
                     </tr>
                     <tr>
                         <td>Relationship</td>
-                        <td> {{ guardian.relationship?data.guardians[guardian.relationship-1].type :'' }}</td>
+                        <td> {{ guardian.relationship?data.guardians[guardian.relationship].type :'' }}</td>
                     </tr>
                     <tr>
                         <td>Mobile Number</td>
@@ -43,7 +43,7 @@
                     </tr>
                     <tr>
                         <td>Religion</td>
-                        <td> {{ guardian.religion?data.religions[guardian.religion-1].religion : '' }}</td>
+                        <td> {{ guardian.religion?data.religions[guardian.religion].religion : '' }}</td>
                     </tr>
                 </table>
             </div>

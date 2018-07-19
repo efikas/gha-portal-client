@@ -27,7 +27,7 @@
                         <td>Class of Admission</td>
                         <td> {{ student.admission_education_level ? data.classes[student.admission_education_level].class : null }}</td>
                         <td>Current Class</td>
-                        <td> {{ student.current_class_level ? data.classes[student.current_class_level].class : null }}</td>
+                        <td> {{ student.current_class ? data.classes[student.current_class].class : null }}</td>
                     </tr>
                     <tr>
                         <td>Distance from School</td>
