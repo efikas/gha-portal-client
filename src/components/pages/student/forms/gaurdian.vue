@@ -96,7 +96,7 @@
                             </label>
                             <div class="">
                                 <input type="tel" class="form-control" v-model="guardian.phone"
-                                       id="g1_phone" placeholder="08063888888">
+                                       id="g1_phone" placeholder="">
                             </div>
                         </div>
                     </div>
