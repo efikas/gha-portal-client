@@ -19,21 +19,21 @@
                 <table class="table table-bordred table-striped mytable">
                     <tr>
                         <td>Admission status</td>
-                        <td> {{ student.admission_status }}</td>
+                        <td> {{ student.admission_status?data.admissions[student.admission_status].status:null }}</td>
                         <td>Admission Year</td>
                         <td> {{ student.admission_year }}</td>
                     </tr>
                     <tr>
                         <td>Class of Admission</td>
-                        <td> {{ student.admission_education_level }}</td>
+                        <td> {{ student.admission_education_level ? data.classes[student.admission_education_level].class : null }}</td>
                         <td>Current Class</td>
-                        <td> {{ student.current_class_level }}</td>
+                        <td> {{ student.current_class_level ? data.classes[student.current_class_level].class : null }}</td>
                     </tr>
                     <tr>
                         <td>Distance from School</td>
                         <td> {{ student.distance_from_school }}</td>
                         <td>Promotion Status</td>
-                        <td> {{ student.promotion_status }}</td>
+                        <td> {{ student.promotion_status?data.promotions[student.promotion_status].status:null }}</td>
                     </tr>
                     <tr>
                         <td>Boarding</td>
@@ -58,7 +58,8 @@
         },
         computed: {
             ...mapGetters([
-                'student'
+                'student',
+                'data'
             ])
         }
     }

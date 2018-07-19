@@ -2,7 +2,6 @@ const LOGIN = "LOGIN";
 const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 const LOGOUT = "LOGOUT";
 
-
 let mutations = {
     authUser(state, authData) {
         localStorage.setItem('user', JSON.stringify(authData.user));
@@ -61,7 +60,20 @@ let mutations = {
     },
 
     'SET_SITE_DATA' (state, data) {
-        localStorage.setItem('data', JSON.stringify(data));
+        localStorage.setItem('data', JSON.stringify(function(entities) {
+
+            for (let index in entities) {
+                const normalized = {};
+                for (let entity in entities[index]) {
+                    const oldObj = entities[index][entity] || {};
+                    if(oldObj.id) {
+                        normalized[oldObj.id] = oldObj;
+                    }
+                }
+                entities[index] = normalized;
+            }
+            return entities;
+        }(data)));
     },
 
     'SET_STATISTICS' (state, statistics) {
