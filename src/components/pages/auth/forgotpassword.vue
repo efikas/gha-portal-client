@@ -38,8 +38,7 @@
 <script>
 import Vue from 'vue'
 import VueForm from "vue-form";
-import options from "src/validations/validations.js";
-Vue.use(VueForm, options);
+Vue.use(VueForm);
 export default {
     name: "forgetpassword",
     data() {

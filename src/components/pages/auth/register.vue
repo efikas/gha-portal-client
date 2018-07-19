@@ -7,7 +7,7 @@
                         <h2 class="text-center"><img src="~img/logo_black.png" alt="Logo"></h2>
                     </div>
                 </div>
-                <vue-form :state="formstate" @submit.prevent="onSubmit">
+                <form :state="formstate" @submit.prevent="onSubmit">
                     <div class="row">
                         <div class="col-sm-12 mt-3">
                             <div class="form-group">
@@ -84,16 +84,12 @@
                             </div>
                         </div>
                     </div>
-                </vue-form>
+                </form>
             </div>
         </div>
     </div>
 </template>
 <script>
-import Vue from 'vue'
-import VueForm from "vue-form";
-import options from "src/validations/validations.js";
-Vue.use(VueForm, options);
 export default {
     name: "register",
     data() {

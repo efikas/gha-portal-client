@@ -26,6 +26,15 @@ export default {
     abbr {
         color: red;
     }
+    .form-group.has-error {
+        color: red;
+    }
+    .form-group.has-error input,
+    .form-group.has-error select,
+    .form-group.has-error textarea {
+        border: 1px solid red;
+        background-color: #fffaef;
+    }
 </style>
 <style lang="scss" src="assets/sass/bootstrap/bootstrap.scss"></style>
 <style src="font-awesome/css/font-awesome.css"></style>

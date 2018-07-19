@@ -357,11 +357,6 @@
 </template>
 <script>
 
-    import Vue from 'vue';
-    import options from "src/validations/validations.js";
-
-    Vue.use(options);
-
     import {mapGetters} from 'vuex';
 
     export default {
