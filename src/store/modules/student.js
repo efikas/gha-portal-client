@@ -46,6 +46,7 @@ const actions = {
                 dispatch('student', getters.student.id);
                 return Promise.resolve(response.data)
             }).catch((error) => {
+                dispatch('student', getters.student.id);
                 return Promise.reject(error.response)
             })
     },

@@ -2,9 +2,13 @@
     <div>
         <b-card class="bg-clear-card" bg-variant="" text-variant="dark">
             <div slot="header">
-                <a href="" @click.prevent="$emit('editProfile', 'GuardianForm')">
-                    <i class="pull-right fa fa-edit card-profile-link"></i>
+                <a href="javascript:void(0)" v-b-modal.modal6>
+                    <i class=" fa fa-edit card-profile-link pull-right"></i>
                 </a>
+
+                <b-modal id="modal6" title="Personal Information" size="lg" lazy centered hide-footer >
+                    <guardian-form></guardian-form>
+                </b-modal>
                 <h3>
                     <img class="_51sw img" :src="require('img/icon/IKrON1RLHfZ.png')" alt="">
                     <router-link :to="{query:$route.query}" class="default-color">Guardian</router-link>
@@ -51,14 +55,18 @@
 
 <script>
     import {mapGetters} from 'vuex'
+    import guardianForm from '../../forms/gaurdian'
 
     export default {
         name: "guardian",
+        components: {
+            guardianForm
+        },
         computed: {
             ...mapGetters([
                 'student'
             ])
-        }
+        },
     }
 </script>
 

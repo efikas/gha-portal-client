@@ -2,9 +2,13 @@
     <div>
         <b-card class="bg-clear-card" bg-variant="" text-variant="dark">
             <div slot="header">
-                <a href="" @click.prevent="$emit('editProfile', 'AcademicForm')">
-                    <i class="pull-right fa fa-edit card-profile-link"></i>
+                <a href="javascript:void(0)" v-b-modal.modal6>
+                    <i class=" fa fa-edit card-profile-link pull-right"></i>
                 </a>
+
+                <b-modal id="modal6" title="Academic Information" size="lg" lazy centered hide-footer >
+                    <academic-form></academic-form>
+                </b-modal>
                 <h3>
                     <img class="_51sw img" :src="require('img/icon/IKrON1RLHfZ.png')" alt="">
                     <router-link :to="{query:$route.query}" class="default-color">Academic</router-link>
@@ -46,9 +50,12 @@
 
 <script>
     import {mapGetters} from 'vuex'
+    import academicForm from '../../forms/academic'
 
     export default {
-        name: "academic",
+        components: {
+            academicForm
+        },
         computed: {
             ...mapGetters([
                 'student'

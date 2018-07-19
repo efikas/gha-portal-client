@@ -55,10 +55,6 @@
                             <td>Bloodgroup</td>
                             <td> {{ student.blood_group }}</td>
                         </tr>
-                        <!--<tr>-->
-                        <!--<td>Birth certificate available</td>-->
-                        <!--<td> {{ student.birth_cert_status }}</td>-->
-                        <!--</tr>-->
                         <tr>
                             <td>Birth certificate Type</td>
                             <td colspan="3"> {{ student.birth_cert_type }}</td>

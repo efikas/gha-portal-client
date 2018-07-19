@@ -194,6 +194,8 @@
                     'blood_group': this.student.blood_group,
                     'height': this.student.height,
                     'weight': this.student.weight,
+
+                    //required
                     'admission_year': this.student.admission_year,
                 };
 
