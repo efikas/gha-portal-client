@@ -2,22 +2,22 @@
     <div>
         <div class="row odd-row">
             <div class="col-md-12">
-                <div class="form-group p-10">
+                <div class="form-group p-10" :class="{hasError:this.$v.student.school_id.$error}">
                     <label class="control-label">School Name</label>
                     <!--<select v-model="student.school_id" class="form-control">-->
                         <!--<option v-for="school in schools" >{{school.name}}</option>-->
                     <!--</select>-->
                     <multiselect v-model="selectedSchool" :show-labels="false" :options="schoolsMapping"
-                                 @input="setSchoolId"></multiselect>
+                                 @input="setSchoolId" @blur="$v.student.school_id.$touch()"></multiselect>
                 </div>
             </div>
         </div>
         <div class="row even-row">
             <div class="col-xs-12 col-sm-6 col-md-4">
-                <div class="form-group">
+                <div class="form-group" :class="{'has-error':$v.student.first_name.$error}">
                     <label class="control-label">First name
                     </label>
-                        <input type="text" class="form-control" v-model="student.first_name" placeholder="First Name" />
+                        <input type="text" @blur="$v.student.first_name.$touch()" class="form-control" v-model="student.first_name" placeholder="First Name" />
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-4">
@@ -136,12 +136,13 @@
             </div>
         </div>
 
-        <button type="submit" @click.prevent="onSubmit" class="btn btn-primary btn-lg btn-school pull-right">Submit</button>
+        <button type="submit" :disabled="$v.$invalid" @click.prevent="onSubmit" class="btn btn-primary btn-lg btn-school pull-right">Submit</button>
     </div>
 </template>
 <script>
     import Multiselect from 'vue-multiselect';
     import {mapGetters} from 'vuex'
+    import {studentUpdateValidations} from 'src/validations/validations'
 
     export default {
         name: 'student-basic',
@@ -155,6 +156,7 @@
                 sexOptions: [{text: 'Female', value: 'F'}, {text: 'Male', value: 'M'}],
             }
         },
+        validations: studentUpdateValidations,
         computed: {
             ...mapGetters([
                 'student',
@@ -185,7 +187,7 @@
                     'last_name': this.student.last_name,
                     'middle_name': this.student.middle_name,
                     'email': this.student.email,
-                    'phone': this.student.middle_name,
+                    'phone': this.student.phone,
                     'sex': this.student.sex,
                     'place_of_birth': this.student.place_of_birth,
                     'date_of_birth': this.student.date_of_birth,
@@ -274,7 +276,7 @@
     .form-group label {
         font-size: .8rem !important;
         letter-spacing: 1px;
-        color: #684348 !important;
+        color: #684348;
     }
 </style>
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>

@@ -3,7 +3,10 @@ import {
     minLength,
     between,
     sameAs,
-    email
+    email,
+    numeric,
+    alpha,
+    integer
 } from 'vuelidate/lib/validators'
 
 const validations = {
@@ -32,4 +35,16 @@ const loginV = {
     }
 };
 
-export { loginV };
+const studentUpdateValidations = {
+    student: {
+        school_id: {required, integer},
+        first_name: { required,  minLength: minLength(3) },
+        last_name: { required,  minLength: minLength(3) },
+        middle_name: { required,  minLength: minLength(3) },
+        sex: { required,  alpha },
+        admission_year: { required, numeric },
+        admission_education_level: { required, numeric },
+    }
+};
+
+export { loginV, studentUpdateValidations };

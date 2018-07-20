@@ -26,8 +26,8 @@ export default {
     abbr {
         color: red;
     }
-    .form-group.has-error {
-        color: red;
+    .form-group.has-error, .form-group.has-error label {
+        color: red !important;
     }
     .form-group.has-error input,
     .form-group.has-error select,
