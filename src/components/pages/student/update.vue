@@ -17,7 +17,7 @@
 
     Vue.use(VueSweetalert2);
 
-    import studentBasic from './forms/basic';
+    import studentBasic from './forms/personal';
     import studentAcademic from './forms/academic';
     import studentParent from './forms/gaurdian';
 

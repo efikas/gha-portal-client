@@ -69,7 +69,7 @@
 
 <script>
     import {mapGetters} from 'vuex'
-    import PersonalForm from '../../forms/basic'
+    import PersonalForm from '../../forms/personal'
     import modal from 'components/plugins/modal.vue';
 
     export default {

@@ -114,7 +114,7 @@ const layout = [{
             },
             {
                 path: ':id',
-                name: 'school-profile',
+                name: 'staff-profile',
                 component:
                     resolve => require(['pages/staff/staff'], resolve),
                 meta:
