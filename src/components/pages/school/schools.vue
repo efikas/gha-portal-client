@@ -79,6 +79,18 @@
         },
 
         created() {
+
+            // function recurse(a, b){
+            //     if (a===0) return b;
+            //     if (b===0) return a;
+            //     let v = recurse(a, b-1);
+            //     let sum = v + b;
+            //     console.log('in loop: ', a, b, "v: ", v, "sum: ", sum);
+            //     return sum;
+            // }
+            //
+            // console.log(recurse(3, 6));
+
             //check for lga id and category id in the url
             if (this.$route.query.id) {
                 let query = {lgaId: this.$route.query.id};

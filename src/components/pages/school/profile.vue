@@ -58,7 +58,7 @@
                                     </tr>
                                     <tr>
                                         <td>Type</td>
-                                        <td>{{ school_type }}</td>
+                                        <td>{{ school.type?data.school_types[school.type].name:null }}</td>
                                         <td>Location</td>
                                         <td>{{ school.location }}</td>
                                     </tr>
@@ -78,7 +78,7 @@
                                         <td>Average Distance</td>
                                         <td>{{ school.average_distance }}KM</td>
                                         <td>Ownership</td>
-                                        <td>{{ school.ownership }}</td>
+                                        <td>{{ school.ownership?data.school_ownerships[school.ownership].owner:null }}</td>
                                     </tr>
                                     <tr>
                                         <td>Shifts</td>
@@ -108,7 +108,7 @@
                                         <td>Teaching Staff</td>
                                         <td>{{ school.staffs.teaching }}</td>
                                         <td>Non Teaching Staff</td>
-                                        <td>{{ school.staffs.none_teaching }}</td>
+                                        <td>{{  school.staffs.none_teaching }}</td>
                                     </tr>
                                 </table>
                             </div>
@@ -349,7 +349,7 @@
                 'data'
             ]),
             power_sources() {
-                return this.data.power_sources.reduce((prev, next, index) => {
+                return Object.values(this.data.power_sources).reduce((prev, next, index) => {
                     if(this.school.power_source_ids.indexOf(next.id) === 0) {
                         prev.push(next.power_sources)
                     }
@@ -357,7 +357,7 @@
                 }, []).join(', ')
             },
             waters() {
-                return this.data.water.reduce((prev, next, index) => {
+                return Object.values(this.data.water).reduce((prev, next, index) => {
                     if(this.school.water_ids.indexOf(next.id) === 0) {
                         prev.push(next.source)
                     }
@@ -365,7 +365,7 @@
                 }, []).join(', ')
             },
             healths() {
-                return this.data.healths.reduce((prev, next, index) => {
+                return Object.values(this.data.healths).reduce((prev, next, index) => {
                     if(this.school.health_ids.indexOf(next.id) === 0) {
                         prev.push(next.facility)
                     }
@@ -373,7 +373,7 @@
                 }, []).join(', ')
             },
             toilets() {
-                return this.data.toilet_types.reduce((prev, next, index) => {
+                return Object.values(this.data.toilet_types).reduce((prev, next, index) => {
                     if(this.school.toilet_ids.indexOf(next.id) === 0) {
                         prev.push(next.type)
                     }
@@ -381,7 +381,7 @@
                 }, []).join(', ')
             },
             play_facilities() {
-                return this.data.play_facilities.reduce((prev, next, index) => {
+                return Object.values(this.data.play_facilities).reduce((prev, next, index) => {
                     if(this.school.play_facility_id === next.id) {
                         prev.push(next.type)
                     }
@@ -389,7 +389,7 @@
                 }, []).join(', ')
             },
             learning() {
-                return this.data.healths.reduce((prev, next, index) => {
+                return Object.values(this.data.healths).reduce((prev, next, index) => {
                     if(this.school.learning_ids.indexOf(next.id) === 0) {
                         prev.push(next.material)
                     }
@@ -397,7 +397,7 @@
                 }, []).join(', ')
             },
             school_type() {
-                return this.data.school_types.reduce((prev, next, index) => {
+                return Object.values(this.data.school_types).reduce((prev, next, index) => {
                     if(this.school.type === next.id) {
                         prev = next.name
                     }
@@ -406,7 +406,7 @@
             },
             classrooms() {
                 return this.school.classroom_list.map((obj) => {
-                    obj.class = this.data.classes.reduce((prev, next) => {
+                    obj.class = Object.values(this.data.classes).reduce((prev, next) => {
                         if(obj.class_id === next.id) {
                             prev = next.class
                         }
@@ -417,7 +417,7 @@
             },
             facilities() {
                 return this.school.facility_list.map((obj) => {
-                    obj.facility = this.data.facility_types.reduce((prev, next) => {
+                    obj.facility = Object.values(this.data.facility_types).reduce((prev, next) => {
                         if(obj.facility_id === next.id) {
                             prev = next.type
                         }
@@ -485,4 +485,3 @@
         background-color: red !important;
     }
 </style>
-
