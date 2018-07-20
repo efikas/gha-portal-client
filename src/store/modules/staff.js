@@ -33,6 +33,23 @@ const actions = {
             return Promise.reject(error.response)
         })
     },
+    storeStaff: ({commit}, payload) => {
+        return axios.post('/staff', payload).then(response => {
+            return Promise.resolve(response.data)
+        }).catch((error) => {
+            return Promise.reject(error.response)
+        })
+    },
+    updateStaff: ({commit, dispatch, getters}, payload) => {
+        return axios.post(`/staff/${getters.staff.id}/edit`, payload)
+            .then(response => {
+                dispatch('staff', getters.staff.id);
+                return Promise.resolve(response.data)
+            }).catch((error) => {
+                dispatch('staff', getters.staff.id);
+                return Promise.reject(error.response)
+            })
+    },
 };
 
 export default { state, getters, mutations, actions }

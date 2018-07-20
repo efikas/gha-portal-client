@@ -6,7 +6,7 @@
                     <i class=" fa fa-edit card-profile-link pull-right"></i>
                 </a>
 
-                <b-modal id="modal6" title="Academic Information" size="lg" lazy centered hide-footer >
+                <b-modal id="modal6" title="Professional" size="lg" lazy centered hide-footer >
                     <professional-form></professional-form>
                 </b-modal>
                 <h3>
@@ -20,25 +20,25 @@
                         <tbody>
                         <tr>
                             <td>Academic Qualification</td>
-                            <td> {{ staff.academic_qualification }}</td>
+                            <td> {{ staff.academic_qualification?data.academic_qualifications[staff.academic_qualification].qualification:null }}</td>
                             <td>Specilaity</td>
-                            <td> {{ staff.speciality }}</td>
+                            <td> {{staff.speciality?data.specialities[staff.speciality].name:null }}</td>
                         </tr>
                         <tr>
                             <td>Teaching Qualification</td>
-                            <td> {{ staff.teaching_qualification }}</td>
+                            <td> {{ staff.teaching_qualification?data.teaching_qualifications[staff.teaching_qualification].qualification:null }}</td>
                             <td>Subject taught</td>
-                            <td> {{ staff.subject_taught }}</td>
+                            <td> {{staff.subject_taught?data.subjects[staff.subject_taught].subject:null }}</td>
                         </tr>
                         <tr>
                             <td>Employment Type</td>
-                            <td> {{ staff.employment_type }}</td>
+                            <td> {{ staff.employment_type?data.employments[staff.employment_type].type:null }}</td>
                             <td>Salary Source</td>
-                            <td> {{ staff.salary_source }}</td>
+                            <td> {{ staff.salary_source?data.salaries[staff.salary_source].source:null }}</td>
                         </tr>
                         <tr>
                             <td>Staff Category</td>
-                            <td> {{ staff.category }}</td>
+                            <td> {{ staff.category?data.staff_categories[staff.category].category:null }}</td>
                             <td>Last Promotion</td>
                             <td> {{ staff.last_promotion_year }}</td>
                         </tr>
@@ -46,7 +46,7 @@
                             <td>TRC Reg No</td>
                             <td> {{ staff.trc_reg_no }}</td>
                             <td>Staff Status</td>
-                            <td> {{ staff.status }}</td>
+                            <td> {{ staff.status?data.staff_statuses[staff.status].status:null }}</td>
                         </tr>
                         <tr>
                             <td>Computer Literate</td>
@@ -61,12 +61,12 @@
 
 <script>
     import {mapGetters} from 'vuex'
-    import Professional from "../../forms/professional";
+    import professionalForm from "../../forms/professional";
     export default {
         name: "personal",
-        components: {Professional,},
+        components: {professionalForm,},
         computed: {
-            ...mapGetters(['staff'])
+            ...mapGetters(['staff', 'data'])
         },
         methods:{
             yesNo: (value) => {

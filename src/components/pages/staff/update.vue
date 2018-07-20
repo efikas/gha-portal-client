@@ -17,7 +17,7 @@
                 currentView: '',
             }
         },
-        mounted() {
+        created() {
             switch (this.$route.params.component) {
                 case 'personal':
                     this.currentView = 'personal';
