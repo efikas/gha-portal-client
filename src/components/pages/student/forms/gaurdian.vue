@@ -144,12 +144,14 @@
     </div>
 </template>
 <script>
+    import Vue from 'vue';
     import {mapGetters} from 'vuex'
 
     export default {
         name: 'student-parent',
         data() {
             return {
+                student:{},
                 parentOptions: [{text: 'Both Alive', value: '1'}, {
                     text: 'Father Only',
                     value: '2'
@@ -157,10 +159,7 @@
             }
         },
         computed: {
-            ...mapGetters([
-                'student',
-                'data'
-            ]),
+            ...mapGetters({getStudent: 'student', data: 'data'}),
         },
         methods: {
             onSubmit: function () {
@@ -188,6 +187,9 @@
                 }
             }
         },
+        created() {
+            this.student = JSON.parse(JSON.stringify( this.getStudent ))
+        }
     }
 </script>
 <style type="text/css" scoped>

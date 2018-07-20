@@ -151,6 +151,7 @@
         },
         data() {
             return {
+                student:{},
                 selectedSchool: null,
                 // student: this.$store.state.student,
                 sexOptions: [{text: 'Female', value: 'F'}, {text: 'Male', value: 'M'}],
@@ -158,11 +159,7 @@
         },
         validations: studentUpdateValidations,
         computed: {
-            ...mapGetters([
-                'student',
-                'schools',
-                'data'
-            ]),
+            ...mapGetters({schools: 'schools', getStudent: 'student', data: 'data'}),
             schoolsMapping() {
                 return this.schools.map(school => {
                     if(this.student.school_id === school.id) {
@@ -218,7 +215,9 @@
             },
         },
         async created () {
+            this.student = Object.assign({}, this.getStudent);
             await this.$store.dispatch('schools');
+
             // this.schools = this.$store.getters.schools;
         }
     }

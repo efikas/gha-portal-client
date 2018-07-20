@@ -4,31 +4,33 @@
     </div>
 </template>
 <script>
-import Vue from "vue";
-import BootstrapVue from 'bootstrap-vue';
-import ToggleButton from 'vue-js-toggle-button'
-import VueForm from "vue-form";
-import {ClientTable, Event} from 'vue-tables-2';
-import VueSkeletonLoading from 'vue-skeleton-loading';
+    import Vue from "vue";
+    import BootstrapVue from 'bootstrap-vue';
+    import ToggleButton from 'vue-js-toggle-button'
+    import VueForm from "vue-form";
+    import {ClientTable, Event} from 'vue-tables-2';
+    import VueSkeletonLoading from 'vue-skeleton-loading';
 
 
-Vue.use(ToggleButton)
-Vue.use(BootstrapVue);
-Vue.use(VueForm);
-Vue.use(ClientTable, {}, false);
-Vue.use(VueSkeletonLoading);
+    Vue.use(ToggleButton);
+    Vue.use(BootstrapVue);
+    Vue.use(VueForm);
+    Vue.use(ClientTable, {}, false);
+    Vue.use(VueSkeletonLoading);
 
-export default {
-    name: 'app'
-}
+    export default {
+        name: 'app'
+    }
 </script>
 <style type="text/css">
     abbr {
         color: red;
     }
+
     .form-group.has-error, .form-group.has-error label {
         color: red !important;
     }
+
     .form-group.has-error input,
     .form-group.has-error select,
     .form-group.has-error textarea {

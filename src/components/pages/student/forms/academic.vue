@@ -104,6 +104,7 @@
         name: 'student-academic',
         data() {
             return {
+                student:{},
                 yesNoOptions: [{text: 'Yes', value: '1'}, {text: 'No', value: '0'}],
                 enrollmentOptions: [
                     {text: 'Fresh Enrollment/Placement', value: '1'},
@@ -112,11 +113,7 @@
             }
         },
         computed: {
-            ...mapGetters([
-                'student',
-                'schools',
-                'data'
-            ]),
+            ...mapGetters({schools: 'schools', getStudent: 'student', data: 'data'}),
         },
         methods: {
             onSubmit: function () {
@@ -152,6 +149,9 @@
                 }
             }
         },
+        created(){
+            this.student = Object.assign({}, this.getStudent);
+        }
     }
 </script>
 <style type="text/css" scoped>
