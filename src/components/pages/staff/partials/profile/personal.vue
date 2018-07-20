@@ -20,25 +20,25 @@
                 <tbody>
                 <tr>
                     <td><i class="fa fa-genderless"></i> Gender</td>
-                    <td> {{ staff.sex }}</td>
+                    <td> {{ staff.sex==='M'?'Male':'Female' }}</td>
                     <td><i class="fa fa-calendar"></i> Date of Birth</td>
                     <td> {{ staff.date_of_birth }}</td>
                 </tr>
                 <tr>
                     <td><i class="fa fa-envelope"></i> Email</td>
-                    <td> {{ staff.email_address }}</td>
+                    <td> {{ staff.email }}</td>
                     <td><i class="fa fa-phone"></i> Phone</td>
-                    <td> {{ staff.phone_number }}</td>
+                    <td> {{ staff.phone }}</td>
                 </tr>
                 <tr>
                     <td>State of Birth</td>
-                    <td> {{ staff.state_of_birth }}</td>
+                    <td> {{ staff.state_of_origin?data.states[staff.state_of_origin].name:null }}</td>
                     <td>Place of Birth</td>
                     <td>{{ staff.place_of_birth }}</td>
                 </tr>
                 <tr>
                     <td>Local Government</td>
-                    <td> {{ staff.lga_of_origin }}</td>
+                    <td> {{ staff.lga_of_origin?data.lga_areas_all[staff.lga_of_origin].name:null }}</td>
                     <td>Home Town</td>
                     <td> {{ staff.home_town }}</td>
                 </tr>
@@ -46,7 +46,7 @@
                     <td>Marital Status</td>
                     <td> {{ staff.marital_status }}</td>
                     <td>Religious Status</td>
-                    <td> {{ staff.religious_status }}</td>
+                    <td> {{ staff.religion }}</td>
                 </tr>
                 <tr>
                     <td>House Address</td>
@@ -66,7 +66,7 @@
         name: "personal",
         components: {personalForm},
         computed: {
-            ...mapGetters(['staff'])
+            ...mapGetters(['staff', 'data'])
         }
     }
 </script>
