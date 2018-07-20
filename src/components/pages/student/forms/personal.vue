@@ -211,14 +211,11 @@
                         console.log('error')
                     });
                 }
-
             },
         },
         async created () {
             this.student = Object.assign({}, this.getStudent);
             await this.$store.dispatch('schools');
-
-            // this.schools = this.$store.getters.schools;
         }
     }
 </script>
