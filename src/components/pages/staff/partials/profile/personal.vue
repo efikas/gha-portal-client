@@ -2,11 +2,11 @@
     <div>
         <b-card class="bg-clear-card" bg-variant="" text-variant="dark">
             <div slot="header">
-                <a href="javascript:void(0)" v-b-modal.modal6>
+                <a href="javascript:void(0)" v-b-modal.modal-staff-personal>
                     <i class=" fa fa-edit card-profile-link pull-right"></i>
                 </a>
 
-                <b-modal id="modal6" title="Personal" size="lg" lazy centered hide-footer >
+                <b-modal id="modal-staff-personal" title="Personal" size="lg" lazy centered hide-footer >
                     <personal-form></personal-form>
                 </b-modal>
                 <h3>
@@ -70,7 +70,3 @@
         }
     }
 </script>
-
-<style scoped>
-
-</style>

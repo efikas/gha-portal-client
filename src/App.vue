@@ -39,6 +39,11 @@
         color: red !important;
     }
 
+    .modal-open{
+        position: fixed;
+        overflow: hidden;
+    }
+
     .form-group.has-error input,
     .form-group.has-error select,
     .form-group.has-error textarea {

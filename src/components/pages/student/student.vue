@@ -121,12 +121,6 @@
         font-size: 30px;
     }
 </style>
-<style>
-    .modal-open{
-        position: fixed;
-        overflow: hidden;
-    }
-</style>
 <style scoped>
     .profile-name{
         padding: 5px;

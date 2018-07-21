@@ -3,11 +3,11 @@
         <b-card class="bg-clear2-card" no-body text-variant="dark">
             <div slot="header">
 
-                <a href="javascript:void(0)" v-b-modal.modal6>
+                <a href="javascript:void(0)" v-b-modal.modal-others>
                     <i class=" fa fa-edit card-profile-link pull-right"></i>
                 </a>
 
-                <b-modal id="modal6" title="Other Facilities" size="lg" lazy centered hide-footer>
+                <b-modal id="modal-others" title="Other Facilities" size="lg" lazy centered hide-footer>
                     <others-form></others-form>
                 </b-modal>
 
