@@ -7,44 +7,50 @@
                     <i class=" fa fa-edit card-profile-link pull-right"></i>
                 </a>
 
-                <b-modal id="modal6" title="Other Facilities" size="lg" lazy centered hide-footer>
-                    <others-form></others-form>
+                <b-modal id="modal6" title="Projects" size="lg" lazy centered hide-footer>
+                    <project-form></project-form>
                 </b-modal>
 
                 <h3>
-                    <router-link :to="{query:$route.query, hash:$route.hash}" class="default-color">Other Facilities</router-link>
+                    <router-link :to="{query:$route.query, hash:$route.hash}" class="default-color">Projects
+                    </router-link>
                 </h3>
 
             </div>
             <div class="col-lg-12 mb-3">
-                <div class="table-responsive mb-5">
+                <div class="table-responsive">
                     <table class="table table-bordred table-striped">
                         <thead>
                         <tr>
-                            <th>FACILITY</th>
-                            <th>NUMBER AVAILABLE</th>
+                            <th>Name</th>
+                            <th>Cost</th>
+                            <th>Funding</th>
+                            <th>Date</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="facility in facilities">
-                            <td class="text-muted">{{ facility.facility}}</td>
-                            <td>{{ facility.no_facility}}</td>
+                        <tr v-for="project in school.projects">
+                            <td>{{ project.name }}</td>
+                            <td>{{ project.cost }}</td>
+                            <td>{{ project.funding }}</td>
+                            <td>{{ project.date }}</td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
+
         </b-card>
     </div>
 </template>
 
 <script>
-    import { tabsMixins } from './mixins'
-    import othersForm from '../forms/others'
+    import {tabsMixins} from './mixins'
+    import projectForm from "../forms/project"
 
     export default {
         name: "others",
-        components: {othersForm},
+        components: { projectForm },
         mixins: [tabsMixins],
     }
 </script>

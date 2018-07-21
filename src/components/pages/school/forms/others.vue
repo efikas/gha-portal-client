@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-md-12">
                 <table class="table table-bordered table-striped">
                     <thead>
                     <tr>
@@ -19,41 +19,39 @@
                 </table>
             </div>
         </div>
+        <button type="submit" :disabled="$v.$invalid" @click.prevent="onSubmit"
+                class="btn btn-primary btn-lg btn-school pull-right">Submit
+        </button>
     </div>
 </template>
 <script>
 
-    import {mapGetters} from 'vuex'
+    import {schoolFormMixins} from './mixins'
 
     export default {
-        props: {
-            // data: {type: Object, required: true}
-        },
+        validations:{},
         data() {
             return {}
         },
-        computed: {
-            ...mapGetters([
-                'data',
-                'school'
-            ]),
-            facilities() {
-                return this.data.facility_types.filter(facility => {
-                    if (typeof this.school.facility_list !== 'undefined') {
-                        for (let i = 0; i < this.school.facility_list.length; i++) {
-                            if (this.school.facility_list[i].facility_id === facility.id) {
-                                facility.no_facility = this.school.facility_list[i].no_facility
-                            }
-                        }
-                    }
-                    return true;
-                });
-            }
-        },
-
-        async created() {
-            await this.$store.dispatch('school', this.$route.params.id);
-        },
+        mixins: [schoolFormMixins],
+        // computed: {
+        //     ...mapGetters([
+        //         'data',
+        //         'school'
+        //     ]),
+        //     facilities() {
+        //         return this.data.facility_types.filter(facility => {
+        //             if (typeof this.school.facility_list !== 'undefined') {
+        //                 for (let i = 0; i < this.school.facility_list.length; i++) {
+        //                     if (this.school.facility_list[i].facility_id === facility.id) {
+        //                         facility.no_facility = this.school.facility_list[i].no_facility
+        //                     }
+        //                 }
+        //             }
+        //             return true;
+        //         });
+        //     }
+        // },
     }
 </script>
 <style type="text/css" scoped>

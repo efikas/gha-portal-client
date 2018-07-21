@@ -32,6 +32,9 @@
                         <b-tab title="Others">
                             <other-tab></other-tab>
                         </b-tab>
+                        <b-tab title="Projects">
+                            <projects-tab></projects-tab>
+                        </b-tab>
                     </b-tabs>
                 </b-card>
             </div>
@@ -60,6 +63,7 @@
     import libraryTab from './partials/library';
     import sbmcTab from './partials/sbmc';
     import otherTab from './partials/others';
+    import projectsTab from './partials/projects';
 
     Vue.use(VueGoogleMaps, {
         load: {
@@ -78,7 +82,8 @@
             classroomTab,
             libraryTab,
             sbmcTab,
-            otherTab
+            otherTab,
+            projectsTab
         },
         mixins: [tabsMixins],
         data() {
@@ -128,6 +133,10 @@
                     case 5:
                         this.tabIndex = 5;
                         this.$router.replace({query: {section: 5}, hash: 'profile'});
+                        break;
+                    case 6:
+                        this.tabIndex = 6;
+                        this.$router.replace({query: {section: 6}, hash: 'profile'});
                         break;
                     default:
                         this.tabIndex = 0;

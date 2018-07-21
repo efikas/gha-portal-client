@@ -68,6 +68,18 @@ const schoolFormMixins = {
                     }
                     return prev
                 }, []));
+        },
+        facilities() {
+            return Object.values(this.data.facility_types).filter(facility => {
+                if (typeof this.school.facility_list !== 'undefined') {
+                    for (let i = 0; i < this.school.facility_list.length; i++) {
+                        if (this.school.facility_list[i].facility_id === facility.id) {
+                            facility.no_facility = this.school.facility_list[i].no_facility
+                        }
+                    }
+                }
+                return true;
+            });
         }
     },
     async created() {

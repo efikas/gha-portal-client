@@ -37,6 +37,15 @@ const actions = {
             return Promise.reject(error.response)
         })
     },
+    storeSchoolProject: ({dispatch, getters}, payload) => {
+        return axios.post('school-project', payload).then(response => {
+            dispatch('school', getters.school.id);
+            return Promise.resolve(response.data)
+        }).catch((error) => {
+            dispatch('school', getters.school.id);
+            return Promise.reject(error.response)
+        })
+    },
     storeSchool: (payload) => {
         return axios.post('schools', payload).then(response => {
             return Promise.resolve(response.data)

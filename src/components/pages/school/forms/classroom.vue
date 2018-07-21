@@ -92,7 +92,6 @@
         },
         created(){
             this.school = this.getSchool;
-            console.log(this.school.classroom_list)
         },
         methods: {
             addClassroom() {
