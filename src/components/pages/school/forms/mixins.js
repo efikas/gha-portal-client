@@ -1,6 +1,11 @@
 import {mapGetters} from 'vuex'
 
 const schoolFormMixins = {
+    data() {
+        return {
+            normalized: {},
+        }
+    },
     computed: {
         ...mapGetters({data: 'data', getSchool: 'school'}),
         learning() {
@@ -69,21 +74,30 @@ const schoolFormMixins = {
                     return prev
                 }, []));
         },
-        facilities() {
-            return Object.values(this.data.facility_types).filter(facility => {
-                if (typeof this.school.facility_list !== 'undefined') {
-                    for (let i = 0; i < this.school.facility_list.length; i++) {
-                        if (this.school.facility_list[i].facility_id === facility.id) {
-                            facility.no_facility = this.school.facility_list[i].no_facility
-                        }
+        otherFacilities() {
+            return this.normalized;
+        }
+    },
+    methods: {
+        normalizedFacilityList() {
+            for (let index in this.school.facility_list) {
+                this.normalized[this.school.facility_list[index].facility_id] = this.school.facility_list[index];
+            }
+            for (let index in this.data.facility_types) {
+
+                if(typeof this.normalized[this.data.facility_types[index].id] === 'undefined') {
+                    this.normalized[this.data.facility_types[index].id] = {
+                        school_id: this.school.id,
+                        no_facility: 0,
+                        facility_id: this.data.facility_types[index].id
                     }
                 }
-                return true;
-            });
+            }
         }
     },
     async created() {
         this.school = JSON.parse(JSON.stringify(this.getSchool));
+        this.normalizedFacilityList();
         if (this.$route.params.id) {
             await this.$store.dispatch('school', this.$route.params.id);
         }

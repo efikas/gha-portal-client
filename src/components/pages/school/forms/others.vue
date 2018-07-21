@@ -10,9 +10,9 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr v-for="(facility, index) in facilities">
-                        <td>{{facilities[index].type}}</td>
-                        <td><input type="number" min="0" v-model="facilities[index].no_facility" class="form-control"
+                    <tr v-for="(ft, index) in data.facility_types">
+                        <td>{{ft.type}}</td>
+                        <td><input type="number" min="0" v-model="otherFacilities[ft.id].no_facility" class="form-control"
                                    placeholder=""></td>
                     </tr>
                     </tbody>
@@ -34,24 +34,23 @@
             return {}
         },
         mixins: [schoolFormMixins],
-        // computed: {
-        //     ...mapGetters([
-        //         'data',
-        //         'school'
-        //     ]),
-        //     facilities() {
-        //         return this.data.facility_types.filter(facility => {
-        //             if (typeof this.school.facility_list !== 'undefined') {
-        //                 for (let i = 0; i < this.school.facility_list.length; i++) {
-        //                     if (this.school.facility_list[i].facility_id === facility.id) {
-        //                         facility.no_facility = this.school.facility_list[i].no_facility
-        //                     }
-        //                 }
-        //             }
-        //             return true;
-        //         });
-        //     }
-        // },
+        methods: {
+            onSubmit: function () {
+                let form = {facilities:[]};
+                for (let index in this.otherFacilities) {
+                    if(this.otherFacilities[index].no_facility !== 0) {
+                        form.facilities.push(this.otherFacilities[index])
+                    }
+                }
+
+                this.$store.dispatch('updateSchool', form).then(() => {
+                    console.log('record updated')
+                }).catch(() => {
+                    console.log('error')
+                });
+
+            },
+        }
     }
 </script>
 <style type="text/css" scoped>

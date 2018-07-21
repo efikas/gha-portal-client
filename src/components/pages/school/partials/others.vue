@@ -26,9 +26,9 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="facility in facilities">
-                            <td class="text-muted">{{ facility.facility}}</td>
-                            <td>{{ facility.no_facility}}</td>
+                        <tr v-for="facility in normalizedFacility">
+                            <td class="text-muted">{{ data.facility_types[facility.facility_id].type}}</td>
+                            <td>{{ facility.no_facility }}</td>
                         </tr>
                         </tbody>
                     </table>
@@ -40,12 +40,36 @@
 
 <script>
     import { tabsMixins } from './mixins'
+    import { schoolFormMixins } from '../forms/mixins'
     import othersForm from '../forms/others'
 
     export default {
         name: "others",
+        data() {
+            return {
+                normalized: {},
+            }
+        },
         components: {othersForm},
         mixins: [tabsMixins],
+        computed: {
+          normalizedFacility() {
+              for (let index in this.school.facility_list) {
+                  this.normalized[this.school.facility_list[index].facility_id] = this.school.facility_list[index];
+              }
+              for (let index in this.data.facility_types) {
+
+                  if(typeof this.normalized[this.data.facility_types[index].id] === 'undefined') {
+                      this.normalized[this.data.facility_types[index].id] = {
+                          school_id: this.school.id,
+                          no_facility: 0,
+                          facility_id: this.data.facility_types[index].id
+                      }
+                  }
+              }
+              return this.normalized
+          }
+        },
     }
 </script>
 

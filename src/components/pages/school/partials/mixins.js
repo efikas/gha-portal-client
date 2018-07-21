@@ -40,18 +40,6 @@ const tabsMixins = {
             return this.school.learning_ids.map(key=>{
                 return this.data.learning[key].material;
             }).join(', ')
-        },
-        facilities() {
-            if (!this.school.facility_list) return;
-                return this.school.facility_list.map((obj) => {
-                    obj.facility = Object.values(this.data.facility_types).reduce((prev, next) => {
-                        if (obj.facility_id === next.id) {
-                            prev = next.type
-                        }
-                        return prev;
-                    }, '');
-                    return obj;
-                });
         }
     },
 };
