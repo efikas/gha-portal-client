@@ -11,16 +11,16 @@
             </div>
         </div>
 
-        <div v-for="(classroom, index) in school.classroom_list" class="classroom-wrapper-div">
+        <div v-for="(classroom, index) in classroom_list" class="classroom-wrapper-div">
             <div class="remove-btn-div"><a class="btn btn-outline-danger pull-right red"
                                            @click="removeClassroom(index)">X</a></div>
             <div class="row odd-row">
-                <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="col-xs-12 col-sm-6 col-md-2">
                     <div class="form-group p-10">
-                        <label class="control-label col-md-12">Class Level</label>
+                        <label class="control-label">Class Level</label>
                         <select class="form-control" v-model="school.classroom_list[index].class_id" size="1">
                             <option value="">Select Class</option>
-                            <option v-for="_class in classes" :value="_class.id">{{_class.class}}</option>
+                            <option v-for="_class in data.classes" :value="_class.id">{{_class.class}}</option>
                         </select>
                     </div>
                 </div>
@@ -33,14 +33,14 @@
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-2">
                     <div class="form-group p-10">
-                        <label class="control-label">Needs Minor Repair</label>
+                        <label class="control-label">Minor Repair</label>
                         <input type="number" v-model="school.classroom_list[index].minor_repair" min="0" class="form-control"
                                placeholder="">
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-2">
                     <div class="form-group p-10">
-                        <label class="control-label">Needs Major Repair</label>
+                        <label class="control-label">Major Repair</label>
                         <input type="number" v-model="school.classroom_list[index].major_repair" min="0" class="form-control"
                                placeholder="">
                     </div>
@@ -65,17 +65,34 @@
                 </div>
             </div>
         </div>
+        <button type="submit" :disabled="$v.$invalid" @click.prevent="onSubmit"
+                class="btn btn-primary btn-lg btn-school pull-right">Submit
+        </button>
     </div>
 </template>
 <script>
     import { mapGetters } from 'vuex'
+    import {schoolFormMixins} from './mixins'
 
     export default {
         props: {
           // data: { type: Object, required: true }
         },
+        validations: {},
         data() {
             return {}
+        },
+        computed: {
+            classroom_list() {
+                return this.school.classroom_list.map(obj => {
+                    delete obj.class; delete obj.created_at; delete obj.updated_at;
+                    return obj;
+                });
+            }
+        },
+        created(){
+            this.school = this.getSchool;
+            console.log(this.school.classroom_list)
         },
         methods: {
             addClassroom() {
@@ -84,19 +101,20 @@
             removeClassroom(index) {
                 this.school.classroom_list.splice(index, 1);
             },
+            onSubmit: function () {
+                let form = {
+                    'classrooms':  this.school.classroom_list,
+                };
+
+                this.$store.dispatch('updateSchool', form).then(() => {
+                    console.log('record updated')
+                }).catch(() => {
+                    console.log('error')
+                });
+
+            },
         },
-        computed: {
-            ...mapGetters([
-               'data',
-               'school' 
-            ]),
-            classes(){
-                return this.data.classes;
-            }
-        },
-        async created() {
-            await this.$store.dispatch('school', this.$route.params.id);
-        }
+        mixins: [schoolFormMixins],
     }
 </script>
 <style type="text/css" scoped>

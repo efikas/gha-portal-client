@@ -272,12 +272,9 @@
 </template>
 <script>
 
-    import {mapGetters} from 'vuex';
+    import {schoolFormMixins} from './mixins'
 
     export default {
-        props: {
-            // data: {type: Object, required: true}
-        },
         validations: {},
         data() {
             return {
@@ -291,41 +288,7 @@
                 selectedSharedFacilities: [],
             }
         },
-        computed: {
-            ...mapGetters({data: 'data', getSchool: 'school'}),
-            lga_areas() {
-                return [{value: null, text: 'Please select an option'}]
-                    .concat(Object.values(this.data.lga_areas).map(item => {
-                        return {value: item.id, text: item.name};
-                    }));
-            },
-            ownership() {
-                return [{value: null, text: 'Please select an option'}]
-                    .concat(Object.values(this.data.school_ownerships).map(item => ({
-                        value: item.id,
-                        text: item.owner
-                    })));
-            },
-            school_type() {
-                return [{value: null, text: 'Please select an option'}]
-                    .concat(Object.values(this.data.school_types).map(item => ({value: item.id, text: item.name})));
-            },
-            wards() {
-                return [{value: null, text: 'Please select an option'}]
-                    .concat(Object.values(this.data.lga_wards).reduce((prev, next, index) => {
-                        if (Object.keys(this.school).length && this.school.ward.lga_id === next.lga_id) {
-                            prev.push({value: next.id, text: next.name});
-                        }
-                        return prev
-                    }, []));
-            }
-        },
-        async created() {
-            this.school = JSON.parse(JSON.stringify(this.getSchool));
-            if (this.$route.params.id) {
-                await this.$store.dispatch('school', this.$route.params.id);
-            }
-        },
+        mixins: [schoolFormMixins],
         methods: {
             onSubmit: function () {
                 let form = {

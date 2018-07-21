@@ -284,34 +284,5 @@
         border-top: 1px dashed #959DCC;
     }
 
-    .form-group label {
-        font-size: .8rem !important;
-        letter-spacing: 1px;
-        color: #684348 !important;
-    }
-
-    .form-group label {
-        font-size: .8rem !important;
-        letter-spacing: 1px;
-        color: #684348 !important;
-    }
-
-    input {
-        padding: 3px 5px !important;
-        height: auto !important;
-        font-size: 12px;
-    }
-
-    select {
-        padding: 5px 5px !important;
-        height: auto !important;
-        font-size: 12px;
-    }
-
-    textarea {
-        padding: 3px 5px !important;
-        height: auto !important;
-        font-size: 12px;
-    }
 </style>
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>

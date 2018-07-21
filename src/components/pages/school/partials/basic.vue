@@ -12,94 +12,90 @@
                 </b-modal>
 
                 <h3>
-                    <router-link :to="{query:$route.query, hash:$route.hash}" class="default-color">Basic Information</router-link>
+                    <router-link :to="{query:$route.query, hash:$route.hash}" class="default-color">{{ school.name }}</router-link>
                 </h3>
             </div>
             <div class="col-md-12 table-responsive">
-                <table class="table table-bordred table-striped mytable">
+                <table class="table table-striped">
                     <tr>
-                        <td><i class="fa fa-home"></i> Name</td>
-                        <td colspan="3">{{ school.name }}</td>
-                    </tr>
-                    <tr>
-                        <td><i class="fa fa-map"></i> Address</td>
+                        <td class="text-muted text-right">Address</td>
                         <td colspan="3">{{ school.address }}</td>
                     </tr>
                     <tr>
-                        <td><i class="fa fa-envelope"></i> Email</td>
+                        <td class="text-muted text-right">Email</td>
                         <td colspan="3">{{ school.email }}</td>
                     </tr>
                     <tr>
-                        <td><i class="fa fa-globe"></i> Website</td>
+                        <td class="text-muted text-right">Website</td>
                         <td colspan="3">{{ school.website }}</td>
                     </tr>
                     <tr>
-                        <td>Education Level</td>
+                        <td class="text-muted text-right">Education Level</td>
                         <td>{{ school.education_level }}</td>
-                        <td>Category</td>
+                        <td class="text-muted text-right">Category</td>
                         <td>{{ school.category }}</td>
                     </tr>
                     <tr>
-                        <td>Type</td>
+                        <td class="text-muted text-right">Type</td>
                         <td>{{ school.type?data.school_types[school.type].name:null }}</td>
-                        <td>Location</td>
+                        <td class="text-muted text-right">Location</td>
                         <td>{{ school.location }}</td>
                     </tr>
                     <tr>
-                        <td>Town</td>
+                        <td class="text-muted text-right">Town</td>
                         <td>{{ school.town }}</td>
-                        <td>Phone</td>
+                        <td class="text-muted text-right">Phone</td>
                         <td>{{ school.phone }}</td>
                     </tr>
                     <tr>
-                        <td>Date Established</td>
+                        <td class="text-muted text-right">Date Established</td>
                         <td>{{ school.established }}</td>
-                        <td>Geo-location</td>
+                        <td class="text-muted text-right">Geo-location</td>
                         <td>{{ school.geolocation }}</td>
                     </tr>
                     <tr>
-                        <td>Average Distance</td>
+                        <td class="text-muted text-right">Average Distance</td>
                         <td>{{ school.average_distance }}KM</td>
-                        <td>Ownership</td>
+                        <td class="text-muted text-right">Ownership</td>
                         <td>{{ school.ownership?data.school_ownerships[school.ownership].owner:null }}</td>
                     </tr>
                     <tr>
-                        <td>Shifts</td>
+                        <td class="text-muted text-right">Shifts</td>
                         <td>{{ yesNo(school.shift) }}</td>
-                        <td>Grant</td>
+                        <td class="text-muted text-right">Grant</td>
                         <td>{{ yesNo(school.grants) }}</td>
                     </tr>
                     <tr>
-                        <td>Management Committee</td>
+                        <td class="text-muted text-right">Management Committee</td>
                         <td>{{ yesNo(school.management_committee) }}</td>
-                        <td>Development Plan</td>
+                        <td class="text-muted text-right">Development Plan</td>
                         <td>{{ yesNo(school.development_plan) }}</td>
                     </tr>
                     <tr>
-                        <td>Mulitigrade</td>
+                        <td class="text-muted text-right">Mulitigrade</td>
                         <td>{{ yesNo(school.multigrade) }}</td>
-                        <td>LGA Ward</td>
-                        <td>{{ school.ward.name }}</td>
+                        <td class="text-muted text-right">LGA Ward</td>
+                        <td >{{ school.ward.name }}</td>
                     </tr>
                     <tr>
-                        <td>Recognision Status</td>
+                        <td class="text-muted text-right">Recognition Status</td>
                         <td>{{ yesNo(school.recognition_status) }}</td>
-                        <td>Number of student</td>
+                        <td class="text-muted text-right">Number of student</td>
                         <td>{{ school.students }}</td>
                     </tr>
                     <tr>
-                        <td>
+                        <td class="text-muted text-right">
                             <router-link :to="{name:'school-staffs', params: {id: school.id}, query:{t:1}}">Teaching
                                 Staff
                             </router-link>
                         </td>
-                        <td>{{ school.staffs.teaching }}</td>
-                        <td>
+                        <td>{{ school.staffs?school.staffs.teaching:0 }}</td>
+                        <td class="text-muted text-right">
                             <router-link :to="{name:'school-staffs', params: {id: school.id}, query:{t:0}}">Non-Teaching
                                 Staff
                             </router-link>
                         </td>
-                        <td>{{ school.staffs.none_teaching }}</td>
+                        <td>{{ school.staffs? school.staffs.none_teaching:0 }}</td>
                     </tr>
                 </table>
             </div>

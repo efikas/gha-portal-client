@@ -81,68 +81,44 @@
                 </div>
             </div>
         </div>
+        <button type="submit" :disabled="$v.$invalid" @click.prevent="onSubmit"
+                class="btn btn-primary btn-lg btn-school pull-right">Submit
+        </button>
     </div>
 </template>
 <script>
-
-    import {mapGetters} from 'vuex';
+    import {schoolFormMixins} from './mixins'
 
     export default {
-        props: {
-            // data: {type: Object, required: true}
-        },
+        validations: {},
         data() {
             return {
+                school: {},
             }
         },
-        computed: {
-            ...mapGetters([
-                'data',
-                'school'
-            ]),
-            learning() {
-                return this.data.learning.map(item =>
-                    ({text: item.material, value: item.id})
-                );
+        mixins: [schoolFormMixins],
+        methods: {
+            onSubmit: function () {
+                let form = {
+                    'power_sources':  this.school.power_source_ids,
+                    'learning':  this.school.learning_ids,
+                    'play_facilities':  this.school.play_facility_id,
+                    'play_rooms':  this.school.play_room_id,
+                    'building':  this.school.building_id,
+                    'toilet':  this.school.toilet_ids,
+                    'water':  this.school.water_ids,
+                    'health':  this.school.health_ids,
+                };
+
+                // console.log(form);
+
+                this.$store.dispatch('updateSchool', form).then(() => {
+                    console.log('record updated')
+                }).catch(() => {
+                    console.log('error')
+                });
+
             },
-            buildings() {
-                return this.data.buildings.map(item =>
-                    ({text: item.ownership, value: item.id})
-                )
-            },
-            healths() {
-                return this.data.healths.map(item =>
-                    ({text: item.facility, value: item.id})
-                );
-            },
-            waters() {
-                return this.data.water.map(item =>
-                    ({text: item.source, value: item.id})
-                );
-            },
-            toilets() {
-                return this.data.toilet_types.map(item =>
-                    ({text: item.type, value: item.id})
-                );
-            },
-            play_facilities() {
-                return this.data.play_facilities.map(item =>
-                    ({text: item.type, value: item.id})
-                );
-            },
-            play_rooms() {
-                return this.data.play_rooms.map(item =>
-                    ({text: item.category, value: item.id})
-                );
-            },
-            power_sources() {
-                return this.data.power_sources.map(item =>
-                    ({text: item.power_sources, value: item.id})
-                );
-            }
-        },
-        async created() {
-            await this.$store.dispatch('school', this.$route.params.id);
         }
     }
 </script>

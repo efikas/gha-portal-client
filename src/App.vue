@@ -45,6 +45,36 @@
         border: 1px solid red;
         background-color: #fffaef;
     }
+
+    .form-group label {
+        font-size: .8rem !important;
+        letter-spacing: 1px;
+        color: #684348 !important;
+    }
+
+    .form-group label {
+        font-size: .8rem !important;
+        letter-spacing: 1px;
+        color: #684348 !important;
+    }
+
+    .form-group input {
+        padding: 3px 5px !important;
+        height: auto !important;
+        font-size: 12px;
+    }
+
+    .form-group select {
+        padding: 5px 5px !important;
+        height: auto !important;
+        font-size: 12px;
+    }
+
+    .form-group textarea {
+        padding: 3px 5px !important;
+        height: auto !important;
+        font-size: 12px;
+    }
 </style>
 <style lang="scss" src="assets/sass/bootstrap/bootstrap.scss"></style>
 <style src="font-awesome/css/font-awesome.css"></style>
