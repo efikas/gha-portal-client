@@ -32,7 +32,7 @@
                     return;
                 } else {
 
-                    this.$store.dispatch('addSchool', this.data)
+                    this.$store.dispatch('storeSchool', this.data)
                         .then(response => {
                         if (typeof  response === 'object') {
                             this.successMsg("School Record added Successfully!", "Success");

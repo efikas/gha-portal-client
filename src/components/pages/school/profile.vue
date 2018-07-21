@@ -10,7 +10,32 @@
             <a href="#">Attendance</a>
         </b-card>
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-md-9" id="profile">
+                <b-card class="" no-body>
+                    <!-- Nav tabs -->
+                    <b-tabs vertical card small :content-class="contentClass()" pills v-model="tabIndex" @input="tabChanged($event)">
+                        <b-tab title="Basic">
+                            <basic-tab></basic-tab>
+                        </b-tab>
+                        <b-tab title="Facilities">
+                            <facility-tab></facility-tab>
+                        </b-tab>
+                        <b-tab title="Classroom">
+                            <classroom-tab></classroom-tab>
+                        </b-tab>
+                        <b-tab title="Library">
+                            <library-tab></library-tab>
+                        </b-tab>
+                        <b-tab title="SBMC">
+                            <sbmc-tab></sbmc-tab>
+                        </b-tab>
+                        <b-tab title="Others">
+                            <other-tab></other-tab>
+                        </b-tab>
+                    </b-tabs>
+                </b-card>
+            </div>
+            <div class="col-md-3">
                 <b-card v-if="school" class="bg-default-card">
                     <h5 class="default-color">{{ school.name }} </h5>
                     <gmap-map :center="center" :zoom="16" class="gmap" ref="gmap1">
@@ -19,280 +44,6 @@
                     </gmap-map>
                 </b-card>
             </div>
-
-            <div class="col-lg-8">
-                <b-card class="bg-default-card data" v-if="school">
-                    <!-- Nav tabs -->
-                    <b-tabs>
-                        <b-tab title="BASIC">
-                            <div>
-                                <p>
-                                    <a :href="`${school.id}/update/basic`" type="button"
-                                       class="btn btn-outline-primary ekiti-btn pull-right">Edit</a>
-                                </p>
-                                <br/><br/>
-                            </div>
-                            <div class="table-responsive">
-                                <table class="table table-bordred table-striped mytable">
-                                    <tr>
-                                        <td><i class="fa fa-home"></i> Name</td>
-                                        <td colspan="3">{{ school.name }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td><i class="fa fa-map"></i> Address</td>
-                                        <td colspan="3">{{ school.address }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td><i class="fa fa-envelope"></i> Email</td>
-                                        <td colspan="3">{{ school.email }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td><i class="fa fa-globe"></i> Website</td>
-                                        <td colspan="3">{{ school.website }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Education Level</td>
-                                        <td>{{ school.education_level }}</td>
-                                        <td>Category</td>
-                                        <td>{{ school.category }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Type</td>
-                                        <td>{{ school.type?data.school_types[school.type].name:null }}</td>
-                                        <td>Location</td>
-                                        <td>{{ school.location }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Town</td>
-                                        <td>{{ school.town }}</td>
-                                        <td>Phone</td>
-                                        <td>{{ school.phone }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Date Established</td>
-                                        <td>{{ school.established }}</td>
-                                        <td>Geo-location</td>
-                                        <td>{{ school.geolocation }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Average Distance</td>
-                                        <td>{{ school.average_distance }}KM</td>
-                                        <td>Ownership</td>
-                                        <td>{{ school.ownership?data.school_ownerships[school.ownership].owner:null }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Shifts</td>
-                                        <td>{{ yesNo(school.shift) }}</td>
-                                        <td>Grant</td>
-                                        <td>{{ yesNo(school.grants) }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Management Committee</td>
-                                        <td>{{ yesNo(school.management_committee) }}</td>
-                                        <td>Development Plan</td>
-                                        <td>{{ yesNo(school.development_plan) }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Mulitigrade</td>
-                                        <td>{{ yesNo(school.multigrade) }}</td>
-                                        <td>LGA Ward</td>
-                                        <td>{{ school.ward.name }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Recognision Status</td>
-                                        <td>{{ yesNo(school.recognition_status) }}</td>
-                                        <td>Number of student</td>
-                                        <td>{{ school.students }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Teaching Staff</td>
-                                        <td>{{ school.staffs.teaching }}</td>
-                                        <td>Non Teaching Staff</td>
-                                        <td>{{  school.staffs.none_teaching }}</td>
-                                    </tr>
-                                </table>
-                            </div>
-
-                        </b-tab>
-                        <b-tab title="FACILITIES">
-                            <div>
-                                <p>
-                                    <a :href="`${school.id}/update/facilities`" type="button"
-                                       class="btn btn-outline-primary ekiti-btn pull-right">Edit</a>
-                                </p>
-                                <br>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12 mb-3">
-                                    <div class="table-responsive mt-lg-5">
-                                        <table class="table table-bordred table-striped mytable">
-                                            <tbody>
-                                            <tr>
-                                                <td>Power Source</td>
-                                                <td>{{ power_sources }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Health Facilities</td>
-                                                <td>{{ healths }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Learning Materials</td>
-                                                <td>{{ learning }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Water Source</td>
-                                                <td>{{ waters }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Toilets</td>
-                                                <td>{{ toilets }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Play facilities</td>
-                                                <td>{{ play_facilities }}</td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </b-tab>
-                        <b-tab title="CLASSROOM">
-                            <div>
-                                <p>
-                                    <a :href="`${school.id}/update/classroom`" type="button"
-                                       class="btn btn-outline-primary ekiti-btn pull-right">Edit</a>
-                                </p><br/><br/>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-lg-12 mb-3">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordred table-striped mytable classroom-table">
-                                            <thead>
-                                            <tr>
-                                                <th>Class</th>
-                                                <th>Good</th>
-                                                <th>Minor Repair</th>
-                                                <th>Major repair</th>
-                                                <th>Unusable</th>
-                                                <th>Comment</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr v-for="classroom in classrooms">
-                                                <td>{{ classroom.class }}</td>
-                                                <td>{{ classroom.good }}</td>
-                                                <td>{{ classroom.major_repair }}</td>
-                                                <td>{{ classroom.minor_repair }}</td>
-                                                <td>{{ classroom.unusable }}</td>
-                                                <td>{{ classroom.comment }}</td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </b-tab>
-                        <b-tab title="LIBRARY">
-                            <p>
-                                <a :href="`${school.id}/update/library`" type="button"
-                                   class="btn btn-outline-primary ekiti-btn pull-right">Edit</a>
-                            </p>
-
-                        </b-tab>
-                        <b-tab title="SBMC">
-                            <div>
-                                <p>
-                                    <a :href="`${school.id}/update/sbmc`" type="button"
-                                       class="btn btn-outline-primary ekiti-btn pull-right">Edit</a>
-                                </p>
-                                <div class="table-responsive">
-                                    <table class="table table-bordred table-striped mytable classroom-table">
-                                        <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Office</th>
-                                            <th>Phone</th>
-                                            <th>Email</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr v-for="official in school.sbmc">
-                                            <td>{{ official.name }}</td>
-                                            <td>{{ official.office }}</td>
-                                            <td>{{ official.phone }}</td>
-                                            <td>{{ official.email }}</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-
-                        </b-tab>
-                        <b-tab title="OTHERS">
-                            <div>
-                                <p>
-                                    <a :href="`${school.id}/update/others`" type="button"
-                                       class="btn btn-outline-primary ekiti-btn pull-right">Edit</a>
-                                </p><br/><br/>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-lg-12 mb-3">
-                                    <div class="table-responsive mb-5">
-                                        <table class="table table-bordred table-striped mytable">
-                                            <thead>
-                                            <tr>
-                                                <th>FACILITY</th>
-                                                <th>NUMBER AVAILABLE</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr v-for="facility in facilities">
-                                                <td>{{ facility.facility}}</td>
-                                                <td>{{ facility.no_facility}}</td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="mb-2">
-                                        <p>
-                                            <span class="pull-left"><h4>Projects</h4></span>
-                                            <a :href="`${school.id}/update/project`" type="button"
-                                               class="btn btn-outline-primary ekiti-btn pull-right">Edit</a>
-                                        </p>
-                                        <div class="table-responsive">
-                                            <table class="table table-bordred table-striped mytable classroom-table">
-                                                <thead>
-                                                <tr>
-                                                    <th>Name</th>
-                                                    <th>Cost</th>
-                                                    <th>Funding</th>
-                                                    <th>Date</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr v-for="project in school.projects">
-                                                    <td>{{ project.name }}</td>
-                                                    <td>{{ project.cost }}</td>
-                                                    <td>{{ project.funding }}</td>
-                                                    <td>{{ project.date }}</td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                        </b-tab>
-                    </b-tabs>
-                </b-card>
-            </div>
-
         </div>
     </div>
 </template>
@@ -300,13 +51,16 @@
     import Vue from 'vue'
     import * as VueGoogleMaps from 'vue2-google-maps'
     import store from 'src/store/store.js'
-    import {mapGetters} from 'vuex'
     import {SweetModal, SweetModalTab} from 'sweet-modal-vue'
     import SchoolCard from "../../widgets/sbemis/SchoolCard1";
-    // import VueCollapse from 'vue2-collapse'
+    import { tabsMixins } from './partials/mixins';
+    import basicTab from './partials/basic';
+    import facilityTab from './partials/facility';
+    import classroomTab from './partials/classroom';
+    import libraryTab from './partials/library';
+    import sbmcTab from './partials/sbmc';
+    import otherTab from './partials/others';
 
-    // Loading the plugin into the Vue.
-    // Vue.use(VueCollapse)
     Vue.use(VueGoogleMaps, {
         load: {
             key: store.state.gmap_key
@@ -314,13 +68,22 @@
             // libraries: 'places', // If you need to use place input
         }
     });
+
     export default {
         components: {
             SchoolCard,
-            SweetModal
+            SweetModal,
+            basicTab,
+            facilityTab,
+            classroomTab,
+            libraryTab,
+            sbmcTab,
+            otherTab
         },
+        mixins: [tabsMixins],
         data() {
             return {
+                tabIndex: 1,
                 center: {
                     lat: 7.6401306,
                     lng: 5.2033970
@@ -334,104 +97,59 @@
             }
         },
         methods: {
-            yesNo(id) {
-                return id === 1 ? 'Yes' : 'No';
-            },
             show() {
                 this.$refs.modal.open();
             },
-            submit() {
-            }
-        },
-        computed: {
-            ...mapGetters([
-                'school',
-                'data'
-            ]),
-            power_sources() {
-                return Object.values(this.data.power_sources).reduce((prev, next, index) => {
-                    if(this.school.power_source_ids.indexOf(next.id) === 0) {
-                        prev.push(next.power_sources)
-                    }
-                    return prev
-                }, []).join(', ')
+            contentClass(){
+                return ['clear-content-padding'];
             },
-            waters() {
-                return Object.values(this.data.water).reduce((prev, next, index) => {
-                    if(this.school.water_ids.indexOf(next.id) === 0) {
-                        prev.push(next.source)
-                    }
-                    return prev
-                }, []).join(', ')
-            },
-            healths() {
-                return Object.values(this.data.healths).reduce((prev, next, index) => {
-                    if(this.school.health_ids.indexOf(next.id) === 0) {
-                        prev.push(next.facility)
-                    }
-                    return prev
-                }, []).join(', ')
-            },
-            toilets() {
-                return Object.values(this.data.toilet_types).reduce((prev, next, index) => {
-                    if(this.school.toilet_ids.indexOf(next.id) === 0) {
-                        prev.push(next.type)
-                    }
-                    return prev
-                }, []).join(', ')
-            },
-            play_facilities() {
-                return Object.values(this.data.play_facilities).reduce((prev, next, index) => {
-                    if(this.school.play_facility_id === next.id) {
-                        prev.push(next.type)
-                    }
-                    return prev
-                }, []).join(', ')
-            },
-            learning() {
-                return Object.values(this.data.healths).reduce((prev, next, index) => {
-                    if(this.school.learning_ids.indexOf(next.id) === 0) {
-                        prev.push(next.material)
-                    }
-                    return prev
-                }, []).join(', ')
-            },
-            school_type() {
-                return Object.values(this.data.school_types).reduce((prev, next, index) => {
-                    if(this.school.type === next.id) {
-                        prev = next.name
-                    }
-                    return prev
-                }, '')
-            },
-            classrooms() {
-                return this.school.classroom_list.map((obj) => {
-                    obj.class = Object.values(this.data.classes).reduce((prev, next) => {
-                        if(obj.class_id === next.id) {
-                            prev = next.class
-                        }
-                        return prev;
-                    }, '');
-                    return obj;
-                });
-            },
-            facilities() {
-                return this.school.facility_list.map((obj) => {
-                    obj.facility = Object.values(this.data.facility_types).reduce((prev, next) => {
-                        if(obj.facility_id === next.id) {
-                            prev = next.type
-                        }
-                        return prev;
-                    }, '');
-                    return obj;
-                });
+            tabChanged(index) {
+                switch (parseInt(index)) {
+                    case 0:
+                        this.tabIndex = 0;
+                        this.$router.replace({query: {section: 0}, hash: 'profile'});
+                        break;
+                    case 1:
+                        this.tabIndex = 1;
+                        this.$router.replace({query: {section: 1}, hash: 'profile'});
+                        break;
+                    case 2:
+                        this.tabIndex = 2;
+                        this.$router.replace({query: {section: 2}, hash: 'profile'});
+                        break;
+                    case 3:
+                        this.tabIndex = 3;
+                        this.$router.replace({query: {section: 3}, hash: 'profile'});
+                        break;
+                    case 4:
+                        this.tabIndex = 4;
+                        this.$router.replace({query: {section: 4}, hash: 'profile'});
+                        break;
+                    case 5:
+                        this.tabIndex = 5;
+                        this.$router.replace({query: {section: 5}, hash: 'profile'});
+                        break;
+                    default:
+                        this.tabIndex = 0;
+                        this.$router.replace({query: {section: 0}});
+                        break;
+                }
             }
         },
         async created() {
             await this.$store.dispatch('school', this.$route.params.id);
+            this.tabChanged(this.$route.query.section);
         }
     }
 </script>
+<style>
+    .clear-content-padding{
+        padding:0!important;
+    }
+    .card-profile-link {
+        font-size: 30px;
+    }
+</style>
 <style src="hover.css/css/hover.css"></style>
 <style scoped src="assets/css/button.css" rel="stylesheet"></style>
 <style scoped>

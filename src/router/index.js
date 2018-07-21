@@ -10,17 +10,22 @@ const router = new VueRouter({
     linkActiveClass: "active",
     // hashbang: false,
     mode: 'history',
-    scrollBehaviour(to, from, savedPosition) {
+    scrollBehavior(to, from, savedPosition) {
         if (savedPosition) {
             return savedPosition;
         }
 
         if (to.hash) {
-            return {selector: to.hash}
+            // return new Promise((resolve, reject) => {
+            //     setTimeout(() => {
+            //         resolve({selector: to.hash, offset:{ x: 10, y: 60 }})
+            //     }, 0)
+            // });
+            return {selector: to.hash, offset:{ x: 10, y: 60 }};
         }
         return {x: 0, y: 0};
     }
-})
+});
 
 router.beforeEach((to, from, next) => {
         if (to.matched.some(record => record.meta.guard)) {

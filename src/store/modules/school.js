@@ -37,12 +37,22 @@ const actions = {
             return Promise.reject(error.response)
         })
     },
-    addSchool: (payload) => {
+    storeSchool: (payload) => {
         return axios.post('schools', payload).then(response => {
             return Promise.resolve(response.data)
         }).catch((error) => {
             return Promise.reject(error.response)
         })
+    },
+    updateSchool: ({commit, dispatch, getters}, payload) => {
+        return axios.post(`/school/${getters.school.id}/edit`, payload)
+            .then(response => {
+                dispatch('school', getters.school.id);
+                return Promise.resolve(response.data)
+            }).catch((error) => {
+                dispatch('school', getters.school.id);
+                return Promise.reject(error.response)
+            })
     },
     lgaSchStats: ({commit}) => {
         return axios.get(`/lga/schools`).then(response => {

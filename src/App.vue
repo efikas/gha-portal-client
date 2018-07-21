@@ -18,6 +18,14 @@
     Vue.use(ClientTable, {}, false);
     Vue.use(VueSkeletonLoading);
 
+    Vue.mixin({
+        methods: {
+            yesNo(id) {
+                return id === 1 ? 'Yes' : 'No';
+            },
+        }
+    });
+
     export default {
         name: 'app'
     }
