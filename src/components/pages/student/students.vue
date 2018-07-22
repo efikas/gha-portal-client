@@ -4,7 +4,7 @@
             <SchoolCard></SchoolCard>
 
             <b-card header="List of Students" header-tag="h4" class="bg-header-card">
-                <div style="margin: 2%" v-if="students.id">
+                <div style="margin: 2%" v-if="students.length < 1">
                     <skeleton-loading>
                         <row :gutter="{top: '20px'}">
                             <square-skeleton 

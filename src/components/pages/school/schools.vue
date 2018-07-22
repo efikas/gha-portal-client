@@ -42,13 +42,11 @@
     </div>
 </template>
 <script>
-    import schoolTable from '../../patches/schoolTable';
+
+    import {mapGetters} from 'vuex'
 
     export default {
         name: "school_manage",
-        components: {
-            schoolTable
-        },
         data() {
             return {
                 columns: ['id', 'name', 'actions'],
@@ -73,23 +71,10 @@
         },
 
         computed: {
-            schools() {
-                return this.$store.getters.schools;
-            }
+            ...mapGetters(['schools']),
         },
 
-        created() {
-
-            // function recurse(a, b){
-            //     if (a===0) return b;
-            //     if (b===0) return a;
-            //     let v = recurse(a, b-1);
-            //     let sum = v + b;
-            //     console.log('in loop: ', a, b, "v: ", v, "sum: ", sum);
-            //     return sum;
-            // }
-            //
-            // console.log(recurse(3, 6));
+        async created() {
 
             //check for lga id and category id in the url
             if (this.$route.query.id) {
@@ -104,11 +89,10 @@
                     this.level = this.$route.query.level === 'pry' ? 'primary' : 'secondary';
                     query.level = this.level;
                 }
-                this.$store.dispatch('lgaSchools', query);
+                await this.$store.dispatch('lgaSchools', query);
             } else {
-                this.$store.dispatch('schools');
+                await this.$store.dispatch('schools');
             }
-            // console.log(this.schools);
         },
         methods: {
             rowClick() {
@@ -147,8 +131,8 @@
 </script>
 <style>
     /*.VueTables__search-field label {*/
-        /*border: 1px solid red;*/
-        /*padding: 0;*/
+    /*border: 1px solid red;*/
+    /*padding: 0;*/
     /*}*/
 </style>
 <style lang="scss" scoped>

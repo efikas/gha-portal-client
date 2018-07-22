@@ -22,7 +22,7 @@ const layout = [{
             },
             {
                 path: 'manage',
-                name: 'school-manage',
+                name: 'schools',
                 component: resolve => require(['pages/school/schools'], resolve),
                 meta: {
                     title: "Manage Schools",

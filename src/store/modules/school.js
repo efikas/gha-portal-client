@@ -2,7 +2,7 @@ import axios from '../../axios'
 
 const state = {
     schools: [],
-    school: { ward: {}},
+    school: { ward: {lga_id: null}},
     school_stat: []
 };
 
@@ -22,7 +22,7 @@ const mutations = {
 const actions = {
     schools: ({commit}) => {
         return axios.get('/schools').then(response => {
-            commit('SET_SCHOOLS', response.data.data)
+            commit('SET_SCHOOLS', response.data.data);
             return Promise.resolve(response.data)
         }).catch((error) => {
             console.log(error.response);
@@ -55,7 +55,8 @@ const actions = {
             return Promise.reject(error.response)
         })
     },
-    storeSchool: (payload) => {
+    storeSchool: ({}, payload) => {
+        console.log(payload)
         return axios.post('schools', payload).then(response => {
             return Promise.resolve(response.data)
         }).catch((error) => {

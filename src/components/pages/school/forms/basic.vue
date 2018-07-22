@@ -3,12 +3,10 @@
         <div class="row odd-row">
             <div class="col-md-3 col-md-3">
                 <div class="form-group p-10">
-                    <label class="control-label col-md-8">LGA <abbr title="required">*</abbr></label>
-                    <div class="col-md-12">
-                        <b-form-select
-                                v-model="school.ward.lga_id" :options="lga_areas"
-                                required class="mb-3"/>
-                    </div>
+                    <label class="control-label">LGA <abbr title="required">*</abbr></label>
+                    <b-form-select
+                            v-model="school.ward.lga_id" :options="lga_areas"
+                            required class="mb-3"/>
                 </div>
             </div>
             <div class="col-md-3 col-md-3">
@@ -22,14 +20,12 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group p-10">
-                    <label class="control-label col-md-8" for="name">School Name
+                    <label class="control-label" for="name">School Name
                         <abbr title="required">*</abbr></label>
-                    <div class="col-md-12">
-                        <input type="text" class="form-control"
-                               name="school_name" v-model="school.name"
-                               required id="name"
-                               placeholder="School Name">
-                    </div>
+                    <input type="text" class="form-control"
+                           name="school_name" v-model="school.name"
+                           required id="name"
+                           placeholder="School Name">
                 </div>
             </div>
 
@@ -46,7 +42,7 @@
             </div>
             <div class="col-xs-12 col-sm-6 col-md-3">
                 <div class="form-group p-10">
-                    <label class="control-label col-md-12" for="year_established">Year Established
+                    <label class="control-label" for="year_established">Year Established
                     </label>
                     <input type="text" class="form-control" v-model="school.established"
                            id="year_established" name="year_established"
@@ -85,7 +81,7 @@
             </div>
             <div class="col-xs-12 col-sm-5">
                 <div class="form-group p-10">
-                    <label class="control-label col-md-12" for="phone">Phone Nunber
+                    <label class="control-label" for="phone">Phone Nunber
                         <abbr title="required">*</abbr></label>
                     <input type="text" v-model="school.phone" class="form-control"
                            id="phone" name="phone" required placeholder="Enter Phone Number"/>
@@ -97,10 +93,8 @@
                 <div class="form-group p-10">
                     <label class="control-label">Website
                     </label>
-                    <div class="col-md-12">
-                        <input type="url" v-model="school.website" class="form-control"
-                               name="website" value="http://www.example.com/" id="url">
-                    </div>
+                    <input type="url" v-model="school.website" class="form-control"
+                           name="website" value="http://www.example.com/" id="url">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-4">
@@ -115,7 +109,7 @@
 
             <div class="col-xs-12 col-sm-6 col-md-3">
                 <div class="form-group p-10">
-                    <label class="control-label col-md-12">School Category
+                    <label class="control-label">School Category
                         <abbr title="required">*</abbr></label>
                     <b-form-radio-group v-model="school.category"
                                         name="category" required
@@ -149,7 +143,7 @@
         <div class="row even-row">
             <div class="col-xs-12 col-sm-6">
                 <div class="form-group p-10">
-                    <label class="control-label col-md-12">Type
+                    <label class="control-label">Type
                         <abbr title="required">*</abbr></label>
                     <b-form-radio-group
                             v-model="school.type"
@@ -173,7 +167,7 @@
         <div class="row odd-row">
             <div class="col-xs-12 col-sm-6 col-md-4">
                 <div class="form-group p-10">
-                    <label class="control-label col-md-12">Education Level
+                    <label class="control-label">Education Level
                         <abbr title="required">*</abbr></label>
                     <b-form-radio-group
                             v-model="school.education_level"
@@ -278,7 +272,6 @@
         validations: {},
         data() {
             return {
-                school: {},
                 schoolLocationsOptions: [{text: 'Rural', value: 'Rural'}, {text: 'Urban', value: 'Urban'}],
                 educationLevelOptions: [{text: 'Primary', value: 'Primary'}, {text: 'Secondary', value: 'Secondary'}],
                 schoolCategoryOptions: [{text: 'Public', value: 'Public'}, {text: 'Private', value: 'Private'}],
@@ -327,12 +320,16 @@
                     });
                 } else {
                     this.$store.dispatch('storeSchool', form).then(() => {
-                        console.log('record created')
+                        console.log('record created');
+                        this.$router.push({name: 'schools'});
                     }).catch(() => {
                         console.log('error')
                     });
                 }
             },
+        },
+        created() {
+            !this.school.lga_ward_id?this.school.lga_ward_id=null:'';
         }
     }
 </script>
