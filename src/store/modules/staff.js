@@ -16,18 +16,20 @@ const mutations = {
 };
 
 const actions = {
-    staffs: ({commit}, query) => {
+    staffs: ({commit, dispatch}, query) => {
         return axios.get(`/school/${query.id}/staffs`, {params:query.params}).then(response => {
-            commit('SET_STAFFS', response.data.data)
+            commit('SET_STAFFS', response.data.data);
+            dispatch('school', query.id);
             return Promise.resolve(response.data)
         }).catch((error) => {
             console.log(error.response);
             return Promise.reject(error.response)
         })
     },
-    staff: ({commit}, id) => {
+    staff: ({commit, dispatch}, id) => {
         return axios.get(`/staff/${id}`).then(response => {
-            commit('SET_STAFF', response.data)
+            commit('SET_STAFF', response.data);
+            dispatch('school', response.data.school_id);
             return Promise.resolve(response.data)
         }).catch((error) => {
             return Promise.reject(error.response)

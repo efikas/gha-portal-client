@@ -1,8 +1,12 @@
 <template>
     <div style="margin-top: -0%; width: 1000px">
-        <SchoolCard></SchoolCard>
         <div class="container">
             <div class="row">
+                <div class="col-md-10" style="padding: 0">
+                    <SchoolCard></SchoolCard>
+                </div>
+            </div>
+            <div class="row" id="profile">
                 <b-card class="col-md-10 bg-clear-card" bg-variant="light" text-variant="dark">
                     <div class="row">
                         <div class="col-md-12">
@@ -27,13 +31,13 @@
                         <div class="row">
                             <div class="col-md-9 offset-3">
                                 <b-nav>
-                                    <router-link tag="li" :to="{name:'student-profile', query:{section: 'personal'}}">
+                                    <router-link tag="li" :to="{name:'student-profile', query:{section: 'personal'}, hash: '#profile'}">
                                         <a class="nav-link">Personal</a>
                                     </router-link>
-                                    <router-link tag="li" class="nav-item" :to="{name:'student-profile', query:{section: 'academic'}}">
+                                    <router-link tag="li" class="nav-item" :to="{name:'student-profile', query:{section: 'academic'}, hash: '#profile'}">
                                         <a class="nav-link">Academic</a>
                                     </router-link>
-                                    <router-link tag="li" class="nav-item" :to="{name:'student-profile', query:{section: 'guardian'}}">
+                                    <router-link tag="li" class="nav-item" :to="{name:'student-profile', query:{section: 'guardian'}, hash: '#profile'}">
                                         <a class="nav-link">Guardian</a>
                                     </router-link>
                                 </b-nav>
@@ -75,8 +79,8 @@
         computed: mapGetters([
             'student'
         ]),
-        created: function () {
-            this.$store.dispatch('student', this.$route.params.id);
+        created: async function () {
+            await this.$store.dispatch('student', this.$route.params.id);
             this.switchComponent(this.$route.query.section);
         },
         methods: {
@@ -104,7 +108,7 @@
                         break;
                     default:
                         load.call(this, 'Personal');
-                        this.$router.replace({query:{section: 'personal'}});
+                        this.$router.replace({query:{section: 'personal'}, hash: '#profile'});
                         break;
                 }
             }

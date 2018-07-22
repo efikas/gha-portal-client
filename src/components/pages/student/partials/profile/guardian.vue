@@ -43,7 +43,7 @@
                     </tr>
                     <tr>
                         <td>Religion</td>
-                        <td> {{ guardian.religion?data.religions[guardian.religion].religion : '' }}</td>
+                        <td> {{ parseInt(guardian.religion)?data.religions[guardian.religion].religion : '' }}</td>
                     </tr>
                 </table>
             </div>

@@ -1,7 +1,11 @@
 <template>
     <div>
-        <SchoolCard></SchoolCard>
         <div class="container">
+            <div class="row">
+                <div class="col-md-10" style="padding: 0">
+                    <SchoolCard></SchoolCard>
+                </div>
+            </div>
             <div class="row">
                 <b-card class="col-md-10 bg-clear-card" bg-variant="light" text-variant="dark">
                     <div class="row">

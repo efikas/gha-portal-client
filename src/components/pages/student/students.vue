@@ -4,7 +4,7 @@
             <SchoolCard></SchoolCard>
 
             <b-card header="List of Students" header-tag="h4" class="bg-header-card">
-                <div style="margin: 2%" v-if="school.id">
+                <div style="margin: 2%" v-if="students.id">
                     <skeleton-loading>
                         <row :gutter="{top: '20px'}">
                             <square-skeleton 
@@ -64,7 +64,7 @@ export default {
             }
         }
     },
-    computed:mapGetters(['students', 'school']),
+    computed:mapGetters(['students']),
     created() {
         this.$store.dispatch('students', {id: this.$route.params.id});
     },
