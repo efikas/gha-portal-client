@@ -9,7 +9,7 @@
                 Provide the following details about the membership details of the SBMC of this school.
             </div>
         </div>
-        <div v-for="(members, index) in data.sbmc" class="mb-5">
+        <div v-for="(members, index) in school.sbmc" class="mb-5">
             <div class="form-horizonal bordered-box">
                 <div class="row even-row">
                     <div class="col-md-12">
@@ -18,9 +18,9 @@
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-4">
                         <div class="form-group p-10">
-                            <label class="control-label col-md-12">Name</label>
+                            <label class="control-label">Name</label>
                             <input type="text" class="form-control" name="name"
-                                   v-model="data.sbmc[index].name" placeholder="membership Name" required>
+                                   v-model="members.name" placeholder="membership Name" required>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-2">
@@ -28,7 +28,7 @@
                             <label class="control-label">Position
                             </label>
                             <input type="text" class="form-control" name="position[]"
-                                   v-model="data.sbmc[index].office" placeholder="Position" required>
+                                   v-model="members.office" placeholder="Position" required>
 
                         </div>
                     </div>
@@ -37,7 +37,7 @@
                             <label class="control-label">phone
                             </label>
                             <input type="text" class="form-control" name="phone[]"
-                                   v-model="data.sbmc[index].phone" placeholder="phone" required>
+                                   v-model="members.phone" placeholder="phone" required>
 
                         </div>
                     </div>
@@ -46,32 +46,46 @@
                             <label class="control-label">Email
                             </label>
                             <input type="email" class="form-control" name="email"
-                                   v-model="data.sbmc[index].email" placeholder="Email">
+                                   v-model="members.email" placeholder="Email">
 
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <button type="submit" :disabled="$v.$invalid" @click.prevent="onSubmit"
+                class="btn btn-primary btn-lg btn-school pull-right">Submit
+        </button>
     </div>
 </template>
 <script>
-
+    import {schoolFormMixins} from './mixins'
     export default {
-        props: {
-            data: {type: Object, required: true}
-        },
         data() {
             return {}
         },
+        validations:{},
+        mixins: [schoolFormMixins],
         methods: {
             addMore() {
-                this.data.sbmc.push({name: '', position: '', phone_number: '', email: ''});
+                this.school.sbmc.push({});
             },
             removeElement(index) {
-                this.data.sbmc.splice(index, 1);
-            }
-        }
+                this.school.sbmc.splice(index, 1);
+            },
+            onSubmit: function () {
+                let form = {school_id: this.school.id, members:[...this.school.sbmc]};
+
+                this.$store.dispatch('storeSchoolSbmc', form).then(() => {
+                    console.log('record updated')
+                }).catch(() => {
+                    console.log('error')
+                });
+            },
+        },
+        created(){
+            this.school = this.getSchool;
+        },
     }
 </script>
 <style type="text/css" scoped>

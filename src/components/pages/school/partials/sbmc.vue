@@ -1,7 +1,24 @@
 <template>
     <div>
+        <b-card class="bg-clear2-card" no-body text-variant="dark">
+            <div slot="header">
+
+                <a href="javascript:void(0)" v-b-modal.modal-sbmc>
+                    <i class=" fa fa-edit card-profile-link pull-right"></i>
+                </a>
+
+                <b-modal id="modal-sbmc" title="SBMC" size="lg" lazy centered hide-footer>
+                    <sbmc-form></sbmc-form>
+                </b-modal>
+
+                <h3>
+                    <router-link :to="{query:$route.query, hash:$route.hash}" class="default-color">SBMC
+                    </router-link>
+                </h3>
+
+            </div>
         <div class="table-responsive">
-            <table class="table table-bordred table-striped mytable classroom-table">
+            <table class="table table-bordred table-striped">
                 <thead>
                 <tr>
                     <th>Name</th>
@@ -20,13 +37,16 @@
                 </tbody>
             </table>
         </div>
+        </b-card>
     </div>
 </template>
 
 <script>
     import { tabsMixins } from './mixins'
+    import sbmcForm from '../forms/sbmc'
     export default {
         name: "sbmc",
+        components: {sbmcForm},
         mixins: [tabsMixins],
     }
 </script>
