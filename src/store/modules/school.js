@@ -2,7 +2,7 @@ import axios from '../../axios'
 
 const state = {
     schools: [],
-    school: { ward: {lga_id: null}},
+    school: {ward: {lga_id: null}},
     school_stat: []
 };
 
@@ -89,6 +89,15 @@ const actions = {
         }).catch((error) => {
             return Promise.reject(error.response)
         })
+    },
+    uploadSpreadsheat: ({}, payload) => {
+        return axios.post(`/upload/${payload.lga_id}/school`, payload.formdata,
+            {headers: {'Content-Type': 'multipart/form-data'}})
+            .then(response => {
+                return Promise.resolve(response.data)
+            }).catch((error) => {
+                return Promise.reject(error.response)
+            })
     }
 };
 
