@@ -1,6 +1,5 @@
 <template>
     <div>
-        <form class="form-horizontal" @submit.prevent="onSubmit">
             <div class="row odd-row">
                 <div class="col-xs-12 col-sm-6 col-md-3">
                     <div class="form-group p-10">
@@ -9,7 +8,8 @@
                         <div class="">
                             <select v-model="staff.category" class="form-control" size="1">
                                 <option value="">--select--</option>
-                                <option v-for="category in data.staff_categories" :value="category.id">{{category.category}}
+                                <option v-for="category in data.staff_categories" :value="category.id">
+                                    {{category.category}}
                                 </option>
                             </select>
                         </div>
@@ -22,7 +22,8 @@
                         <div class="">
                             <select v-model="staff.status" class="form-control" size="1">
                                 <option value="">--select--</option>
-                                <option v-for="status in data.staff_statuses" :value="status.id">{{status.status}}</option>
+                                <option v-for="status in data.staff_statuses" :value="status.id">{{status.status}}
+                                </option>
                             </select>
                         </div>
                     </div>
@@ -56,7 +57,8 @@
                         <label class="control-label">Academic qualification</label>
                         <select v-model="staff.academic_qualification" class="form-control" size="1">
                             <option value="null">--select--</option>
-                            <option v-for="academic in data.academic_qualifications" :value="academic.id">{{academic.qualification}}
+                            <option v-for="academic in data.academic_qualifications" :value="academic.id">
+                                {{academic.qualification}}
                             </option>
                         </select>
                     </div>
@@ -119,7 +121,8 @@
                     <div class="form-group p-10">
                         <label class="control-label">Class taught
                         </label>
-                        <input type="text" class="form-control" v-model="staff.classes_taught" placeholder="School Name">
+                        <input type="text" class="form-control" v-model="staff.classes_taught"
+                               placeholder="School Name">
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-3">
@@ -139,8 +142,9 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary btn-lg btn-school pull-right">Submit</button>
-        </form>
+        <button type="submit" :disabled="$v.$invalid" @click.prevent="onSubmit"
+                class="btn btn-primary btn-lg btn-school pull-right">Submit
+        </button>
     </div>
 </template>
 <script>
@@ -155,11 +159,13 @@
             }
         },
         computed: {
-            ...mapGetters({getStaff:'staff', data:'data'})
+            ...mapGetters({getStaff: 'staff', data: 'data'})
         },
+        validations:{},
         methods: {
             onSubmit: function () {
                 let form = {
+                    school_id: this.staff.school_id,
                     category: this.staff.category,
                     status: this.staff.status,
                     salary_source: this.staff.salary_source,
@@ -172,21 +178,20 @@
                     classes_taught: this.staff.classes_taught,
                     computer_literate: this.staff.computer_literate,
                     trc_reg_no: this.staff.trc_reg_no,
+
+                    //required
+                    'first_name': this.staff.first_name,
+                    'last_name': this.staff.last_name,
+                    'middle_name': this.staff.middle_name,
+                    'sex': this.staff.sex,
+                    'date_of_birth': this.staff.date_of_birth,
                 };
 
-                if(this.staff.id) {
-                    this.$store.dispatch('updateStaff', form).then(()=>{
-                        console.log('record updated')
-                    }).catch(() => {
-                        console.log('error')
-                    });
-                } else {
-                    this.$store.dispatch('storeStaff', form).then(()=>{
-                        console.log('record created')
-                    }).catch(() => {
-                        console.log('error')
-                    });
-                }
+                this.$store.dispatch('updateStaff', form).then(() => {
+                    console.log('record updated')
+                }).catch(() => {
+                    console.log('error')
+                });
             }
         },
         created: function () {
@@ -237,6 +242,7 @@
         letter-spacing: 1px;
         color: #684348 !important;
     }
+
     .form-group label {
         font-size: .8rem !important;
         letter-spacing: 1px;

@@ -1,175 +1,175 @@
 <template>
     <div>
-        <form class="form-horizontal" @submit.prevent="onSubmit">
-            <div class="row odd-row">
-                <div class="form-group p-10 col-md-12">
-                    <label class="control-label">School Name</label>
-                    <multiselect v-model="selectedSchool" :show-labels="false" :options="schoolsMapping"
-                                 @input="setSchoolId"></multiselect>
-                </div>
+        <div class="row odd-row">
+            <div class="form-group p-10 col-md-12">
+                <label class="control-label">School Name</label>
+                <multiselect v-model="selectedSchool" :show-labels="false" :options="schoolsMapping"
+                             @input="setSchoolId"></multiselect>
+            </div>
 
-            </div>
-            <div class="row even-row">
-                <div class="col-xs-12 col-sm-6 col-md-3">
-                    <div class="form-group p-10">
-                        <label class="control-label " for="text">Firstname
-                            <abbr class="text-error">*</abbr></label>
-                        <div class="">
-                            <input type="text" class="form-control" name="firstname"
-                                   v-model="staff.first_name" placeholder="First Name">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-3">
-                    <div class="form-group p-10">
-                        <label class="control-label " for="text">Middle Name <abbr class="text-error">*</abbr>
-                        </label>
-                        <div class="">
-                            <input type="text" class="form-control" name="middlename"
-                                   v-model="staff.middle_name" placeholder="Middle Name">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-3">
-                    <div class="form-group p-10">
-                        <label class="control-label" for="text">Last Name
-                        </label>
-                        <input type="text" class="form-control" v-model="staff.last_name" placeholder="">
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-3">
-                    <div class="form-group p-10">
-                        <label class="control-label" for="text">Sex <abbr class="text-error">*</abbr>
-                        </label>
-                        <b-form-radio-group v-model="staff.sex" :options="sexOptions" name="sex"/>
+        </div>
+        <div class="row even-row">
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="form-group p-10">
+                    <label class="control-label " for="text">Firstname
+                        <abbr class="text-error">*</abbr></label>
+                    <div class="">
+                        <input type="text" class="form-control" name="firstname"
+                               v-model="staff.first_name" placeholder="First Name">
                     </div>
                 </div>
             </div>
-            <div class="row odd-row">
-                <div class="col-xs-12 col-sm-6 col-md-3">
-                    <div class="form-group p-10">
-                        <label class="control-label " for="text">Date of Birth <abbr class="text-error">*</abbr>
-                        </label>
-                        <div class="">
-                            <input type="date" class="form-control" name="birthdate"
-                                   v-model="staff.date_of_birth">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-3">
-                    <div class="form-group p-10">
-                        <label class="control-label " for="text">Place of Birth <abbr
-                                class="text-error">*</abbr>
-                        </label>
-                        <div class="">
-                            <input type="text" class="form-control" id="place_of_birth" placeholder="Place of birth"
-                                   v-model="staff.place_of_birth">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-3">
-                    <div class="form-group p-10">
-                        <label class="control-label" for="text">Phone Number <abbr class="text-error">*</abbr>
-                        </label>
-                        <input type="phone" class="form-control" name="phone" id="phone" v-model="staff.phone">
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-3">
-                    <div class="form-group p-10">
-                        <label class="control-label" for="text">Email
-                        </label>
-                        <input type="email" class="form-control" placeholder="aaa@abcd.com" v-model="staff.email">
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="form-group p-10">
+                    <label class="control-label " for="text">Middle Name <abbr class="text-error">*</abbr>
+                    </label>
+                    <div class="">
+                        <input type="text" class="form-control" name="middlename"
+                               v-model="staff.middle_name" placeholder="Middle Name">
                     </div>
                 </div>
             </div>
-            <div class="row even-row">
-                <div class="col-xs-12 col-sm-6 col-md-3">
-                    <div class="form-group p-10">
-                        <label class="control-label " for="text">State of Origin
-                            <abbr class="text-error">*</abbr>
-                        </label>
-                        <div class="">
-                            <select name="example-select" ref="state" class="form-control" size="1"
-                                    v-model="staff.state_of_origin">
-                                <option value="null">--select--</option>
-                                <option v-for="state in data.states" :value="state.id">{{state.name}}</option>
-                            </select>
-                        </div>
-                    </div>
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="form-group p-10">
+                    <label class="control-label" for="text">Last Name
+                    </label>
+                    <input type="text" class="form-control" v-model="staff.last_name" placeholder="">
                 </div>
-                <div class="col-xs-12 col-sm-6 col-md-3">
-                    <div class="form-group p-10">
-                        <label class="control-label " for="text">Local Govt of Origin <abbr class="text-error">*</abbr>
-                        </label>
-                        <div class="">
-                            <select class="form-control" size="1" v-model="staff.lga_of_origin">
-                                <option value="null">--select--</option>
-                                <option v-for="lga in filtered_lga_areas" :value="lga.id">{{lga.name}}</option>
-                            </select>
-                        </div>
-                    </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="form-group p-10">
+                    <label class="control-label" for="text">Sex <abbr class="text-error">*</abbr>
+                    </label>
+                    <b-form-radio-group v-model="staff.sex" :options="sexOptions" name="sex"/>
                 </div>
-                <div class="col-xs-12 col-sm-6 col-md-3">
-                    <div class="form-group p-10">
-                        <label class="control-label" for="text">Home Town <abbr class="text-error">*</abbr>
-                        </label>
-                        <input type="text" class="form-control" name="home_town"
-                               placeholder="" v-model="staff.home_town">
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-3">
-                    <div class="form-group p-10">
-                        <label class="control-label" for="text">House Distance from School (in KM)
-                        </label>
-                        <input type="number" class="form-control" id="text" placeholder=""
-                               v-model="staff.distance_from_school">
+            </div>
+        </div>
+        <div class="row odd-row">
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="form-group p-10">
+                    <label class="control-label " for="text">Date of Birth <abbr class="text-error">*</abbr>
+                    </label>
+                    <div class="">
+                        <input type="date" class="form-control" name="birthdate"
+                               v-model="staff.date_of_birth">
                     </div>
                 </div>
             </div>
-            <div class="row odd-row">
-                <div class="col-xs-12 col-sm-6 col-md-3">
-                    <div class="form-group p-10">
-                        <label class="control-label " for="text">Marital Status <abbr
-                                class="text-error">*</abbr>
-                        </label>
-                        <div class="">
-                            <select class="form-control" size="1" v-model="staff.marital_status">
-                                <option value="null">--select--</option>
-                                <option value="Single">Single</option>
-                                <option value="Married">Married</option>
-                                <option value="Divorced">Divorced</option>
-                                <option value="Widowed">Widowed</option>
-                                <option value="Separated">Separated</option>
-                            </select>
-                        </div>
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="form-group p-10">
+                    <label class="control-label " for="text">Place of Birth <abbr
+                            class="text-error">*</abbr>
+                    </label>
+                    <div class="">
+                        <input type="text" class="form-control" id="place_of_birth" placeholder="Place of birth"
+                               v-model="staff.place_of_birth">
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-6 col-md-3">
-                    <div class="form-group p-10">
-                        <label class="control-label " for="text">Religion <abbr class="text-error">*</abbr>
-                        </label>
-                        <div class="">
-                            <select class="form-control" size="1" v-model="staff.religion">
-                                <option value="null">--select--</option>
-                                <option v-for="religion in data.religions" :value="religion.religion">{{religion.religion}}
-                                </option>
-                            </select>
-                        </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="form-group p-10">
+                    <label class="control-label" for="text">Phone Number <abbr class="text-error">*</abbr>
+                    </label>
+                    <input type="phone" class="form-control" name="phone" id="phone" v-model="staff.phone">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="form-group p-10">
+                    <label class="control-label" for="text">Email
+                    </label>
+                    <input type="email" class="form-control" placeholder="aaa@abcd.com" v-model="staff.email">
+                </div>
+            </div>
+        </div>
+        <div class="row even-row">
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="form-group p-10">
+                    <label class="control-label " for="text">State of Origin
+                        <abbr class="text-error">*</abbr>
+                    </label>
+                    <div class="">
+                        <select name="example-select" ref="state" class="form-control" size="1"
+                                v-model="staff.state_of_origin">
+                            <option value="null">--select--</option>
+                            <option v-for="state in data.states" :value="state.id">{{state.name}}</option>
+                        </select>
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-6 col-md-6">
-                    <div class="form-group p-10">
-                        <label class="control-label">Home/Residential Address <abbr class="text-error">*</abbr></label>
-                        <div class="">
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="form-group p-10">
+                    <label class="control-label " for="text">Local Govt of Origin <abbr class="text-error">*</abbr>
+                    </label>
+                    <div class="">
+                        <select class="form-control" size="1" v-model="staff.lga_of_origin">
+                            <option value="null">--select--</option>
+                            <option v-for="lga in filtered_lga_areas" :value="lga.id">{{lga.name}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="form-group p-10">
+                    <label class="control-label" for="text">Home Town <abbr class="text-error">*</abbr>
+                    </label>
+                    <input type="text" class="form-control" name="home_town"
+                           placeholder="" v-model="staff.home_town">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="form-group p-10">
+                    <label class="control-label" for="text">House Distance from School (in KM)
+                    </label>
+                    <input type="number" class="form-control" id="text" placeholder=""
+                           v-model="staff.distance_from_school">
+                </div>
+            </div>
+        </div>
+        <div class="row odd-row">
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="form-group p-10">
+                    <label class="control-label " for="text">Marital Status <abbr
+                            class="text-error">*</abbr>
+                    </label>
+                    <div class="">
+                        <select class="form-control" size="1" v-model="staff.marital_status">
+                            <option value="null">--select--</option>
+                            <option value="Single">Single</option>
+                            <option value="Married">Married</option>
+                            <option value="Divorced">Divorced</option>
+                            <option value="Widowed">Widowed</option>
+                            <option value="Separated">Separated</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="form-group p-10">
+                    <label class="control-label " for="text">Religion <abbr class="text-error">*</abbr>
+                    </label>
+                    <div class="">
+                        <select class="form-control" size="1" v-model="staff.religion">
+                            <option value="null">--select--</option>
+                            <option v-for="religion in data.religions" :value="religion.religion">{{religion.religion}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6">
+                <div class="form-group p-10">
+                    <label class="control-label">Home/Residential Address <abbr class="text-error">*</abbr></label>
+                    <div class="">
                             <textarea rows="3" class="form-control resize_vertical"
                                       name="address" v-model="staff.residential_address"
                                       placeholder="Home/Residential Address"></textarea>
-                        </div>
                     </div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary btn-lg btn-school pull-right">Submit</button>
-        </form>
+        </div>
+        <button type="submit" :disabled="$v.$invalid" @click.prevent="onSubmit"
+                class="btn btn-primary btn-lg btn-school pull-right">Submit
+        </button>
     </div>
 </template>
 <script>
@@ -181,6 +181,7 @@
         components: {
             Multiselect,
         },
+        validations:{},
         data() {
             return {
                 staff: {},
@@ -228,14 +229,14 @@
 
                 };
 
-                if(this.staff.id) {
-                    this.$store.dispatch('updateStaff', form).then(()=>{
+                if (this.staff.id) {
+                    this.$store.dispatch('updateStaff', form).then(() => {
                         console.log('record updated')
                     }).catch(() => {
                         console.log('error')
                     });
                 } else {
-                    this.$store.dispatch('storeStaff', form).then(()=>{
+                    this.$store.dispatch('storeStaff', form).then(() => {
                         console.log('record created')
                     }).catch(() => {
                         console.log('error')

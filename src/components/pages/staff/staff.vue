@@ -31,10 +31,10 @@
                         <div class="row">
                             <div class="col-md-9 offset-3">
                                 <b-nav>
-                                    <router-link tag="li" :to="{name:'staff-profile', query:{section: 'personal'}}">
+                                    <router-link tag="li" :to="{name:'staff-profile', query:{section: 'personal'}, hash: '#profile'}">
                                         <a class="nav-link">Personal</a>
                                     </router-link>
-                                    <router-link tag="li" class="nav-item" :to="{name:'staff-profile', query:{section: 'professional'}}">
+                                    <router-link tag="li" class="nav-item" :to="{name:'staff-profile', query:{section: 'professional'}, hash: '#profile'}">
                                         <a class="nav-link">Professional</a>
                                     </router-link>
                                 </b-nav>
@@ -43,7 +43,7 @@
                     </div>
                 </b-card>
             </div>
-            <div class="row">
+            <div class="row" id="profile">
                 <div class="col-md-10" style="padding: 0">
                     <component
                             :is="loadedComponent"
