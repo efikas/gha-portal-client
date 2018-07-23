@@ -41,9 +41,6 @@ axios.interceptors.response.use(function (response) {
         if (typeof error.response !== 'undefined' && error.response.status === 401) {
             miniToastr.error('Request unauthorized', 'Error');
             // Store.dispatch('logout');
-        } else {
-            miniToastr.error('Request unauthorized', 'Error');
-            // Store.dispatch('logout');
         }
 
         return Promise.reject(error);
