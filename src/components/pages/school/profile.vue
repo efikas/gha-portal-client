@@ -5,9 +5,9 @@
                 <SchoolCard></SchoolCard>
             </div>
         </div>
-        <b-card v-if="school" class="bg-default-card text-right">
-            <a href="#">Exam</a> |
-            <a href="#">Attendance</a>
+        <b-card class=" text-right">
+            <router-link tag="a" :to="{name:'staff-add'}" class="fa fa-female"> Add staff </router-link> |
+            <router-link tag="a" :to="{name:'student-add'}" class="fa fa-male"> Add student </router-link>
         </b-card>
         <div class="row">
             <div class="col-md-9" id="profile">

@@ -125,6 +125,7 @@ const layout = [{
             },
             {
                 path: 'add',
+                name: 'staff-add',
                 component:
                     resolve => require(['pages/staff/add'], resolve),
                 meta:
@@ -182,6 +183,7 @@ const layout = [{
             },
             {
                 path: 'add',
+                name: 'student-add',
                 component: resolve => require(['pages/student/add'], resolve),
                 meta: {
                     title: "Add New Student",

@@ -2,6 +2,7 @@
     <div class="row">
         <div class="col-lg-12 mb-3">
             <b-card header="" header-tag="h4" class="bg-header-card">
+                <div class="clear-fix"></div>
                 <div style="margin: 2%" v-if="schools.length < 1">
                     <skeleton-loading>
                         <row :gutter="{top: '20px'}">
@@ -14,8 +15,15 @@
                     </skeleton-loading>
                 </div>
                 <div v-else>
-                    <a type="button" class="fa fa-download icon-big btn btn-outline-primary ekiti-btn pull-right"
-                       @click="exportExcel"></a>
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                           <div class="pull-right">
+                               <!--<router-link tag="a" class="btn btn-outline-primary ekiti-btn" to="">Add new</router-link>-->
+                               <router-link tag="a" :to="{name:'school-create'}" class="fa fa-plus"> Add</router-link> |
+                               <a href="javascript: void(0)" class="fa fa-download" @click="exportExcel"> Export</a>
+                           </div>
+                        </div>
+                    </div>
                     <v-client-table :data="schools" :columns="columns" :options="options">
                         <router-link
                                 class="list-font sch-link"
@@ -30,10 +38,13 @@
                                          :to="{name:'school-staffs', params:{id: props.row.id}}"><i
                                     class="fa fa-male"></i> Staffs
                             </router-link>
+                            |
                             <router-link class="btn btn-outline-primary ekiti-btn"
                                          :to="{name:'school-students', params:{id: props.row.id}}"><i
                                     class="fa fa-users"></i> Students
                             </router-link>
+                            |
+                            <router-link to="" class=""><i class="fa fa-trash"></i></router-link>
                         </div>
                     </v-client-table>
                 </div>
