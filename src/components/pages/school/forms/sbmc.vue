@@ -77,9 +77,10 @@
                 let form = {school_id: this.school.id, members:[...this.school.sbmc]};
 
                 this.$store.dispatch('storeSchoolSbmc', form).then(() => {
-                    console.log('record updated')
+                    this.successMsg('Record updated!', 'Success');
+                    setTimeout(()=>this.$emit('closeModal', true), 500);
                 }).catch(() => {
-                    console.log('error')
+                    this.errorMsg('Error saving data!', 'Error');
                 });
             },
         },
@@ -89,38 +90,6 @@
     }
 </script>
 <style type="text/css" scoped>
-    #color {
-        height: 35px;
-    }
-
-    /deep/ .form-control:disabled {
-        cursor: not-allowed;
-    }
-
-    .disabled {
-        cursor: not-allowed;
-    }
-
-    .form-control:active, .input-group .form-control:hover {
-        z-index: 1;
-    }
-
-    .dropzone_wrapper {
-        width: 100%;
-    }
-
-    .align-left {
-        float: left;
-    }
-
-    .align-right {
-        float: right;
-    }
-
-    tab-content {
-        border-top: 1px solid grey;
-        border-bottom: 1px solid grey;
-    }
 
     .even-row {
         background-color: #fafafa;

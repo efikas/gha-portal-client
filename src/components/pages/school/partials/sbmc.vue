@@ -7,8 +7,8 @@
                     <i class=" fa fa-edit card-profile-link pull-right"></i>
                 </a>
 
-                <b-modal id="modal-sbmc" title="SBMC" size="lg" lazy centered hide-footer>
-                    <sbmc-form></sbmc-form>
+                <b-modal id="modal-sbmc" ref="modal" title="SBMC" size="lg" lazy centered hide-footer>
+                    <sbmc-form @closeModal="()=>$refs.modal.hide()"></sbmc-form>
                 </b-modal>
 
                 <h3>

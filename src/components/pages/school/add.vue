@@ -7,13 +7,11 @@
 </template>
 <script>
     import BasicForm from './forms/basic.vue';
-    import Toaster from '../../mixins/toaster';
     import { schoolBasicData } from '../../../data/school'
     import Store from 'src/store/store'
 
     export default {
         name: 'school-add',
-        mixins: [Toaster],
         components: {
             basicForm: BasicForm,
         },

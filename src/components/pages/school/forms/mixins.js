@@ -1,3 +1,4 @@
+import Toaster from '../../../mixins/toaster';
 import {mapGetters} from 'vuex'
 
 const schoolFormMixins = {
@@ -6,6 +7,7 @@ const schoolFormMixins = {
             normalized: {},
         }
     },
+    mixins: [Toaster],
     computed: {
         ...mapGetters({data: 'data', getSchool: 'school'}),
         learning() {

@@ -7,8 +7,8 @@
                     <i class=" fa fa-edit card-profile-link pull-right"></i>
                 </a>
 
-                <b-modal id="modal-facility" title="Facilities" size="lg" lazy centered hide-footer>
-                    <facility-form></facility-form>
+                <b-modal id="modal-facility" ref="modal" title="Facilities" size="lg" lazy centered hide-footer>
+                    <facility-form @closeModal="()=>$refs.modal.hide()"></facility-form>
                 </b-modal>
 
                 <h3>

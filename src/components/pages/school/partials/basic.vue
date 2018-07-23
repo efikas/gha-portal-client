@@ -7,8 +7,8 @@
                     <i class=" fa fa-edit card-profile-link pull-right"></i>
                 </a>
 
-                <b-modal id="modal-basic" title="Basic Information" size="lg" lazy centered hide-footer>
-                    <basic-form></basic-form>
+                <b-modal id="modal-basic" ref="modal" title="Basic Information" size="lg" lazy centered hide-footer>
+                    <basic-form @closeModal="()=>$refs.modal.hide()"></basic-form>
                 </b-modal>
 
                 <h3>
@@ -85,13 +85,13 @@
                     </tr>
                     <tr>
                         <td class="text-muted text-right">
-                            <router-link :to="{name:'school-staffs', params: {id: school.id}, query:{t:1}}">Teaching
+                            <router-link :to="{name:'school-staffs', param: {id: school.id}, query:{t:1}}">Teaching
                                 Staff
                             </router-link>
                         </td>
                         <td>{{ school.staffs?school.staffs.teaching:0 }}</td>
                         <td class="text-muted text-right">
-                            <router-link :to="{name:'school-staffs', params: {id: school.id}, query:{t:0}}">Non-Teaching
+                            <router-link :to="{name:'school-staffs', param: {id: school.id}, query:{t:0}}">Non-Teaching
                                 Staff
                             </router-link>
                         </td>

@@ -32,10 +32,12 @@
                             <div class="row">
                                 <div class="col-md-9 offset-3">
                                     <b-nav>
-                                        <router-link tag="li" :to="{name:'staff-profile', query:{section: 'personal'}, hash: '#profile'}">
+                                        <router-link tag="li"
+                                                     :to="{name:'staff-profile', query:{section: 'personal'}, hash: '#profile'}">
                                             <a class="nav-link">Personal</a>
                                         </router-link>
-                                        <router-link tag="li" class="nav-item" :to="{name:'staff-profile', query:{section: 'professional'}, hash: '#profile'}">
+                                        <router-link tag="li" class="nav-item"
+                                                     :to="{name:'staff-profile', query:{section: 'professional'}, hash: '#profile'}">
                                             <a class="nav-link">Professional</a>
                                         </router-link>
                                     </b-nav>
@@ -48,10 +50,7 @@
             <div class="row">
                 <div class="col-md-10" style="padding: 0">
                     <transition name="fade">
-                    <!--<transition name="slide" mode="out-in">-->
-                    <component
-                            :is="loadedComponent"
-                            @editProfile="onEditProfile($event)"></component>
+                        <component :is="loadedComponent"></component>
                     </transition>
                 </div>
             </div>
@@ -88,10 +87,11 @@
                 }
                 return require("img/authors/user.jpg");
             },
-            switchComponent(component){
+            switchComponent(component) {
                 function load(val) {
                     this.loadedComponent = val;
                 }
+
                 switch (component) {
                     case 'personal':
                         load.call(this, 'personal');
@@ -101,7 +101,7 @@
                         break;
                     default:
                         load.call(this, 'personal');
-                        this.$router.replace({query:{section: 'personal'}});
+                        this.$router.replace({query: {section: 'personal'}});
                         break;
                 }
             }
@@ -132,15 +132,20 @@
         padding-bottom: 12px;
         color: #555;
     }
+
     .fade-enter-active, .fade-leave-active {
         transition: opacity .5s;
     }
-    .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+
+    .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */
+    {
         opacity: 0;
     }
+
     .slide-enter-active {
         animation: slide-in 200ms ease-out forwards;
     }
+
     .slide-leave-active {
         animation: slide-out 200ms ease-out forwards;
     }

@@ -113,9 +113,10 @@
                 // console.log(form);
 
                 this.$store.dispatch('updateSchool', form).then(() => {
-                    console.log('record updated')
+                    this.successMsg('Record updated!', 'Success');
+                    setTimeout(()=>this.$emit('closeModal', true), 500);
                 }).catch(() => {
-                    console.log('error')
+                    this.errorMsg('Error saving data!', 'Error');
                 });
 
             },

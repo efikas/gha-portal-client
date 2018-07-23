@@ -7,7 +7,7 @@
             </div>
         </div>
         <div v-for="(projects, index) in school.projects" class="mb-5">
-            <div class="form-horizonal bordered-box">
+            <div class="bordered-box">
                 <div class="row even-row">
                     <div class="col-md-12" v-if="school.projects.length > 1">
                         <div class="remove-btn-div"><a class="btn btn-outline-danger pull-right red"
@@ -83,9 +83,10 @@
                 // console.log(form);
 
                 this.$store.dispatch('storeSchoolProject', form).then(() => {
-                    console.log('record updated')
+                    this.successMsg('Record updated!', 'Success');
+                    setTimeout(()=>this.$emit('closeModal', true), 500);
                 }).catch(() => {
-                    console.log('error')
+                    this.errorMsg('Error saving data!', 'Error');
                 });
 
             },

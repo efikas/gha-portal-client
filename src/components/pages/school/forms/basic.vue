@@ -314,16 +314,17 @@
 
                 if (this.school.id) {
                     this.$store.dispatch('updateSchool', form).then(() => {
-                        console.log('record updated')
+                        this.successMsg('Record updated!', 'Success');
+                        setTimeout(()=>this.$emit('closeModal', true), 500);
                     }).catch(() => {
-                        console.log('error')
+                        this.errorMsg('Error saving data!', 'Error');
                     });
                 } else {
                     this.$store.dispatch('storeSchool', form).then(() => {
-                        console.log('record created');
+                        this.successMsg('School basic information saved!', 'Success');
                         this.$router.push({name: 'schools'});
                     }).catch(() => {
-                        console.log('error')
+                        this.errorMsg('Error saving data!', 'Error');
                     });
                 }
             },
