@@ -7,41 +7,43 @@
                 </div>
             </div>
             <div class="row">
-                <b-card id="profile" class="col-md-10 bg-clear-card" bg-variant="light" text-variant="dark">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="" style="padding: 0; margin-left: 40px; margin-bottom: -40px">
-                                <div style="">
-                                    <img :src="showImage()" alt="User Image"
-                                         class="img-fluid profile-thumb"/>
+                <div class="col-md-10">
+                    <b-card id="profile" class="bg-clear-card" text-variant="dark">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="" style="padding: 0; margin-left: 40px; margin-bottom: -40px">
+                                    <div style="">
+                                        <img :src="showImage()" alt="User Image"
+                                             class="img-fluid profile-thumb"/>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-9 offset-3" style="padding: 0;">
-                                    <div class="profile-name" style="position: absolute; bottom: 0px;">
-                                        <p> {{ staff.first_name }}
-                                            {{ staff.middle_name }}
-                                            {{ staff.last_name}}</p>
+                                <div class="row">
+                                    <div class="col-md-9 offset-3" style="padding: 0;">
+                                        <div class="profile-name" style="position: absolute; bottom: 0px;">
+                                            <p> {{ staff.first_name }}
+                                                {{ staff.middle_name }}
+                                                {{ staff.last_name}}</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div slot="footer">
-                        <div class="row">
-                            <div class="col-md-9 offset-3">
-                                <b-nav>
-                                    <router-link tag="li" :to="{name:'staff-profile', query:{section: 'personal'}, hash: '#profile'}">
-                                        <a class="nav-link">Personal</a>
-                                    </router-link>
-                                    <router-link tag="li" class="nav-item" :to="{name:'staff-profile', query:{section: 'professional'}, hash: '#profile'}">
-                                        <a class="nav-link">Professional</a>
-                                    </router-link>
-                                </b-nav>
+                        <div slot="footer">
+                            <div class="row">
+                                <div class="col-md-9 offset-3">
+                                    <b-nav>
+                                        <router-link tag="li" :to="{name:'staff-profile', query:{section: 'personal'}, hash: '#profile'}">
+                                            <a class="nav-link">Personal</a>
+                                        </router-link>
+                                        <router-link tag="li" class="nav-item" :to="{name:'staff-profile', query:{section: 'professional'}, hash: '#profile'}">
+                                            <a class="nav-link">Professional</a>
+                                        </router-link>
+                                    </b-nav>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </b-card>
+                    </b-card>
+                </div>
             </div>
             <div class="row">
                 <div class="col-md-10" style="padding: 0">

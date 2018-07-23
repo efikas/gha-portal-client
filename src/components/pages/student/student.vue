@@ -7,7 +7,7 @@
                 </div>
             </div>
             <div class="row" id="profile">
-                <b-card class="col-md-10 bg-clear-card" bg-variant="light" text-variant="dark">
+                <b-card class="col-md-10 bg-clear-card" bg-variant="" text-variant="">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="" style="padding: 0; margin-left: 40px; margin-bottom: -40px">
