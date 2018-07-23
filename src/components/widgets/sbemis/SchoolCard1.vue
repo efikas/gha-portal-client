@@ -10,7 +10,7 @@
             <div class="col-6">
                 <div style="display: flex; flex: fit-content; flex-direction: column; justify-content: space-between">
                     <div class="row mb-4" style="justify-content: flex-start; flex: 1">
-                        <h4 class="default-color">{{ school.name }}</h4>
+                        <h4 class="default-color"><router-link :to="{name:'school', params:{id:$route.params.id}}">{{ school.name }}</router-link></h4>
                         <h5>{{ school.address }}</h5>
                     </div>
 

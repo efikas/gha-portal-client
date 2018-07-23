@@ -7,7 +7,7 @@
                 </div>
             </div>
             <div class="row">
-                <b-card class="col-md-10 bg-clear-card" bg-variant="light" text-variant="dark">
+                <b-card id="profile" class="col-md-10 bg-clear-card" bg-variant="light" text-variant="dark">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="" style="padding: 0; margin-left: 40px; margin-bottom: -40px">
@@ -43,7 +43,7 @@
                     </div>
                 </b-card>
             </div>
-            <div class="row" id="profile">
+            <div class="row">
                 <div class="col-md-10" style="padding: 0">
                     <component
                             :is="loadedComponent"
