@@ -75,9 +75,6 @@
     import {schoolFormMixins} from './mixins'
 
     export default {
-        props: {
-          // data: { type: Object, required: true }
-        },
         validations: {},
         data() {
             return {}
@@ -102,8 +99,15 @@
             },
             onSubmit: function () {
                 let form = {
-                    'classrooms':  this.school.classroom_list,
+                    'classrooms':  this.school.classroom_list.map(classroom=>{
+                        if(classroom.id) delete classroom.id;
+                        if(classroom.updated_at) delete classroom.updated_at;
+                        if(classroom.created_at) delete classroom.created_at;
+                        return classroom;
+                    }),
                 };
+
+                console.log(form);
 
                 this.$store.dispatch('updateSchool', form).then(() => {
                     console.log('record updated')
