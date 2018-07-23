@@ -48,9 +48,11 @@
             </div>
             <div class="row">
                 <div class="col-md-10" style="padding: 0">
+                    <transition name="fade">
                     <component
                             :is="loadedComponent"
                             @editProfile="onEditProfile($event)"></component>
+                    </transition>
                 </div>
             </div>
         </div>
@@ -143,40 +145,12 @@
         padding-bottom: 0!important;
         margin: 0!important;
     }
-    td.views {
-        background-color: #e5e5e5 !important;
-        padding-top: 12px;
-        padding-bottom: 12px;
-        color: #555;
-    }
 
-    .sbemis-table div.views {
-        background-color: #e5e5e5 !important;
-        padding-top: 12px;
-        padding-bottom: 12px;
-        border-top: 0.5px solid #c5c5c5;
-        border-bottom: 0.5px solid #c5c5c5;
-        color: #555;
-        font-style: bold;
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity .5s;
     }
-
-    .sbemis-table div {
-        padding-top: 12px;
-        padding-bottom: 12px;
-        border-top: 0.5px solid #c5c5c5;
-        border-bottom: 0.5px solid #c5c5c5;
-    }
-
-    #mytable tr td:nth-child(odd) {
-        width: 30% !important;
-    }
-
-    .pl-0 {
-        padding-left: 0px
-    }
-
-    .guardian-table {
-        margin-bottom: 30px;
+    .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+        opacity: 0;
     }
 </style>
 
