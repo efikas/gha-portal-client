@@ -96,16 +96,7 @@
                         200)
                     );
             }
-        },
-        created() {
-            // this.$settings.getSettings().then(data => {
-            //     localStorage.setItem('settings', JSON.stringify(data));
-            // });
-        },
-        destroyed: function () {
-
-        },
-        //
+        }
     }
 </script>
 <style scoped>
