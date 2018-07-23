@@ -45,139 +45,20 @@
 <script>
     import Vue from 'vue';
 
-
-    import 'zrender/lib/vml/vml';
-
     require('swiper/dist/css/swiper.css')
     import VueAwesomeSwiper from 'vue-awesome-swiper';
 
-    import piechart from '../patches/piechart.vue'
-    import barchart from '../patches/barchart.vue'
-    import donut from '../patches/donut.vue'
-    import stackbar from '../patches/stackbar.vue'
-    import doughnut from '../patches/doughnut.vue'
     import topCard from './dashboard/partial/topCard'
-    import {mapGetters} from 'vuex'
+    import {Reports} from './dashboard/mixins'
 
-    import {dataMapping} from '../../modules/draw-graphs.js';
 
     Vue.use(VueAwesomeSwiper);
-    var unsub;
     export default {
         name: "echart",
         components: {
             topCard,
-            piechart,
-            barchart,
-            stackbar,
-            doughnut,
-            donut
         },
-        data() {
-            return {
-                serverdata: [],
-                instances: [],
-                loading: false,
-                ajaxloading: true,
-                reshape: null,
-
-                // priv_sch: {},
-                pub_sch: {},
-                pri_sch: {},
-                sec_sch: {},
-                sch_rural: {},
-                sch_urban: {},
-                stu_sec_sch: {},
-                stu_pri_sch: {},
-                staff_dist: {},
-                staff_gen_dist: {},
-                male_female_staff: {},
-                gen_acad_staff_dist: {},
-            }
-        },
-        computed: {
-            ...mapGetters([
-                'statistics'
-            ]),
-            private_school() {
-                return {
-                    header: 'Private School Distribution',
-                    value: this.reshape ? this.reshape.priv_sch : {}
-                }
-            },
-            public_school() {
-                return {
-                    header: 'Public School Distribution',
-                    value: this.reshape ? this.reshape.pub_sch : {}
-                }
-            },
-            primary_school() {
-                return {
-                    header: 'Primary School Distribution',
-                    value: this.reshape ? this.reshape.pri_sch : {}
-                }
-            },
-            secondary_school() {
-                return {header: 'Secondary School Distribution',
-                    value: this.reshape ? this.reshape.sec_sch : {}
-                }
-            },
-            secondary_school_student() {
-                return {
-                    header: 'Student Population In Primary School',
-                    value: this.reshape ? this.reshape.stu_sec_sch : {}
-                }
-            },
-            primary_school_student() {
-                return {
-                    header: 'Student Population In Primary School',
-                    value: this.reshape ? this.reshape.stu_pri_sch : {}
-                }
-            },
-            rural_school() {
-                return {
-                    header: 'School Distribution in Rural Area',
-                    value: this.reshape ? this.reshape.sch_rural : {}
-                }
-            },
-            urban_school() {
-                return {
-                    header: 'School Distribution in Urban Area',
-                    value: this.reshape ? this.reshape.sch_rural : {}
-                }
-            },
-            staff_gender_compare() {
-                return {
-                    header: 'Staff Gender Comparison',
-                    value: this.reshape ? this.reshape.staff_gen_dist : {}
-                }
-            },
-            staff_category_compare() {
-                return {
-                    header: 'Teaching Staff/Non Teaching Staff Comparision',
-                    value: this.reshape ? this.reshape.staff_dist : {}
-                }
-            },
-            staff_academic_distribution() {
-                return {
-                    header: 'Teaching/Non Teaching Staff Distribution',
-                    legend: ['Male', 'Female'],
-                    value: this.reshape ? this.reshape.gen_acad_staff_dist : {}
-                }
-            },
-            staff_gender_distribution() {
-                return {
-                    header: 'Male/Female Staff Distribution',
-                    legend: ['Male', 'Female'],
-                    value: this.reshape ? this.reshape.male_female_staff : {}
-                }
-            }
-        },
-
-        async created() {
-            await this.$store.dispatch('loadStatistics');
-            this.reshape = dataMapping(this.statistics);
-        }
+        mixins: [Reports]
     }
 </script>
 <style type="text/css" lang="scss" scoped>

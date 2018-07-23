@@ -38,7 +38,7 @@ const store = new Vuex.Store({
         client_secret: "BsPZmqDtu7w5iFQuWOiPIOzdU17Uw64jbg9FWzZI",
         grant_type: "password",
         //
-        statistics: null
+        statistics: {}
     },
     mutations,
     actions,
