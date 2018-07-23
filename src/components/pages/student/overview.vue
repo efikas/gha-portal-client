@@ -1,13 +1,13 @@
 <template>
     <div>
-         <div class="row mb-4">
+        <div class="row mb-4">
             <div class="col-lg-3  col-sm-6 mb-3">
                 <div class="text-center p-3 widget_social_icons box_shadow teal">
                     <div class="widget_social_inner1">
                         <i class="fa fa-female fb_text"></i>
                     </div>
                     <div class="text-ash">
-                        <h4 class="mt-2 text_size">{{ totalFemale.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}</h4>
+                        <h4 class="mt-2 text_size">{{ totalFemale | commasep }}</h4>
                         <p class="m-0 mt-2">Female Students</p>
                     </div>
                 </div>
@@ -18,7 +18,7 @@
                         <i class="fa fa-male fb_text"></i>
                     </div>
                     <div class="text-ash">
-                        <h4 class="mb-0 mt-2 text_size">{{ totalMale.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}</h4>
+                        <h4 class="mb-0 mt-2 text_size">{{ totalMale | commasep }}</h4>
                         <p class="m-0 mt-2">Male Students</p>
                     </div>
                 </div>
@@ -29,7 +29,7 @@
                         <i class="fa fa-clone fb_text"></i>
                     </div>
                     <div class="text-ash">
-                        <h4 class="mb-0 mt-2 text_size">{{ studentPerLgas.length }}</h4>
+                        <h4 class="mb-0 mt-2 text_size">{{ lga_student_distribution.length }}</h4>
                         <p class="m-0 mt-2">LGA</p>
                     </div>
                 </div>
@@ -40,186 +40,75 @@
                         <i class="fa fa-clone fb_text"></i>
                     </div>
                     <div class="text-ash">
-                        <h4 class="mb-0 mt-2 text_size">{{ totalStudents.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}</h4>
+                        <h4 class="mb-0 mt-2 text_size">{{ totalStudents | commasep }}</h4>
                         <p class="m-0 mt-2">Total Students</p>
                     </div>
                 </div>
             </div>
         </div>
-         <div class="row">
+        <div class="row">
             <div class="col-md-12 col-offset-lg-2">
                 <b-card header="DISTRIBUTION OF STUDENTS/LGA" header-tag="h4" class="bg-header-card">
-                    <a type="button" class="fa fa-download icon-big btn btn-outline-primary ekiti-btn pull-right mb-2" @click="exportExcel"></a>
+                    <a type="button" class="fa fa-download icon-big btn btn-outline-primary ekiti-btn pull-right mb-2"
+                       @click="exportExcel"></a>
                     <div class="table-responsive">
                         <table class="table table-bordered table-striped" ref="export">
                             <thead>
-                                <tr>
-                                    <th>Local Govt</th>
-                                    <th>Total Female</th>
-                                    <th>Total Male</th>
-                                    <th>Sub Total</th>
-                                </tr>
+                            <tr>
+                                <th>Local Govt</th>
+                                <th>Total Female</th>
+                                <th>Total Male</th>
+                                <th>Sub Total</th>
+                            </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="(studentPerLga, index) in studentPerLgas" :key="index">
-                                    <td>{{ studentPerLga.name }}</td>
-                                    <td>{{ getFemale(studentPerLga.students.female) }}</td>
-                                    <td>{{ getMale(studentPerLga.students.male) }}</td>
-                                    <td>{{ getTotal(studentPerLga.students.female, studentPerLga.students.male) }}</td>
-                                </tr>
+                            <tr v-for="(lga, index) in lga_student_distribution" :key="index">
+                                <td>{{ lga.name }}</td>
+                                <td>{{ lga.students.female | commasep }}</td>
+                                <td>{{ lga.students.male | commasep }}</td>
+                                <td>{{ lga.students.female + lga.students.male | commasep }}</td>
+                            </tr>
                             </tbody>
                             <tfoot>
-                                <tr>
-                                    <th colspan="3" class="text-right">Grand Total</th>
-                                    <th>{{ totalStudents.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}</th>
-                                </tr>
+                            <tr>
+                                <th colspan="3" class="text-right">Grand Total</th>
+                                <th>{{ totalStudents | commasep }}</th>
+                            </tr>
                             </tfoot>
                         </table>
                     </div>
                 </b-card>
             </div>
         </div>
-        <!--<div class="row">-->
-            <!--<div class="col-lg-12">-->
-                <!--<b-card>-->
-                    <!--<h5 class="ml-3 head_color">Annual Stats</h5>-->
-                    <!--<div style="height: 305px;">-->
-                        <!--<IEcharts :option="ajaxbar_chart" :loading="ajaxloading" @ready="onReady" ref="ajaxbar_chart"></IEcharts>-->
-                    <!--</div>-->
-                <!--</b-card>-->
-            <!--</div>-->
-        <!--</div>-->
     </div>
 </template>
 <script>
-    import Vue from 'vue';
+    import {mapGetters} from 'vuex';
 
-    import IEcharts from 'vue-echarts-v3/src/full.js';
-
-    import 'zrender/lib/vml/vml';
-    require('swiper/dist/css/swiper.css')
-
-    import VueAwesomeSwiper from 'vue-awesome-swiper';
-    import countTo from 'vue-count-to';
-
-    import datatable from "components/plugins/DataTable/DataTable.vue";
-    import vScroll from "components/plugins/scroll/vScroll.vue";
-    import VueChartist from 'v-chartist'
-
-    Vue.use(VueAwesomeSwiper);
-    var unsub;
     export default {
-        name: "index2",
-        components: {
-            IEcharts,
-            datatable,
-            countTo,
-            vScroll,
-            VueChartist
-        },
+        name: "studentOverview",
         data() {
             return {
                 serverdata: [],
                 instances: [],
                 loading: false,
                 ajaxloading: true,
-                studentPerLgas: [],
                 totalStudents: 0,
-                totalMale: 0,
                 totalFemale: 0,
-
-                //===========AJAX chart data start=========
-                ajaxbar_chart: {
-                    tooltip: {
-                        trigger: 'axis'
-                    },
-                    grid: {
-                        bottom: '10%',
-                        right: '1%',
-                    },
-                    toolbox: {
-                        show: true,
-                        feature: {
-                            //
-                        }
-                    },
-                    calculable: true,
-                    legend: {
-                        data: ['PROJECTS', 'SALES']
-                    },
-                    color: ['#a0bce5', '#baf2e1'],
-                    xAxis: [{
-                        type: 'category',
-                        name: 'YEAR',
-                        data: ['2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015',
-                            '2016', '2017'
-                        ]
-                    }],
-                    yAxis: [{
-                            type: 'value',
-                            name: '%',
-                            axisLabel: {
-                                formatter: '{value} '
-                            }
-                        },
-                        {
-                            type: 'value',
-
-                            axisLabel: {
-                                formatter: '{value} '
-                            }
-                        }
-                    ],
-                    series: [{
-                            name: 'PROJECTS',
-                            type: 'bar',
-                            data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3]
-                        },
-                        {
-                            name: 'SALES',
-                            type: 'bar',
-                            data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3]
-                        },
-
-                    ]
-                },
-                //===========AJAX chart data end=========\
+                totalMale: 0,
             }
         },
-        mounted: function () {
-            this.$student.getStudentsPerLga()
-                .then((data) => {
-                    this.studentPerLgas = data;
-                    data.forEach(item => {
-                        this.totalMale += item.students.male;
-                        this.totalFemale += item.students.female;
-                        this.totalStudents += item.students.female + item.students.male;
-                    })
-                })
-                .catch((error) => console.log(error)
-            )
+        computed: {
+            ...mapGetters(['lga_student_distribution']),
+        },
+        created: async function () {
+            await this.$store.dispatch('lga_student_distribution');
 
-            // unsub = this.$store.subscribe((mutation, state) => {
-            //     if (mutation.type == "left_menu") {
-            //         this.instances.forEach(function (item, index) {
-            //             setTimeout(function () {
-            //                 item.resize();
-            //             });
-            //         });
-            //         setTimeout(() => {
-            //             this.$refs.swiper.swiper.update();
-            //         });
-            //     }
-            // }),
-
-            // axios.get("http://www.filltext.com/?rows=1&chartdata={numberArray|12,100}").then(response => {
-            //         this.ajaxbar_chart.series[0].data = response.data[0].chartdata;
-            //         this.ajaxloading = false;
-            //     })
-            //     .catch(function (error) {
-            //
-            //     })
-
+            this.lga_student_distribution.map(lga => {
+                this.totalMale += lga.students.male;
+                this.totalFemale += lga.students.female;
+                this.totalStudents += lga.students.female + lga.students.male;
+            });
         },
         beforeRouteLeave(to, from, next) {
             // unsub();
@@ -227,32 +116,6 @@
         },
 
         methods: {
-            //todo: recalculate total students
-
-            getMale(maleStudentsPerLga){
-                return maleStudentsPerLga.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-            },
-            getFemale(femaleStudentsPerLga){
-                return femaleStudentsPerLga.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-            },
-            getTotal(femaleStudentsPerLga, maleStudentsPerLga){
-                let studentsTotalPerLga = +femaleStudentsPerLga + (+maleStudentsPerLga);
-                return studentsTotalPerLga.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-            },
-            onReady(instance) {
-                this.instances.push(instance)
-            },
-            // ===chart animation===
-            update_chart() {
-                // setInterval(() => {
-                //     for (var i = 0; i < this.ajaxbar_chart.series.length; i++) {
-                //         this.ajaxbar_chart.series[i].data.shift();
-                //         this.ajaxbar_chart.series[i].data.push(Math.floor((Math.random() * (1000 - 90) + 90) +
-                //             1));
-                //     }
-                // }, 4000);
-            },
-            // ===chart animation===
             exportExcel() {
                 const mimeType = 'data:application/vnd.ms-excel';
                 let html = this.$refs.export.innerHTML.replace(/ /g, '%20');
@@ -282,7 +145,7 @@
 
     .swiper-pagination-fraction,
     .swiper-pagination-custom,
-    .swiper-container-horizontal>.swiper-pagination-bullets {
+    .swiper-container-horizontal > .swiper-pagination-bullets {
         top: 5px;
     }
 
@@ -302,6 +165,7 @@
     .index2_swiper .swiper-pagination-bullet-active {
         background: #08aa80;
     }
+
     /*===============================notes========*/
 
     .notes {
@@ -315,8 +179,7 @@
     }
 
     .notes p {
-        border-bottom: 1px solid #dfe8ec;
-        ;
+        border-bottom: 1px solid #dfe8ec;;
     }
 
     .notes::after {
@@ -342,7 +205,6 @@
         font-size: 40px;
         line-height: normal;
     }
-
 
     .social .bg-default-card {
         i {
@@ -609,7 +471,8 @@
     .profile-img {
         background-color: #fff;
     }
-    .chat-conversation{
+
+    .chat-conversation {
         width: 100%;
     }
 </style>
