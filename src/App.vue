@@ -1,5 +1,5 @@
 <template>
-    <div id="app">
+    <div id="sbemis">
         <router-view></router-view>
     </div>
 </template>
@@ -27,7 +27,7 @@
     });
 
     export default {
-        name: 'app'
+        name: 'app',
     }
 </script>
 <style type="text/css">
@@ -39,9 +39,10 @@
         color: red !important;
     }
 
-    .modal-open{
+    html:[body.modal-open]{
         position: fixed;
-        overflow: hidden;
+        height: 100% !important;
+        overflow:hidden !important;
     }
 
     .form-group.has-error input,

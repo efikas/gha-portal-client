@@ -175,6 +175,7 @@
 <script>
     import Multiselect from 'vue-multiselect';
     import {mapGetters} from 'vuex'
+    import Toaster from '../../../mixins/toaster'
 
     export default {
         name: 'staff-personal',
@@ -182,6 +183,7 @@
             Multiselect,
         },
         validations:{},
+        mixins: [Toaster],
         data() {
             return {
                 staff: {},
@@ -231,15 +233,17 @@
 
                 if (this.staff.id) {
                     this.$store.dispatch('updateStaff', form).then(() => {
-                        console.log('record updated')
+                        this.successMsg('Record updated!', 'Success');
+                        setTimeout(()=>this.$emit('closeModal', true), 500);
                     }).catch(() => {
-                        console.log('error')
+                        this.errorMsg('Error saving data!', 'Error');
                     });
                 } else {
                     this.$store.dispatch('storeStaff', form).then(() => {
-                        console.log('record created')
+                        this.successMsg('New Record Created!', 'Success');
+                        setTimeout(()=>this.$emit('closeModal', true), 500);
                     }).catch(() => {
-                        console.log('error')
+                        this.errorMsg('Error saving data!', 'Error');
                     });
                 }
 

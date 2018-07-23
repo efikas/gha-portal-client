@@ -47,7 +47,7 @@
                 <div class="form-group">
                     <label class="control-label">Class Section <span>*</span>
                     </label>
-                    <input type="text" class="form-control" v-model="student.current_class_section" />
+                    <input type="text" class="form-control" v-model="student.current_class_section"/>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-4">
@@ -99,12 +99,13 @@
 </template>
 <script>
     import {mapGetters} from 'vuex'
+    import Toaster from '../../../mixins/toaster'
 
     export default {
         name: 'student-academic',
         data() {
             return {
-                student:{},
+                student: {},
                 yesNoOptions: [{text: 'Yes', value: '1'}, {text: 'No', value: '0'}],
                 enrollmentOptions: [
                     {text: 'Fresh Enrollment/Placement', value: '1'},
@@ -112,6 +113,7 @@
                 ]
             }
         },
+        mixins: [Toaster],
         computed: {
             ...mapGetters({schools: 'schools', getStudent: 'student', data: 'data'}),
         },
@@ -134,22 +136,16 @@
                     'place_of_birth': this.student.place_of_birth,
                 };
 
-                if(this.student.id) {
-                    this.$store.dispatch('updateStudent', form).then(()=>{
-                        console.log('record updated')
-                    }).catch(() => {
-                        console.log('error')
-                    });
-                } else {
-                    this.$store.dispatch('storeStudent', form).then(()=>{
-                        console.log('record created')
-                    }).catch(() => {
-                        console.log('error')
-                    });
-                }
+                this.$store.dispatch('updateStudent', form).then(() => {
+                    this.successMsg('Record updated!', 'Success');
+                    setTimeout(()=>this.$emit('closeModal', true), 500);
+                }).catch(() => {
+                    this.errorMsg('Error saving data!', 'Error');
+                });
+
             }
         },
-        created(){
+        created() {
             this.student = Object.assign({}, this.getStudent);
         }
     }

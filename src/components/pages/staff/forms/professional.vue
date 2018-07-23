@@ -149,6 +149,7 @@
 </template>
 <script>
     import {mapGetters} from 'vuex'
+    import Toaster from '../../../mixins/toaster'
 
     export default {
         name: 'professional',
@@ -158,6 +159,7 @@
                 yesNoOptions: [{text: 'Yes', value: '1'}, {text: 'No', value: '0'}],
             }
         },
+        mixins: [Toaster],
         computed: {
             ...mapGetters({getStaff: 'staff', data: 'data'})
         },
@@ -188,9 +190,10 @@
                 };
 
                 this.$store.dispatch('updateStaff', form).then(() => {
-                    console.log('record updated')
+                    this.successMsg('Record updated!', 'Success');
+                    setTimeout(()=>this.$emit('closeModal', true), 500);
                 }).catch(() => {
-                    console.log('error')
+                    this.errorMsg('Error saving data!', 'Error');
                 });
             }
         },

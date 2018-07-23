@@ -6,8 +6,8 @@
                     <i class=" fa fa-edit card-profile-link pull-right"></i>
                 </a>
 
-                <b-modal id="modal-staff-personal" title="Personal" size="lg" lazy centered hide-footer >
-                    <personal-form></personal-form>
+                <b-modal id="modal-staff-personal" ref="modal" title="Personal" size="lg" lazy centered hide-footer >
+                    <personal-form @closeModal="()=>$refs.modal.hide()"></personal-form>
                 </b-modal>
                 <h3>
                     <img class="_51sw img" :src="require('img/icon/IKrON1RLHfZ.png')" alt="">

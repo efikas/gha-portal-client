@@ -40,14 +40,14 @@ Vue.filter('commasep', val => {
 });
 
 // Remove the productionTip in dev tool console
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 // require('./axios')
 require('assets/css/icon.css');
 
 new Vue({
-    el: '#app',
+    el: '#sbemis',
     router,
     store,
-    render: h => h(App)
+    render: h => h(App),
 })

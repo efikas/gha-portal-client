@@ -146,18 +146,20 @@
 <script>
     import Vue from 'vue';
     import {mapGetters} from 'vuex'
+    import Toaster from '../../../mixins/toaster'
 
     export default {
         name: 'student-parent',
         data() {
             return {
-                student:{},
+                student: {},
                 parentOptions: [{text: 'Both Alive', value: '1'}, {
                     text: 'Father Only',
                     value: '2'
                 }, {text: 'Mother Only', value: '3'}, {text: 'None', value: '4'}],
             }
         },
+        mixins: [Toaster],
         computed: {
             ...mapGetters({getStudent: 'student', data: 'data'}),
         },
@@ -172,23 +174,17 @@
                     'place_of_birth': this.student.place_of_birth,
                 };
 
-                if (this.student.id) {
-                    this.$store.dispatch('updateStudent', form).then(() => {
-                        console.log('record updated')
-                    }).catch(() => {
-                        console.log('error')
-                    });
-                } else {
-                    this.$store.dispatch('storeStudent', form).then(() => {
-                        console.log('record created')
-                    }).catch(() => {
-                        console.log('error')
-                    });
-                }
+                this.$store.dispatch('updateStudent', form).then(() => {
+                    this.successMsg('Record updated!', 'Success');
+                    setTimeout(() => this.$emit('closeModal', true), 500);
+                }).catch(() => {
+                    this.errorMsg('Error saving data!', 'Error');
+                });
+
             }
         },
         created() {
-            this.student = JSON.parse(JSON.stringify( this.getStudent ))
+            this.student = JSON.parse(JSON.stringify(this.getStudent))
         }
     }
 </script>

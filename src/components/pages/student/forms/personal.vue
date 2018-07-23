@@ -143,6 +143,7 @@
     import Multiselect from 'vue-multiselect';
     import {mapGetters} from 'vuex'
     import {studentUpdateValidations} from 'src/validations/validations'
+    import Toaster from '../../../mixins/toaster'
 
     export default {
         name: 'student-basic',
@@ -158,6 +159,7 @@
             }
         },
         validations: studentUpdateValidations,
+        mixins: [Toaster],
         computed: {
             ...mapGetters({schools: 'schools', getStudent: 'student', data: 'data'}),
             schoolsMapping() {
@@ -200,15 +202,17 @@
 
                 if(this.student.id) {
                     this.$store.dispatch('updateStudent', form).then(()=>{
-                        console.log('record updated')
+                        this.successMsg('Record updated!', 'Success');
+                        setTimeout(()=>this.$emit('closeModal', true), 500);
                     }).catch(() => {
-                        console.log('error')
+                        this.errorMsg('Error saving data!', 'Error');
                     });
                 } else {
                     this.$store.dispatch('storeStudent', form).then(()=>{
-                        console.log('record created')
+                        this.successMsg('new record created!', 'Success');
+                        setTimeout(()=>this.$emit('closeModal', true), 500);
                     }).catch(() => {
-                        console.log('error')
+                        this.errorMsg('Error saving data!', 'Error');
                     });
                 }
             },

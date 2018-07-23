@@ -2,12 +2,12 @@
     <div>
         <b-card class="bg-clear-card" bg-variant="" text-variant="dark">
             <div slot="header">
-                <a href="javascript:void(0)" v-b-modal.modal6>
+                <a href="javascript:void(0)" v-b-modal.modal-student-academic>
                     <i class=" fa fa-edit card-profile-link pull-right"></i>
                 </a>
 
-                <b-modal id="modal6" title="Academic Information" size="lg" lazy centered hide-footer >
-                    <academic-form></academic-form>
+                <b-modal id="modal-student-academic" ref="modal" title="Academic Information" size="lg" lazy centered hide-footer >
+                    <academic-form @closeModal="()=>$refs.modal.hide()"></academic-form>
                 </b-modal>
                 <h3>
                     <img class="_51sw img" :src="require('img/icon/IKrON1RLHfZ.png')" alt="">

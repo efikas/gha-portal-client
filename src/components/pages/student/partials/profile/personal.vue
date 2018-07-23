@@ -3,12 +3,12 @@
         <b-card class="bg-clear-card" bg-variant="" text-variant="dark">
             <div slot="header">
 
-                <a href="javascript:void(0)" v-b-modal.modal6>
+                <a href="javascript:void(0)" v-b-modal.modal-student-personal>
                     <i class=" fa fa-edit card-profile-link pull-right"></i>
                 </a>
 
-                <b-modal id="modal6" title="Personal Information" size="lg" lazy centered hide-footer >
-                    <personal-form></personal-form>
+                <b-modal id="modal-student-personal" ref="modal" title="Personal Information" size="lg" lazy centered hide-footer >
+                    <personal-form @closeModal="()=>$refs.modal.hide()"></personal-form>
                 </b-modal>
 
                 <h3>

@@ -321,7 +321,7 @@
                     });
                 } else {
                     this.$store.dispatch('storeSchool', form).then(() => {
-                        this.successMsg('School basic information saved!', 'Success');
+                        this.successMsg('New record created!', 'Success');
                         this.$router.push({name: 'schools'});
                     }).catch(() => {
                         this.errorMsg('Error saving data!', 'Error');
