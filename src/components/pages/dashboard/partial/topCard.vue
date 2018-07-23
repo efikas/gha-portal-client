@@ -75,21 +75,25 @@
 
         computed: {
             schools() {
-                return this.$store.state.statistics ? this.$store.state.statistics.schools.total : 'loading...';
+                if(typeof this.$store.getters.statistics.schools!== 'undefined')
+                return this.$store.getters.statistics ? this.$store.getters.statistics.schools.total : 'loading...';
             },
             staff() {
-                return this.$store.state.statistics ? this.$store.state.statistics.staffs.total : 'loading...';
+                if (typeof this.$store.getters.statistics.staffs!== 'undefined')
+                return this.$store.getters.statistics ? this.$store.getters.statistics.staffs.total : 'loading...';
             },
             students() {
-                return this.$store.state.statistics ? this.$store.state.statistics.students.total : 'loading...';
+                if (typeof this.$store.getters.statistics.students!== 'undefined')
+                return this.$store.getters.statistics ? this.$store.getters.statistics.students.total : 'loading...';
             },
             guardians() {
-                return this.$store.state.statistics ? this.$store.state.statistics.guardians : 'loading...';
+                if (typeof this.$store.getters.statistics.guardians !== 'undefined')
+                return this.$store.getters.statistics ? this.$store.getters.statistics.guardians : 'loading...';
             }
         },
 
-        created() {
-            this.$store.dispatch('loadStatistics');
+        async created() {
+            await this.$store.dispatch('loadStatistics');
         }
     }
 </script>

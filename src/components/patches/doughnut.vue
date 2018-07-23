@@ -1,7 +1,8 @@
 <template>
     <div>
         <b-card>
-            <a type="button" class="fa fa-download icon-big btn btn-outline-primary ekiti-btn pull-right" @click="exportExcel"></a>
+            <a type="button" class="fa fa-download icon-big btn btn-outline-primary ekiti-btn pull-right"
+               @click="exportExcel"></a>
             <h5 class="ml-3 head_color">{{ this.iData['header'] || '' }}</h5>
             <div style="height: 305px;">
                 <IEcharts :option="doughnut" :loading="loading" @ready="onReady"></IEcharts>
@@ -10,20 +11,15 @@
     </div>
 </template>
 <script>
-    import Vue from 'vue';
-
     import IEcharts from 'vue-echarts-v3/src/full.js';
 
-    import 'zrender/lib/vml/vml';
-    require('swiper/dist/css/swiper.css')
-
-    import { exportToExcel } from '../mixins/exportToExcel'
+    import {exportToExcel} from '../mixins/exportToExcel'
 
     var unsub;
     export default {
         name: "doughnut",
         props: ['iData', 'colors'],
-         mixins: [exportToExcel],
+        mixins: [exportToExcel],
         components: {
             IEcharts,
         },
@@ -70,58 +66,59 @@
                         data: []
                     }]
                 }
-               
+
             }
         },
         created() {
-           
+
         },
         mounted: function () {
             unsub = this.$store.subscribe((mutation, state) => {
-                if (mutation.type === "left_menu") {
-                    this.instances.forEach(function (item) {
-                        setTimeout(function () {
-                            if( typeof item.resize === 'function')
+                if (mutation.type == "left_menu") {
+                    this.instances.forEach(function(item, index) {
+                        setTimeout(function() {
+                            try{
                                 item.resize();
+                            } catch (e) {
+                                // console.log(e)
+                            }
                         });
                     });
                 }
             });
         },
-        beforeRouteLeave(to, from, next) {
+        destroyed() {
             unsub();
-            next();
         },
 
         methods: {
             onReady(instance) {
                 this.instances.push(instance)
             },
-            
-        },
-        watch: {
-            iData(received){
-                 this.excelData = received['value']; // value to  use in exporting excel
-                let colors = [
-                              '#3498db ', '#2ecc71', '#d69292','#8599c1','#4f699c','#8fa9dc','#d4ab6e'
-                            ];
-                received['value'].forEach((item, index)=>{
-                    this.doughnut.legend.data.push(item.name)
-                    this.graphData.push(
-                        {
-                            value: item.value,
-                            name: item.name,
-                            itemStyle : {
-                                normal : {
-                                    color :colors[index] 
-                                }
-                            }
-                        }
-                    )
-                })
 
-                this.doughnut.series[0].data = this.graphData; 
-            }
+        },
+        updated() {
+            this.excelData = this.iData['value']; // value to  use in exporting excel
+            let colors = [
+                '#3498db ', '#2ecc71', '#d69292', '#8599c1', '#4f699c', '#8fa9dc', '#d4ab6e'
+            ];
+            this.iData['value'].forEach((item, index) => {
+                this.doughnut.legend.data.push(item.name)
+                this.graphData.push(
+                    {
+                        value: item.value,
+                        name: item.name,
+                        itemStyle: {
+                            normal: {
+                                color: colors[index]
+                            }
+                        }
+                    }
+                )
+            })
+
+            this.doughnut.series[0].data = this.graphData;
         }
+
     }
 </script>

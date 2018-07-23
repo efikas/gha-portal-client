@@ -82,11 +82,14 @@
         },
         mounted: function () {
             unsub = this.$store.subscribe((mutation, state) => {
-                if (mutation.type === "left_menu") {
-                    this.instances.forEach(function (item) {
-                        setTimeout(function () {
-                            if( typeof item.resize === 'function')
+                if (mutation.type == "left_menu") {
+                    this.instances.forEach(function(item, index) {
+                        setTimeout(function() {
+                            try{
                                 item.resize();
+                            } catch (e) {
+                                // console.log(e)
+                            }
                         });
                     });
                 }
@@ -97,21 +100,18 @@
                 this.instances.push(instance)
             }
         },
-        beforeRouteLeave(to, from, next) {
+        destroyed() {
             unsub();
-            next();
         },
-        watch: {
-            iData(received){
-                this.progressBar = received['value'];
-                this.excelData = received['value']; // value to  use in exporting excel
+        updated(){
+                this.progressBar = this.iData['value'];
+                this.excelData = this.iData['value']; // value to  use in exporting excel
 
-                received['value'].forEach(item =>{
+            this.iData['value'].forEach(item =>{
                     this.donut.data.labels.push(item['name']);
                     this.donut.data.series.push(item['value']);
                 })
             }
-        }
     }
 </script>
 <style src="chartist/dist/chartist.css"></style>

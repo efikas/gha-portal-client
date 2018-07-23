@@ -1,10 +1,12 @@
-    <template>
+<template>
     <div>
         <b-card>
-            <a type="button" class="fa fa-download icon-big btn btn-outline-primary ekiti-btn pull-right" @click="exportExcel"></a>
+            <a type="button" class="fa fa-download icon-big btn btn-outline-primary ekiti-btn pull-right"
+               @click="exportExcel"></a>
             <h5 class="ml-3 head_color">{{ this.iData['header'] || '' }}</h5>
             <div style="height: 305px;">
-                <IEcharts :option="ajaxbar_chart" :loading="ajaxloading" @ready="onReady" ref="ajaxbar_chart"></IEcharts>
+                <IEcharts :option="ajaxbar_chart" :loading="ajaxloading" @ready="onReady"
+                          ref="ajaxbar_chart"></IEcharts>
             </div>
         </b-card>
     </div>
@@ -12,16 +14,13 @@
 <script>
     import IEcharts from 'vue-echarts-v3/src/full.js';
 
-    import 'zrender/lib/vml/vml';
-    require('swiper/dist/css/swiper.css')
-
-    import { exportToExcel } from '../mixins/exportToExcel'
+    import {exportToExcel} from '../mixins/exportToExcel'
 
     var unsub;
     export default {
         name: "barchart",
         props: ['iData', 'colors'],
-         mixins: [exportToExcel],
+        mixins: [exportToExcel],
         components: {
             IEcharts,
         },
@@ -30,8 +29,8 @@
                 serverdata: [],
                 instances: [],
                 loading: false,
-                ajaxloading: true,                
-                
+                ajaxloading: true,
+
                 //===========AJAX chart data start=========
                 ajaxbar_chart: {
                     tooltip: {
@@ -58,12 +57,12 @@
                         data: [],
                     }],
                     yAxis: [{
-                            type: 'value',
-                            name: '',
-                            axisLabel: {
-                                formatter: '{value} '
-                            }
-                        },
+                        type: 'value',
+                        name: '',
+                        axisLabel: {
+                            formatter: '{value} '
+                        }
+                    },
                         {
                             type: 'value',
 
@@ -73,33 +72,35 @@
                         }
                     ],
                     series: [{
-                            name: 'Total',
-                            type: 'bar',
-                            data: []
-                        }
+                        name: 'Total',
+                        type: 'bar',
+                        data: []
+                    }
                     ]
                 },
-               
+
             }
         },
         created() {
-           
+
         },
         mounted: function () {
             unsub = this.$store.subscribe((mutation, state) => {
-                if (mutation.type === "left_menu") {
-                    this.instances.forEach(function (item) {
-                        setTimeout(function () {
-                            if( typeof item.resize === 'function')
+                if (mutation.type == "left_menu") {
+                    this.instances.forEach(function(item, index) {
+                        setTimeout(function() {
+                            try{
                                 item.resize();
+                            } catch (e) {
+                                // console.log(e)
+                            }
                         });
                     });
                 }
             });
         },
-        beforeRouteLeave(to, from, next) {
+        destroyed() {
             unsub();
-            next();
         },
 
         methods: {
@@ -107,17 +108,17 @@
                 this.instances.push(instance)
             }
         },
-        watch: {
-            iData(received){
-                this.excelData = received['value']; // value to  use in exporting excel
-                
-                received['value'].forEach((item, index) => {
-                    this.ajaxbar_chart.xAxis[0].data.push(item.name);
-                    this.ajaxbar_chart.series[0].data.push(item.value);
-                })
-                this.ajaxloading = false;
-            }
+
+        updated(received) {
+            this.excelData = this.iData['value']; // value to  use in exporting excel
+
+            this.iData['value'].forEach((item, index) => {
+                this.ajaxbar_chart.xAxis[0].data.push(item.name);
+                this.ajaxbar_chart.series[0].data.push(item.value);
+            })
+            this.ajaxloading = false;
         }
+
     }
 </script>
 <!-- styles -->

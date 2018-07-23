@@ -58,7 +58,7 @@
         components: {
             topCard,
         },
-        mixins: [Reports]
+        mixins: [Reports],
     }
 </script>
 <style type="text/css" lang="scss" scoped>

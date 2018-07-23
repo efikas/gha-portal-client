@@ -10,16 +10,12 @@
     </div>
 </template>
 <script>
-   import Vue from 'vue';
-
     import IEcharts from 'vue-echarts-v3/src/full.js';
 
-    import 'zrender/lib/vml/vml';
-    require('swiper/dist/css/swiper.css')
 
     import { exportToExcel } from '../mixins/exportToExcel'
 
-    var unsub;
+    let unsub;
     export default {
         name: "piechart",
         props: ['header', 'iData'],
@@ -29,12 +25,13 @@
         },
         data() {
             return {
+                unsub: null,
                 serverdata: [],
                 instances: [],
                 loading: false,
                 ajaxloading: true,
                 graphValue: [],
-            
+
                 //==========AJAX pie chart data start=====
                 ajaxpie: {
                     tooltip: {
@@ -61,24 +58,24 @@
                 //==========AJAX pie chart data end=====
             }
         },
-        created() {
-           
-        },
         mounted: function () {
             unsub = this.$store.subscribe((mutation, state) => {
-                if (mutation.type === "left_menu") {
-                    this.instances.forEach(function (item) {
-                        setTimeout(function () {
-                            if( typeof item.resize === 'function')
+                if (mutation.type == "left_menu") {
+                    this.instances.forEach(function(item, index) {
+                        setTimeout(function() {
+                            try{
                                 item.resize();
+                            } catch (e) {
+                                // console.log(e)
+                            }
                         });
                     });
                 }
             });
         },
-        beforeRouteLeave(to, from, next) {
+
+        destroyed() {
             unsub();
-            next();
         },
 
         methods: {
@@ -88,21 +85,14 @@
             
         },
 
-        watch: {
-            iData(received){
-                this.excelData = received['value']; // value to  use in exporting excel
-                
-                this.ajaxpie.series[0].data = received['value'];
-                received['value'].forEach((item, index) => {
-                    this.ajaxpie.legend.data.push(item.name);
-                })
-                this.ajaxloading = false;
-            }
-        },
+        updated() {
+            this.excelData = this.iData['value']; // value to  use in exporting excel
 
-        computed : {
-        }
+            this.ajaxpie.series[0].data = this.iData['value'];
+            this.iData['value'].forEach((item, index) => {
+                this.ajaxpie.legend.data.push(item.name);
+            });
+            this.ajaxloading = false;
+        },
     }
 </script>
-<!-- styles -->
-<!-- adding scoped attribute will apply the css to this component only -->
