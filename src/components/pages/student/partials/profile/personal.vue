@@ -19,44 +19,44 @@
 
             <div class="p-5">
                 <div class="table-responsive">
-                    <table class="table table-borderless table-striped mytable">
+                    <table class="table table-borderless table-striped">
                         <tbody>
                         <tr>
-                            <td><i class="fa fa-user"></i> Name</td>
+                            <td class="text-muted">Name</td>
                             <td colspan="3"> {{ `${student.first_name} ${student.last_name}
                                 ${student.middle_name}` }}
                             </td>
                         </tr>
                         <tr>
-                            <td><i class="fa fa-genderless"></i> Gender</td>
+                            <td class="text-muted">Gender</td>
                             <td colspan="3"> {{ student.sex }}</td>
                         </tr>
                         <tr>
-                            <td><i class="fa fa-envelope"></i> Email</td>
+                            <td class="text-muted">Email</td>
                             <td> {{ student.email_address }}</td>
-                            <td><i class="fa fa-phone"></i> Phone</td>
+                            <td class="text-muted">Phone</td>
                             <td> {{ student.phone_number }}</td>
                         </tr>
                         <tr>
-                            <td>Height</td>
+                            <td class="text-muted">Height</td>
                             <td> {{ student.height }}</td>
-                            <td>Weight</td>
+                            <td class="text-muted">Weight</td>
                             <td> {{ student.weight }}</td>
                         </tr>
                         <tr>
-                            <td>Date of Birth</td>
+                            <td class="text-muted">Date of Birth</td>
                             <td> {{ student.date_of_birth}}</td>
-                            <td>Birth Place</td>
+                            <td class="text-muted">Birth Place</td>
                             <td> {{ student.place_of_birth }}</td>
                         </tr>
                         <tr>
-                            <td>Special Condition</td>
+                            <td class="text-muted">Special Condition</td>
                             <td> {{ student.special_condition?data.special_conditions[student.special_condition].condition:null }}</td>
-                            <td>Bloodgroup</td>
+                            <td class="text-muted">Bloodgroup</td>
                             <td> {{ student.blood_group }}</td>
                         </tr>
                         <tr>
-                            <td>Birth certificate Type</td>
+                            <td class="text-muted">Birth certificate Type</td>
                             <td colspan="3"> {{ student.birth_cert_type?data.birth_certs[student.birth_cert_type].birth_cert_type:null }}</td>
                         </tr>
                         </tbody>

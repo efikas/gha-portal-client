@@ -15,36 +15,35 @@
                 </h3>
             </div>
         <div class="p-3">
-            <div class="table-responsive" v-if="student.guardians">
-                <table class="table table-bordred table-striped mytable guardian-table"
-                       v-for="(guardian, index) in student.guardians">
+            <div class="table-responsive">
+                <table class="table table-striped mb-5"
+                       v-for="guardian in student.guardians">
+                    <tbody>
                     <tr>
-                        <td colspan="2" class="text-center"><h5>Guardians</h5></td>
-                    </tr>
-                    <tr>
-                        <td>Full Name</td>
+                        <td class="text-muted">Full Name</td>
                         <td>{{ guardian.title }} {{ guardian.fullname }}</td>
                     </tr>
                     <tr>
-                        <td>Relationship</td>
+                        <td class="text-muted">Relationship</td>
                         <td> {{ guardian.relationship?data.guardians[guardian.relationship].type :'' }}</td>
                     </tr>
                     <tr>
-                        <td>Mobile Number</td>
+                        <td class="text-muted">Mobile Number</td>
                         <td> {{ guardian.mobile }}</td>
                     </tr>
                     <tr>
-                        <td>Phone Number</td>
+                        <td class="text-muted">Phone Number</td>
                         <td> {{ guardian.phone }}</td>
                     </tr>
                     <tr>
-                        <td>Email Address</td>
+                        <td class="text-muted">Email Address</td>
                         <td> {{ guardian.email }}</td>
                     </tr>
                     <tr>
-                        <td>Religion</td>
+                        <td class="text-muted">Religion</td>
                         <td> {{ parseInt(guardian.religion)?data.religions[guardian.religion].religion : '' }}</td>
                     </tr>
+                    </tbody>
                 </table>
             </div>
 

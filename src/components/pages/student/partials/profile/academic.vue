@@ -16,31 +16,33 @@
             </div>
         <div class="p-3">
             <div class="table-responsive">
-                <table class="table table-bordred table-striped mytable">
+                <table class="table table-striped">
+                    <tbody>
                     <tr>
-                        <td>Admission status</td>
+                        <td class="text-muted">Admission status</td>
                         <td> {{ student.admission_status?data.admissions[student.admission_status].status:null }}</td>
-                        <td>Admission Year</td>
+                        <td class="text-muted">Admission Year</td>
                         <td> {{ student.admission_year }}</td>
                     </tr>
                     <tr>
-                        <td>Class of Admission</td>
+                        <td class="text-muted">Class of Admission</td>
                         <td> {{ student.admission_education_level ? data.classes[student.admission_education_level].class : null }}</td>
-                        <td>Current Class</td>
+                        <td class="text-muted">Current Class</td>
                         <td> {{ student.current_class ? data.classes[student.current_class].class : null }}</td>
                     </tr>
                     <tr>
-                        <td>Distance from School</td>
+                        <td class="text-muted">Distance from School</td>
                         <td> {{ student.distance_from_school }}</td>
-                        <td>Promotion Status</td>
+                        <td class="text-muted">Promotion Status</td>
                         <td> {{ student.promotion_status?data.promotions[student.promotion_status].status:null }}</td>
                     </tr>
                     <tr>
-                        <td>Boarding</td>
+                        <td class="text-muted">Boarding</td>
                         <td> {{ student.boarding }}</td>
-                        <td>Dormitory</td>
+                        <td class="text-muted">Dormitory</td>
                         <td> {{ student.dormitory_id }}</td>
                     </tr>
+                    </tbody>
                 </table>
             </div>
         </div>
