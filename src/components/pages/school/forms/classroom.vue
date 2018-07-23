@@ -107,8 +107,6 @@
                     }),
                 };
 
-                console.log(form);
-
                 this.$store.dispatch('updateSchool', form).then(() => {
                     console.log('record updated')
                 }).catch(() => {
