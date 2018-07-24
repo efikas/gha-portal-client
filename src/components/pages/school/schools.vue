@@ -28,23 +28,23 @@
                         <router-link
                                 class="list-font sch-link"
                                 slot="name"
-                                slot-scope="props"
-                                :to="{ name: 'school', params: { id: props.row.id }}"
-                                v-html="props.row.name"
+                                slot-scope="school"
+                                :to="{ name: 'school', params: { id: school.row.id }}"
+                                v-html="school.row.name"
                         >
                         </router-link>
-                        <div slot="actions" slot-scope="props">
+                        <div slot="actions" slot-scope="school">
                             <router-link class="btn btn-outline-primary ekiti-btn"
-                                         :to="{name:'school-staffs', params:{id: props.row.id}}"><i
+                                         :to="{name:'school-staffs', params:{id: school.row.id}}"><i
                                     class="fa fa-male"></i> Staffs
                             </router-link>
                             |
                             <router-link class="btn btn-outline-primary ekiti-btn"
-                                         :to="{name:'school-students', params:{id: props.row.id}}"><i
+                                         :to="{name:'school-students', params:{id: school.row.id}}"><i
                                     class="fa fa-users"></i> Students
                             </router-link>
                             |
-                            <router-link to="" class=""><i class="fa fa-trash"></i></router-link>
+                            <a href="javascript: void(0)" @click="deleteRecord(school.row.id)" class=""><i class="fa fa-trash"></i></a>
                         </div>
                     </v-client-table>
                 </div>
@@ -55,9 +55,11 @@
 <script>
 
     import {mapGetters} from 'vuex'
+    import Toaster from '../../mixins/toaster'
 
     export default {
         name: "school_manage",
+        mixins: [Toaster],
         data() {
             return {
                 columns: ['id', 'name', 'actions'],
@@ -108,6 +110,15 @@
         methods: {
             rowClick() {
                 // alert(this.row.id);
+            },
+            deleteRecord(id) {
+                if(confirm('Deleting this item will remove all it\'s related data! Are you sure you want to proceed?')) {
+                    this.$store.dispatch('deleteSchools', {ids: [id]}).then(()=>{
+                        this.successMsg('Selected data has been removed!', 'Success');
+                    }).catch(() => {
+                        this.errorMsg('Error occurred: unable to delete item', 'Error');
+                    })
+                }
             },
             exportExcel() {
                 if (typeof this.renderFn === 'undefined') return;

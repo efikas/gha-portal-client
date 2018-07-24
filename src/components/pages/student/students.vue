@@ -26,9 +26,13 @@
                                      slot="name"
                                      slot-scope="props"
                                      :to="{name:'student-profile', params:{id:props.row.id}}"
-                                     v-html="props.row.first_name + ' ' + props.row.last_name + ' ' + props.row.middle_name"
-                        >
+                        >{{ props.row.first_name + ' ' + props.row.last_name + ' ' + props.row.middle_name }}
                         </router-link>
+                        <span slot="current_class" slot-scope="student">{{ student.row.current_class?student.row.current_class.class:null }}</span>
+                        <div slot="actions" slot-scope="student">
+                            <a href="javascript: void(0)" @click="deleteRecord(student.row.id)" class=""><i
+                                    class="fa fa-trash"></i></a>
+                        </div>
                     </v-client-table>
                 </div>
             </b-card>
@@ -38,13 +42,16 @@
 <script>
 import SchoolCard from "../../widgets/sbemis/SchoolCard1";
 import {mapGetters} from 'vuex'
+import Toaster from '../../mixins/toaster'
+
 export default {
     components: {
         SchoolCard,
     },
+    mixins: [Toaster],
     data() {
         return {
-            columns: ['id', 'name', 'current_class', 'sex', 'place_of_birth'],
+            columns: ['id', 'name', 'current_class', 'sex', 'place_of_birth', 'actions'],
             options: {
                 sortIcon: {
                     base: 'fa',
@@ -71,6 +78,15 @@ export default {
     methods: {
         checkNull(val) {
             return  val === null ? "" : val;
+        },
+        deleteRecord(id) {
+            if(confirm('Deleting this item will remove all it\'s related data! Are you sure you want to proceed?')) {
+                this.$store.dispatch('deleteStudents', {ids: [id]}).then(()=>{
+                    this.successMsg('Selected data has been removed!', 'Success');
+                }).catch(() => {
+                    this.errorMsg('Error occurred: unable to delete item', 'Error');
+                })
+            }
         },
         exportExcel() {
             const mimeType = 'data:application/vnd.ms-excel';

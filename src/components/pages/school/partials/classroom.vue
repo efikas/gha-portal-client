@@ -18,7 +18,7 @@
             </div>
             <div class="col-lg-12 mb-3">
                 <div class="table-responsive">
-                    <table class="table table-bordred table-striped ">
+                    <table class="table">
                         <thead>
                         <tr>
                             <th>Class</th>

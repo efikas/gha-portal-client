@@ -61,6 +61,13 @@ const actions = {
             return Promise.reject(error.response)
         })
     },
+    deleteSchools: ({}, payload) => {
+        return axios.post('schools/delete', payload).then(response => {
+            return Promise.resolve(response.data)
+        }).catch((error) => {
+            return Promise.reject(error.response)
+        })
+    },
     updateSchool: ({commit, dispatch, getters}, payload) => {
         return axios.post(`/school/${getters.school.id}/edit`, payload)
             .then(response => {

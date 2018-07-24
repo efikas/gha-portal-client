@@ -18,7 +18,7 @@
             </div>
             <div class="col-lg-12 mb-3">
                 <div class="table-responsive mt-lg-5">
-                    <table class="table table-striped">
+                    <table class="table ">
                         <tbody>
                         <tr>
                             <td class="text-muted">Power Source:</td>

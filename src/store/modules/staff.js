@@ -52,6 +52,13 @@ const actions = {
                 return Promise.reject(error.response)
             })
     },
+    deleteStaffs: ({}, payload) => {
+        return axios.post('staffs/delete', payload).then(response => {
+            return Promise.resolve(response.data)
+        }).catch((error) => {
+            return Promise.reject(error.response)
+        })
+    },
 };
 
 export default { state, getters, mutations, actions }
