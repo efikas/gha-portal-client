@@ -20,8 +20,8 @@
                     </skeleton-loading>
                 </div>
                 <div v-else>
-                    <a type="button" class="fa fa-download icon-big btn btn-outline-primary ekiti-btn pull-right"
-                       @click="exportExcel"></a>
+                    <a class="fa fa-download icon-big btn btn-outline-primary ekiti-btn pull-right"
+                       @click.prevent="exportExcel"></a>
                     <v-client-table :data="staffs" :columns="columns">
                         <span slot="id" slot-scope="staff">{{ staff.index }}</span>
                         <router-link
@@ -90,7 +90,8 @@
         },
         computed: {
             ...mapGetters([
-                'staffs'
+                'staffs',
+                'school'
             ]),
         },
         watch: {
@@ -121,14 +122,13 @@
 
                 var dummy = document.createElement('a');
                 dummy.href = mimeType + ', ' + html;
-                dummy.download = 'staffs-' + this.schoolInfo.name.toLowerCase().replace(/ /g, '-') + '-' + d.getFullYear() + '-' + (d.getMonth() +
+                dummy.download = 'staffs-' + this.school.name.toLowerCase().replace(/ /g, '-') + '-' + d.getFullYear() + '-' + (d.getMonth() +
                     1) + '-' + d.getDate() + '-' + d.getHours() + '-' + d.getMinutes() + '-' + d.getSeconds() +
                     '.xls';
                 dummy.click();
             },
 
             renderTable() {
-                console.log(this.staffs)
                 var table = '<table><thead>' +
                     '<tr>' +
                     '<th>ID</th>' +
@@ -142,12 +142,12 @@
 
                 for (var i = 0; i < this.staffs.length; i++) {
                     table += '<tr>';
-                    table += `<td>${this.checkNull(this.staffs[i].id)}</td>`;
-                    table += `<td>${this.checkNull(this.staffs[i].last_name)}</td>`;
-                    table += `<td>${this.checkNull(this.staffs[i].middle_name)}</td>`;
-                    table += `<td>${this.checkNull(this.staffs[i].first_name)}</td>`;
-                    table += `<td>${this.checkNull(this.staffs[i].sex)}</td>`;
-                    table += `<td>${this.checkNull(this.staffs[i].phone)}</td>`;
+                    table += `<td>${this.staffs[i]?this.staffs[i].id:null}</td>`;
+                    table += `<td>${this.staffs[i]?this.staffs[i].last_name:null}</td>`;
+                    table += `<td>${this.staffs[i]?this.staffs[i].middle_name:null}</td>`;
+                    table += `<td>${this.staffs[i]?this.staffs[i].first_name:null}</td>`;
+                    table += `<td>${this.staffs[i]?this.staffs[i].sex:null}</td>`;
+                    table += `<td>${this.staffs[i]?this.staffs[i].phone:null}</td>`;
                     table += '</tr>';
                 }
                 table += '</tbody></table>';

@@ -71,14 +71,11 @@ export default {
             }
         }
     },
-    computed:mapGetters(['students']),
+    computed:mapGetters(['students', 'school']),
     created() {
         this.$store.dispatch('students', {id: this.$route.params.id});
     },
     methods: {
-        checkNull(val) {
-            return  val === null ? "" : val;
-        },
         deleteRecord(id) {
             if(confirm('Deleting this item will remove all it\'s related data! Are you sure you want to proceed?')) {
                 this.$store.dispatch('deleteStudents', {ids: [id]}).then(()=>{
@@ -96,7 +93,7 @@ export default {
 
             var dummy = document.createElement('a');
             dummy.href = mimeType + ', ' + html;
-            dummy.download = 'students-' + school.name.toLowerCase().replace(/ /g, '-') + '-' + d.getFullYear() + '-' + (d.getMonth() +
+            dummy.download = 'students-' + this.school.name.toLowerCase().replace(/ /g, '-') + '-' + d.getFullYear() + '-' + (d.getMonth() +
                 1) + '-' + d.getDate() + '-' + d.getHours() + '-' + d.getMinutes() + '-' + d.getSeconds() +
                 '.xls';
             dummy.click();
@@ -116,12 +113,12 @@ export default {
 
             for (var i = 0; i < this.students.length; i++) {
                 table += '<tr>';
-                table += `<td>${this.checkNull(this.students[i].id)}</td>`;
-                table += `<td>${this.checkNull(this.students[i].last_name)}</td>`;
-                table += `<td>${this.checkNull(this.students[i].middle_name)}</td>`;
-                table += `<td>${this.checkNull(this.students[i].first_name)}</td>`;
-                table += `<td>${this.checkNull(this.students[i].sex)}</td>`;
-                table += `<td>${this.checkNull( this.students[i].current_class != null ? this.students[i].current_class.class : '' )}</td>`;
+                table += `<td>${this.students[i]?this.students[i].id:null}</td>`;
+                table += `<td>${this.students[i]?this.students[i].last_name:null}</td>`;
+                table += `<td>${this.students[i]?this.students[i].middle_name:null}</td>`;
+                table += `<td>${this.students[i]?this.students[i].first_name:null}</td>`;
+                table += `<td>${this.students[i]?this.students[i].sex:null}</td>`;
+                table += `<td>${this.students[i].current_class?this.students[i].current_class.class : ''}</td>`;
                 table += '</tr>';
             }
             table += '</tbody></table>';

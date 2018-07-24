@@ -108,9 +108,6 @@
             }
         },
         methods: {
-            rowClick() {
-                // alert(this.row.id);
-            },
             deleteRecord(id) {
                 if(confirm('Deleting this item will remove all it\'s related data! Are you sure you want to proceed?')) {
                     this.$store.dispatch('deleteSchools', {ids: [id]}).then(()=>{
@@ -121,15 +118,14 @@
                 }
             },
             exportExcel() {
-                if (typeof this.renderFn === 'undefined') return;
                 const mimeType = 'data:application/vnd.ms-excel';
-                const html = this.renderFn().replace(/ /g, '%20');
+                const html = this.renderTable().replace(/ /g, '%20');
 
                 const d = new Date();
 
                 var dummy = document.createElement('a');
                 dummy.href = mimeType + ', ' + html;
-                dummy.download = this.header.toLowerCase().replace(/ /g, '-') + '-' + d.getFullYear() + '-' + (d.getMonth() +
+                dummy.download = "Schools".toLowerCase().replace(/ /g, '-') + '-' + d.getFullYear() + '-' + (d.getMonth() +
                     1) + '-' + d.getDate() + '-' + d.getHours() + '-' + d.getMinutes() + '-' + d.getSeconds() +
                     '.xls';
                 dummy.click();
