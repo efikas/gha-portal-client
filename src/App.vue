@@ -39,7 +39,7 @@
         color: red !important;
     }
 
-    html:[body.modal-open]{
+    .modal-open{
         position: fixed;
         height: 100% !important;
         overflow:hidden !important;
