@@ -57,15 +57,6 @@ const layout = [{
                 }
             },
             {
-                path: ':id/update/:component',
-                name: 'update-school-info',
-                component: resolve => require(['pages/school/edit'], resolve),
-                meta: {
-                    title: "Update School Record",
-                    guard: true
-                }
-            },
-            {
                 path: ':id/staffs',
                 name: "school-staffs",
                 component: resolve => require(['pages/staff/staffs'], resolve),

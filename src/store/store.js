@@ -9,6 +9,7 @@ import lga  from './modules/lga';
 import school   from './modules/school';
 import student  from './modules/student';
 import staff    from  './modules/staff'
+import users    from  './modules/user'
 
 
 Vue.use(Vuex)
@@ -59,7 +60,8 @@ const store = new Vuex.Store({
         lga,
         school,
         student,
-        staff
+        staff,
+        users
     }
 });
 //=======vuex store end===========

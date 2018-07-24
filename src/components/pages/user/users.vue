@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-lg-12 mb-3">
             <b-card class="bg-default-card data">
-                <v-client-table :data="users" :columns="columns" :options="options" @row-click="rowClick">
+                <v-client-table :data="admins" :columns="columns" :options="options">
                     <!--<a slot="id" slot-scope="props">{{ props.index }}</a>-->
                     <!--<router-link tag="a" class="list-font" slot="name" slot-scope="props"-->
                     <!--:to="{ name: routeTo, params: { id: props.row.id }}" v-html="props.row.name"></router-link>-->
@@ -17,11 +17,9 @@
 </template>
 <script>
     import Vue from 'vue';
-    import {
-        ClientTable,
-        Event
-    } from 'vue-tables-2';
+    import { ClientTable, Event } from 'vue-tables-2';
     import VueSkeletonLoading from 'vue-skeleton-loading';
+    import { mapGetters } from 'vuex'
 
     Vue.use(ClientTable, {}, false);
     Vue.use(VueSkeletonLoading);
@@ -32,7 +30,6 @@
         },
         data() {
             return {
-                users: [],
                 columns: ['id', 'name', 'email', 'created_at'],
                 options: {
                     sortIcon: {
@@ -53,18 +50,11 @@
                 }
             }
         },
-        created() {
-            this.$admin.all().then(data => {
-                this.users = data;
-            });
-        },
         computed: {
-
+            ...mapGetters(['admins'])
         },
-        methods: {
-            rowClick() {
-                alert(1111);
-            },
+        created() {
+            this.$store.dispatch('admins');
         }
     }
 </script>

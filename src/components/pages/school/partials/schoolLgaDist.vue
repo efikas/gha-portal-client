@@ -113,9 +113,16 @@
                                     <router-link tag="a" class="list-font" slot="name" slot-scope="props"
                                                  :to="{ name: 'school', params: { id: props.row.id }}"
                                                  v-html="props.row.name"></router-link>
-                                    <!--<router-link tag="a" slot="view" slot-scope="props"-->
-                                    <!--class="fa fa-pencil icon-big btn btn-outline-primary ekiti-btn"-->
-                                    <!--:to="{ name: routeTo, params: { id: props.row.id }}"></router-link>-->
+                                    <div slot="actions" slot-scope="school" style="display: flex">
+                                        <router-link tag="a" title="staffs"
+                                                     :to="{name:'school-staffs', params:{id: school.row.id}}"><i
+                                                class="fa fa-male"></i>
+                                        </router-link> |
+                                        <router-link tag="a" title="students"
+                                                     :to="{name:'school-students', params:{id: school.row.id}}"><i
+                                                class="fa fa-users"></i>
+                                        </router-link>
+                                    </div>
                                 </v-client-table>
                             </slot>
                         </div>
@@ -143,7 +150,7 @@
             return {
                 showModal: false,
                 modalTitle: '',
-                columns: ['id', 'name', 'view'],
+                columns: ['id', 'name', 'actions'],
                 options: {
                     sortIcon: {
                         base: 'fa',
