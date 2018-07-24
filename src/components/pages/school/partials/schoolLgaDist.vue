@@ -134,16 +134,6 @@
 </template>
 
 <script>
-    import Vue from 'vue';
-    import {
-        ClientTable,
-        Event
-    } from 'vue-tables-2';
-    import VueSkeletonLoading from 'vue-skeleton-loading';
-
-    Vue.use(ClientTable, {}, false);
-    Vue.use(VueSkeletonLoading);
-
     export default {
         components: {},
         data() {
