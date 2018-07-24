@@ -1,0 +1,1 @@
+webpackJsonp([32],{1220:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default={name:"school-layout"}},1221:function(e,t){e.exports={render:function(){var e=this.$createElement,t=this._self._c||e;return t("div",[t("router-view")],1)},staticRenderFns:[]}},1440:function(e,t,n){var r=n(48)(n(1220),n(1221),!1,null,null,null);e.exports=r.exports}});
