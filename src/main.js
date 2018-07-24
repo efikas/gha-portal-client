@@ -1,10 +1,13 @@
-window.axios = require('axios')
 import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store/store.js'
 import VueAnalytics from 'vue-analytics'
 import Vuelidate from 'vuelidate';
+import axios from 'axios';
+import Store from "./store/store";
+
+axios.defaults.baseURL = Store.getters.api_url;
 
 
 Vue.use(Vuelidate);

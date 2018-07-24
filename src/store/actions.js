@@ -1,6 +1,4 @@
-import Vue from 'vue'
 import axios from '../axios'
-import router from "../router";
 
 let actions = {
     loadStatistics({commit}) {
@@ -14,8 +12,8 @@ let actions = {
         });
     },
 
-    login({commit, dispatch, state}, payload) {
-        return axios.post('/oauth/token', {
+    login({commit, dispatch, state, getters}, payload) {
+        return axios.post(state.auth_uri, {
                 client_id: state.client_id,
                 client_secret: state.client_secret,
                 grant_type: state.grant_type,
