@@ -13,8 +13,18 @@ import staff    from  './modules/staff'
 
 Vue.use(Vuex)
 
-function addDays(noOfDays) {
-    return (noOfDays * 24 * 60 * 60 * 1000)
+let regex = /(?:https?:\/\/)?([a-zA-Z\-]+)\.(?:.*)/;
+let url = 'https://ekiti.sbemis.online'; //window.location.href
+
+function subdomain() {
+    let subdomain = null;
+    try {
+
+        subdomain = regex.exec(url)[1]; //window.location.href
+        return subdomain;
+    } catch(e) {
+        return subdomain;
+    }
 }
 
 //=======vuex store start===========
@@ -38,7 +48,8 @@ const store = new Vuex.Store({
         client_secret: "BsPZmqDtu7w5iFQuWOiPIOzdU17Uw64jbg9FWzZI",
         grant_type: "password",
         //
-        statistics: {}
+        statistics: {},
+        access_server: subdomain()
     },
     mutations,
     actions,

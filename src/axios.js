@@ -11,16 +11,6 @@ import {apiURL} from './resource'
 
 axios.defaults.baseURL = apiURL;
 
-try {
-
-    let subdomain = /(?:https?:\/\/)?([a-zA-Z\-]+)\.(?:.*)/.exec('https://ekiti.sbemis.online')[1]; //window.location.href
-    axios.defaults.headers.common['Access-Server'] = subdomain;
-}
-catch (e) {
-    //
-}
-
-
 axios.interceptors.request.use(function (config) {
     const token = Store.getters.token;
 
@@ -28,6 +18,7 @@ axios.interceptors.request.use(function (config) {
         config.headers['Access-Control-Allow-Origin'] = '*';
         config.headers.Authorization = `Bearer ${token}`
     }
+    config.headers.common['Access-Server'] = Store.getters.access_server;
 
     return config
 });

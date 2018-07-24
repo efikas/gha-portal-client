@@ -18,7 +18,8 @@ const getters = {
     isLoggedIn: (state, getters) => {
         return !!getters.token;
     },
-    statistics: state => state.statistics
+    statistics: state => state.statistics,
+    access_server: state => state.access_server,
 };
 
 export default getters
