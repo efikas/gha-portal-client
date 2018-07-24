@@ -39,8 +39,13 @@ Vue.filter('commasep', val => {
     }
 });
 
+if (process.env.NODE_ENV === 'production') {
+    Vue.config.devtools = false;
+    Vue.config.debug = false;
+    Vue.config.silent = true;
 // Remove the productionTip in dev tool console
-Vue.config.productionTip = true;
+    Vue.config.productionTip = true;
+}
 
 // require('./axios')
 require('assets/css/icon.css');

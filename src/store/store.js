@@ -11,11 +11,22 @@ import student  from './modules/student';
 import staff    from  './modules/staff'
 import users    from  './modules/user'
 
+let regex = /(?:https?:\/\/)?([a-zA-Z\-]+)\.(?:.*)/;
+let url = null ; //https://ekiti.sbemis.online'; //window.location.href
 
 Vue.use(Vuex)
+if (process.env.NODE_ENV === 'production') {
+    Vue.config.devtools = false;
+    Vue.config.debug = false;
+    Vue.config.silent = true;
+// Remove the productionTip in dev tool console
+    Vue.config.productionTip = true;
+    url = window.location.href
 
-let regex = /(?:https?:\/\/)?([a-zA-Z\-]+)\.(?:.*)/;
-let url = 'https://ekiti.sbemis.online'; //window.location.href
+} else {
+    url = 'https://ekiti.sbemis.online';
+}
+
 
 function subdomain() {
     let subdomain = null;
@@ -50,7 +61,11 @@ const store = new Vuex.Store({
         grant_type: "password",
         //
         statistics: {},
-        access_server: subdomain()
+        access_server: subdomain(),
+        live_url: "http://api.sbemis.net",
+        dev_url: "http://0.0.0.0:5000",
+        api_uri: "/api/v1",
+        auth_uri: "/oauth/token"
     },
     mutations,
     actions,

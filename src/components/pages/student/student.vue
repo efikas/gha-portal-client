@@ -61,7 +61,6 @@
 <script>
     import SchoolCard from "../../widgets/sbemis/SchoolCard1";
     import {mapGetters} from 'vuex';
-    import {baseURL} from '../../../resource'
     import PersonalForm from './forms/personal'
     import {Personal, Academic, Guardian} from './partials/profile/index'
 
@@ -89,7 +88,7 @@
             showImage() {
                 if (typeof  this.student.biometric) {
                     if (this.student.biometric && this.student.biometric.photo) {
-                        return baseURL + this.student.biometric.photo;
+                        return this.$store.getters.url + this.student.biometric.photo;
                     }
                 }
                 return require("img/authors/user.jpg");

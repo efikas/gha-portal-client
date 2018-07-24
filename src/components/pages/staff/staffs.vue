@@ -42,20 +42,11 @@
     </div>
 </template>
 <script>
-    import Vue from 'vue';
-    import {
-        ClientTable,
-        Event
-    } from 'vue-tables-2';
-    import VueSkeletonLoading from 'vue-skeleton-loading';
     import SchoolCard from "../../widgets/sbemis/SchoolCard1";
-    import {mapGetters, mapActions} from 'vuex'
+    import {mapGetters} from 'vuex'
     import store from '../../../store/store'
     import Toaster from '../../mixins/toaster'
 
-
-    Vue.use(VueSkeletonLoading);
-    Vue.use(ClientTable, {}, false);
     export default {
         name: "staff_list",
         mixins: [Toaster],

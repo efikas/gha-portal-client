@@ -60,7 +60,6 @@
 <script>
 
     import {mapGetters} from 'vuex';
-    import {baseURL} from '../../../resource'
     import SchoolCard from "../../widgets/sbemis/SchoolCard1";
     import personal from './partials/profile/personal'
     import professional from './partials/profile/professional'
@@ -82,7 +81,7 @@
             showImage() {
                 if (typeof  this.staff.biometric) {
                     if (this.staff.biometric && this.staff.biometric.photo) {
-                        return baseURL + this.staff.biometric.photo;
+                        return this.$store.getters.url + this.staff.biometric.photo;
                     }
                 }
                 return require("img/authors/user.jpg");

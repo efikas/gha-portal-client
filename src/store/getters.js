@@ -20,6 +20,27 @@ const getters = {
     },
     statistics: state => state.statistics,
     access_server: state => state.access_server,
+    url: state => {
+        if (process.env.NODE_ENV === 'production') {
+            return state.live_url;
+        } else {
+            return state.dev_url;
+        }
+    },
+    api_url: state => {
+        if (process.env.NODE_ENV === 'production') {
+            return state.live_url + state.api_uri;
+        } else {
+            return state.dev_url + state.api_uri;
+        }
+    },
+    api_auth_url: state => {
+        if (process.env.NODE_ENV === 'production') {
+            return state.live_url + state.auth_uri;
+        } else {
+            return state.dev_url + state.auth_uri;
+        }
+    }
 };
 
 export default getters

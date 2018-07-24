@@ -7,9 +7,7 @@ miniToastr.setIcon('error', 'i', {
     'class': 'fa fa-times'
 });
 
-import {apiURL} from './resource'
-
-axios.defaults.baseURL = apiURL;
+axios.defaults.baseURL = Store.getters.api_uri;
 
 axios.interceptors.request.use(function (config) {
     const token = Store.getters.token;
