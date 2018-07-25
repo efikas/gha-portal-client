@@ -47,12 +47,12 @@ const store = new Vuex.Store({
         pending: false,
         isLoggedIn: false, //!!this.getters.token,
         token: localStorage.getItem('token'),
-        user: localStorage.getItem('user')?JSON.parse(localStorage.getItem('user')):{},
+        user: JSON.parse(localStorage.getItem('user')),
         // Add your application keys
         gmap_key: 'AIzaSyBTnQCx3FXEnfWPPWTKAwIxt6wSjAn_8ug',
         openWeather_key: 'c00194f61244d2b33b863bff6d94e663',
         google_analytics_key: null,
-        data: localStorage.getItem('data')?JSON.parse(localStorage.getItem('data')):{},
+        data: JSON.parse(localStorage.getItem('data')),
         //oauth
         client_id: 2,
         client_secret: "BsPZmqDtu7w5iFQuWOiPIOzdU17Uw64jbg9FWzZI",

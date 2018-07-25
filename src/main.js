@@ -6,6 +6,7 @@ import VueAnalytics from 'vue-analytics'
 import Vuelidate from 'vuelidate';
 import axios from 'axios';
 import Store from "./store/store";
+require('assets/css/icon.css');
 
 axios.defaults.baseURL = Store.getters.api_url;
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
@@ -14,10 +15,6 @@ axios.defaults.headers.common['Access-Server'] = Store.getters.access_server;
 
 
 Vue.use(Vuelidate);
-
-// window.axios.defaults.headers.common = {
-//     'X-Requested-With': 'XMLHttpRequest'
-// }
 
 // Google Analytics
 const google_analytics_key = store.state.google_analytics_key
@@ -49,16 +46,12 @@ if (process.env.NODE_ENV === 'production') {
     Vue.config.devtools = false;
     Vue.config.debug = false;
     Vue.config.silent = true;
-// Remove the productionTip in dev tool console
     Vue.config.productionTip = true;
 }
-
-// require('./axios')
-require('assets/css/icon.css');
 
 new Vue({
     el: '#sbemis',
     router,
     store,
     render: h => h(App),
-})
+});
