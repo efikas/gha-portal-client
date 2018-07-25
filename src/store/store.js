@@ -62,7 +62,7 @@ const store = new Vuex.Store({
         //
         statistics: {},
         access_server: subdomain(),
-        live_url: "http://api.sbemis.net",
+        live_url: "",
         dev_url: "http://0.0.0.0:5000",
         api_uri: "/api/v1",
         auth_uri: "/oauth/token"
