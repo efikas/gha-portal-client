@@ -12,7 +12,7 @@
                         <h3 class="page-name text-center">Reset Password</h3>
                     </div>
                 </div>
-                <vue-form :state="formstate" @submit.prevent="onSubmit">
+                <form @submit.prevent="onSubmit">
                     <div class="col-md-12">
                         <p class="user-message"> * The Password is case sensitive.</p>
                         <div class="form-group">
@@ -44,21 +44,16 @@
                             <input type="submit" value="Reset Password" class="btn btn-primary btn-block" />
                         </div>
                     </div>
-                </vue-form>
+                </form>
             </div>
         </div>
     </div>
 </template>
 <script>
-    import Vue from 'vue'
-    import VueForm from "vue-form";
-    import options from "src/validations/validations.js";
-    Vue.use(VueForm, options);
     export default {
         name: "resetpassword",
         data() {
             return {
-                formstate: {},
                 model: {
                     password: "",
                     repeatPassword: ""

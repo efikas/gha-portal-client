@@ -1,51 +1,46 @@
-import Vue from 'vue'
-
+import axios from '../axios'
 
 let actions = {
-
-    setUser({ commit }, user) {
-      return new Promise(resolve => {
-          setTimeout(() => {
-              localStorage.setItem('user', JSON.stringify(user))
-              resolve()
-          }, 1000)
-      })
-    },
-
-    increment({commit}) {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                commit('increment')
-                resolve()
-            }, 1000)
-        })
-    },
-
-    login({ commit }, creds) {
-        commit('LOGIN'); // show spinner
-        return new Promise(resolve => {
-            setTimeout(() => {
-                // localStorage.setItem("token", "JWT");
-                commit('LOGIN_SUCCESS');
-                resolve();
-            }, 1000);
+    loadStatistics({commit}) {
+        return axios.get('/statistics')
+            .then(response => {
+                commit('SET_STATISTICS', response.data);
+                return Promise.resolve(response.data);
+            }).catch((error) => {
+            console.log(error);
+            return Promise.reject(error.response)
         });
     },
 
-    logout({ commit }, redirect='/') {
-        var vm = this;
-        return new Promise(resolve => {
-            setTimeout(() => {
-                // localStorage.setItem("token", "JWT");
-                Vue.auth.destroyToken();
-                commit('LOGOUT');
-                window.location.href = `/login?redirect=${redirect}`;
-                // console.log('button');
-                // vm.$router.push({path: `/login?redirect=${redirect}`});
-                resolve();
-            }, 1000);
-        });
-
+    login({commit, dispatch, state, getters}, payload) {
+        return axios.post(state.auth_uri, {
+                client_id: state.client_id,
+                client_secret: state.client_secret,
+                grant_type: state.grant_type,
+                username: payload.username,
+                password: payload.password
+            })
+                .then(response => {
+                    // console.log(response);
+                    commit('LOGIN_SUCCESS');
+                    commit('authUser', {
+                        user: response.data.user,
+                        token: response.data.access_token,
+                        expiration: response.data.expires_in
+                    });
+                    commit('SET_SITE_DATA', response.data.site_data);
+                    return Promise.resolve(response.data)
+                })
+            .catch((error) => {
+                console.log(error);
+                return Promise.reject(error)
+            });
     },
-}
+
+    logout: function ({commit}) {
+        commit('LOGOUT');
+        window.location.href = '/login';
+    },
+};
+
 export default actions

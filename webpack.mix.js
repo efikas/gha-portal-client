@@ -17,9 +17,9 @@ const path = require('path')
  * this allows you to use $() in all files.
  */
 
-// mix.autoload({
-//     jquery: ['$', 'window.jQuery', 'jQuery']
-// });
+mix.autoload({
+    jquery: ['$', 'window.jQuery', 'jQuery']
+});
 
 //====set alias for isotope
 mix.webpackConfig({
@@ -37,7 +37,7 @@ mix.webpackConfig({
     },
     // https://github.com/JeffreyWay/laravel-mix/issues/936#issuecomment-331418769
     output: {
-        // publicPath: 'http://127.0.0.1:8001/',
+        publicPath: '/',
         chunkFilename: mix.inProduction() ? 'js/[name].[chunkhash].js' : 'js/[name].js'
     }
 });
@@ -57,10 +57,12 @@ mix.options({
 })
 
 // ===public path
+// mix.setPublicPath('./dist/')
 mix.setPublicPath('../server/public/')
 
 
 // === copy index.html to dist
+// mix.copy('index.html', './dist/')
 mix.copy('index.html', '../server/public/')
 
 
@@ -75,7 +77,7 @@ mix.js('src/main.js', '/')
 
 
 // Disable all OS notifications
-mix.disableNotifications()
+// mix.disableNotifications()
 
 
 // Disable all Success notifications

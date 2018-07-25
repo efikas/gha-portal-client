@@ -17,7 +17,7 @@
                     <!-- User Account: style can be found in dropdown-->
                     <b-dropdown class="user user-menu bell_bg user_btn" right link>
                         <span slot="text">
-                            <img :src="this.$store.state.user.picture" class="rounded-circle" alt="User Image">
+                            <img :src="require('img/authors/prf4.jpg')" class="rounded-circle" alt="User Image">
                             <!-- User name-->
                             <p class="user_name_max">{{this.$store.state.user.name}}</p>
                         </span>
@@ -32,12 +32,7 @@
                             </router-link>
                         </b-dropdown-item>
                         <b-dropdown-item exact class="dropdown_content">
-                            <router-link to="/lockscreen" exact class="drpodowtext">
-                                <i class="fa fa-lock"></i> Lock
-                            </router-link>
-                        </b-dropdown-item>
-                        <b-dropdown-item exact class="dropdown_content">
-                            <a href="javascript:void(0)" @click="$store.dispatch('logout')" class="drpodowtext">
+                            <a href="javascript:void(0)" @click="logout" class="drpodowtext">
                                 <i class="fa fa-sign-out"></i> Logout
                             </a>
                         </b-dropdown-item>
@@ -55,7 +50,6 @@
 
         created() {
 
-            this.setAuthenticatedUser()
         },
         methods: {
             toggle_menu() {
@@ -66,15 +60,9 @@
                     screenfull.toggle();
                 }
             },
-
-            setAuthenticatedUser() {
-                this.$auth.getUser()
-                    .then(response => {
-                        let data = ( typeof response.data == 'object' ) ? response.data : {};
-                        data.picture = require("img/authors/prf4.jpg")
-                        this.$store.dispatch('setUser', data)
-                        // console.log(response.data)
-                    })
+            logout() {
+                this.$store.dispatch('logout');
+                // this.$router.replace('/login');
             }
         }
     }

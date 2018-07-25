@@ -208,7 +208,6 @@ module.exports = {
 
         }
 
-
         // Private school distribution
         _dist.priv_sch = [
             {

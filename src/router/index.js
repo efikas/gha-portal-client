@@ -10,34 +10,29 @@ const router = new VueRouter({
     linkActiveClass: "active",
     // hashbang: false,
     mode: 'history',
-})
-
-router.beforeEach(
-    (to, from, next) => {
-        // if(to.matched.some(record => {
-        //     if (record.meta.roles)
-        //         // console.log(record.meta.roles)
-        //         record.meta.roles.forEach((role) => {
-        //             console.log(role)
-        //             if (role === 'admin')
-        //                 console.log('is admin')
-        //             // return false
-        //         })
-        //     }))
-        if (to.matched.some(record => record.meta.guests)) {
-            if (Vue.auth.isAuthenticated()) {
-                return next({
-                    path: '/'
-                })
-            } else next()
+    scrollBehavior(to, from, savedPosition) {
+        if (savedPosition) {
+            return savedPosition;
         }
-        else if (to.matched.some(record => record.meta.guard)) {
-            if (!Vue.auth.isAuthenticated()) {
-                // return window.location.href = '/#/login'
+
+        if (to.hash) {
+            // return new Promise((resolve, reject) => {
+            //     setTimeout(() => {
+            //         resolve({selector: to.hash, offset:{ x: 10, y: 60 }})
+            //     }, 0)
+            // });
+            return {selector: to.hash, offset:{ x: 10, y: 60 }, behavior: 'smooth'};
+        }
+        return {x: 0, y: 0};
+    }
+});
+
+router.beforeEach((to, from, next) => {
+        if (to.matched.some(record => record.meta.guard)) {
+            if (!store.getters.isLoggedIn) {
                 return next({
                     path: "/login?redirect=" + to.fullPath
                 })
-                // return window.location.href = "/login?redirect=" + to.fullPath
             } else next()
         }
 
@@ -54,7 +49,7 @@ router.beforeEach((to, from, next) => {
         document.documentElement.scrollTop = 0
     }
     next()
-})
+});
 
 //====change page title after route change
 

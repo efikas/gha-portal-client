@@ -1,13 +1,13 @@
 <template>
     <div>
-         <div class="row mb-4">
+        <div class="row mb-4">
             <div class="col-lg-3  col-sm-6 mb-3">
                 <div class="text-center p-3 widget_social_icons box_shadow pink">
                     <div class="widget_social_inner1">
                         <i class="fa fa-graduation-cap fb_text"></i>
                     </div>
                     <div class="text-ash">
-                        <h4 class="mt-2 text_size">{{ this.teachingStaff }}</h4>
+                        <h4 class="mt-2 text_size">{{ getTotalStaff | commasep }}</h4>
                         <p class="m-0 mt-2">Teaching Staff</p>
                     </div>
                 </div>
@@ -18,7 +18,7 @@
                         <i class="fa fa-ils fb_text"></i>
                     </div>
                     <div class="text-ash">
-                        <h4 class="mb-0 mt-2 text_size">{{ this.nonTeachingStaff }}</h4>
+                        <h4 class="mb-0 mt-2 text_size">{{ getTotalNonStaff | commasep }}</h4>
                         <p class="m-0 mt-2">Non-teaching Staff</p>
                     </div>
                 </div>
@@ -29,7 +29,7 @@
                         <i class="fa fa-female fb_text"></i>
                     </div>
                     <div class="text-ash">
-                        <h4 class="mb-0 mt-2 text_size">{{ this.femaleStaff }}</h4>
+                        <h4 class="mb-0 mt-2 text_size">{{ getTotalMaleStaff | commasep }}</h4>
                         <p class="m-0 mt-2">Female Staff</p>
                     </div>
                 </div>
@@ -40,114 +40,78 @@
                         <i class="fa fa-male fb_text"></i>
                     </div>
                     <div class="text-ash">
-                        <h4 class="mb-0 mt-2 text_size">{{ this.maleStaff }}</h4>
+                        <h4 class="mb-0 mt-2 text_size">{{ getTotalFemaleStaff | commasep}}</h4>
                         <p class="m-0 mt-2">Male Staff</p>
                     </div>
                 </div>
             </div>
         </div>
-         <div class="row">
+        <div class="row">
             <div class="col-lg-6 mb-3">
-                <piechart :iData="this.staff_gen_dist"></piechart>
+                <piechart :iData="staff_category_compare"></piechart>
             </div>
             <div class="col-lg-6 mb-3">
-                <stackbar :iData="this.male_female_staff"></stackbar>
+                <stackbar :iData="staff_gender_distribution"></stackbar>
             </div>
             <div class="col-lg-6 mb-3">
-                <piechart :iData="this.staff_dist"></piechart>
+                <piechart :iData="staff_gender_compare"></piechart>
             </div>
             <div class="col-lg-6 mb-3">
-                <doughnut :iData="this.gen_acad_staff_dist"></doughnut>
+                <doughnut :iData="staff_academic_distribution"></doughnut>
             </div>
         </div>
     </div>
 </template>
 <script>
-    import Vue from 'vue';
-    import datatable from "components/plugins/DataTable/DataTable.vue";
-    import piechart from '../../custom_components/piechart.vue'
-    import stackbar from '../../custom_components/stackbar.vue'
-    import doughnut from '../../custom_components/doughnut.vue'
 
-    let sbemisData = require('../../../modules/draw-graphs.js')
+    import {Reports} from "../dashboard/mixins";
 
-    var unsub;
     export default {
-        name: "index2",
-        components: {
-            datatable,
-            piechart,
-            stackbar,
-            doughnut,
-        },
+        name: "staffOverview",
         data() {
             return {
-                serverdata: [],
-                instances: [],
-                loading: false,
-                ajaxloading: true,
-                teachingStaff: 'loading...',
-                nonTeachingStaff: 'loading...',
-                femaleStaff: 'loading...',
-                maleStaff: 'loading...',
-                staff_dist: {},
-                staff_gen_dist: {},
-                male_female_staff: {},
-                gen_acad_staff_dist: {}
+                staffs: {
+                    total: 0,
+                    teaching: {
+                        male: 0,
+                        female: 0
+                    },
+                    non_teaching: {
+                        male: 0,
+                        female: 0
+                    }
+                },
             }
         },
-         mounted: function () {
-            this.$dashboard.statistics()
-                .then((data) => {
-                    this.teachingStaff = (data.staffs.teaching.male + data.staffs.teaching.female).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-                    this.nonTeachingStaff = (data.staffs.non_teaching.male + data.staffs.non_teaching.female).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-                    this.maleStaff = (data.staffs.teaching.male + data.staffs.non_teaching.male).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-                    this.femaleStaff = (data.staffs.teaching.female + data.staffs.non_teaching.female).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-                    
-                    let myData = sbemisData.dataMapping(data);
-                    this.staff_gen_dist = {
-                        header: 'Staff Gender Comparism',
-                        value: myData.staff_gen_dist
-                    };
-                    this.staff_dist = {
-                        header: 'Teaching Staff/Non Teaching Staff Comparision',
-                        value: myData.staff_dist
-                    };
-                    this.male_female_staff = {
-                        header: 'Male/Female Staff Distribution',
-                        legend: ['Male', 'Female'],
-                        value: myData.male_female_staff
-                    };
-                    this.gen_acad_staff_dist = {
-                        header: 'Teaching/Non Teaching Staff Distribution',
-                        legend: ['Male', 'Female'],
-                        value: myData.gen_acad_staff_dist
-                    };
-                });
-            
-                
-            // unsub = this.$store.subscribe((mutation, state) => {
-            //     if (mutation.type == "left_menu") {
-            //         this.instances.forEach(function (item, index) {
-            //             setTimeout(function () {
-            //                 item.resize();
-            //             });
-            //         });
-            //         setTimeout(() => {
-            //             this.$refs.swiper.swiper.update();
-            //         });
-            //     }
-            // });
-        },
+        mixins: [Reports],
         beforeRouteLeave(to, from, next) {
             // unsub();
             next();
+        },
+
+        computed: {
+            getTotalStaff() {
+                return this.staffs.teaching.male + this.staffs.teaching.female
+            },
+            getTotalNonStaff() {
+                return this.staffs.non_teaching.male + this.staffs.non_teaching.female
+            },
+            getTotalMaleStaff() {
+                return this.staffs.teaching.male + this.staffs.teaching.male
+            },
+            getTotalFemaleStaff() {
+                return this.staffs.teaching.female + this.staffs.teaching.female
+            }
         },
 
         methods: {
             onReady(instance) {
                 this.instances.push(instance)
             }
+        },
+
+        updated() {
+            this.staffs = this.statistics.staffs;
         }
     }
 </script>
@@ -161,7 +125,7 @@
 
     .swiper-pagination-fraction,
     .swiper-pagination-custom,
-    .swiper-container-horizontal>.swiper-pagination-bullets {
+    .swiper-container-horizontal > .swiper-pagination-bullets {
         top: 5px;
     }
 
@@ -169,7 +133,7 @@
         margin-top: 0px !important;
     }
 </style>
-<style type="text/css" lang="scss">
+<style type="text/css" lang="scss" scoped>
     .index2_table .table-responsive .card {
         border: none;
         box-shadow: none;
@@ -179,6 +143,7 @@
     .index2_swiper .swiper-pagination-bullet-active {
         background: #08aa80;
     }
+
     /*===============================notes========*/
 
     .notes {
@@ -192,8 +157,7 @@
     }
 
     .notes p {
-        border-bottom: 1px solid #dfe8ec;
-        ;
+        border-bottom: 1px solid #dfe8ec;;
     }
 
     .notes::after {
@@ -219,7 +183,6 @@
         font-size: 40px;
         line-height: normal;
     }
-
 
     .social .bg-default-card {
         i {
@@ -486,7 +449,8 @@
     .profile-img {
         background-color: #fff;
     }
-    .chat-conversation{
+
+    .chat-conversation {
         width: 100%;
     }
 </style>

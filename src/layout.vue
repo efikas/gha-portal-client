@@ -5,7 +5,9 @@
         <div class="wrapper row-offcanvas">
             <left_side v-show="this.$store.state.left_open"></left_side>
             <right_side>
-                <router-view></router-view>
+                <transition name="slide" mode="out-in">
+                    <router-view></router-view>
+                </transition>
             </right_side>
         </div>
     </div>
@@ -138,6 +140,36 @@
         .wrapper>.right-aside {
             width: 100vw;
             min-width: 100vw;
+        }
+    }
+
+    .slide-enter-active {
+        animation: slide-in 200ms ease-out forwards;
+    }
+    .slide-leave-active {
+        animation: slide-out 200ms ease-out forwards;
+    }
+    
+    @keyframes slide-in {
+        from {
+            transform: translateY(-30px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes slide-in {
+        from {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        to {
+            transform: translateY(-30px);
+            opacity: 0;
         }
     }
 </style>

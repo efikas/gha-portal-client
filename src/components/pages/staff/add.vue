@@ -413,7 +413,7 @@
     import VeeValidate from 'vee-validate';
 
     Vue.use(VeeValidate);
-    Vue.use(VueFormWizard, options);
+    Vue.use(VueFormWizard);
     export default {
         components: {
             Multiselect,

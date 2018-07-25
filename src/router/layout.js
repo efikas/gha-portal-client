@@ -1,5 +1,6 @@
 const layout = [{
     path: '/',
+    name: 'dashboard',
     component: resolve => require(['pages/dashboard'], resolve),
     meta: {
         title: "Dashboard",
@@ -8,12 +9,7 @@ const layout = [{
 },
     {
         path: '/school',
-        component: resolve => require(['pages/school/layout'], resolve),
-        meta: {
-            guard: true,
-            roles: ['admin', 'staff'],
-            permissions: ['view']
-        },
+        component: resolve => require(['pages/school/school'], resolve),
         children: [
             {
                 path: '',
@@ -26,44 +22,17 @@ const layout = [{
             },
             {
                 path: 'manage',
-                name: 'school-manage',
-                component: resolve => require(['pages/school/manage'], resolve),
+                name: 'schools',
+                component: resolve => require(['pages/school/schools'], resolve),
                 meta: {
                     title: "Manage Schools",
                     guard: true
                 }
             },
             {
-                path: 'lga/:lgaId',
-                name: 'school-manage-by_lga',
-                component: resolve => require(['pages/school/manage'], resolve),
-                meta: {
-                    title: "Manage Schools",
-                    guard: true
-                }
-            },
-            {
-                path: 'lga/:lgaId/category/:catId',
-                name: 'school-manage-by_category',
-                component: resolve => require(['pages/school/manage'], resolve),
-                meta: {
-                    title: "Manage Schools",
-                    guard: true
-                }
-            },
-            {
-                path: 'lga/:lgaId/category/:catId/level/:level',
-                name: 'school-manage-by_category_level',
-                component: resolve => require(['pages/school/manage'], resolve),
-                meta: {
-                    title: "Manage Schools",
-                    guard: true
-                }
-            },
-            {
-                path: 'lga/:lgaId/level/:level',
-                name: 'school-manage-by_level',
-                component: resolve => require(['pages/school/manage'], resolve),
+                path: 'lga',
+                name: 'school-lga',
+                component: resolve => require(['pages/school/schools'], resolve),
                 meta: {
                     title: "Manage Schools",
                     guard: true
@@ -88,16 +57,25 @@ const layout = [{
                 }
             },
             {
-                path: ':id/update/:component',
-                name: 'update-school-info',
-                component: resolve => require(['pages/school/update/'], resolve),
+                path: ':id/staffs',
+                name: "school-staffs",
+                component: resolve => require(['pages/staff/staffs'], resolve),
                 meta: {
-                    title: "Update School Record",
+                    title: "Staff List",
+                    guard: true
+                }
+            },
+            {
+                path: ':id/students',
+                name: "school-students",
+                component: resolve => require(['pages/student/students'], resolve),
+                meta: {
+                    title: "Students List",
                     guard: true
                 }
             },
             { //todo: fix routes that overrides
-                name: "school-profile",
+                name: "school",
                 path: ':id',
                 component: resolve => require(['pages/school/profile'], resolve),
                 meta: {
@@ -121,36 +99,29 @@ const layout = [{
                 path: '',
                 component: resolve => require(['pages/staff/overview'], resolve),
                 meta: {
-                    title: "Staff List",
+                    title: "Staff Distribution report",
                     guard: true
                 }
             },
             {
-                path: '/school/:id/staffs',
-                name: "staff-list",
-                component: resolve => require(['pages/staff/list'], resolve),
-                meta: {
-                    title: "Staff List",
-                    guard: true
-                }
+                path: ':id',
+                name: 'staff-profile',
+                component:
+                    resolve => require(['pages/staff/staff'], resolve),
+                meta:
+                    {
+                        title: " ",
+                        guard: true
+                    }
             },
             {
                 path: 'add',
+                name: 'staff-add',
                 component:
                     resolve => require(['pages/staff/add'], resolve),
                 meta:
                     {
                         title: "Add New Staff",
-                        guard: true
-                    }
-            },
-            {
-                path: 'manage',
-                component:
-                    resolve => require(['pages/staff/manage'], resolve),
-                meta:
-                    {
-                        title: "Manage Staff Record",
                         guard: true
                     }
             },
@@ -170,24 +141,6 @@ const layout = [{
                 component: resolve => require(['pages/staff/update'], resolve),
                 meta: {
                     title: "Update Staff Record",
-                    guard: true
-                }
-            },
-            {
-                path: ':id',
-                component:
-                    resolve => require(['pages/staff/profile'], resolve),
-                meta:
-                    {
-                        title: "Staff Profile",
-                        guard: true
-                    }
-            },
-            {
-                path: '/school/:id/staff',
-                component: resolve => require(['pages/staff/list'], resolve),
-                meta: {
-                    title: "Staff List",
                     guard: true
                 }
             }
@@ -211,27 +164,20 @@ const layout = [{
                 }
             },
             {
-                path: '/school/:id/students',
-                name: "student-list",
-                component: resolve => require(['pages/student/list'], resolve),
+                path: ':id',
+                name: 'student-profile',
+                component: resolve => require(['pages/student/student'], resolve),
                 meta: {
-                    title: "Students List",
+                    title: " ",
                     guard: true
                 }
             },
             {
                 path: 'add',
+                name: 'student-add',
                 component: resolve => require(['pages/student/add'], resolve),
                 meta: {
                     title: "Add New Student",
-                    guard: true
-                }
-            },
-            {
-                path: 'manage',
-                component: resolve => require(['pages/student/manage'], resolve),
-                meta: {
-                    title: "Manage Students Record",
                     guard: true
                 }
             },
@@ -249,14 +195,6 @@ const layout = [{
                 component: resolve => require(['pages/student/update/'], resolve),
                 meta: {
                     title: "Update Student Record",
-                    guard: true
-                }
-            },
-            {
-                path: ':id',
-                component: resolve => require(['pages/student/profile'], resolve),
-                meta: {
-                    title: "Student Profile",
                     guard: true
                 }
             }
@@ -327,7 +265,18 @@ const layout = [{
                 guard:
                     true
             }
+    },
+    {
+        path: '/admin',
+        component: resolve => require(['pages/user/users'], resolve),
+        meta: {
+            title: "User Administration",
+            guard: true
+        },
+        children: []
     }
+
+
 ]
 
 export default layout

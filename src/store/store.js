@@ -1,49 +1,83 @@
 import 'es6-promise/auto'
-import Vue from 'vue'
+import Vue  from 'vue'
 import Vuex from 'vuex'
-import mutations from './mutations'
-import actions from  './actions'
-import getters from  './getters'
+import mutations    from './mutations'
+import actions  from  './actions'
+import getters  from  './getters'
 
+import lga  from './modules/lga';
+import school   from './modules/school';
+import student  from './modules/student';
+import staff    from  './modules/staff'
+import users    from  './modules/user'
+
+let regex = /(?:https?:\/\/)?([a-zA-Z\-]+)\.(?:.*)/;
+let url = null ; //https://ekiti.sbemis.online'; //window.location.href
 
 Vue.use(Vuex)
+if (process.env.NODE_ENV === 'production') {
+    Vue.config.devtools = false;
+    Vue.config.debug = false;
+    Vue.config.silent = true;
+// Remove the productionTip in dev tool console
+    Vue.config.productionTip = true;
+    url = window.location.href
 
-function addDays(noOfDays) {
-    return (noOfDays * 24 * 60 * 60 * 1000)
+} else {
+    url = 'https://ekiti.sbemis.online';
+}
+
+
+function subdomain() {
+    let subdomain = null;
+    try {
+
+        subdomain = regex.exec(url)[1]; //window.location.href
+        return subdomain;
+    } catch(e) {
+        return subdomain;
+    }
 }
 
 //=======vuex store start===========
 const store = new Vuex.Store({
     state: {
-        count: 0,
         left_open: false,
         preloader: true,
         site_name: "SBEMIS",
         page_title: null,
         pending: false,
-        isLoggedIn: !!Vue.auth.getToken(),
-        // user: JSON.parse(localStorage.getItem('user')),
+        isLoggedIn: false, //!!this.getters.token,
+        token: localStorage.getItem('token'),
         user: JSON.parse(localStorage.getItem('user')),
-        cal_events: [{
-            id: 0,
-            title: 'Office',
-            start: Date.now(),
-            end: Date.now() + addDays(1)
-        }, {
-            id: 1,
-            title: 'Holidays',
-            start: Date.now() + addDays(3),
-            end: Date.now() + addDays(4)
-        }],
         // Add your application keys
         gmap_key: 'AIzaSyBTnQCx3FXEnfWPPWTKAwIxt6wSjAn_8ug',
         openWeather_key: 'c00194f61244d2b33b863bff6d94e663',
-        google_analytics_key: null
-
+        google_analytics_key: null,
+        data: JSON.parse(localStorage.getItem('data')),
+        //oauth
+        client_id: 2,
+        client_secret: "BsPZmqDtu7w5iFQuWOiPIOzdU17Uw64jbg9FWzZI",
+        grant_type: "password",
+        //
+        statistics: {},
+        access_server: subdomain(),
+        live_url: "",
+        dev_url: "http://0.0.0.0:5000",
+        api_uri: "/api/v1",
+        auth_uri: "/oauth/token"
     },
     mutations,
     actions,
-    getters
-})
+    getters,
+
+    modules: {
+        lga,
+        school,
+        student,
+        staff,
+        users
+    }
+});
 //=======vuex store end===========
 export default store
