@@ -58,12 +58,12 @@ mix.options({
 
 // ===public path
 // mix.setPublicPath('./dist/')
-mix.setPublicPath('../server/public/')
+mix.setPublicPath(mix.inProduction() ? '../server/public/' : './dist/');
 
 
 // === copy index.html to dist
-// mix.copy('index.html', './dist/')
-mix.copy('index.html', '../server/public/')
+mix.copy('index.html', './dist/');
+// mix.copy('index.html', '../server/public/');
 
 
 // ===compile our main.js file
