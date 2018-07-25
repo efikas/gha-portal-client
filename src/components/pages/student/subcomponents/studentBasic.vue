@@ -14,7 +14,7 @@
                      <label class="control-label col-md-8">Firstname <span class="required-fields">*</span>
                      </label>
                      <div class="col-md-12">
-                         <input type="text" class="form-control" @input="$v.data.first_name.$touch()" v-model.trim="data.first_name" :class="status($v.data.first_name)" placeholder="First Name">
+                         <input type="text" class="form-control" @blur="$v.data.first_name.$touch()" v-model.trim="data.first_name" :class="status($v.data.first_name)" placeholder="First Name">
                          <span class="text-error" v-if="!$v.data.first_name.required && $v.data.first_name.$dirty">This field must not be empty.</span>
                      </div>
                  </div>
@@ -33,7 +33,7 @@
                      <label class="control-label col-md-12">Last Name <span class="required-fields">*</span>
                      </label>
                      <div class="col-md-12">
-                         <input type="text" class="form-control" @input="$v.data.last_name.$touch()" :class="status($v.data.last_name)" v-model.trim="data.last_name" placeholder="">
+                         <input type="text" class="form-control" @blur="$v.data.last_name.$touch()" :class="status($v.data.last_name)" v-model.trim="data.last_name" placeholder="">
                          <span class="text-error" v-if="!$v.data.last_name.required && $v.data.last_name.$dirty">This field must not be empty.</span>
                      </div>
                  </div>
@@ -42,7 +42,8 @@
                  <div class="form-group p-10">
                      <label class="control-label">Sex <span class="required-fields">*</span>
                      </label>
-                     <b-form-radio-group v-model="data.sex" :options="sexOptions" stacked name="sex" />
+                     <b-form-radio-group @blur="$v.data.sex.$touch()" :class="status($v.data.sex)" v-model="data.sex" :options="sexOptions" stacked name="sex" />
+                     <span class="text-error" v-if="!$v.data.sex.required && $v.data.sex.$dirty">This field must not be empty.</span>
                  </div>
              </div>
          </div>
@@ -52,7 +53,8 @@
                      <label class="control-label col-md-8">Date of Birth <span class="required-fields">*</span>
                      </label>
                      <div class="col-md-12">
-                         <input type="date" class="form-control" v-model="data.date_of_birth">
+                         <input type="date" class="form-control" @blur="$v.data.date_of_birth.$touch()" :class="status($v.data.date_of_birth)" v-model.trim="data.date_of_birth">
+                         <span class="text-error" v-if="!$v.data.date_of_birth.required && $v.data.date_of_birth.$dirty">This field must not be empty.</span>
                      </div>
                  </div>
              </div>
@@ -61,7 +63,8 @@
                      <label class="control-label col-md-12">Place of Birth <span class="required-fields">*</span>
                      </label>
                      <div class="col-md-12">
-                         <input type="text" class="form-control" v-model="data.place_of_birth" id="pob" placeholder="Place of birth">
+                         <input type="text" class="form-control" @blur="$v.data.place_of_birth.$touch()" :class="status($v.data.place_of_birth)" v-model="data.place_of_birth" id="pob" placeholder="Place of birth">
+                         <span class="text-error" v-if="!$v.data.place_of_birth.required && $v.data.place_of_birth.$dirty">This field must not be empty.</span>
                      </div>
                  </div>
              </div>
@@ -89,10 +92,11 @@
                  <div class="form-group p-10">
                      <label class="control-label">Any special Challenge? <span class="required-fields">*</span>
                      </label>
-                         <select v-model="data.special_condition" class="form-control" size="1">
+                         <select @blur="$v.data.special_condition.$touch()" :class="status($v.data.special_condition)" v-model="data.special_condition" class="form-control" size="1">
                              <option value="">Select Challenge</option>
                              <option v-for="challenge in specialChallenges" :value="challenge.id">{{challenge.condition}}</option>
                          </select>
+                     <span class="text-error" v-if="!$v.data.special_condition.required && $v.data.special_condition.$dirty">This field must not be empty.</span>
                  </div>
              </div>
              <div class="col-xs-12 col-sm-6 col-md-4">
@@ -101,14 +105,16 @@
                          <div class="form-group p-10">
                              <label class="control-label">Height (in m) <span class="required-fields">*</span>
                              </label>
-                                 <input type="number" step="0.01" class="form-control" v-model="data.height" placeholder="">
+                                 <input type="number" step="0.01" class="form-control" @blur="$v.data.height.$touch()" :class="status($v.data.height)" v-model="data.height" placeholder="">
+                                <span class="text-error" v-if="!$v.data.height.required && $v.data.height.$dirty">This field must not be empty.</span>
                          </div>
                      </div>
                      <div class="col-xs-12 col-sm-6">
                          <div class="form-group p-10">
                              <label class="control-label">weight (in Kg) <span class="required-fields">*</span>
                              </label>
-                                 <input type="number" step="0.1" class="form-control" v-model="data.weight" placeholder="">
+                                 <input type="number" step="0.1" class="form-control" @blur="$v.data.weight.$touch()" :class="status($v.data.weight)" v-model.trim="data.weight" placeholder="">
+                                <span class="text-error" v-if="!$v.data.weight.required && $v.data.weight.$dirty">This field must not be empty.</span>
                          </div>
                      </div>
                  </div>
@@ -117,7 +123,8 @@
                  <div class="form-group p-10">
                      <label class="control-label">Blood Group Type <span class="required-fields">*</span>
                      </label>
-                         <input type="text" class="form-control" v-model="data.blood_group" placeholder="A, B, AB, O">
+                         <input type="text" class="form-control" @blur="$v.data.blood_group.$touch()" :class="status($v.data.blood_group)" v-model.trim="data.blood_group" placeholder="A, B, AB, O">
+                        <span class="text-error" v-if="!$v.data.blood_group.required && $v.data.blood_group.$dirty">This field must not be empty.</span>
                  </div>
              </div>
          </div>
@@ -127,10 +134,11 @@
                      <label class="control-label col-md-12">Birth Cert Type <span class="required-fields">*</span>
                      </label>
                      <div class="col-md-12">
-                         <select name="birth_cert_type" v-model="data.birth_cert_type" class="form-control" size="1">
+                         <select name="birth_cert_type" @blur="$v.data.birth_cert_type.$touch()" :class="status($v.data.birth_cert_type)" v-model.trim="data.birth_cert_type" class="form-control" size="1">
                              <option value="">Select Cert Type</option>
                              <option v-for="cert in birthCerts" :value="cert.id">{{cert.birth_cert_type}}</option>
                          </select>
+                         <span class="text-error" v-if="!$v.data.birth_cert_type.required && $v.data.birth_cert_type.$dirty">This field must not be empty.</span>
                      </div>
                  </div>
              </div>
@@ -179,9 +187,14 @@
             first_name: { required },
             middle_name: { required },
             last_name: { required },
-            sex: {},
-            date_of_birth: {},
-            place_of_birth: {},
+            sex: { required },
+            special_condition: { required },
+            date_of_birth: { required },
+            place_of_birth: { required },
+            height: { required, numeric },
+            weight: { required, numeric },
+            blood_group: { required },
+            birth_cert_type: { required },
 
         }
     },

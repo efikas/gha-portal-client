@@ -111,7 +111,6 @@ export default {
                 this.schools = data.data;
             })
         }
-        // console.log(this.schools);
     },
     methods: {
         rowClick(){
