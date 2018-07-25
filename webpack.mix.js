@@ -37,7 +37,7 @@ mix.webpackConfig({
     },
     // https://github.com/JeffreyWay/laravel-mix/issues/936#issuecomment-331418769
     output: {
-        publicPath: mix.inProduction() ? '/' : '/',
+        publicPath: mix.inProduction() ? '/js' : '/js',
         chunkFilename: mix.inProduction() ? 'js/[name].[chunkhash].js' : 'js/[name].js'
     }
 });
