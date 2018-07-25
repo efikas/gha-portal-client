@@ -1,4 +1,6 @@
-RewriteEngine on
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule . index.php [L]
+ RewriteEngine On
+ RewriteBase /
+ RewriteRule ^index.html$ - [L]
+ RewriteCond %{REQUESTFILENAME} !-f
+ RewriteCond %{REQUESTFILENAME} !-d
+ RewriteRule . /index.html [L]
