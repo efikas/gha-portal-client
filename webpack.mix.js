@@ -38,7 +38,7 @@ mix.webpackConfig({
     // https://github.com/JeffreyWay/laravel-mix/issues/936#issuecomment-331418769
     output: {
         // publicPath: 'http://127.0.0.1:8001/',
-        chunkFilename: mix.inProduction() ? '/js/[name].[chunkhash].js' : '/js/[name].js'
+        chunkFilename: mix.inProduction() ? 'js/[name].[chunkhash].js' : 'js/[name].js'
     }
 });
 
