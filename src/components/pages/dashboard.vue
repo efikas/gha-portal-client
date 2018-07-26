@@ -4,10 +4,10 @@
         <topCard></topCard>
         <div class="row">
             <div class="col-lg-6 mb-3">
-                <piechart :iData="private_school"></piechart>
+                <piechart :iData="public_school"></piechart>
             </div>
             <div class="col-lg-6 mb-3">
-                <piechart :iData="public_school"></piechart>
+                <piechart :iData="private_school"></piechart>
             </div>
             <div class="col-lg-6 mb-3">
                 <piechart :iData="primary_school"></piechart>
