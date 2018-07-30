@@ -6,8 +6,18 @@
             </div>
         </div>
         <b-card class=" text-right">
-            <router-link tag="a" :to="{name:'staff-add'}" class="fa fa-female"> Add staff </router-link> |
-            <router-link tag="a" :to="{name:'student-add'}" class="fa fa-male"> Add student </router-link>
+            <a href="javascript:void(0)" style="padding: 5px" v-b-modal.modal-form-staff class="fa fa-female"> Add staff </a> |
+            <a href="javascript:void(0)" style="padding: 5px" v-b-modal.modal-form-student class="fa fa-male"> Add student </a>
+
+            <div class="text-left">
+                <b-modal id="modal-form-staff" ref="staff_modal" title="Add new staff" size="lg" lazy centered hide-footer>
+                    <staff-form @closeModal="()=>$refs.staff_modal.hide()"></staff-form>
+                </b-modal>
+
+                <b-modal id="modal-form-student" ref="student_modal" title="Add new student" size="lg" lazy centered hide-footer>
+                    <student-form @closeModal="()=>$refs.student_modal.hide()"></student-form>
+                </b-modal>
+            </div>
         </b-card>
         <div class="row">
             <div class="col-md-9" id="profile">
@@ -41,8 +51,8 @@
             <div class="col-md-3">
                 <b-card v-if="school" class="bg-default-card">
                     <h5 class="default-color">{{ school.name }} </h5>
-                    <gmap-map :center="center" :zoom="16" class="gmap" ref="gmap1">
-                        <gmap-marker v-for="m in markers" :key="m.position.lat" :position="m.position" :clickable="true"
+                    <gmap-map :center="geolocation.center" :zoom="16" class="gmap" ref="gmap1">
+                        <gmap-marker v-for="m in geolocation.markers" :key="m.position.lat" :position="m.position" :clickable="true"
                                      :draggable="true" @click="center=m.position"></gmap-marker>
                     </gmap-map>
                 </b-card>
@@ -51,9 +61,6 @@
     </div>
 </template>
 <script>
-    import Vue from 'vue'
-    import * as VueGoogleMaps from 'vue2-google-maps'
-    import store from 'src/store/store.js'
     import {SweetModal, SweetModalTab} from 'sweet-modal-vue'
     import SchoolCard from "../../widgets/sbemis/SchoolCard1";
     import { tabsMixins } from './partials/mixins';
@@ -65,13 +72,8 @@
     import otherTab from './partials/others';
     import projectsTab from './partials/projects';
 
-    Vue.use(VueGoogleMaps, {
-        load: {
-            key: store.state.gmap_key
-            // v: 'OPTIONAL VERSION NUMBER',
-            // libraries: 'places', // If you need to use place input
-        }
-    });
+    import studentForm from '../student/forms/personal'
+    import staffForm from '../staff/forms/personal'
 
     export default {
         components: {
@@ -83,22 +85,14 @@
             libraryTab,
             sbmcTab,
             otherTab,
-            projectsTab
+            projectsTab,
+            staffForm,
+            studentForm
         },
         mixins: [tabsMixins],
         data() {
             return {
-                tabIndex: 1,
-                center: {
-                    lat: 7.6401306,
-                    lng: 5.2033970
-                },
-                markers: [{
-                    position: {
-                        lat: 7.6401306,
-                        lng: 5.2033970
-                    }
-                }],
+                tabIndex: 0
             }
         },
         methods: {

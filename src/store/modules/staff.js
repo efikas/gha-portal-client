@@ -36,7 +36,7 @@ const actions = {
         })
     },
     storeStaff: ({commit}, payload) => {
-        return axios.post('/staff', payload).then(response => {
+        return axios.post('/staffs', payload).then(response => {
             return Promise.resolve(response.data)
         }).catch((error) => {
             return Promise.reject(error.response)
