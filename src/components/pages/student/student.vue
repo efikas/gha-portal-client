@@ -6,8 +6,8 @@
                     <SchoolCard></SchoolCard>
                 </div>
             </div>
-            <div class="row" id="profile">
-                <b-card class="col-md-10 bg-clear-card" bg-variant="" text-variant="">
+            <div class="row">
+                <b-card class="col-md-10 bg-clear-card" title="STUDENT PROFILE" bg-variant="" text-variant="">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="" style="padding: 0; margin-left: 40px; margin-bottom: -40px">
@@ -31,13 +31,13 @@
                         <div class="row">
                             <div class="col-md-9 offset-3">
                                 <b-nav>
-                                    <router-link tag="li" :to="{name:'student-profile', query:{section: 'personal'}, hash: '#profile'}">
+                                    <router-link tag="li" :to="{name:'student-profile', query:{section: 0}, hash: '#profile'}">
                                         <a class="nav-link">Personal</a>
                                     </router-link>
-                                    <router-link tag="li" class="nav-item" :to="{name:'student-profile', query:{section: 'academic'}, hash: '#profile'}">
+                                    <router-link tag="li" class="nav-item" :to="{name:'student-profile', query:{section: 1}, hash: '#profile'}">
                                         <a class="nav-link">Academic</a>
                                     </router-link>
-                                    <router-link tag="li" class="nav-item" :to="{name:'student-profile', query:{section: 'guardian'}, hash: '#profile'}">
+                                    <router-link tag="li" class="nav-item" :to="{name:'student-profile', query:{section: 2}, hash: '#profile'}">
                                         <a class="nav-link">Guardian</a>
                                     </router-link>
                                 </b-nav>
@@ -46,13 +46,23 @@
                     </div>
                 </b-card>
             </div>
-            <div class="row">
-                <div class="col-md-10" style="padding: 0">
-                    <transition name="fade">
-                    <component
-                            :is="loadedComponent"
-                            @editProfile="onEditProfile($event)"></component>
-                    </transition>
+            <div class="row mt-3">
+                <div class="col-md-10" id="profile" style="padding: 0">
+                    <b-card class="" no-body>
+                        <!-- Nav tabs -->
+                        <b-tabs vertical card small :content-class="contentClass()" pills v-model="tabIndex" @input="tabChanged($event)">
+                            <b-tab title="Personal">
+                                <personal></personal>
+                            </b-tab>
+                            <b-tab title="Academic">
+                                <academic></academic>
+                            </b-tab>
+                            <b-tab title="Guardian">
+                                <guardian></guardian>
+                            </b-tab>
+                        </b-tabs>
+                    </b-card>
+
                 </div>
             </div>
         </div>
@@ -74,7 +84,7 @@
         },
         data() {
             return {
-                loadedComponent: null
+                tabIndex: 0
             };
         },
         computed: mapGetters([
@@ -82,9 +92,12 @@
         ]),
         created: async function () {
             await this.$store.dispatch('student', this.$route.params.id);
-            this.switchComponent(this.$route.query.section);
+            this.tabChanged(this.$route.query.section);
         },
         methods: {
+            contentClass(){
+                return ['clear-content-padding'];
+            },
             showImage() {
                 if (typeof  this.student.biometric) {
                     if (this.student.biometric && this.student.biometric.photo) {
@@ -93,30 +106,30 @@
                 }
                 return require("img/authors/user.jpg");
             },
-            switchComponent(component){
-                function load(val) {
-                    this.loadedComponent = val;
-                }
-                switch (component) {
-                    case 'personal':
-                        load.call(this, 'Personal');
+            tabChanged(index) {
+                switch (parseInt(index)) {
+                    case 0:
+                        this.tabIndex = 0;
+                        this.$router.replace({query: {section: 0}, hash: '#profile'});
                         break;
-                    case 'academic':
-                        load.call(this, 'Academic');
+                    case 1:
+                        this.tabIndex = 1;
+                        this.$router.replace({query: {section: 1}, hash: '#profile'});
                         break;
-                    case 'guardian':
-                        load.call(this, 'Guardian');
+                    case 2:
+                        this.tabIndex = 2;
+                        this.$router.replace({query: {section: 2}, hash: '#profile'});
                         break;
                     default:
-                        load.call(this, 'Personal');
-                        this.$router.replace({query:{section: 'personal'}, hash: '#profile'});
+                        this.tabIndex = 0;
+                        this.$router.replace({query: {section: 0}, hash: '#profile'});
                         break;
                 }
             }
         },
         watch: {
             '$route.query'(query) {
-                this.switchComponent(query.section)
+                this.tabChanged(query.section)
             }
         }
     };
@@ -124,6 +137,14 @@
 <style>
     .card-profile-link {
         font-size: 30px;
+    }
+    .card-title {
+        font-size: 13px;
+        color:#946812 ;/*#8e948e*/;
+        font-weight: bold;
+    }
+    .clear-content-padding{
+        padding:0!important;
     }
 </style>
 <style scoped>

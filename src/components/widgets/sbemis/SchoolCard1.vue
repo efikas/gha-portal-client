@@ -1,5 +1,20 @@
 <template>
-    <b-card v-if="school.id">
+    <div class="skeleton" style="margin: 2%;" v-if="!school.id">
+        <skeleton-loading>
+            <row
+                    :gutter="{top: '10px', bottom: '10px'}"
+            >
+                    <square-skeleton
+                            :boxProperties="{
+                                bottom: '15px',
+                                height: '170px'
+                            }"
+                    >
+                    </square-skeleton>
+            </row>
+        </skeleton-loading>
+    </div>
+    <b-card v-else>
         <div class="row">
             <div class="col-6">
                 <gmap-map :center="center" :zoom="16" class="gmap" ref="gmap1">
@@ -10,21 +25,34 @@
             <div class="col-6">
                 <div style="display: flex; flex: fit-content; flex-direction: column; justify-content: space-between">
                     <div class="row mb-4" style="justify-content: flex-start; flex: 1">
-                        <h4 class="default-color"><router-link :to="{name:'school', params:{id:$route.params.id}}">{{ school.name }}</router-link></h4>
+                        <h4 class="default-color">
+                            <router-link :to="{name:'school', params:{id:school.id}}">{{ school.name }}</router-link>
+                        </h4>
                         <h5>{{ school.address }}</h5>
                     </div>
 
                     <div class="row" style="flex: 1; flex-direction: row; display: flex; justify-content: space-around">
                         <div class="text-center">
-                            <h6><router-link :to="{name:'school-staffs', params: {id: school.id}}">All Staff</router-link></h6>
+                            <h6>
+                                <router-link :to="{name:'school-staffs', params: {id: school.id}}">All Staff
+                                </router-link>
+                            </h6>
                             <h1>{{ school.staffs.teaching + school.staffs.none_teaching }}</h1>
                         </div>
                         <div class="text-center">
-                            <h6><router-link :to="{name:'school-staffs', params: {id: school.id}, query:{t:1}}">Teaching Staff</router-link></h6>
+                            <h6>
+                                <router-link :to="{name:'school-staffs', params: {id: school.id}, query:{t:1}}">Teaching
+                                    Staff
+                                </router-link>
+                            </h6>
                             <h1>{{ school.staffs.teaching }}</h1>
                         </div>
                         <div class="text-center">
-                            <h6><router-link :to="{name:'school-staffs', params: {id: school.id}, query:{t:0}}">Non-Teaching Staff</router-link></h6>
+                            <h6>
+                                <router-link :to="{name:'school-staffs', params: {id: school.id}, query:{t:0}}">
+                                    Non-Teaching Staff
+                                </router-link>
+                            </h6>
                             <h1>{{ school.staffs.none_teaching }}</h1>
                         </div>
                         <div class="text-center">
@@ -77,6 +105,9 @@
 </script>
 
 <style scoped>
+    .skeleton {
+        padding: 0;
+    }
     .gmap {
         width: 100%;
         height: 150px;

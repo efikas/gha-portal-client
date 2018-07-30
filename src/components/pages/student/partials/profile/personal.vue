@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-card class="bg-clear-card" bg-variant="" text-variant="dark">
+        <b-card class="bg-clear2-card" no-body bg-variant="" text-variant="dark">
             <div slot="header">
 
                 <a href="javascript:void(0)" v-b-modal.modal-student-personal>
@@ -17,10 +17,9 @@
                 </h3>
             </div>
 
-            <div class="p-5">
+            <div class="">
                 <div class="table-responsive">
                     <table class="table table-borderless table-striped">
-                        <tbody>
                         <tr>
                             <td class="text-muted">Name</td>
                             <td colspan="3"> {{ `${student.first_name} ${student.last_name}
@@ -59,7 +58,6 @@
                             <td class="text-muted">Birth certificate Type</td>
                             <td colspan="3"> {{ student.birth_cert_type?data.birth_certs[student.birth_cert_type].birth_cert_type:null }}</td>
                         </tr>
-                        </tbody>
                     </table>
                 </div>
             </div>

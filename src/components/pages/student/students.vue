@@ -4,7 +4,7 @@
             <SchoolCard></SchoolCard>
 
             <b-card header="List of Students" header-tag="h4" class="bg-header-card">
-                <div style="margin: 2%" v-if="students.length < 1">
+                <div style="margin: 2%" v-if="loading">
                     <skeleton-loading>
                         <row :gutter="{top: '20px'}">
                             <square-skeleton 
@@ -22,6 +22,7 @@
                 <div v-else>
                     <a type="button" class="fa fa-download icon-big btn btn-outline-primary ekiti-btn pull-right" @click="exportExcel"></a>
                     <v-client-table :data="students" :columns="columns" :options="options">
+                        <span slot="id" slot-scope="student">{{ student.index }}</span>
                         <router-link class="list-font"
                                      slot="name"
                                      slot-scope="props"
@@ -51,6 +52,7 @@ export default {
     mixins: [Toaster],
     data() {
         return {
+            loading: true,
             columns: ['id', 'name', 'current_class', 'sex', 'place_of_birth', 'actions'],
             options: {
                 sortIcon: {
@@ -72,7 +74,13 @@ export default {
         }
     },
     computed:mapGetters(['students', 'school']),
+    watch: {
+        'students'() {
+            this.loading = false;
+        }
+    },
     created() {
+        this.loading = true;
         this.$store.dispatch('students', {id: this.$route.params.id});
     },
     methods: {

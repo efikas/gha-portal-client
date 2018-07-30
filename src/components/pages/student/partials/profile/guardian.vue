@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-card class="bg-clear-card" bg-variant="" text-variant="dark">
+        <b-card class="bg-clear2-card" no-body bg-variant="" text-variant="dark">
             <div slot="header">
                 <a href="javascript:void(0)" v-b-modal.modal-student-guardian>
                     <i class=" fa fa-edit card-profile-link pull-right"></i>
@@ -14,11 +14,10 @@
                     <router-link :to="{query:$route.query}" class="default-color">Guardian</router-link>
                 </h3>
             </div>
-        <div class="p-3">
+        <div class="">
             <div class="table-responsive">
                 <table class="table table-striped mb-5"
                        v-for="guardian in student.guardians">
-                    <tbody>
                     <tr>
                         <td class="text-muted">Full Name</td>
                         <td>{{ guardian.title }} {{ guardian.fullname }}</td>
@@ -43,7 +42,6 @@
                         <td class="text-muted">Religion</td>
                         <td> {{ parseInt(guardian.religion)?data.religions[guardian.religion].religion : '' }}</td>
                     </tr>
-                    </tbody>
                 </table>
             </div>
 
@@ -69,7 +67,3 @@
         },
     }
 </script>
-
-<style scoped>
-
-</style>
