@@ -34,6 +34,7 @@
      */
     import left_side from 'components/layouts/left-side/default/left-side'
 
+
     /**
      * import from header or fixed-header or no-header
      */
@@ -56,7 +57,7 @@
     /**
      * Style required for a fixed-menu layout
      */
-    // import 'components/layouts/css/fixed-menu.scss'
+    import 'components/layouts/css/fixed-menu.scss'
 
     /**
      * Style required for a compact-menu layout

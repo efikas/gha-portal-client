@@ -29,14 +29,12 @@ if (process.env.NODE_ENV === 'production') {
 
 
 function subdomain() {
-    let subdomain = null;
+    let subdomain = '';
     try {
-
         subdomain = regex.exec(url)[1]; //window.location.href
-        return subdomain;
     } catch(e) {
-        return subdomain;
     }
+    return subdomain;
 }
 
 //=======vuex store start===========
@@ -63,7 +61,7 @@ const store = new Vuex.Store({
         statistics: {},
         access_server: subdomain(),
         live_url: "",
-        dev_url: "http://0.0.0.0:5000",
+        dev_url: "http://api.sbemis.localhost",
         api_uri: "/api/v1",
         auth_uri: "/oauth/token"
     },

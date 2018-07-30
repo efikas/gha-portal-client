@@ -11,13 +11,12 @@
                 </a>
             </div>
             <div class="navbar-right">
-
                 <!--drop downs-->
                 <div>
                     <!-- User Account: style can be found in dropdown-->
-                    <b-dropdown class="user user-menu bell_bg user_btn" right link>
+                    <b-dropdown class="user user-menu bell_bg" right link>
                         <span slot="text">
-                            <img :src="require('img/authors/prf4.jpg')" class="rounded-circle" alt="User Image">
+                            <!--<img :src="require('img/authors/prf4.jpg')" class="rounded-circle" alt="User Image">-->
                             <!-- User name-->
                             <p class="user_name_max">{{this.$store.state.user.name}}</p>
                         </span>
@@ -160,6 +159,10 @@
         margin-top: 10px;
     }
 
+    .user.user-menu {
+        padding-top: 10px;
+    }
+
     .user.user-menu > button img {
         width: 35px;
         height: 35px;
@@ -241,7 +244,6 @@
         }
         //.btn-secondary:active
         &.show button {
-            background-color: $bell-active !important
         }
         &.user_btn .dropdown-toggle {
             padding: 7px 9px;

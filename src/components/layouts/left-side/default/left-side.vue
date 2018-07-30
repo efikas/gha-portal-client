@@ -3,8 +3,7 @@
     <aside class="left-aside sidebar-offcanvas">
         <!-- sidebar: style can be found in sidebar-->
         <section class="sidebar">
-            <br>
-            <div id="menu" role="navigation">
+            <div id="menu" role="navigation" class="mt-3 mb-5">
                 <vmenu>
                     <template v-for="item in menuitems">
                         <li class="divider mt-3 " v-if="item.title">
@@ -32,8 +31,7 @@
         vmenuItem,
         vsubMenu
     } from './menu';
-    import profile from "../left-profile/user_profile2.vue"
-    import menu_items from "../../../../menu.js";
+    import menu_items from "src/menu.js";
 
     export default {
         name: "left-side",
@@ -41,7 +39,6 @@
             vmenu,
             vsubMenu,
             vmenuItem,
-            profile
         },
         data() {
             return {
@@ -79,7 +76,7 @@
 
     .sidebar {
         display: block;
-        font-size: 14px;
+        font-size: 12px;
         letter-spacing: 1px;
     }
 
@@ -97,9 +94,5 @@
     .badge {
         padding: 0.60em 0.7em;
         border-radius: 0.75rem;
-    }
-
-    .nav_profile {
-        border-bottom: 1px solid #eee;
     }
 </style>

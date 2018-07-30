@@ -15,8 +15,6 @@ axios.interceptors.request.use(function (config) {
         config.headers['Access-Control-Allow-Origin'] = '*';
         config.headers.Authorization = `Bearer ${token}`
     }
-    config.headers.common['Access-Server'] = Store.getters.access_server;
-
     return config
 });
 

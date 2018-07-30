@@ -4,9 +4,15 @@ const LOGOUT = "LOGOUT";
 
 let mutations = {
     authUser(state, authData) {
-        localStorage.setItem('user', JSON.stringify(authData.user));
-        localStorage.setItem('token', authData.token);
-        localStorage.setItem('expiration', JSON.stringify(authData.expiration + Date.now()));
+        if (authData.user) {
+            localStorage.setItem('user', JSON.stringify(authData.user));
+        }
+        if (authData.token) {
+            localStorage.setItem('token', authData.token);
+        }
+        if (authData.expiration) {
+            localStorage.setItem('expiration', JSON.stringify(authData.expiration + Date.now()));
+        }
     },
     left_menu(state, option) {
         if (option === "open") {
@@ -31,16 +37,16 @@ let mutations = {
     },
     changePageTitle(state, title) {
         state.page_title = title
-        document.title = title + " - " +state.site_name
+        document.title = title + " - " + state.site_name
     },
     addevent(state, event) {
         let id = state.cal_events[state.cal_events.length - 1] ? state.cal_events[state.cal_events.length - 1].id + 1 : 0;
-        state.cal_events.push({ id: id, title: event.evtname, start: event.date.from, end: event.date.to })
+        state.cal_events.push({id: id, title: event.evtname, start: event.date.from, end: event.date.to})
     },
     editevent(state, event) {
         let evt = JSON.parse(JSON.stringify(event));
         let id_index = "";
-        state.cal_events.forEach(function(currentValue, index) {
+        state.cal_events.forEach(function (currentValue, index) {
             if (currentValue.id === evt.id) {
                 id_index = index;
             }
@@ -51,7 +57,7 @@ let mutations = {
     },
     removeevent(state, id) {
         let id_index = "";
-        state.cal_events.forEach(function(currentValue, index) {
+        state.cal_events.forEach(function (currentValue, index) {
             if (currentValue.id === id.evtid) {
                 id_index = index;
             }
@@ -59,14 +65,14 @@ let mutations = {
         state.cal_events.splice(id_index, 1);
     },
 
-    'SET_SITE_DATA' (state, data) {
-        localStorage.setItem('data', JSON.stringify(function(entities) {
+    'SET_SITE_DATA'(state, data) {
+        localStorage.setItem('data', JSON.stringify(function (entities) {
 
             for (let index in entities) {
                 const normalized = {};
                 for (let entity in entities[index]) {
                     const oldObj = entities[index][entity] || {};
-                    if(oldObj.id) {
+                    if (oldObj.id) {
                         normalized[oldObj.id] = oldObj;
                     }
                 }
@@ -76,14 +82,14 @@ let mutations = {
         }(data)));
     },
 
-    'SET_STATISTICS' (state, statistics) {
+    'SET_STATISTICS'(state, statistics) {
         state.statistics = statistics;
     },
 
-    [LOGIN] (state) {
+    [LOGIN](state) {
         state.pending = true;
     },
-    [LOGIN_SUCCESS] (state) {
+    [LOGIN_SUCCESS](state) {
         state.isLoggedIn = true;
         state.pending = false;
     },
