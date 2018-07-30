@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="container">
+        <div class="">
             <div class="row">
                 <div class="col-md-10" style="padding: 0">
                     <SchoolCard></SchoolCard>
@@ -8,7 +8,7 @@
             </div>
             <div class="row">
                 <div class="col-md-10">
-                    <b-card class="bg-clear2-card" text-variant="dark">
+                    <b-card class="bg-clear2-card" title="STAFF PROFILE" text-variant="dark">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="" style="padding: 0; margin-left: 40px; margin-bottom: -40px">
@@ -127,6 +127,11 @@
     }
 </script>
 <style>
+    .card-title {
+        font-size: 13px;
+        color:#946812 ;/*#8e948e*/;
+        font-weight: bold;
+    }
     .clear-content-padding{
         padding:0!important;
     }
