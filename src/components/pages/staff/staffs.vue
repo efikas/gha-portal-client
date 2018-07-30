@@ -28,7 +28,7 @@
                                 class="list-font sch-link"
                                 slot="Name"
                                 slot-scope="staff"
-                                :to="{name: 'staff-profile', param:{id: staff.row.id}}">
+                                :to="{name: 'staff-profile', params:{id: staff.row.id}}">
                             {{staff.row.first_name + ' ' + staff.row.last_name + ' ' + staff.row.middle_name}}
                         </router-link>
                         <div slot="Actions" slot-scope="staff">

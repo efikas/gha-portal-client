@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-card class="bg-clear-card" bg-variant="" text-variant="dark">
+        <b-card class="bg-clear2-card" no-body text-variant="dark">
             <div slot="header">
                 <a href="javascript:void(0)" v-b-modal.modal-staff-professional>
                     <i class=" fa fa-edit card-profile-link pull-right"></i>
@@ -14,10 +14,9 @@
                     <router-link :to="{query:$route.query}" class="default-color">Professional</router-link>
                 </h3>
             </div>
-            <div class="p-3">
+            <div class="">
                 <div class="table-responsive">
                     <table class="table table-striped" v-if="staff">
-                        <tbody>
                         <tr>
                             <td class="text-muted">Academic Qualification</td>
                             <td> {{ staff.academic_qualification?data.academic_qualifications[staff.academic_qualification].qualification:null }}</td>
@@ -52,7 +51,6 @@
                             <td class="text-muted">Computer Literate</td>
                             <td colspan="3"> {{ yesNo(staff.computer_literate) }}</td>
                         </tr>
-                        </tbody>
                     </table>
                 </div></div>
         </b-card>

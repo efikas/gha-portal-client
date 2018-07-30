@@ -35,6 +35,7 @@
                                                maxlength="10"/>
                                         <div class="input-group-addon" style="padding: 2.5px 10px 0 10px!important; background: none!important;">
                                             <a href="" @click.prevent="toggleInput"><i class="material-icons" style="font-size: 16px;" v-html="icon_name"></i></a>
+                                            <!--<i class="fa fa-eye-slash" aria-hidden="true"></i>-->
                                         </div>
                                     </div>
                                 </div>
