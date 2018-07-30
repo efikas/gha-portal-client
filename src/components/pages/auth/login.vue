@@ -67,14 +67,10 @@
     </div>
 </template>
 <script>
-    import Vue from 'vue'
-    import VueSweetalert2 from 'vue-sweetalert2';
     import {loginV} from 'src/validations/validations'
     import Toaster from '../../mixins/toaster'
-
-    Vue.use(VueSweetalert2);
     export default {
-        name: "login2",
+        name: "login",
         data() {
             return {
                 email: null,
@@ -89,13 +85,17 @@
                 this.$store.dispatch('login', {username: this.email, password: this.password})
                     .then(() => {
                         // console.log(redirect)
-                        window.location.href = this.$route.query.redirect || "/";
+                        this.$router.push({name: 'dashboard'})
+                        // window.location.href = this.$route.query.redirect || "/";
                     })
                     .catch(() => setTimeout(() =>
                         this.errorMsg('The user credentials were incorrect.', 'Login Error'),
                         200)
                     );
             }
+        },
+        beforeRouteLeave (to, from, next){
+            next()
         }
     }
 </script>

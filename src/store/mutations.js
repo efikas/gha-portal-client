@@ -36,7 +36,7 @@ let mutations = {
         }
     },
     changePageTitle(state, title) {
-        state.page_title = title
+        state.page_title = title;
         document.title = title + " - " + state.site_name
     },
     addevent(state, event) {

@@ -50,7 +50,8 @@ const Reports = {
             }
         },
         secondary_school() {
-            return {header: 'Secondary School Distribution',
+            return {
+                header: 'Secondary School Distribution',
                 value: this.reshape ? this.reshape.sec_sch : {}
             }
         },
@@ -107,9 +108,15 @@ const Reports = {
     },
 
     async created() {
-        await this.$store.dispatch('loadStatistics');
+        //prevent calling multiple request of loadStatistics already called in topCard component
+        if (!Object.keys(this.statistics).length) {
+            await this.$store.dispatch('loadStatistics');
+        }
+        await Promise.resolve(this.statistics);
         this.reshape = dataMapping(this.statistics);
     }
+
+
 };
 
-export { Reports }
+export {Reports}

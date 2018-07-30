@@ -38,10 +38,11 @@ router.beforeEach((to, from, next) => {
 
         next()
     }
-)
+);
 
 router.beforeEach((to, from, next) => {
-    store.commit("routeChange", "start")
+    //fixme: hide preloader on route change
+    // store.commit("routeChange", "start")
     // scroll to top when changing pages
     if (document.scrollingElement) {
         document.scrollingElement.scrollTop = 0
