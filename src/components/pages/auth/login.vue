@@ -29,22 +29,16 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label for="password"> Password</label>
-                                    <input v-model="password" name="password" id="password" type="password"
-                                           placeholder="Password" class="form-control" minlength="4"
-                                           maxlength="10"/>
+                                    <div class="input-group">
+                                        <input v-model="password" name="password" id="password" :type="input"
+                                               placeholder="Password" class="form-control" minlength="4"
+                                               maxlength="10"/>
+                                        <div class="input-group-addon" style="padding: 2.5px 10px 0 10px!important; background: none!important;">
+                                            <a href="" @click.prevent="toggleInput"><i class="material-icons" style="font-size: 16px;" v-html="icon_name"></i></a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <!--<div class="col-lg-12 col-md-12">-->
-                            <!--<validate tag="label">-->
-                            <!--<label class="custom-control custom-checkbox">-->
-                            <!--<input type="checkbox" class="custom-control-input checkbox_label"-->
-                            <!--name="remember"-->
-                            <!--id="remember" v-model="remember" check-box>-->
-                            <!--<span class="custom-control-indicator"></span>-->
-                            <!--<span class="custom-control-description">Remember Me</span>-->
-                            <!--</label>-->
-                            <!--</validate>-->
-                            <!--</div>-->
                             <div class="col-sm-12 text-center">
                                 <div class="form-group">
                                     <p>
@@ -75,12 +69,25 @@
             return {
                 email: null,
                 password: null,
-                error: ""
+                error: "",
+                input: 'password',
+                icon_name: 'visibility',
             }
         },
         validations: loginV,
         mixins: [Toaster],
         methods: {
+            toggleInput() {
+                if (this.input === 'password') {
+                    this.input = 'text';
+                    this.icon_name = 'visibility_off'
+                }
+                else {
+                    this.input = 'password';
+                    this.icon_name = 'visibility'
+                }
+
+            },
             onSubmit() {
                 this.$store.dispatch('login', {username: this.email, password: this.password})
                     .then(() => {
