@@ -21,25 +21,13 @@ const getters = {
     statistics: state => state.statistics,
     access_server: state => state.access_server,
     url: state => {
-        if (process.env.NODE_ENV === 'production') {
-            return state.live_url;
-        } else {
-            return state.dev_url;
-        }
+        return process.env.MIX_API_URL;
     },
     api_url: state => {
-        if (process.env.NODE_ENV === 'production') {
-            return state.live_url + state.api_uri;
-        } else {
-            return state.dev_url + state.api_uri;
-        }
+        return process.env.MIX_API_URL + process.env.MIX_API_URI;
     },
     api_auth_url: state => {
-        if (process.env.NODE_ENV === 'production') {
-            return state.live_url + state.auth_uri;
-        } else {
-            return state.dev_url + state.auth_uri;
-        }
+        return process.env.MIX_AUTH_URI;
     }
 };
 
