@@ -286,7 +286,7 @@
             onSubmit: function () {
                 let form = {
                     'average_distance': this.school.average_distance,
-                    'established': this.school.established,
+                    'established': this.school.established.toString(),
                     'location': this.school.location,
                     'name': this.school.name,
                     'lga_ward_id': this.school.lga_ward_id,

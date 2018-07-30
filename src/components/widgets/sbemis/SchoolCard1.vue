@@ -4,22 +4,22 @@
             <row
                     :gutter="{top: '10px', bottom: '10px'}"
             >
-                    <square-skeleton
-                            :boxProperties="{
+                <square-skeleton
+                        :boxProperties="{
                                 bottom: '15px',
                                 height: '170px'
                             }"
-                    >
-                    </square-skeleton>
+                >
+                </square-skeleton>
             </row>
         </skeleton-loading>
     </div>
     <b-card v-else>
         <div class="row">
             <div class="col-6">
-                <gmap-map :center="center" :zoom="16" class="gmap" ref="gmap1">
-                    <gmap-marker v-for="m in markers" :key="m.position.lat" :position="m.position" :clickable="true"
-                                 :draggable="true" @click="center=m.position"></gmap-marker>
+                <gmap-map :center="geolocation.center" :zoom="16" class="gmap" ref="gmap1">
+                    <gmap-marker v-for="m in geolocation.markers" :key="m.position.lat" :position="m.position" :clickable="true"
+                                 :draggable="true" @click="geolocation.center=m.position"></gmap-marker>
                 </gmap-map>
             </div>
             <div class="col-6">
@@ -59,9 +59,7 @@
                             <h6><a :href="`/school/${school.id}/students`">Students</a></h6>
                             <h1>{{ school.students }}</h1>
                         </div>
-
                     </div>
-
                 </div>
             </div>
         </div>
@@ -86,21 +84,29 @@
     export default {
         data() {
             return {
-                center: {
-                    lat: 7.6401306,
-                    lng: 5.2033970
-                },
-                markers: [{
-                    position: {
-                        lat: 7.6401306,
-                        lng: 5.2033970
-                    }
-                }]
             }
         },
-        computed: mapGetters([
-            'school'
-        ]),
+        computed: {
+            ...mapGetters([
+                'school'
+            ]),
+            geolocation() {
+                var lat = this.school.geolocation?parseFloat(this.school.geolocation.split(',')[0].trim()):0.0000000;
+                var lng = this.school.geolocation?parseFloat(this.school.geolocation.split(',')[1].trim()):0.0000000;
+                return {
+                    center: {
+                        lat: lat,
+                        lng: lng
+                    },
+                    markers: [{
+                        position: {
+                            lat: lat,
+                            lng: lng
+                        }
+                    }]
+                }
+            }
+        },
     }
 </script>
 
@@ -108,6 +114,7 @@
     .skeleton {
         padding: 0;
     }
+
     .gmap {
         width: 100%;
         height: 150px;
