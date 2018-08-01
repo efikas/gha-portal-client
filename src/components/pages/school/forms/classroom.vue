@@ -97,7 +97,6 @@
             }
         },
         created(){
-            // this.school = this.getSchool;
             this.classrooms = JSON.parse(JSON.stringify(this.school.classroom_list));
         },
         methods: {
