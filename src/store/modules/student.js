@@ -36,7 +36,7 @@ const actions = {
         })
     },
     storeStudent: ({commit}, payload) => {
-        return axios.post('/student', payload).then(response => {
+        return axios.post('/students', payload).then(response => {
             return Promise.resolve(response.data)
         }).catch((error) => {
             return Promise.reject(error.response)

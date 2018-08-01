@@ -33,8 +33,11 @@
                                         <input v-model="password" name="password" id="password" :type="input"
                                                placeholder="Password" class="form-control" minlength="4"
                                                maxlength="10"/>
-                                        <div class="input-group-addon" style="padding: 2.5px 10px 0 10px!important; background: none!important;">
-                                            <a href="" @click.prevent="toggleInput"><i class="material-icons" style="font-size: 16px;" v-html="icon_name"></i></a>
+                                        <div class="input-group-addon"
+                                             style="padding: 2.5px 10px 0 10px!important; background: none!important;">
+                                            <a href="" @click.prevent="toggleInput"><i class="material-icons"
+                                                                                       style="font-size: 16px;"
+                                                                                       v-html="icon_name"></i></a>
                                             <!--<i class="fa fa-eye-slash" aria-hidden="true"></i>-->
                                         </div>
                                     </div>
@@ -47,9 +50,9 @@
                                         </router-link>
                                     </p>
                                     <!--<div class="form-group">-->
-                                    <button type="submit" :disabled="$v.$invalid"
+                                    <button type="submit" ref="button" :disabled="$v.$invalid"
                                             class="btn btn-block btn-primary login-btn"><i
-                                            class="fa fa-lock"></i> Login
+                                            class="fa fa-lock"></i> <span v-html="logintext">Login</span>
                                     </button>
                                     <!--</div>-->
                                 </div>
@@ -64,6 +67,7 @@
 <script>
     import {loginV} from 'src/validations/validations'
     import Toaster from '../../mixins/toaster'
+
     export default {
         name: "login",
         data() {
@@ -73,6 +77,7 @@
                 error: "",
                 input: 'password',
                 icon_name: 'visibility',
+                logintext: 'Login',
             }
         },
         validations: loginV,
@@ -90,19 +95,22 @@
 
             },
             onSubmit() {
+                this.$refs.button.disabled = true;
+                this.logintext = "please wait...";
                 this.$store.dispatch('login', {username: this.email, password: this.password})
                     .then(() => {
                         // console.log(redirect)
-                        this.$router.push({name: 'dashboard'})
-                        // window.location.href = this.$route.query.redirect || "/";
+                        // this.$router.push({name: 'dashboard'})
+                        window.location.href = this.$route.query.redirect || "/";
                     })
-                    .catch(() => setTimeout(() =>
-                        this.errorMsg('The user credentials were incorrect.', 'Login Error'),
-                        200)
-                    );
+                    .catch(() => {
+                        this.$refs.button.disabled = false;
+                        this.logintext = "Login"
+                        setTimeout(() => this.errorMsg('The user credentials were incorrect.', 'Login Error'), 200)
+                    });
             }
         },
-        beforeRouteLeave (to, from, next){
+        beforeRouteLeave(to, from, next) {
             next()
         }
     }
