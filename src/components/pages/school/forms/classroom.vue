@@ -16,49 +16,54 @@
                                            @click="removeClassroom(index)">X</a></div>
             <div class="row odd-row">
                 <div class="col-xs-12 col-sm-6 col-md-2">
-                    <div class="form-group p-10">
+                    <div class="form-group p-10" :class="{'has-error':$v.school.classroom_list.$each.$iter[index].class_id.$invalid}">
                         <label class="control-label">Class Level</label>
-                        <select class="form-control" v-model="school.classroom_list[index].class_id" size="1">
-                            <option value="">Select Class</option>
+                        <select class="form-control" v-model="school.classroom_list[index].class_id"
+                                @blur="$v.school.classroom_list.$each.$iter[index].class_id.$touch()" size="1">
                             <option v-for="_class in data.classes" :value="_class.id">{{_class.class}}</option>
                         </select>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-2">
-                    <div class="form-group p-10">
+                    <div class="form-group p-10" :class="{'has-error':$v.school.classroom_list.$each.$iter[index].good.$invalid}">
                         <label class="control-label">Good</label>
                         <input type="number" v-model="school.classroom_list[index].good" min="0" class="form-control"
-                               placeholder="">
+                               @blur="$v.school.classroom_list.$each.$iter[index].good.$touch()"
+                        placeholder="">
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-2">
-                    <div class="form-group p-10">
+                    <div class="form-group p-10" :class="{'has-error':$v.school.classroom_list.$each.$iter[index].minor_repair.$invalid}">
                         <label class="control-label">Minor Repair</label>
                         <input type="number" v-model="school.classroom_list[index].minor_repair" min="0" class="form-control"
+                               @blur="$v.school.classroom_list.$each.$iter[index].minor_repair.$touch()"
                                placeholder="">
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-2">
-                    <div class="form-group p-10">
+                    <div class="form-group p-10" :class="{'has-error':$v.school.classroom_list.$each.$iter[index].major_repair.$invalid}">
                         <label class="control-label">Major Repair</label>
                         <input type="number" v-model="school.classroom_list[index].major_repair" min="0" class="form-control"
+                               @blur="$v.school.classroom_list.$each.$iter[index].major_repair.$touch()"
                                placeholder="">
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-2">
-                    <div class="form-group p-10">
+                    <div class="form-group p-10" :class="{'has-error':$v.school.classroom_list.$each.$iter[index].unusable.$invalid}">
                         <label class="control-label">Unuseable</label>
                         <input type="number" v-model="school.classroom_list[index].unusable" min="0" class="form-control"
+                               @blur="$v.school.classroom_list.$each.$iter[index].unusable.$touch()"
                                placeholder="">
                     </div>
                 </div>
             </div>
             <div class="even-row">
                 <div class="col-xs-8">
-                    <div class="form-group p-10">
-                        <label class="control-label col-md-12">Comment</label>
+                    <div class="form-group p-10" :class="{'has-error':$v.school.classroom_list.$each.$iter[index].class_id.$error}">
+                        <label class="control-label">Comment</label>
                         <div class="col-xs-8">
                             <textarea class="form-control" v-model="school.classroom_list[index].comment" placeholder=""
+                                      @blur="$v.school.classroom_list.$each.$iter[index].comment.$touch()"
                                       cols="30" rows="4"></textarea>
                         </div>
                     </div>
@@ -71,28 +76,30 @@
     </div>
 </template>
 <script>
-    import { mapGetters } from 'vuex'
     import {schoolFormMixins} from './mixins'
+    import {classroomValidations} from 'src/validations/school'
 
     export default {
-        validations: {},
+        validations: classroomValidations,
         data() {
             return {}
         },
         computed: {
             classroom_list() {
                 return this.school.classroom_list.map(obj => {
-                    delete obj.class; delete obj.created_at; delete obj.updated_at;
+                    delete obj.class;
+                    delete obj.created_at;
+                    delete obj.updated_at;
                     return obj;
                 });
             }
         },
         created(){
-            this.school = this.getSchool;
+            // this.school = this.getSchool;
         },
         methods: {
             addClassroom() {
-                this.school.classroom_list.push({});
+                this.school.classroom_list.push({'class_id':1});
             },
             removeClassroom(index) {
                 this.school.classroom_list.splice(index, 1);
@@ -134,12 +141,6 @@
 
     form .odd-row:first-of-type {
         border-top: 1px dashed #959DCC;
-    }
-
-    .form-group label {
-        font-size: .8rem !important;
-        letter-spacing: 1px;
-        color: #684348 !important;
     }
 
     .classroom-wrapper-div:not(:last-of-type) {

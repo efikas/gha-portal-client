@@ -60,6 +60,22 @@ const facilityValidations = {
     }
 };
 
+const classroomValidations = {
+    school: {
+        classroom_list: {
+            required,
+            $each: {
+                class_id: {required},
+                good: {required, numeric},
+                minor_repair: {required, numeric},
+                major_repair: {required, numeric},
+                unusable: {required, numeric},
+                comment: {},
+            }
+        }
+    }
+};
 
 
-export { basicValidations, facilityValidations }
+
+export { basicValidations, facilityValidations, classroomValidations }
