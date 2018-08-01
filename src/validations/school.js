@@ -16,7 +16,7 @@ import {
 const schoolName = helpers.regex('schoolName', /^[a-zA-Z ]+$/)
 const geolocation = helpers.regex('geolocation', /^[0-9 \.,\/\-]+$/)
 
-const basicFormValidations = {
+const basicValidations = {
     lga_ward_id: {required, integer},
     school: {
         ward: {
@@ -47,6 +47,19 @@ const basicFormValidations = {
     }
 };
 
+const facilityValidations = {
+    school: {
+        building_id: {required},
+        play_room_id: {required},
+        play_facility_id: {required},
+        learning_ids: {required},
+        power_source_ids: {required},
+        health_ids: {required},
+        water_ids: {required},
+        toilet_ids: {required},
+    }
+};
 
 
-export { basicFormValidations }
+
+export { basicValidations, facilityValidations }

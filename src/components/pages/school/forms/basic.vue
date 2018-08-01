@@ -284,7 +284,7 @@
 <script>
 
     import {schoolFormMixins} from './mixins'
-    import {basicFormValidations} from 'src/validations/school'
+    import {basicValidations} from 'src/validations/school'
 
     export default {
         data() {
@@ -300,7 +300,7 @@
             }
         },
         mixins: [schoolFormMixins],
-        validations: basicFormValidations,
+        validations: basicValidations,
         methods: {
             wardChanged(event) {
                 console.log(lga_ward_id, event)
