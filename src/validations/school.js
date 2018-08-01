@@ -20,7 +20,7 @@ const basicValidations = {
     lga_ward_id: {required, integer},
     school: {
         ward: {
-            lga_id:{required, integer},
+            lga_id: {required, integer},
         },
         name: {required, schoolName},
         location: {required},
@@ -61,21 +61,18 @@ const facilityValidations = {
 };
 
 const classroomValidations = {
-    school: {
-        classroom_list: {
-            required,
-            $each: {
-                class_id: {required},
-                good: {required, numeric},
-                minor_repair: {required, numeric},
-                major_repair: {required, numeric},
-                unusable: {required, numeric},
-                comment: {},
-            }
+    classrooms: {
+        required,
+        $each: {
+            class_id: {required},
+            good: {required, numeric},
+            minor_repair: {required, numeric},
+            major_repair: {required, numeric},
+            unusable: {required, numeric},
+            comment: {},
         }
     }
 };
 
 
-
-export { basicValidations, facilityValidations, classroomValidations }
+export {basicValidations, facilityValidations, classroomValidations}

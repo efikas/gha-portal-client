@@ -16,54 +16,54 @@
                                            @click="removeClassroom(index)">X</a></div>
             <div class="row odd-row">
                 <div class="col-xs-12 col-sm-6 col-md-2">
-                    <div class="form-group p-10" :class="{'has-error':$v.school.classroom_list.$each.$iter[index].class_id.$invalid}">
+                    <div class="form-group p-10" :class="{'has-error':$v.classrooms.$each[index].class_id.$invalid}">
                         <label class="control-label">Class Level</label>
-                        <select class="form-control" v-model="school.classroom_list[index].class_id"
-                                @blur="$v.school.classroom_list.$each.$iter[index].class_id.$touch()" size="1">
+                        <select class="form-control" v-model="classrooms[index].class_id"
+                                @blur="$v.classrooms.$each[index].class_id.$touch()" size="1">
                             <option v-for="_class in data.classes" :value="_class.id">{{_class.class}}</option>
                         </select>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-2">
-                    <div class="form-group p-10" :class="{'has-error':$v.school.classroom_list.$each.$iter[index].good.$invalid}">
+                    <div class="form-group p-10" :class="{'has-error':$v.classrooms.$each[index].good.$invalid}">
                         <label class="control-label">Good</label>
-                        <input type="number" v-model="school.classroom_list[index].good" min="0" class="form-control"
-                               @blur="$v.school.classroom_list.$each.$iter[index].good.$touch()"
+                        <input type="number" v-model="classrooms[index].good" min="0" class="form-control"
+                               @blur="$v.classrooms.$each[index].good.$touch()"
                         placeholder="">
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-2">
-                    <div class="form-group p-10" :class="{'has-error':$v.school.classroom_list.$each.$iter[index].minor_repair.$invalid}">
+                    <div class="form-group p-10" :class="{'has-error':$v.classrooms.$each[index].minor_repair.$invalid}">
                         <label class="control-label">Minor Repair</label>
-                        <input type="number" v-model="school.classroom_list[index].minor_repair" min="0" class="form-control"
-                               @blur="$v.school.classroom_list.$each.$iter[index].minor_repair.$touch()"
+                        <input type="number" v-model="classrooms[index].minor_repair" min="0" class="form-control"
+                               @blur="$v.classrooms.$each[index].minor_repair.$touch()"
                                placeholder="">
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-2">
-                    <div class="form-group p-10" :class="{'has-error':$v.school.classroom_list.$each.$iter[index].major_repair.$invalid}">
+                    <div class="form-group p-10" :class="{'has-error':$v.classrooms.$each[index].major_repair.$invalid}">
                         <label class="control-label">Major Repair</label>
-                        <input type="number" v-model="school.classroom_list[index].major_repair" min="0" class="form-control"
-                               @blur="$v.school.classroom_list.$each.$iter[index].major_repair.$touch()"
+                        <input type="number" v-model="classrooms[index].major_repair" min="0" class="form-control"
+                               @blur="$v.classrooms.$each[index].major_repair.$touch()"
                                placeholder="">
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-2">
-                    <div class="form-group p-10" :class="{'has-error':$v.school.classroom_list.$each.$iter[index].unusable.$invalid}">
+                    <div class="form-group p-10" :class="{'has-error':$v.classrooms.$each[index].unusable.$invalid}">
                         <label class="control-label">Unuseable</label>
-                        <input type="number" v-model="school.classroom_list[index].unusable" min="0" class="form-control"
-                               @blur="$v.school.classroom_list.$each.$iter[index].unusable.$touch()"
+                        <input type="number" v-model="classrooms[index].unusable" min="0" class="form-control"
+                               @blur="$v.classrooms.$each[index].unusable.$touch()"
                                placeholder="">
                     </div>
                 </div>
             </div>
             <div class="even-row">
                 <div class="col-xs-8">
-                    <div class="form-group p-10" :class="{'has-error':$v.school.classroom_list.$each.$iter[index].class_id.$error}">
+                    <div class="form-group p-10" :class="{'has-error':$v.classrooms.$each[index].class_id.$error}">
                         <label class="control-label">Comment</label>
                         <div class="col-xs-8">
-                            <textarea class="form-control" v-model="school.classroom_list[index].comment" placeholder=""
-                                      @blur="$v.school.classroom_list.$each.$iter[index].comment.$touch()"
+                            <textarea class="form-control" v-model="classrooms[index].comment" placeholder=""
+                                      @blur="$v.classrooms.$each[index].comment.$touch()"
                                       cols="30" rows="4"></textarea>
                         </div>
                     </div>
@@ -82,11 +82,13 @@
     export default {
         validations: classroomValidations,
         data() {
-            return {}
+            return {
+                classrooms:[{}]
+            }
         },
         computed: {
             classroom_list() {
-                return this.school.classroom_list.map(obj => {
+                return this.classrooms.map(obj => {
                     delete obj.class;
                     delete obj.created_at;
                     delete obj.updated_at;
@@ -96,17 +98,18 @@
         },
         created(){
             // this.school = this.getSchool;
+            this.classrooms = JSON.parse(JSON.stringify(this.school.classroom_list));
         },
         methods: {
             addClassroom() {
-                this.school.classroom_list.push({'class_id':1});
+                this.classrooms.push({'class_id':1});
             },
             removeClassroom(index) {
-                this.school.classroom_list.splice(index, 1);
+                this.classrooms.splice(index, 1);
             },
             onSubmit: function () {
                 let form = {
-                    'classrooms':  this.school.classroom_list.map(classroom=>{
+                    'classrooms':  this.classroom_list.map(classroom=>{
                         if(classroom.id) delete classroom.id;
                         if(classroom.updated_at) delete classroom.updated_at;
                         if(classroom.created_at) delete classroom.created_at;
