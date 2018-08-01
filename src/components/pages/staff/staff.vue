@@ -69,6 +69,7 @@
 <script>
 
     import {mapGetters} from 'vuex';
+    import store from 'src/store/store';
     import SchoolCard from "../../widgets/sbemis/SchoolCard1";
     import personal from './partials/profile/personal'
     import professional from './partials/profile/professional'
@@ -115,8 +116,13 @@
         computed: mapGetters([
             'staff'
         ]),
+        async beforeRouteEnter(to, from, next) {
+            await store.dispatch('staff', to.params.id).catch(() => {
+                return next(from);
+            });
+            next()
+        },
         created: function () {
-            this.$store.dispatch('staff', this.$route.params.id);
             this.tabChanged(this.$route.query.section);
         },
         watch: {

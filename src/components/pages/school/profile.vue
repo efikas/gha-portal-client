@@ -74,6 +74,7 @@
 
     import studentForm from '../student/forms/personal'
     import staffForm from '../staff/forms/personal'
+    import store from 'src/store/store';
 
     export default {
         components: {
@@ -139,8 +140,13 @@
                 }
             }
         },
-        async created() {
-            await this.$store.dispatch('school', this.$route.params.id);
+        async beforeRouteEnter(to, from, next) {
+            await store.dispatch('school', to.params.id).catch(() => {
+                return next(from);
+            });
+            next()
+        },
+        created() {
             this.tabChanged(this.$route.query.section);
         }
     }

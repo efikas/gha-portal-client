@@ -31,13 +31,16 @@
                         <div class="row">
                             <div class="col-md-9 offset-3">
                                 <b-nav>
-                                    <router-link tag="li" :to="{name:'student-profile', query:{section: 0}, hash: '#profile'}">
+                                    <router-link tag="li"
+                                                 :to="{name:'student-profile', query:{section: 0}, hash: '#profile'}">
                                         <a class="nav-link">Personal</a>
                                     </router-link>
-                                    <router-link tag="li" class="nav-item" :to="{name:'student-profile', query:{section: 1}, hash: '#profile'}">
+                                    <router-link tag="li" class="nav-item"
+                                                 :to="{name:'student-profile', query:{section: 1}, hash: '#profile'}">
                                         <a class="nav-link">Academic</a>
                                     </router-link>
-                                    <router-link tag="li" class="nav-item" :to="{name:'student-profile', query:{section: 2}, hash: '#profile'}">
+                                    <router-link tag="li" class="nav-item"
+                                                 :to="{name:'student-profile', query:{section: 2}, hash: '#profile'}">
                                         <a class="nav-link">Guardian</a>
                                     </router-link>
                                 </b-nav>
@@ -50,7 +53,8 @@
                 <div class="col-md-10" id="profile" style="padding: 0">
                     <b-card class="" no-body>
                         <!-- Nav tabs -->
-                        <b-tabs vertical card small :content-class="contentClass()" pills v-model="tabIndex" @input="tabChanged($event)">
+                        <b-tabs vertical card small :content-class="contentClass()" pills v-model="tabIndex"
+                                @input="tabChanged($event)">
                             <b-tab title="Personal">
                                 <personal></personal>
                             </b-tab>
@@ -71,8 +75,9 @@
 <script>
     import SchoolCard from "../../widgets/sbemis/SchoolCard1";
     import {mapGetters} from 'vuex';
-    import PersonalForm from './forms/personal'
-    import {Personal, Academic, Guardian} from './partials/profile/index'
+    import store from 'src/store/store';
+    import PersonalForm from './forms/personal';
+    import {Personal, Academic, Guardian} from './partials/profile/index';
 
     export default {
         components: {
@@ -90,12 +95,17 @@
         computed: mapGetters([
             'student'
         ]),
-        created: async function () {
-            await this.$store.dispatch('student', this.$route.params.id);
+        async beforeRouteEnter(to, from, next) {
+            await store.dispatch('student', to.params.id).catch(() => {
+                return next(from);
+            });
+            next()
+        },
+        created: function () {
             this.tabChanged(this.$route.query.section);
         },
         methods: {
-            contentClass(){
+            contentClass() {
                 return ['clear-content-padding'];
             },
             showImage() {
@@ -138,17 +148,19 @@
     .card-profile-link {
         font-size: 30px;
     }
+
     .card-title {
         font-size: 13px;
-        color:#946812 ;/*#8e948e*/;
+        color: #946812; /*#8e948e*/;
         font-weight: bold;
     }
-    .clear-content-padding{
-        padding:0!important;
+
+    .clear-content-padding {
+        padding: 0 !important;
     }
 </style>
 <style scoped>
-    .profile-name{
+    .profile-name {
         padding: 5px;
         /*background: linear-gradient(to bottom, gray, #000000);*/
         /*color: black;*/
@@ -157,19 +169,23 @@
         font-size: 25px;
         font-weight: bold;
     }
-    .bg-clear-card{
-        padding: 0!important;
+
+    .bg-clear-card {
+        padding: 0 !important;
     }
+
     .card-footer {
-        padding-top: 0!important;
-        padding-bottom: 0!important;
-        margin: 0!important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        margin: 0 !important;
     }
 
     .fade-enter-active, .fade-leave-active {
         transition: opacity .5s;
     }
-    .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+
+    .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */
+    {
         opacity: 0;
     }
 </style>
