@@ -2,7 +2,7 @@
     <div>
         <div class="row odd-row">
             <div class="col-md-12">
-                <div class="form-group p-10" :class="{hasError:this.$v.student.school_id.$error}">
+                <div class="form-group p-10" :class="{'has-error':$v.student.school_id.$error}">
                     <label class="control-label">School Name<abbr class="text-danger">*</abbr></label>
                     <!--<select v-model="student.school_id" class="form-control">-->
                         <!--<option v-for="school in schools" >{{school.name}}</option>-->
