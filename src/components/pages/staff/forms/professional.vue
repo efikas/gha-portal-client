@@ -1,12 +1,14 @@
 <template>
     <div>
-            <div class="row odd-row">
+            <div class="row even-row">
                 <div class="col-xs-12 col-sm-6 col-md-3">
-                    <div class="form-group p-10">
+                    <div class="form-group p-10" :class="{'has-error':$v.staff.category.$invalid}">
                         <label class="control-label">Staff type
                         </label>
                         <div class="">
-                            <select v-model="staff.category" class="form-control" size="1">
+                            <select
+                                    @blur="$v.staff.category.$touch()"
+                                    v-model="staff.category" class="form-control" size="1">
                                 <option value="">--select--</option>
                                 <option v-for="category in data.staff_categories" :value="category.id">
                                     {{category.category}}
@@ -16,11 +18,13 @@
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-3">
-                    <div class="form-group p-10">
+                    <div class="form-group p-10" :class="{'has-error':$v.staff.status.$invalid}">
                         <label class="control-label ">Staff current status
                         </label>
                         <div class="">
-                            <select v-model="staff.status" class="form-control" size="1">
+                            <select
+                                    @blur="$v.staff.status.$touch()"
+                                    v-model="staff.status" class="form-control" size="1">
                                 <option value="">--select--</option>
                                 <option v-for="status in data.staff_statuses" :value="status.id">{{status.status}}
                                 </option>
@@ -29,11 +33,13 @@
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-3">
-                    <div class="form-group p-10">
+                    <div class="form-group p-10" :class="{'has-error':$v.staff.salary_source.$invalid}">
                         <label class="control-label ">Salary source
                         </label>
                         <div class="">
-                            <select v-model="staff.salary_source" class="form-control" size="1">
+                            <select
+                                    @blur="$v.staff.salary_source.$touch()"
+                                    v-model="staff.salary_source" class="form-control" size="1">
                                 <option value="null">--select--</option>
                                 <option v-for="salary in data.salaries" :value="salary.id">{{salary.source}}</option>
                             </select>
@@ -41,11 +47,13 @@
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-3">
-                    <div class="form-group p-10">
+                    <div class="form-group p-10" :class="{'has-error':$v.staff.last_promotion_year.$invalid}">
                         <label class="control-label ">Year of last promotion
                         </label>
                         <div class="">
-                            <input type="text" class="form-control" v-model="staff.last_promotion_year"
+                            <input type="text" class="form-control"
+                                   @blur="$v.staff.last_promotion_year.$touch()"
+                                   v-model="staff.last_promotion_year"
                                    placeholder="Year of Last Promotion">
                         </div>
                     </div>
@@ -53,9 +61,11 @@
             </div>
             <div class="row odd-row">
                 <div class="col-xs-12 col-sm-6 col-md-3">
-                    <div class="form-group p-10">
+                    <div class="form-group p-10" :class="{'has-error':$v.staff.academic_qualification.$invalid}">
                         <label class="control-label">Academic qualification</label>
-                        <select v-model="staff.academic_qualification" class="form-control" size="1">
+                        <select
+                                @blur="$v.staff.academic_qualification.$touch()"
+                                v-model="staff.academic_qualification" class="form-control" size="1">
                             <option value="null">--select--</option>
                             <option v-for="academic in data.academic_qualifications" :value="academic.id">
                                 {{academic.qualification}}
@@ -64,11 +74,13 @@
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-3">
-                    <div class="form-group p-10">
+                    <div class="form-group p-10" :class="{'has-error':$v.staff.teaching_qualification.$invalid}">
                         <label class="control-label ">Teaching qualification
                         </label>
                         <div class="">
-                            <select v-model="staff.teaching_qualification" class="form-control" size="1">
+                            <select
+                                    @blur="$v.staff.teaching_qualification.$touch()"
+                                    v-model="staff.teaching_qualification" class="form-control" size="1">
                                 <option value="null">--select--</option>
                                 <option v-for="teaching in data.teaching_qualifications" :value="teaching.id">
                                     {{teaching.qualification}}
@@ -78,11 +90,13 @@
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-3">
-                    <div class="form-group p-10">
+                    <div class="form-group p-10" :class="{'has-error':$v.staff.speciality.$invalid}">
                         <label class="control-label ">Area of specialty
                         </label>
                         <div class="">
-                            <select v-model="staff.speciality" class="form-control" size="1">
+                            <select
+                                    @blur="$v.staff.speciality.$touch()"
+                                    v-model="staff.speciality" class="form-control" size="1">
                                 <option value="null">--select--</option>
                                 <option v-for="specility in data.specialities" :value="specility.id">{{specility.name}}
                                 </option>
@@ -91,11 +105,13 @@
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-3">
-                    <div class="form-group p-10">
+                    <div class="form-group p-10" :class="{'has-error':$v.staff.subject_taught.$invalid}">
                         <label class="control-label ">Main subject taught
                         </label>
                         <div class="">
-                            <select v-model="staff.subject_taught" class="form-control" size="1">
+                            <select
+                                    @blur="$v.staff.subject_taught.$touch()"
+                                    v-model="staff.subject_taught" class="form-control" size="1">
                                 <option value="null">--select--</option>
                                 <option v-for="subjects in data.subjects" :value="subjects.id">{{subjects.subject}}
                                 </option>
@@ -106,11 +122,13 @@
             </div>
             <div class="row even-row">
                 <div class="col-xs-12 col-sm-6 col-md-3">
-                    <div class="form-group p-10">
+                    <div class="form-group p-10" :class="{'has-error':$v.staff.employment_type.$invalid}">
                         <label class="control-label">Employment type
                         </label>
                         <div class="">
-                            <select v-model="staff.employment_type" class="form-control" size="1">
+                            <select
+                                    @blur="$v.staff.employment_type.$touch()"
+                                    v-model="staff.employment_type" class="form-control" size="1">
                                 <option value="null">--select--</option>
                                 <option v-for="type in data.employments" :value="type.id">{{type.type}}</option>
                             </select>
@@ -118,27 +136,33 @@
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-3">
-                    <div class="form-group p-10">
+                    <div class="form-group p-10" :class="{'has-error':$v.staff.classes_taught.$invalid}">
                         <label class="control-label">Class taught
                         </label>
-                        <input type="text" class="form-control" v-model="staff.classes_taught"
-                               placeholder="School Name">
+                        <input type="text" class="form-control"
+                               @blur="$v.staff.classes_taught.$touch()"
+                               v-model="staff.classes_taught">
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-3">
-                    <div class="form-group p-10">
+                    <div class="form-group p-10" :class="{'has-error':$v.staff.computer_literate.$invalid}">
                         <label class="control-label ">Computer literate?
                         </label>
                         <div class="">
-                            <b-form-radio-group v-model="staff.computer_literate" :options="yesNoOptions"/>
+                            <b-form-radio-group
+                                    @change="$v.staff.computer_literate.$touch()"
+                                    v-model="staff.computer_literate" :options="yesNoOptions">
+                            </b-form-radio-group>
                         </div>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-3">
-                    <div class="form-group p-10">
+                    <div class="form-group p-10" :class="{'has-error':$v.staff.trc_reg_no.$invalid}">
                         <label class="control-label">TRC Reg No
                         </label>
-                        <input type="text" class="form-control" v-model="staff.trc_reg_no" placeholder="School Name">
+                        <input type="text" class="form-control"
+                               @blur="$v.staff.trc_reg_no.$touch()"
+                               v-model="staff.trc_reg_no" placeholder="School Name">
                     </div>
                 </div>
             </div>
@@ -150,6 +174,8 @@
 <script>
     import {mapGetters} from 'vuex'
     import Toaster from '../../../mixins/toaster'
+    import {professionalValidations} from 'src/validations/staff'
+
 
     export default {
         name: 'professional',
@@ -163,7 +189,7 @@
         computed: {
             ...mapGetters({getStaff: 'staff', data: 'data'})
         },
-        validations:{},
+        validations:professionalValidations,
         methods: {
             onSubmit: function () {
                 let form = {
@@ -238,18 +264,6 @@
 
     form .odd-row:first-of-type {
         border-top: 1px dashed #959DCC;
-    }
-
-    .form-group label {
-        font-size: .8rem !important;
-        letter-spacing: 1px;
-        color: #684348 !important;
-    }
-
-    .form-group label {
-        font-size: .8rem !important;
-        letter-spacing: 1px;
-        color: #684348 !important;
     }
 
     input {

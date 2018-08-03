@@ -14,9 +14,7 @@ import {
     helpers,
 } from 'vuelidate/lib/validators';
 
-const schoolName = helpers.regex('schoolName', /^[a-zA-Z ]+$/)
-const geolocation = helpers.regex('geolocation', /^[0-9 \.,\/\-]+$/)
-const date = helpers.regex('date', /^[0-9]{4}$/)
+const year = helpers.regex('year', /^[0-9]{4}$/)
 
 const personalValidations = {
     staff: {
@@ -38,58 +36,24 @@ const personalValidations = {
     }
 };
 
-const facilityValidations = {
-    school: {
-        building_id: {required},
-        play_room_id: {required},
-        play_facility_id: {required},
-        learning_ids: {required},
-        power_source_ids: {required},
-        health_ids: {required},
-        water_ids: {required},
-        toilet_ids: {required},
+const professionalValidations = {
+    staff: {
+        category: {required},
+        status: {required},
+        salary_source: {required},
+        last_promotion_year: {required, year},
+        academic_qualification: {required},
+        teaching_qualification: {required},
+        speciality: {required},
+        subject_taught: {required},
+        employment_type: {required},
+        classes_taught: {required},
+        computer_literate: {required},
+        trc_reg_no: {},
     }
 };
-
-const classroomValidations = {
-    classrooms: {
-        required,
-        $each: {
-            class_id: {required},
-            good: {required, numeric},
-            minor_repair: {required, numeric},
-            major_repair: {required, numeric},
-            unusable: {required, numeric},
-            comment: {},
-        }
-    }
-};
-
-const projectValidations = {
-    projects: {
-        required,
-        $each: {
-            name: {required},
-            cost: {required, decimal},
-            funding: {required},
-            date: {required}
-        }
-    }
-};
-
-const sbmcValidations = {
-    sbmc: {
-        required,
-        $each: {
-            name: {required},
-            office: {required},
-            phone: {required, numeric},
-            email: {required, email}
-        }
-    }
-};
-
 
 export {
     personalValidations,
+    professionalValidations
 }
