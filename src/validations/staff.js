@@ -14,7 +14,7 @@ import {
     helpers,
 } from 'vuelidate/lib/validators';
 
-const year = helpers.regex('year', /^[0-9]{4}$/)
+const year = helpers.regex('year', /^[0-9]{4}$/);
 
 const personalValidations = {
     staff: {
