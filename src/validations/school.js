@@ -80,13 +80,31 @@ const projectValidations = {
     projects: {
         required,
         $each: {
-            name: { required },
-            cost: { required, decimal },
+            name: {required},
+            cost: {required, decimal},
             funding: {required},
             date: {required}
         }
     }
 };
 
+const sbmcValidations = {
+    sbmc: {
+        required,
+        $each: {
+            name: {required},
+            office: {required},
+            phone: {required, numeric},
+            email: {required, email}
+        }
+    }
+};
 
-export {basicValidations, facilityValidations, classroomValidations, projectValidations}
+
+export {
+    basicValidations,
+    facilityValidations,
+    classroomValidations,
+    projectValidations,
+    sbmcValidations
+}

@@ -161,10 +161,4 @@
     form .odd-row:first-of-type {
         border-top: 1px dashed #959DCC;
     }
-
-    .form-group label {
-        font-size: .8rem !important;
-        letter-spacing: 1px;
-        color: #684348 !important;
-    }
 </style>
