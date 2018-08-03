@@ -10,85 +10,96 @@
         </div>
         <div class="row even-row">
             <div class="col-xs-12 col-sm-6 col-md-3">
-                <div class="form-group p-10">
+                <div class="form-group p-10" :class="{'has-error':$v.staff.first_name.$invalid}">
                     <label class="control-label " for="text">Firstname
                         <abbr class="text-error">*</abbr></label>
                     <div class="">
                         <input type="text" class="form-control" name="firstname"
+                               @blur="$v.staff.first_name.$touch()"
                                v-model="staff.first_name" placeholder="First Name">
                     </div>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-3">
-                <div class="form-group p-10">
+                <div class="form-group p-10" :class="{'has-error':$v.staff.middle_name.$invalid}">
                     <label class="control-label " for="text">Middle Name <abbr class="text-error">*</abbr>
                     </label>
                     <div class="">
                         <input type="text" class="form-control" name="middlename"
+                               @blur="$v.staff.middle_name.$touch()"
                                v-model="staff.middle_name" placeholder="Middle Name">
                     </div>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-3">
-                <div class="form-group p-10">
+                <div class="form-group p-10" :class="{'has-error':$v.staff.last_name.$invalid}">
                     <label class="control-label" for="text">Last Name
                     </label>
-                    <input type="text" class="form-control" v-model="staff.last_name" placeholder="">
+                    <input type="text" class="form-control"
+                           @blur="$v.staff.last_name.$touch()"
+                           v-model="staff.last_name" placeholder="">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-3">
-                <div class="form-group p-10">
+                <div class="form-group p-10" :class="{'has-error':$v.staff.sex.$invalid}">
                     <label class="control-label" for="text">Sex <abbr class="text-error">*</abbr>
                     </label>
-                    <b-form-radio-group v-model="staff.sex" :options="sexOptions" name="sex"/>
+                    <b-form-radio-group  @change="$v.staff.sex.$touch()" v-model="staff.sex" :options="sexOptions" name="sex"/>
                 </div>
             </div>
         </div>
         <div class="row odd-row">
             <div class="col-xs-12 col-sm-6 col-md-3">
-                <div class="form-group p-10">
+                <div class="form-group p-10" :class="{'has-error':$v.staff.date_of_birth.$invalid}">
                     <label class="control-label " for="text">Date of Birth <abbr class="text-error">*</abbr>
                     </label>
                     <div class="">
                         <input type="date" class="form-control" name="birthdate"
+                               @blur="$v.staff.date_of_birth.$touch()"
                                v-model="staff.date_of_birth">
                     </div>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-3">
-                <div class="form-group p-10">
+                <div class="form-group p-10" :class="{'has-error':$v.staff.place_of_birth.$invalid}">
                     <label class="control-label " for="text">Place of Birth <abbr
                             class="text-error">*</abbr>
                     </label>
                     <div class="">
                         <input type="text" class="form-control" id="place_of_birth" placeholder="Place of birth"
+                               @blur="$v.staff.place_of_birth.$touch()"
                                v-model="staff.place_of_birth">
                     </div>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-3">
-                <div class="form-group p-10">
+                <div class="form-group p-10" :class="{'has-error':$v.staff.phone.$invalid}">
                     <label class="control-label" for="text">Phone Number <abbr class="text-error">*</abbr>
                     </label>
-                    <input type="phone" class="form-control" name="phone" id="phone" v-model="staff.phone">
+                    <input type="phone" class="form-control" name="phone" id="phone"
+                           @blur="$v.staff.phone.$touch()"
+                           v-model="staff.phone">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-3">
-                <div class="form-group p-10">
+                <div class="form-group p-10" :class="{'has-error':$v.staff.email.$invalid}">
                     <label class="control-label" for="text">Email
                     </label>
-                    <input type="email" class="form-control" placeholder="aaa@abcd.com" v-model="staff.email">
+                    <input type="email" class="form-control" placeholder="example@domain.com"
+                           @blur="$v.staff.email.$touch()"
+                           v-model="staff.email">
                 </div>
             </div>
         </div>
         <div class="row even-row">
             <div class="col-xs-12 col-sm-6 col-md-3">
-                <div class="form-group p-10">
+                <div class="form-group p-10" :class="{'has-error':$v.staff.state_of_origin.$invalid}">
                     <label class="control-label " for="text">State of Origin
                         <abbr class="text-error">*</abbr>
                     </label>
                     <div class="">
                         <select name="example-select" ref="state" class="form-control" size="1"
+                                @blur="$v.staff.state_of_origin.$touch()"
                                 v-model="staff.state_of_origin">
                             <option value="null">--select--</option>
                             <option v-for="state in data.states" :value="state.id">{{state.name}}</option>
@@ -97,11 +108,13 @@
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-3">
-                <div class="form-group p-10">
+                <div class="form-group p-10" :class="{'has-error':$v.staff.lga_of_origin.$invalid}">
                     <label class="control-label " for="text">Local Govt of Origin <abbr class="text-error">*</abbr>
                     </label>
                     <div class="">
-                        <select class="form-control" size="1" v-model="staff.lga_of_origin">
+                        <select class="form-control" size="1"
+                                @blur="$v.staff.lga_of_origin.$touch()"
+                                v-model="staff.lga_of_origin">
                             <option value="null">--select--</option>
                             <option v-for="lga in filtered_lga_areas" :value="lga.id">{{lga.name}}</option>
                         </select>
@@ -109,30 +122,34 @@
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-3">
-                <div class="form-group p-10">
+                <div class="form-group p-10" :class="{'has-error':$v.staff.home_town.$invalid}">
                     <label class="control-label" for="text">Home Town <abbr class="text-error">*</abbr>
                     </label>
                     <input type="text" class="form-control" name="home_town"
+                           @blur="$v.staff.home_town.$touch()"
                            placeholder="" v-model="staff.home_town">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-3">
-                <div class="form-group p-10">
+                <div class="form-group p-10" :class="{'has-error':$v.staff.distance_from_school.$invalid}">
                     <label class="control-label" for="text">House Distance from School (in KM)
                     </label>
                     <input type="number" class="form-control" id="text" placeholder=""
+                           @blur="$v.staff.distance_from_school.$touch()"
                            v-model="staff.distance_from_school">
                 </div>
             </div>
         </div>
         <div class="row odd-row">
             <div class="col-xs-12 col-sm-6 col-md-3">
-                <div class="form-group p-10">
+                <div class="form-group p-10" :class="{'has-error':$v.staff.marital_status.$invalid}">
                     <label class="control-label " for="text">Marital Status <abbr
                             class="text-error">*</abbr>
                     </label>
                     <div class="">
-                        <select class="form-control" size="1" v-model="staff.marital_status">
+                        <select class="form-control" size="1"
+                                @blur="$v.staff.marital_status.$touch()"
+                                v-model="staff.marital_status">
                             <option value="null">--select--</option>
                             <option value="Single">Single</option>
                             <option value="Married">Married</option>
@@ -144,11 +161,13 @@
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-3">
-                <div class="form-group p-10">
+                <div class="form-group p-10" :class="{'has-error':$v.staff.religion.$invalid}">
                     <label class="control-label " for="text">Religion <abbr class="text-error">*</abbr>
                     </label>
                     <div class="">
-                        <select class="form-control" size="1" v-model="staff.religion">
+                        <select class="form-control" size="1"
+                                @blur="$v.staff.religion.$touch()"
+                                v-model="staff.religion">
                             <option value="null">--select--</option>
                             <option v-for="religion in data.religions" :value="religion.religion">{{religion.religion}}
                             </option>
@@ -157,10 +176,11 @@
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-6">
-                <div class="form-group p-10">
+                <div class="form-group p-10" :class="{'has-error':$v.staff.residential_address.$invalid}">
                     <label class="control-label">Home/Residential Address <abbr class="text-error">*</abbr></label>
                     <div class="">
                             <textarea rows="3" class="form-control resize_vertical"
+                                      @blur="$v.staff.residential_address.$touch()"
                                       name="address" v-model="staff.residential_address"
                                       placeholder="Home/Residential Address"></textarea>
                     </div>
@@ -176,13 +196,15 @@
     import Multiselect from 'vue-multiselect';
     import {mapGetters} from 'vuex'
     import Toaster from '../../../mixins/toaster'
+    import {personalValidations} from 'src/validations/staff'
+
 
     export default {
         name: 'staff-personal',
         components: {
             Multiselect,
         },
-        validations:{},
+        validations:personalValidations,
         mixins: [Toaster],
         data() {
             return {
