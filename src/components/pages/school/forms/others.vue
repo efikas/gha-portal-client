@@ -54,28 +54,3 @@
         }
     }
 </script>
-<style type="text/css" scoped>
-
-    /deep/ .form-control:disabled {
-        cursor: not-allowed;
-    }
-
-    .form-control:active, .input-group .form-control:hover {
-        z-index: 1;
-    }
-
-    tab-content {
-        border-top: 1px solid grey;
-        border-bottom: 1px solid grey;
-    }
-
-    form .odd-row:first-of-type {
-        border-top: 1px dashed #959DCC;
-    }
-
-    .form-group label {
-        font-size: .8rem !important;
-        letter-spacing: 1px;
-        color: #684348 !important;
-    }
-</style>
