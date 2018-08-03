@@ -6,44 +6,50 @@
                 Indicate projectss overseen by the SBMC of this school, whether ongoing or completed.
             </div>
         </div>
-        <div v-for="(projects, index) in school.projects" class="mb-5">
+        <div v-for="(projects, index) in projects_list" class="mb-5">
             <div class="bordered-box">
                 <div class="row even-row">
-                    <div class="col-md-12" v-if="school.projects.length > 1">
+                    <div class="col-md-12" v-if="projects_list.length > 1">
                         <div class="remove-btn-div"><a class="btn btn-outline-danger pull-right red"
                                                        @click="removeElement(index)">X</a></div>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-5">
-                        <div class="form-group p-10">
+                        <div class="form-group p-10" :class="{'has-error':$v.projects.$each[index].name.$invalid}">
                             <label class="control-label">projects Brief
                             </label>
                             <input type="text" class="form-control" name="projects_brief"
-                                   v-model="projects.name" placeholder="">
+                                   v-model="projects.name"
+                                   @blur="$v.projects.$each[index].name.$touch()"
+                                   placeholder="">
 
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-2">
-                        <div class="form-group p-10">
-                            <label class="control-label">Poject Cost
+                        <div class="form-group p-10" :class="{'has-error':$v.projects.$each[index].cost.$invalid}">
+                            <label class="control-label">Project Cost
                             </label>
                             <input type="text" class="form-control" name="projects_cost[]"
+                                   @blur="$v.projects.$each[index].cost.$touch()"
                                    v-model="projects.cost" placeholder="">
 
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-3">
-                        <div class="form-group p-10">
+                        <div class="form-group p-10" :class="{'has-error':$v.projects.$each[index].funding.$invalid}">
                             <label class="control-label">Source of Funding
                             </label>
                             <input type="text" class="form-control" name="source_of_funding[]"
+                                   @blur="$v.projects.$each[index].funding.$touch()"
                                    v-model="projects.funding" placeholder="">
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-2">
-                        <div class="form-group p-10">
+                        <div class="form-group p-10" :class="{'has-error':$v.projects.$each[index].date.$invalid}">
                             <label class="control-label">Year
                             </label>
-                            <input type="date" class="form-control" v-model="projects.date">
+                            <input type="date" class="form-control"
+                                   @blur="$v.projects.$each[index].date.$touch()"
+                                   v-model="projects.date">
                         </div>
                     </div>
                 </div>
@@ -56,29 +62,41 @@
 </template>
 <script>
     import {schoolFormMixins} from './mixins'
+    import {projectValidations} from 'src/validations/school'
 
     export default {
         data() {
             return {
+                projects: []
             }
         },
-        validations:{},
+        validations:projectValidations,
         mixins: [schoolFormMixins],
+        computed: {
+            projects_list() {
+                return this.projects.map(obj => {
+                    // delete obj.class;
+                    delete obj.created_at;
+                    delete obj.updated_at;
+                    return obj;
+                });
+            }
+        },
         created(){
-            this.school = this.getSchool;
+            this.projects = JSON.parse(JSON.stringify(this.school.projects));
         },
         methods: {
             addMore() {
-                this.school.projects.push({});
+                this.projects.push({});
             },
             removeElement(index) {
-                if (this.school.projects.length > 1)
-                    this.school.projects.splice(index, 1);
+                if (this.projects.length > 1)
+                    this.projects.splice(index, 1);
             },
             onSubmit: function () {
                 let form = {
                     school_id: this.school.id,
-                    projects: this.school.projects
+                    projects: this.projects
                 };
                 // console.log(form);
 
