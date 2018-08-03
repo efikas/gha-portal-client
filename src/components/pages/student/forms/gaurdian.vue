@@ -7,7 +7,10 @@
                         <label class="control-label col-md-8">Are both parents alive?
                         </label>
                         <div class="col-md-12">
-                            <b-form-radio-group v-model="student.parent_status" :options="parentOptions"/>
+                            <b-form-radio-group 
+                                    v-model="student.parent_status" 
+                                    :options="parentOptions">
+                            </b-form-radio-group>
                         </div>
                     </div>
                 </div>
@@ -29,10 +32,12 @@
                     </div>
                     <div class="clear-fix"></div>
                     <div class="col-xs-12 col-sm-6 col-md-2">
-                        <div class="form-group p-10">
+                        <div class="form-group p-10" :class="{'has-error':$v.student.guardians.$each[index].title.$invalid}">
                             <label class="control-label">Title</label>
                             <div class="">
-                                <select v-model="guardian.title" class="form-control" size="1">
+                                <select
+                                        @blur="$v.student.guardians.$each[index].title.$touch()"
+                                        v-model="guardian.title" class="form-control" size="1">
                                     <option value="">Select Title</option>
                                     <option v-for="appellation in data.appellations" :value="appellation.appellation">
                                         {{appellation.appellation}}
@@ -43,21 +48,23 @@
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-3">
-                        <div class="form-group p-10">
+                        <div class="form-group p-10" :class="{'has-error':$v.student.guardians.$each[index].fullname.$invalid}">
                             <label class="control-label" for="g1fullname">Fullname
                             </label>
                             <div class="">
                                 <input type="text" class="form-control" v-model="guardian.fullname"
+                                       @blur="$v.student.guardians.$each[index].fullname.$touch()"
                                        id="g1fullname" placeholder="Fullname">
                             </div>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-2">
-                        <div class="form-group p-10">
+                        <div class="form-group p-10" :class="{'has-error':$v.student.guardians.$each[index].relationship.$invalid}">
                             <label class="control-label">Relationship
                             </label>
                             <div class="">
                                 <select id="eg1relationship" name="g1relationship"
+                                        @blur="$v.student.guardians.$each[index].relationship.$touch()"
                                         v-model="guardian.relationship" class="form-control" size="1">
                                     <option value="">Select Relationship</option>
                                     <option v-for="relation in data.guardians" :value="relation.id">{{relation.type}}
@@ -67,22 +74,24 @@
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-2">
-                        <div class="form-group">
+                        <div class="form-group" :class="{'has-error':$v.student.guardians.$each[index].occupation.$invalid}">
                             <label class="control-label" for="g1_occupation">Occupation
                             </label>
                             <div class="">
                                 <input type="text" class="form-control" v-model="guardian.occupation"
+                                       @blur="$v.student.guardians.$each[index].occupation.$touch()"
                                        id="g1_occupation" placeholder="Occupation">
                             </div>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-3">
-                        <div class="form-group p-10">
+                        <div class="form-group p-10" :class="{'has-error':$v.student.guardians.$each[index].mobile.$invalid}">
                             <label class="control-label" for="g1mobile">Mobile Number
                             </label>
                             <div class="">
                                 <input type="tel" class="form-control" v-model="guardian.mobile"
-                                       id="g1mobile" placeholder="">
+                                       @blur="$v.student.guardians.$each[index].mobile.$touch()"
+                                       id="g1mobile" placeholder="" />
                             </div>
                         </div>
                     </div>
@@ -91,12 +100,13 @@
 
 
                     <div class="col-xs-12 col-sm-6 col-md-2">
-                        <div class="form-group p-10">
+                        <div class="form-group p-10" :class="{'has-error':$v.student.guardians.$each[index].phone.$invalid}">
                             <label class="control-label" for="g1_phone">Phone
                             </label>
                             <div class="">
                                 <input type="tel" class="form-control" v-model="guardian.phone"
-                                       id="g1_phone" placeholder="">
+                                       @blur="$v.student.guardians.$each[index].phone.$touch()"
+                                       id="g1_phone" placeholder=""/>
                             </div>
                         </div>
                     </div>
@@ -104,18 +114,21 @@
                         <div class="form-group p-10">
                             <label class="control-label col-md-8" for="g1_email">Email
                             </label>
-                            <div class="col-md-12">
+                            <div class="col-md-12" :class="{'has-error':$v.student.guardians.$each[index].email.$invalid}">
                                 <input type="email" class="form-control" v-model="guardian.email"
-                                       id="g1_email" placeholder="">
+                                       @blur="$v.student.guardians.$each[index].email.$touch()"
+                                       id="g1_email" placeholder=""/>
                             </div>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-3">
-                        <div class="form-group p-10">
+                        <div class="form-group p-10" :class="{'has-error':$v.student.guardians.$each[index].religion.$invalid}">
                             <label class="control-label">Religion
                             </label>
                             <div class="">
-                                <select id="example-select" v-model="guardian.religion"
+                                <select id="example-select"
+                                        @blur="$v.student.guardians.$each[index].religion.$touch()"
+                                        v-model="guardian.religion"
                                         name="g1_religious_status" class="form-control" size="1">
                                     <option value="">Select Religion</option>
                                     <option v-for="religion in data.religions" :value="religion.id">
@@ -126,11 +139,12 @@
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-4">
-                        <div class="form-group p-10">
+                        <div class="form-group p-10" :class="{'has-error':$v.student.guardians.$each[index].contact_address.$invalid}">
                             <label class="control-label col-md-8" for="g1_contact_address">Contact Address
                             </label>
                             <div class="col-md-12">
                                             <textarea cols="6" class="form-control" id="g1_contact_address"
+                                                      @blur="$v.student.guardians.$each[index].contact_address.$touch()"
                                                       v-model="guardian.contact_address">
                                             </textarea>
                             </div>
@@ -139,17 +153,18 @@
                 </div>
             </div>
         </div>
-        <button type="submit" @click.prevent="onSubmit" class="btn btn-primary btn-lg btn-school pull-right">Submit
+        <button type="submit" :disabled="$v.$invalid" @click.prevent="onSubmit" class="btn btn-primary btn-lg btn-school pull-right">Submit
         </button>
     </div>
 </template>
 <script>
-    import Vue from 'vue';
     import {mapGetters} from 'vuex'
     import Toaster from '../../../mixins/toaster'
+    import {guardianValidations} from 'src/validations/student'
 
     export default {
         name: 'student-parent',
+        validations: guardianValidations,
         data() {
             return {
                 student: {},
@@ -201,12 +216,6 @@
 
     form .odd-row:first-of-type {
         border-top: 1px dashed #959DCC;
-    }
-
-    .form-group label {
-        font-size: .8rem !important;
-        letter-spacing: 1px;
-        color: #684348 !important;
     }
 
     input {
