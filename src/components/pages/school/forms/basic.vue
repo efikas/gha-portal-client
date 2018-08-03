@@ -6,17 +6,17 @@
                     <label class="control-label">LGA <abbr title="required">*</abbr></label>
                     <b-form-select
                             v-model="school.ward.lga_id" :options="lga_areas"
-                            @input="$v.school.ward.lga_id.$touch()"
+                            @input="$v.school.ward.lga_id.$touch(); $v.school.lga_ward_id.$touch()"
                             class="mb-3">
                     </b-form-select>
                 </div>
             </div>
             <div class="col-md-3 col-md-3">
-                <div :class="{'has-error':$v.lga_ward_id.$invalid}" class="form-group p-10">
+                <div :class="{'has-error':$v.school.lga_ward_id.$invalid||$v.school.lga_ward_id.$error}" class="form-group p-10">
                     <label>Ward <abbr title="required">*</abbr></label>
                     <b-form-select
-                            @input="$v.lga_ward_id.$touch()"
-                            v-model="lga_ward_id" :options="wards"
+                            @input="$v.school.lga_ward_id.$touch()"
+                            v-model="school.lga_ward_id" :options="wards"
                             class="mb-3">
                     </b-form-select>
                 </div>
@@ -302,9 +302,6 @@
         mixins: [schoolFormMixins],
         validations: basicValidations,
         methods: {
-            wardChanged(event) {
-                console.log(lga_ward_id, event)
-            },
             locationTouched(event) {
                 this.$v.school.location.$touch()
             },

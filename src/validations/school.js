@@ -14,16 +14,16 @@ import {
     helpers,
 } from 'vuelidate/lib/validators';
 
-const schoolName = helpers.regex('schoolName', /^[a-zA-Z ]+$/)
-const geolocation = helpers.regex('geolocation', /^[0-9 \.,\/\-]+$/)
-const date = helpers.regex('date', /^[0-9]{4}$/)
+const schoolName = helpers.regex('schoolName', /^[a-zA-Z ,.\-()&]+$/);
+const geolocation = helpers.regex('geolocation', /^[0-9 \.,\/\-]+$/);
+const date = helpers.regex('date', /^[0-9]{4}$/);
 
 const basicValidations = {
-    lga_ward_id: {required, integer},
     school: {
         ward: {
             lga_id: {required, integer},
         },
+        lga_ward_id: {required, integer},
         name: {required, schoolName},
         location: {required},
         established: {numeric, 'minLength': minLength(4), 'maxLength': maxLength(4)},

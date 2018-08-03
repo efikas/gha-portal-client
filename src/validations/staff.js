@@ -25,7 +25,7 @@ const personalValidations = {
         date_of_birth: {required},
         place_of_birth: {required},
         phone: {required},
-        email: {required},
+        email: {email},
         state_of_origin: {required},
         lga_of_origin: {required},
         home_town: {required},

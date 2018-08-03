@@ -5,11 +5,12 @@ const schoolFormMixins = {
     data() {
         return {
             normalizedFacilities: {},
+            school: {},
         }
     },
     mixins: [Toaster],
     computed: {
-        ...mapGetters({data: 'data', school: 'school'}),
+        ...mapGetters({data: 'data', getSchool: 'school'}),
         learning() {
             return Object.values(this.data.learning).map(item =>
                 ({text: item.material, value: item.id})
@@ -80,6 +81,13 @@ const schoolFormMixins = {
             return this.normalizedFacilities;
         }
     },
+    watch: {
+        'school.ward.lga_id'(newVal, oldValue){
+            if(typeof oldValue !== 'undefined' && newVal !== oldValue) {
+                this.school.lga_ward_id = null;
+            }
+        }
+    },
     methods: {
         normalizedFacilityList() {
             if (this.school.id) {
@@ -100,7 +108,7 @@ const schoolFormMixins = {
         }
     },
     async created() {
-        // this.school = JSON.parse(JSON.stringify(this.getSchool));
+        this.school = JSON.parse(JSON.stringify(this.getSchool));
         this.normalizedFacilityList();
         if (this.$route.params.id) {
             await this.$store.dispatch('school', this.$route.params.id);
