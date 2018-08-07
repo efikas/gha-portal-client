@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="container">
+        <div class="">
             <div class="row">
                 <div class="col-md-10" style="padding: 0">
                     <SchoolCard></SchoolCard>
@@ -8,7 +8,7 @@
             </div>
             <div class="row">
                 <div class="col-md-10">
-                    <b-card id="profile" class="bg-clear-card" text-variant="dark">
+                    <b-card class="bg-clear2-card" title="STAFF PROFILE" text-variant="dark">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="" style="padding: 0; margin-left: 40px; margin-bottom: -40px">
@@ -33,11 +33,11 @@
                                 <div class="col-md-9 offset-3">
                                     <b-nav>
                                         <router-link tag="li"
-                                                     :to="{name:'staff-profile', query:{section: 'personal'}, hash: '#profile'}">
+                                                     :to="{name:'staff-profile', query:{section: 0}, hash: '#profile'}">
                                             <a class="nav-link">Personal</a>
                                         </router-link>
                                         <router-link tag="li" class="nav-item"
-                                                     :to="{name:'staff-profile', query:{section: 'professional'}, hash: '#profile'}">
+                                                     :to="{name:'staff-profile', query:{section: 1}, hash: '#profile'}">
                                             <a class="nav-link">Professional</a>
                                         </router-link>
                                     </b-nav>
@@ -47,11 +47,20 @@
                     </b-card>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-10" style="padding: 0">
-                    <transition name="fade">
-                        <component :is="loadedComponent"></component>
-                    </transition>
+            <div class="row mt-5">
+                <div class="col-md-10" id="profile" style="padding: 0">
+                    <b-card class="" no-body>
+                        <!-- Nav tabs -->
+                        <b-tabs vertical card small :content-class="contentClass()" pills v-model="tabIndex" @input="tabChanged($event)">
+                            <b-tab title="Personal">
+                                <personal></personal>
+                            </b-tab>
+                            <b-tab title="Professional">
+                                <professional></professional>
+                            </b-tab>
+                        </b-tabs>
+                    </b-card>
+
                 </div>
             </div>
         </div>
@@ -60,6 +69,7 @@
 <script>
 
     import {mapGetters} from 'vuex';
+    import store from 'src/store/store';
     import SchoolCard from "../../widgets/sbemis/SchoolCard1";
     import personal from './partials/profile/personal'
     import professional from './partials/profile/professional'
@@ -71,12 +81,12 @@
         },
         data() {
             return {
-                loadedComponent: null
+                tabIndex: 0
             }
         },
         methods: {
-            yesNo: (value) => {
-                return (value == 1) ? 'Yes' : 'No';
+            contentClass(){
+                return ['clear-content-padding'];
             },
             showImage() {
                 if (typeof  this.staff.biometric) {
@@ -86,21 +96,19 @@
                 }
                 return require("img/authors/user.jpg");
             },
-            switchComponent(component) {
-                function load(val) {
-                    this.loadedComponent = val;
-                }
-
-                switch (component) {
-                    case 'personal':
-                        load.call(this, 'personal');
+            tabChanged(index) {
+                switch (parseInt(index)) {
+                    case 0:
+                        this.tabIndex = 0;
+                        this.$router.replace({query: {section: 0}, hash: '#profile'});
                         break;
-                    case 'professional':
-                        load.call(this, 'professional');
+                    case 1:
+                        this.tabIndex = 1;
+                        this.$router.replace({query: {section: 1}, hash: '#profile'});
                         break;
                     default:
-                        load.call(this, 'personal');
-                        this.$router.replace({query: {section: 'personal'}});
+                        this.tabIndex = 0;
+                        this.$router.replace({query: {section: 0}, hash: '#profile'});
                         break;
                 }
             }
@@ -108,18 +116,31 @@
         computed: mapGetters([
             'staff'
         ]),
+        async beforeRouteEnter(to, from, next) {
+            await store.dispatch('staff', to.params.id).catch(() => {
+                return next(from);
+            });
+            next()
+        },
         created: function () {
-            this.$store.dispatch('staff', this.$route.params.id);
-            this.switchComponent(this.$route.query.section);
+            this.tabChanged(this.$route.query.section);
         },
         watch: {
             '$route.query'(query) {
-                this.switchComponent(query.section)
+                this.tabChanged(query.section)
             }
         }
     }
 </script>
 <style>
+    .card-title {
+        font-size: 13px;
+        color:#946812 ;/*#8e948e*/;
+        font-weight: bold;
+    }
+    .clear-content-padding{
+        padding:0!important;
+    }
     .card-profile-link {
         font-size: 30px;
     }

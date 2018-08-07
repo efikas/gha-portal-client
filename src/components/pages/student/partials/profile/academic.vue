@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-card class="bg-clear-card" bg-variant="" text-variant="dark">
+        <b-card class="bg-clear2-card" no-body bg-variant="" text-variant="dark">
             <div slot="header">
                 <a href="javascript:void(0)" v-b-modal.modal-student-academic>
                     <i class=" fa fa-edit card-profile-link pull-right"></i>
@@ -14,10 +14,9 @@
                     <router-link :to="{query:$route.query}" class="default-color">Academic</router-link>
                 </h3>
             </div>
-        <div class="p-3">
+        <div class="">
             <div class="table-responsive">
                 <table class="table table-striped">
-                    <tbody>
                     <tr>
                         <td class="text-muted">Admission status</td>
                         <td> {{ student.admission_status?data.admissions[student.admission_status].status:null }}</td>
@@ -42,7 +41,6 @@
                         <td class="text-muted">Dormitory</td>
                         <td> {{ student.dormitory_id }}</td>
                     </tr>
-                    </tbody>
                 </table>
             </div>
         </div>
@@ -66,7 +64,3 @@
         }
     }
 </script>
-
-<style scoped>
-
-</style>

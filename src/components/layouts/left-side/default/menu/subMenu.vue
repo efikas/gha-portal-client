@@ -1,13 +1,13 @@
 <template>
     <div class="submenu collapse-item" :class="{ 'active': isActived }">
-        <div class="submenu-header touchable" role="tab" :aria-expanded="selected ? 'true' : 'fase'" @click="toggle">
+        <div class="submenu-header touchable" role="tab" :aria-expanded="selected ? 'true' : 'false'" @click="toggle">
             <i class="leftmenu_icon
 " :class="icon"></i>
             <span class="submenu-header-title">{{ title }}</span>
             <span class="submenu_icon float-right"><i class="fa fa-angle-right"></i></span>
         </div>
         <transition name="collapsed-fade" :css="false" @before-appear="before" @appear="enter" @appear-cancel="cancel" @before-enter="before" @enter="enter" @enter-cancel="cancel" @leave="leave" @leave-cancel="cancel">
-            <div class="submenu-content" v-show="isActived">
+            <div class="submenu-content" v-show="isActived"> <!--todo: make all submenu open by default-->
                 <div class="submenu-content-box" ref="box">
                     <slot></slot>
                 </div>

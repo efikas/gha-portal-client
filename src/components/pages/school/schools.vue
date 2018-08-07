@@ -25,6 +25,7 @@
                         </div>
                     </div>
                     <v-client-table :data="schools" :columns="columns" :options="options">
+                        <span slot="id" slot-scope="school">{{ school.index }}</span>
                         <router-link
                                 class="list-font sch-link"
                                 slot="name"

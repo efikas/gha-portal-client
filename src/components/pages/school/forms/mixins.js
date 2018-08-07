@@ -9,7 +9,7 @@ const schoolFormMixins = {
     },
     mixins: [Toaster],
     computed: {
-        ...mapGetters({data: 'data', getSchool: 'school'}),
+        ...mapGetters({data: 'data', school: 'school'}),
         learning() {
             return Object.values(this.data.learning).map(item =>
                 ({text: item.material, value: item.id})
@@ -100,7 +100,7 @@ const schoolFormMixins = {
         }
     },
     async created() {
-        this.school = /*JSON.parse(JSON.stringify(*/this.getSchool/*));*/
+        // this.school = JSON.parse(JSON.stringify(this.getSchool));
         this.normalizedFacilityList();
         if (this.$route.params.id) {
             await this.$store.dispatch('school', this.$route.params.id);

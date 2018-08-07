@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-card class="bg-clear-card" bg-variant="" text-variant="dark">
+        <b-card class="bg-clear2-card" no-body bg-variant="" text-variant="dark">
             <div slot="header">
                 <a href="javascript:void(0)" v-b-modal.modal-staff-personal>
                     <i class=" fa fa-edit card-profile-link pull-right"></i>
@@ -14,10 +14,9 @@
                     <router-link :to="{query:$route.query}" class="default-color">Personal</router-link>
                 </h3>
             </div>
-            <div class="p-3">
+            <div class="">
                 <div class="table-responsive">
             <table class="table table-striped">
-                <tbody>
                 <tr>
                     <td class="text-muted">Gender</td>
                     <td> {{ staff.sex==='M'?'Male':'Female' }}</td>
@@ -52,7 +51,6 @@
                     <td class="text-muted">House Address</td>
                     <td colspan="3"> {{ staff.residential_address }}</td>
                 </tr>
-                </tbody>
             </table>
                 </div></div>
         </b-card>

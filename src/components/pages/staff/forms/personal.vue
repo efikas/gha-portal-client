@@ -192,7 +192,7 @@
             }
         },
         computed: {
-            ...mapGetters({data: 'data', getStaff: 'staff', schools: 'schools'}),
+            ...mapGetters({data: 'data', getStaff: 'staff', schools: 'schools', school: 'school'}),
             schoolsMapping() {
                 return this.schools.map(school => {
                     if (this.staff.school_id === school.id) {
@@ -259,6 +259,10 @@
         created: async function () {
             await this.$store.dispatch('schools');
             this.staff = JSON.parse(JSON.stringify(this.getStaff));
+            if (this.school.id) {
+                this.selectedSchool = this.school.name;
+                this.staff.school_id = this.school.id
+            }
         }
     }
 </script>

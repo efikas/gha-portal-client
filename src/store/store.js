@@ -14,7 +14,8 @@ import users    from  './modules/user'
 let regex = /(?:https?:\/\/)?([a-zA-Z\-]+)\.(?:.*)/;
 let url = null ; //https://ekiti.sbemis.online'; //window.location.href
 
-Vue.use(Vuex)
+Vue.use(Vuex);
+
 if (process.env.NODE_ENV === 'production') {
     Vue.config.devtools = false;
     Vue.config.debug = false;
@@ -60,10 +61,6 @@ const store = new Vuex.Store({
         //
         statistics: {},
         access_server: subdomain(),
-        live_url: "",
-        dev_url: "http://api.sbemis.localhost",
-        api_uri: "/api/v1",
-        auth_uri: "/oauth/token"
     },
     mutations,
     actions,

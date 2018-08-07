@@ -52,16 +52,15 @@
         background-color: #fffaef;
     }
 
-    .form-group label {
-        font-size: .8rem !important;
-        letter-spacing: 1px;
-        color: #684348 !important;
+    .form-group.has-error label,
+    .form-group.has-error span.custom-control-description {
+        color: red !important;
     }
 
     .form-group label {
         font-size: .8rem !important;
         letter-spacing: 1px;
-        color: #684348 !important;
+        color: #684348;
     }
 
     .form-group input {

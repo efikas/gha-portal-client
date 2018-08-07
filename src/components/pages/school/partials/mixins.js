@@ -40,6 +40,22 @@ const tabsMixins = {
             return this.school.learning_ids.map(key=>{
                 return this.data.learning[key].material;
             }).join(', ')
+        },
+        geolocation() {
+            var lat = this.school.geolocation?parseFloat(this.school.geolocation.split(',')[0].trim()):0.0000000;
+            var lng = this.school.geolocation?parseFloat(this.school.geolocation.split(',')[1].trim()):0.0000000;
+            return {
+                center: {
+                    lat: lat,
+                    lng: lng
+                },
+                markers: [{
+                    position: {
+                        lat: lat,
+                        lng: lng
+                    }
+                }]
+            }
         }
     },
 };

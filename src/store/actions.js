@@ -13,7 +13,7 @@ let actions = {
     },
 
     login({commit, dispatch, state, getters}, payload) {
-        return axios.post(state.auth_uri, {
+        return axios.post(process.env.MIX_AUTH_URI, {
                 client_id: state.client_id,
                 client_secret: state.client_secret,
                 grant_type: state.grant_type,

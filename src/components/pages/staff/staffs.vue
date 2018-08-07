@@ -4,7 +4,7 @@
             <SchoolCard></SchoolCard>
 
             <b-card header="List of Staffs" header-tag="h4" class="bg-header-card">
-                <div style="margin: 2%" v-if="staffs.length < 1">
+                <div style="margin: 2%" v-if="loading">
                     <skeleton-loading>
                         <row :gutter="{top: '20px'}">
                             <square-skeleton
@@ -28,7 +28,7 @@
                                 class="list-font sch-link"
                                 slot="Name"
                                 slot-scope="staff"
-                                :to="{name: 'staff-profile', param:{id: staff.row.id}}">
+                                :to="{name: 'staff-profile', params:{id: staff.row.id}}">
                             {{staff.row.first_name + ' ' + staff.row.last_name + ' ' + staff.row.middle_name}}
                         </router-link>
                         <div slot="Actions" slot-scope="staff">
@@ -55,6 +55,7 @@
         },
         data() {
             return {
+                loading: true,
                 school_id: this.$route.params.id,
                 params: null,
                 category: this.$route.query.t,
@@ -90,8 +91,12 @@
                 this.params = route.query ? {category: route.query.t} : null;
                 store.dispatch('staffs', {id: route.params.id, params: this.params});
             },
+            'staffs.length'(val) {
+                this.loading = false;
+            }
         },
         created() {
+            this.loading = true;
             this.$store.dispatch('staffs', {id: this.$route.params.id, params: this.params});
         },
 

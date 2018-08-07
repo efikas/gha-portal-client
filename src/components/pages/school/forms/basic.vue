@@ -2,29 +2,32 @@
     <div>
         <div class="row odd-row">
             <div class="col-md-3 col-md-3">
-                <div class="form-group p-10">
+                <div :class="{'has-error':$v.school.ward.lga_id.$invalid}" class="form-group p-10">
                     <label class="control-label">LGA <abbr title="required">*</abbr></label>
                     <b-form-select
                             v-model="school.ward.lga_id" :options="lga_areas"
-                            required class="mb-3"/>
+                            @input="$v.school.ward.lga_id.$touch()"
+                            class="mb-3">
+                    </b-form-select>
                 </div>
             </div>
             <div class="col-md-3 col-md-3">
-                <div class="form-group p-10">
+                <div :class="{'has-error':$v.lga_ward_id.$invalid}" class="form-group p-10">
                     <label>Ward <abbr title="required">*</abbr></label>
                     <b-form-select
-                            v-model="school.lga_ward_id" :options="wards"
-                            required class="mb-3">
+                            @input="$v.lga_ward_id.$touch()"
+                            v-model="lga_ward_id" :options="wards"
+                            class="mb-3">
                     </b-form-select>
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="form-group p-10">
-                    <label class="control-label" for="name">School Name
+                <div :class="{'has-error':$v.school.name.$invalid}" class="form-group p-10">
+                    <label class="control-label">School Name
                         <abbr title="required">*</abbr></label>
                     <input type="text" class="form-control"
+                           @blur="$v.school.name.$touch()"
                            name="school_name" v-model="school.name"
-                           required id="name"
                            placeholder="School Name">
                 </div>
             </div>
@@ -32,228 +35,242 @@
         </div>
         <div class="row even-row">
             <div class="col-xs-12 col-sm-6 col-md-3">
-                <div class="form-group p-10">
+                <div class="form-group p-10" :class="{'has-error':$v.school.location.$invalid}">
                     <label class="control-label">Location
                         <abbr title="required">*</abbr></label>
                     <b-form-radio-group v-model="school.location"
-                                        required
-                                        :options="schoolLocationsOptions" name="location"/>
+                                        @blur="$v.school.location.$touch()"
+                                        :options="schoolLocationsOptions"
+                                        name="location">
+                    </b-form-radio-group>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-3">
-                <div class="form-group p-10">
+                <div class="form-group p-10" :class="{'has-error':$v.school.established.$error}">
                     <label class="control-label" for="year_established">Year Established
                     </label>
                     <input type="text" class="form-control" v-model="school.established"
                            id="year_established" name="year_established"
-                           required
+                           @blur="$v.school.established.$touch()"
                            placeholder="Year Established"/>
 
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-3">
-                <div class="form-group p-10">
+                <div class="form-group p-10" :class="{'has-error':$v.school.average_distance.$error}">
                     <label class="control-label" for="dist">Distance to Catchment Area
                     </label>
                     <input type="number" min="0" v-model="school.average_distance"
+                           @blur="$v.school.average_distance.$touch()"
                            class="form-control" id="dist" placeholder=""/>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-3">
-                <div class="form-group p-10">
+                <div class="form-group p-10" :class="{'has-error':$v.school.town.$invalid}">
                     <label class="control-label" for="village_town">Village/Town
                         <abbr title="required">*</abbr></label>
                     <input type="text" v-model="school.town" class="form-control"
+                           @blur="$v.school.town.$touch()"
                            id="village_town" name="village_town" required placeholder="">
                 </div>
             </div>
         </div>
         <div class="row odd-row">
             <div class="col-xs-12 col-sm-7">
-                <div class="form-group p-10">
+                <div class="form-group p-10" :class="{'has-error':$v.school.email.$error}">
                     <label class="control-label col-md-8" for="email">Email
                     </label>
                     <div class="col-md-12">
                         <input type="email" v-model="school.email"
+                               @blur="$v.school.email.$touch()"
                                class="form-control" id="email" placeholder="Email"/>
                     </div>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-5">
-                <div class="form-group p-10">
+                <div class="form-group p-10" :class="{'has-error':$v.school.phone.$invalid}">
                     <label class="control-label" for="phone">Phone Nunber
                         <abbr title="required">*</abbr></label>
                     <input type="text" v-model="school.phone" class="form-control"
+                           @blur="$v.school.phone.$touch()"
                            id="phone" name="phone" required placeholder="Enter Phone Number"/>
                 </div>
             </div>
         </div>
         <div class="row even-row">
             <div class="col-xs-12 col-sm-5">
-                <div class="form-group p-10">
+                <div class="form-group p-10" :class="{'has-error':$v.school.website.$error}">
                     <label class="control-label">Website
                     </label>
                     <input type="url" v-model="school.website" class="form-control"
+                           @blur="$v.school.website.$touch()"
                            name="website" value="http://www.example.com/" id="url">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-4">
-                <div class="form-group p-10">
+                <div class="form-group p-10" :class="{'has-error':$v.school.geolocation.$invalid}">
                     <label class="control-label">Map Coordinate (Lat, Long)
                     </label>
                     <input type="text" v-model="school.geolocation"
+                           @blur="$v.school.geolocation.$touch()"
                            class="form-control" id="long" placeholder="e.g. 9.182 / -39.140625">
 
                 </div>
             </div>
 
             <div class="col-xs-12 col-sm-6 col-md-3">
-                <div class="form-group p-10">
+                <div class="form-group p-10" :class="{'has-error':$v.school.category.$invalid}">
                     <label class="control-label">School Category
                         <abbr title="required">*</abbr></label>
                     <b-form-radio-group v-model="school.category"
-                                        name="category" required
-                                        :options="schoolCategoryOptions"/>
+                                        name="category"
+                                        @blur="$v.school.category.$touch()"
+                                        :options="schoolCategoryOptions"></b-form-radio-group>
                 </div>
             </div>
         </div>
         <div class="row odd-row">
             <div class="col-xs-12 col-sm-6 col-md-6">
-                <div class="form-group p-10">
-                    <label class="control-label col-md-12" for="name_of_proprietor">Propritor Name
+                <div class="form-group p-10" :class="{'has-error':$v.school.name_of_proprietor.$error}">
+                    <label class="control-label col-md-12" for="name_of_proprietor">Proprietor Name
                     </label>
                     <div class="col-md-12">
                         <input type="text" v-model="school.name_of_proprietor"
                                class="form-control" id="name_of_proprietor"
+                               @blur="$v.school.name_of_proprietor.$touch()"
                                placeholder="Propritor Name">
                     </div>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-6">
-                <div class="form-group p-10">
+                <div class="form-group p-10" :class="{'has-error':$v.school.geolocation.$error}">
                     <label class="control-label" for="private_membership_name">Private Membership's
                         Name
                     </label>
                     <input type="text" v-model="school.private_membership_name"
                            class="form-control" id="private_membership_name"
+                           @blur="$v.school.private_membership_name.$touch()"
                            placeholder="Memebership's Name">
                 </div>
             </div>
         </div>
         <div class="row even-row">
             <div class="col-xs-12 col-sm-6">
-                <div class="form-group p-10">
+                <div class="form-group p-10" :class="{'has-error':$v.school.type.$invalid}">
                     <label class="control-label">Type
                         <abbr title="required">*</abbr></label>
                     <b-form-radio-group
                             v-model="school.type"
-                            required
                             name="school_type"
-                            :options="school_type" stacked/>
+                            @blur="$v.school.type.$touch()"
+                            :options="school_type" stacked>
+                    </b-form-radio-group>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6">
-                <div class="form-group p-10">
+                <div class="form-group p-10" :class="{'has-error':$v.school.ownership.$invalid}">
                     <label class="control-label">School Ownership
                         <abbr title="required">*</abbr></label>
                     <b-form-radio-group
                             v-model="school.ownership"
-                            required
                             name="ownership"
-                            :options="ownership" stacked/>
+                            @blur="$v.school.ownership.$touch()"
+                            :options="ownership" stacked></b-form-radio-group>
                 </div>
             </div>
         </div>
         <div class="row odd-row">
             <div class="col-xs-12 col-sm-6 col-md-4">
-                <div class="form-group p-10">
+                <div class="form-group p-10" :class="{'has-error':$v.school.education_level.$invalid}">
                     <label class="control-label">Education Level
                         <abbr title="required">*</abbr></label>
                     <b-form-radio-group
                             v-model="school.education_level"
                             name="education_level"
-                            required
-                            :options="educationLevelOptions"/>
+                            @blur="$v.school.education_level.$touch()"
+                            :options="educationLevelOptions"></b-form-radio-group>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-4">
-                <div class="form-group p-10">
+                <div class="form-group p-10" :class="{'has-error':$v.school.multigrade.$invalid}">
                     <label class="control-label">Multigrading System
                         <abbr title="required">*</abbr></label>
                     <b-form-radio-group
                             v-model="school.multigrade"
+                            @blur="$v.school.multigrade.$touch()"
                             name="multigrade"
-                            required
-                            :options="yesNoOptions"/>
+                            :options="yesNoOptions"></b-form-radio-group>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-4">
-                <div class="form-group p-10">
+                <div class="form-group p-10" :class="{'has-error':$v.school.shift.$invalid}">
                     <label class="control-label">shift
                         <abbr title="required">*</abbr></label>
                     <b-form-radio-group
                             v-model="school.shift"
+                            @blur="$v.school.shift.$touch()"
                             name="shift"
-                            required
-                            :options="yesNoOptions"/>
+                            :options="yesNoOptions"></b-form-radio-group>
                 </div>
             </div>
         </div>
         <div class="row even-row">
             <div class="col-xs-12 col-sm-6 col-md-3">
-                <div class="form-group p-10">
+                <div class="form-group p-10" :class="{'has-error':$v.school.management_committee.$invalid}">
                     <label class="control-label col-md-12">Management
                         Committee
                     </label>
                     <div class="col-md-12">
                         <b-form-radio-group
                                 v-model="school.management_committee"
+                                @blur="$v.school.management_committee.$touch()"
                                 name="management_committee"
-                                :options="yesNoOptions"/>
+                                :options="yesNoOptions"></b-form-radio-group>
                     </div>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-3">
-                <div class="form-group p-10">
+                <div class="form-group p-10" :class="{'has-error':$v.school.pta_pf.$invalid}">
                     <label class="control-label">PTA/PTF/MA
                         <abbr title="required">*</abbr></label>
                     <b-form-radio-group
                             v-model="school.pta_pf"
+                            @blur="$v.school.pta_pf.$touch()"
                             name="pta_pf"
-                            required
-                            :options="yesNoOptions"/>
+                            :options="yesNoOptions"></b-form-radio-group>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-3">
-                <div class="form-group p-10">
+                <div class="form-group p-10" :class="{'has-error':$v.school.development_plan.$error}">
                     <label class="control-label">School Development Plan
                     </label>
                     <div class="">
                         <b-form-radio-group v-model="school.development_plan" :options="yesNoOptions"
-                                            name="development_plan"/>
+                                            @blur="$v.school.development_plan.$touch()"
+                                            name="development_plan"></b-form-radio-group>
                     </div>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-3">
-                <div class="form-group p-10">
+                <div class="form-group p-10" :class="{'has-error':$v.school.grants.$invalid}">
                     <label class="control-label">School grants
                         <abbr title="required">*</abbr></label>
                     <b-form-radio-group
                             v-model="school.grants"
+                            @blur="$v.school.grants.$touch()"
                             name="grants"
-                            required
-                            :options="yesNoOptions"/>
+                            :options="yesNoOptions"></b-form-radio-group>
                 </div>
             </div>
         </div>
         <div class="row odd-row">
             <div class="col-md-12">
-                <div class="form-group p-10">
-                    <label class="control-label col-md-4" for="address">Address <abbr title="required">*</abbr></label>
+                <div class="form-group p-10" :class="{'has-error':$v.school.address.$invalid}">
+                    <label class="control-label" for="address">Address <abbr title="required">*</abbr></label>
                     <textarea rows="4" v-model="school.address"
                               class="form-control resize_vertical" id="address"
+                              @blur="$v.school.address.$touch()"
                               name="address"
-                              required
                               placeholder="School Address"></textarea>
                 </div>
             </div>
@@ -267,11 +284,12 @@
 <script>
 
     import {schoolFormMixins} from './mixins'
+    import {basicValidations} from 'src/validations/school'
 
     export default {
-        validations: {},
         data() {
             return {
+                lga_ward_id: null,
                 schoolLocationsOptions: [{text: 'Rural', value: 'Rural'}, {text: 'Urban', value: 'Urban'}],
                 educationLevelOptions: [{text: 'Primary', value: 'Primary'}, {text: 'Secondary', value: 'Secondary'}],
                 schoolCategoryOptions: [{text: 'Public', value: 'Public'}, {text: 'Private', value: 'Private'}],
@@ -282,14 +300,21 @@
             }
         },
         mixins: [schoolFormMixins],
+        validations: basicValidations,
         methods: {
+            wardChanged(event) {
+                console.log(lga_ward_id, event)
+            },
+            locationTouched(event) {
+                this.$v.school.location.$touch()
+            },
             onSubmit: function () {
                 let form = {
                     'average_distance': this.school.average_distance,
-                    'established': this.school.established,
+                    'established': String(this.school.established?this.school.established:''),
                     'location': this.school.location,
                     'name': this.school.name,
-                    'lga_ward_id': this.school.lga_ward_id,
+                    'lga_ward_id': this.lga_ward_id,
                     'geolocation': this.school.geolocation,
                     'website': this.school.website,
                     'phone': this.school.phone,
@@ -315,7 +340,7 @@
                 if (this.school.id) {
                     this.$store.dispatch('updateSchool', form).then(() => {
                         this.successMsg('Record updated!', 'Success');
-                        setTimeout(()=>this.$emit('closeModal', true), 500);
+                        setTimeout(() => this.$emit('closeModal', true), 500);
                     }).catch(() => {
                         this.errorMsg('Error saving data!', 'Error');
                     });
@@ -330,7 +355,7 @@
             },
         },
         created() {
-            !this.school.lga_ward_id?this.school.lga_ward_id=null:'';
+            this.lga_ward_id = this.school.lga_ward_id;
         }
     }
 </script>
@@ -372,12 +397,6 @@
 
     form .odd-row:first-of-type {
         border-top: 1px dashed #959DCC;
-    }
-
-    .form-group label {
-        font-size: .8rem !important;
-        letter-spacing: 1px;
-        color: #684348 !important;
     }
 
     .btn-school {
