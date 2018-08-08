@@ -19,9 +19,9 @@ const menu_items = [{
             link: '/school/add',
             icon: 'fa fa-plus-circle',
         }, {
-            name: 'Import',
+            name: 'Upload',
             link: '/school/import',
-            icon: 'fa fa-download'
+            icon: 'fa fa-upload'
         }]
     },
     {

@@ -20,7 +20,16 @@
                     </skeleton-loading>
                 </div>
                 <div v-else>
-                    <a type="button" class="fa fa-download icon-big btn btn-outline-primary ekiti-btn pull-right" @click="exportExcel"></a>
+                    <div class="row">
+                        <div class="">
+                            <div class="pull-right">
+                                <router-link :to="{'name': 'school-import'}" class="fa fa-upload"> Upload</router-link> |
+                                <a class="fa fa-download"
+                                   href="javascript: void (0)"
+                                   @click.prevent="exportExcel"> Download</a>
+                            </div>
+                        </div>
+                    </div>
                     <v-client-table :data="students" :columns="columns" :options="options">
                         <span slot="id" slot-scope="student">{{ student.index }}</span>
                         <router-link class="list-font"

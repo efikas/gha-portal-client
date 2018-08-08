@@ -20,6 +20,7 @@
                            <div class="pull-right">
                                <!--<router-link tag="a" class="btn btn-outline-primary ekiti-btn" to="">Add new</router-link>-->
                                <router-link tag="a" :to="{name:'school-create'}" class="fa fa-plus"> Add</router-link> |
+                               <router-link :to="{'name': 'school-import'}" class="fa fa-upload"> Upload</router-link> |
                                <a href="javascript: void(0)" class="fa fa-download" @click="exportExcel"> Export</a>
                            </div>
                         </div>
