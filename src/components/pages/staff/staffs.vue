@@ -20,8 +20,16 @@
                     </skeleton-loading>
                 </div>
                 <div v-else>
-                    <a class="fa fa-download icon-big btn btn-outline-primary ekiti-btn pull-right"
-                       @click.prevent="exportExcel"></a>
+                    <div class="row">
+                        <div class="">
+                            <div class="pull-right">
+                                <router-link :to="{'name': 'school-import'}" class="fa fa-upload"> Upload</router-link> |
+                                <a class="fa fa-download"
+                                   href="javascript: void (0)"
+                                   @click.prevent="exportExcel"> Download</a>
+                            </div>
+                        </div>
+                    </div>
                     <v-client-table :data="staffs" :columns="columns">
                         <span slot="id" slot-scope="staff">{{ staff.index }}</span>
                         <router-link
@@ -153,9 +161,6 @@
     }
 </script>
 <style scoped>
-    .icon-big {
-        font-size: 20px;
-    }
 
     .sch-link {
         display: block;

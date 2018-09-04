@@ -37,7 +37,7 @@
                     </tr>
                     <tr>
                         <td class="text-muted">Boarding</td>
-                        <td> {{ student.boarding }}</td>
+                        <td> {{ yesNo(student.boarding) }}</td>
                         <td class="text-muted">Dormitory</td>
                         <td> {{ student.dormitory_id }}</td>
                     </tr>

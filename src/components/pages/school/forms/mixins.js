@@ -4,12 +4,13 @@ import {mapGetters} from 'vuex'
 const schoolFormMixins = {
     data() {
         return {
-            normalized: {},
+            normalizedFacilities: {},
+            school: {},
         }
     },
     mixins: [Toaster],
     computed: {
-        ...mapGetters({data: 'data', school: 'school'}),
+        ...mapGetters({data: 'data', getSchool: 'school'}),
         learning() {
             return Object.values(this.data.learning).map(item =>
                 ({text: item.material, value: item.id})
@@ -77,19 +78,26 @@ const schoolFormMixins = {
                 }, []));
         },
         otherFacilities() {
-            return this.normalized;
+            return this.normalizedFacilities;
+        }
+    },
+    watch: {
+        'school.ward.lga_id'(newVal, oldValue){
+            if(typeof oldValue !== 'undefined' && newVal !== oldValue) {
+                this.school.lga_ward_id = null;
+            }
         }
     },
     methods: {
         normalizedFacilityList() {
             if (this.school.id) {
                 for (let index in this.school.facility_list) {
-                    this.normalized[this.school.facility_list[index].facility_id] = this.school.facility_list[index];
+                    this.normalizedFacilities[this.school.facility_list[index].facility_id] = this.school.facility_list[index];
                 }
                 for (let index in this.data.facility_types) {
 
-                    if (typeof this.normalized[this.data.facility_types[index].id] === 'undefined') {
-                        this.normalized[this.data.facility_types[index].id] = {
+                    if (typeof this.normalizedFacilities[this.data.facility_types[index].id] === 'undefined') {
+                        this.normalizedFacilities[this.data.facility_types[index].id] = {
                             school_id: this.school.id,
                             no_facility: 0,
                             facility_id: this.data.facility_types[index].id
@@ -100,7 +108,7 @@ const schoolFormMixins = {
         }
     },
     async created() {
-        // this.school = JSON.parse(JSON.stringify(this.getSchool));
+        this.school = JSON.parse(JSON.stringify(this.getSchool));
         this.normalizedFacilityList();
         if (this.$route.params.id) {
             await this.$store.dispatch('school', this.$route.params.id);

@@ -95,8 +95,8 @@ const actions = {
             return Promise.reject(error.response)
         })
     },
-    uploadSpreadsheat: ({}, payload) => {
-        return axios.post(`/upload/${payload.lga_id}/school`, payload.formdata,
+    uploadSchoolSpreadsheet: ({}, payload) => {
+        return axios.post(`/upload/${payload.lga_ward_id}/school`, payload.formdata,
             {headers: {'Content-Type': 'multipart/form-data'}})
             .then(response => {
                 return Promise.resolve(response.data)
