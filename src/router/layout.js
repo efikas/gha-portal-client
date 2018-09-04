@@ -267,13 +267,40 @@ const layout = [{
             }
     },
     {
-        path: '/admin',
-        component: resolve => require(['pages/user/users'], resolve),
+        path: '/user',
+        component: resolve => require(['pages/user/layout'], resolve),
         meta: {
             title: "User Administration",
             guard: true
         },
-        children: []
+        children: [
+            {
+                path: '',
+                name: 'users',
+                component: resolve => require(['pages/user/users'], resolve),
+                meta: {
+                    title: "User Administration",
+                    guard: true
+                },
+            },
+            {
+                path: 'add',
+                name: 'user-add',
+                component: resolve => require(['pages/user/add'], resolve),
+                meta: {
+                    title: "Add User",
+                    guard: true
+                },
+            },
+            {
+                path: ':id',
+                component: resolve => require(['pages/user/user'], resolve),
+                meta: {
+                    title: "User Administration",
+                    guard: true
+                },
+            }
+        ]
     }
 
 

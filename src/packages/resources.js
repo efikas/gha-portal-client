@@ -10,7 +10,7 @@ module.exports = (function () {
 
     return {
         baseURL: URL,
-        apiURL: URL + "api1/",
+        apiURL: URL + "api1/v1",
         // apiURL: URL + "api/",
         authURL: URL + "oauth/token"
     }

@@ -51,8 +51,12 @@ const menu_items = [{
         icon: 'fa fa-qrcode',
         child: [{
             name: 'View all',
-            link: '/admin',
+            link: '/user',
             icon: 'fa fa-clipboard'
+        },{
+            name: 'Create',
+            link: '/user/add',
+            icon: 'fa fa-plus-circle'
         },]
     },
 ];

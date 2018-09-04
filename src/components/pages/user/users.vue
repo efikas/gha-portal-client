@@ -2,6 +2,7 @@
     <div class="row">
         <div class="col-lg-12 mb-3">
             <b-card class="bg-default-card data">
+                <router-link tag="a" :to="{name: 'user-add'}" class="pull-right fa fa-plus"> Add</router-link>
                 <v-client-table :data="admins" :columns="columns" :options="options">
                     <!--<a slot="id" slot-scope="props">{{ props.index }}</a>-->
                     <!--<router-link tag="a" class="list-font" slot="name" slot-scope="props"-->
@@ -20,12 +21,14 @@
     import { ClientTable, Event } from 'vue-tables-2';
     import VueSkeletonLoading from 'vue-skeleton-loading';
     import { mapGetters } from 'vuex'
+    import Button from "sweet-modal-vue/docs/components/Button";
 
     Vue.use(ClientTable, {}, false);
     Vue.use(VueSkeletonLoading);
     export default {
         name: "users",
         components: {
+            Button
 
         },
         data() {
