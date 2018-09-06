@@ -2,8 +2,9 @@ let mix = require('laravel-mix');
 const path = require('path');
 require('dotenv').config();
 
+let localhost_api = "https://api.sbemis.net";
 // let localhost_api = "http://api.sbemis.localhost";
-let localhost_api = "http://192.168.15.207";
+// let localhost_api = "http://192.168.15.207";
 process.env.MIX_API_URL = !mix.inProduction() ? localhost_api :process.env.MIX_API_URL;
 
 

@@ -44,6 +44,9 @@
                                 <span class="text-error">{{ errors.first('schoolLga') }}</span>
                             </div>
                         </div>
+                        <button type="submit" @click.prevent="onSubmit"
+                                class="btn btn-primary btn-lg btn-school pull-right">Submit
+                        </button>
                     </form>
                 </b-card>
             </div>
