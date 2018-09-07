@@ -22,34 +22,17 @@
                             </div>
                         </div>
                         <div slot="footer">
-                            <div class="row">
-                                <div class="col-md-9 offset-3">
-                                    <b-nav>
-                                        <router-link tag="li"
-                                                     :to="{name:'staff-profile', query:{section: 0}, hash: '#profile'}">
-                                            <a class="nav-link">Personal</a>
-                                        </router-link>
-                                        <router-link tag="li" class="nav-item"
-                                                     :to="{name:'staff-profile', query:{section: 1}, hash: '#profile'}">
-                                            <a class="nav-link">Professional</a>
-                                        </router-link>
-                                    </b-nav>
-                                </div>
-                            </div>
                         </div>
                     </b-card>
                 </div>
             </div>
             <div class="row mt-5">
                 <div class="col-md-10" id="profile" style="padding: 0">
-                    <b-card class="" no-body>
+                    <b-card class="" card small no-body>
                         <!-- Nav tabs -->
                         <b-tabs vertical card small :content-class="contentClass()" pills v-model="tabIndex" @input="tabChanged($event)">
                             <b-tab title="Personal">
                                 <personal></personal>
-                            </b-tab>
-                            <b-tab title="Professional">
-                                <!--<professional></professional>-->
                             </b-tab>
                         </b-tabs>
                     </b-card>

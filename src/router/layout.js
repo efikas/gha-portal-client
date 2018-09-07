@@ -294,6 +294,7 @@ const layout = [{
             },
             {
                 path: ':id',
+                name: 'user-profile',
                 component: resolve => require(['pages/user/user'], resolve),
                 meta: {
                     title: "User Administration",

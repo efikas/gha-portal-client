@@ -5,8 +5,11 @@
                 <router-link tag="a" :to="{name: 'user-add'}" class="pull-right fa fa-plus"> Add</router-link>
                 <v-client-table :data="admins" :columns="columns" :options="options">
                     <!--<a slot="id" slot-scope="props">{{ props.index }}</a>-->
-                    <!--<router-link tag="a" class="list-font" slot="name" slot-scope="props"-->
-                    <!--:to="{ name: routeTo, params: { id: props.row.id }}" v-html="props.row.name"></router-link>-->
+                    <router-link tag="a" class="list-font" slot="name" slot-scope="props"
+                                :to="{ name: 'user-profile', params: { id: props.row.id }}"
+                                 v-html="props.row.name">
+
+                    </router-link>
                     <!--&lt;!&ndash;<a slot="school_name" slot-scope="props" :href="'/#/school/'+ props.row.id+'/profile'">{{ props.row.school_name }}</a>&ndash;&gt;-->
                     <!--<router-link tag="a" slot="view" slot-scope="props"-->
                     <!--class="fa fa-pencil icon-big btn btn-outline-primary ekiti-btn"-->
@@ -17,14 +20,11 @@
     </div>
 </template>
 <script>
-    import Vue from 'vue';
-    import { ClientTable, Event } from 'vue-tables-2';
-    import VueSkeletonLoading from 'vue-skeleton-loading';
+
     import { mapGetters } from 'vuex'
     import Button from "sweet-modal-vue/docs/components/Button";
 
-    Vue.use(ClientTable, {}, false);
-    Vue.use(VueSkeletonLoading);
+
     export default {
         name: "users",
         components: {

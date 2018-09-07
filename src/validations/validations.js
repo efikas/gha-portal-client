@@ -26,6 +26,23 @@ const validations = {
     }
 };
 
+const userValidations = {
+    user: {
+        email: {
+            required, email
+        },
+        fullname: {
+            required
+        },
+        roles: {
+            required
+        },
+        permissions: {
+            required
+        }
+    }
+};
+
 const loginV = {
     email: {
         required, email
@@ -47,4 +64,4 @@ const studentUpdateValidations = {
     }
 };
 
-export { loginV, studentUpdateValidations };
+export { loginV, studentUpdateValidations, userValidations };
