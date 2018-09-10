@@ -34,10 +34,10 @@ const userValidations = {
         fullname: {
             required
         },
-        roles: {
+        selectedRoles: {
             required
         },
-        permissions: {
+        selectedPermissions: {
             required
         }
     }

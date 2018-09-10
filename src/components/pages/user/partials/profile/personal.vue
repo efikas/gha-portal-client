@@ -19,15 +19,15 @@
                     <table class="table table-striped">
                         <tr>
                             <td class="text-muted">Email</td>
-                            <td> {{ staff.email }}</td>
+                            <td> {{ 'Email' }}</td>
                         </tr>
                         <tr>
                             <td class="text-muted">Roles</td>
-                            <td> {{ staff.state_of_origin?data.states[staff.state_of_origin].name:null }}</td>
+                            <td> {{ 'Roles' }}</td>
                         </tr>
                         <tr>
                             <td class="text-muted">Permissions</td>
-                            <td> {{ staff.state_of_origin?data.states[staff.state_of_origin].name:null }}</td>
+                            <td> {{ 'Permissions' }}</td>
                         </tr>
                     </table>
                 </div></div>
@@ -42,7 +42,7 @@
         name: "personal",
         components: {'create-form': create},
         computed: {
-            ...mapGetters(['staff', 'data'])
+            ...mapGetters(['admin', 'data'])
         }
     }
 </script>

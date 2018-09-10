@@ -15,7 +15,7 @@
                                 <div class="row">
                                     <div class="col-md-9 offset-3" style="padding: 0;">
                                         <div class="profile-name" style="position: absolute; bottom: 0px;">
-                                            <p>{{ "Fullname" }}</p>
+                                            <p>{{ admin }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -46,13 +46,12 @@
 
     import {mapGetters} from 'vuex';
     import store from 'src/store/store';
-    import SchoolCard from "../../widgets/sbemis/SchoolCard1";
     import personal from './partials/profile/personal'
 
 
     export default {
         components: {
-            SchoolCard, personal
+           personal
         },
         data() {
             return {
@@ -77,10 +76,6 @@
                         this.tabIndex = 0;
                         this.$router.replace({query: {section: 0}, hash: '#profile'});
                         break;
-                    case 1:
-                        this.tabIndex = 1;
-                        this.$router.replace({query: {section: 1}, hash: '#profile'});
-                        break;
                     default:
                         this.tabIndex = 0;
                         this.$router.replace({query: {section: 0}, hash: '#profile'});
@@ -89,12 +84,12 @@
             }
         },
         computed: mapGetters([
-            'user'
+            'admin'
         ]),
         async beforeRouteEnter(to, from, next) {
-            await store.dispatch('staff', to.params.id).catch(() => {
-                return next(from);
-            });
+            // await store.dispatch('admin', to.params.id).catch(() => {
+            //     return next(from);
+            // });
             next()
         },
         created: function () {

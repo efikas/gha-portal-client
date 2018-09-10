@@ -29,27 +29,27 @@
             </div>
             <div class="row odd-row">
                 <div class="col-lg-6">
-                    <div :class="{'has-error':$v.user.roles.$invalid}">
+                    <div :class="{'has-error':$v.user.selectedRoles.$invalid}">
                         <label>Roles <span class="text-error">*</span></label>
                         <multiselect v-model="user.selectedRoles" :show-labels="false" :options="roles" :multiple="true"
-                                     @blur="$v.user.roles.$touch()"
+                                     @blur="$v.user.selectedRoles.$touch()"
                                      :close-on-select="false" :clear-on-select="false" :hide-selected="true" placeholder="Select Roles">
                         </multiselect>
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <div :class="{'has-error':$v.user.permissions.$invalid}">
+                    <div :class="{'has-error':$v.user.selectedPermissions.$invalid}">
                         <label>Permission <span class="text-error">*</span></label>
                         <multiselect v-model="user.selectedPermissions" :show-labels="false"
                                      :options="permissions" :multiple="true"
-                                     @blur="$v.user.permissions.$touch()"
+                                     @blur="$v.user.selectedPermissions.$touch()"
                                      :close-on-select="false" :clear-on-select="false"
                                      :hide-selected="true" placeholder="Select Permissions">
                         </multiselect>
                     </div>
                 </div>
             </div>
-            <button type="submit" @click.prevent="onSubmit"
+            <button type="submit" :disabled="$v.user.$invalid" @click.prevent="onSubmit"
                     class="btn btn-primary btn-lg btn-school pull-right">Submit
             </button>
         </form>
@@ -58,6 +58,7 @@
 <script>
     import { userValidations } from "src/validations/validations";
     import Multiselect from 'vue-multiselect';
+    import {mapGetters} from 'vuex'
 
     export default {
         components: {
@@ -80,30 +81,35 @@
                 user: {
                     selectedRoles: [],
                     selectedPermissions: [],
-                }
+                },
             }
         },
         methods: {
             onSubmit: function () {
-                this.$staff.addStaff(this.data).then(response => {
-                    if (typeof  response == 'object'){
-                        this.$swal({
-                            type: 'success',
-                            title: 'School Record added Successfully!',
-                            confirmButtonColor: '#3085d6',
-                            confirmButtonText: 'Ok'
-                        }).then((result) => {
-                            if (result.value) {
-                                location.reload();
-                            }
-                        })
-                    }
-                })
+                if (this.user.id) {
+                    this.$store.dispatch('updateAdmin', user).then(() => {
+                        this.successMsg('Record updated!', 'Success');
+                        setTimeout(() => this.$emit('closeModal', true), 500);
+                    }).catch(() => {
+                        this.errorMsg('Error saving data!', 'Error');
+                    });
+                } else {
+                    this.$store.dispatch('storeAdmin', user).then(() => {
+                        this.successMsg('New record created!', 'Success');
+                        this.$router.push({name: 'users'});
+                    }).catch(() => {
+                        this.errorMsg('Error saving data!', 'Error');
+                    });
+                }
             },
         },
         validations: userValidations,
-        mounted: function () {},
-        computed: {},
+        computed: {
+            ...mapGetters({data: 'data', getAdmin: 'admin'}),
+        },
+        async created() {
+           this.user = JSON.parse(JSON.stringify(this.getAdmin))
+        },
         destroyed: function () {}
     }
 </script>
