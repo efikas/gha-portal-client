@@ -24,7 +24,7 @@
             </div>
             <div class="col-6">
                 <div style="display: flex; flex: fit-content; flex-direction: column; justify-content: space-between">
-                    <div class="row mb-4" style="justify-content: flex-start; flex: 1">
+                    <div class="row mb-4" style="justify-content: flex-start; flex: 1; flex-direction: column">
                         <h4 class="default-color">
                             <router-link :to="{name:'school', params:{id:school.id}}">{{ school.name }}</router-link>
                         </h4>
