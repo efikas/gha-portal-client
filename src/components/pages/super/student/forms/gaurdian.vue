@@ -159,7 +159,7 @@
 </template>
 <script>
     import {mapGetters} from 'vuex'
-    import Toaster from '../../../mixins/toaster'
+    import Toaster from '../../../../mixins/toaster'
     import {guardianValidations} from 'src/validations/student'
 
     export default {

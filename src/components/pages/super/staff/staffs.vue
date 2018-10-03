@@ -50,10 +50,10 @@
     </div>
 </template>
 <script>
-    import SchoolCard from "../../widgets/sbemis/SchoolCard1";
+    import SchoolCard from "../../../widgets/sbemis/SchoolCard1";
     import {mapGetters} from 'vuex'
-    import store from '../../../store/store'
-    import Toaster from '../../mixins/toaster'
+    import store from '../../../../store/store'
+    import Toaster from '../../../mixins/toaster'
 
     export default {
         name: "staff_list",
@@ -64,7 +64,6 @@
         data() {
             return {
                 loading: true,
-                school_id: this.$route.params.id,
                 params: null,
                 category: this.$route.query.t,
                 schoolInfo: {},
@@ -93,11 +92,15 @@
                 'staffs',
                 'school'
             ]),
+            school_id() {
+               return  (this.$store.getters.userType === 1) ? this.$route.params.id : this.$store.getters.schoolId
+            }
         },
         watch: {
             $route: (route) => {
+                let school_id = (store.getters.userType === 1) ? route.params.id : store.getters.schoolId;
                 this.params = route.query ? {category: route.query.t} : null;
-                store.dispatch('staffs', {id: route.params.id, params: this.params});
+                store.dispatch('staffs', {id: school_id, params: this.params});
             },
             'staffs.length'(val) {
                 this.loading = false;
@@ -105,7 +108,7 @@
         },
         created() {
             this.loading = true;
-            this.$store.dispatch('staffs', {id: this.$route.params.id, params: this.params});
+            this.$store.dispatch('staffs', {id: this.school_id, params: this.params});
         },
 
         methods: {

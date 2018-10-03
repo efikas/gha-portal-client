@@ -264,7 +264,7 @@
     import Multiselect from 'vue-multiselect';
     import {mapGetters} from 'vuex'
     import {personalValidations} from 'src/validations/student'
-    import Toaster from '../../../mixins/toaster'
+    import Toaster from '../../../../mixins/toaster'
 
     export default {
         name: 'student-basic',

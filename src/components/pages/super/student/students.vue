@@ -50,9 +50,9 @@
     </div>
 </template>
 <script>
-import SchoolCard from "../../widgets/sbemis/SchoolCard1";
+import SchoolCard from "../../../widgets/sbemis/SchoolCard1";
 import {mapGetters} from 'vuex'
-import Toaster from '../../mixins/toaster'
+import Toaster from '../../../mixins/toaster'
 
 export default {
     components: {
@@ -82,7 +82,12 @@ export default {
             }
         }
     },
-    computed:mapGetters(['students', 'school']),
+    computed: {
+        ...mapGetters(['students', 'school']),
+        school_id(){
+            return  (this.$store.getters.userType === 1) ? this.$route.params.id : this.$store.getters.schoolId
+        }
+    },
     watch: {
         'students'() {
             this.loading = false;
@@ -90,7 +95,7 @@ export default {
     },
     created() {
         this.loading = true;
-        this.$store.dispatch('students', {id: this.$route.params.id});
+        this.$store.dispatch('students', {id: this.school_id});
     },
     methods: {
         deleteRecord(id) {

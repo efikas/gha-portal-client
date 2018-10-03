@@ -173,7 +173,7 @@
 </template>
 <script>
     import {mapGetters} from 'vuex'
-    import Toaster from '../../../mixins/toaster'
+    import Toaster from '../../../../mixins/toaster'
     import {professionalValidations} from 'src/validations/staff'
 
 

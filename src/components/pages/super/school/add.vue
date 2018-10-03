@@ -7,7 +7,7 @@
 </template>
 <script>
     import BasicForm from './forms/basic.vue';
-    import { schoolBasicData } from '../../../data/school'
+    import { schoolBasicData } from '../../../../data/school'
     import Store from 'src/store/store'
 
     export default {

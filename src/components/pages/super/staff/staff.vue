@@ -70,7 +70,7 @@
 
     import {mapGetters} from 'vuex';
     import store from 'src/store/store';
-    import SchoolCard from "../../widgets/sbemis/SchoolCard1";
+    import SchoolCard from "../../../widgets/sbemis/SchoolCard1";
     import personal from './partials/profile/personal'
     import professional from './partials/profile/professional'
 

@@ -57,7 +57,7 @@
 <script>
 
     import {mapGetters} from 'vuex'
-    import Toaster from '../../mixins/toaster'
+    import Toaster from '../../../mixins/toaster'
 
     export default {
         name: "school_manage",

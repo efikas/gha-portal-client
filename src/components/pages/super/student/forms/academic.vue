@@ -117,7 +117,7 @@
 </template>
 <script>
     import {mapGetters} from 'vuex'
-    import Toaster from '../../../mixins/toaster'
+    import Toaster from '../../../../mixins/toaster'
     import {academicValidations} from 'src/validations/student'
 
 

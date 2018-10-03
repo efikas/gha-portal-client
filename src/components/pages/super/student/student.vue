@@ -73,7 +73,7 @@
     </div>
 </template>
 <script>
-    import SchoolCard from "../../widgets/sbemis/SchoolCard1";
+    import SchoolCard from "../../../widgets/sbemis/SchoolCard1";
     import {mapGetters} from 'vuex';
     import store from 'src/store/store';
     import PersonalForm from './forms/personal';

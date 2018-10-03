@@ -31,7 +31,10 @@
         vmenuItem,
         vsubMenu
     } from './menu';
-    import menu_items from "src/menu.js";
+    import menu_items from "src/menu/menu";
+    import admin_menu_items from "src/menu/admin";
+    import student_menu_items from "src/menu/student";
+    import teacher_menu_items from "src/menu/teacher";
 
     export default {
         name: "left-side",
@@ -41,8 +44,30 @@
             vmenuItem,
         },
         data() {
-            return {
-                menuitems: menu_items
+            return {}
+        },
+        computed: {
+            menuitems(){
+                // return menu_items;
+                switch(this.$store.getters.userType) {
+                    case 1:
+                        return menu_items;
+                        break;
+                    case 2:
+                        return admin_menu_items;
+                        break;
+                    case 3:
+                        return teacher_menu_items;
+                        break;
+                    case 4:
+                        return student_menu_items;
+                        break;
+                    case 5:
+                        return menu_items;
+                        break;
+                    default:
+                        return student_menu_items;
+                }
             }
         }
     }

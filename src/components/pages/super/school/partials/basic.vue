@@ -83,20 +83,20 @@
                         <td class="text-muted text-right">Number of student</td>
                         <td>{{ school.students }}</td>
                     </tr>
-                    <tr>
-                        <td class="text-muted text-right">
-                            <router-link :to="{name:'school-staffs', param: {id: school.id}, query:{t:1}}">Teaching
-                                Staff
-                            </router-link>
-                        </td>
-                        <td>{{ school.staffs?school.staffs.teaching:0 }}</td>
-                        <td class="text-muted text-right">
-                            <router-link :to="{name:'school-staffs', param: {id: school.id}, query:{t:0}}">Non-Teaching
-                                Staff
-                            </router-link>
-                        </td>
-                        <td>{{ school.staffs? school.staffs.none_teaching:0 }}</td>
-                    </tr>
+                    <!--<tr>-->
+                        <!--<td class="text-muted text-right">-->
+                            <!--<router-link :to="{name:'school-staffs', param: {id: school.id}, query:{t:1}}">Teaching-->
+                                <!--Staff-->
+                            <!--</router-link>-->
+                        <!--</td>-->
+                        <!--<td>{{ school.staffs?school.staffs.teaching:0 }}</td>-->
+                        <!--<td class="text-muted text-right">-->
+                            <!--<router-link :to="{name:'school-staffs', param: {id: school.id}, query:{t:0}}">Non-Teaching-->
+                                <!--Staff-->
+                            <!--</router-link>-->
+                        <!--</td>-->
+                        <!--<td>{{ school.staffs? school.staffs.none_teaching:0 }}</td>-->
+                    <!--</tr>-->
                 </table>
             </div>
         </b-card>

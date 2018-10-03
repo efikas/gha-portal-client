@@ -49,7 +49,7 @@
 </template>
 <script>
     import {mapGetters} from 'vuex'
-    import Toaster from '../../mixins/toaster'
+    import Toaster from '../../../mixins/toaster'
     import {required, integer} from 'vuelidate/lib/validators'
 
     export default {

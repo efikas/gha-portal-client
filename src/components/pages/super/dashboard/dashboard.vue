@@ -48,8 +48,8 @@
     require('swiper/dist/css/swiper.css')
     import VueAwesomeSwiper from 'vue-awesome-swiper';
 
-    import topCard from './dashboard/partial/topCard'
-    import {Reports} from './dashboard/mixins'
+    import topCard from './partial/topCard'
+    import {Reports} from './mixins'
 
 
     Vue.use(VueAwesomeSwiper);

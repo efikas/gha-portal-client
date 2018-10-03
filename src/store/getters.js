@@ -28,7 +28,13 @@ const getters = {
     },
     api_auth_url: state => {
         return process.env.MIX_AUTH_URI;
-    }
+    },
+    userType: state => {
+        return state.user_type
+    },
+    schoolId: state => {
+        return state.school_id
+    },
 };
 
 export default getters

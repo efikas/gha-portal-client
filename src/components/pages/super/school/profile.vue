@@ -62,7 +62,7 @@
 </template>
 <script>
     import {SweetModal, SweetModalTab} from 'sweet-modal-vue'
-    import SchoolCard from "../../widgets/sbemis/SchoolCard1";
+    import SchoolCard from "../../../widgets/sbemis/SchoolCard1";
     import { tabsMixins } from './partials/mixins';
     import basicTab from './partials/basic';
     import facilityTab from './partials/facility';
@@ -141,7 +141,8 @@
             }
         },
         async beforeRouteEnter(to, from, next) {
-            await store.dispatch('school', to.params.id).catch(() => {
+            let school_id = (to.params.id) ? to.params.id : store.getters.schoolId;
+            await store.dispatch('school', school_id).catch(() => {
                 return next(from);
             });
             next()

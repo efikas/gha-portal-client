@@ -26,7 +26,7 @@
                 <div style="display: flex; flex: fit-content; flex-direction: column; justify-content: space-between">
                     <div class="row mb-4" style="justify-content: flex-start; flex: 1; flex-direction: column">
                         <h4 class="default-color">
-                            <router-link :to="{name:'school', params:{id:school.id}}">{{ school.name }}</router-link>
+                            <router-link :to="{name: urlPadding + 'school', params:{id: school_id}}">{{ school.name }}</router-link>
                         </h4>
                         <h5>{{ school.address }}</h5>
                     </div>
@@ -34,14 +34,14 @@
                     <div class="row" style="flex: 1; flex-direction: row; display: flex; justify-content: space-around">
                         <div class="text-center">
                             <h6>
-                                <router-link :to="{name:'school-staffs', params: {id: school.id}}">All Staff
+                                <router-link :to="{name: urlPadding + 'school-staffs', params: {id: school_id}}">All Staff
                                 </router-link>
                             </h6>
                             <h1>{{ school.staffs.teaching + school.staffs.none_teaching }}</h1>
                         </div>
                         <div class="text-center">
                             <h6>
-                                <router-link :to="{name:'school-staffs', params: {id: school.id}, query:{t:1}}">Teaching
+                                <router-link :to="{name: urlPadding + 'school-staffs', params: {id: school_id}, query:{t:1}}">Teaching
                                     Staff
                                 </router-link>
                             </h6>
@@ -49,14 +49,18 @@
                         </div>
                         <div class="text-center">
                             <h6>
-                                <router-link :to="{name:'school-staffs', params: {id: school.id}, query:{t:0}}">
+                                <router-link :to="{name: urlPadding + 'school-staffs', params: {id: school_id}, query:{t:0}}">
                                     Non-Teaching Staff
                                 </router-link>
                             </h6>
                             <h1>{{ school.staffs.none_teaching }}</h1>
                         </div>
                         <div class="text-center">
-                            <h6><a :href="`/school/${school.id}/students`">Students</a></h6>
+                            <h6>
+                                <router-link :to="{name: urlPadding + 'school-students', params: {id: school_id}}">
+                                    Students
+                                </router-link>
+                            </h6>
                             <h1>{{ school.students }}</h1>
                         </div>
                     </div>
@@ -105,6 +109,22 @@
                         }
                     }]
                 }
+            },
+            urlPadding(){
+               switch(this.$store.getters.userType){
+                   case 2:
+                       return 'admin-';
+                       break;
+                   case 3:
+                       return 'teacher-';
+                       break;
+                   default:
+                       return '';
+                       break;
+               }
+            },
+            school_id(){
+                return  (this.$store.getters.userType === 1) ? this.school.id : this.$store.getters.schoolId
             }
         },
     }

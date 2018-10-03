@@ -195,7 +195,7 @@
 <script>
     import Multiselect from 'vue-multiselect';
     import {mapGetters} from 'vuex'
-    import Toaster from '../../../mixins/toaster'
+    import Toaster from '../../../../mixins/toaster'
     import {personalValidations} from 'src/validations/staff'
 
 

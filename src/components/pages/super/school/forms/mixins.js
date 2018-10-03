@@ -1,4 +1,4 @@
-import Toaster from '../../../mixins/toaster';
+import Toaster from '../../../../mixins/toaster';
 import {mapGetters} from 'vuex'
 
 const schoolFormMixins = {
