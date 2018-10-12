@@ -1,21 +1,16 @@
 const teacher_menu_items = [{
         name: 'Dashboard',
-        link: '/',
+        link: '/teacher/dashboard',
         icon: 'fa fa-dashboard'
     },
     {
         name: 'Classes',
-        link: '/attendance/report',
-        icon: 'fa fa-calendar-check-o',
-    },
-    {
-        name: 'Attendance',
-        link: '/attendance/report',
+        link: '/teacher/classes',
         icon: 'fa fa-calendar-check-o',
     },
     {
         name: 'Notifications',
-        link: '/attendance/report',
+        link: '/teacher/Notifications',
         icon: 'fa fa-calendar-check-o',
     }
 ];

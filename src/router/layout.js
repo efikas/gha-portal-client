@@ -1,4 +1,5 @@
 import admin_routes from './admin';
+import teacher_routes from './teacher';
 
 const layout = [{
     path: '/',
@@ -309,6 +310,11 @@ const layout = [{
         path: '/admin',
         component: resolve => require(['src/components/pages/layout'], resolve),
         children: admin_routes
+    },
+    {
+        path: '/teacher',
+        component: resolve => require(['src/components/pages/layout'], resolve),
+        children: teacher_routes
     },
 ]
 

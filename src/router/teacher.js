@@ -1,5 +1,5 @@
-const teacher = [{
-    path: '/',
+const teacher_routes = [{
+    path: 'dashboard',
     name: 'teacher-dashboard',
     component: resolve => require(['pages/super/dashboard/dashboard'], resolve),
     meta: {
@@ -8,15 +8,24 @@ const teacher = [{
     }
 },
     {
-        path: '/classes',
-        component: resolve => require(['pages/super/school/school'], resolve),
+        path: 'classes',
+        component: resolve => require(['pages/layout'], resolve),
         children: [
             {
                 path: '',
-                name: 'teacher-school-overview',
-                component: resolve => require(['pages/super/school/overview'], resolve),
+                name: 'teacher-classes',
+                component: resolve => require(['pages/teacher/classes/classes'], resolve),
                 meta: {
-                    title: "Schools",
+                    title: "Classes",
+                    guard: true
+                }
+            },
+            {
+                path: ':id/exam',
+                name: 'teacher-exam',
+                component: resolve => require(['pages/teacher/classes/exam'], resolve),
+                meta: {
+                    title: "Exam",
                     guard: true
                 }
             },
@@ -32,22 +41,13 @@ const teacher = [{
         ]
     },
     {
-        path: '/attendance',
-        name: 'teacher-attendance',
-        component: resolve => require(['pages/super/staff/layout'], resolve),
-        meta: {
-            guard: true,
-        }
-    },
-    {
-        path: '/notification',
-        name: 'teacher-notification',
-        component: resolve => require(['pages/super/staff/layout'], resolve),
+        path: 'notifications',
+        name: 'teacher-notifications',
+        component: resolve => require(['pages/teacher/notification/notifications'], resolve),
         meta: {
             guard: true,
         }
     }
-
 ]
 
-export default teacher
+export default teacher_routes
