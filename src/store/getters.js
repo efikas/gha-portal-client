@@ -30,10 +30,10 @@ const getters = {
         return process.env.MIX_AUTH_URI;
     },
     userType: state => {
-        return state.user_type
+        return (state.user != null) ? state.user.user_type : 4;
     },
     schoolId: state => {
-        return state.school_id
+        return (state.user != null && state.user.staff != null) ? state.user.staff.school_id : null;
     },
 };
 
