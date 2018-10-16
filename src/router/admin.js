@@ -26,7 +26,7 @@ const admin_layouts = [{
             {
                 path: '',
                 name: "admin-school-staffs",
-                component: resolve => require(['pages/super/staff/staffs'], resolve),
+                component: resolve => require(['pages/admin/staff/staffs'], resolve),
                 meta: {
                     guard: true,
                 }

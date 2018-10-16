@@ -62,8 +62,13 @@ const store = new Vuex.Store({
         statistics: {},
         access_server: subdomain(),
 
+        //settings
+        term: '1',
+        session: '2018/2019',
+
 
         user_type: 3, // 1 - super admin, 2 - school admin, 3 - teachers, 4 - Student, 5 - Parent
+        super_admin: 1,
     },
     mutations,
     actions,

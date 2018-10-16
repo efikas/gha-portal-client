@@ -35,6 +35,9 @@ const getters = {
     schoolId: state => {
         return (state.user != null && state.user.staff != null) ? state.user.staff.school_id : null;
     },
+    super_admin: state => {
+        return state.super_admin;
+    }
 };
 
 export default getters

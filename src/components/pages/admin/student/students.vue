@@ -85,7 +85,8 @@ export default {
     computed: {
         ...mapGetters(['students', 'school']),
         school_id(){
-            return  (this.$store.getters.userType === 1) ? this.$route.params.id : this.$store.getters.schoolId
+            return (this.$store.getters.userType == this.$store.getters.super_admin)
+                ? this.$route.params.id : this.$store.getters.schoolId
         }
     },
     watch: {

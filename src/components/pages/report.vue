@@ -98,7 +98,7 @@
     </div>
 </template>
 <script>
-import {Reports} from "./super/dashboard/mixins";
+import {Reports} from "./admin/dashboard/mixins";
 
 export default {
     name: 'report',
