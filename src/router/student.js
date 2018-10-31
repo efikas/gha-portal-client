@@ -1,7 +1,7 @@
-const student = [{
+const student_routes = [{
     path: '/',
     name: 'student-dashboard',
-    component: resolve => require(['pages/super/dashboard/dashboard'], resolve),
+    component: resolve => require(['pages/admin/dashboard/dashboard'], resolve),
     meta: {
         title: "Dashboard",
         guard: true
@@ -9,12 +9,12 @@ const student = [{
 },
     {
         path: '/classes',
-        component: resolve => require(['pages/super/school/school'], resolve),
+        component: resolve => require(['pages/admin/school/school'], resolve),
         children: [
             {
                 path: '',
                 name: 'student-school-overview',
-                component: resolve => require(['pages/super/school/overview'], resolve),
+                component: resolve => require(['pages/admin/school/overview'], resolve),
                 meta: {
                     title: "Schools",
                     guard: true
@@ -23,7 +23,7 @@ const student = [{
             {
                 path: 'manage',
                 name: 'student-schools',
-                component: resolve => require(['pages/super/school/schools'], resolve),
+                component: resolve => require(['pages/admin/school/schools'], resolve),
                 meta: {
                     title: "Manage Schools",
                     guard: true
@@ -34,7 +34,7 @@ const student = [{
     {
         path: '/attendance',
         name: 'student-attendance',
-        component: resolve => require(['pages/super/staff/layout'], resolve),
+        component: resolve => require(['pages/admin/staff/layout'], resolve),
         meta: {
             guard: true,
         }
@@ -42,7 +42,7 @@ const student = [{
     {
         path: '/notification',
         name: 'student-notification',
-        component: resolve => require(['pages/super/staff/layout'], resolve),
+        component: resolve => require(['pages/admin/staff/layout'], resolve),
         meta: {
             guard: true,
         }
@@ -50,4 +50,4 @@ const student = [{
 
 ]
 
-export default student
+export default student_routes

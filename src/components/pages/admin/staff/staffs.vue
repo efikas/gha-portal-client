@@ -51,11 +51,11 @@
 </template>
 <script>
     import Toaster from '../../../mixins/toaster'
-    import StudentsMixins from './mixins/students_mixins';
+    import StaffsMixins from './mixins/staffs_mixins';
 
     export default {
         name: "staff_list",
-        mixins: [Toaster, StudentsMixins],
+        mixins: [Toaster, StaffsMixins],
         methods: {
             deleteRecord(id) {
                 if(confirm('Deleting this item will remove all it\'s related data! Are you sure you want to proceed?')) {

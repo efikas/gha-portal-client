@@ -1,7 +1,7 @@
 const teacher_routes = [{
     path: 'dashboard',
     name: 'teacher-dashboard',
-    component: resolve => require(['pages/super/dashboard/dashboard'], resolve),
+    component: resolve => require(['pages/admin/dashboard/dashboard'], resolve),
     meta: {
         title: "Dashboard",
         guard: true
@@ -32,7 +32,7 @@ const teacher_routes = [{
             {
                 path: 'manage',
                 name: 'teacher-schools',
-                component: resolve => require(['pages/super/school/schools'], resolve),
+                component: resolve => require(['pages/admin/school/schools'], resolve),
                 meta: {
                     title: "Manage Schools",
                     guard: true

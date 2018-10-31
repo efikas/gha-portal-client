@@ -1,4 +1,4 @@
-const student_menu_items = [{
+const student = [{
     name: 'Dashboard',
     link: '/',
     icon: 'fa fa-dashboard'
@@ -19,4 +19,4 @@ const student_menu_items = [{
         icon: 'fa fa-calendar-check-o',
     }
 ];
-export default student_menu_items;
+export default student;

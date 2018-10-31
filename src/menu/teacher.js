@@ -1,4 +1,4 @@
-const teacher_menu_items = [{
+const teacher = [{
         name: 'Dashboard',
         link: '/teacher/dashboard',
         icon: 'fa fa-dashboard'
@@ -14,4 +14,4 @@ const teacher_menu_items = [{
         icon: 'fa fa-calendar-check-o',
     }
 ];
-export default teacher_menu_items;
+export default teacher;

@@ -32,7 +32,7 @@
         vsubMenu
     } from './menu';
     import menu_items from "src/menu/menu";
-    import admin_menu_items from "src/menu/admin";
+    import admin_menu_items from "src/menu/moderator";
     import student_menu_items from "src/menu/student";
     import teacher_menu_items from "src/menu/teacher";
 

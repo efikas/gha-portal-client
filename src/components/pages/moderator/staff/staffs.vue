@@ -45,8 +45,8 @@
 </template>
 <script>
     import Toaster from '../../../mixins/toaster'
-    import StudentsMixins from '../../admin/staff/mixins/students_mixins';
-    import ClassTaught from '../class/class';
+    import StudentsMixins from '../../admin/staff/mixins/staffs_mixins';
+    import ClassTaught from '../class/classes';
 
     export default {
         name: "admin_staff_list",

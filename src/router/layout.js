@@ -1,10 +1,10 @@
-import admin_routes from './admin';
+import admin_routes from './moderator';
 import teacher_routes from './teacher';
 
 const layout = [{
     path: '/',
     name: 'dashboard',
-    component: resolve => require(['pages/super/dashboard/dashboard'], resolve),
+    component: resolve => require(['pages/admin/dashboard/dashboard'], resolve),
     meta: {
         title: "Dashboard",
         guard: true
@@ -12,12 +12,12 @@ const layout = [{
 },
     {
         path: '/school',
-        component: resolve => require(['pages/super/school/school'], resolve),
+        component: resolve => require(['pages/admin/school/school'], resolve),
         children: [
             {
                 path: '',
                 name: 'school-overview',
-                component: resolve => require(['pages/super/school/overview'], resolve),
+                component: resolve => require(['pages/admin/school/overview'], resolve),
                 meta: {
                     title: "Schools",
                     guard: true
@@ -26,7 +26,7 @@ const layout = [{
             {
                 path: 'manage',
                 name: 'schools',
-                component: resolve => require(['pages/super/school/schools'], resolve),
+                component: resolve => require(['pages/admin/school/schools'], resolve),
                 meta: {
                     title: "Manage Schools",
                     guard: true
@@ -35,7 +35,7 @@ const layout = [{
             {
                 path: 'lga',
                 name: 'school-lga',
-                component: resolve => require(['pages/super/school/schools'], resolve),
+                component: resolve => require(['pages/admin/school/schools'], resolve),
                 meta: {
                     title: "Manage Schools",
                     guard: true
@@ -44,7 +44,7 @@ const layout = [{
             {
                 path: 'add',
                 name: 'school-create',
-                component: resolve => require(['pages/super/school/add'], resolve),
+                component: resolve => require(['pages/admin/school/add'], resolve),
                 meta: {
                     title: "Add School",
                     guard: true
@@ -53,7 +53,7 @@ const layout = [{
             {
                 path: 'import',
                 name: 'school-import',
-                component: resolve => require(['pages/super/school/import'], resolve),
+                component: resolve => require(['pages/admin/school/import'], resolve),
                 meta: {
                     title: "Import School Record",
                     guard: true
@@ -62,7 +62,7 @@ const layout = [{
             {
                 path: ':id/staffs',
                 name: "school-staffs",
-                component: resolve => require(['pages/super/staff/staffs'], resolve),
+                component: resolve => require(['pages/admin/staff/staffs'], resolve),
                 meta: {
                     title: "Staff List",
                     guard: true
@@ -71,7 +71,7 @@ const layout = [{
             {
                 path: ':id/students',
                 name: "school-students",
-                component: resolve => require(['pages/super/student/students'], resolve),
+                component: resolve => require(['pages/admin/student/students'], resolve),
                 meta: {
                     title: "Students List",
                     guard: true
@@ -80,7 +80,7 @@ const layout = [{
             { //todo: fix routes that overrides
                 name: "school",
                 path: ':id',
-                component: resolve => require(['pages/super/school/profile'], resolve),
+                component: resolve => require(['pages/admin/school/profile'], resolve),
                 meta: {
                     title: "School Profile",
                     guard: true
@@ -93,14 +93,14 @@ const layout = [{
 
     {
         path: '/staff',
-        component: resolve => require(['pages/super/staff/layout'], resolve),
+        component: resolve => require(['pages/admin/staff/layout'], resolve),
         meta: {
             guard: true,
         },
         children: [
             {
                 path: '',
-                component: resolve => require(['pages/super/staff/overview'], resolve),
+                component: resolve => require(['pages/admin/staff/overview'], resolve),
                 meta: {
                     title: "Staff Distribution report",
                     guard: true,
@@ -110,7 +110,7 @@ const layout = [{
                 path: ':id',
                 name: 'staff-profile',
                 component:
-                    resolve => require(['pages/super/staff/staff'], resolve),
+                    resolve => require(['pages/admin/staff/staff'], resolve),
                 meta:
                     {
                         title: " ",
@@ -121,7 +121,7 @@ const layout = [{
                 path: 'add',
                 name: 'staff-add',
                 component:
-                    resolve => require(['pages/super/staff/add'], resolve),
+                    resolve => require(['pages/admin/staff/add'], resolve),
                 meta:
                     {
                         title: "Add New Staff",
@@ -131,7 +131,7 @@ const layout = [{
             {
                 path: 'import',
                 component:
-                    resolve => require(['pages/super/staff/import'], resolve),
+                    resolve => require(['pages/admin/staff/import'], resolve),
                 meta:
                     {
                         title: "Import Staff Record",
@@ -141,7 +141,7 @@ const layout = [{
             },
             {
                 path: ':id/update/:component',
-                component: resolve => require(['pages/super/staff/update'], resolve),
+                component: resolve => require(['pages/admin/staff/update'], resolve),
                 meta: {
                     title: "Update Staff Record",
                     guard: true
@@ -152,7 +152,7 @@ const layout = [{
     ,
     {
         path: '/student',
-        component: resolve => require(['pages/super/student/layout'], resolve),
+        component: resolve => require(['pages/admin/student/layout'], resolve),
         meta: {
             title: "Students",
             guard: true
@@ -160,7 +160,7 @@ const layout = [{
         children: [
             {
                 path: '',
-                component: resolve => require(['pages/super/student/overview'], resolve),
+                component: resolve => require(['pages/admin/student/overview'], resolve),
                 meta: {
                     title: "Student List",
                     guard: true
@@ -169,7 +169,7 @@ const layout = [{
             {
                 path: ':id',
                 name: 'student-profile',
-                component: resolve => require(['pages/super/student/student'], resolve),
+                component: resolve => require(['pages/admin/student/student'], resolve),
                 meta: {
                     title: " ",
                     guard: true
@@ -178,7 +178,7 @@ const layout = [{
             {
                 path: 'add',
                 name: 'student-add',
-                component: resolve => require(['pages/super/student/add'], resolve),
+                component: resolve => require(['pages/admin/student/add'], resolve),
                 meta: {
                     title: "Add New Student",
                     guard: true
@@ -187,7 +187,7 @@ const layout = [{
             {
                 path: 'import',
                 component:
-                    resolve => require(['pages/super/student/import'], resolve),
+                    resolve => require(['pages/admin/student/import'], resolve),
                 meta: {
                     title: "Import",
                     guard: true
@@ -195,7 +195,7 @@ const layout = [{
             },
             {
                 path: ':id/update/:component',
-                component: resolve => require(['pages/super/student/update/'], resolve),
+                component: resolve => require(['pages/admin/student/update/'], resolve),
                 meta: {
                     title: "Update Student Record",
                     guard: true
@@ -206,7 +206,7 @@ const layout = [{
     ,
     {
         path: '/attendance',
-        component: resolve => require(['pages/super/attendance/layout'], resolve),
+        component: resolve => require(['pages/admin/attendance/layout'], resolve),
         meta:
             {
                 title: "Attendance",
@@ -216,7 +216,7 @@ const layout = [{
         children: [
             {
                 path: 'report',
-                component: resolve => require(['pages/super/attendance/report'], resolve),
+                component: resolve => require(['pages/admin/attendance/report'], resolve),
                 meta: {
                     title: "Report",
                     guard: true
@@ -224,7 +224,7 @@ const layout = [{
             },
             {
                 path: 'update',
-                component: resolve => require(['pages/super/attendance/update'], resolve),
+                component: resolve => require(['pages/admin/attendance/update'], resolve),
                 meta: {
                     title: "Update",
                     guard: true
@@ -234,7 +234,7 @@ const layout = [{
     },
     {
         path: '/exam',
-        component: resolve => require(['pages/super/exam/layout'], resolve),
+        component: resolve => require(['pages/admin/exam/layout'], resolve),
         meta: {
             title: "Exam",
             guard: true
@@ -242,7 +242,7 @@ const layout = [{
         children: [
             {
                 path: 'report',
-                component: resolve => require(['pages/super/exam/report'], resolve),
+                component: resolve => require(['pages/admin/exam/report'], resolve),
                 meta: {
                     title: "Report",
                     guard: true
@@ -250,7 +250,7 @@ const layout = [{
             },
             {
                 path: 'update',
-                component: resolve => require(['pages/super/exam/update'], resolve),
+                component: resolve => require(['pages/admin/exam/update'], resolve),
                 meta: {
                     title: "Update",
                     guard: true

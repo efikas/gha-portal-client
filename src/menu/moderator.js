@@ -1,4 +1,4 @@
-const admin_menu_items = [{
+const moderator = [{
         name: 'Dashboard',
         link: '/admin/dashboard',
         icon: 'fa fa-dashboard'
@@ -29,4 +29,4 @@ const admin_menu_items = [{
         icon: 'fa fa-calendar-check-o',
     }
 ];
-export default admin_menu_items;
+export default moderator;

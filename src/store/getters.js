@@ -37,7 +37,7 @@ const getters = {
     },
     super_admin: state => {
         return state.super_admin;
-    }
+    },
 };
 
 export default getters

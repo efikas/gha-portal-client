@@ -32,6 +32,7 @@
         "es6-promise": "^4.2.2",
         "font-awesome": "^4.7.0",
         "frappe-charts": "^0.0.8",
+        "fs": "0.0.1-security",
         "fuse.js": "^3.2.0",
         "geolocator": "^2.1.1",
         "highcharts": "^6.0.7",
