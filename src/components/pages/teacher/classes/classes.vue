@@ -3,7 +3,12 @@
         <div class="row">
             <div class="col-lg-12">
                 <b-card>
-
+                    <div>
+                        <h3 class="default-color"><strong>Student result for Junior Secondary One A</strong></h3>
+                        <h4>Third Term, 2017/2018 Session</h4>
+                    </div>
+                </b-card>
+                <b-card>
                     <div class="row">
                         <div class="col-4">
                             <label>Section</label>
@@ -37,19 +42,20 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr v-for="(_class, index) in classes">
+                                    <tr v-for="(_class, index) in school_classes">
                                         <td>{{ index + 1 }}</td>
                                         <td class="">
                                             <router-link tag="a"
-                                                         :to="{name:'teacher-exam', params: { id: _class.subject_id },
+                                                         :to="{name:'teacher-exam', params: { schoolClassId: _class.subject_id },
                                                          query: { subject: _class.subject_id, term: 3 }
                                                          }">
-                                                {{ `${_class.subject_name}, ${_class.class} ${_class.arm} (First term, 2018/2019 Session)` }}
+                                                {{ `${getClassName(_class.class.class_id)} ${_class.class.arm} (${getSubjectName(_class.subject_id)})` }}
                                             </router-link>
                                         </td>
                                         <td class="">
-                                            <router-link tag="a" :to="{name:'teacher-exam', params: { id: _class.subject_id }}" class="fa fa-book">
-                                                Result
+                                            <router-link tag="a" :to="{name:'teacher-exam', params: { schoolClassId: _class.subject_id },
+                                                query: { subject: _class.subject_id, term: 3 }}" class="fa fa-book">
+                                               Results
                                             </router-link>
                                         </td>
                                     </tr>
@@ -64,84 +70,26 @@
     </div>
 </template>
 <script>
-    import 'vue2-dropzone/dist/vue2Dropzone.css'
-    import Multiselect from 'vue-multiselect';
+    import {mapGetters} from 'vuex';
+    import store from 'src/store/store';
+    import DataMixin from '../../../mixins/dataMixin';
 
     export default {
         name: 'classes',
-        components: {
-            Multiselect,
-        },
+        mixins: [DataMixin],
         data() {
-            return {
-                classes: [
-                    {
-                        class: 'SS 1',
-                        arm: 'A',
-                        subject_name: 'Biology',
-                        subject_id: 23,
-                    },
-                    {
-                        class: 'SS 1',
-                        arm: 'B',
-                        subject_name: 'Biology',
-                        subject_id: 23,
-                    },
-                    {
-                        class: 'SS 1',
-                        arm: 'C',
-                        subject_name: 'Biology',
-                        subject_id: 23,
-                    },
-                    {
-                        class: 'SS 2',
-                        arm: 'A',
-                        subject_name: 'Biology',
-                        subject_id: 23,
-                    },
-                    {
-                        class: 'SS 2',
-                        arm: 'B',
-                        subject_name: 'Biology',
-                        subject_id: 23,
-                    },
-                    {
-                        class: 'SS 2',
-                        arm: 'C',
-                        subject_name: 'Biology',
-                        subject_id: 23,
-                    },
-                ],
-                subjects: [],
-                filter: '',
-                data: {
-                    subject_id: '',
-                    attendance: [
-                        {
-                            id: '',
-                            name: 'Ambrose Schulist',
-                            mon: 0,
-                            tue: 0,
-                            wed: 0,
-                            thur: 0,
-                            fri: 0,
-                        },
-                        {
-                            id: '',
-                            name: 'Bernadette Medhurst',
-                            mon: 0,
-                            tue: 0,
-                            wed: 0,
-                            thur: 0,
-                            fri: 0,
-                        },
-                    ]
-                },
-            }
+            return {}
         },
         methods: {
         },
-        mounted() {}
+        computed: {
+            ...mapGetters(['user', 'school_classes'])
+        },
+        created() {
+            if(this.user.staff_id){
+                store.dispatch('staffClasses', this.user.staff_id);
+            }
+        }
     }
 </script>
 <style scoped>
@@ -157,4 +105,3 @@
         font-weight: bold;
     }
 </style>
-<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>

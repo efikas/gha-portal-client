@@ -21,7 +21,7 @@ const teacher_routes = [{
                 }
             },
             {
-                path: ':id/exam',
+                path: ':schoolClassId/exam',
                 name: 'teacher-exam',
                 component: resolve => require(['pages/teacher/classes/exam'], resolve),
                 meta: {

@@ -21,6 +21,7 @@ axios.interceptors.request.use(function (config) {
 // Add a response interceptor
 axios.interceptors.response.use(function (response) {
         // Do something with response data
+        response.headers['Access-Control-Allow-Origin'] = '*';
         return response;
     }, function (error) {
 

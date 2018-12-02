@@ -75,7 +75,7 @@
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <td>Ambrose Schulist</td>
+                                        <td>Ambrose Schulistjjjjjjjj</td>
                                         <td>12</td>
                                         <td>6</td>
                                         <td>7</td>

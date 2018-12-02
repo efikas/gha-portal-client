@@ -10,10 +10,10 @@
                 <br><br>
 
                 <b-modal id="modal-add-class" ref="modal" title="Add Class" size="lg" lazy centered hide-footer >
-                    <add-class></add-class>
+                    <add-class ></add-class>
                 </b-modal>
                 <b-modal id="modal-add-subject" ref="modal" title="Add Subjects" size="lg" lazy centered hide-footer >
-                    <add-subject></add-subject>
+                    <add-subject :classId="selectedClass"></add-subject>
                 </b-modal>
 
                 <div class="row">
@@ -31,14 +31,14 @@
                                 <tbody>
                                 <tr v-for="(_class, index) in school_classes">
                                     <td>{{ index + 1 }}</td>
-                                    <td>{{ _class.class }}</td>
+                                    <td>{{ `${_class.class_name.fullname} ${_class.arm}` }}</td>
                                     <td class="">
-                                        <a href="javascript:void(0)" v-b-modal.modal-add-subject>
+                                        <a href="javascript:void(0)" v-b-modal.modal-add-subject @click="addSubject(_class.id)">
                                             <i class=" fa fa-edit"></i> Subjects
                                         </a>
                                     </td>
                                     <td class="">
-                                        <router-link tag="a" :to="{name:'teacher-exam', params: { id: _class.class_id }}" class="fa fa-book">
+                                        <router-link tag="a" :to="{name:'teacher-exam', params: { schoolClassId: _class.id }}" class="fa fa-book">
                                             Result
                                         </router-link>
                                     </td>
@@ -56,6 +56,7 @@
     import {mapGetters} from 'vuex'
     import AddClass from './partials/class';
     import AddSubject from './partials/subject';
+    import store from 'src/store/store';
 
     export default {
         name: 'admin-class',
@@ -65,37 +66,22 @@
         },
         data() {
             return {
-
-                subjects: [],
-                filter: '',
-                data: {
-                    subject_id: '',
-                    attendance: [
-                        {
-                            id: '',
-                            name: 'Ambrose Schulist',
-                            mon: 0,
-                            tue: 0,
-                            wed: 0,
-                            thur: 0,
-                            fri: 0,
-                        },
-                        {
-                            id: '',
-                            name: 'Bernadette Medhurst',
-                            mon: 0,
-                            tue: 0,
-                            wed: 0,
-                            thur: 0,
-                            fri: 0,
-                        },
-                    ]
-                },
+               selectedClass: null,
             }
         },
         methods: {
+            addSubject(classId){
+                this.selectedClass = classId; // set selected class id
+            }
         },
-        computed: mapGetters(['school_classes'])
+        computed: mapGetters(['school_classes']),
+        async beforeRouteEnter(to, from, next) {
+            let school_id = (to.params.id) ? to.params.id : store.getters.schoolId;
+            await store.dispatch('schoolClasses', school_id).catch(() => {
+                return next(from);
+            });
+            next()
+        },
     }
 </script>
 <style scoped>

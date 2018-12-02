@@ -1,3 +1,10 @@
+let normalizer = function (data) {
+    let endPoint = {};
+    for (let i = 0; i < data.length; i++) {
+        endPoint[data[i]] = data[i];
+    }
+    return endPoint;
+};
 
 const getters = {
     user: state => {
@@ -18,6 +25,56 @@ const getters = {
     isLoggedIn: (state, getters) => {
         return !!getters.token;
     },
+    permissions: (state, getters) => {
+
+        let _keys = {
+            ...(normalizer(state.user.permissions)),
+            ...(normalizer(state.user.roles)),
+        };
+
+
+
+        return {
+            hasOne: (perm) => {
+                if (typeof perm === "object") {
+                    for (var p = 0; p < perm.length; p++) {
+                        if (!_keys[perm[p]]) {
+                            return false;
+                        }
+                    }
+                    return true;
+                } else {
+                    return !!_keys[perm];
+                }
+            },
+
+            hasAny: (roles_permissions) => {
+                if (typeof roles_permissions !== "object") {
+                    throw "Invalid parameter, array is required!"
+                }
+                for (let index = 0; index < roles_permissions.length; index++) {
+                    if (getters.permissions.hasOne(roles_permissions[index])) {
+                        return true;
+                    }
+                }
+                return false;
+            },
+
+            hasAll: (roles_permissions) => {
+                if (typeof roles_permissions !== "object") {
+                    throw "Invalid parameter, array is required!"
+                }
+
+                for (let index = 0; index < roles_permissions.length; index++) {
+                    if (!getters.permissions.hasOne(roles_permissions[index])) {
+                        return false;
+                    }
+                }
+                return true;
+            },
+        }
+    },
+    authorizations: state => state.authorizations,
     statistics: state => state.statistics,
     access_server: state => state.access_server,
     url: state => {
