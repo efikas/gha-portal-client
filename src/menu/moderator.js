@@ -27,6 +27,11 @@ const moderator = [{
         name: 'Classes',
         link: '/admin/classes',
         icon: 'fa fa-calendar-check-o',
+    },
+    {
+        name: 'Settings',
+        link: '/admin/settings',
+        icon: 'fa fa-wrench',
     }
 ];
 export default moderator;

@@ -50,6 +50,7 @@ const store = new Vuex.Store({
         isLoggedIn: false, //!!this.getters.token,
         token: localStorage.getItem('token'),
         user: JSON.parse(localStorage.getItem('user')),
+
         // Add your application keys
         gmap_key: 'AIzaSyBTnQCx3FXEnfWPPWTKAwIxt6wSjAn_8ug',
         openWeather_key: 'c00194f61244d2b33b863bff6d94e663',
@@ -66,7 +67,6 @@ const store = new Vuex.Store({
         //settings
         term: '1',
         session: '2018/2019',
-
 
         user_type: 3, // 1 - super admin, 2 - school admin, 3 - teachers, 4 - Student, 5 - Parent
         super_admin: 1,

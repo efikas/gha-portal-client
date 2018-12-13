@@ -32,8 +32,6 @@ const getters = {
             ...(normalizer(state.user.roles)),
         };
 
-
-
         return {
             hasOne: (perm) => {
                 if (typeof perm === "object") {
@@ -69,6 +67,16 @@ const getters = {
                     if (!getters.permissions.hasOne(roles_permissions[index])) {
                         return false;
                     }
+                }
+                return true;
+            },
+            teachClass: (class_taught) => {
+                if (!(typeof class_taught === 'object' && class_taught.constructor === Object)) {
+                    throw "Invalid parameter, object is required!"
+                }
+
+                for(let _key of Object.keys(class_taught)) {
+                    if(class_taught[_key] != _keys[_key]) return false;
                 }
                 return true;
             },

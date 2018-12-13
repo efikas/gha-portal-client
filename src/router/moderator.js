@@ -84,8 +84,14 @@ const moderator_routes = [{
         meta: {
             guard: true,
         }
+    },
+    {
+        path: 'settings',
+        component: resolve => require(['pages/moderator/settings/settings'], resolve),
+        meta: {
+            guard: true,
+        }
     }
-
 ]
 
 export default moderator_routes

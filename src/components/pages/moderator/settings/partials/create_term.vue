@@ -23,9 +23,9 @@
                                 <thead>
                                 <tr class="">
                                     <th style="width: 4%">&nbsp;</th>
-                                    <th>Class</th>
+                                    <th>Term</th>
                                     <th style="width: 10%">&nbsp;</th>
-                                    <th style="width: 10%">&nbsp;</th>
+                                    <th style="width: 20%">&nbsp;</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -33,7 +33,7 @@
                                     <td>{{ index + 1 }}</td>
                                     <td>
                                         <router-link tag="a"
-                                         :to="{name:'admin-school-students',
+                                                     :to="{name:'admin-school-students',
                                          params: { className: `${_class.class_name.fullname} ${_class.arm}` },
                                          query: { class: _class.id }}">
                                             {{ `${_class.class_name.fullname} ${_class.arm}` }}
@@ -41,13 +41,11 @@
                                     </td>
                                     <td class="">
                                         <a href="javascript:void(0)" v-b-modal.modal-add-subject @click="addSubject(_class.id)">
-                                            <i class=" fa fa-edit"></i> Subjects
+                                            <i class=" fa fa-edit"></i> edit
                                         </a>
                                     </td>
                                     <td class="">
-                                        <router-link tag="a" :to="{name:'teacher-exam', params: { schoolClassId: _class.id }}" class="fa fa-book">
-                                            Result
-                                        </router-link>
+                                        <button class="btn btn-success">Generate Result</button>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -61,19 +59,19 @@
 </template>
 <script>
     import {mapGetters} from 'vuex'
-    import AddClass from './partials/class';
-    import AddSubject from './partials/subject';
+    // import AddClass from './partials/class';
+    // import AddSubject from './partials/subject';
     import store from 'src/store/store';
 
     export default {
-        name: 'admin-class',
+        name: 'create-term',
         components: {
-            AddClass,
-            AddSubject,
+            // AddClass,
+            // AddSubject,
         },
         data() {
             return {
-               selectedClass: null,
+                selectedClass: null,
             }
         },
         methods: {

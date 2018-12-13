@@ -3,7 +3,7 @@
         <div class="col-lg-12 mb-3">
             <SchoolCard></SchoolCard>
 
-            <b-card header="List of Students" header-tag="h4" class="bg-header-card">
+            <b-card :header="`List of Students ${className}`" header-tag="h4" class="bg-header-card">
                 <div style="margin: 2%" v-if="loading">
                     <skeleton-loading>
                         <row :gutter="{top: '20px'}">
@@ -30,7 +30,7 @@
                             </div>
                         </div>
                     </div>
-                    <v-client-table :data="students" :columns="columns" :options="options">
+                    <v-client-table :data="getStudents" :columns="columns" :options="options">
                         <span slot="id" slot-scope="student">{{ student.index }}</span>
                         <router-link class="list-font"
                                      slot="name"
@@ -62,7 +62,7 @@ export default {
     data() {
         return {
             loading: true,
-            columns: ['id', 'name', 'current_class', 'sex', 'place_of_birth', 'actions'],
+            columns: ['id', 'name', 'current_class', 'sex', 'actions'],
             options: {
                 sortIcon: {
                     base: 'fa',
@@ -87,6 +87,15 @@ export default {
         school_id(){
             return (this.$store.getters.userType == this.$store.getters.super_admin)
                 ? this.$route.params.id : this.$store.getters.schoolId
+        },
+        getStudents() {
+            if(this.$route.query.class){
+                return this.students.filter(student => student.current_class_section == this.$route.query.class)
+            }
+            return this.students;
+        },
+        className() {
+            return (this.$route.params.className) ? `in ${this.$route.params.className}` : '';
         }
     },
     watch: {

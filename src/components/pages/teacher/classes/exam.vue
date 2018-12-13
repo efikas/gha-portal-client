@@ -54,6 +54,7 @@
 </template>
 <script>
     import {mapGetters} from 'vuex'
+    import store from 'src/store/store';
 
     export default {
         name: 'exam-update',
@@ -78,11 +79,18 @@
             }
         },
         created() {
-            this.$store.dispatch('studentsResult', this.$route.params.schoolClassId);
+            this.$store.dispatch('studentsResult', this.$route.query.subject);
         },
         computed: {
             ...mapGetters(['students_result']),
-        }
+        },
+        async beforeRouteEnter(to, from, next) {
+            let permission = [`edit_class_${to.params.schoolClassId}_subject_${to.query.subject}`];
+           if (!store.getters.permissions.hasAny(permission)) {
+               return next(from)
+           }
+            next()
+        },
     }
 </script>
 <style scoped>

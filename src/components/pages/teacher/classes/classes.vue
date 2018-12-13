@@ -4,7 +4,7 @@
             <div class="col-lg-12">
                 <b-card>
                     <div>
-                        <h3 class="default-color"><strong>Student result for Junior Secondary One A</strong></h3>
+                        <h3 class="default-color"><strong>Classes</strong></h3>
                         <h4>Third Term, 2017/2018 Session</h4>
                     </div>
                 </b-card>
@@ -46,15 +46,19 @@
                                         <td>{{ index + 1 }}</td>
                                         <td class="">
                                             <router-link tag="a"
-                                                         :to="{name:'teacher-exam', params: { schoolClassId: _class.subject_id },
-                                                         query: { subject: _class.subject_id, term: 3 }
+                                                         :to="{name:'teacher-exam', params: { schoolClassId: _class.class_id },
+                                                         query: {
+                                                            subject: _class.id,  //subject offered
+                                                            term: 3 }
                                                          }">
                                                 {{ `${getClassName(_class.class.class_id)} ${_class.class.arm} (${getSubjectName(_class.subject_id)})` }}
                                             </router-link>
                                         </td>
                                         <td class="">
-                                            <router-link tag="a" :to="{name:'teacher-exam', params: { schoolClassId: _class.subject_id },
-                                                query: { subject: _class.subject_id, term: 3 }}" class="fa fa-book">
+                                            <router-link tag="a" :to="{name:'teacher-exam', params: { schoolClassId: _class.class_id },
+                                                query: {
+                                                    subject: _class.id,  //subject offered
+                                                    term: 3 }}" class="fa fa-book">
                                                Results
                                             </router-link>
                                         </td>

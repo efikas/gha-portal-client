@@ -10,12 +10,12 @@ const teacher = [{
     },
     {
         name: 'Notifications',
-        link: '/teacher/Notifications',
+        link: '/teacher/notifications',
         icon: 'fa fa-calendar-check-o',
     },
     {
         name: 'Lesson Plan',
-        link: '/teacher/Notifications',
+        link: '/teacher/lesson_plan',
         icon: 'fa fa-calendar-check-o',
     }
 ];
