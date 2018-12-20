@@ -41,28 +41,42 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="(_subject, index) in class_subjects">
+                        <tr v-if="editSubjectIndex.length > 0" v-for="(_subject, index) in class_subjects">
                             <td>{{ index + 1 }}</td>
                             <td class="">{{ _subject.subject.subject }}</td>
-                            <td class="">{{ `${_subject.staff.first_name} ${_subject.staff.middle_name} ${_subject.staff.last_name}` }}</td>
+
                             <td class="">
-                                <a class="btn btn-success" v-if="_subject.disabled == 1">
+                                <span v-if="editSubjectIndex[index].status == 0">
+                                    {{ `${_subject.staff.first_name} ${_subject.staff.middle_name} ${_subject.staff.last_name}` }}
+                                </span>
+
+                                <select class="form-control" size="1" v-model="editSubjectIndex[index].staff_id" v-else>
+                                    <option v-for="_staff in staffs" :value="_staff.id">
+                                        {{ `${_staff.first_name} ${_staff.middle_name} ${_staff.last_name}` }}
+                                    </option>
+                                </select>
+                            </td>
+
+                            <td class="">
+                                <a class="btn btn-success" @click="enableSubject(_subject.id)"
+                                   v-if="_subject.disabled == 1  | disabledSubjects.indexOf(_subject.id) > -1 && enabledSubjects.indexOf(_subject.id) < 0">
                                     enable
                                 </a>
                                 <div v-else>
-                                    <a class="btn btn-success">
+                                    <a class="btn btn-success" v-if="editSubjectIndex[index].status == 0" @click="editSubject(_subject.id, index)">
                                         edit
                                     </a>
-                                    <!--<a class="btn btn-success">-->
-                                        <!--revert-->
-                                    <!--</a>-->
-                                    <a class="btn btn-danger" @click="removeSubject(index)">
+                                    <a class="btn btn-success" v-else @click="revertSubject(_subject.id, index)">
+                                        revert
+                                    </a>
+                                    <a class="btn btn-danger" @click="disableSubject(_subject.id)">
                                         disable
                                     </a>
                                 </div>
 
                             </td>
                         </tr>
+                        <tr v-else></tr>
                         <tr v-for="(_subject, index) in addedSubjects">
                             <td class="text-primary font-weight-bold">{{ index + 1 }}</td>
                             <td class="text-primary font-weight-bold">{{ getSubjects(_subject.subject_id) }}</td>
@@ -106,6 +120,7 @@
                 addedSubjects: [],
                 enabledSubjects: [],
                 disabledSubjects: [],
+                editSubjectIndex: [],
             }
         },
         validations: {
@@ -117,8 +132,8 @@
         computed: {
             ...mapGetters(['data', 'class_subjects']),
             isSubmitable: function(){
-                return (this.addedSubjects.length > 0 || this.enabledSubjects > 0
-                    || this.disabledSubjects > 0) ? false : true;
+                return (this.addedSubjects.length > 0 || this.enabledSubjects.length > 0
+                    || this.disabledSubjects.length > 0 || this.staffUpdate().length > 0) ? false : true;
             }
         },
         methods: {
@@ -156,20 +171,84 @@
                 }
                 return null
             },
+
+            editSubject: function(subject_id, index){
+                this.$set(
+                    this.editSubjectIndex,
+                    index,
+                    {
+                        ...this.editSubjectIndex[index],
+                        status: 1
+                    }
+                );
+            },
+            revertSubject: function(subject_id, index){
+                this.$set(
+                    this.editSubjectIndex,
+                    index,
+                    {
+                        ...this.editSubjectIndex[index],
+                        status: 0
+                    }
+                );
+            },
+            disableSubject: function(subject_id){
+                /* If the subject id is in the enabled array,
+                * that means the subject has just been enabled but has not been saved
+                * so remove it from the array
+                * ELSE
+                * The subject has been enabled in the database and the subject id needed to be
+                * added to be disabled subject to disable it in the database                 *
+                */
+                if(this.enabledSubjects.indexOf(subject_id) > -1) {
+                    let index = this.enabledSubjects.indexOf(subject_id);
+                    this.enabledSubjects.splice(index, 1);
+                }
+                else {
+                    this.disabledSubjects.push(subject_id);
+                }
+            },
+            enableSubject: function(subject_id){
+                /* If the subject id is in the disabled array,
+                 * that means the subject has just been disabled but has not been saved
+                 * so remove it from the array
+                 * ELSE
+                 * The subject has been disabled in the database and the subject id needed to be
+                 * added to be enabled subjects to enable it in the database                 *
+                 */
+                if(this.disabledSubjects.indexOf(subject_id) > -1) {
+                    let index = this.disabledSubjects.indexOf(subject_id);
+                    this.disabledSubjects.splice(index, 1);
+                }
+                else {
+                    this.enabledSubjects.push(subject_id);
+                }
+            },
+            staffUpdate: function(){
+                //get updated staff
+                return this.editSubjectIndex.filter(subject => {
+                    return (subject.status == 1) && (subject.staff_id != subject.staff_id_old);
+                })
+            },
             submitSubjects: function(){
                 if (this.classId) {
-                    //this.isSubmitable = false;
                     let form = {
                         class_id: this.classId, // class id gotten through props
                         subjects: {
                             added: this.addedSubjects,
                             enabled: this.enabledSubjects,
                             disabled: this.disabledSubjects,
+                            staffUpdate: this.staffUpdate(),
                         }
                     };
-                    this.$store.dispatch('storeSubjects', form).then(() => {
-                        this.successMsg('Record updated!', 'Success');
-                        location.reload();
+                    this.$store.dispatch('storeSubjects', form).then((response) => {
+                        if(response == 'success') {
+                            this.successMsg('Record updated!', 'Success');
+                            location.reload();
+                        }
+                        else {
+                            this.errorMsg('Error saving data!', 'Error');
+                        }
                     }).catch(() => {
                         this.errorMsg('Error saving data!', 'Error');
                         //this.isSubmitable = true;
@@ -178,7 +257,17 @@
             }
         },
         created() {
-            this.$store.dispatch('classSubjects', this.classId).then((response)=>{})
+            this.$store.dispatch('classSubjects', this.classId).then((response)=>{
+                for(let i = 0; i < this.class_subjects.length; i++){
+                    this.editSubjectIndex.push({
+                        status: 0,
+                        id: this.class_subjects[i].id,
+                        staff_id_old: this.class_subjects[i].staff_id, // use to check if the staff of a subject is changed
+                        staff_id: this.class_subjects[i].staff_id,
+                    })
+                }
+                console.log(this.class_subjects[0])
+            })
         }
     }
 </script>

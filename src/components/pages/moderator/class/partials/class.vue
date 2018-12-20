@@ -124,7 +124,7 @@
                  * that means the class has just been enabled but has not been saved
                  * so remove it from the array
                  * ELSE
-                 * The class has is enabled in the database and the class id needed to be
+                 * The class has been enabled in the database and the class id needed to be
                  * added to be disabled class to disable it in the database                 *
                  */
                 if(this.enabledClass.indexOf(class_id) > -1) {
