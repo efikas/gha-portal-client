@@ -5,7 +5,7 @@
                 <div class="form-group p-10" :class="{'has-error':$v.student.school_id.$invalid}">
                     <label class="control-label">School Name<abbr class="text-danger">*</abbr></label>
                     <multiselect v-model="selectedSchool" :show-labels="false" :options="schoolsMapping"
-                                 @input="setSchoolId" @blur="$v.student.school_id.$touch()"></multiselect>
+                                 @input="setSchoolId" @blur="$v.student.school_id.$touch()" :disabled="true"></multiselect>
                 </div>
             </div>
         </div>
@@ -22,7 +22,7 @@
                 <div class="form-group" :class="{'has-error':$v.student.middle_name.$invalid}">
                     <label class="control-label">Middle Name<abbr class="text-danger">*</abbr>
                     </label>
-                    <input type="text" class="form-control" v-model="student.middle_name"
+                    <input type="text" class="form-control" v-model="student.middle_name" value=""
                            @blur="$v.student.middle_name.$touch()" placeholder="Middle Name"/>
                 </div>
             </div>
@@ -36,6 +36,17 @@
             </div>
         </div>
         <div class="row odd-row">
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="form-group p-10" :class="{'has-error':$v.student.school_student_id.$invalid}">
+                    <label class="control-label col-md-12">Student Reg No<abbr class="text-danger">*</abbr>
+                    </label>
+                    <div class="col-md-12">
+                        <input type="text" class="form-control" v-model="student.school_student_id" id="school_student_id"
+                               @blur="$v.student.school_student_id.$touch()"
+                               placeholder="GHA/****"/>
+                    </div>
+                </div>
+            </div>
             <div class="col-xs-12 col-sm-6 col-md-3">
                 <div class="form-group p-10" :class="{'has-error':$v.student.email.$invalid}">
                     <label class="control-label" for="email">Email (optional)
@@ -67,17 +78,6 @@
                     </b-form-radio-group>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-6 col-md-3">
-                <div class="form-group p-10" :class="{'has-error':$v.student.place_of_birth.$invalid}">
-                    <label class="control-label col-md-12">Place of Birth<abbr class="text-danger">*</abbr>
-                    </label>
-                    <div class="col-md-12">
-                        <input type="text" class="form-control" v-model="student.place_of_birth" id="pob"
-                               @blur="$v.student.place_of_birth.$touch()"
-                               placeholder="Place of birth"/>
-                    </div>
-                </div>
-            </div>
         </div>
         <div class="row even-row">
             <div class="col-xs-12 col-sm-6 col-md-4">
@@ -99,7 +99,7 @@
                         <select name="birth_cert_type"
                                 @blur="$v.student.birth_cert_type.$touch()"
                                 v-model="student.birth_cert_type" class="form-control" size="1">
-                            <option value="null">Select Cert Type</option>
+                            <option :value="null">Select Cert Type</option>
                             <option v-for="cert in data.birth_certs" :value="cert.id">{{cert.birth_cert_type}}</option>
                         </select>
                     </div>
@@ -112,7 +112,7 @@
                     <select
                             @blur="$v.student.special_condition.$touch()"
                             v-model="student.special_condition" class="form-control" size="1">
-                        <option value="null">Select Challenge</option>
+                        <option :value="null">Select Challenge</option>
                         <option v-for="challenge in data.special_conditions" :value="challenge.id">
                             {{challenge.condition}}
                         </option>
@@ -144,7 +144,7 @@
                         <select class="form-control" size="1"
                                 @blur="$v.student.lga_of_origin.$touch()"
                                 v-model="student.lga_of_origin">
-                            <option value="null">--select--</option>
+                            <option value="">--select--</option>
                             <option v-for="lga in filtered_lga_areas" :value="lga.id">{{lga.name}}</option>
                         </select>
                     </div>
@@ -199,7 +199,7 @@
                     <label class="control-label">Current Class<abbr class="text-danger">*</abbr>
                     </label>
                     <select id="current_class" v-model="student.current_class"
-                            @blur="$v.student.email.$touch()"
+                            @blur="$v.student.current_class.$touch()"
                             name="admission_education_level" class="form-control" size="1">
                         <option value="null">Select Level</option>
                         <option v-for="level in data.classes" :value="level.id">{{level.class}}</option>
@@ -210,9 +210,12 @@
                 <div class="form-group" :class="{'has-error':$v.student.current_class_section.$invalid}">
                     <label class="control-label">Class Section <abbr class="text-danger">*</abbr>
                     </label>
-                    <input type="text" class="form-control"
-                           @blur="$v.student.current_class_section.$touch()"
-                           v-model="student.current_class_section"/>
+                    <select id="current_class_section" v-model="student.current_class_section"
+                            @blur="$v.student.current_class_section.$touch()"
+                            name="admission_education_level" class="form-control" size="1">
+                        <option value="null">Select Section</option>
+                        <option v-for="class_section in filter_school_classes" :value="class_section.id">{{`${class_section.class_name.class} ${class_section.arm}`}}</option>
+                    </select>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-4">
@@ -286,7 +289,7 @@
         validations: personalValidations,
         mixins: [Toaster],
         computed: {
-            ...mapGetters({schools: 'schools', school: 'school', getStudent: 'student', data: 'data'}),
+            ...mapGetters({schools: 'schools', school: 'school', getStudent: 'student', data: 'data', school_classes: 'school_classes'}),
             schoolsMapping() {
                 return this.schools.map(school => {
                     if (this.student.school_id === school.id) {
@@ -299,6 +302,9 @@
                 return Object.values(this.data.lga_areas_all).filter(lga => {
                     return lga.state_id === this.student.state_of_origin;
                 })
+            },
+            filter_school_classes() {
+                return this.school_classes.filter(_class => _class.class_id == this.student.current_class)
             }
         },
         methods: {
@@ -315,10 +321,10 @@
                     'first_name': this.student.first_name,
                     'last_name': this.student.last_name,
                     'middle_name': this.student.middle_name,
+                    'school_student_id': this.student.school_student_id,
                     'email': this.student.email,
                     'phone': this.student.phone,
                     'sex': this.student.sex,
-                    'place_of_birth': this.student.place_of_birth,
                     'date_of_birth': this.student.date_of_birth,
                     'state_of_origin': this.student.state_of_origin,
                     'lga_of_origin': this.student.lga_of_origin,
@@ -353,6 +359,7 @@
         },
         created: async function () {
             await this.$store.dispatch('schools');
+            await this.$store.dispatch('schoolClasses', this.school.id);
             this.student = JSON.parse(JSON.stringify(this.getStudent));
             if (this.school.id) {
                 this.selectedSchool = this.school.name;

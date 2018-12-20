@@ -46,9 +46,21 @@
                             <td class="">{{ _subject.subject.subject }}</td>
                             <td class="">{{ `${_subject.staff.first_name} ${_subject.staff.middle_name} ${_subject.staff.last_name}` }}</td>
                             <td class="">
-                                <a class="btn btn-danger" @click="removeSubject(index)">
-                                    Disable
+                                <a class="btn btn-success" v-if="_subject.disabled == 1">
+                                    enable
                                 </a>
+                                <div v-else>
+                                    <a class="btn btn-success">
+                                        edit
+                                    </a>
+                                    <!--<a class="btn btn-success">-->
+                                        <!--revert-->
+                                    <!--</a>-->
+                                    <a class="btn btn-danger" @click="removeSubject(index)">
+                                        disable
+                                    </a>
+                                </div>
+
                             </td>
                         </tr>
                         <tr v-for="(_subject, index) in addedSubjects">

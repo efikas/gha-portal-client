@@ -31,12 +31,21 @@
                         </div>
                     </div>
                     <v-client-table :data="getStudents" :columns="columns" :options="options">
+                        <span slot="h__school_student_id">Student Reg No</span>
+                        <span slot="h__sex">Gender</span>
+
                         <span slot="id" slot-scope="student">{{ student.index }}</span>
                         <router-link class="list-font"
                                      slot="name"
                                      slot-scope="props"
                                      :to="{name:'student-profile', params:{id:props.row.id}}"
                         >{{ props.row.first_name + ' ' + props.row.last_name + ' ' + props.row.middle_name }}
+                        </router-link>
+                        <router-link class="list-font"
+                                     slot="school_student_id"
+                                     slot-scope="props"
+                                     :to="{name:'student-profile', params:{id:props.row.id}}"
+                        >{{ props.row.school_student_id }}
                         </router-link>
                         <span slot="current_class" slot-scope="student">{{ student.row.current_class?student.row.current_class.class:null }}</span>
                         <div slot="actions" slot-scope="student">
@@ -62,7 +71,7 @@ export default {
     data() {
         return {
             loading: true,
-            columns: ['id', 'name', 'current_class', 'sex', 'actions'],
+            columns: ['id', 'name', 'school_student_id', 'current_class', 'sex', 'actions'],
             options: {
                 sortIcon: {
                     base: 'fa',

@@ -46,10 +46,11 @@
                             <td>{{ index + 1 }}</td>
                             <td class="">{{ `${_class.class_name.fullname} ${_class.arm}` }}</td>
                             <td>
-                                <a class="btn btn-success" v-if="_class.disabled == 1">
+                                <a class="btn btn-success" @click="enableClass(_class.id)"
+                                   v-if="_class.disabled == 1 | disabledClass.indexOf(_class.id) > -1 && enabledClass.indexOf(_class.id) < 0" >
                                     Enable
                                 </a>
-                                <a class="btn btn-danger" v-else>
+                                <a class="btn btn-danger" v-else @click="disableClass(_class.id)">
                                     Disable
                                 </a>
                             </td>
@@ -106,8 +107,8 @@
         computed: {
             ...mapGetters(['class_arms', 'data', 'school_classes', 'schoolId']),
             isSubmitable: function(){
-                return (this.addedClass.length > 0 || this.enabledClass > 0
-                    || this.disabledClass > 0) ? false : true;
+                return (this.addedClass.length > 0 || this.enabledClass.length > 0
+                    || this.disabledClass.length) ? false : true;
             }
         },
         methods: {
@@ -119,19 +120,37 @@
             // },
 
             disableClass(class_id){
+                /* If the class id is in the enabled array,
+                 * that means the class has just been enabled but has not been saved
+                 * so remove it from the array
+                 * ELSE
+                 * The class has is enabled in the database and the class id needed to be
+                 * added to be disabled class to disable it in the database                 *
+                 */
                 if(this.enabledClass.indexOf(class_id) > -1) {
                     let index = this.enabledClass.indexOf(class_id);
                     this.enabledClass.splice(index, 1);
                 }
-                this.disabledClass.push(class_id);
+                else {
+                    this.disabledClass.push(class_id);
+                }
             },
 
             enableClass(class_id){
+                /* If the class id is in the disabled array,
+                 * that means the class has just been disabled but has not been saved
+                 * so remove it from the array
+                 * ELSE
+                 * The class has been disabled in the database and the class id needed to be
+                 * added to be enabled class to enable it in the database                 *
+                 */
                 if(this.disabledClass.indexOf(class_id) > -1) {
                     let index = this.disabledClass.indexOf(class_id);
                     this.disabledClass.splice(index, 1);
                 }
-                this.enabledClass.push(class_id);
+                else {
+                    this.enabledClass.push(class_id);
+                }
             },
 
             addClass: function() {
@@ -157,7 +176,6 @@
 
             submitClass: function(){
                 if (this.schoolId) {
-                    this.isSubmitable = false;
                     let form = {
                         id: this.schoolId,
                         classes: {
@@ -166,13 +184,17 @@
                             disabled: this.disabledClass,
                         }
                     };
-                    this.$store.dispatch('storeClass', form).then(() => {
-                        this.successMsg('Record updated!', 'Success');
-                        location.reload();
+                    this.$store.dispatch('storeClass', form).then((response) => {
+                       if(response == 'success'){
+                           this.successMsg('Record updated!', 'Success');
+                           location.reload();
+                       }
+                       else {
+                           this.errorMsg('Error saving data!', 'Error')
+                       }
                         //setTimeout(() => this.$emit('closeModal', true), 500);
                     }).catch(() => {
                         this.errorMsg('Error saving data!', 'Error');
-                        this.isSubmitable = true;
                     });
                 }
             }

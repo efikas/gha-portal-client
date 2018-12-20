@@ -402,7 +402,7 @@ var render = function() {
                           })
                         _vm.$set(
                           _vm.data,
-                          "term",
+                          "terms.vue",
                           $event.target.multiple
                             ? $$selectedVal
                             : $$selectedVal[0]

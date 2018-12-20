@@ -13,7 +13,7 @@
                         <b-tabs vertical card small :content-class="contentClass()" pills v-model="tabIndex"
                                 @input="tabChanged($event)">
                             <b-tab title="Create Term">
-                                <create-term></create-term>
+                                <terms></terms>
                             </b-tab>
                             <b-tab title="Generate Results">
                                 <generate-results></generate-results>
@@ -29,12 +29,12 @@
 
 <script>
     import SchoolCard from "../../../widgets/sbemis/SchoolCard1";
-    import CreateTerm from './partials/create_term';
+    import Terms from './terms';
     import GenerateResults from './partials/generate_results';
     export default {
         name: "settings",
         components: {
-            CreateTerm,
+            Terms,
             GenerateResults,
             SchoolCard
         },

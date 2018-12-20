@@ -1,105 +1,101 @@
 <template>
     <div>
+       <div>
+           <span class="text-error m-3" v-if="action == 'create'">
+               Note: Do not create a future term
+           </span>
+       </div>
         <div class="row">
-            <div class="col-lg-12">
-                <b-card>
-                    <a href="javascript:void(0)" v-b-modal.modal-add-class class="pull-right">
-                        <i class=" fa fa-plus"></i> Add
-                    </a>
-                </b-card>
-                <br><br>
-
-                <b-modal id="modal-add-class" ref="modal" title="Add Class" size="lg" lazy centered hide-footer >
-                    <add-class ></add-class>
-                </b-modal>
-                <b-modal id="modal-add-subject" ref="modal" title="Add Subjects" size="lg" lazy centered hide-footer >
-                    <add-subject :classId="selectedClass"></add-subject>
-                </b-modal>
-
-                <div class="row">
-                    <div class="col-lg-12 mb-3">
-                        <div class="table-responsive">
-                            <table id="mytable" class="table table-bordred table-striped">
-                                <thead>
-                                <tr class="">
-                                    <th style="width: 4%">&nbsp;</th>
-                                    <th>Term</th>
-                                    <th style="width: 10%">&nbsp;</th>
-                                    <th style="width: 20%">&nbsp;</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr v-for="(_class, index) in school_classes">
-                                    <td>{{ index + 1 }}</td>
-                                    <td>
-                                        <router-link tag="a"
-                                                     :to="{name:'admin-school-students',
-                                         params: { className: `${_class.class_name.fullname} ${_class.arm}` },
-                                         query: { class: _class.id }}">
-                                            {{ `${_class.class_name.fullname} ${_class.arm}` }}
-                                        </router-link>
-                                    </td>
-                                    <td class="">
-                                        <a href="javascript:void(0)" v-b-modal.modal-add-subject @click="addSubject(_class.id)">
-                                            <i class=" fa fa-edit"></i> edit
-                                        </a>
-                                    </td>
-                                    <td class="">
-                                        <button class="btn btn-success">Generate Result</button>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-5">
+                <label>Term</label>
+                <select class="form-control" size="1"
+                        @blur="$v.term.name.$touch()"
+                        v-model="term.name">
+                    <option value="">Select Term</option>
+                    <option value="First">First</option>
+                    <option value="Second">Second</option>
+                    <option value="Third">Third</option>
+                </select>
+            </div>
+            <div class="col-5">
+                <label>Session</label>
+                <select class="form-control" size="1"
+                        @blur="$v.term.session.$touch()"
+                        v-model="term.session">
+                    <option value="">Select Session</option>
+                    <option :value="term_session">
+                        {{ term_session }}
+                    </option>
+                </select>
+            </div>
+            <div class="col-2">
+                <label>&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <button class="btn btn-success btn-style"
+                        :disabled="$v.term.$invalid"
+                        @click="createTerm">Add</button>
             </div>
         </div>
     </div>
 </template>
+
 <script>
-    import {mapGetters} from 'vuex'
-    // import AddClass from './partials/class';
-    // import AddSubject from './partials/subject';
-    import store from 'src/store/store';
+    import {mapGetters} from 'vuex';
+    import {required} from 'vuelidate/lib/validators';
+    import Toaster from '../../../../mixins/toaster';
 
     export default {
-        name: 'create-term',
-        components: {
-            // AddClass,
-            // AddSubject,
+        name: "create-term",
+        mixins: [Toaster],
+        props: {
+            action: {type: String},
+            termId: {type: Number}
         },
         data() {
             return {
-                selectedClass: null,
+                term: {
+                    name: '',
+                    session: '',
+                },
+                term_session : '2018/2019',
             }
+        },
+        validations: {
+            term: {
+                name: {required},
+                session: { required},
+            }
+        },
+        computed: {
+            // ...mapGetters(['class_arms', 'data', 'school_classes', 'schoolId']),
+
         },
         methods: {
-            addSubject(classId){
-                this.selectedClass = classId; // set selected class id
+            createTerm: function(){
+                // if (this.schoolId) {
+                //     let form = {
+                //         id: this.schoolId,
+                //         classes: {
+                //             added: this.addedClass,
+                //             enabled: this.enabledClass,
+                //             disabled: this.disabledClass,
+                //         }
+                //     };
+                //     this.$store.dispatch('storeClass', form).then(() => {
+                //         this.successMsg('Record updated!', 'Success');
+                //         location.reload();
+                //         //setTimeout(() => this.$emit('closeModal', true), 500);
+                //     }).catch(() => {
+                //         this.errorMsg('Error saving data!', 'Error');
+                //         this.isSubmitable = true;
+                //     });
+                // }
             }
-        },
-        computed: mapGetters(['school_classes']),
-        async beforeRouteEnter(to, from, next) {
-            let school_id = (to.params.id) ? to.params.id : store.getters.schoolId;
-            await store.dispatch('schoolClasses', school_id).catch(() => {
-                return next(from);
-            });
-            next()
-        },
+        }
     }
 </script>
+
 <style scoped>
-    .dz-progress {
-        background-color: #08aa80 !important;
-    }
-    .red {
-        color: red;
-        font-weight: bold;
-    }
-    .green {
-        color: darkgreen;
-        font-weight: bold;
+    .btn-style {
+        margin-top: 30px
     }
 </style>
-<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>

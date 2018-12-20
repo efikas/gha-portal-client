@@ -11,6 +11,8 @@ import student  from './modules/student';
 import staff    from  './modules/staff'
 import users    from  './modules/user'
 import classes    from  './modules/classes'
+import settings    from  './modules/settings'
+import result    from  './modules/result'
 
 let regex = /(?:https?:\/\/)?([a-zA-Z\-]+)\.(?:.*)/;
 let url = null ; //https://ekiti.sbemis.online'; //window.location.href
@@ -81,7 +83,9 @@ const store = new Vuex.Store({
         student,
         staff,
         users,
-        classes
+        classes,
+        settings,
+        result
     }
 });
 //=======vuex store end===========

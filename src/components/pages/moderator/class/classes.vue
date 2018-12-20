@@ -40,12 +40,15 @@
                                         </router-link>
                                     </td>
                                     <td class="">
-                                        <a href="javascript:void(0)" v-b-modal.modal-add-subject @click="addSubject(_class.id)">
+                                        <a href="javascript:void(0)" v-b-modal.modal-add-subject
+                                           @click="addSubject(_class.id)" v-if="_class.disabled == 0">
                                             <i class=" fa fa-edit"></i> Subjects
                                         </a>
+                                        <span v-else class="text-danger font-weight-bold">disabled</span>
                                     </td>
                                     <td class="">
-                                        <router-link tag="a" :to="{name:'teacher-exam', params: { schoolClassId: _class.id }}" class="fa fa-book">
+                                        <router-link tag="a" class="fa fa-book" v-if="_class.disabled == 0"
+                                                     :to="{name:'teacher-exam', params: { schoolClassId: _class.id }}">
                                             Result
                                         </router-link>
                                     </td>
