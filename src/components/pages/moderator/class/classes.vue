@@ -34,7 +34,7 @@
                                     <td>
                                         <router-link tag="a"
                                          :to="{name:'admin-school-students',
-                                         params: { className: `${_class.class_name.fullname} ${_class.arm}` },
+                                         params: { className: `${_class.class_name.fullname} ${_class.arm}`, from: 'classes' },
                                          query: { class: _class.id }}">
                                             {{ `${_class.class_name.fullname} ${_class.arm}` }}
                                         </router-link>
@@ -48,7 +48,9 @@
                                     </td>
                                     <td class="">
                                         <router-link tag="a" class="fa fa-book" v-if="_class.disabled == 0"
-                                                     :to="{name:'teacher-exam', params: { schoolClassId: _class.id }}">
+                                                :to="{name:'admin-school-students',
+                                                params: { className: `${_class.class_name.fullname} ${_class.arm}`, from: 'classes' },
+                                                query: { class: _class.id, option: 'result' }}">
                                             Result
                                         </router-link>
                                     </td>

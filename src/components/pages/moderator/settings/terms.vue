@@ -82,7 +82,7 @@
             generateResults: function(termId){
                 let term = {term: termId}
                 store.dispatch('generateResult',
-                    {id: this.school_id, terms})
+                    {id: this.school_id, term})
                     .then(response => {
                         if (response == 'success') {
                             setTimeout(() => this.successMsg('Students result created Successfully.', 'Result Generation'), 200)

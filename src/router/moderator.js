@@ -69,6 +69,16 @@ const moderator_routes = [{
                         guard: true
                     }
             },
+            {
+                path: ':id/result',
+                name: 'admin-student-result',
+                component:
+                    resolve => require(['pages/moderator/result/result'], resolve),
+                meta: {
+                    title: "",
+                    guard: true
+                }
+            },
         ]
     },
     {

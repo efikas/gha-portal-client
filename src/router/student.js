@@ -40,6 +40,14 @@ const student_routes = [{
         }
     },
     {
+        path: '/result',
+        name: 'student-result',
+        component: resolve => require(['pages/admin/staff/layout'], resolve),
+        meta: {
+            guard: true,
+        }
+    },
+    {
         path: '/notification',
         name: 'student-notification',
         component: resolve => require(['pages/admin/staff/layout'], resolve),

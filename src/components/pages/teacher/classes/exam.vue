@@ -18,11 +18,13 @@
                                     <tr>
                                         <th style="width: 15%">Student Id</th>
                                         <th style="width: 25%">Student Name</th>
-                                        <th class="text-center">Test<br>(20%)</th>
-                                        <th class="text-center">Quiz<br> (10%)</th>
-                                        <th class="text-center">Assignment<br> (10%)</th>
-                                        <th class="text-center">Psycomotor<br> (10%)</th>
-                                        <th class="text-center">Exam<br> (50%)</th>
+
+                                        <th class="text-center">Assig<br> (20%)</th>
+                                        <th class="text-center">Class&nbsp;Work<br>(10%)</th>
+                                        <th class="text-center">&nbsp;&nbsp;Test&nbsp;&nbsp;<br>(10%)</th>
+                                        <th class="text-center">&nbsp;&nbsp;Quiz&nbsp;&nbsp;<br> (10%)</th>
+                                        <th class="text-center">Psyco<br> (10%)</th>
+                                        <th class="text-center">&nbsp;&nbsp;Exam&nbsp;&nbsp;<br> (40%)</th>
                                         <th class="text-center">Total<br>(100%)</th>
                                         <th>Grade</th>
                                         <th>Remark</th>
@@ -32,12 +34,13 @@
                                     <tr v-for="result in students_result" :value="result.id">
                                         <td>{{ result.student.school_student_id }}</td>
                                         <td>{{ `${result.student.first_name} ${result.student.middle_name} ${result.student.last_name}` }}</td>
-                                        <td><input type="number" v-model="result.test" size="1" min="0"max="20" class="form-control"></td>
-                                        <td><input type="number" v-model="result.quiz"  size="1" min="0" max="10" class="form-control"></td>
-                                        <td><input type="number" v-model="result.assignment"  size="1" min="0" max="10" class="form-control"></td>
-                                        <td><input type="number" v-model="result.psycomotor" size="1" min="0" max="10" class="form-control"></td>
-                                        <td><input type="number" v-model="result.exam" size="1" min="0" max="50" class="form-control"></td>
-                                        <td class="green text-center">{{ totalMark(result.test, result.quiz, result.assignment, result.psycomotor, result.exam) }}</td>
+                                        <td><input type="number" v-model="result.assignment"  step="0.1" min="0.0" max="20.0" class="form-control"></td>
+                                        <td><input type="number" v-model="result.class_work" size="1" step="0.1" min="0.0"max="10.0" class="form-control"></td>
+                                        <td><input type="number" v-model="result.test" size="1" step="0.1" min="0.0"max="10.0" class="form-control"></td>
+                                        <td><input type="number" v-model="result.quiz"  size="1" step="0.1"  min="0.0" max="10.0" class="form-control"></td>
+                                        <td><input type="number" v-model="result.psycomotor" size="1" step="0.1" min="0.0" max="10.0" class="form-control"></td>
+                                        <td><input type="number" v-model="result.exam" size="1" step="0.1" min="0.0" max="40.0" class="form-control"></td>
+                                        <td class="green text-center">{{ totalMark(result.test, result.class_work,  result.quiz, result.assignment, result.psycomotor, result.exam) }}</td>
                                         <td class="green text-center">A</td>
                                         <td class="green text-center">Excellent</td>
                                     </tr>
@@ -55,24 +58,32 @@
 <script>
     import {mapGetters} from 'vuex'
     import store from 'src/store/store';
+    import Toaster from '../../../mixins/toaster';
 
     export default {
         name: 'exam-update',
         components: {},
+        mixins: [Toaster],
         data() {
             return {
 
             }
         },
         methods: {
-            totalMark(test, quiz, assignment, psycomotor, exam){
-                return parseInt(test) + parseInt(quiz) + parseInt(assignment) + parseInt(psycomotor) + parseInt(exam) | 0;
+            totalMark(test, class_work, quiz, assignment, psycomotor, exam){
+                return parseFloat(test) + parseFloat(class_work) + parseFloat(quiz) + parseFloat(assignment) + parseFloat(psycomotor)
+                    + parseFloat(exam) | 0.0;
             },
             onSubmit: function(){
                 let data = { data: this.students_result };
-                this.$store.dispatch('storeResults', data).then(() => {
-                    this.successMsg('Record updated!', 'Success');
-                    location.reload();
+                this.$store.dispatch('storeResults', data).then((response) => {
+                    if(response == 'success'){
+                        this.successMsg('Record updated!', 'Success');
+                        location.reload();
+                    }
+                    else {
+                        this.errorMsg('Error saving data!', 'Error')
+                    }
                 }).catch(() => {
                     this.errorMsg('Error saving data!', 'Error');
                 });
@@ -87,7 +98,7 @@
         async beforeRouteEnter(to, from, next) {
             let permission = [`edit_class_${to.params.schoolClassId}_subject_${to.query.subject}`];
            if (!store.getters.permissions.hasAny(permission)) {
-               return next(from)
+               next(from.path)
            }
             next()
         },

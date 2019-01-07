@@ -49,8 +49,14 @@
                         </router-link>
                         <span slot="current_class" slot-scope="student">{{ student.row.current_class?student.row.current_class.class:null }}</span>
                         <div slot="actions" slot-scope="student">
-                            <a href="javascript: void(0)" @click="deleteRecord(student.row.id)" class=""><i
-                                    class="fa fa-trash"></i></a>
+                            <div v-if="option == 'result'">
+                                <router-link class="list-font"
+                                             :to="{name:'admin-student-result', params:{id:student.row.id}}">
+                                    Result
+                                </router-link>
+                            </div>
+                            <a href="javascript: void(0)" @click="deleteRecord(student.row.id)" v-else>
+                                <i class="fa fa-trash"></i></a>
                         </div>
                     </v-client-table>
                 </div>
@@ -70,6 +76,7 @@ export default {
     mixins: [Toaster],
     data() {
         return {
+            option: null,
             loading: true,
             columns: ['id', 'name', 'school_student_id', 'current_class', 'sex', 'actions'],
             options: {
@@ -113,6 +120,10 @@ export default {
         }
     },
     created() {
+        //check for route param from
+        if (this.$route.query.option == 'result') {
+            this.option = 'result';
+        }
         this.loading = true;
         this.$store.dispatch('students', {id: this.school_id});
     },

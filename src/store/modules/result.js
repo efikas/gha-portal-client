@@ -23,6 +23,14 @@ const actions = {
             return Promise.reject(error.response)
         })
     },
+    studentFullResult: ({commit}, payload) => {
+        return axios.post(`full_results`, payload).then(response => {
+            commit('SET_RESULTS', response.data);
+            return Promise.resolve(response.data)
+        }).catch((error) => {
+            return Promise.reject(error.response)
+        })
+    },
     storeResults: ({commit}, payload) => {
         return axios.post('results', payload).then(response => {
             console.log(response)
